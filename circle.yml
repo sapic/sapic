@@ -22,5 +22,5 @@ test:
         pwd: out
     - git commit -m 'AutoPush':
         pwd: out
-    - git push --force ssh://git@gitgub.com/SAPIC/SAPIC.github.io.git $CIRCLE_SHA1:refs/heads/master:
+    - git push --force --quiet "https://${GH_ATOKEN}@github.com/SAPIC/SAPIC.github.io"> /dev/null 2>&1
         pwd: out
