@@ -31,7 +31,7 @@ function getImageBase64(image, fn){
         fn(canvas.toDataURL());
     }
 
-    img.src = 'http://getmy.hol.es/image.php?i=' + image;
+    img.src = 'http://sapicphp.eu-gb.mybluemix.net/image.php?i=' + image;
 
 }
 function reloadImages(){
@@ -88,7 +88,7 @@ function reloadImages(){
 }
 
 function createInventory(id){
-    $.ajax('http://getmy.hol.es/sth.php?id=' + id).done(function(data){
+    $.ajax('http://sapicphp.eu-gb.mybluemix.net/sth.php?id=' + id).done(function(data){
         response = JSON.parse(data);
         response.backgrounds.forEach(function(back){
             var itemHolder = $("<div>", {class: "itemHolder", alt: back.name.toLowerCase() + " " + back.type.toLowerCase()});
