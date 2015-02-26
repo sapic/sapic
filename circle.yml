@@ -1,0 +1,26 @@
+machine:
+  node:
+    version: 0.10.25 
+dependencies:  
+  cache_directories:
+    - node_modules
+  override:
+    - npm install
+    - npm install --global gulp
+    - npm install --save-dev gulp
+    
+test:
+  override:
+    - rm -rf out
+    - mkdir out
+    - git clone https://github.com/SAPIC/SAPIC.github.io ./:
+        pwd: out 
+    - gulp
+    - git config --global user.name "${GH_NAME}"
+    - git config --global user.email "${GH_MAIL}"
+    - git add --a:
+        pwd: out
+    - git commit -m 'AutoPush':
+        pwd: out
+    - git push --force --quiet git@gitgub.com/SAPIC/SAPIC.github.io.git $CIRCLE_SHA1:refs/heads/master > /dev/null:
+        pwd: out

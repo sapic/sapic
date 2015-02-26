@@ -1,0 +1,1864 @@
+
+div.profile_page {
+	position: relative;
+
+	background-image: url( 'http://steamcommunity-a.akamaihd.net/public/images/profile/profile_bg.jpg' );
+	background-repeat: repeat-x;
+	background-color: #262627;
+
+	min-width: 950px;
+}
+
+div.profile_page.private_profile {
+	background-image: none;
+}
+
+div.profile_page.has_profile_background {
+	background-color: #000000;
+	background-position: center top;
+	background-repeat: no-repeat;
+}
+
+/* this is a workaround for webkit centering bug with backgrounds that are larger than the window */
+@media screen and (-webkit-min-device-pixel-ratio:0) {
+	div.profile_page.has_profile_background {
+		background-position: 49.999% 0;
+	}
+}
+
+.profile_header_bg {
+	position: relative;
+	max-width: 1018px;
+	height: 240px;
+	margin: 0 auto;
+
+	background-image: url( 'http://steamcommunity-a.akamaihd.net/public/images/profile/profile_header_bg.png' );
+	background-repeat: no-repeat;
+	background-position: center;
+}
+
+.profile_header_bg_texture {
+	max-width: 976px;
+	height: 224px;
+	margin: 0 auto;
+
+	background-image: url( 'http://steamcommunity-a.akamaihd.net/public/images/profile/profile_header_bg_texture.jpg' );
+	background-repeat: no-repeat;
+	background-position: center;
+}
+
+.profile_header {
+	position: relative;
+	width: 926px;
+	margin: 0 auto;
+
+	padding-top: 24px;
+	height: 200px;
+}
+
+.profile_header_content {
+	position: relative;
+	padding-left: 192px;
+	padding-right: 286px;
+	padding-top: 8px;
+
+	color: #898989;
+	font-size: 13px;
+}
+
+.playerAvatar.profile_header_size {
+	width: 166px;
+	height: 166px;
+}
+.playerAvatar.profile_header_size img {
+	width: 164px;
+	height: 164px;
+}
+
+.profile_header .playerAvatar.profile_header_size {
+	position: absolute;
+	left: 0;
+	top: 0;
+}
+
+.profile_header_badgeinfo {
+	position: absolute;
+	right: 0;
+	top: 8px;
+	width: 268px;
+}
+
+.profile_header_actions {
+	white-space: nowrap;
+}
+
+.profile_header .persona_name {
+	line-height: 40px;
+	font-size: 24px;
+	color: #ffffff;
+	font-family: 'Motiva Sans Thin',Arial,Helvetica,Verdana,sans-serif;
+}
+
+.profile_header .persona_name .nickname {
+	color: #9b9b9b;
+}
+
+.header_real_name {
+	height: 52px;
+}
+
+.profile_flag {
+	vertical-align: middle;
+	width: 16px;
+	height: 11px;
+}
+
+.profile_header .profile_summary {
+	line-height: 18px;
+	height: 57px;
+	overflow: hidden;
+	margin-bottom: 8px;
+}
+
+.profile_summary_modal {
+	line-height: 18px;
+}
+
+.profile_summary img.emoticon, .profile_summary_modal img.emoticon {
+	vertical-align: text-bottom;
+}
+
+.profile_header_badgeinfo .persona_level {
+	line-height: 40px;
+	margin-bottom: 13px;
+}
+
+.profile_header_badgeinfo .persona_level .friendPlayerLevel {
+	vertical-align: middle;
+}
+
+.profile_header_badgeinfo .persona_level .friendPlayerLevel .friendPlayerLevelNum {
+	color: #ffffff;
+}
+
+.profile_header_badge {
+	border: 1px solid #212121;
+	border-radius: 3px;
+	background-color: #222223;
+	height: 70px;
+
+	box-shadow: 1px 1px 0 #343944;
+
+	margin-bottom: 13px;
+}
+
+.profile_header_badge_instructions {
+	padding: 8px;
+}
+
+.favorite_badge {
+	position: relative;
+	padding: 8px 8px;
+}
+
+.favorite_badge_icon {
+	position: absolute;
+	top: 8px;
+	left: 8px;
+}
+
+.favorite_badge_icon img {
+	width: 54px;
+	height: 54px;
+}
+
+.favorite_badge_description {
+	padding-left: 64px;
+	padding-top: 12px;
+	white-space: nowrap;
+	overflow: hidden;
+	text-overflow: ellipsis;
+
+	font-size: 12px;
+}
+
+.favorite_badge_description .name {
+	color: #ffffff;
+}
+
+
+.btn_profile_action {
+	border-radius: 2px;
+	color: #fff !important;
+	padding: 1px;
+	display: inline-block;
+	text-decoration: none;
+	cursor: pointer;
+	border: 1px solid #212121;
+
+	background: #373f4f; /* Old browsers */
+	background: -moz-linear-gradient(top, #7a8494 5%, #282f3d 95%);background: -webkit-gradient(linear, left top, left bottom, color-stop(5%,#7a8494), color-stop(95%,#282f3d));background: -webkit-linear-gradient(top, #7a8494 5%,#282f3d 95%);background: -o-linear-gradient(top, #7a8494 5%,#282f3d 95%);background: -ms-linear-gradient(top, #7a8494 5%,#282f3d 95%);background: linear-gradient(to bottom, #7a8494 5%,#282f3d 95%);filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#7a8494', endColorstr='#282f3d',GradientType=0 );}
+.btn_profile_action > span {
+
+	border-radius: 2px;
+	display: block;
+	background: #2e394c; /* Old browsers */
+	background: -moz-linear-gradient(top, #33425a 5%, #282f3d 95%);background: -webkit-gradient(linear, left top, left bottom, color-stop(5%,#33425a), color-stop(95%,#282f3d));background: -webkit-linear-gradient(top, #33425a 5%,#282f3d 95%);background: -o-linear-gradient(top, #33425a 5%,#282f3d 95%);background: -ms-linear-gradient(top, #33425a 5%,#282f3d 95%);background: linear-gradient(to bottom, #33425a 5%,#282f3d 95%);filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#33425a', endColorstr='#282f3d',GradientType=0 );}
+.btn_profile_action:hover, .btn_profile_action.focus {
+	text-decoration: none;
+
+	background: #688bb1 ; /* Old browsers */
+background: -moz-linear-gradient(top, #9ba9bf 5%, #282f3d 95%);background: -webkit-gradient(linear, left top, left bottom, color-stop(5%,#9ba9bf), color-stop(95%,#282f3d));background: -webkit-linear-gradient(top, #9ba9bf 5%,#282f3d 95%);background: -o-linear-gradient(top, #9ba9bf 5%,#282f3d 95%);background: -ms-linear-gradient(top, #9ba9bf 5%,#282f3d 95%);background: linear-gradient(to bottom, #9ba9bf 5%,#282f3d 95%);filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#9ba9bf', endColorstr='#282f3d',GradientType=0 );}
+.btn_profile_action:hover > span, .btn_profile_action.focus > span {
+	background: #526d95; /* Old browsers */
+background: -moz-linear-gradient(top, #3c597b 5%, #282f3d 95%);background: -webkit-gradient(linear, left top, left bottom, color-stop(5%,#3c597b), color-stop(95%,#282f3d));background: -webkit-linear-gradient(top, #3c597b 5%,#282f3d 95%);background: -o-linear-gradient(top, #3c597b 5%,#282f3d 95%);background: -ms-linear-gradient(top, #3c597b 5%,#282f3d 95%);background: linear-gradient(to bottom, #3c597b 5%,#282f3d 95%);filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#3c597b', endColorstr='#282f3d',GradientType=0 );}
+
+#profile_action_dropdown {
+	white-space: nowrap;
+}
+
+#profile_action_dropdown .popup_menu_item {
+	line-height: 16px;
+	padding-top: 4px;
+	padding-bottom: 4px;
+}
+
+#profile_action_dropdown .popup_menu_item img {
+	vertical-align: middle;
+}
+
+.popup_menu .profile_actions_support a.popup_menu_item {
+	color: #cc3333;
+}
+
+.profile_content {
+	position: relative;
+
+	background-image: url( 'http://steamcommunity-a.akamaihd.net/public/images/profile/profile_content_bg.png' );
+	background-position: center;
+	background-repeat: repeat-y;
+
+	padding: 0 12px 64px 12px;
+	width: 926px;
+	margin: 0 auto;
+
+	font-size: 13px;
+}
+
+.private_profile .profile_content {
+
+	padding-bottom: 120px;
+	background-image: url( 'http://steamcommunity-a.akamaihd.net/public/images/profile/profile_content_bg_fade.png' ), url( 'http://steamcommunity-a.akamaihd.net/public/images/profile/profile_content_bg.png' );
+	background-position: center bottom, center;
+	background-repeat: no-repeat, repeat-y;
+}
+
+.profile_content.has_profile_background
+{
+	background: none;
+
+	margin-top: -14px;
+	overflow: hidden;
+	padding-top: 14px;
+}
+
+.profile_content_inner {
+	position: relative;
+}
+
+.profile_leftcol {
+	width: 636px;
+	float: left;
+}
+
+.profile_rightcol {
+	width: 268px;
+	float: right;
+}
+
+.profile_content h2 {
+	margin: 0;
+	padding: 0;
+	font-weight: normal;
+
+	line-height: 26px;
+	font-size: 20px;
+	font-family: 'Motiva Sans Thin',Arial,Helvetica,Verdana,sans-serif;
+}
+
+.profile_customization {
+	position: relative;
+
+	background-image: url('http://steamcommunity-a.akamaihd.net/public/images/profile/showcase_bg.png');
+	background-position: top left;
+	background-repeat: no-repeat;
+	background-color: #141414;
+
+	border-radius: 3px;
+	padding: 0 10px 11px 10px;
+
+	margin-bottom: 12px;
+
+	font-size: 13px;
+
+	overflow: hidden;
+}
+
+.profile_customization_header {
+	font-family: 'Motiva Sans Thin',Arial,Helvetica,Verdana,sans-serif;
+	color: #5491cf;
+	font-size: 20px;
+	line-height: 30px;
+}
+
+.profile_customization_editlink {
+	float: right;
+	visibility: hidden;
+
+	line-height: 30px;
+}
+
+.profile_customization:hover .profile_customization_editlink {
+	visibility: visible;
+}
+
+.profile_customization_editlink:hover .profile_customization_editlink_text {
+	text-decoration: underline;
+}
+
+.showcase_content_bg {
+	background-color: #101214;
+	background-color: rgba( 0, 0, 0, 0.3 );
+	padding: 8px;
+	border-radius: 3px;
+
+	margin-bottom: 9px;
+}
+
+.showcase_content_bg:last-child {
+	margin-bottom: 0;
+}
+
+.showcase_stats_row .showcase_stat {
+	float: left;
+	margin-left: 42px;
+	display: block;
+}
+
+.showcase_stats_row .showcase_stat:first-child {
+	margin-left: 0;
+}
+
+.showcase_stat .value {
+	font-size: 34px;
+	font-family: 'Motiva Sans Thin',Arial,Helvetica,Verdana,sans-serif;
+	color: #ffffff;
+}
+.showcase_stat .label {
+	font-size: 17px;
+	color: #9b9b9b;
+}
+
+a.showcase_stat:hover .label {
+	color: #ffffff;
+}
+
+.showcase_bodylabel {
+	font-size: 13px;
+	margin-bottom: 8px;
+	color: #898989;
+}
+
+.showcase_achievement {
+	width: 64px;
+	height: 64px;
+	line-height: 64px;
+	float: left;
+
+	margin-left: 25px;
+}
+
+.showcase_achievement img {
+	width: 64px;
+	height: 64px;
+}
+
+.showcase_achievement:first-child {
+	margin-left: 0px;
+}
+
+.showcase_achievement.openslot {
+	width: 60px;
+	height: 60px;
+	line-height: 60px;
+}
+
+.showcase_badges_icons {
+	margin-bottom: 9px;
+}
+
+.showcase_badges_icons .showcase_badge {
+	float: left;
+	position: relative;
+
+	margin-left: 26px;
+}
+
+.showcase_badges_icons .showcase_badge.openslot {
+	margin-left: 22px;
+}
+
+
+.showcase_badges_icons .showcase_openslot_placeholder {
+	line-height: 80px;
+}
+
+
+.showcase_badges_icons .showcase_badge, .showcase_badges_icons .showcase_badge img {
+	width: 80px;
+	height: 80px;
+}
+
+.showcase_badges_icons .showcase_badge:first-child {
+	margin-left: 0;
+}
+
+.showcase_slot {
+	display: block;
+	float: left;
+	position: relative;
+}
+
+.showcase_gamecollector_game {
+	width: 148px;
+	height: 56px;
+	margin-left: 7px;
+	line-height: 56px;
+}
+
+.showcase_gamecollector_games .showcase_gamecollector_game:first-child {
+	margin-left: 0;
+}
+
+.showcase_gamecollector_game img.game_capsule {
+	width: 148px;
+	height: 56px;
+}
+
+.showcase_gamecollector_game.openslot {
+	width: 144px;
+	height: 52px;
+	line-height: 52px;
+}
+
+.item_showcase .item_count_stat {
+	float: left;
+	margin-left: 12px;
+	padding-top: 14px;
+}
+
+.item_showcase_item {
+	width: 96px;
+	height: 96px;
+	line-height: 96px;
+	margin-left: 5px;
+	margin-bottom: 5px;
+	border: 1px solid #3a3a3a;
+}
+
+.item_showcase_item:first-child {
+	margin-left: 0;
+}
+
+.item_showcase_item img.item_image {
+	width: 96px;
+	height: 96px;
+}
+
+.item_showcase_item.openslot {
+	width: 94px;
+	height: 94px;
+	line-height: 94px;
+}
+
+.trade_showcase_items {
+	margin-bottom: 10px;
+}
+
+.showcase_stats_trading {
+	margin-bottom: 12px;
+}
+
+.favoritegame_showcase_game {
+	position: relative;
+	height: 69px;
+	padding-left: 200px;
+
+	margin-bottom: 22px;
+}
+
+.favoritegame_showcase_game.showcase_slot {
+	float: none;
+}
+
+.favoritegame_showcase_game .favorite_game_cap {
+	position: absolute;
+	left: 0;
+	top: 0;
+}
+
+.favoritegame_showcase_game .favorite_game_cap, .favoritegame_showcase_game .favorite_game_cap img {
+	width: 184px;
+	height: 69px;
+}
+
+.showcase_item_detail_title {
+	font-family: 'Motiva Sans Thin',Arial,Helvetica,Verdana,sans-serif;
+	font-size: 24px;
+	padding-top: 10px;
+	color: #ffffff;
+}
+
+.favoritegame_showcase_game .showcase_openslot_placeholder {
+	line-height: 69px;
+}
+
+.favoritegroup_showcase_group {
+	position: relative;
+	height: 157px;
+	padding-left: 166px;
+
+	margin-bottom: 22px;
+}
+
+.favoritegroup_showcase_group.showcase_slot {
+	float: none;
+}
+
+.favoritegroup_showcase_group .favoritegroup_avatar {
+	position: absolute;
+	left: 0;
+	top: 0;
+	width: 157px;
+	height: 157px;
+}
+
+.favoritegroup_showcase_group .favoritegroup_avatar img {
+	width: 157px;
+	height: 157px;
+}
+
+.favoritegroup_showcase_group .favoritegroup_content {
+	position: relative;
+	height: 157px;
+}
+
+.favoritegroup_showcase_group .showcase_openslot_placeholder {
+	line-height: 157px;
+}
+
+.favoritegroup_showcase_group .favoritegroup_namerow {
+	font-size: 16px;
+	color: #828282;
+	vertical-align: bottom;
+	line-height: 32px;
+}
+
+.favoritegroup_showcase_group .favoritegroup_namerow .favoritegroup_name {
+	font-size: 24px;
+	font-family: 'Motiva Sans Thin',Arial,Helvetica,Verdana,sans-serif;
+}
+
+.recommendation_showcase .showcase_slot {
+	float: none;
+}
+
+.recommendation_showcase .showcase_slot .showcase_openslot_placeholder {
+	line-height: 91px;
+}
+
+.favorite_game_playtime {
+	color: #9b9b9b;
+	font-size: 17px;
+}
+
+.showcase_stats_row.favoritegroup_stats {
+	width: 600px;
+}
+
+.showcase_stats_row.favoritegroup_stats .showcase_stat {
+	padding-top: 4px;
+	padding-bottom: 4px;
+	margin-left: 22px;
+}
+
+.showcase_stats_row.favoritegroup_stats .showcase_stat:first-child {
+	margin-left: 0;
+}
+
+.showcase_stats_row.favoritegroup_stats .showcase_stat .value {
+	font-size: 22px;
+}
+
+.showcase_stat.favoritegroup_ingame .value {
+	color: #8bc53f;
+}
+
+.showcase_stat.favoritegroup_online .value {
+	color: #62a7e3;
+}
+
+.showcase_stat.favoritegroup_inchat {
+	background-color: #192b3b;
+	border-radius: 3px;
+
+	padding-left: 12px;
+	padding-right: 12px;
+}
+
+.favoritegroup_stats.showcase_stats_row {
+	position: absolute;
+	bottom: 0;
+	left: 0;
+}
+
+.workshop_showcase_item {
+	height: 160px;
+	position: relative;
+	padding-left: 170px;
+
+	overflow: hidden;
+}
+
+.favoriteguide_showcase .workshop_showcase_item {
+	height: auto;
+	min-height: 160px;
+}
+
+.workshop_showcase_item.showcase_slot {
+	float: none;
+}
+
+.workshop_showcase_item .showcase_openslot_placeholder, .workshop_showcase_multiitem .showcase_openslot_placeholder {
+	line-height: 160px;
+}
+
+.workshop_showcase_multiitem {
+	height: 150px;
+	width: 150px;
+	margin: 2px;
+	position: relative;
+}
+
+.workshop_showcase_multiitem.openslot {
+	margin: 0;
+}
+
+img.workshop_showcase_item_image {
+	position: absolute;
+	top: 0;
+	left: 0;
+	width: 160px;
+	height: 160px;
+}
+
+.myworkshop_showcase_header {
+	/* 620 x 58 */
+	width: 600px;
+	height: 38px;
+	padding: 10px;
+	line-height: 38px;
+	background-image: url( 'http://steamcommunity-a.akamaihd.net/public/images/profile/profile_showcase_myworkshop.png' );
+
+	margin-bottom: 14px;
+}
+
+.myworkshop_showcase_header .playerAvatar {
+	float: left;
+	margin-right: 10px;
+}
+
+.myworkshop_showcase_header .myworkshop_playerName {
+	font-size: 24px;
+	font-family: 'Motiva Sans Thin',Arial,Helvetica,Verdana,sans-serif;
+	color: #ffffff;
+}
+
+.workshop_showcase_multiitem img.workshop_showcase_item_image {
+	width: 150px;
+	height: 150px;
+}
+
+.workshop_showcase_mini_app {
+	position: absolute;
+	right: 0;
+	bottom: 0;
+}
+
+.workshop_showcase_mini_app, .workshop_showcase_mini_app img {
+	height: 32px;
+	width: 32px;
+}
+
+.workshop_showcase_details_row {
+	position: absolute;
+	left: 170px;
+	bottom: 0;
+	right: 0;
+
+	padding-top: 10px;
+	background-image: url( 'http://steamcommunity-a.akamaihd.net/public/images/profile/showcase_content_fade.png' );
+	background-position: center top;
+	background-repeat: repeat-x;
+
+}
+
+.workshop_showcase_details_content {
+	background-color: #0e0e0e;
+
+	overflow: hidden;
+	white-space: nowrap;
+	text-overflow: ellipsis;
+
+}
+
+.workshop_showcase_app_details {
+	line-height: 32px;
+}
+
+.workshop_showcase_app_details .workshop_showcase_app img {
+	vertical-align: middle;
+}
+
+.workshop_showcase_stars {
+	float: right;
+}
+
+.guide_showcase_contributors {
+	margin-bottom: 8px;
+}
+
+.guide_showcase_appinfo {
+	line-height: 32px;
+	margin-bottom: 8px;
+}
+
+.guide_showcase_appinfo .workshop_showcase_app img {
+	vertical-align: middle;
+}
+
+.guide_showcase_item_description {
+	line-height: 18px;
+	max-height: 72px;
+}
+
+.myworkshop_showcase_header.guides {
+	border-top: 1px solid #444549;
+	border-radius: 3px;
+
+	background-image: none;
+	background-color: #000000;
+
+	background: -moz-linear-gradient(left, #000000 5%, #282828 95%);background: -webkit-gradient(linear, left top, right top, color-stop(5%,#000000), color-stop(95%,#282828));background: -webkit-linear-gradient(left, #000000 5%,#282828 95%);background: -o-linear-gradient(left, #000000 5%,#282828 95%);background: -ms-linear-gradient(left, #000000 5%,#282828 95%);background: linear-gradient(to right, #000000 5%,#282828 95%);filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#000000', endColorstr='#282828',GradientType=1 );}
+
+.myguide_showcase_item {
+	width: 280px;
+	height: 68px;
+	overflow: hidden;
+	padding: 10px;
+
+	background-color: #101214;
+	background-color: rgba( 0, 0, 0, 0.3 );
+
+	border: 1px solid transparent;
+	border-radius: 3px;
+	margin-bottom: 7px;
+}
+
+.myguide_showcase_item_overlay {
+	display: block;
+	position: absolute;
+	top: 0;
+	right: 0;
+	bottom: 0;
+	left: 0;
+}
+
+.myguide_showcase_item.left {
+	margin-right: 7px;
+}
+
+.myguide_showcase_item:hover {
+	border-color: #97C0E3;
+}
+
+.guide_showcase_img_ctn {
+	float: left;
+	position: relative;
+	width: 68px;
+	height: 68px;
+
+	margin-right: 8px;
+}
+
+.guide_showcase_img_ctn .workshop_showcase_mini_app, .guide_showcase_img_ctn .workshop_showcase_mini_app img {
+	width: 18px;
+	height: 18px;
+}
+
+.myguide_showcase_item.showcase_slot .showcase_openslot_placeholder {
+	line-height: 88px;
+}
+
+.guide_showcase_title {
+	font-size: 14px;
+	color: #ffffff;
+}
+
+.guide_showcase_author, .guide_showcase_author a {
+	color: #828282;
+}
+
+.screenshot_showcase_primary {
+	width: 508px;
+	float: left;
+	min-height: 268px;
+}
+
+.screenshot_showcase_screenshot {
+	cursor: pointer;
+	border: 1px solid #000000;
+}
+
+.screenshot_showcase_screenshot:hover {
+	border: 1px solid #97C0E3;
+}
+
+.screenshot_showcase_primary .screenshot_showcase_screenshot {
+	margin-bottom: 4px;
+}
+
+.screenshot_showcase_rightcol {
+	float: right;
+	width: 102px;
+	text-align: center;
+}
+
+.screenshot_showcase_smallscreenshot {
+	float: none;
+	margin-bottom: 11px;
+}
+
+.screenshot_showcase_smallscreenshot.screenshot_count {
+	display: block;
+	height: 57px;
+	line-height: 57px;
+	background-color: #222223;
+	color: #ffffff;
+}
+
+.screenshot_showcase_stats {
+	line-height: 24px;
+}
+
+.screenshot_showcase_stat {
+	margin-right: 12px;
+	cursor: default;
+}
+
+.screenshot_showcase_stats .screenshot_showcase_staticon {
+	vertical-align: text-bottom;
+}
+
+.screenshot_showcase_staticon.favorite {
+	display: inline-block;
+	background-image: url( 'http://steamcommunity-a.akamaihd.net/public/images/sharedfiles/ico_fav_tiled.png' );
+	background-repeat: no-repeat;
+	background-position: 0 -65px;
+	width: 17px;
+	height: 17px;
+}
+
+.profile_recentgame_header {
+	margin-bottom: 8px;
+}
+
+.recentgame_quicklinks {
+	float: right;
+}
+
+
+.recent_game {
+	background-color: #141414;
+	border-radius: 5px;
+	margin-bottom: 21px;
+}
+
+.recent_game_content {
+	padding: 8px 10px;
+}
+
+.recent_game.in_game {
+	border-top-left-radius: 0;
+	border-top-right-radius: 0;
+}
+
+.recent_game_now_playing {
+	height: 33px;
+	padding: 5px;
+
+	border-radius: 3px;
+
+	background-color: #88c743;
+	background: -moz-linear-gradient(top, #b0f951 5%, #88c743 95%);background: -webkit-gradient(linear, left top, left bottom, color-stop(5%,#b0f951), color-stop(95%,#88c743));background: -webkit-linear-gradient(top, #b0f951 5%,#88c743 95%);background: -o-linear-gradient(top, #b0f951 5%,#88c743 95%);background: -ms-linear-gradient(top, #b0f951 5%,#88c743 95%);background: linear-gradient(to bottom, #b0f951 5%,#88c743 95%);filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#b0f951', endColorstr='#88c743',GradientType=0 );
+}
+
+.recent_game_now_playing .content {
+	height: 31px;
+	line-height: 31px;
+	border: 1px solid #3c5a1b;
+
+
+	border-radius: 3px;
+
+	background-color: #1b1b1b;
+	padding: 0 5px;
+}
+
+.recent_game .game_info {
+	position: relative;
+	height: 69px;
+	padding-left: 192px;
+}
+.recent_game .game_info .game_info_cap {
+	position: absolute;
+	left: 0;
+	top: 0;
+}
+.recent_game .game_info .game_info_details {
+	position: absolute;
+	right: 0;
+	bottom: 0;
+	text-align: right;
+}
+.recent_game .game_info .game_name {
+	padding-top: 10px;
+	font-size: 14px;
+}
+
+.recent_game .game_info_stats, .favoritegame_showcase .game_info_stats {
+	padding: 9px 11px 10px;
+	background-color: #282828;
+	border-radius: 3px;
+	border-top: 1px solid #4d4d4d;
+
+	margin-top: 9px;
+}
+
+.game_info_stats_rule {
+	border-top: 1px solid #222223;
+	background-color: #3d3d3d;
+
+	height: 1px;
+	margin: 10px 0;
+}
+
+.game_info_achievements_only_ctn {
+	line-height: 32px;
+	height: 32px;
+	position: relative;
+}
+
+.game_info_achievements_badge .game_info_achievements {
+	width: 286px;
+	float: right;
+}
+.game_info_achievements_badge .game_info_achievement_summary {
+	display: block;
+	text-align: right;
+	margin-bottom: 8px;
+}
+.game_info_achievements_badge .game_info_achievement_summary a.whiteLink {
+	float: left;
+}
+.game_info_achievements_badge .achievement_progress_bar_ctn {
+	width: auto;
+	display: block;
+	margin-bottom: 8px;
+}
+
+.achievement_progress_bar_ctn {
+	height: 8px;
+	padding: 1px;
+	width: 160px;
+
+	display: inline-block;
+
+	background-color: #222223;
+	border: 1px solid #212121;
+	border-radius: 5px;
+	box-shadow: 1px 1px 1px #353535;
+}
+
+.achievement_progress_bar_ctn .progress_bar {
+	background-color: #364359;
+	height: 8px;
+	border-radius: 4px;
+	background: -moz-linear-gradient(top, #516179 5%, #2a3547 95%);background: -webkit-gradient(linear, left top, left bottom, color-stop(5%,#516179), color-stop(95%,#2a3547));background: -webkit-linear-gradient(top, #516179 5%,#2a3547 95%);background: -o-linear-gradient(top, #516179 5%,#2a3547 95%);background: -ms-linear-gradient(top, #516179 5%,#2a3547 95%);background: linear-gradient(to bottom, #516179 5%,#2a3547 95%);filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#516179', endColorstr='#2a3547',GradientType=0 );}
+.game_info_achievements_only_ctn .achievement_icons {
+	position: absolute;
+	left: 366px;
+	top: 0;
+}
+
+.game_info_achievement {
+	float: left;
+	margin-left: 6px;
+}
+
+.game_info_achievement:first-child {
+	margin-left: 0;
+}
+
+.game_info_achievement, .game_info_achievement img {
+	width: 32px;
+	height: 32px;
+}
+
+.game_info_achievement.plus_more, .showcase_achievement.plus_more {
+	height: 30px;
+	width: 30px;
+	border: 1px solid #212121;
+	background-color: #222223;
+
+	line-height: 30px;
+	color: #ffffff;
+	text-align: center;
+
+	box-shadow: 1px 1px 1px #353535;
+
+	cursor: pointer;
+}
+
+.game_info_badge_only_ctn {
+
+}
+
+.game_info_badge_border {
+	border: 1px solid #212121;
+	border-radius: 3px;
+	background-color: #222223;
+
+	width: 282px;
+	height: 48px;
+
+	box-shadow: 1px 1px 0 #343944;
+}
+
+
+
+.game_info_badge {
+	position: relative;
+	padding: 7px;
+}
+
+.game_info_badge_icon {
+	position: absolute;
+	top: 7px;
+	left: 7px;
+}
+
+.game_info_badge_icon img {
+	width: 36px;
+	height: 36px;
+}
+
+.game_info_badge_description {
+	padding-left: 52px;
+	padding-top: 2px;
+	white-space: nowrap;
+	overflow: hidden;
+	text-overflow: ellipsis;
+
+	font-size: 12px;
+}
+
+.game_info_badge_description .name {
+	color: #ffffff;
+	font-size: 13px;
+}
+
+.showcase_achievement.plus_more {
+	height: 62px;
+	width: 62px;
+
+	line-height: 62px;
+
+}
+
+.game_info_stats_publishedfilecounts .published_file_count_ctn {
+	display: inline-block;
+}
+
+.game_info_stats_publishedfilecounts .published_file_link {
+	margin-right: 12px;
+	white-space: nowrap;
+	line-height: 19px;
+}
+
+.game_info_stats_publishedfilecounts .published_file_link:hover {
+	text-decoration: underline;
+}
+
+.published_file_icon {
+	width: 19px;
+	height: 19px;
+	display: inline-block;
+	margin-right: 4px;
+	background-image: url('http://steamcommunity-a.akamaihd.net/public/images/profile/icons_content.png?v=2');
+	background-position: center;
+	background-repeat: no-repeat;
+	vertical-align: middle;
+}
+
+.published_file_icon.workshop_item {
+	background-position: 0 center;
+}
+
+.published_file_icon.video {
+	background-position: -19px center;
+}
+
+.published_file_icon.screenshot {
+	background-position: -38px center;
+}
+
+.published_file_icon.guide {
+	background-position: -57px center;
+}
+
+.published_file_icon.recommendation {
+	background-position: -76px center;
+}
+
+.published_file_icon.artwork {
+	background-position: -95px center;
+}
+
+
+.profile_comment_area {
+	margin-top: 84px;
+}
+
+.profile_count_link {
+	font-size: 14px;
+	margin-bottom: 4px;
+	min-height: 29px;
+}
+.profile_count_link a:hover .count_link_label {
+	text-decoration: underline;
+}
+.profile_count_link_total {
+	font-family: 'Motiva Sans Thin',Arial,Helvetica,Verdana,sans-serif;
+	color: #9b9b9b;
+	font-size: 24px;
+}
+
+.profile_in_game {
+	margin-bottom: 32px;
+}
+
+.profile_in_game_header {
+	font-family: 'Motiva Sans Thin',Arial,Helvetica,Verdana,sans-serif;
+	font-size: 20px;
+}
+
+.profile_in_game_name {
+	font-size: 15px;
+	margin-bottom: 12px;
+}
+
+.profile_private_info {
+
+	padding: 12px 0;
+	color: #a94847;
+	font-size: 17px;
+}
+
+.profile_ban_status {
+	margin-bottom: 32px;
+	color: #a94847;
+	line-height: 22px;
+}
+
+.profile_ban .profile_ban_info {
+	color: #828282;
+}
+
+.profile_badges_badge, .profile_badges_badge img {
+	width: 54px;
+	height: 54px;
+}
+.profile_badges_badge {
+	float: left;
+	margin-right: 16px;
+}
+.profile_badges_badge.last {
+	margin-right: 0;
+}
+
+.profile_badges, .profile_item_links, .profile_group_links, .profile_friend_links {
+	margin-bottom: 40px;
+}
+
+.profile_in_common {
+	margin-bottom: 6px;
+}
+
+.profile_group {
+	position: relative;
+
+	word-wrap: break-word;
+	overflow: hidden;
+
+	padding-top: 1px;
+	padding-left: 42px;
+	height: 36px;
+
+}
+
+.profile_group.profile_primary_group {
+	padding-top: 10px;
+	padding-left: 80px;
+	height: 60px;
+
+	margin-bottom: 12px;
+	margin-top: 12px;
+}
+
+.profile_group_avatar {
+	position: absolute;
+	left: 0;
+	top: 0;
+
+	box-shadow: 2px 2px 3px #0c0c0c;
+
+	width: 32px;
+	height: 32px;
+}
+
+.profile_primary_group .profile_group_avatar {
+	width: 64px;
+	height: 64px;
+}
+
+.profile_small_header_bg {
+	background-image: url( 'http://steamcommunity-a.akamaihd.net/public/images/profile/profile_header_small_bg.png' );
+	max-width: 1010px;
+	height: 215px;
+	margin: 0 auto -98px auto;
+	background-position: center;
+}
+
+.profile_small_header_texture {
+	background-image: url( 'http://steamcommunity-a.akamaihd.net/public/images/profile/profile_header_small_bg_texture.jpg' );
+	max-width: 978px;
+	height: 102px;
+	margin: 0 auto;
+	position: relative;
+}
+
+.profile_small_header_text {
+	position: absolute;
+	left: 120px;
+	right: 30px;
+	top: 40px;
+	color: white;
+	font-size: 14px;
+
+	white-space: nowrap;
+	overflow: hidden;
+	text-overflow: ellipsis;
+}
+
+.profile_small_header_name {
+	font-size: 26px;
+}
+
+.profile_small_header_avatar {
+	position: absolute;
+	left: 30px;
+	top: 18px;
+	color: white;
+}
+
+.profile_small_header_avatar .playerAvatar.medium img {
+	width: 64px;
+	height: 64px;
+}
+
+.profile_small_header_avatar .playerAvatar.medium {
+	width: 66px;
+	height: 66px;
+}
+
+.profile_small_header_arrow {
+	font-size: 16px;
+	color: #828282;
+}
+
+.profile_small_header_additional {
+	position: absolute;
+	right: 30px;
+	top: 0;
+	bottom: 0;
+}
+
+.profile_small_header_additional .gameLogo {
+	margin-top: 12px;
+}
+
+body .pagecontent.profile_subpage_column {
+	padding-bottom: 0;
+}
+
+.profile_subpage_column .profile_small_header_bg {
+	background-image: url( 'http://steamcommunity-a.akamaihd.net/public/images/profile/profile_header_small_bg_column.png' );
+	height: 111px;
+	margin-bottom: 0;
+}
+
+.profile_subpage_general .profile_small_header_bg {
+	background-image: url( 'http://steamcommunity-a.akamaihd.net/public/images/profile/profile_header_small_bg_none.png' );
+	height: 111px;
+	margin-bottom: 0;
+}
+
+.profile_subpage_column .profile_header, .profile_subpage_general .profile_header {
+	height: 87px;
+}
+
+.profile_subpage_column .maincontent, body.migrated_profile_page .profile_subpage_column #BG_bottom.maincontent {
+	background-image: url( 'http://steamcommunity-a.akamaihd.net/public/images/profile/profile_subpage_column_bottom.png' ), url( 'http://steamcommunity-a.akamaihd.net/public/images/profile/profile_subpage_column.png' );
+	background-repeat: no-repeat, repeat-y;
+	background-position: bottom center, center;
+	width: 950px;
+
+	padding-top: 12px;
+	padding-bottom: 128px;
+}
+
+.profile_subpage_general .maincontent {
+	margin-top: -7px;
+
+	border-left: 1px solid #000000;
+	border-right: 1px solid #545454;
+	background-color: #262627;
+	padding: 12px;
+
+	width: 926px;
+
+	box-shadow: inset 0 -1px 3px #101010;
+}
+
+body.migrated_profile_page #BG_bottom.maincontent {
+	margin: 0 auto;
+	width: 948px;
+	background: none;
+}
+
+.profile_topfriends .friendBlock {
+	background: none;
+}
+
+.profile_topfriends .friendBlock:hover {
+
+	background-color: #3a3a3a;
+}
+
+#group_invite_modal_list {
+	max-height: 400px;
+	overflow-y: auto;
+	background-color: #000000;
+	border-radius: 3px;
+	padding: 8px;
+}
+
+.group_invite_throbber {
+	text-align: center;
+	height: 32px;
+	padding: 32px 0px;
+}
+
+.group_list_option {
+	height: 40px;
+	position: relative;
+	padding: 5px 5px 5px 50px;
+	border-radius: 3px;
+	cursor: pointer;
+}
+
+.group_list_option:hover {
+	background-color: #33425A;
+}
+
+.group_list_option .playerAvatar {
+	position: absolute;
+	left: 5px;
+	top: 5px;
+}
+
+.group_list_option .group_list_groupname {
+	line-height: 40px;
+	white-space: nowrap;
+	overflow: hidden;
+	text-overflow: ellipsis;
+}
+
+.profile_comment_area .commentthread_header, .profile_leftcol_header {
+	border-bottom: none;
+	padding: 6px 10px;
+	height: 26px;
+	line-height: 26px;
+	border-radius: 3px;
+	background-color: #141414;
+}
+
+.profile_comment_area .commentthread_header .commentthread_count {
+	font-family: 'Motiva Sans Thin',Arial,Helvetica,Verdana,sans-serif;
+	background: none;
+	padding-left: 0px;
+	font-size: 20px;
+}
+
+.profile_comment_area .commentthread_header .commentthread_allcommentslink {
+	font-size: 12px;
+	font-family: Arial,Helvetica,Verdana,sans-serif;
+}
+
+.profile_comment_area .commentthread_header .commentthread_allcommentslink:hover {
+	text-decoration: underline;
+}
+
+.profile_comment_area .commentthread_allcomments_separator {
+	display: none;
+}
+
+.profile_comment_area .commentthread_entry {
+	background-color: transparent;
+	padding-left: 54px;
+}
+
+.profile_comment_area .commentthread_entry_quotebox_quote {
+	display: none;
+}
+
+.profile_comment_area .commentthread_entry_quotebox {
+	border: 1px solid #000000;
+	border-radius: 0px;
+	background-color: #3a3a3a;
+
+	box-shadow: inset 0 0 5px #202020;
+	-webkit-box-shadow: inset 0 0 5px #202020;
+}
+
+.profile_comment_area .commentthread_comment_container {
+	border-bottom: 1px solid #000000;
+}
+
+.profile_comment_area .commentthread_textarea {
+	background-color: #3a3a3a;
+}
+
+.profile_comment_area .commentthread_footer {
+	padding-top: 6px;
+	border-top: 1px solid #303030;
+}
+
+.profile_comment_area .pagebtn {
+	line-height: 16px;
+}
+
+.profile_background_holder {
+	position: absolute;
+	top: 0;
+	left: 0;
+	bottom: 0;
+	right: 0;
+	overflow: hidden;
+	z-index: 0;
+	min-width: 972px;
+}
+
+.profile_background_image {
+	position: absolute;
+	top: 0;
+	left: 0;
+	bottom: 0;
+	right: 0;
+	text-align: center;
+	background-position: center top;
+	background-repeat: no-repeat;
+}
+
+.profile_background_holder_content {
+	position: absolute;
+	top: 0;
+	right: 0;
+	bottom: 0;
+	left: 0;
+	background-color: #000000;
+	z-index: 0;
+}
+
+.profile_background_image_content {
+	position: absolute;
+	top: 0;
+	right: 0;
+	bottom: 0;
+	left: 0;
+	background-position: center -226px;	/* 240px header, -14px margin .profile_content.has_profile_background */
+	background-repeat: no-repeat;
+	z-index: 0;
+}
+
+.profile_background_overlay_content {
+	position: absolute;
+	top: 0;
+	right: 0;
+	bottom: 0;
+	left: 0;
+	z-index: 1;
+
+	background-color: #171717;
+
+	opacity: .85;
+	filter: alpha(opacity=85);
+	-ms-filter:"progid:DXImageTransform.Microsoft.Alpha(Opacity=85)";
+}
+
+
+.profile_customization.customization_edit {
+}
+
+.profile_customization.customization_edit.none_selected {
+
+	background: #383838;
+	border: 1px dashed #5491CF;
+}
+.profile_customization_area .profile_customization.customization_edit.none_selected {
+	cursor: pointer;
+}
+.profile_customization_area .profile_customization.customization_edit.none_selected:hover {
+	border-color: #ffffff;
+}
+
+.showcase_notes {
+	word-wrap: break-word;
+	overflow: hidden;
+	overflow-y: auto;
+
+	max-height: 600px;
+}
+
+.newmodal_content a.bb_link:hover, .profile_summary a.bb_link:hover, .showcase_notes a.bb_link:hover, .showcase_notes a:hover {
+	text-decoration: underline;
+}
+
+.profile_summary_modal .bb_h1, .customtext_showcase .bb_h1 {
+	border-bottom: 1px dotted #666666;
+}
+
+.profile_customization_edit_icon {
+	display: inline-block;
+	vertical-align: middle;
+	background-image: url( 'data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABAAAAAQCAYAAAAf8/9hAAAAGXRFWHRTb2Z0d2FyZQBBZG9iZSBJbWFnZVJlYWR5ccllPAAAAyBpVFh0WE1MOmNvbS5hZG9iZS54bXAAAAAAADw/eHBhY2tldCBiZWdpbj0i77u/IiBpZD0iVzVNME1wQ2VoaUh6cmVTek5UY3prYzlkIj8+IDx4OnhtcG1ldGEgeG1sbnM6eD0iYWRvYmU6bnM6bWV0YS8iIHg6eG1wdGs9IkFkb2JlIFhNUCBDb3JlIDUuMC1jMDYwIDYxLjEzNDc3NywgMjAxMC8wMi8xMi0xNzozMjowMCAgICAgICAgIj4gPHJkZjpSREYgeG1sbnM6cmRmPSJodHRwOi8vd3d3LnczLm9yZy8xOTk5LzAyLzIyLXJkZi1zeW50YXgtbnMjIj4gPHJkZjpEZXNjcmlwdGlvbiByZGY6YWJvdXQ9IiIgeG1sbnM6eG1wPSJodHRwOi8vbnMuYWRvYmUuY29tL3hhcC8xLjAvIiB4bWxuczp4bXBNTT0iaHR0cDovL25zLmFkb2JlLmNvbS94YXAvMS4wL21tLyIgeG1sbnM6c3RSZWY9Imh0dHA6Ly9ucy5hZG9iZS5jb20veGFwLzEuMC9zVHlwZS9SZXNvdXJjZVJlZiMiIHhtcDpDcmVhdG9yVG9vbD0iQWRvYmUgUGhvdG9zaG9wIENTNSBXaW5kb3dzIiB4bXBNTTpJbnN0YW5jZUlEPSJ4bXAuaWlkOkJFQ0Q1M0UyOTAwODExRTJCOEQxQjI4RTMyMTI3NEIwIiB4bXBNTTpEb2N1bWVudElEPSJ4bXAuZGlkOkJFQ0Q1M0UzOTAwODExRTJCOEQxQjI4RTMyMTI3NEIwIj4gPHhtcE1NOkRlcml2ZWRGcm9tIHN0UmVmOmluc3RhbmNlSUQ9InhtcC5paWQ6QkVDRDUzRTA5MDA4MTFFMkI4RDFCMjhFMzIxMjc0QjAiIHN0UmVmOmRvY3VtZW50SUQ9InhtcC5kaWQ6QkVDRDUzRTE5MDA4MTFFMkI4RDFCMjhFMzIxMjc0QjAiLz4gPC9yZGY6RGVzY3JpcHRpb24+IDwvcmRmOlJERj4gPC94OnhtcG1ldGE+IDw/eHBhY2tldCBlbmQ9InIiPz6u3ykzAAAAvUlEQVR42oxTCxHDIAwNDpAwCUiYhEpAQutgDiqhEiqhczAJnYNKSJNb2AENJe/ucXySd+EFADpARE/c8IeDGLMzAIPAjCUOswAFDMQncckVTAKSnMoeZc3zuStAB0GCc6y8X8U1TdvxChb0FoENdQQltut4QmxctVjERvJyY/StaYxPp83/iWbaXpumCtDwkBbVjgfDKy1a9+qZ1qpgFfe9eDGAESzgss8xEb/WZOfcO1UwKlewgP8GnAIMACuKvjkRumvoAAAAAElFTkSuQmCC' );
+	background-repeat: no-repeat;
+	background-position: center;
+	width: 16px;
+	height: 16px;
+}
+
+.saved_changes_msg {
+	border: 1px solid #549cd7;
+	color: #549cd7;
+	line-height: 39px;
+	padding: 0 16px;
+	margin-bottom: 18px;
+}
+
+.graytab_ctn {
+	padding-top: 4px;
+	padding-left: 9px;
+	overflow: hidden;
+}
+
+.graytab {
+	display: inline-block;
+	line-height: 26px;
+	padding: 0 11px;
+	margin-right: 8px;
+	background-color: #3a3a3a;
+
+	font-size: 13px;
+	color: #ffffff;
+
+	border-top: 1px solid #3a3a3a;
+	border-left: 1px solid #3a3a3a;
+	border-right: 1px solid #3a3a3a;
+
+	border-top-left-radius: 3px;
+	border-top-right-radius: 3px;
+
+	box-shadow: 0 0 4px #2a2a2a;
+}
+
+.graytab.active {
+	background-color: #6a6a6a;
+	cursor: default;
+	background: -moz-linear-gradient(top, #7d7d7d 5%, #4d4d4d 95%);background: -webkit-gradient(linear, left top, left bottom, color-stop(5%,#7d7d7d), color-stop(95%,#4d4d4d));background: -webkit-linear-gradient(top, #7d7d7d 5%,#4d4d4d 95%);background: -o-linear-gradient(top, #7d7d7d 5%,#4d4d4d 95%);background: -ms-linear-gradient(top, #7d7d7d 5%,#4d4d4d 95%);background: linear-gradient(to bottom, #7d7d7d 5%,#4d4d4d 95%);filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#7d7d7d', endColorstr='#4d4d4d',GradientType=0 );}
+
+a.graytab:hover {
+	text-decoration: none;
+}
+
+.graytab_body_wrapper {
+	width: 934px;
+	margin: 0 auto;
+	padding: 1px 1px 0 1px;
+	border-top-left-radius: 3px;
+	border-top-right-radius: 3px;
+
+	background-color: #272728;
+	background: -moz-linear-gradient(top, #4e4e4d 19px, #252526 45px);background: -webkit-gradient(linear, left top, left bottom, color-stop(19px,#4e4e4d), color-stop(45px,#252526));background: -webkit-linear-gradient(top, #4e4e4d 19px,#252526 45px);background: -o-linear-gradient(top, #4e4e4d 19px,#252526 45px);background: -ms-linear-gradient(top, #4e4e4d 19px,#252526 45px);background: linear-gradient(to bottom, #4e4e4d 19px,#252526 45px);filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#4e4e4d', endColorstr='#252526',GradientType=0 );	background-repeat: repeat-x;
+	background-position: top;
+}
+
+.graytab_body {
+	background-color: #252526;
+	background: -moz-linear-gradient(top, #4f4f4e 0, #252526 42px);background: -webkit-gradient(linear, left top, left bottom, color-stop(0,#4f4f4e), color-stop(42px,#252526));background: -webkit-linear-gradient(top, #4f4f4e 0,#252526 42px);background: -o-linear-gradient(top, #4f4f4e 0,#252526 42px);background: -ms-linear-gradient(top, #4f4f4e 0,#252526 42px);background: linear-gradient(to bottom, #4f4f4e 0,#252526 42px);filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#4f4f4e', endColorstr='#252526',GradientType=0 );	background-repeat: repeat-x;
+	background-position: top;
+	border-top-left-radius: 3px;
+	border-top-right-radius: 3px;
+
+	padding: 24px 13px;
+
+}
+
+.profile_manage_friends {
+	padding: 0 5px;
+}
+
+.manage_friends_btn_ctn {
+	float: right;
+
+}
+
+.friends_limit_details {
+	line-height: 20px;
+	font-size: 17px;
+	color: #6b6b6c;
+}
+
+.friends_limit_details strong {
+	font-weight: normal;
+	color: #67c1f5;
+}
+
+.friends_limit_details_maxed_out {
+	color: orange;
+	max-width: 600px;
+}
+
+.friends_current_count {
+	font-size: 18px;
+}
+
+.friends_limit_invites_maxed_out {
+	color: orange;
+	max-width: 600px;
+	margin: 0 6px 0 8px;
+	font-size: 14px;
+}
+
+.manage_friends_header {
+	margin-bottom: 14px;
+}
+
+.manage_actions_ctn {
+	border: 1px solid #529cde;
+	background-color: #3a3a3a;
+	margin-bottom: 17px;
+	padding: 18px 12px;
+
+	color: #8e8e8e;
+	font-size: 12px;
+}
+
+.manage_actions_instructions {
+	color: #ffffff;
+	margin-right: 15px;
+}
+
+.manage_actions_buttons {
+	padding-top: 12px;
+}
+
+.manage_actions_buttons .btn_medium {
+	margin-right: 10px;
+}
+
+.manage_friend_checkbox {
+	position: absolute;
+	right: 0;
+	top: 0;
+	width: 30px;
+	height: 48px;
+	line-height: 48px;
+	background-color: #434343;
+	text-align: center;
+	z-index: 5;	/* overlap link overlay */
+	cursor: default;
+}
+
+.manage_friend_checkbox input {
+	vertical-align: middle;
+}
+
+a.manage_friend_link {
+	display: block;
+	min-height: 40px;
+}
+
+.profile_friends .friendBlock {
+	position: relative;
+	float: left;
+	width: 290px;
+	margin-right: 8px;
+}
+
+.profile_friends .friendBlock:nth-child(3n) {
+	margin-right: 0;
+}
+
+.btn_manage_friends {
+	color: #ffffff;
+}
+
+#blockConfirmBlock {
+	width: 800px;
+	margin: 0 auto;
+}
+
+body.profile_page #footer {
+	background-color: #000000;
+}
+
+.friends_that_play_content .profile_friends {
+	margin-bottom: 12px;
+}
+
+.player_list_results .friendBlock {
+	width: 264px;
+}
+
+.player_list_results.cols {
+	width: 822px;
+}
+
+.player_list_results.cols .friendBlock {
+	float: left;
+	margin-right: 6px;
+}
+
+.namehistory_link {
+	cursor: pointer;
+}
+
+#NamePopup {
+	font-size: 13px;
+	font-family: Arial,Helvetica,Verdana,sans-serif;
+	line-height: normal;
+}
+
+#NamePopup .popup_menu {
+	padding: 6px;
+}
+
+#NamePopup #NamePopupAliases {
+	padding: 0 12px;
+}
+
+.rightcol_controls {
+	background-color: #1e1e1f;
+	border-radius: 5px;
+}
+
+.rightcol_controls_content {
+	padding: 20px 14px;
+}
+
+.rightcol_controls_rule {
+	height: 1px;
+	background-color: #333333;
+	border-top: 1px solid #000000;
+}
+
+.profile_fatalerror {
+	padding: 20px 80px 80px 80px;
+}
+
+.profile_fatalerror h1 {
+	margin-left: 8px;
+}
+
+.profile_fatalerror h3 {
+	color: #5491cf;
+	font-size: 17px;
+	font-weight: normal;
+	margin-bottom: 12px;
+	margin-left: 8px;
+}
+
+.profile_fatalerror_message {
+	background-color: #1d1d1d;
+	border-radius: 3px;
+	padding: 16px 24px;
+	color: #d6d6d6;
+	margin-bottom: 32px;
+	line-height: 20px;
+}
+
+.group_breadcrumbs, .group_breadcrumbs a {
+	color: #9b9b9b;
+	text-decoration: none;
+	margin-bottom: 12px;
+}
+
+.group_breadcrumbs a:hover {
+	text-decoration: underline;
+}
+
+
+.profile_paging {
+	background-color: rgba( 0, 0, 0, 0.2 );
+	border-radius: 3px;
+	color: #747474;
+	font-size: 12px;
+
+	height: 25px;
+	line-height: 25px;
+
+	padding: 0px 5px;
+
+	margin: 9px 0px;
+}
+
+.profile_paging .pageLinks {
+	float: right;
+}
+
+.profile_paging .pagebtn {
+	height: 15px;
+	line-height: 15px;
+}

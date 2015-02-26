@@ -1,0 +1,857 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8" />
+    <title>Steam AP Background Cropper</title>
+    <meta name="description" content="Steam Profile Background Crop Tool"/>
+    <meta name="keywords" content="steam, profile, crop, steam profile, background crop, background crop tool" />
+    <!-- for Facebook -->
+    <meta property="og:title" content="Steam Background Crop Tool" />
+    <meta property="og:type" content="website" />
+    <meta property="og:image" content="http://i.imgur.com/Q8kS6es.png" />
+    <meta property="og:url" content="http://sapic.github.io/" />
+    <meta property="og:description" content="This tool will help you create awesome steam profile!" />
+
+    <!-- for Twitter -->
+    <meta name="twitter:card" content="summary" />
+    <meta name="twitter:title" content="Steam Background Crop Tool" />
+    <meta name="twitter:description" content="This tool will help you create awesome steam profile!" />
+    <meta name="twitter:image" content="http://i.imgur.com/Q8kS6es.png" />
+    <meta name="twitter:url" content="http://sapic.github.io/" />
+
+    <link rel="shortcut icon" href="/favicon.ico" type="image/x-icon">
+    <!-- build:css main.css -->
+    <link href="./css/motiva_sans.css" rel="stylesheet" type="text/css" >
+    <link href="./css/buttons.css" rel="stylesheet" type="text/css" >
+    <link href="./css/shared_global.css" rel="stylesheet" type="text/css" >
+    <link href="./css/globalv2.css" rel="stylesheet" type="text/css" >
+    <link href="./css/modalContent.css?v=.fruFbqx6YTdG" rel="stylesheet" type="text/css" >
+    <link href="./css/profilev2.css" rel="stylesheet" type="text/css" >
+    <link href="./css/motiva_sans.css" rel="stylesheet" type="text/css" >
+    <link href="./css/header.css" rel="stylesheet" type="text/css" >
+    <link href="./css/economy.css" rel="stylesheet" type="text/css">
+    <link href="./css/economy_inventory.css" rel="stylesheet" type="text/css">
+    <link rel="stylesheet" href="./css/social-likes_flat.css">
+    <link rel="stylesheet" href="./css/index.css">
+    <!-- endbuild -->
+    <!-- build:js main.js -->
+    <script src="./js/jquery.min.js"></script>
+    <script src="./js/linq.min.js"></script>
+    <script src="./js/social-likes.min.js"></script>
+    <script src="./js/jquery.smooth-scroll.min.js"></script>
+    <script src="./js/interact-1.2.2.min.js"></script>
+    <script src="./js/index.js"></script>
+    <!-- endbuild -->
+</head>
+<body>
+<div class="itemHolder arrow" style="display: none"></div>
+<h1 class="entry-title" style="display:none">Crop background for your Steam profile!</h1>
+<div id="global_header">
+    <div class="content" id="cardsList">
+        <div style="margin-top: 5px;">
+            <span>Filter: <input type="text" id="filterIn"></span>
+            <span><a class="top_hint" target="_blank" href="http://steamcommunity.com/sharedfiles/filedetails/?id=299701202">
+                Don't know what are You doing here? Click!</a></span>
+            <span style="float:right"><div id="steamAuth"></div></span>
+        </div>
+    </div>
+</div>
+<div class="body">
+<div class="no_header profile_page has_profile_background" id="bg1">
+<div class="profile_header_bg">
+
+
+    <div class="profile_header_bg_texture">
+
+        <div class="profile_header">
+
+            <div class="profile_header_content">
+
+                <div class="playerAvatar profile_header_size offline">
+                    <img id="avatar">
+                </div>
+                <div class="profile_header_badgeinfo">
+                    <a href="http://steamcommunity.com/id/wolfenstian/badges">
+                        <div class="persona_name persona_level">Level: <div class="friendPlayerLevel lvl_30"><span class="friendPlayerLevelNum">30</span></div></div>
+                    </a>
+                    <div class="profile_header_badge">
+                        <div class="favorite_badge" id="badgesPlace">
+                            <div class="types-selector" style="margin-left: 4px">
+                                <input checked="checked" id="bn" type="radio" name="Type" value="bn" />
+                                <label class="types bn" for="bn"></label>
+                                <input id="nn" type="radio" name="Type" value="nn" />
+                                <label class="types nn" for="nn"></label>
+                                <input id="nb" type="radio" name="Type" value="nb" />
+                                <label class="types nb" for="nb"></label>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="profile_header_summary">
+                    <div class="persona_name" style="font-size: 24px;">
+                        Wolfenstian												<span class="namehistory_link" onclick="ShowAliasPopup( this );">
+							<img id="getnamehistory_arrow" src="http://steamcommunity-a.akamaihd.net/public/images/skin_1/arrowDn9x5.gif" width="9" height="5" border="0">
+						</span>
+                        <div id="NamePopup" class="popup_block_new" style="display: none;">
+                            <div class="popup_body popup_menu">
+                                <div>Этот пользователь также был известен как:</div>
+                                <div id="NamePopupAliases">
+
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="header_real_name ellipsis">
+                        &lt; Does not represent gender															&nbsp;
+                        <img class="profile_flag" src="http://steamcommunity-a.akamaihd.net/public/images/countryflags/ca.gif">
+                        Canada
+                        <br>
+                        <div class="gray_bevel for_text_input">
+                            <input class="dynInput" type="text" name="real_name" id="urlIn" size="30" placeholder="You can paste custom image URL here...">
+                        </div>
+                        <a class="btn_profile_action btn_medium" id="goUrl">
+                            <span>Change BG</span>
+                        </a>
+                    </div>
+                    <div class="profile_summary">
+                        Share Us:
+                        <div class="social-likes" data-url="http://sapic.github.io/" data-title="Steam AP Background Cropper">
+                            <div class="facebook" title="Share link on Facebook">Facebook</div>
+                            <div class="twitter" title="Share link on Twitter">Twitter</div>
+                            <div class="plusone" title="Share link on Google+">Google+</div>
+                            <div class="vkontakte" title="Share link on VK">VK</div>
+                        </div>
+                    </div>
+                    <div class="profile_summary_footer">
+                        <span class="whiteLink">View more info</span>
+                    </div>
+                </div>
+
+            </div>
+        </div>
+    </div>
+</div>
+<div class="profile_content has_profile_background">
+
+<div class="profile_background_holder_content">
+    <div class="profile_background_overlay_content"></div>
+    <div class="profile_background_image_content" id="bg2">
+    </div>
+</div>
+<div class="profile_content_inner">
+<div class="profile_leftcol">
+<div class="profile_customization_area">
+
+    <div class="profile_customization" id="cSize">
+        <div class="profile_customization_header">Artwork Showcase
+
+        </div>
+
+        <div class="profile_customization_block">
+            <div class="screenshot_showcase">
+                <div class="screenshot_showcase_primary showcase_slot ">
+                    <div class="screenshot_showcase_screenshot resizable" id="hBig1" style="height: 509px;">
+                        <img id="big1" class="imageHolder">
+                    </div>
+                    <div class="screenshot_showcase_itemname" style="color: #5491cf; font-weight: bold;">
+                        Drag bottom of image to resize &#8593;					</div>
+                    <div class="screenshot_showcase_stats">
+																			<span class="screenshot_showcase_stat" title="Комментарии">
+								<img class="screenshot_showcase_staticon" src="http://steamcommunity-a.akamaihd.net/public/images/skin_1/icon_btn_comment.png"> 1							</span>
+                    </div>
+                </div>
+                <div class="screenshot_showcase_rightcol">
+                    <div style="height: 82px;" class="screenshot_showcase_smallscreenshot showcase_slot ">
+                        <div class="screenshot_showcase_screenshot" onclick="ShowModalContent( 'http://steamcommunity.com/sharedfiles/filedetails/?id=349772450&amp;insideModal=1', 'http://steamcommunity.com/sharedfiles/filedetails/?id=349772450', 'http://steamcommunity.com/sharedfiles/filedetails/?id=349772450', true );">
+                            <img id="r11">
+                        </div>
+                    </div>
+                    <div style="height: 82px;" class="screenshot_showcase_smallscreenshot showcase_slot ">
+                        <div class="screenshot_showcase_screenshot" onclick="ShowModalContent( 'http://steamcommunity.com/sharedfiles/filedetails/?id=349772562&amp;insideModal=1', 'http://steamcommunity.com/sharedfiles/filedetails/?id=349772562', 'http://steamcommunity.com/sharedfiles/filedetails/?id=349772562', true );">
+                            <img id="r12">
+                        </div>
+                    </div>
+                    <div style="height: 82px;" class="screenshot_showcase_smallscreenshot showcase_slot ">
+                        <div class="screenshot_showcase_screenshot" onclick="ShowModalContent( 'http://steamcommunity.com/sharedfiles/filedetails/?id=349772655&amp;insideModal=1', 'http://steamcommunity.com/sharedfiles/filedetails/?id=349772655', 'http://steamcommunity.com/sharedfiles/filedetails/?id=349772655', true );">
+                            <img id="r13">
+                        </div>
+                    </div>
+                    <a class="screenshot_showcase_smallscreenshot screenshot_count" href="http://steamcommunity.com/id/wolfenstian/images/">
+                        <div class="screenshot_showcase_screenshot">
+                            + 8						</div>
+                    </a>
+                </div>
+                <div style="clear: both;"></div>
+            </div>
+        </div>
+    </div>
+    <div class="profile_customization">
+        <div class="profile_customization_header">Screenshot Showcase        </div>
+
+        <div class="profile_customization_block">
+            <div class="screenshot_showcase">
+                <div class="screenshot_showcase_primary showcase_slot ">
+                    <div class="screenshot_showcase_screenshot resizable" id="hBig2" style="height: 287px">
+                        <img id="big2" class="imageHolder">
+                    </div>
+                    <div class="screenshot_showcase_itemname">
+                        Mabinogi					</div>
+                    <div class="screenshot_showcase_stats">
+													<span class="screenshot_showcase_stat" title="понравилось">
+								<img class="screenshot_showcase_staticon" src="http://steamcommunity-a.akamaihd.net/public/images/sharedfiles/icons/icon_rate.png"> 5							</span>
+                    </div>
+                </div>
+                <div class="screenshot_showcase_rightcol">
+                    <div style="height: 82px;" class="screenshot_showcase_smallscreenshot showcase_slot ">
+                        <div class="screenshot_showcase_screenshot" onclick="ShowModalContent( 'http://steamcommunity.com/sharedfiles/filedetails/?id=299605809&amp;insideModal=1', 'http://steamcommunity.com/sharedfiles/filedetails/?id=299605809', 'http://steamcommunity.com/sharedfiles/filedetails/?id=299605809', true );">
+                            <img id="r21">
+                        </div>
+                    </div>
+                    <div style="height: 82px;" class="screenshot_showcase_smallscreenshot showcase_slot ">
+                        <div class="screenshot_showcase_screenshot" onclick="ShowModalContent( 'http://steamcommunity.com/sharedfiles/filedetails/?id=299605824&amp;insideModal=1', 'http://steamcommunity.com/sharedfiles/filedetails/?id=299605824', 'http://steamcommunity.com/sharedfiles/filedetails/?id=299605824', true );">
+                            <img id="r22">
+                        </div>
+                    </div>
+                    <div style="height: 82px;" class="screenshot_showcase_smallscreenshot showcase_slot ">
+                        <div class="screenshot_showcase_screenshot" onclick="ShowModalContent( 'http://steamcommunity.com/sharedfiles/filedetails/?id=299605839&amp;insideModal=1', 'http://steamcommunity.com/sharedfiles/filedetails/?id=299605839', 'http://steamcommunity.com/sharedfiles/filedetails/?id=299605839', true );">
+                            <img id="r23">
+                        </div>
+                    </div>
+                    <a class="screenshot_showcase_smallscreenshot screenshot_count" href="http://steamcommunity.com/id/wolfenstian/screenshots/">
+                        <div class="screenshot_showcase_screenshot">
+                            + 685						</div>
+                    </a>
+                </div>
+                <div style="clear: both;"></div>
+            </div>
+        </div>
+    </div>
+    <div class="profile_customization">
+        <div class="profile_customization_header">
+            Favorite Guide	</div>
+        <div class="profile_customization_block">
+            <div class="favoriteguide_showcase">
+                <div class="showcase_content_bg">
+                    <div class="workshop_showcase_item showcase_slot ">
+                        <a href="http://steamcommunity.com/sharedfiles/filedetails/?id=299701202">
+                            <img class="workshop_showcase_item_image" src="http://i.imgur.com/Q8kS6es.png">
+                        </a>
+                        <div class="workshop_showcase_item_details">
+                            <div class="showcase_item_detail_title"><a class="whiteLink" href="http://steamcommunity.com/sharedfiles/filedetails/?id=299701202">Create Steam Background showcases</a></div>
+
+                            <div class="guide_showcase_contributors">
+                                Created by - <a href="http://steamcommunity.com/id/BoltActionBeats" class="whiteLink" data-miniprofile="65430799">Officer Pornstache</a> and <a href="http://steamcommunity.com/id/wolfenstian" class="whiteLink" data-miniprofile="68667764">Wolfenstian</a>								</div>
+                            <div class="guide_showcase_appinfo">
+                                <div class="workshop_showcase_stars">
+                                    <img src="http://steamcommunity-a.akamaihd.net/public/images/sharedfiles/5-star.png?v=1">
+                                    2500+ ratings!															</div>
+                                <div class="workshop_showcase_app">
+                                    <a href="http://steamcommunity.com/workshop/browse/?appid=440"><img src="http://cdn.akamai.steamstatic.com/steamcommunity/public/images/apps/440/e3f595a92552da3d664ad00277fad2107345f743.jpg"></a> <a class="whiteLink" href="http://steamcommunity.com/workshop/browse/?appid=440">Team Fortress 2</a>
+                                </div>
+                            </div>
+                            <div class="guide_showcase_item_description">
+                                A step by step guide into transferring your current Steam background into a showcase to show its full glory.							</div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<div class="profile_recentgame_header profile_leftcol_header">
+    <div class="recentgame_quicklinks">
+        <h2>31.5 hours past 2 weeks</h2>
+    </div>
+    <h2>Recent Game Activity</h2>
+</div>
+
+<div class="recent_games">
+    <div class="recent_game">
+        <div class="recent_game_content">
+            <div class="game_info">
+                <div class="game_info_cap"><a href="http://steamcommunity.com/app/218230"><img src="http://cdn.akamai.steamstatic.com/steamcommunity/public/images/apps/218230/8bb9796bf871a1d620b28db4dfb2abef2138542d.jpg"></a></div>
+                <div class="game_info_details">
+                    138 hrs on record<br>
+                    last played on 1 Dec																			</div>
+                <div class="game_name"><a class="whiteLink" href="http://steamcommunity.com/app/218230">PlanetSide 2</a></div>
+            </div>
+
+            <div class="game_info_stats">
+                <div class="game_info_stats_publishedfilecounts">
+						<span class="published_file_count_ctn">
+			<span class="published_file_icon screenshot"></span>
+			<a class="published_file_link" href="http://steamcommunity.com/id/wolfenstian/screenshots/?appid=218230">Screenshots 26</a>
+		</span>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="recent_game">
+        <div class="recent_game_content">
+            <div class="game_info">
+                <div class="game_info_cap"><a href="http://steamcommunity.com/app/12900"><img src="http://cdn.akamai.steamstatic.com/steamcommunity/public/images/apps/12900/75dc0398efeae1cc994714e37c893b593f9c9a88.jpg"></a></div>
+                <div class="game_info_details">
+                    19.9 hrs on record<br>
+                    last played on 30 Nov																			</div>
+                <div class="game_name"><a class="whiteLink" href="http://steamcommunity.com/app/12900">Audiosurf</a></div>
+            </div>
+
+            <div class="game_info_stats">
+                <div class="game_info_achievements_only_ctn">
+                    <div class="game_info_achievements">
+						<span class="game_info_achievement_summary">
+							<a class="whiteLink" href="http://steamcommunity.com/id/wolfenstian/stats/12900/achievements/">Achievement Progress</a>
+							&nbsp; 7 of 19						</span>
+                        <div class="achievement_progress_bar_ctn">
+                            <div class="progress_bar" style="width: 36%;">
+
+                            </div>
+                        </div>
+                        <div class="achievement_icons">
+                            <div class="game_info_achievement" title="Stealth Adept">
+                                <a href="http://steamcommunity.com/id/wolfenstian/stats/12900/achievements/">
+                                    <img src="http://cdn.akamai.steamstatic.com/steamcommunity/public/images/apps/12900/8cbdd7cd9511cf38b2eb0f339d5e505e7a0ef849.jpg">
+                                </a>
+                            </div>
+                            <div class="game_info_achievement" title="Ninjutsu">
+                                <a href="http://steamcommunity.com/id/wolfenstian/stats/12900/achievements/">
+                                    <img src="http://cdn.akamai.steamstatic.com/steamcommunity/public/images/apps/12900/39e642f0bb60d9a0dfabfcd4e50f14ddcc5d71be.jpg">
+                                </a>
+                            </div>
+                            <div class="game_info_achievement" title="Stainless">
+                                <a href="http://steamcommunity.com/id/wolfenstian/stats/12900/achievements/">
+                                    <img src="http://cdn.akamai.steamstatic.com/steamcommunity/public/images/apps/12900/fbb3b94d83b69d5a7ae6269cd377414fe214ef1b.jpg">
+                                </a>
+                            </div>
+                            <div class="game_info_achievement" title="PPM 30,000">
+                                <a href="http://steamcommunity.com/id/wolfenstian/stats/12900/achievements/">
+                                    <img src="http://cdn.akamai.steamstatic.com/steamcommunity/public/images/apps/12900/4135fae98ede979a9b84ff6d940ed4b13598a460.jpg">
+                                </a>
+                            </div>
+                            <div class="game_info_achievement" title="PPM 10,000">
+                                <a href="http://steamcommunity.com/id/wolfenstian/stats/12900/achievements/">
+                                    <img src="http://cdn.akamai.steamstatic.com/steamcommunity/public/images/apps/12900/4d1751bf3007634e1398a92fe40b33a970b8329d.jpg">
+                                </a>
+                            </div>
+                            <div class="game_info_achievement plus_more" onclick="window.location='http://steamcommunity.com/id/wolfenstian/stats/12900/achievements/'">
+                                +2								</div>
+                        </div>
+                    </div>
+                    <div style="clear: right;"></div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="recent_game">
+        <div class="recent_game_content">
+            <div class="game_info">
+                <div class="game_info_cap"><a href="http://steamcommunity.com/app/227700"><img src="http://cdn.akamai.steamstatic.com/steamcommunity/public/images/apps/227700/89c55efb73b88472ae69315dc691353955edcd98.jpg"></a></div>
+                <div class="game_info_details">
+                    238 hrs on record<br>
+                    last played on 29 Nov																			</div>
+                <div class="game_name"><a class="whiteLink" href="http://steamcommunity.com/app/227700">Firefall</a></div>
+            </div>
+
+            <div class="game_info_stats">
+                <div class="game_info_achievements_only_ctn">
+                    <div class="game_info_achievements">
+						<span class="game_info_achievement_summary">
+							<a class="whiteLink" href="http://steamcommunity.com/id/wolfenstian/stats/227700/achievements/">Achievement Progress</a>
+							&nbsp; 56 of 117						</span>
+                        <div class="achievement_progress_bar_ctn">
+                            <div class="progress_bar" style="width: 47%;">
+
+                            </div>
+                        </div>
+                        <div class="achievement_icons">
+                            <div class="game_info_achievement" title="Pushing Forty">
+                                <a href="http://steamcommunity.com/id/wolfenstian/stats/227700/achievements/">
+                                    <img src="http://cdn.akamai.steamstatic.com/steamcommunity/public/images/apps/227700/3bd108ac95c37c2aaf44e4b42909ad3113287e04.jpg">
+                                </a>
+                            </div>
+                            <div class="game_info_achievement" title="Break Their Spine">
+                                <a href="http://steamcommunity.com/id/wolfenstian/stats/227700/achievements/">
+                                    <img src="http://cdn.akamai.steamstatic.com/steamcommunity/public/images/apps/227700/7fcfad75cf8212d0993262c679197a90bdc34858.jpg">
+                                </a>
+                            </div>
+                            <div class="game_info_achievement" title="Peak Purviewer">
+                                <a href="http://steamcommunity.com/id/wolfenstian/stats/227700/achievements/">
+                                    <img src="http://cdn.akamai.steamstatic.com/steamcommunity/public/images/apps/227700/2aff79c601b9a893d3575358895ebc5ccda28b78.jpg">
+                                </a>
+                            </div>
+                            <div class="game_info_achievement" title="Tornado Chaser">
+                                <a href="http://steamcommunity.com/id/wolfenstian/stats/227700/achievements/">
+                                    <img src="http://cdn.akamai.steamstatic.com/steamcommunity/public/images/apps/227700/7fcfad75cf8212d0993262c679197a90bdc34858.jpg">
+                                </a>
+                            </div>
+                            <div class="game_info_achievement" title="Turn on More Lights">
+                                <a href="http://steamcommunity.com/id/wolfenstian/stats/227700/achievements/">
+                                    <img src="http://cdn.akamai.steamstatic.com/steamcommunity/public/images/apps/227700/2aff79c601b9a893d3575358895ebc5ccda28b78.jpg">
+                                </a>
+                            </div>
+                            <div class="game_info_achievement plus_more" onclick="window.location='http://steamcommunity.com/id/wolfenstian/stats/227700/achievements/'">
+                                +51								</div>
+                        </div>
+                    </div>
+                    <div style="clear: right;"></div>
+                </div>
+                <div class="game_info_stats_rule"></div>
+                <div class="game_info_stats_publishedfilecounts">
+						<span class="published_file_count_ctn">
+			<span class="published_file_icon screenshot"></span>
+			<a class="published_file_link" href="http://steamcommunity.com/id/wolfenstian/screenshots/?appid=227700">Screenshots 76</a>
+		</span>
+				<span class="published_file_count_ctn">
+			<span class="published_file_icon guide"></span>
+			<a class="published_file_link" href="http://steamcommunity.com/id/wolfenstian/myworkshopfiles/?section=guides&amp;appid=227700">Guide 1</a>
+		</span>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<div>
+    <div class="recentgame_quicklinks">
+        View:						<a class="whiteLink" href="http://steamcommunity.com/id/wolfenstian/games/">All 254 Games</a>
+        | <a class="whiteLink" href="http://steamcommunity.com/id/wolfenstian/wishlist/">Wishlist</a>
+    </div>
+    <div style="clear: right;"></div>
+</div>
+
+<div class="profile_comment_area">
+    <div class="commentthread_area" id="commentthread_Profile_76561198028933492_0_area">
+        <div class="commentthread_header">
+            <div class="commentthread_count">
+                <span class="commentthread_header_label">Comments</span>
+            </div>
+            <div class="commentthread_paging" id="commentthread_Profile_76561198028933492_0_pagecontrols">
+                <a class="commentthread_allcommentslink" href="http://steamcommunity.com/id/wolfenstian/allcomments">View all <span id="commentthread_Profile_76561198028933492_0_totalcount">81</span> comments</a>
+                <span id="commentthread_Profile_76561198028933492_0_pagebtn_prev" class="pagebtn disabled">&lt;</span>
+                <span id="commentthread_Profile_76561198028933492_0_pagelinks"><span class="commentthread_pagelink active">1 </span><span class="commentthread_pagelink">2 </span><span class="commentthread_pagelink">3 </span><span class="commentthread_pagelink">4 </span><span class="commentthread_pagelink">5 </span><span class="commentthread_pagelink">6 </span> ... <span class="commentthread_pagelink">14 </span></span>
+                <span id="commentthread_Profile_76561198028933492_0_pagebtn_next" class="pagebtn">&gt;</span>
+            </div>
+            <div style="clear: both;"></div>
+        </div>
+        <form id="commentthread_Profile_76561198028933492_0_form" name="commentthread_Profile_76561198028933492_0_form" action="" method="post" onsubmit="return false;">
+            <div class="commentthread_entry">
+                <div class="commentthread_user_avatar playerAvatar online">
+                    <a href="http://steamcommunity.com/id/TrueCarry">
+                        <img src="http://cdn.akamai.steamstatic.com/steamcommunity/public/images/avatars/d8/d8e737b864753f34e84f70413f2017d297ffb93d.jpg" data-miniprofile="55701071">
+                    </a>
+                </div>
+                <div class="commentthread_entry_quotebox">
+                    <textarea rows="1" class="commentthread_textarea" name="commentthread_Profile_76561198028933492_0_textarea" id="commentthread_Profile_76561198028933492_0_textarea" placeholder="Add a comment" style="overflow: hidden; height: 20px;"></textarea>
+                </div>
+                <div class="commentthread_entry_quotebox_quote"></div>
+                <div class="commentthread_entry_submitlink" id="commentthread_Profile_76561198028933492_0_submit_container" style="display: none;">
+                    <a class="btn_grey_black btn_small_thin" href="javascript:CCommentThread.FormattingHelpPopup( 'Profile' );">
+                        <span>Formatting help</span>
+                    </a>
+                    &nbsp;
+                    <span class="emoticon_button small" id="emoticonbtn_547dd73bccb42">&nbsp;</span><span class="btn_green_white_innerfade btn_small" id="commentthread_Profile_76561198028933492_0_submit">
+						<span>Post Comment</span>
+					</span>
+                </div>
+                <div class="commentthread_entry_error" id="commentthread_Profile_76561198028933492_0_entry_error">
+                </div>
+            </div>
+        </form>
+        <div class="commentthread_comment_container" id="commentthread_Profile_76561198028933492_0_postcontainer">
+            <div class="commentthread_comments" id="commentthread_Profile_76561198028933492_0_posts">
+                <div class="commentthread_comment  " id="comment_617320628370063354" style="">
+                    <div class="commentthread_comment_avatar playerAvatar in-game">
+                        <a href="http://steamcommunity.com/id/Eckil">
+                            <img src="http://cdn.akamai.steamstatic.com/steamcommunity/public/images/avatars/4c/4c18440985a7b51907d9206f3f8e7ad656c07aee.jpg" data-miniprofile="159934274">
+                        </a>
+                    </div>
+                    <div class="commentthread_comment_content">
+                        <div class="commentthread_comment_author">
+                            <a class="hoverunderline commentthread_author_link" href="http://steamcommunity.com/id/Eckil" data-miniprofile="159934274">
+                                Eckilsax</a>
+
+
+				<span class="commentthread_comment_timestamp">
+					10 hours ago&nbsp;
+				</span>
+                        </div>
+                        <div class="commentthread_comment_text" id="comment_content_617320628370063354">
+                            hey bro, are you selling the minigun kit fabricator?			</div>
+                    </div>
+                </div>
+                <div class="commentthread_comment  " id="comment_617320628360420643" style="">
+                    <div class="commentthread_comment_avatar playerAvatar in-game">
+                        <a href="http://steamcommunity.com/id/TargetMiixxy">
+                            <img src="http://cdn.akamai.steamstatic.com/steamcommunity/public/images/avatars/b1/b1bb285010860dc437b07c3302f17ccc30bb6bff.jpg" data-miniprofile="155252588">
+                        </a>
+                    </div>
+                    <div class="commentthread_comment_content">
+                        <div class="commentthread_comment_author">
+                            <a class="hoverunderline commentthread_author_link" href="http://steamcommunity.com/id/TargetMiixxy" data-miniprofile="155252588">
+                                †αяgɛ† | Mi¡×xყ</a>
+
+
+				<span class="commentthread_comment_timestamp">
+					15 hours ago&nbsp;
+				</span>
+                        </div>
+                        <div class="commentthread_comment_text" id="comment_content_617320628360420643">
+                            +Rep =D			</div>
+                    </div>
+                </div>
+                <div class="commentthread_comment  " id="comment_617320628294232595" style="">
+                    <div class="commentthread_comment_avatar playerAvatar in-game">
+                        <a href="http://steamcommunity.com/profiles/76561198115159290">
+                            <img src="http://cdn.akamai.steamstatic.com/steamcommunity/public/images/avatars/57/575fb104898f79ed81a136ed16f6e4b8a4bb4008.jpg" data-miniprofile="154893562">
+                        </a>
+                    </div>
+                    <div class="commentthread_comment_content">
+                        <div class="commentthread_comment_author">
+                            <a class="hoverunderline commentthread_author_link" href="http://steamcommunity.com/profiles/76561198115159290" data-miniprofile="154893562">
+                                Be"Gu ГЕЙБ НА ДИЕТЕ</a>
+
+
+				<span class="commentthread_comment_timestamp">
+					30 Nov @ 10:17pm&nbsp;
+				</span>
+                        </div>
+                        <div class="commentthread_comment_text" id="comment_content_617320628294232595">
+                            good man			</div>
+                    </div>
+                </div>
+                <div class="commentthread_comment  " id="comment_617320628058699112" style="">
+                    <div class="commentthread_comment_avatar playerAvatar offline">
+                        <a href="http://steamcommunity.com/id/Coffee009">
+                            <img src="http://cdn.akamai.steamstatic.com/steamcommunity/public/images/avatars/62/62d8e77d41e1e0764a410dc2ae4f8be40926cc95.jpg" data-miniprofile="33937012">
+                        </a>
+                    </div>
+                    <div class="commentthread_comment_content">
+                        <div class="commentthread_comment_author">
+                            <a class="hoverunderline commentthread_author_link" href="http://steamcommunity.com/id/Coffee009" data-miniprofile="33937012">
+                                Coffee009</a>
+
+
+				<span class="commentthread_comment_timestamp">
+					26 Nov @ 10:36pm&nbsp;
+				</span>
+                        </div>
+                        <div class="commentthread_comment_text" id="comment_content_617320628058699112">
+                            My favorite girl on the internet! 			</div>
+                    </div>
+                </div>
+                <div class="commentthread_comment  " id="comment_617320168014110221" style="">
+                    <div class="commentthread_comment_avatar playerAvatar online">
+                        <a href="http://steamcommunity.com/id/pokeman493">
+                            <img src="http://cdn.akamai.steamstatic.com/steamcommunity/public/images/avatars/7d/7d055f6e30de30861cf482533492f31726373f51.jpg" data-miniprofile="69903891">
+                        </a>
+                    </div>
+                    <div class="commentthread_comment_content">
+                        <div class="commentthread_comment_author">
+                            <a class="hoverunderline commentthread_author_link" href="http://steamcommunity.com/id/pokeman493" data-miniprofile="69903891">
+                                Pokéman493</a>
+
+
+				<span class="commentthread_comment_timestamp">
+					21 Nov @ 6:56am&nbsp;
+				</span>
+                        </div>
+                        <div class="commentthread_comment_text" id="comment_content_617320168014110221">
+                            <img src="http://steamcommunity-a.akamaihd.net/economy/emoticon/A" class="emoticon"><img src="http://steamcommunity-a.akamaihd.net/economy/emoticon/Y" class="emoticon"><img src="http://steamcommunity-a.akamaihd.net/economy/emoticon/Y" class="emoticon">			</div>
+                    </div>
+                </div>
+                <div class="commentthread_comment  " id="comment_617320083296466689" style="">
+                    <div class="commentthread_comment_avatar playerAvatar online">
+                        <a href="http://steamcommunity.com/id/IFuckEverythingThatWalks">
+                            <img src="http://cdn.akamai.steamstatic.com/steamcommunity/public/images/avatars/b2/b2345c0e8dccdcd053066ca68799d172c00122c0.jpg" data-miniprofile="63142891">
+                        </a>
+                    </div>
+                    <div class="commentthread_comment_content">
+                        <div class="commentthread_comment_author">
+                            <a class="hoverunderline commentthread_author_link" href="http://steamcommunity.com/id/IFuckEverythingThatWalks" data-miniprofile="63142891">
+                                tsunami in japan nice</a>
+
+
+				<span class="commentthread_comment_timestamp">
+					20 Nov @ 1:09am&nbsp;
+				</span>
+                        </div>
+                        <div class="commentthread_comment_text" id="comment_content_617320083296466689">
+                            are u female irl?			</div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="commentthread_footer">
+            <div class="commentthread_paging" id="commentthread_Profile_76561198028933492_0_fpagecontrols">
+                <span id="commentthread_Profile_76561198028933492_0_fpagebtn_prev" class="pagebtn disabled">&lt;</span>
+                <span id="commentthread_Profile_76561198028933492_0_fpagelinks"><span class="commentthread_pagelink active">1 </span><span class="commentthread_pagelink">2 </span><span class="commentthread_pagelink">3 </span><span class="commentthread_pagelink">4 </span><span class="commentthread_pagelink">5 </span><span class="commentthread_pagelink">6 </span> ... <span class="commentthread_pagelink">14 </span></span>
+                <span id="commentthread_Profile_76561198028933492_0_fpagebtn_next" class="pagebtn">&gt;</span>
+            </div>
+            <div style="clear: both;"></div>
+        </div>
+    </div>				</div>
+</div>
+
+
+<div class="profile_rightcol">
+<div class="profile_in_game persona offline">
+    <div class="profile_in_game_header">Currently Offline</div>
+    <div class="profile_in_game_name">Last Online: 9 hrs, 35 mins ago</div>
+</div>
+
+
+<div class="profile_badges">
+    <div class="profile_count_link">
+        <a href="http://steamcommunity.com/id/wolfenstian/badges/">
+            <span class="count_link_label">Badges</span>&nbsp;
+							<span class="profile_count_link_total">
+
+																22															</span>
+        </a>
+    </div>
+    <div class="profile_badges_badge ">
+        <a href="http://steamcommunity.com/id/wolfenstian/badges/1" title="Years of Service
+Member since 13 August, 2010.">
+            <img src="http://steamcommunity-a.akamaihd.net/public/images/badges/02_years/steamyears402_54.png">
+        </a>
+    </div>
+    <div class="profile_badges_badge ">
+        <a href="http://steamcommunity.com/id/wolfenstian/gamecards/218680" title="Starite
+Level 3 Scribblenauts Unlimited Badge">
+            <img src="http://cdn.akamai.steamstatic.com/steamcommunity/public/images/items/218680/7b35ac199cd6500d9d2d56c341181c0277d3f7bc.png">
+        </a>
+    </div>
+    <div class="profile_badges_badge ">
+        <a href="http://steamcommunity.com/id/wolfenstian/gamecards/252490" title="Professional Caveman
+Level 5 Rust Badge">
+            <img src="http://cdn.akamai.steamstatic.com/steamcommunity/public/images/items/252490/6a60438198b0c73b62669296aee3e3e0f64113b8.png">
+        </a>
+    </div>
+    <div class="profile_badges_badge last">
+        <a href="http://steamcommunity.com/id/wolfenstian/gamecards/219640" title="Lord
+Level 5 Chivalry: Medieval Warfare Badge">
+            <img src="http://cdn.akamai.steamstatic.com/steamcommunity/public/images/items/219640/4da6a36344d84133866c0dcd9fb9899a5d13fb74.png">
+        </a>
+    </div>
+    <div style="clear: left;"></div>
+</div>
+
+<div class="profile_item_links">
+    <div class="profile_count_link">
+        <a href="http://steamcommunity.com/id/wolfenstian/games/">
+            <span class="count_link_label">Games</span>&nbsp;
+							<span class="profile_count_link_total">
+
+																254															</span>
+        </a>
+    </div>
+    <div class="profile_count_link">
+        <a href="http://steamcommunity.com/id/wolfenstian/screenshots/">
+            <span class="count_link_label">Screenshots</span>&nbsp;
+							<span class="profile_count_link_total">
+
+																689															</span>
+        </a>
+    </div>
+    <div class="profile_count_link">
+        <a href="http://steamcommunity.com/id/wolfenstian/myworkshopfiles/?section=guides">
+            <span class="count_link_label">Guides</span>&nbsp;
+							<span class="profile_count_link_total">
+
+																3															</span>
+        </a>
+    </div>
+    <div class="profile_count_link">
+        <a href="http://steamcommunity.com/id/wolfenstian/images/">
+            <span class="count_link_label">Artwork</span>&nbsp;
+							<span class="profile_count_link_total">
+
+																12															</span>
+        </a>
+    </div>
+    <div class="profile_count_link">
+        <a href="http://steamcommunity.com/id/wolfenstian/myworkshopfiles/?section=greenlight">
+            <span class="count_link_label">Greenlight Items</span>&nbsp;
+							<span class="profile_count_link_total">
+
+																1															</span>
+        </a>
+    </div>
+    <div class="profile_count_link">
+        <a href="http://steamcommunity.com/id/wolfenstian/inventory/">
+            <span class="count_link_label">Inventory</span>&nbsp;
+							<span class="profile_count_link_total">
+
+																&nbsp; <!-- so the line spaces like the rest -->
+															</span>
+        </a>
+    </div>
+</div>
+
+<div class="profile_group_links">
+    <div class="profile_count_link">
+        <a href="http://steamcommunity.com/id/wolfenstian/groups/">
+            <span class="count_link_label">Groups</span>&nbsp;
+							<span class="profile_count_link_total">
+
+																18															</span>
+        </a>
+    </div>
+    <div class="profile_group profile_primary_group">
+        <div class="profile_group_avatar">
+            <a href="http://steamcommunity.com/groups/OpenTester">
+                <img src="http://cdn.akamai.steamstatic.com/steamcommunity/public/images/avatars/02/027d1f2dd3df9a1cb3a96a951e7a7b50fe546eab_medium.jpg">
+            </a>
+        </div>
+        <a class="whiteLink" href="http://steamcommunity.com/groups/OpenTester">
+            OpenTester						</a>
+        <br>23 Members						<div style="clear: left;"></div>
+    </div>
+    <div class="profile_group">
+        <div class="profile_group_avatar">
+            <a href="http://steamcommunity.com/groups/horobox">
+                <img src="http://cdn.akamai.steamstatic.com/steamcommunity/public/images/avatars/c4/c4e0cd46131d412abedaf776aa16b7ad11ce9a2d.jpg">
+            </a>
+        </div>
+        <a class="whiteLink" href="http://steamcommunity.com/groups/horobox">
+            HoroBox							</a>
+        <br>205 Members							<div style="clear: left;"></div>
+    </div>
+    <div class="profile_group">
+        <div class="profile_group_avatar">
+            <a href="http://steamcommunity.com/groups/TF2R-D">
+                <img src="http://cdn.akamai.steamstatic.com/steamcommunity/public/images/avatars/5f/5f038407f2c030f3f0f634424059b9be1ebc8f9e.jpg">
+            </a>
+        </div>
+        <a class="whiteLink" href="http://steamcommunity.com/groups/TF2R-D">
+            TF2R.com Development Group							</a>
+        <br>27,925 Members							<div style="clear: left;"></div>
+    </div>
+</div>
+
+<div class="profile_friend_links">
+    <div class="profile_count_link">
+        <a href="http://steamcommunity.com/id/wolfenstian/friends/">
+            <span class="count_link_label">Friends</span>&nbsp;
+							<span class="profile_count_link_total">
+
+																113															</span>
+        </a>
+    </div>
+
+
+    <div class="profile_topfriends">
+        <div class="friendBlock persona online" data-miniprofile="106078871">
+            <a class="friendBlockLinkOverlay" href="http://steamcommunity.com/id/EarthFox"></a>
+            <div class="friendPlayerLevel lvl_100 lvl_plus_0">
+                <span class="friendPlayerLevelNum">101</span>
+            </div>
+            <div class="playerAvatar online">
+                <img src="http://cdn.akamai.steamstatic.com/steamcommunity/public/images/avatars/92/92c9984d2df69e2df000a58f24383a1e995609ef.jpg">
+            </div>
+            <div class="friendBlockContent">
+                Castiel, Angel of Solitude<br>
+				<span class="friendSmallText">
+		Online
+				</span>
+            </div>
+        </div>
+        <div class="friendBlock persona offline" data-miniprofile="108030095">
+            <a class="friendBlockLinkOverlay" href="http://steamcommunity.com/id/Laffu"></a>
+            <div class="friendPlayerLevel lvl_80">
+                <span class="friendPlayerLevelNum">80</span>
+            </div>
+            <div class="playerAvatar offline">
+                <img src="http://cdn.akamai.steamstatic.com/steamcommunity/public/images/avatars/8c/8c9e3c82cb73aed9e644ffad5eec3e56c47a5767.jpg">
+            </div>
+            <div class="friendBlockContent">
+                Paffu<br>
+				<span class="friendSmallText">
+		Last Online: 4 hrs, 53 mins ago
+				</span>
+            </div>
+        </div>
+        <div class="friendBlock persona online" data-miniprofile="99441927">
+            <a class="friendBlockLinkOverlay" href="http://steamcommunity.com/id/GDIZOCOM"></a>
+            <div class="friendPlayerLevel lvl_70">
+                <span class="friendPlayerLevelNum">71</span>
+            </div>
+            <div class="playerAvatar online">
+                <img src="http://cdn.akamai.steamstatic.com/steamcommunity/public/images/avatars/64/6481a384007edd6263677c88f390b9a68f1ea340.jpg">
+            </div>
+            <div class="friendBlockContent">
+                Miss Xyra<br>
+				<span class="friendSmallText">
+		Online
+				</span>
+            </div>
+        </div>
+        <div class="friendBlock persona offline" data-miniprofile="126530602">
+            <a class="friendBlockLinkOverlay" href="http://steamcommunity.com/id/FlappyBirdMaster"></a>
+            <div class="friendPlayerLevel lvl_60">
+                <span class="friendPlayerLevelNum">60</span>
+            </div>
+            <div class="playerAvatar offline">
+                <img src="http://cdn.akamai.steamstatic.com/steamcommunity/public/images/avatars/f1/f1cec63a4692d9b91df0b503e2fbd537feb05d46.jpg">
+            </div>
+            <div class="friendBlockContent">
+                dv.flappy.<br>
+				<span class="friendSmallText">
+		Last Online: 1 hrs, 13 mins ago
+				</span>
+            </div>
+        </div>
+        <div class="friendBlock persona online" data-miniprofile="75602723">
+            <a class="friendBlockLinkOverlay" href="http://steamcommunity.com/id/residntevl"></a>
+            <div class="friendPlayerLevel lvl_50">
+                <span class="friendPlayerLevelNum">56</span>
+            </div>
+            <div class="playerAvatar online">
+                <img src="http://cdn.akamai.steamstatic.com/steamcommunity/public/images/avatars/d8/d88a7fda3c7fc83928c9c3b3bc9ebcb19fc4b9f7.jpg">
+            </div>
+            <div class="friendBlockContent">
+                Resi ♥<br>
+				<span class="friendSmallText">
+		Online
+				</span>
+            </div>
+        </div>
+        <div class="friendBlock persona online" data-miniprofile="161565142">
+            <a class="friendBlockLinkOverlay" href="http://steamcommunity.com/id/Gatoraderain"></a>
+            <div class="friendPlayerLevel lvl_50">
+                <span class="friendPlayerLevelNum">54</span>
+            </div>
+            <div class="playerAvatar online">
+                <img src="http://cdn.akamai.steamstatic.com/steamcommunity/public/images/avatars/d6/d645857a8b9cfd93f674e33694e96d43a38c704a.jpg">
+            </div>
+            <div class="friendBlockContent">
+                Silly<br>
+				<span class="friendSmallText">
+		Online
+				</span>
+            </div>
+        </div>
+    </div>
+</div>
+
+</div>
+
+<div style="clear: both;"></div>
+</div>
+</div>
+</div>
+
+</div>
+<div id="footer_spacer"></div>
+<div id="footer">
+    <div class="footer_content">
+        <span id="footerLogo"><img src="https://steamcommunity-a.akamaihd.net/public/images/skin_1/footerLogo_valve.png" width="96" height="26" border="0" alt="Логотип Valve"></span>
+			<span id="footerText">
+				Powered by STEAM. Cookies help us deliver our services. By using our services, you agree to our use of cookies.
+            </span>
+    </div>
+</div>
+<img id="bgImgEl" style="display:none">
+<!-- Yandex.Metrika counter --><script type="text/javascript"> (function (d, w, c) { (w[c] = w[c] || []).push(function() { try { w.yaCounter27350393 = new Ya.Metrika({ id:27350393, trackHash:true }); } catch(e) { } }); var n = d.getElementsByTagName("script")[0], s = d.createElement("script"), f = function () { n.parentNode.insertBefore(s, n); }; s.type = "text/javascript"; s.async = true; s.src = (d.location.protocol == "https:" ? "https:" : "http:") + "//mc.yandex.ru/metrika/watch.js"; if (w.opera == "[object Opera]") { d.addEventListener("DOMContentLoaded", f, false); } else { f(); } })(document, window, "yandex_metrika_callbacks");</script><noscript><div><img src="//mc.yandex.ru/watch/27350393" style="position:absolute; left:-9999px;" alt="" /></div></noscript><!-- /Yandex.Metrika counter -->
+</body>
+</html>

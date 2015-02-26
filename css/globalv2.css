@@ -1,0 +1,1035 @@
+
+html {
+	height: 100%;
+}
+
+body {
+	background:  url( 'http://steamcommunity-a.akamaihd.net/public/images/apphubs/blue_body_darker_repeat.jpg?v=1' ) center top repeat-y #000000;
+	background-color: #000000;
+
+	text-align: left;
+
+	color: #8F98A0;
+	font-size: 14px;
+
+	margin:0;
+	padding:0;
+}
+
+body.flat_page {
+	position: relative;
+	min-height: 100%;
+}
+
+body.flat_page.blue {
+	background:  url( 'http://steamcommunity-a.akamaihd.net/public/images/apphubs/blue_body_darker_repeat.jpg?v=2' ) center top repeat-y #000000;
+	color: #636363;
+}
+
+body.standard_page {
+	min-width: 958px;
+}
+
+body, textarea {
+	font-family:Arial, Helvetica, Verdana, sans-serif;
+}
+
+h1, h2, h3, h4, h5, h6 {
+	margin: 0px;
+}
+
+.pagecontent {
+
+	padding-bottom: 128px;
+}
+.pagecontent.in_client, .pagecontent.no_header {
+	background-position: center top;
+}
+body.flat_page.blue .pagecontent {
+	background: none;
+}
+
+.pagecontent.no_footerpad {
+	padding-bottom: 0;
+}
+
+.maincontent {
+	width: 948px;
+	margin: 0 auto;
+}
+
+.ellipsis {
+	overflow: hidden;
+	text-overflow: ellipsis;
+	white-space: nowrap;
+}
+
+a, .whiteLink {
+	color: #ebebeb;
+	text-decoration: none;
+	cursor: pointer;
+}
+
+
+a.hoverunderline:hover {
+	text-decoration: underline;
+}
+
+a.underlinedLink {
+	color: #ebebeb;
+	text-decoration: underline;
+}
+
+a.whiteLink:hover, .whiteLink:hover, a.linkStandard:hover, a.linkTitle:hover, a.underlinedLink:hover {
+	color: #66C0F4;
+	text-decoration: none;
+	cursor: pointer;
+}
+
+form {
+	margin:0;
+	padding:0;
+}
+
+input[type=text], input[type=password], select {
+	background-color:#1a1a1a;
+	color: #909090;
+	border: 1px solid #707070;
+}
+
+
+
+#footer {
+	position:relative;
+	text-align:left;
+	width: auto;
+	font-size: 11px;
+	color:#777777;
+	border:0;
+	margin: 0;
+	padding: 32px 0;
+	background-color: #000000;
+}
+
+body.flat_page #footer, body.headerless_page #footer {
+	position: absolute;
+	left: 0;
+	right: 0;
+	bottom: 0;
+	padding: 0;
+	margin: 0;
+	padding-top: 16px;
+	background: transparent;
+}
+body.flat_page #footer {
+	background-color: #000000;
+}
+body.flat_page.blue #footer {
+	background: none;
+}
+
+body.flat_page #footer_spacer, body.headerless_page #footer_spacer {
+	height: 78px;
+	padding-top: 16px;
+}
+
+#footer .footer_content {
+	position: relative;
+	width: 958px;
+	margin: 0px auto;
+}
+
+#footer a {
+	color:#777777;
+	text-decoration: underline;
+}
+
+#footer a:hover {
+	color: #ffffff;
+}
+
+#footerText {
+	padding: 2px 0 0 0;
+	line-height: 14px;
+	display: block;
+}
+
+#footerLogo {
+	float: left;
+	margin: 4px 11px 0 16px;
+	padding: 0;
+}
+
+
+.friendBlock {
+	height:36px;
+	padding: 4px 0 4px 4px;
+	margin-bottom:4px;
+	font-size:11px;
+	line-height:13px;
+	overflow: hidden;
+	white-space: nowrap;
+	text-overflow: ellipsis;
+
+	position: relative;
+
+	background-color: rgba( 84, 133, 183, 0.2);
+}
+a.friendBlock {
+	display: block;
+}
+
+.friendBlockLinkOverlay {
+	position: absolute;
+	left: 0;
+	top: 0;
+	right: 0;
+	bottom: 0;
+
+	z-index: 2;
+}
+
+.friendBlock a.friendBlockInnerLink {
+	position: relative;
+	z-index: 3;
+	color: #ffffff;
+}
+
+.friendBlock:hover {
+	cursor:pointer;
+	background-color: rgba( 117, 204, 255, 0.3);
+}
+
+.friendBlock .playerAvatar {
+	float:left;
+	margin-right: 7px;
+}
+
+.friendBlock .friendBlockContent {
+	overflow: hidden;
+	white-space: nowrap;
+	text-overflow: ellipsis;
+}
+
+.friendBlock .friend_join_game_link {
+	text-decoration: underline;
+}
+
+.friendBlock .friend_join_game_link:hover {
+	color: white;
+}
+
+.friendBlock .blockedText {
+	color: red;
+	font-weight: bold;
+}
+
+.friendBlockStatusIcon {
+	float: right;
+	height: 40px;
+	line-height: 40px;
+	padding: 0 7px;
+}
+.friendBlockStatusIcon img {
+	vertical-align: middle;
+}
+
+
+.friendBlock .friendPlayerLevel {
+	float: right;
+	margin: 4px 4px 0 0;
+}
+
+/* used to display the " - public" next to a group name */
+.pubGroup {
+	font-size:11px;
+	color:#d05f29;
+	font-weight:bold;
+}
+
+body.flat_page > .perf_timing_area .perf_timing_link, body.headerless_page > .perf_timing_area .perf_timing_link {
+	position: absolute;
+	left: 15px;
+	bottom: 15px;
+}
+
+.perf_timing_area {
+	display: block;
+	text-align: center;
+	margin-bottom: 14px;
+}
+
+.perf_timing_data {
+	position: relative;
+	background-color: #000000;
+	margin: 0px auto 48px auto;
+	padding: 8px;
+	text-align: left;
+	width: 936px;
+	font-size: 14px;
+}
+.nowrap {
+	white-space: nowrap;
+	overflow: hidden;
+}
+
+/* -------------- paging controls -------------*/
+.pagebtn, a.pagebtn {
+	display: inline-block;
+	line-height: 24px;
+	background-color: #000000;
+	border: 1px solid #000000;
+	border-radius: 3px;
+	cursor: pointer;
+	padding: 0px 16px;
+	color: #939393;
+}
+
+.pagebtn:hover, a.pagebtn:hover {
+	background-color: #97C0E3;
+	border-color: #97C0E3;
+	color: #3C3D3E;
+	text-decoration: none;
+}
+
+.pagebtn.disabled, .pagebtn.disabled:hover, a.pagebtn.disabled, a.pagebtn.disabled:hover {
+	border: 1px solid #333333;
+	background-color: transparent;
+	color: #333333;
+	cursor: default;
+}
+
+a.pagelink:hover {
+	text-decoration: underline;
+	color: #ffffff;
+}
+
+
+/* note that the old gameLogoHolder_default style does nothing now */
+
+.gameLogo {
+	width:184px;
+	height:69px;
+	border:0;
+	padding: 4px;
+	margin:0;
+	background-image:url('http://steamcommunity-a.akamaihd.net/public/images/skin_1/gamelogoholder_default.jpg');
+}
+
+.gameLogo img {
+	border:0;
+	width:184px;
+	height:69px;
+}
+
+
+/* ---------------- comment threads -------------*/
+.commentthread_header, .commentthread_footer {
+	font-size: 14px;
+	line-height: 24px;
+	margin-bottom: 1px;
+	padding-bottom: 2px;
+}
+.commentthread_header {
+	border-bottom: 1px solid #515152;
+}
+.commentthread_footer {
+	border-top: 1px solid #515152;
+}
+
+.commentthread_header .commentthread_count, .commentthread_footer .commentthread_count {
+	float: left;
+}
+
+.commentthread_header .commentthread_count {
+	background-image: url( http://steamcommunity-a.akamaihd.net/public/images/skin_1/comment_quoteicon.png );
+	background-image: url( data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABAAAAAQCAYAAAAf8/9hAAAAGXRFWHRTb2Z0d2FyZQBBZG9iZSBJbWFnZVJlYWR5ccllPAAAAUNJREFUeNqkU11Og0AQnm04QI/AEfQGcAO9QXnRUJuGqml8M75oUhOlhEqtD3IDewO5QfcIHKEH2B8/WqBgTAr4JcMAM/Ptt7OzjIAgjAaMMZOOQGudjkduXP3H/GDxCu9Rc/je+GpSfPSklB6MWlhtMTZ7ftHUHrbCdu6mN2lPgLWLKSk3j08z05BSUEf0YQNDCkn/gSE6KMCRcxzpngAK1vBnLeoTTdpixHICJR3SlOLdQuCkthKx5FcxR84c+V95feGIrm+nFtx3JdnRSmUE1Qk1If+eDlP7YBQRKaq9YI7SiiN5w/bd/gtbxOOSIDvbXFKMBq0R/NQ7yTsFZq0QOVAxDwM/LQkwGBzuNHoLef7rPHu4w1EfhNnWiv7wZbSYHPrUABeXbpUk+Vgt7fIyNSFYvUdbXCJbCMGFqM/NjwADANx60v2kqu2YAAAAAElFTkSuQmCC );
+	background-repeat: no-repeat;
+	background-position: left center;
+	padding-left: 24px;
+}
+
+.commentthread_paging {
+	float: right;
+}
+
+.commentthread_pagelink {
+	cursor: pointer;
+	color: #ffffff;
+}
+
+.commentthread_pagelink:hover {
+	text-decoration: underline;
+}
+
+.commentthread_pagelink.active {
+	cursor: default;
+	color: #939393;
+}
+
+.commentthread_pagelink.active:hover {
+	text-decoration: none;
+}
+
+.commentthread_entry {
+	min-height: 44px;
+	background-color: rgba( 0, 0, 0, 0.2 );
+	position: relative;
+
+	padding: 6px 6px 6px 66px;
+}
+
+.commentthread_allcommentslink {
+	margin-right: 12px;
+}
+
+a.commentthread_allcommentslink:hover {
+	text-decoration: underline;
+}
+
+.commentthread_user_avatar {
+	position: absolute;
+	left: 6px;
+	top: 7px;
+}
+
+.commentthread_entry_quotebox_quote {
+	position: absolute;
+	left: 50px;
+	top: 13px;
+	width: 17px;
+	height: 18px;
+	background-image: url( data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABEAAAASCAYAAAC9+TVUAAAAGXRFWHRTb2Z0d2FyZQBBZG9iZSBJbWFnZVJlYWR5ccllPAAAAyBpVFh0WE1MOmNvbS5hZG9iZS54bXAAAAAAADw/eHBhY2tldCBiZWdpbj0i77u/IiBpZD0iVzVNME1wQ2VoaUh6cmVTek5UY3prYzlkIj8+IDx4OnhtcG1ldGEgeG1sbnM6eD0iYWRvYmU6bnM6bWV0YS8iIHg6eG1wdGs9IkFkb2JlIFhNUCBDb3JlIDUuMC1jMDYwIDYxLjEzNDc3NywgMjAxMC8wMi8xMi0xNzozMjowMCAgICAgICAgIj4gPHJkZjpSREYgeG1sbnM6cmRmPSJodHRwOi8vd3d3LnczLm9yZy8xOTk5LzAyLzIyLXJkZi1zeW50YXgtbnMjIj4gPHJkZjpEZXNjcmlwdGlvbiByZGY6YWJvdXQ9IiIgeG1sbnM6eG1wPSJodHRwOi8vbnMuYWRvYmUuY29tL3hhcC8xLjAvIiB4bWxuczp4bXBNTT0iaHR0cDovL25zLmFkb2JlLmNvbS94YXAvMS4wL21tLyIgeG1sbnM6c3RSZWY9Imh0dHA6Ly9ucy5hZG9iZS5jb20veGFwLzEuMC9zVHlwZS9SZXNvdXJjZVJlZiMiIHhtcDpDcmVhdG9yVG9vbD0iQWRvYmUgUGhvdG9zaG9wIENTNSBXaW5kb3dzIiB4bXBNTTpJbnN0YW5jZUlEPSJ4bXAuaWlkOjNBMkQxOENENDY3QTExRTM4RkY3ODIzQkI0RTYyMTM0IiB4bXBNTTpEb2N1bWVudElEPSJ4bXAuZGlkOjNBMkQxOENFNDY3QTExRTM4RkY3ODIzQkI0RTYyMTM0Ij4gPHhtcE1NOkRlcml2ZWRGcm9tIHN0UmVmOmluc3RhbmNlSUQ9InhtcC5paWQ6M0EyRDE4Q0I0NjdBMTFFMzhGRjc4MjNCQjRFNjIxMzQiIHN0UmVmOmRvY3VtZW50SUQ9InhtcC5kaWQ6M0EyRDE4Q0M0NjdBMTFFMzhGRjc4MjNCQjRFNjIxMzQiLz4gPC9yZGY6RGVzY3JpcHRpb24+IDwvcmRmOlJERj4gPC94OnhtcG1ldGE+IDw/eHBhY2tldCBlbmQ9InIiPz4doN6kAAAAnElEQVR42qTTgQ1AMBAF0JIOYBSr1AS3kgnKBjbABkYwghFck09ESq/Xn/yo0IfkVM51piCeS3UpEBZahC5AixDewmiR9g3kIgGYYxekSAOg0SK/gBSZ8SlGi/gUkEL8cxY0CEmBL4Ris5CDtELg4A5cF06sZJiQnTtxVxzv2MQsbNyFO2IdjY0AGzZNeHoyFkC4ucfGI/e3PgUYAAQTHwWliw0pAAAAAElFTkSuQmCC );
+}
+
+.commentthread_entry_quotebox {
+	border: 1px solid #515152;
+	border-radius: 3px;
+	padding: 7px;
+}
+
+.commentthread_textarea {
+	resize: none;
+	outline: none;
+	background-color: transparent;
+	border: none;
+	width: 100%;
+	overflow: hidden;
+	color: #BFBFBF;
+}
+
+.commentthread_entry_submitlink {
+	text-align: right;
+	padding-top: 5px;
+}
+
+.commentthread_entry_submitlink .emoticon_button {
+	margin-right: 8px;
+}
+
+.commentthread_entry_autosubscribe {
+	padding-bottom: 8px;
+}
+
+.commentthread_entry_error {
+	color: #ff0000;
+}
+
+.commentthread_textarea::-webkit-input-placeholder{
+	font-style: italic;
+	color: #515152;
+}
+
+.commentthread_textarea:-moz-placeholder {
+	font-style: italic;
+	color: #515152;
+}
+
+.commentthread_comment_container {
+	overflow: hidden;
+	margin-top: 19px;
+}
+
+.commentthread_comment {
+	position: relative;
+	padding-bottom: 19px;
+	min-height: 40px;
+	padding-left: 58px;
+}
+
+.valve_links {
+	margin: 15px 0 0 123px;
+	display: block;
+}
+
+.commentthread_comment.commentthread_newcomment {
+
+}
+
+.commentthread_comment_avatar {
+	position: absolute;
+	left: 5px;
+	top: 0px;
+}
+
+.commentthread_valve_icon
+{
+	vertical-align: middle;
+	margin-left: 5px;
+	width: 59px;
+	height: 16px;
+}
+
+.commentthread_comment_author {
+	margin-bottom: 2px;
+	line-height: 16px;
+}
+
+.commentthread_comment_author a {
+	font-size: 14px;
+}
+
+.commentthread_comment_author a.actionlink {
+	color: #B0AEAC;
+	font-size: 11px;
+	visibility: hidden;
+}
+
+.commentthread_comment_author a.actionlink:hover {
+	text-decoration: underline;
+}
+
+.commentthread_comment:hover .commentthread_comment_author a.actionlink {
+	visibility: visible;
+}
+
+.commentthread_comment_timestamp {
+	font-size: 11px;
+	color: #535354;
+	margin-left: 4px;
+}
+
+.commentthread_comment_text {
+	font-size: 13px;
+	color: #acb2b8;
+	word-wrap: break-word;
+	overflow-y: auto;
+	max-height: 400px;
+	line-height: 18px;
+}
+
+.commentthread_comment_text a {
+	color: #c6d4df;
+	text-decoration: underline;
+}
+
+.commentthread_comment_text a:hover {
+	color: #EBEBEB;
+	text-decoration: underline;
+}
+
+.commentthread_comment_friendindicator {
+	position: absolute;
+	left: 33px;
+	top: 24px;
+	background-image: url( 'http://steamcommunity-a.akamaihd.net/public/images/skin_1/comment_friendindicator_small.png' );
+	width: 20px;
+	height: 20px;
+	z-index: 2;
+
+	cursor: pointer;
+}
+
+.commentthread_edit_buttons {
+	text-align: right;
+}
+
+.commentthread_workshop_authorbadge {
+	color: #e9d528;
+}
+
+.commentthread_workshop_publishedfilesbadge {
+	display: inline-block;
+	padding: 0 6px;
+	border-radius: 3px;
+	line-height: 22px;
+	margin: 0 4px;
+	background-color: #425979;
+}
+
+.commentthread_steamworks_developerbadge {
+	display: inline-block;
+	padding: 0 6px;
+	border-radius: 3px;
+	line-height: 22px;
+	margin: 0 4px;
+	background-color: #AC966A;
+}
+
+/** Styles for modal popup */
+
+.modal_top_band {
+	background-color:#37516d;
+	width:548px;
+	height:25px;
+	margin-bottom:1px;
+}
+
+.modal_close {
+	float:right;
+	width:9px;
+	height:9px;
+	margin-right:9px;
+	margin-top:7px;
+	line-height: 9px;
+	cursor: pointer;
+}
+
+.modal_box {
+	background: -moz-linear-gradient(top, rgba(102,192,244,1) 5%, rgba(47,137,188,1) 95%);background: -webkit-gradient(linear, left top, left bottom, color-stop(5%,rgba(102,192,244,1)), color-stop(95%,rgba(47,137,188,1)));background: -webkit-linear-gradient(top, rgba(102,192,244,1) 5%,rgba(47,137,188,1) 95%);background: -o-linear-gradient(top, rgba(102,192,244,1) 5%,rgba(47,137,188,1) 95%);background: -ms-linear-gradient(top, rgba(102,192,244,1) 5%,rgba(47,137,188,1) 95%);background: linear-gradient(to bottom, rgba(102,192,244,1) 5%,rgba(47,137,188,1) 95%);	padding: 3px;
+	width:542px;
+
+	font-size: 12px;
+	color: #ffffff;
+	text-align: left;
+}
+.modal_box .modal_box_ctn
+{
+	width:502px;
+	background-color:#1a2635;
+	padding:20px;
+}
+.modal_box #forum_movetopic_modal_content #forum_movetopic_form {
+	background: transparent;
+}
+
+.modal_box h1, .modal_box h5 {
+	font-weight: normal;
+}
+
+.modal_box h2 {
+	color: #c6d4df;
+	font-family: "Motiva Sans Light", "Motiva Sans", arial, tahoma, sans-serif;
+	font-size: 22px;
+	font-weight: normal;
+	margin-bottom: 10px;
+}
+
+.modal_low_block {
+	background-color:#171717;
+	padding:20px 20px 0px 20px;
+	height:54px;
+	padding-top:24px;
+	color:#b0aeac;
+}
+
+
+.modal_steam_ico {
+	float:left;
+	padding-right:18px;
+	margin-top:-4px;
+}
+
+
+
+#modalBG {
+	position:fixed;
+	z-index:900;
+	background-color:#000000;
+	filter:alpha(opacity=60);
+	opacity:0.8;
+	top: 0;
+	bottom: 0;
+	left: 0;
+	right: 0;
+}
+
+.modal_frame {
+	width:508px;
+	position:absolute;
+	z-index:1000;
+	background-color:#000000;
+}
+
+
+/* big gray buttons for the modal */
+.gray_square_button {
+	height: 34px;
+	line-height: 34px;
+	color: #e5e2df;
+	font-size: 14px;
+	padding: 0 2px;
+	margin: 0 8px;
+
+	border: none;
+
+	position: relative;
+	display: inline-block;
+
+	cursor: pointer;
+}
+
+a.gray_square_button:hover {
+	text-decoration: none;
+	color: #e5e2df;
+}
+
+.modal_box .gray_square_button {
+	margin-left: 0;
+	margin-right: 16px;
+}
+
+.gray_square_button .left, .gray_square_button .right, .gray_square_button .button_label {
+	background-image: url( 'http://steamcommunity-a.akamaihd.net/public/images/economy/gray_square_button.png' );
+}
+
+.gray_square_button .left, .gray_square_button .right {
+	background-repeat: no-repeat;
+	position: absolute;
+	top: 0;
+	height: 34px;
+	width: 2px;
+}
+
+.gray_square_button .left {
+	background-position: 0 0;
+	left: 0;
+}
+
+.gray_square_button .right {
+	background-position: -2px 0;
+	right: 0;
+}
+
+.gray_square_button .button_label {
+	background-repeat: repeat-x;
+	background-position: 0 -34px;
+	padding: 0 32px;
+	text-align: left;
+}
+
+.modal_box .gray_square_button .button_label {
+	min-width: 62px;
+}
+
+.gray_square_button.active .left {
+	background-position: 0 -68px;
+}
+
+.gray_square_button.active .right {
+	background-position: -2px -68px;
+}
+
+.gray_square_button.active .button_label {
+	background-position: 0 -102px;
+}
+
+button.gray_square_button::-moz-focus-inner
+{
+	padding: 0;
+	border: none;
+}
+
+
+	/* not logged in modal dialog */
+
+.notLoggedInText {
+	font-size: 20px;
+	padding-bottom: 20px;
+	padding-top: 0;
+	text-align: center;
+}
+
+.notLoggedInButtons {
+	display: block;
+	margin: 0 auto;
+	text-align: center;
+}
+
+.notLoggedInButtons > a {
+	margin-right: 5px;
+}
+
+
+/* new input styles */
+
+input.gray_bevel:-moz-placeholder, textarea.gray_bevel:-moz-placeholder, .gray_bevel textarea:-moz-placeholder, .gray_bevel input:-moz-placeholder {
+	font-style: italic;
+	color: #7c7c7c;
+}
+
+input.gray_bevel::-webkit-input-placeholder, textarea.gray_bevel::-webkit-input-placeholder, .gray_bevel textarea::-webkit-input-placeholder, .gray_bevel input::-webkit-input-placeholder {
+	font-style: italic;
+	color: #7c7c7c;
+}
+
+input.gray_bevel, textarea.gray_bevel, .gray_bevel, .commentthread_comment_edit_textarea_ctn {
+	background-color: rgba( 0, 0, 0, 0.2 );
+	border-radius: 3px;
+	border: 1px solid #000;
+	box-shadow: 1px 1px 0 0 rgba( 91, 132, 181, 0.2 );
+	color: #C6D4DF;
+
+	margin-bottom: 6px;
+	outline: none;
+
+
+	padding: 4px 6px;
+}
+
+.gray_bevel.for_text_input {
+	display: inline-block;
+	padding-bottom: 1px;
+	height: 25px;
+}
+
+.gray_bevel input {
+	line-height: 21px;
+	height: 21px;
+}
+
+.newmodal_prompt_textarea {
+	height: 396px;
+}
+
+.newmodal_prompt_with_textarea {
+	display: inline-block;
+	padding-top: 1px;
+	padding-bottom: 1px;
+	width: 500px;
+}
+
+.gray_bevel input, .gray_bevel textarea {
+	border: none;
+	outline: none;
+	background-color: transparent;
+	font-size: 13px;
+	color: #C6D4DF;
+}
+
+.gray_bevel.fullwidth {
+	display: block;
+}
+
+.gray_bevel.fullwidth.for_text_input input, .gray_bevel.fullwidth textarea {
+	width: 100%;
+}
+
+input.gray_bevel {
+	height: 20px;
+}
+
+textarea.gray_bevel, .gray_bevel textarea {
+	resize: none;
+}
+
+select.gray_bevel {
+	background-color: #212f43;
+	border-radius: 3px;
+	border: 1px solid rgba( 91, 132, 181, 0.2 );
+	box-shadow: 1px 1px 0px #000000;
+	color: #BFBFBF;
+
+	margin-bottom: 6px;
+	outline: none;
+
+	padding: 0px;
+	line-height: 27px;
+	height: 27px;
+	font-size: 14px;
+}
+
+
+/* sharing published files*/
+#SharePopup
+{
+	min-width: 550px;
+	background-color: #323232;
+	border: 1px solid #4a4943;
+	padding: 10px;
+	text-align: left;
+}
+
+.share_controls_steam, .share_controls_steam a
+{
+	float: left;
+	display: inline-block;
+	width: 328px;
+	height: 50px;
+	margin-right: 15px;
+	font-size: 16px;
+	font-family: Arial;
+	text-align: center;
+	line-height: 50px;
+	text-decoration: none;
+	background-image: url( 'http://steamcommunity-a.akamaihd.net/public/images//sharedfiles/share_status_off.jpg' );
+}
+
+.share_controls_steam:hover, .share_controls_steam:hover a
+{
+	background-image: url( 'http://steamcommunity-a.akamaihd.net/public/images//sharedfiles/share_status_on.jpg' );
+	text-decoration: none;
+}
+
+.share_controls_other
+{
+	padding-top: 10px;
+}
+
+.share_controls_divider
+{
+	background-color: #161616;
+	border-bottom: 1px solid #4c4c4c;
+	height: 1px;
+	margin-top: 15px;
+	margin-bottom: 10px;
+}
+
+.share_controls_page_link
+{
+	padding-top: 5px;
+	line-height: 26px;
+	height: 26px;
+	font-size: 12px;
+	color: #8f8f8f;
+}
+
+.shareItemLink
+{
+	float: left;
+	padding-left: 5px;
+}
+
+.shareItemLink .btn_medium > span
+{
+	padding: 0px 10px;
+	line-height: 28px;
+}
+
+.share_controls_page_link form
+{
+	display: inline-block;
+}
+
+.share_controls_page_link input
+{
+	top: 0px;
+	padding: 5px;
+	min-width: 500px;
+	background-color: #272626;
+	border: 1px solid #000000;
+	color: #8f8f8f;
+}
+
+#ShareOnSteamDialog
+{
+	min-height: 290px;
+	width: 560px;
+}
+
+img.emoticon {
+	vertical-align: text-bottom;
+	height: 18px;
+	width: 18px;
+}
+
+
+.migrated_profile_page_old .pagecontent {
+	padding-bottom: 0;
+}
+
+.migrated_profile_page_old #BG_bottom, .migrated_profile_page_old #BG_top {
+	margin: 0 auto;
+}
+
+.emoticon_button {
+	display: inline-block;
+
+	height: 36px;
+	width: 36px;
+
+	background-image: url( 'http://steamcommunity-a.akamaihd.net/public/images/chat/btn_emoticon.png' );
+	background-position: center bottom;
+	background-repeat: no-repeat;
+}
+
+.emoticon_button:hover, .emoticon_button.focus {
+	background-position: center top;
+}
+
+.emoticon_button.small {
+	height: 22px;
+	width: 22px;
+	vertical-align: middle;
+
+	background-position: center -43px;
+}
+
+.emoticon_button.small:hover, .emoticon_button.small.focus {
+	background-position: center -7px;
+}
+
+.emoticon_popup_ctn {
+	position: absolute;
+}
+
+.emoticon_popup {
+	background-color: #3b3938;
+	padding: 8px;
+	box-shadow: 0 0 12px #000000;
+}
+
+.emoticon_popup_content {
+	max-height: 96px;
+	max-width: 352px;
+	overflow-y: auto;
+}
+
+.emoticon_popup_content .emoticon_option {
+	width: 28px;
+	margin: 2px;
+
+	text-align: center;
+
+	line-height: 18px;
+	height: 18px;
+	padding: 5px 0;
+
+	float: left;
+}
+
+.emoticon_popup_content .emoticon_option:hover {
+	background-color: #201f1d;
+	cursor: pointer;
+}
+
+
+.economyitem_hover {
+	position: absolute;
+	top: 0;
+	left: 0;
+	z-index: 1200;
+}
+.economyitem_hover_content {
+	width: 350px;
+	margin: 12px;
+	box-shadow: 0 0 12px #000000;
+}
+
+.tooltip_hint {
+	cursor: default;
+	font-size: 12px;
+	font-style: normal;
+	color: #686868;
+}
+
+.community_tooltip {
+	background: #c2c2c2;
+	color: #3d3d3f;
+	font-size: 11px;
+	border-radius: 3px;
+	padding: 5px;
+	max-width: 225px;
+	white-space: normal;
+	box-shadow: 0 0 3px #000000;
+}

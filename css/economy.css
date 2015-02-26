@@ -1,0 +1,991 @@
+
+.selectableNone {
+	user-select: none;
+	-moz-user-select: none;
+	-webkit-user-select: none;
+}
+
+.selectableText:hover {
+	user-select: text;
+	-moz-user-select: text;
+	-webkit-user-select: text;
+}
+
+.ellipsis {
+	overflow: hidden;
+	text-overflow: ellipsis;
+	white-space: nowrap;
+}
+
+h2 {
+	color: #c6c6c6;
+	font-size: 22px;
+	font-weight: normal;
+	margin-bottom: 10px;
+}
+
+
+
+.itemHolder {
+	position: relative;
+	width: 98px;
+	height: 98px;
+	background-color: #333333;
+	background-image: url( 'http://steamcommunity-a.akamaihd.net/public/images/economy/trade_itemholder.png' );
+	background-repeat: no-repeat;
+	background-position: center top;
+	float: left;
+	margin-right: 6px;
+	margin-bottom: 6px;
+}
+
+.itemHolder.disabled {
+	background-position: 0 -98px;
+}
+
+
+.item_currency_amount, .item_currency_name {
+	position: absolute;
+	left: 0;
+	right: 0;
+	top: 62px;
+
+	text-align: center;
+	font-size: 18px;
+}
+
+.item_currency_name {
+	display: none;
+}
+
+.item.in_drag .item_currency_name {
+	display: block;
+}
+
+.item.in_drag .item_currency_amount {
+	display: none;
+}
+
+.item.unknownItem {
+	text-align: center;
+}
+
+.item.unknownItem img {
+	margin-top: 32px;
+}
+
+.trade_item_box .item, .market_dialog_contents .item {
+	border: 1px solid #3a3a3a;
+	background-color: #292929;
+	width: 96px;
+	height: 96px;
+}
+
+.trade_area .item .item_image {
+
+}
+
+
+
+a.inventory_item_link {
+	position: absolute;
+	top: 0;
+	left: 0;
+	display: block;
+	width: 96px;
+	height: 96px;
+	z-index: 2;
+}
+
+a.inventory_item_link:focus {
+	outline: 0 none;
+}
+
+
+.trade_item_box {
+	background-color: #000000;
+	border: 1px solid #2c2c2d;
+	padding: 6px 0 0 6px;
+}
+
+
+
+/* steam gift styles */
+
+.item_actions, .item_owner_actions {
+}
+
+.item_actions .btn_small, .item_owner_actions .btn_small {
+	margin-right: 12px;
+	margin-bottom: 16px;
+}
+
+a.item_action {
+	display: inline-block;
+	border: 1px solid #99938d;
+	border-radius: 3px;
+	-moz-border-radius: 3px;
+
+	color: #e5e2df;
+
+	height: 22px;
+	line-height: 22px;
+
+	font-size: 11px;
+	padding: 0 19px;
+
+	margin-right: 22px;
+	margin-bottom: 13px;
+	background-repeat: repeat-x;
+
+	background-color: #5c5957;
+	background-image: url('http://steamcommunity-a.akamaihd.net/public/images/economy/item_action_btn.png');
+	background-image: url('data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAAWCAIAAACOpGH9AAAAGXRFWHRTb2Z0d2FyZQBBZG9iZSBJbWFnZVJlYWR5ccllPAAAAClJREFUeNpiyExLZvr//z8G/vcPRP8D0/+A9H8o/e8fMhuhBk0/QIABALdaQAnvsp4ZAAAAAElFTkSuQmCC');
+}
+
+a.item_action:hover {
+	text-decoration: none;
+	color: #ffffff;
+}
+
+
+
+.economy_popup_msg {
+	position: relative;
+
+	background-color: #5c7e10;
+	border-radius: 3px;
+	-moz-border-radius: 3px;
+
+	font-size: 11px;
+	color: #cccccc;
+
+	padding: 7px 28px 7px 8px;
+
+	margin-bottom: 10px;
+}
+
+#mainContents .economy_popup_msg {
+	margin-right: 17px;
+}
+
+.economy_popup_msg.trade_welcome_msg {
+	font-size: 12px;
+	color: #ffffff;
+	margin-top: 4px;
+	margin-bottom: 4px;
+}
+
+.economy_popup_msg b {
+	color: #abce4e;
+	font-weight: normal;
+}
+
+.welcome_dismiss {
+	position: absolute;
+	top: 5px;
+	right: 5px;
+	background-color: #446501;
+	width: 18px;
+	height: 16px;
+
+	background-image: url('http://steamcommunity-a.akamaihd.net/public/images/economy/economy_welcome_dismiss.png');
+
+	cursor: pointer;
+}
+
+
+
+
+
+
+#hover {
+	position: absolute;
+	z-index: 200;
+}
+
+#hover .shadow_content {
+	margin: 12px;
+}
+
+#hover .hover_box {
+	background-color: #242424;
+}
+
+#hover a {
+	font-size: 12px;
+	color: inherit;
+}
+
+#trade_hover {
+	width: 500px;
+}
+
+.item_desc_content {
+	position: relative;
+	padding: 22px 0 22px 218px;
+	min-height: 192px;
+
+	background-color: #1d1d1d;
+	background-image: url( 'http://steamcommunity-a.akamaihd.net/public/images/economy/trade_hover_background.png' );
+	background-repeat: no-repeat;
+	background-position: center top;
+
+	overflow: hidden;
+}
+
+.item_desc_descriptors a, .item_desc_descriptors a:hover {
+	font-size: inherit;
+}
+
+.item_desc_icon {
+	position: absolute;
+	left: 8px;
+	top: 8px;
+}
+
+.item_desc_icon_center {
+	height: 192px;
+	display: table-cell;
+	vertical-align: middle;
+	text-align: center;
+}
+
+.item_desc_content .item_desc_description {
+	color: #b4b4b4;
+	font-size: 14px;
+	padding-right: 8px;
+}
+
+.item_desc_descriptors {
+	margin-bottom: 16px;
+}
+
+.item_market_actions {
+	background-color: #181818;
+}
+
+.hover_item_name {
+	font-size: 24px;
+	font-weight: normal;
+	margin-bottom: 5px;
+}
+
+.hover_item_name_small {
+	font-size: 12px;
+}
+
+.hover_item_name_conversion {
+	color: #767676;
+}
+
+.fraud_warning {
+	color: #bd4847;
+}
+
+.fraud_warning_sub_text {
+	color: #767676;
+}
+
+.item_desc_content .fraud_warning {
+	margin-bottom: 9px;
+}
+
+.item_desc_game_info {
+	position: relative;
+	padding-left: 36px;
+	color: #767676;
+	min-height: 32px;
+	margin-bottom: 16px;
+}
+
+.item_desc_game_info .item_desc_game_icon {
+	position: absolute;
+	left: 0;
+	top: 0;
+}
+
+
+
+/* inventory paging */
+
+
+#inventroy_displaycontrols {
+	margin-bottom: 8px;
+}
+
+#inventory_pagecontrols {
+	text-align: center;
+	line-height: 22px;
+	float: right;
+}
+
+#inventory_pagecontrols .pagecontrol_element {
+	float: right;
+}
+
+.pagecontrol_element.pagecounts {
+	padding: 0 14px;
+}
+
+.filter_right_controls {
+	float: right;
+	width: 200px;
+}
+
+.filter_tag_button_ctn {
+	white-space: nowrap;
+	padding-top: 4px;
+}
+
+.filter_ctn.inventory_filters .filter_tag_button_ctn {
+	float: left;
+	padding-top: 5px;
+}
+
+.filter_control_ctn {
+	position: relative;
+	float: left;
+}
+
+#filter_clear_btn {
+	position: absolute;
+	right: 4px;
+	top: 7px;
+	width: 16px;
+	height: 16px;
+	background-image: url( data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABAAAAAQCAYAAAAf8/9hAAAAGXRFWHRTb2Z0d2FyZQBBZG9iZSBJbWFnZVJlYWR5ccllPAAAAVdJREFUeNqM009EBGEYx/GZbSwRe4qI/lw6bDZLW4eUKFJEl05Rx9KpxJ4iukWXutQhkTp26hDpkFJERFqW6LpEpxgiou/Lb3j2Nat9+Bzmmfd95n3ed96wVCoFKdGCIvKI8YZq2sDIe+7ANhbQ5r2rYReH+EmSGTNgHK9YTpnsohN7uNeH6goUcIH24P8YxjVabYFT5Mygy5SJN2bp7oNbSYFpbVgS+5jFuskdYworJrfmWo1UwIbbwDMV+kI/yuq7bMa5FkZdgV6vgNuHW63iRLketeCPzWd05n64U+gzz9125224Au9e7hdLOMIQ5nGHSbVko+oKXHnJHe3BhJZ9jlU8epv4jYdIBZ4xqBcbOq5NZJU7QBcWvdOKQ92Fgv6wXNBcvGDErSL5kSqYw2cTk58woxbq7oLbqAH9NHHKxJp+rjF8JMmwwXXOqq2iilUaXec/AQYATLo/RECYZloAAAAASUVORK5CYII= );
+
+	background-repeat: no-repeat;
+	z-index: 12;
+	cursor: pointer;
+}
+
+#filter_control {
+	width: 200px;
+}
+
+.filter_ctn.inventory_filters #filter_control {
+	width: 416px;
+}
+
+.filter_ctn {
+	margin-bottom: 12px;
+}
+
+input.filter_search_box {
+	padding: 4px 4px;
+	color: #828282;
+	font-size: 12px;
+	outline: none;
+	border: 1px solid #292929;
+	background-color: #101010;
+}
+
+input.filter_search_box::-webkit-input-placeholder {
+	color: #555555;
+	font-style: italic;
+}
+
+input.filter_search_box:-moz-placeholder {
+	color: #555555;
+	font-style: italic;
+}
+
+.filter_tag_options {
+	border: 1px solid #292929;
+	padding: 12px;
+	padding-bottom: 0;
+	display: inline-block;
+}
+
+.filter_tag_show {
+	line-height: 32px
+}
+
+.filter_tag_container {
+}
+
+#filter_control.filtered, #inventories.filtered, .filter_tag_options.filtered {
+	border: 1px solid #4d729a;
+}
+
+.filter_tag_options.filter_collapsed {
+	display: none;
+}
+
+.econ_tag_count {
+	font-size: 71.4%;
+}
+
+.econ_tag_filter_collapsable_tags_showlink {
+	padding-left: 8px;
+	line-height: 19px;
+}
+
+
+/* Steam gift styles */
+.item_desc_content.app753.context1 .item_desc_descriptors {
+	color: #767676;
+	font-size: 12px;
+}
+
+.not_tradable_msg {
+	font-size: 14px;
+	color: #B4B4B4;
+	margin-bottom: 3px;
+}
+
+.not_tradable_note {
+	font-size: 11px;
+}
+
+.not_tradable_note a, .not_tradable_note a:visited {
+	color: #767676;
+	text-decoration: underline;
+}
+
+.not_tradable_note a:hover {
+	color: #ffffff;
+}
+
+.inventory_iteminfo {
+	border: 2px solid #3A3A3A;
+}
+
+.inventory_iteminfo .item_desc_content {
+	padding: 238px 11px 11px 11px;
+	background-image: url( 'http://steamcommunity-a.akamaihd.net/public/images/economy/inventory_hover_background.png')
+}
+
+#iteminfo_clienthover {
+	width: 350px;
+}
+
+.hover_arrow_left, .hover_arrow_right {
+	position: absolute;
+	top: 48px;
+
+	border-top: 15px solid transparent;
+	border-bottom: 15px solid transparent;
+	width: 0;
+	height: 0;
+}
+
+.hover_arrow_left {
+	border-right: 14px solid #3A3A3A;
+	left: 0;
+}
+
+.hover_arrow_right {
+	border-left: 14px solid #3A3A3A;
+	right: 0;
+}
+
+.hover_arrow_inner {
+	position: absolute;
+	top: -12px;
+	background-repeat: no-repeat;
+	width: 13px;
+	height: 25px;
+	background-image: url( 'http://steamcommunity-a.akamaihd.net/public/images/economy/item_hover_arrow.png' );
+}
+
+.hover_arrow_left .hover_arrow_inner {
+	left: 2px;
+	background-position: left top;
+}
+
+.hover_arrow_right .hover_arrow_inner {
+	right: 2px;
+	background-position: right top;
+}
+
+.market_modal_dialog {
+	position: absolute;
+	background: #1D1D1D;
+	box-shadow: 0 0 5px black;
+	width: 774px;
+	z-index: 1000;
+
+	text-align: left;
+}
+
+.market_dialog_title {
+	height: 15px;
+
+	text-align: left;
+	padding: 14px;
+	font-size: 12pt;
+	color: #ffffff;
+	line-height: 1em;
+
+	background: -webkit-gradient(linear, left top, left bottom, color-stop(5%,#484848), color-stop(95%,#262626));filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#484848', endColorstr='#262626',GradientType=0 );background: -moz-linear-gradient( top, #484848 5%, #262626 95%);background: -webkit-linear-gradient( top, #484848 5%, #262626 95%);background: -o-linear-gradient( top, #484848 5%, #262626 95%);background: -ms-linear-gradient( top, #484848 5%, #262626 95%);background: linear-gradient( to bottom, #484848 5%, #262626 95%);	border: 1px solid #797272;
+	border-bottom: none;
+
+	border-top-left-radius: 3px;
+	-moz-border-radius-topleft: 3px;
+	border-top-right-radius: 3px;
+	-moz-border-radius-topright: 3px;
+}
+
+.market_dialog_topwarning {
+	border: 1px solid #4C4C4C;
+	color: white;
+
+	padding: 12px;
+	margin-bottom: 14px;
+}
+
+.market_dialog_topinfo {
+	color: white;
+	padding: 12px 0;
+}
+
+.market_dialog_topinfo a {
+	text-decoration: underline;
+}
+
+.market_dialog_contents {
+	border: 1px solid #4C4C4C;
+	padding: 25px;
+}
+
+#market_sell_dialog_background {
+	position: absolute;
+	z-index: -1;
+	top: 0;
+	bottom: 0;
+	left: 0;
+	right: 0;
+	
+	background-image: radial-gradient(90px 110px, circle closest-corner, #333, #1D1D1D);
+	background-image: -moz-radial-gradient(90px 110px, circle closest-corner, #333, #1D1D1D);
+	background-image: -webkit-radial-gradient(90px 110px, circle closest-corner, #333, #1D1D1D);
+}
+
+.market_dialog_title_cancel {
+	float: right;
+	font-size: 12px;
+}
+
+.market_dialog_title_cancel_X {
+	position: relative;
+	top: -1px;
+	
+	margin-left: 10px;
+	color: #C4C4C4;
+	font-size: 14pt;
+	font-weight: bold;
+
+	vertical-align: middle;
+}
+
+a.market_dialog_title_cancel:hover {
+	text-decoration: none;
+	color: #ffffff;
+}
+
+a.market_dialog_title_cancel:hover .market_dialog_title_cancel_X {
+	text-decoration: none;
+	color: #ffffff;
+}
+
+.market_dialog_content_frame {
+	border: 1px solid #414141;
+	background: #333333;
+}
+
+.market_dialog_content {
+	padding: 11px;
+}
+
+.market_sell_dialog_input_area {
+	position: relative;
+	text-align: center;
+}
+
+#market_sell_dialog_error {
+	margin-top: 12px;
+}
+
+.market_dialog_content_dark {
+	background: #262626;
+}
+
+.market_dialog_content_darker {
+	background: #1D1D1D;
+}
+
+.market_dialog_content_spacer {
+	height: 13px;
+}
+
+.market_dialog_content_separator {
+	height: 1px;
+	background: #1D1D1D;
+	border-bottom: 1px solid #3B3B3B;
+}
+
+.market_modal_dialog .market_listing_table {
+	border: none;
+	padding: 0;
+}
+
+.market_sell_dialog_field_label {
+	color: #FFFFFF;
+}
+
+#market_buyerprice_label {
+	margin-left: 50px;
+}
+
+input.market_dialog_input {
+	top: 0;
+	height: 1.5em;
+}
+
+input.market_dialog_input:focus {
+	border-color: #85BC3C;
+}
+
+.market_dialog_bottom_buttons {
+	margin-top: 33px;
+}
+
+.market_dialog_bottom_buttons > a {
+	float: right;
+	margin-left: 10px;
+	min-width: 100px;
+	text-align: center;
+}
+
+#market_sell_quantity_input {
+	padding: 0 0.5em;
+	width: 3em;
+}
+
+#market_sell_quantity_available {
+	color: #898989;
+}
+
+#market_sell_currency_input, #market_sell_buyercurrency_input {
+	padding: 0 0.5em;
+	width: 7em;
+}
+
+#market_sell_dialog_confirm_buttons .market_dialog_bottom_buttons {
+	position: relative;
+	min-height: 32px;
+}
+
+#market_sell_dialog_accept {
+	float: right;
+	margin: 0.4em 0 0 1em;
+	white-space: nowrap;
+	overflow: hidden;
+}
+
+#market_sell_dialog_throbber {
+	position: absolute;
+	bottom: -2px;
+	right: 34px;
+}
+
+#marker_sell_dialog_terms {
+	text-align: left;
+}
+
+#market_sell_quantity_available {
+	margin-right: 26px;
+}
+
+.item_market_action_button {
+	display: inline-block;
+	font-size: 12px;
+	height: 24px;
+	line-height: 24px;
+}
+
+.item_market_action_button_left {
+	background-position: left top;
+}
+
+.item_market_action_button_contents {
+	float: left;
+	height: 24px;
+	line-height: 24px;
+	padding: 0 4px;
+	min-width: 53px;
+	text-align: center;
+	background-repeat: repeat-x;
+	background-position: left bottom;
+}
+
+a.item_market_action_button {
+	text-decoration: none
+}
+
+.item_market_action_button_right {
+	background-position: right center;
+}
+
+.item_market_action_button_edge {
+	float: left;
+	width: 3px;
+	height: 24px;
+}
+
+.item_market_action_button_blue > span {
+	background-image:url('http://steamcommunity-a.akamaihd.net/public/images/economy/btn_blue_small.png');
+}
+
+.item_market_action_button_blue:hover > span, .item_market_action_button_blue .item_market_action_button_preload {
+	background-image:url('http://steamcommunity-a.akamaihd.net/public/images/economy/btn_blue_small_hover.png');
+}
+
+.item_market_action_button_green > span {
+	background-image:url('http://steamcommunity-a.akamaihd.net/public/images/economy/btn_green_small.png');
+}
+
+.item_market_action_button_green:hover > span, .item_market_action_button_green .item_market_action_button_preload {
+	background-image:url('http://steamcommunity-a.akamaihd.net/public/images/economy/btn_green_small_hover.png');
+}
+
+.item_market_action_button_edit > span {
+	background-image:url('http://steamcommunity-a.akamaihd.net/public/images/economy/transparentpixel.png');
+}
+
+.item_market_action_button_edit:hover > span, .item_market_action_button_edit .item_market_action_button_preload {
+	background-image:url('http://steamcommunity-a.akamaihd.net/public/images/economy/btn_edit_hover.png');
+}
+
+.item_market_action_button_edit {
+	height: 30px;
+	line-height: 30px;
+}
+
+.item_market_action_button_edit .item_market_action_button_contents {
+	height: 30px;
+	line-height: 30px;
+}
+
+.item_market_action_button_edit .item_market_action_button_edge {
+	width: 5px;
+	height: 30px;
+}
+
+.game_button {
+	display: inline-block;
+	font-size: 12px;
+	height: 34px;
+	line-height: 34px;
+	margin-top: 10px;
+}
+
+.game_button_left {
+	background-position: left top;
+}
+
+.game_button_contents {
+	float: left;
+	height: 34px;
+	line-height: 34px;
+	width: 237px;
+	background-repeat: repeat-x;
+	background-position: left bottom;
+	position: relative;
+}
+
+.game_button_game_icon > img {
+	position: absolute;
+	left: -1px;
+	top: 1px;
+
+	width: 32px;
+	height: 32px;
+	overflow: hidden;
+}
+
+.game_button_game_name {
+	display: inline-block;
+	padding-left: 42px;
+
+	max-width: 195px;
+	overflow: hidden;
+	text-overflow: ellipsis;
+	white-space: nowrap;
+}
+
+a.game_button {
+	text-decoration: none
+}
+
+.game_button_right {
+	background-position: right center;
+}
+
+.game_button_edge {
+	float: left;
+	width: 3px;
+	height: 34px;
+}
+
+.game_button > span {
+	background-image:url('http://steamcommunity-a.akamaihd.net/public/images/economy/btn_game.png');
+}
+
+.game_button:hover > span, .game_button .game_button_preload {
+	background-image:url('http://steamcommunity-a.akamaihd.net/public/images/economy/btn_game_hover.png');
+}
+
+.market_dialog_iteminfo .item_desc_game_info .item_desc_game_icon {
+	position: inherit;
+	float: left;
+	margin-right: 0.525em;
+}
+
+.market_headertip_container {
+	padding: 20px 20px;
+    background: #292929;
+    color: #828282;
+}
+
+.market_headertip_container:nth-child(3) {
+    padding-top: 0px;
+}
+
+.market_headertip {
+	padding: 5px;
+	border: 1px solid #AEAEAE;
+	color: white;
+}
+
+.market_restrictions img {
+	float:left;
+	margin-right: 5px;
+
+	width: 38px;
+	height: 38px;
+}
+
+.market_headertip_text {
+	padding-top: 4px;
+}
+
+#market_headertip_itemsold_itemname {
+	font-weight: bold;
+}
+
+.market_hover_tip {
+	background-color: #3F3F3F;
+	color: #D6D6D6;
+	position: absolute;
+	z-index: 100;
+	border: 1px solid #747474;
+
+	width: 288px;
+	padding: 12px;
+
+	box-shadow: 4px 4px 3px black;
+	-moz-box-shadow: 4px 4px 3px black;
+	-webkit-box-shadow: 4px 4px 5px black;
+}
+
+#market_timecanuse {
+    color: #84BD3A;
+}
+
+.jqplot-highlighter-tooltip {
+	background: #393938;
+	color: white;
+	border: 1px solid #797272;
+	padding: 5px;
+}
+
+.jqplot-yaxis {
+	left: 0 !important;
+	width: 45px !important;
+}
+
+.jqplot-xaxis {
+	overflow: hidden;
+}
+
+.priceHistoryTime {
+	display: none;
+}
+
+.jqplot-highlighter-tooltip .priceHistoryTime {
+	display: inline;
+}
+
+.zoom_controls .zoomopt {
+	display: inline-block;
+	padding: 0 5px;
+}
+
+.pricehistory_zoom_controls {
+	float: right;
+	margin-right: 45px;
+}
+
+.pricehistory_notavailable_info {
+	height: 50px;
+	padding: 50px 0;
+	font-size: 200%;
+	text-align: center;
+}
+
+/* from workshop_itemdetails.css */
+.tradeoffer .btn_report {
+	margin-top: -8px;
+	float: right;
+}
+
+.btn_report
+{
+	padding-left: 32px;
+	width: 0;
+	line-height: 30px;
+	background-image:url('http://steamcommunity-a.akamaihd.net/public/images/sharedfiles/report_ico_tiled.png');
+	background-position: 8px 0px;
+	background-repeat: no-repeat;
+}
+
+.btn_report.toggled
+{
+	background-position: 8px -60px;
+}
+
+.btn_report:hover
+{
+	background-position: 8px -30px;
+	text-decoration: none;
+}
+
+.trade_scam_report_label {
+	margin-bottom: 4px;
+}
+
+.slot_app_fraudwarning {
+	position: absolute;
+	left: 1px;
+	top: 1px;
+	width: 16px;
+	height: 16px;
+	
+	background-image:url('http://steamcommunity-a.akamaihd.net/public/images/sharedfiles/icons/icon_warning.png');
+	background-position: 0px 0px;
+	background-repeat: no-repeat;
+}
+
+.fraud_warning_image {
+	padding-right: 5px;
+}
+
+.fraud_warning_box {
+	border: 1px solid #393939;
+	padding: 5px;
+	background-color: #1d1d1d;
+}
