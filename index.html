@@ -75,15 +75,28 @@
                         <div class="persona_name persona_level">Level: <div class="friendPlayerLevel lvl_30"><span class="friendPlayerLevelNum">30</span></div></div>
                     </a>
                     <div class="profile_header_badge">
-                        <div class="favorite_badge" id="badgesPlace">
-                            <div class="types-selector" style="margin-left: 4px">
-                                <input checked="checked" id="bn" type="radio" name="Type" value="bn" />
-                                <label class="types bn" for="bn"></label>
-                                <input id="nn" type="radio" name="Type" value="nn" />
-                                <label class="types nn" for="nn"></label>
-                                <input id="nb" type="radio" name="Type" value="nb" />
-                                <label class="types nb" for="nb"></label>
+                        <div class="resizeType">
+                            <div class="favorite_badge" id="badgesPlace">
+                                <div class="types-selector" style="margin-left: 4px">
+                                    <input checked="checked" id="bn" type="radio" name="Type" value="bn" />
+                                    <label class="types bn" for="bn"></label>
+                                    <input id="nn" type="radio" name="Type" value="nn" />
+                                    <label class="types nn" for="nn"></label>
+                                    <input id="nb" type="radio" name="Type" value="nb" />
+                                    <label class="types nb" for="nb"></label>
+                                </div>
                             </div>
+                        </div>
+                        <div class="resizeType" style="display: none">
+                            <div class="favorite_badge">
+                                First: <input type="range" id="slFSize" class="imgSizeSlider" min="287" max="509" value="509"><br>
+                                Second: <input type="range" id="slSSize" class="imgSizeSlider" min="287" max="509" value="287">
+                            </div>
+                        </div>
+                    </div>
+                    <div class="profile_header_actions">
+                        <div class="btn_profile_action btn_medium" id="toggleResize">
+                            <span>Free resize</span>
                         </div>
                     </div>
                 </div>

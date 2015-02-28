@@ -221,26 +221,17 @@ $(function () {
         .on('resizeend', function(){
             reloadImages();
         });
-    /*$(window).on({
-     'mousewheel': function(e) {
-     var y = window.pageYOffset;
-     var up = e.originalEvent.wheelDeltaY > 0;
-     var offset = 0;
-     var topOff = $('#bg1').offset().top;
-     switch(up){
-     case true: offset = y > topOff ? topOff : 0;
-     break;
-     case false: offset = y >= topOff - 4 ? e.originalEvent.wheelDeltaY : topOff;
-     break;
-     }
-     if(e.originalEvent.wheelDeltaY != offset){
-     e.preventDefault();
-     e.stopPropagation();
-     $.smoothScroll({
-     offset: offset,
-     speed: 50
-     });
-     }
-     }
-     });*/
+    $('#toggleResize').click(function(){
+        $('.resizeType').each(function(i,elem){
+            $(elem).css('display', $(elem).css('display') != 'none' ? 'none' : 'block' )
+        });
+    });
+    $("#slFSize").on("change", function(){
+        $('#hBig1').css('height', this.value);
+        reloadImages();
+    });
+    $("#slSSize").on("change", function(){
+        $('#hBig2').css('height', this.value);
+        reloadImages();
+    });
 });
