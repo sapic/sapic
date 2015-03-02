@@ -11,7 +11,7 @@ var rimraf = require('gulp-rimraf');
 gulp.task('css1', function(){
     return gulp.src(['./css/buttons.css', './css/index.css','./css/shared_global.css',
         './css/modalContent.css', './css/motiva_sans.css',
-        './css/header.css', './css/economy.css', './css/economy_inventory.css', './css/globalv2.css'])
+        './css/header.css', './css/economy.css', './css/economy_inventory.css', './css/globalv2.css', './css/slider.css'])
         .pipe(uncss({
             html: ['index.html']
         }))
