@@ -21,17 +21,17 @@ function getImageBase64(image, fn){
     var ctx = canvas.getContext("2d");
     var img = new Image();
     img.crossOrigin = 'anonymous';
-    $('#bgImgEl').attr('src', null);
 
     img.onload = function(){
         canvas.width = img.width;
         canvas.height = img.height;
         ctx.drawImage(img, 0, 0);
-        $('#bgImgEl').attr('src', canvas.toDataURL());
-        fn(canvas.toDataURL());
-    }
+        content = canvas.toDataURL();
+        $('#bgImgEl').attr('src', content);
+        fn(content);
+    };
 
-    img.src = 'http://sapicphp.eu-gb.mybluemix.net/image.php?i=' + image;
+    img.src = image;
 
 }
 var minimap;
@@ -48,6 +48,7 @@ function reloadImages(){
     if(background == null){
         background = 'http://cdn.steamcommunity.com/economy/image/MtXlHWF55M17HMMx2SfBJ4qZL6wlCeqNr9IQKz3BiYD73tLmOGWi39vF38__R4-th4w2v3BLqJWk3w0zPMKIh_bawaYmbbHd2piTyeYNkarN32PkLBH1z_qBGnwrhsjcooXDvncztILd3ISSpA7I7drbPu4nFfTZ_I5BcyXTzNS02dLu';
     }
+    background = 'http://sapicphp.eu-gb.mybluemix.net/image.php?i=' + background;
     $('#bg1').css("background-image",  "url('" + background + "')");
     $('#bg2').css("background-image",  "url('" + background + "')");
     getImageBase64(background, function(lImage){
@@ -88,7 +89,7 @@ function reloadImages(){
             $('.minimap.noselect, .miniregion').remove();
             minimap = $('.body').minimap({
                 heightRatio: 0.15,
-                widthRatio: 0.15,
+                widthRatio: 0.15
             });
         });
     });
@@ -100,7 +101,7 @@ function createInventory(id){
         response.backgrounds.forEach(function(back){
             var itemHolder = $("<div>", {class: "itemHolder", alt: back.name.toLowerCase() + " " + back.type.toLowerCase()});
             var item = $("<div>", {class: "item app753 context6 activeInfo"});
-            var bgUrl = $("<a>", {href: "index.html#" + back.actions[0].link, class: "inventory_item_link"});
+            var bgUrl = $("<a>", {href: "#" + back.actions[0].link, class: "inventory_item_link"});
             var img = $("<img>", {src: "http://steamcommunity-a.akamaihd.net/economy/image/" + back.icon_url + "/96fx96f"});
             $(bgUrl).append(img);
             $(item).append(bgUrl);

@@ -128,10 +128,6 @@
 
             var offsetLeftRight = $window.width() * settings.offsetWidthRatio;
 
-            console.log(minimap.height());
-            console.log(s.y);
-            console.log(offsetTop);
-
             var leftRight = minimap.width() * (s.x - 1) / 2  + offsetLeftRight;
 
             var width = $window.width() * (1/s.x) * settings.widthRatio;
