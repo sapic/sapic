@@ -21,6 +21,7 @@ function getImageBase64(image, fn){
     var ctx = canvas.getContext("2d");
     var img = new Image();
     img.crossOrigin = 'anonymous';
+    $('#bgImgEl').attr('src', null);
 
     img.onload = function(){
         canvas.width = img.width;
@@ -48,9 +49,10 @@ function reloadImages(){
     if(background == null){
         background = 'http://cdn.steamcommunity.com/economy/image/MtXlHWF55M17HMMx2SfBJ4qZL6wlCeqNr9IQKz3BiYD73tLmOGWi39vF38__R4-th4w2v3BLqJWk3w0zPMKIh_bawaYmbbHd2piTyeYNkarN32PkLBH1z_qBGnwrhsjcooXDvncztILd3ISSpA7I7drbPu4nFfTZ_I5BcyXTzNS02dLu';
     }
-    background = 'http://sapicphp.eu-gb.mybluemix.net/image.php?i=' + background;
+
     $('#bg1').css("background-image",  "url('" + background + "')");
     $('#bg2').css("background-image",  "url('" + background + "')");
+    background = 'http://sapicphp.eu-gb.mybluemix.net/images/' + background;
     getImageBase64(background, function(lImage){
         var ImageType = $('#bgImgEl').width() > 2000 ? 1 : 0;
         var h1 = $('#hBig1').height() - 3;
