@@ -34,6 +34,7 @@ function getImageBase64(image, fn){
     img.src = 'http://sapicphp.eu-gb.mybluemix.net/image.php?i=' + image;
 
 }
+var minimap;
 function reloadImages(){
     if(window.location.hash && window.location.hash.indexOf('#login') == -1
         && window.location.hash.indexOf('#logout') == -1){
@@ -83,6 +84,12 @@ function reloadImages(){
         //AVATAR
         crop(lImage, 499 + 140 * ImageType, 19, 184, 184, function(data){
             $('#avatar').attr('src', data);
+
+            $('.minimap.noselect, .miniregion').remove();
+            minimap = $('.body').minimap({
+                heightRatio: 0.15,
+                widthRatio: 0.15,
+            });
         });
     });
 }
@@ -114,7 +121,7 @@ function loginFunc(){
         window.localStorage.setItem('SteamId', userId);
         window.location.href = window.location.href.split('#')[0];
     }
-    if(window.location.hash.indexOf('#logout') !== -1){
+    if(window.location.hash.indexOf('#logout') !== -1) {
         window.localStorage.removeItem('SteamId');
         window.location.href = window.location.href.split('#')[0];
     }
