@@ -1,6 +1,6 @@
 var background = null;
-var aKey = '258A446529D3202628392EB73D0A2ADD';
-function crop(image, x, y, width, height, fn){
+var loadedBack = null;
+function crop(x, y, width, height, fn){
     x = x || 0;
     y = y || 0;
     width = width || 506;
@@ -10,11 +10,17 @@ function crop(image, x, y, width, height, fn){
     canvas.height = height;
 
     var context = canvas.getContext('2d');
-    $('#bgImgEl').load(function(){
+    if($('#bgImgEl').width() != 0) {
         context.drawImage(document.getElementById('bgImgEl'), -x, -y);
         fn(canvas.toDataURL('image/jpeg'));
-    });
-
+    }
+    else
+    {
+        $('#bgImgEl').load(function () {
+            context.drawImage(document.getElementById('bgImgEl'), -x, -y);
+            fn(canvas.toDataURL('image/jpeg'));
+        });
+    }
 }
 function getImageBase64(image, fn){
     var canvas = document.createElement('canvas');
@@ -27,9 +33,9 @@ function getImageBase64(image, fn){
         canvas.width = img.width;
         canvas.height = img.height;
         ctx.drawImage(img, 0, 0);
-        content = canvas.toDataURL();
-        $('#bgImgEl').attr('src', content);
-        fn(content);
+        $('#bgImgEl').attr('src', canvas.toDataURL());
+        loadedBack = image;
+        fn();
     };
 
     img.src = image;
@@ -53,46 +59,55 @@ function reloadImages(){
     $('#bg1').css("background-image",  "url('" + background + "')");
     $('#bg2').css("background-image",  "url('" + background + "')");
     background = 'http://sapicphp.eu-gb.mybluemix.net/images/' + background;
-    getImageBase64(background, function(lImage){
-        var ImageType = $('#bgImgEl').width() > 2000 ? 1 : 0;
-        var h1 = $('#hBig1').height() - 3;
-        var h2 = $('#hBig2').height() - 3;
-        var rOffset1 = $('#hBig1').offset().top - $('.profile_header').offset().top + 1;
-        var rOffset2 = $('#hBig2').offset().top - $('.profile_header').offset().top + 1;
-        crop(lImage, 508 + 140 * ImageType, rOffset1, 506, h1, function(data){
-            $('#big1').attr('src', data);
+    if(background != loadedBack) {
+        getImageBase64(background, function () {
+            CropImages();
         });
-        crop(lImage, 1022 + 140 * ImageType, rOffset1, 100, 80, function(data){
-            $('#r11').attr('src', data);
-        });
-        crop(lImage, 1022 + 140 * ImageType, rOffset1 + 93, 100, 80, function(data){
-            $('#r12').attr('src', data);
-        });
-        crop(lImage, 1022 + 140 * ImageType, rOffset1 + 186, 100, 80, function(data){
-            $('#r13').attr('src', data);
-        });
-        //SECOND
-        crop(lImage, 508 + 140 * ImageType, rOffset2, 506, h2, function(data){
-            $('#big2').attr('src', data);
-        });
-        crop(lImage, 1022 + 140 * ImageType, rOffset2, 100, 80, function(data){
-            $('#r21').attr('src', data);
-        });
-        crop(lImage, 1022 + 140 * ImageType, rOffset2 + 93, 100, 80, function(data){
-            $('#r22').attr('src', data);
-        });
-        crop(lImage, 1022 + 140 * ImageType, rOffset2 + 186, 100, 80, function(data){
-            $('#r23').attr('src', data);
-        });
-        //AVATAR
-        crop(lImage, 499 + 140 * ImageType, 19, 184, 184, function(data){
-            $('#avatar').attr('src', data);
+    }
+    else{
+        CropImages();
+    }
+}
 
-            $('.minimap.noselect, .miniregion').remove();
-            minimap = $('.body').minimap({
-                heightRatio: 0.15,
-                widthRatio: 0.15
-            });
+function CropImages(){
+    var ImageType = $('#bgImgEl').width() > 2000 ? 1 : 0;
+    var h1 = $('#hBig1').height() - 3;
+    var h2 = $('#hBig2').height() - 3;
+    var rOffset1 = $('#hBig1').offset().top - $('.profile_header').offset().top + 1;
+    var rOffset2 = $('#hBig2').offset().top - $('.profile_header').offset().top + 1;
+    crop(508 + 140 * ImageType, rOffset1, 506, h1, function(data){
+        $('#big1').attr('src', data);
+    });
+    crop(1022 + 140 * ImageType, rOffset1, 100, 80, function(data){
+        $('#r11').attr('src', data);
+    });
+    crop(1022 + 140 * ImageType, rOffset1 + 93, 100, 80, function(data){
+        $('#r12').attr('src', data);
+    });
+    crop(1022 + 140 * ImageType, rOffset1 + 186, 100, 80, function(data){
+        $('#r13').attr('src', data);
+    });
+    //SECOND
+    crop(508 + 140 * ImageType, rOffset2, 506, h2, function(data){
+        $('#big2').attr('src', data);
+    });
+    crop(1022 + 140 * ImageType, rOffset2, 100, 80, function(data){
+        $('#r21').attr('src', data);
+    });
+    crop(1022 + 140 * ImageType, rOffset2 + 93, 100, 80, function(data){
+        $('#r22').attr('src', data);
+    });
+    crop(1022 + 140 * ImageType, rOffset2 + 186, 100, 80, function(data){
+        $('#r23').attr('src', data);
+    });
+    //AVATAR
+    crop(499 + 140 * ImageType, 19, 184, 184, function(data){
+        $('#avatar').attr('src', data);
+
+        $('.minimap.noselect, .miniregion').remove();
+        minimap = $('.body').minimap({
+            heightRatio: 0.15,
+            widthRatio: 0.15
         });
     });
 }
