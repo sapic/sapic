@@ -35,7 +35,7 @@
             heightRatio : 0.6,
             widthRatio : 0.05,
             offsetHeightRatio : 0.035,
-            offsetWidthRatio : 0.035,
+            offsetWidthRatio : 0,
             position : "right",
             touch: true,
             smoothScroll: true,

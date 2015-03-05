@@ -123,7 +123,7 @@ function createInventory(id){
             $(bgUrl).append(img);
             $(item).append(bgUrl);
             $(itemHolder).append(item);
-            $('#cardsList').append(itemHolder);
+            $('#backsList').append(itemHolder);
         });
         $(response.page).find('.profile_customization').each(function(){
             $('.profile_customization_area').append(this);

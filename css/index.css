@@ -1,9 +1,15 @@
 .content{
 	height: auto !important;
-	max-height: 330px;
-	overflow: auto;
+	overflow-x: hidden;
 }
-.screenshot_showcase_screenshot{
+.backsList{
+    height: auto !important;
+    max-height: 330px;
+    overflow: auto;
+    overflow-x: hidden;
+    width: 940px;
+}
+.screenshot _showcase_screenshot{
 	overflow: hidden;
 }
 
