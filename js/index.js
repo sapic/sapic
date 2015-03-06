@@ -143,6 +143,15 @@ function loginFunc(){
         window.localStorage.removeItem('SteamId');
         window.location.href = window.location.href.split('#')[0];
     }
+    /* * * CONFIGURATION VARIABLES * * */
+    var disqus_shortname = 'sapic';
+
+    /* * * DON'T EDIT BELOW THIS LINE * * */
+    (function() {
+        var dsq = document.createElement('script'); dsq.type = 'text/javascript'; dsq.async = true;
+        dsq.src = '//' + disqus_shortname + '.disqus.com/embed.js';
+        (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
+    })();
 }
 function addArrows(){
     $('.profile_customization_header').each(function(){
@@ -174,6 +183,10 @@ function elemDown(elem){
 };
 
 $(function () {
+    if(window.location.pathname != '/' ){
+        window.location.pathname = '/';
+    }
+
     loginFunc();
 
     var userId = null;
@@ -229,7 +242,7 @@ $(function () {
         if(url.indexOf('http') == -1){
             url = "http://" + url;
         }
-        window.location.href = "index.html#" + url;
+        window.location.href = "#" + url;
     });
 
     interact('.resizable')
