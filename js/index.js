@@ -143,21 +143,12 @@ function loginFunc(){
         window.localStorage.removeItem('SteamId');
         window.location.href = window.location.href.split('#')[0];
     }
-    /* * * CONFIGURATION VARIABLES * * */
-    var disqus_shortname = 'sapic';
-
-    /* * * DON'T EDIT BELOW THIS LINE * * */
-    (function() {
-        var dsq = document.createElement('script'); dsq.type = 'text/javascript'; dsq.async = true;
-        dsq.src = '//' + disqus_shortname + '.disqus.com/embed.js';
-        (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
-    })();
 }
 function addArrows(){
     $('.profile_customization_header').each(function(){
         $(this).append('<span style="float: right" class="arrow down" onclick="elemDown(this);">Down &#8595;</span>' +
             '<span style="float: right" class="arrow up" onclick="elemUp(this);">Up &#8593;</span>');
-    });;
+    });
 }
 function elemUp(elem){
     elem = $(elem).parent().parent();
@@ -272,4 +263,14 @@ $(function () {
         $('#hBig2').css('height', this.value);
         reloadImages();
     });
+
+    /* * * CONFIGURATION VARIABLES * * */
+    var disqus_shortname = 'sapic';
+
+    /* * * DON'T EDIT BELOW THIS LINE * * */
+    (function() {
+        var dsq = document.createElement('script'); dsq.type = 'text/javascript'; dsq.async = true;
+        dsq.src = '//' + disqus_shortname + '.disqus.com/embed.js';
+        (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
+    })();
 });
