@@ -1,5 +1,25 @@
 var background = null;
 var loadedBack = null;
+var disqus_loaded = false;
+var disqus_shortname = 'sapic';
+var disqus_url = 'http://sapic.github.io/';
+
+function disqusit() {
+    if( disqus_loaded === false ){
+            var dsq = document.createElement('script'); dsq.type = 'text/javascript'; dsq.async = true;
+            dsq.src = '//' + disqus_shortname + '.disqus.com/embed.js';
+            (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
+            disqus_loaded = true;
+    }else if( DISQUS ){
+        DISQUS.reset({
+            reload: true,
+            config: function () {
+                this.page.identifier = disqus_shortname;
+                this.page.url = disqus_url;
+            }
+        });
+    }
+}
 function crop(x, y, width, height, fn){
     x = x || 0;
     y = y || 0;
@@ -67,6 +87,7 @@ function reloadImages(){
     else{
         CropImages();
     }
+    disqusit();
 }
 
 function CropImages(){
