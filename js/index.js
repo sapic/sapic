@@ -176,7 +176,7 @@ function elemDown(elem){
 
 $(function () {
     if(window.location.pathname != '/' ){
-        window.location.pathname = '/';
+        //window.location.pathname = '/';
     }
 
     loginFunc();
