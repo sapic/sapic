@@ -87,7 +87,6 @@ function reloadImages(){
     else{
         CropImages();
     }
-    disqusit();
 }
 
 function CropImages(){
@@ -130,6 +129,7 @@ function CropImages(){
             heightRatio: 0.15,
             widthRatio: 0.15
         });
+        disqusit();
     });
 }
 
@@ -197,7 +197,7 @@ function elemDown(elem){
 
 $(function () {
     if(window.location.pathname != '/' ){
-        //window.location.pathname = '/';
+        window.location.pathname = '/';
     }
 
     loginFunc();
