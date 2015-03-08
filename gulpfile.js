@@ -32,7 +32,7 @@ gulp.task('js', ['css2'], function(){
         .pipe(gulp.dest('./out'));
 });
 gulp.task('html', ['js'], function(){
-    return gulp.src(['index.html', 'chat.html'])
+    return gulp.src(['index.html'])
         .pipe(useref())
         .pipe(htmlmin())
         .pipe(gulp.dest('./out'));
