@@ -30,13 +30,16 @@ function crop(x, y, width, height, fn){
     canvas.height = height;
 
     var context = canvas.getContext('2d');
-    if($('#bgImgEl').width() != 0) {
+    console.log($('#bgImgEl').width());
+    if($('#bgImgEl').width() > 1000) {
+        console.log('alreeady');
         context.drawImage(document.getElementById('bgImgEl'), -x, -y);
         fn(canvas.toDataURL('image/jpeg'));
     }
     else
     {
         $('#bgImgEl').load(function () {
+            console.log("loaded");
             context.drawImage(document.getElementById('bgImgEl'), -x, -y);
             fn(canvas.toDataURL('image/jpeg'));
         });
@@ -53,6 +56,7 @@ function getImageBase64(image, fn){
         canvas.width = img.width;
         canvas.height = img.height;
         ctx.drawImage(img, 0, 0);
+        console.log($('#bgImgEl').width());
         $('#bgImgEl').attr('src', canvas.toDataURL());
         loadedBack = image;
         fn();
@@ -197,7 +201,7 @@ function elemDown(elem){
 
 $(function () {
     if(window.location.pathname != '/' ){
-        window.location.pathname = '/';
+        //window.location.pathname = '/';
     }
 
     loginFunc();

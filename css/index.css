@@ -25,6 +25,8 @@
 
 .types-selector input{
 	margin:0;padding:0;
+
+    display: none;
 	-webkit-appearance:none;
 	-moz-appearance:none;
 	appearance:none;
@@ -45,6 +47,7 @@
 	-webkit-transition: all 100ms ease-in;
 	-moz-transition: all 100ms ease-in;
 	transition: all 100ms ease-in;
+    margin: 0 3px;
 	-webkit-filter: brightness(1.8) grayscale(1) opacity(.7);
 	-moz-filter: brightness(1.8) grayscale(1) opacity(.7);
 	filter: brightness(1.8) grayscale(1) opacity(.7);
@@ -65,7 +68,7 @@
 }
 
 .dynInput {
-	width: 320px;
+	width: 310px;
 }
 .resizable {
 	cursor: s-resize;
