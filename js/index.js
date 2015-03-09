@@ -3,6 +3,7 @@ var loadedBack = null;
 var disqus_loaded = false;
 var disqus_shortname = 'sapic';
 var disqus_url = 'http://sapic.github.io/';
+var DISQUS = null;
 
 
 var backgrounsList = [
@@ -21,7 +22,32 @@ var backgrounsList = [
     'http://cdn.steamcommunity.com/economy/image/dIYw9S9LGCpyDKnFVrgkrMzK-kRrOxZqpsJ637JebAu9jQcOdldeONLVtTtw2Gomwd_jVz55VHKtz2fHs11tDLCJFE5oX00604j5PWmSdCGLjL8MYycJKPbFdY_9SyAKv4URADFTGGmDy7MxKJF8ZsHdugUyIwxloJ52iP5OLwjyigcG',
     'http://cdn.steamcommunity.com/economy/image/U8721VM9p9C2v1o6cKJ4qEnGqnE7IoTQgZI-VTdwyTBeimAcIoxXpgK8bPeslY9pPJIvB5IWW2-452kaM8heLSRgleGApLZNyO94ZPIqg-f_CFwov7USBjSwFxLT1zeXfeuqwAQ3MZwnJ06gxpwfv4xUWp95SOIxq0nqrw',
     'http://cdn.steamcommunity.com/economy/image/uzXhRtM1Nd4Zk79t4hni5AN5K_eXRTuezV1sdwb_qkNyPta9iilzzLlKo5PEeaxuDmwy5MIHeYbGUHFvB_yrRH86xf2UIWDOuBfvld0zsmlEP26_n1kk3JEMNCYe779HcWuf5cwqY8q5UPDNnmW-flNoZrDLXS3FmQFmd0m-7kU9Oda1',
-
+    'http://cdn.steamcommunity.com/economy/image/MtXlHWF55M17HMMx2SfBJ4qZL6wlCeqNr9IQKz3BiYD73tLmOGWi39vF38__R4-th4w2v3BLqJWk3w0zPMKIh_bawaYmbbHd2piTyeYNkarN32PkLBH1z_qBGnwrhsjcooXDvncztILd3ISSpA7I7drbPu4nFfTZ_I5BcyXTzNS02dLu',
+    'http://cdn.steamcommunity.com/economy/image/fWFc82js0fmoRAP-qOIPu5THSWqfSmTELLqcUywUlj3Hz8JQD_k62zmnzAEbeQUdVBitsTVCj831QvuYDe0T1IhgvMAHiXlukAQqbbTsNjQ_K13EAqNbBaQ88lHuCCVku8Y3DI7ipOJTKwvq59eULepsZx-Fpjs_',
+    'http://cdn.steamcommunity.com/economy/image/rQ7gZXEkjBGjsMg5Or1BcBVCKtQ1VIJRd34bI95bCddkBdeeKDjKAwNp1Mcc3Q_6GFczx2AWwEl8cwY731gI0GkBxN42MNkBAjSYwQWXEf1SBG-SPkidEyN_R3bATEWAY1uWwWpliVJWdoOdFZQZv05SZpw6SM5ZI3xCIclNS4ArAteW',
+    'http://cdn.steamcommunity.com/economy/image/sfR45LDLPdnSVqFMYlp9cQm4slX0uzOZBphyVoa8NdZ4_08f6dd7y3KPvbJEOjP7BK2rRqH5cYENlW9Oh7800XX7XF_332jJc9LxtF1wLfxO_vUW-6Us2weZLlXJ_iOFLqBbEvvUO8sjwOa5T3ch7lT7ohWtoHiWUZkuAM33cII3-E8X',
+    'http://cdn.steamcommunity.com/economy/image/fWFc82js0fmoRAP-qOIPu5THSWqfSmTELLqcUywUlj3Hz8JQD_k62zmnzAEbeQUdVBitsTVCj831QvuYDe0T1Ihts8gNiXk-xlYsNbO2Y241JFXGU6EIXqxipgvoWSVnscI2V4WzpO0CeF_ns4qTLepsZ5Tim8WM',
+    'http://cdn.steamcommunity.com/economy/image/egvugw4EkL-or6YqpmdFWcJHJDJKdJ7_fGF1MEKBDf6zANl4VxjWrQh2utSABwvTz1I9IR823Od3bGgoQ4IM-b4EyjhJEMWvCSv20plNFdSFAWB0RG-BvS41LDBUxUGq5QvLIxNIxfpZbb-I1EtOnpIAZHcUb9TzLWYoNVnFGq_8B9lw',
+    'http://cdn.steamcommunity.com/economy/image/fWFc82js0fmoRAP-qOIPu5THSWqfSmTELLqcUywUlj3Hz8JQD_k62zmnzAEbeQUdVBitsTVCj831QvuYDe0T1IhgvMAHiXk6lAR9YrPjNDVlK1HDVvRfXvY58FjuDXZjscQ1VY7lo7kFe126vIbHLepsZ2INpctV',
+    'http://cdn.steamcommunity.com/economy/image/t86yq5cpAaCwRYDLpsptCA-CeBrTWQ_gZItT0UIsJa9-xYVQzjVHshCcnDWAqiOCApdhCYYbTfhvhk7JQy8kqHPBlhDQPVSwEcHQM5ngPYVIxDRT3UIQojjZDIAOazL-esvABoFmV7YRi55p37ZilQbAaAvbRBDpMN1ZhltvN_kxwoVY',
+    'http://cdn.steamcommunity.com/economy/image/fWFc82js0fmoRAP-qOIPu5THSWqfSmTELLqcUywUlj3Hz8JQD_k62zmnzAEbeQUdVBitsTVCj831QvuYDe0T1Ihhs8kBiXk5yFh9ZbHtYTIxI1PHB_NdWa0-o1i5UCZkvMM1DILj875SeAW-ttaVLepsZ16V6HJk',
+    'http://cdn.steamcommunity.com/economy/image/U8721VM9p9C2v1o6cKJ4qEnGqnE7IoTQgZI-VTdwyTBeimAcIoxXpgK8bPeslY9pPJIvB5IWW2-452kaM8heLSRgleGApbVNxu94aaB6guT5WAsl6eYSUzS2GUnR0TfHKeiplgJsPZN_dUyrx8kbutpUXJ95SOI5AtY8rw',
+    'http://cdn.steamcommunity.com/economy/image/nIVT_Trkt6lru8Y-XYMADyTJmUx-lLnpv3UVJLllSKhVjmQGY_jxu8ti2sB7406FKdyAXyvW-_G0eAg8uGZJr1iKd0Z98OK5yj-WxmKpUIJjj94Nd4imq7sgHiSnclivA4B3DHek5biZKoCbdfkMlXSL1Ap92q6y4ihOffJ0D_saiWQO',
+    'http://cdn.steamcommunity.com/economy/image/fWFc82js0fmoRAP-qOIPu5THSWqfSmTELLqcUywUlj3Hz8JQD_k62zmnzAEbeQUdVBitsTVCj831QvuYDe0T1IhjscMHiXlqkAUpN7rnY242dFOXBfhfDqBopVjtUSRluJ82AtPmp-5QK1-5ttCQLepsZ2Js7cg7',
+    'http://cdn.steamcommunity.com/economy/image/fWFc82js0fmoRAP-qOIPu5THSWqfSmTELLqcUywUlj3Hz8JQD_k62zmnzAEbeQUdVBitsTVCj831QvuYDe0T1IhgtMEAiXk8kgMiMrXhNTJlJF2UWfcKBKM-plvtW3Fgu5U7UYK3pLlVKgvts4DBLepsZ5UWXj2j',
+    'http://cdn.steamcommunity.com/economy/image/U8721VM9p9C2v1o6cKJ4qEnGqnE7IoTQgZI-VTdwyTBeimAcIoxXpgK8bPeslY9pPJIvB5IWW2-452kaM8heLSRgleGBr7ZMx-94O_Ys17P4CFwivrRGXTblSxOA1z6Qcb37xVM2N8Undhrxw5lN7dhVUZ95SOKr6GN5Nw',
+    'http://cdn.steamcommunity.com/economy/image/fWFc82js0fmoRAP-qOIPu5THSWqfSmTELLqcUywUlj3Hz8JQD_k62zmnzAEbeQUdVBitsTVCj831QvuYDe0T1IhntMUBiXk7wAUvbbezYGFlJVXAWfFYCKdvow3tCyMwvcI1V4S38b9ffAXntdPALepsZ5iNQ86u',
+    'http://cdn.steamcommunity.com/economy/image/U8721VM9p9C2v1o6cKJ4qEnGqnE7IoTQgZI-VTdwyTBeimAcIoxXpgK8bPeslY9pPJIvB5IWW2-452kaM8heLSRgleGAp7ZNwe94ZfMv2Of5CF8n7bMVVTDjH0eA1jSSLr73xwVtZpR4cBuqxZcc6NdeWp95SOKzz5hkZg',
+    'http://cdn.steamcommunity.com/economy/image/fWFc82js0fmoRAP-qOIPu5THSWqfSmTELLqcUywUlj3Hz8JQD_k62zmnzAEbeQUdVBitsTVCj831QvuYDe0T1IhttccBiXk-lwd_NrvmZDUyK1ORWPNbDq1irFq-XHFm65A6VtLvorpTKA_utdPOLepsZylT2C2c',
+    'http://cdn.steamcommunity.com/economy/image/dJuUMJnFLLZMajdZDGbv28zXXoHdtSL2mKTkQ-iAp3y9kKPLwNlqpOyzK6cqBqFRwcJHkoj3YO6Tqflb6YOme7CUsIve0Xmm7e5noTNMv1aLmhvD16oiosT16UCnleIhusjgwIDee6KwpCmscEiwQJPCSMnU-G-qzfLvEqXD4jeWrZQ=',
+    'http://cdn.steamcommunity.com/economy/image/YUW2gparb2KJ3RQroMNoDdkJfDPS22EiXRPHMUQlIKqoToF5z7cpcCkECNWGoyaH1BxlIIeZIzpWHtopRSYhraVKkjnRvzpyKFlE05_pOICeTzx22MF-YA8Wm2ZbZDH_qBbDd4u0bnN1GQ-O3u00ldUYPHbRzCh_CESeNlIzYv_nSYFx',
+    'http://cdn.steamcommunity.com/economy/image/fWFc82js0fmoRAP-qOIPu5THSWqfSmTELLqcUywUlj3Hz8JQD_k62zmnzAEbeQUdVBitsTVCj831QvuYDe0T1Ihhs8kBiXk4xlMuY7rhNTVmc1WSUKUGWK1ioA6-WXVisZ5mUoWzpuwDfwXpsYPCLepsZ3N1ARHC',
+    'http://cdn.steamcommunity.com/economy/image/fWFc82js0fmoRAP-qOIPu5THSWqfSmTELLqcUywUlj3Hz8JQD_k62zmnzAEbeQUdVBitsTVCj831QvuYDe0T1IhsvMgMiXk-yVgjZOLiY29jI1yUBfcLWqM49wvvXSM3up8xANWw9u5ecA3tsIqSLepsZxGYyNE_',
+    'http://cdn.steamcommunity.com/economy/image/4pqc9ZWgcwNGJ1N3QsQXNFrWVkTR0H1DkumAbaYiX5MrkasOzLw1Eeb-T4lkpFm-V8NPV4SSP1uZ5J11pyFelCaVuE7StCYT56MDj33uR7kdkBYB28piAcbo3W_tY02TKc7uUoK9chbk4h7Sa7kfrgaaQ1fdzjQbzrvcaL1iHpBklqsG',
+    'http://cdn.steamcommunity.com/economy/image/fWFc82js0fmoRAP-qOIPu5THSWqfSmTELLqcUywUlj3Hz8JQD_k62zmnzAEbeQUdVBitsTVCj831QvuYDe0T1IllsMAAiXluwAJ9YbC3NGcyIAGXVfEMDaFqowm7XSVh6sNlB47n8-JVcVrrtdOTLepsZwltQqgs',
+    'http://cdn.steamcommunity.com/economy/image/UQntbeGsl5e7PBNvSM7QDulFJ9yl3JnXb_LAdawomKmYAtqWuLDRhRvlD5Furp6E5FA-z_Ce289k_91trSuZrpUGydamuMKHGrhDl3fkgIOuA2acqMeGlTmnkXa3aNqvz1ydnPrjlIVL_VnINeKJxeVVMM-uxdeLPvCaJbZqj_TXBdqe',
+    'http://cdn.steamcommunity.com/economy/image/8YYJSqNZlPbeDuryEvukYUnKw_vnKZq2CsA56PYd7MY4jT6x-kXS5H7X9gw0m-rrRN_a6LJr2K4BzSTw9x7twTWJLfHkTcHmf4q6Ci3R9OwOhoK77SmB7AzHNrrvV67Aa9B67b4SlLYpnKZSbtau-xGI1bPlYNfrXZJivblZtskphw==',
+    'http://cdn.steamcommunity.com/economy/image/U8721VM9p9C2v1o6cKJ4qEnGqnE7IoTQgZI-VTdwyTBeimAcIoxXpgK8bPeslY9pPJIvB5IWW2-452kaM8heLSRgleGApbNPwO94PqMp1rKsD14mvOUTVj2yF0DQgWWVe-b6lFI2ZpZ_IBnzkcsb79hSDJ95SOLwP2SMpQ'
 ];
 var randomBackground = function() {
     return backgrounsList[Math.floor(Math.random()*backgrounsList.length)];
@@ -219,7 +245,6 @@ function elemDown(elem){
 };
 
 $(function () {
-    disqusit();
     loginFunc();
 
     var userId = null;
@@ -314,4 +339,5 @@ $(function () {
     $("#randomBG").click(function(){
         window.location.href = "#" + randomBackground();
     });
+    disqusit();
 });
