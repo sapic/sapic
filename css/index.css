@@ -86,3 +86,6 @@
 .top_hint:hover{
     text-decoration: underline;
 }
+.profile_summary_footer{
+    margin-top: -10px
+}

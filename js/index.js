@@ -339,5 +339,8 @@ $(function () {
     $("#randomBG").click(function(){
         window.location.href = "#" + randomBackground();
     });
+    $("#getBg").click(function(){
+        window.open('http://steam.tools/backgrounds/#/' + loadedBack.split('/').reverse()[0],'_newtab');
+    });
     disqusit();
 });
