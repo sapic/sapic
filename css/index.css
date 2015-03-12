@@ -89,3 +89,11 @@
 .profile_summary_footer{
     margin-top: -10px
 }
+
+.customization_header_download {
+    margin-left: 30px;
+    cursor: pointer;
+}
+.customization_header_download:hover{
+    text-decoration: underline;
+}

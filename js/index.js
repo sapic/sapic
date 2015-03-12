@@ -49,6 +49,41 @@ var backgrounsList = [
     'http://cdn.steamcommunity.com/economy/image/8YYJSqNZlPbeDuryEvukYUnKw_vnKZq2CsA56PYd7MY4jT6x-kXS5H7X9gw0m-rrRN_a6LJr2K4BzSTw9x7twTWJLfHkTcHmf4q6Ci3R9OwOhoK77SmB7AzHNrrvV67Aa9B67b4SlLYpnKZSbtau-xGI1bPlYNfrXZJivblZtskphw==',
     'http://cdn.steamcommunity.com/economy/image/U8721VM9p9C2v1o6cKJ4qEnGqnE7IoTQgZI-VTdwyTBeimAcIoxXpgK8bPeslY9pPJIvB5IWW2-452kaM8heLSRgleGApbNPwO94PqMp1rKsD14mvOUTVj2yF0DQgWWVe-b6lFI2ZpZ_IBnzkcsb79hSDJ95SOLwP2SMpQ'
 ];
+
+var ImagesNames = {
+    0: ['#avatar', 'avatar.jpg'],
+
+    10: ['#big1', 'first_center.jpg'],
+    11: ['#r11', 'first_right_1top.jpg'],
+    12: ['#r12', 'first_right_2middle.jpg'],
+    13: ['#r13', 'first_right_3bottom.jpg'],
+
+    20: ['#big2', 'second_center.jpg'],
+    21: ['#r21', 'second_right_1top.jpg'],
+    22: ['#r22', 'second_right_2middle.jpg'],
+    23: ['#r23', 'second_right_3bottom.jpg']
+};
+
+function convertDataURIToBinary(dataURI) {
+    var base64 = dataURI.split(';base64,')[1];
+    var raw = window.atob(base64);
+    var rawLength = raw.length;
+    var array = new Uint8Array(new ArrayBuffer(rawLength));
+
+    for(i = 0; i < rawLength; i++) {
+        array[i] = raw.charCodeAt(i);
+    }
+    return array;
+}
+
+function saveImages(images){
+    var zip = new JSZip();
+    images.forEach(function(val){
+        zip.file(ImagesNames[val][1], convertDataURIToBinary($(ImagesNames[val][0]).attr('src')));
+    });
+    saveAs(zip.generate({type:"blob"}), "images.zip");
+}
+
 var randomBackground = function() {
     return backgrounsList[Math.floor(Math.random()*backgrounsList.length)];
 };
@@ -341,6 +376,15 @@ $(function () {
     });
     $("#getBg").click(function(){
         window.open('http://steam.tools/backgrounds/#/' + loadedBack.split('/').reverse()[0],'_newtab');
+    });
+    $("#saveAll").click(function(){
+        saveImages([0,10,11,12,13,20,21,22,23]);
+    });
+    $("#saveFirst").click(function(){
+        saveImages([10,11,12,13]);
+    });
+    $("#saveSecond").click(function(){
+        saveImages([20,21,22,23]);
     });
     disqusit();
 });
