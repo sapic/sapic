@@ -116,13 +116,13 @@ function crop(x, y, width, height, fn){
     var context = canvas.getContext('2d');
     if($('#bgImgEl').width() > 1000) {
         context.drawImage(document.getElementById('bgImgEl'), -x, -y);
-        fn(canvas.toDataURL('image/jpeg'));
+        fn(canvas.toDataURL('image/jpeg', 1.0));
     }
     else
     {
         $('#bgImgEl').load(function () {
             context.drawImage(document.getElementById('bgImgEl'), -x, -y);
-            fn(canvas.toDataURL('image/jpeg'));
+            fn(canvas.toDataURL('image/jpeg', 1.0));
         });
     }
 }
@@ -205,7 +205,7 @@ function CropImages(){
         $('#r23').attr('src', data);
     });
     //AVATAR
-    crop(499 + 140 * ImageType, 19, 184, 184, function(data){
+    crop(499 + 140 * ImageType, 26, 164, 164, function(data){
         $('#avatar').attr('src', data);
 
         $('.minimap.noselect, .miniregion').remove();
