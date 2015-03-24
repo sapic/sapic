@@ -51,12 +51,12 @@ var backgrounsList = [
 ];
 
 var ImagesNames = {
-    0: ['#avatar', 'avatar.jpg'],
+    0: ['#avatar', 'avatar.png'],
 
-    10: ['#big1', 'first_center.jpg'],
-    11: ['#r11', 'first_right_1top.jpg'],
-    12: ['#r12', 'first_right_2middle.jpg'],
-    13: ['#r13', 'first_right_3bottom.jpg'],
+    10: ['#big1', 'first_center.png'],
+    11: ['#r11', 'first_right_1top.png'],
+    12: ['#r12', 'first_right_2middle.png'],
+    13: ['#r13', 'first_right_3bottom.png'],
 
     20: ['#big2', 'second_center.jpg'],
     21: ['#r21', 'second_right_1top.jpg'],
@@ -104,11 +104,12 @@ function disqusit() {
         });
     }
 }
-function crop(x, y, width, height, fn){
+function crop(x, y, width, height, type, fn){
     x = x || 0;
     y = y || 0;
     width = width || 506;
     height = height || 506;
+    var imgType = type ? 'png' : 'jpeg';
     var canvas = document.createElement('canvas');
     canvas.width = width;
     canvas.height = height;
@@ -116,13 +117,13 @@ function crop(x, y, width, height, fn){
     var context = canvas.getContext('2d');
     if($('#bgImgEl').width() > 1000) {
         context.drawImage(document.getElementById('bgImgEl'), -x, -y);
-        fn(canvas.toDataURL('image/jpeg', 1.0));
+        fn(canvas.toDataURL('image/' + imgType, 1.0));
     }
     else
     {
         $('#bgImgEl').load(function () {
             context.drawImage(document.getElementById('bgImgEl'), -x, -y);
-            fn(canvas.toDataURL('image/jpeg', 1.0));
+            fn(canvas.toDataURL('image/' + imgType, 1.0));
         });
     }
 }
@@ -158,6 +159,7 @@ function reloadImages(){
     background = window.localStorage.getItem('bg');
     if(background == null){
         background = randomBackground();
+        window.localStorage.setItem('bg', background)
     }
 
     $('#bg1').css("background-image",  "url('" + background + "')");
@@ -179,33 +181,33 @@ function CropImages(){
     var h2 = $('#hBig2').height() - 3;
     var rOffset1 = $('#hBig1').offset().top - $('.profile_header').offset().top + 1;
     var rOffset2 = $('#hBig2').offset().top - $('.profile_header').offset().top + 1;
-    crop(508 + 140 * ImageType, rOffset1, 506, h1, function(data){
+    crop(508 + 140 * ImageType, rOffset1, 506, h1, 1, function(data){
         $('#big1').attr('src', data);
     });
-    crop(1022 + 140 * ImageType, rOffset1, 100, 80, function(data){
+    crop(1022 + 140 * ImageType, rOffset1, 100, 80, 1, function(data){
         $('#r11').attr('src', data);
     });
-    crop(1022 + 140 * ImageType, rOffset1 + 93, 100, 80, function(data){
+    crop(1022 + 140 * ImageType, rOffset1 + 93, 100, 80, 1, function(data){
         $('#r12').attr('src', data);
     });
-    crop(1022 + 140 * ImageType, rOffset1 + 186, 100, 80, function(data){
+    crop(1022 + 140 * ImageType, rOffset1 + 186, 100, 80, 1, function(data){
         $('#r13').attr('src', data);
     });
     //SECOND
-    crop(508 + 140 * ImageType, rOffset2, 506, h2, function(data){
+    crop(508 + 140 * ImageType, rOffset2, 506, h2, 0, function(data){
         $('#big2').attr('src', data);
     });
-    crop(1022 + 140 * ImageType, rOffset2, 100, 80, function(data){
+    crop(1022 + 140 * ImageType, rOffset2, 100, 80, 0, function(data){
         $('#r21').attr('src', data);
     });
-    crop(1022 + 140 * ImageType, rOffset2 + 93, 100, 80, function(data){
+    crop(1022 + 140 * ImageType, rOffset2 + 93, 100, 80, 0, function(data){
         $('#r22').attr('src', data);
     });
-    crop(1022 + 140 * ImageType, rOffset2 + 186, 100, 80, function(data){
+    crop(1022 + 140 * ImageType, rOffset2 + 186, 100, 80, 0, function(data){
         $('#r23').attr('src', data);
     });
     //AVATAR
-    crop(499 + 140 * ImageType, 26, 164, 164, function(data){
+    crop(499 + 140 * ImageType, 26, 164, 164, 1, function(data){
         $('#avatar').attr('src', data);
 
         $('.minimap.noselect, .miniregion').remove();
