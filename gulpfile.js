@@ -9,7 +9,7 @@ var htmlmin = require('gulp-minify-html');
 var rimraf = require('gulp-rimraf');
 
 gulp.task('css1', function(){
-    return gulp.src(['./css/buttons.css', './css/index.css','./css/shared_global.css',
+    return gulp.src(['./css/buttons.css','./css/shared_global.css',
         './css/modalContent.css', './css/motiva_sans.css',
         './css/header.css', './css/economy.css', './css/economy_inventory.css', './css/globalv2.css', './css/slider.css'])
         .pipe(uncss({
@@ -20,7 +20,7 @@ gulp.task('css1', function(){
         .pipe(gulp.dest('./out'));
 });
 gulp.task('css2', ['css1'], function(){
-    return gulp.src(['./css/profilev2.css', './css/social-likes_flat.css', './css/minimap.css', './out/temp.css'])
+    return gulp.src(['./css/profilev2.css', './css/social-likes_flat.css', './css/minimap.css',  './css/index.css', './out/temp.css'])
         .pipe(concatCss('main.css'))
         .pipe(csso())
         .pipe(gulp.dest('./out'));
