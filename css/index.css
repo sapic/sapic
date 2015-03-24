@@ -97,3 +97,6 @@
 .customization_header_download:hover{
     text-decoration: underline;
 }
+#disqus_thread > a {
+	color: #5491cf;
+}
