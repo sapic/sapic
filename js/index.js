@@ -50,18 +50,34 @@ var backgrounsList = [
     'http://cdn.steamcommunity.com/economy/image/U8721VM9p9C2v1o6cKJ4qEnGqnE7IoTQgZI-VTdwyTBeimAcIoxXpgK8bPeslY9pPJIvB5IWW2-452kaM8heLSRgleGApbNPwO94PqMp1rKsD14mvOUTVj2yF0DQgWWVe-b6lFI2ZpZ_IBnzkcsb79hSDJ95SOLwP2SMpQ'
 ];
 
+var getCurDate = function(){
+    var today = new Date();
+    var dd = today.getDate();
+    var mm = today.getMonth()+1; //January is 0!
+
+    var yyyy = today.getFullYear();
+    if(dd<10){
+        dd='0'+dd
+    }
+    if(mm<10){
+        mm='0'+mm
+    }
+    return yyyy + '-' + mm + '-' + dd + '_0000';
+};
+
+var curDate = getCurDate();
 var ImagesNames = {
     0: ['#avatar', 'avatar.png'],
 
-    10: ['#big1', 'first_center.png'],
-    11: ['#r11', 'first_right_1top.png'],
-    12: ['#r12', 'first_right_2middle.png'],
-    13: ['#r13', 'first_right_3bottom.png'],
+    10: ['#big1', 'artwork_center.png'],
+    11: ['#r11', 'artwork_right_1top.png'],
+    12: ['#r12', 'artwork_right_2middle.png'],
+    13: ['#r13', 'artwork_right_3bottom.png'],
 
-    20: ['#big2', 'second_center.jpg'],
-    21: ['#r21', 'second_right_1top.jpg'],
-    22: ['#r22', 'second_right_2middle.jpg'],
-    23: ['#r23', 'second_right_3bottom.jpg']
+    20: ['#big2', curDate + '1.jpg'],
+    21: ['#r21', curDate + '2.jpg'],
+    22: ['#r22', curDate + '3.jpg'],
+    23: ['#r23', curDate + '4.jpg']
 };
 
 function convertDataURIToBinary(dataURI) {
