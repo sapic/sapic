@@ -99,6 +99,7 @@
 
         miniElement.find('.minimap.noselect').remove();
         miniElement.find('.miniregion').remove();
+        miniElement.find('.adsbygoogle').remove();
         miniElement.addClass('minimap noselect');
         // remove events & customized cursors
         miniElement.children().each(function() {$(this).css({'pointer-events': 'none'});});
