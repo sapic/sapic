@@ -43,7 +43,7 @@ gulp.task('favicon', function(){
 });
 gulp.task('images', function(){
     return gulp.src('./images/*')
-        .pipe(gulp.dest('./images/'));
+        .pipe(gulp.dest('./out/images/'));
 });
 
 gulp.task('default', ['html', 'favicon', 'images'], function() {
