@@ -49,6 +49,11 @@ var backgrounsList = [
     'http://cdn.steamcommunity.com/economy/image/8YYJSqNZlPbeDuryEvukYUnKw_vnKZq2CsA56PYd7MY4jT6x-kXS5H7X9gw0m-rrRN_a6LJr2K4BzSTw9x7twTWJLfHkTcHmf4q6Ci3R9OwOhoK77SmB7AzHNrrvV67Aa9B67b4SlLYpnKZSbtau-xGI1bPlYNfrXZJivblZtskphw==',
     'http://cdn.steamcommunity.com/economy/image/U8721VM9p9C2v1o6cKJ4qEnGqnE7IoTQgZI-VTdwyTBeimAcIoxXpgK8bPeslY9pPJIvB5IWW2-452kaM8heLSRgleGApbNPwO94PqMp1rKsD14mvOUTVj2yF0DQgWWVe-b6lFI2ZpZ_IBnzkcsb79hSDJ95SOLwP2SMpQ'
 ];
+var banners = [
+    ['donations.jpg', 'https://www.paypal.com/cgi-bin/webscr?cmd=_s-xclick&hosted_button_id=YUNGXPRNGZPNL'],
+    ['noads.jpg', 'http://i.imgur.com/g9C38bN.gif'],
+    ['song.jpg', 'http://www.youtube.com/watch?v=r50JFfofHes']
+];
 
 var getCurDate = function(){
     var today = new Date();
@@ -102,6 +107,9 @@ function saveImages(images){
 
 var randomBackground = function() {
     return backgrounsList[Math.floor(Math.random()*backgrounsList.length)];
+};
+var randomBanner = function() {
+    return banners[Math.floor(Math.random()*banners.length)];
 };
 
 function disqusit() {
@@ -162,6 +170,27 @@ function getImageBase64(image, fn){
     img.src = image;
 
 }
+
+function getRandomInt(min, max) {
+    return Math.floor(Math.random() * (max - min)) + min;
+}
+
+function bgChanged() {
+    reloadAds();
+}
+var gAd = '<ins class="adsbygoogle" style="display:block" data-ad-client="ca-pub-1034829471687394" data-ad-slot="6374050068" data-ad-format="auto"></ins>';
+function reloadAds(min){
+    min = min ? min : 0;
+    if(getRandomInt(min, 100) > 70){
+        var bn = randomBanner();
+        $('.adsblock').empty().html('<a href="' + bn[1] + '" target="_blank"><img src="images/' + bn[0] + '"></img></a>');
+    }
+    else{
+        $('.adsblock').empty().html(gAd);
+        (adsbygoogle = window.adsbygoogle || []).push({});
+    }
+}
+
 var minimap;
 function reloadImages(){
     if(window.location.hash && window.location.hash.indexOf('#login') == -1
@@ -182,6 +211,7 @@ function reloadImages(){
     $('#bg2').css("background-image",  "url('" + background + "')");
     background = 'http://sapicphp.eu-gb.mybluemix.net/images/' + background;
     if(background != loadedBack) {
+        bgChanged();
         getImageBase64(background, function () {
             CropImages();
         });
@@ -299,6 +329,7 @@ function elemDown(elem){
 
 $(function () {
     loginFunc();
+    reloadAds();
 
     var userId = null;
     userId = window.localStorage.getItem('SteamId');

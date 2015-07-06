@@ -41,8 +41,12 @@ gulp.task('favicon', function(){
     return gulp.src('favicon.ico')
         .pipe(gulp.dest('./out'));
 });
+gulp.task('images', function(){
+    return gulp.src('./images/*')
+        .pipe(gulp.dest('./images/'));
+});
 
-gulp.task('default', ['html', 'favicon'], function() {
+gulp.task('default', ['html', 'favicon', 'images'], function() {
     return gulp.src('./out/temp.css', { read: false })
         .pipe(rimraf());
 });
