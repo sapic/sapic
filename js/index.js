@@ -178,15 +178,20 @@ function getRandomInt(min, max) {
 function bgChanged() {
     reloadAds();
 }
-var gAd = '<ins class="adsbygoogle" style="display:block" data-ad-client="ca-pub-1034829471687394" data-ad-slot="6374050068" data-ad-format="auto"></ins>';
+var gAd = '<ins class="adsbygoogle" style="display:block" data-ad-client="ca-pub-1034829471687394" data-ad-slot="6374050068" data-ad-format="auto"></ins>' +
+          '<ins class="adsbygoogle" style="display:block" data-ad-client="ca-pub-1034829471687394" data-ad-slot="8686558065" data-ad-format="auto"></ins>' +
+          '<ins class="adsbygoogle" style="display:block" data-ad-client="ca-pub-1034829471687394" data-ad-slot="4116757662" data-ad-format="auto"></ins>';
 function reloadAds(min){
     min = min ? min : 0;
-    if(getRandomInt(min, 100) > 70){
+    if(getRandomInt(min, 100) > 70 || typeof(window.google_top_js_status) === 'undefined'){
         var bn = randomBanner();
-        $('.adsblock').empty().html('<a href="' + bn[1] + '" target="_blank"><img src="images/' + bn[0] + '"></img></a>');
+        $('.underfr').empty().html('<a href="' + bn[1] + '" target="_blank"><img src="images/' + bn[0] + '"></img></a>');
     }
     else{
-        $('.adsblock').empty().html(gAd);
+
+        $('.underfr').empty().html(gAd);
+        (adsbygoogle = window.adsbygoogle || []).push({});
+        (adsbygoogle = window.adsbygoogle || []).push({});
         (adsbygoogle = window.adsbygoogle || []).push({});
     }
 }
@@ -329,7 +334,6 @@ function elemDown(elem){
 
 $(function () {
     loginFunc();
-    reloadAds();
 
     var userId = null;
     userId = window.localStorage.getItem('SteamId');
