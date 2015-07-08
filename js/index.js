@@ -179,8 +179,9 @@ function bgChanged() {
     reloadAds();
 }
 var gAd = '<ins class="adsbygoogle" style="display:block" data-ad-client="ca-pub-1034829471687394" data-ad-slot="6374050068" data-ad-format="auto"></ins>' +
-          '<ins class="adsbygoogle" style="display:block" data-ad-client="ca-pub-1034829471687394" data-ad-slot="8686558065" data-ad-format="auto"></ins>' +
-          '<ins class="adsbygoogle" style="display:block" data-ad-client="ca-pub-1034829471687394" data-ad-slot="4116757662" data-ad-format="auto"></ins>';
+          '<ins class="adsbygoogle" style="display:block" data-ad-client="ca-pub-1034829471687394" data-ad-slot="8686558065" data-ad-format="auto"></ins>';
+          //'<ins class="adsbygoogle" style="display:block" data-ad-client="ca-pub-1034829471687394" data-ad-slot="4116757662" data-ad-format="auto"></ins>';
+var gAd2 = '<ins class="adsbygoogle" style="display:block" data-ad-client="ca-pub-1034829471687394" data-ad-slot="2910722861" data-ad-format="auto"></ins>';
 function reloadAds(min){
     min = min ? min : 0;
     if(getRandomInt(min, 100) > 70 || typeof(window.google_top_js_status) === 'undefined'){
@@ -190,9 +191,12 @@ function reloadAds(min){
     else{
 
         $('.underfr').empty().html(gAd);
+        $('.undercom').empty().html(gAd2);
+
         (adsbygoogle = window.adsbygoogle || []).push({});
         (adsbygoogle = window.adsbygoogle || []).push({});
         (adsbygoogle = window.adsbygoogle || []).push({});
+        //(adsbygoogle = window.adsbygoogle || []).push({});
     }
 }
 
