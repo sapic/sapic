@@ -245,7 +245,7 @@ function CropImages(){
         $('#r23').attr('src', data);
     });
     //AVATAR
-    crop(499 + 140 * ImageType, 26, 164, 164, 1, function(data){
+    crop(499 + 140 * ImageType, 34, 164, 164, 1, function(data){
         $('#avatar').attr('src', data);
 
         $('.minimap.noselect, .miniregion').remove();

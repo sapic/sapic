@@ -4,8 +4,8 @@ html {
 }
 
 body {
-	background:  url( 'http://steamcommunity-a.akamaihd.net/public/images/apphubs/blue_body_darker_repeat.jpg?v=1' ) center top repeat-y #000000;
-	background-color: #000000;
+	background:  #1b2838;
+	background-color: #1b2838;
 
 	text-align: left;
 
@@ -22,7 +22,6 @@ body.flat_page {
 }
 
 body.flat_page.blue {
-	background:  url( 'http://steamcommunity-a.akamaihd.net/public/images/apphubs/blue_body_darker_repeat.jpg?v=2' ) center top repeat-y #000000;
 	color: #636363;
 }
 
@@ -75,12 +74,13 @@ a.hoverunderline:hover {
 	text-decoration: underline;
 }
 
-a.underlinedLink {
+a.underlinedLink, span.underlinedLink {
 	color: #ebebeb;
 	text-decoration: underline;
+	cursor: pointer;
 }
 
-a.whiteLink:hover, .whiteLink:hover, a.linkStandard:hover, a.linkTitle:hover, a.underlinedLink:hover {
+a.whiteLink:hover, .whiteLink:hover, a.linkStandard:hover, a.linkTitle:hover, a.underlinedLink:hover, span.underlinedLink:hover {
 	color: #66C0F4;
 	text-decoration: none;
 	cursor: pointer;
@@ -92,9 +92,11 @@ form {
 }
 
 input[type=text], input[type=password], select {
-	background-color:#1a1a1a;
 	color: #909090;
-	border: 1px solid #707070;
+	background-color: rgba( 0, 0, 0, 0.2 );
+	border: 1px solid #000;
+	box-shadow: 1px 1px 0 0 rgba( 91, 132, 181, 0.2 );
+	border-radius: 3px;
 }
 
 
@@ -103,12 +105,12 @@ input[type=text], input[type=password], select {
 	position:relative;
 	text-align:left;
 	width: auto;
-	font-size: 11px;
-	color:#777777;
+	font-size: 12px;
+	color: #8F98A0;
 	border:0;
 	margin: 0;
 	padding: 32px 0;
-	background-color: #000000;
+	background-color: rgba( 0, 0, 0, 0.4 );
 }
 
 body.flat_page #footer, body.headerless_page #footer {
@@ -136,12 +138,12 @@ body.flat_page #footer_spacer, body.headerless_page #footer_spacer {
 #footer .footer_content {
 	position: relative;
 	width: 958px;
-	margin: 0px auto;
+	margin: 0 auto;
 }
 
 #footer a {
-	color:#777777;
-	text-decoration: underline;
+	color: #C6D4DF;
+	text-decoration: none;
 }
 
 #footer a:hover {
@@ -149,15 +151,16 @@ body.flat_page #footer_spacer, body.headerless_page #footer_spacer {
 }
 
 #footerText {
-	padding: 2px 0 0 0;
+	padding: 2px 0 0 123px;
 	line-height: 14px;
 	display: block;
+	color: #8F98A0;
 }
 
 #footerLogo {
-	float: left;
-	margin: 4px 11px 0 16px;
-	padding: 0;
+	position: absolute;
+	left: 16px;
+	top: 4px;
 }
 
 
@@ -240,6 +243,64 @@ a.friendBlock {
 	margin: 4px 4px 0 0;
 }
 
+
+
+@media screen and (max-width: 910px)
+{
+	html.responsive .responsive_friendblocks .friendBlock,
+	html.responsive .responsive_friendblocks .friendBlock:nth-child(3n) {
+		margin-right: 0.8%;
+	}
+}
+
+@media screen and (max-width: 910px) and (min-width: 601px)
+{
+
+	html.responsive .responsive_friendblocks .friendBlock {
+		width: 32%;
+	}
+
+	html.responsive .responsive_friendblocks .friendBlock:nth-child(3n) {
+		margin-right: 0;
+	}
+}
+
+@media screen and (max-width: 600px ) and (min-width: 401px)
+{
+	html.responsive .responsive_friendblocks .friendBlock {
+		width: 48%;
+	}
+
+	html.responsive .responsive_friendblocks .friendBlock:nth-child(2n) {
+		margin-right: 0;
+	}
+}
+
+@media screen and (max-width: 400px )
+{
+	html.responsive .responsive_friendblocks .friendBlock {
+		width: auto;
+		float: none;
+	}
+}
+
+@media screen and (max-width: 910px)
+{
+
+	html.responsive .commentthread_pagelinks {
+		display: none;
+	}
+
+	html.responsive .commentthread_pagedropdown {
+		display: inline;
+	}
+
+	html.responsive .commentthread_comment_author .actionlink {
+		display: none;
+	}
+
+}
+
 /* used to display the " - public" next to a group name */
 .pubGroup {
 	font-size:11px;
@@ -277,25 +338,25 @@ body.flat_page > .perf_timing_area .perf_timing_link, body.headerless_page > .pe
 .pagebtn, a.pagebtn {
 	display: inline-block;
 	line-height: 24px;
-	background-color: #000000;
-	border: 1px solid #000000;
+	background-color: rgba( 103, 193, 245, 0.2 );
+	border: 1px transparent;
 	border-radius: 3px;
 	cursor: pointer;
 	padding: 0px 16px;
-	color: #939393;
+	color: #66c0f4;
 }
 
 .pagebtn:hover, a.pagebtn:hover {
-	background-color: #97C0E3;
-	border-color: #97C0E3;
-	color: #3C3D3E;
+	background-color: #66c0f4;
+	border-color: #66c0f4;
+	color: #fff;
 	text-decoration: none;
 }
 
 .pagebtn.disabled, .pagebtn.disabled:hover, a.pagebtn.disabled, a.pagebtn.disabled:hover {
-	border: 1px solid #333333;
+	border: 1px solid #253e4c;
 	background-color: transparent;
-	color: #333333;
+	color: #253e4c;
 	cursor: default;
 }
 
@@ -313,7 +374,7 @@ a.pagelink:hover {
 	border:0;
 	padding: 4px;
 	margin:0;
-	background-image:url('http://steamcommunity-a.akamaihd.net/public/images/skin_1/gamelogoholder_default.jpg');
+	background: rgba( 0, 0, 0, 0.5 );
 }
 
 .gameLogo img {
@@ -342,7 +403,7 @@ a.pagelink:hover {
 }
 
 .commentthread_header .commentthread_count {
-	background-image: url( http://steamcommunity-a.akamaihd.net/public/images/skin_1/comment_quoteicon.png );
+	background-image: url( https://steamcommunity-a.akamaihd.net/public/images/skin_1/comment_quoteicon.png );
 	background-image: url( data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABAAAAAQCAYAAAAf8/9hAAAAGXRFWHRTb2Z0d2FyZQBBZG9iZSBJbWFnZVJlYWR5ccllPAAAAUNJREFUeNqkU11Og0AQnm04QI/AEfQGcAO9QXnRUJuGqml8M75oUhOlhEqtD3IDewO5QfcIHKEH2B8/WqBgTAr4JcMAM/Ptt7OzjIAgjAaMMZOOQGudjkduXP3H/GDxCu9Rc/je+GpSfPSklB6MWlhtMTZ7ftHUHrbCdu6mN2lPgLWLKSk3j08z05BSUEf0YQNDCkn/gSE6KMCRcxzpngAK1vBnLeoTTdpixHICJR3SlOLdQuCkthKx5FcxR84c+V95feGIrm+nFtx3JdnRSmUE1Qk1If+eDlP7YBQRKaq9YI7SiiN5w/bd/gtbxOOSIDvbXFKMBq0R/NQ7yTsFZq0QOVAxDwM/LQkwGBzuNHoLef7rPHu4w1EfhNnWiv7wZbSYHPrUABeXbpUk+Vgt7fIyNSFYvUdbXCJbCMGFqM/NjwADANx60v2kqu2YAAAAAElFTkSuQmCC );
 	background-repeat: no-repeat;
 	background-position: left center;
@@ -356,6 +417,10 @@ a.pagelink:hover {
 .commentthread_pagelink {
 	cursor: pointer;
 	color: #ffffff;
+}
+
+.commentthread_pagedropdown {
+	display: none;
 }
 
 .commentthread_pagelink:hover {
@@ -376,7 +441,11 @@ a.pagelink:hover {
 	background-color: rgba( 0, 0, 0, 0.2 );
 	position: relative;
 
-	padding: 6px 6px 6px 66px;
+	padding: 8px 8px 8px 52px;
+}
+.commentthread_entry .commentthread_user_avatar {
+	left: 8px;
+	top: 8px;
 }
 
 .commentthread_allcommentslink {
@@ -399,13 +468,18 @@ a.commentthread_allcommentslink:hover {
 	top: 13px;
 	width: 17px;
 	height: 18px;
-	background-image: url( data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABEAAAASCAYAAAC9+TVUAAAAGXRFWHRTb2Z0d2FyZQBBZG9iZSBJbWFnZVJlYWR5ccllPAAAAyBpVFh0WE1MOmNvbS5hZG9iZS54bXAAAAAAADw/eHBhY2tldCBiZWdpbj0i77u/IiBpZD0iVzVNME1wQ2VoaUh6cmVTek5UY3prYzlkIj8+IDx4OnhtcG1ldGEgeG1sbnM6eD0iYWRvYmU6bnM6bWV0YS8iIHg6eG1wdGs9IkFkb2JlIFhNUCBDb3JlIDUuMC1jMDYwIDYxLjEzNDc3NywgMjAxMC8wMi8xMi0xNzozMjowMCAgICAgICAgIj4gPHJkZjpSREYgeG1sbnM6cmRmPSJodHRwOi8vd3d3LnczLm9yZy8xOTk5LzAyLzIyLXJkZi1zeW50YXgtbnMjIj4gPHJkZjpEZXNjcmlwdGlvbiByZGY6YWJvdXQ9IiIgeG1sbnM6eG1wPSJodHRwOi8vbnMuYWRvYmUuY29tL3hhcC8xLjAvIiB4bWxuczp4bXBNTT0iaHR0cDovL25zLmFkb2JlLmNvbS94YXAvMS4wL21tLyIgeG1sbnM6c3RSZWY9Imh0dHA6Ly9ucy5hZG9iZS5jb20veGFwLzEuMC9zVHlwZS9SZXNvdXJjZVJlZiMiIHhtcDpDcmVhdG9yVG9vbD0iQWRvYmUgUGhvdG9zaG9wIENTNSBXaW5kb3dzIiB4bXBNTTpJbnN0YW5jZUlEPSJ4bXAuaWlkOjNBMkQxOENENDY3QTExRTM4RkY3ODIzQkI0RTYyMTM0IiB4bXBNTTpEb2N1bWVudElEPSJ4bXAuZGlkOjNBMkQxOENFNDY3QTExRTM4RkY3ODIzQkI0RTYyMTM0Ij4gPHhtcE1NOkRlcml2ZWRGcm9tIHN0UmVmOmluc3RhbmNlSUQ9InhtcC5paWQ6M0EyRDE4Q0I0NjdBMTFFMzhGRjc4MjNCQjRFNjIxMzQiIHN0UmVmOmRvY3VtZW50SUQ9InhtcC5kaWQ6M0EyRDE4Q0M0NjdBMTFFMzhGRjc4MjNCQjRFNjIxMzQiLz4gPC9yZGY6RGVzY3JpcHRpb24+IDwvcmRmOlJERj4gPC94OnhtcG1ldGE+IDw/eHBhY2tldCBlbmQ9InIiPz4doN6kAAAAnElEQVR42qTTgQ1AMBAF0JIOYBSr1AS3kgnKBjbABkYwghFck09ESq/Xn/yo0IfkVM51piCeS3UpEBZahC5AixDewmiR9g3kIgGYYxekSAOg0SK/gBSZ8SlGi/gUkEL8cxY0CEmBL4Ris5CDtELg4A5cF06sZJiQnTtxVxzv2MQsbNyFO2IdjY0AGzZNeHoyFkC4ucfGI/e3PgUYAAQTHwWliw0pAAAAAElFTkSuQmCC );
 }
 
 .commentthread_entry_quotebox {
-	border: 1px solid #515152;
-	border-radius: 3px;
-	padding: 7px;
+	border: none;
+	padding: 4px 6px 4px 6px;
+	font-size: 12px;
+	background-color: rgba( 0, 0, 0, 0.4 );
+	border-radius: 4px;
+	border-left: 1px solid #000;
+	border-top: 1px solid #000;
+	border-right: 1px solid #354357;
+	border-bottom: 1px solid #354357;
 }
 
 .commentthread_textarea {
@@ -446,7 +520,6 @@ a.commentthread_allcommentslink:hover {
 }
 
 .commentthread_comment_container {
-	overflow: hidden;
 	margin-top: 19px;
 }
 
@@ -458,7 +531,7 @@ a.commentthread_allcommentslink:hover {
 }
 
 .valve_links {
-	margin: 15px 0 0 123px;
+	margin: 15px 0 0 0;
 	display: block;
 }
 
@@ -532,7 +605,7 @@ a.commentthread_allcommentslink:hover {
 	position: absolute;
 	left: 33px;
 	top: 24px;
-	background-image: url( 'http://steamcommunity-a.akamaihd.net/public/images/skin_1/comment_friendindicator_small.png' );
+	background-image: url( 'https://steamcommunity-a.akamaihd.net/public/images/skin_1/comment_friendindicator_small.png' );
 	width: 20px;
 	height: 20px;
 	z-index: 2;
@@ -586,7 +659,7 @@ a.commentthread_allcommentslink:hover {
 }
 
 .modal_box {
-	background: -moz-linear-gradient(top, rgba(102,192,244,1) 5%, rgba(47,137,188,1) 95%);background: -webkit-gradient(linear, left top, left bottom, color-stop(5%,rgba(102,192,244,1)), color-stop(95%,rgba(47,137,188,1)));background: -webkit-linear-gradient(top, rgba(102,192,244,1) 5%,rgba(47,137,188,1) 95%);background: -o-linear-gradient(top, rgba(102,192,244,1) 5%,rgba(47,137,188,1) 95%);background: -ms-linear-gradient(top, rgba(102,192,244,1) 5%,rgba(47,137,188,1) 95%);background: linear-gradient(to bottom, rgba(102,192,244,1) 5%,rgba(47,137,188,1) 95%);	padding: 3px;
+	background: -webkit-gradient(linear, left top, left bottom, color-stop(5%,rgba(102,192,244,1)), color-stop(95%,rgba(47,137,188,1)));background: -moz-linear-gradient( top, rgba(102,192,244,1) 5%, rgba(47,137,188,1) 95%);background: -webkit-linear-gradient( top, rgba(102,192,244,1) 5%, rgba(47,137,188,1) 95%);background: -o-linear-gradient( top, rgba(102,192,244,1) 5%, rgba(47,137,188,1) 95%);background: -ms-linear-gradient( top, rgba(102,192,244,1) 5%, rgba(47,137,188,1) 95%);background: linear-gradient( to bottom, rgba(102,192,244,1) 5%, rgba(47,137,188,1) 95%);	padding: 3px;
 	width:542px;
 
 	font-size: 12px;
@@ -680,7 +753,7 @@ a.gray_square_button:hover {
 }
 
 .gray_square_button .left, .gray_square_button .right, .gray_square_button .button_label {
-	background-image: url( 'http://steamcommunity-a.akamaihd.net/public/images/economy/gray_square_button.png' );
+	background-image: url( 'https://steamcommunity-a.akamaihd.net/public/images/economy/gray_square_button.png' );
 }
 
 .gray_square_button .left, .gray_square_button .right {
@@ -731,7 +804,7 @@ button.gray_square_button::-moz-focus-inner
 }
 
 
-	/* not logged in modal dialog */
+/* not logged in modal dialog */
 
 .notLoggedInText {
 	font-size: 20px;
@@ -802,6 +875,7 @@ input.gray_bevel, textarea.gray_bevel, .gray_bevel, .commentthread_comment_edit_
 .gray_bevel input, .gray_bevel textarea {
 	border: none;
 	outline: none;
+	box-shadow: none;
 	background-color: transparent;
 	font-size: 13px;
 	color: #C6D4DF;
@@ -862,12 +936,12 @@ select.gray_bevel {
 	text-align: center;
 	line-height: 50px;
 	text-decoration: none;
-	background-image: url( 'http://steamcommunity-a.akamaihd.net/public/images//sharedfiles/share_status_off.jpg' );
+	background-image: url( 'https://steamcommunity-a.akamaihd.net/public/images//sharedfiles/share_status_off.jpg' );
 }
 
 .share_controls_steam:hover, .share_controls_steam:hover a
 {
-	background-image: url( 'http://steamcommunity-a.akamaihd.net/public/images//sharedfiles/share_status_on.jpg' );
+	background-image: url( 'https://steamcommunity-a.akamaihd.net/public/images//sharedfiles/share_status_on.jpg' );
 	text-decoration: none;
 }
 
@@ -948,7 +1022,7 @@ img.emoticon {
 	height: 36px;
 	width: 36px;
 
-	background-image: url( 'http://steamcommunity-a.akamaihd.net/public/images/chat/btn_emoticon.png' );
+	background-image: url( 'https://steamcommunity-a.akamaihd.net/public/images/chat/btn_emoticon.png' );
 	background-position: center bottom;
 	background-repeat: no-repeat;
 }
@@ -1032,4 +1106,13 @@ img.emoticon {
 	max-width: 225px;
 	white-space: normal;
 	box-shadow: 0 0 3px #000000;
+}
+
+
+@media screen and (max-width: 910px)
+{
+	html.responsive .maincontent {
+		width: auto;
+		margin: 0 1%;
+	}
 }
