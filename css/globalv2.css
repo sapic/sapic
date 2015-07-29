@@ -392,10 +392,10 @@ a.pagelink:hover {
 	padding-bottom: 2px;
 }
 .commentthread_header {
-	border-bottom: 1px solid #363f4c;
+	border-bottom: 1px solid #515152;
 }
 .commentthread_footer {
-	border-top: 1px solid #363f4c;
+	border-top: 1px solid #515152;
 }
 
 .commentthread_header .commentthread_count, .commentthread_footer .commentthread_count {
@@ -421,11 +421,6 @@ a.pagelink:hover {
 
 .commentthread_pagedropdown {
 	display: none;
-}
-
-/* fix some bad workshop.css styles */
-.commentthread_pagedropdown select {
-	width: auto;
 }
 
 .commentthread_pagelink:hover {
@@ -1113,44 +1108,6 @@ img.emoticon {
 	box-shadow: 0 0 3px #000000;
 }
 
-/* formatting help dialog */
-.tagrow {
-	margin-bottom: 8px;
-	padding: 0 4px;
-	position: relative;
-	font-size: 12px;
-}
-
-.tagrow.tagrow_header {
-	background-color: #1E1E1F;
-	color: #626467;
-	line-height: 18px;
-}
-
-.tagrow .tag {
-	color: #cccccc;
-}
-
-.tagsyntax {
-	float: left;
-	width: 57%;
-	margin-left: 1%;
-	margin-right: 3%;
-}
-
-.tagexample {
-	float: left;
-	width: 38%;
-}
-
-.tagexample a {
-	text-decoration: underline;
-}
-
-.tagexample a:hover {
-	color: #ffffff;
-}
-
 
 @media screen and (max-width: 910px)
 {
@@ -1158,13 +1115,4 @@ img.emoticon {
 		width: auto;
 		margin: 0 1%;
 	}
-}
-
-/* styles that hide things on non-migrated pages */
-.responsive_menu_only {
-	display: none;
-}
-
-.nonresponsive_hidden {
-	display: none;
 }
