@@ -215,8 +215,8 @@ function reloadImages(){
 
 function CropImages(){
     var ImageType = $('#bgImgEl').width() > 2000 ? 1 : 0;
-    var h1 = $('#hBig1').height() - 3;
-    var h2 = $('#hBig2').height() - 3;
+    var h1 = $('#hBig1').height();
+    var h2 = $('#hBig2').height();
     var rOffset1 = $('#hBig1').offset().top - $('.profile_header').offset().top + 1;
     var rOffset2 = $('#hBig2').offset().top - $('.profile_header').offset().top + 1;
     crop(508 + 140 * ImageType, rOffset1, 506, h1, 1, function(data){
@@ -338,16 +338,16 @@ $(function () {
         function () {
             switch ($('input[type="radio"]:checked').val()){
                 case 'nn':
-                    $('#hBig1').css('height', 287);
-                    $('#hBig2').css('height', 287);
+                    $('#hBig1').css('height', 284);
+                    $('#hBig2').css('height', 284);
                     break;
                 case 'nb':
-                    $('#hBig1').css('height', 287);
-                    $('#hBig2').css('height', 509);
+                    $('#hBig1').css('height', 284);
+                    $('#hBig2').css('height', 506);
                     break;
                 case 'bn':
-                    $('#hBig1').css('height', 509);
-                    $('#hBig2').css('height', 287);
+                    $('#hBig1').css('height', 506);
+                    $('#hBig2').css('height', 284);
                     break;
             }
             reloadImages();
@@ -390,7 +390,7 @@ $(function () {
             var target = event.target;
             // add the change in coords to the previous width of the target element
             var newHeight = parseFloat(target.style.height) + event.dy;
-            if(newHeight >= 287 && newHeight <= 509){
+            if(newHeight >= 284 && newHeight <= 506){
                 target.style.height = newHeight + 'px';
             }
             //target.textContent = newWidth + '×' + newHeight;
