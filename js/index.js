@@ -134,7 +134,6 @@ function disqusit() {
     }
 }
 function crop(x, y, width, height, type, fn){
-    console.log(x,y);
     x = x || 0;
     y = y || 0;
     width = width || 506;
