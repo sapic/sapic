@@ -54,6 +54,11 @@ var banners = [
     ['noads.jpg', 'http://i.imgur.com/g9C38bN.gif'],
     ['song.jpg', 'http://www.youtube.com/watch?v=r50JFfofHes']
 ];
+var leftOffset = {
+    0: 508,
+    1: 648,
+    2: 188
+};
 
 var getCurDate = function(){
     var today = new Date();
@@ -129,6 +134,7 @@ function disqusit() {
     }
 }
 function crop(x, y, width, height, type, fn){
+    console.log(x,y);
     x = x || 0;
     y = y || 0;
     width = width || 506;
@@ -214,38 +220,40 @@ function reloadImages(){
 }
 
 function CropImages(){
-    var ImageType = $('#bgImgEl').width() > 2000 ? 1 : 0;
+    var bgWidth = $('#bgImgEl').width();
+    var ImageType = bgWidth > 2000 ? 1 :
+        bgWidth <= 1280 ? 2 : 0;
     var h1 = $('#hBig1').height();
     var h2 = $('#hBig2').height();
     var rOffset1 = $('#hBig1').offset().top - $('.profile_header').offset().top + 1;
     var rOffset2 = $('#hBig2').offset().top - $('.profile_header').offset().top + 1;
-    crop(508 + 140 * ImageType, rOffset1, 506, h1, 1, function(data){
+    crop(leftOffset[ImageType], rOffset1, 506, h1, 1, function(data){
         $('#big1').attr('src', data);
     });
-    crop(1022 + 140 * ImageType, rOffset1, 100, 80, 1, function(data){
+    crop(514 + leftOffset[ImageType], rOffset1, 100, 80, 1, function(data){
         $('#r11').attr('src', data);
     });
-    crop(1022 + 140 * ImageType, rOffset1 + 93, 100, 80, 1, function(data){
+    crop(514 + leftOffset[ImageType], rOffset1 + 93, 100, 80, 1, function(data){
         $('#r12').attr('src', data);
     });
-    crop(1022 + 140 * ImageType, rOffset1 + 186, 100, 80, 1, function(data){
+    crop(514 + leftOffset[ImageType], rOffset1 + 186, 100, 80, 1, function(data){
         $('#r13').attr('src', data);
     });
     //SECOND
-    crop(508 + 140 * ImageType, rOffset2, 506, h2, 0, function(data){
+    crop(leftOffset[ImageType], rOffset2, 506, h2, 0, function(data){
         $('#big2').attr('src', data);
     });
-    crop(1022 + 140 * ImageType, rOffset2, 100, 80, 0, function(data){
+    crop(514 + leftOffset[ImageType], rOffset2, 100, 80, 0, function(data){
         $('#r21').attr('src', data);
     });
-    crop(1022 + 140 * ImageType, rOffset2 + 93, 100, 80, 0, function(data){
+    crop(514 + leftOffset[ImageType], rOffset2 + 93, 100, 80, 0, function(data){
         $('#r22').attr('src', data);
     });
-    crop(1022 + 140 * ImageType, rOffset2 + 186, 100, 80, 0, function(data){
+    crop(514 + leftOffset[ImageType], rOffset2 + 186, 100, 80, 0, function(data){
         $('#r23').attr('src', data);
     });
     //AVATAR
-    crop(499 + 140 * ImageType, 34, 164, 164, 1, function(data){
+    crop(leftOffset[ImageType] - 9, 34, 164, 164, 1, function(data){
         $('#avatar').attr('src', data);
 
         $('.minimap.noselect, .miniregion').remove();
