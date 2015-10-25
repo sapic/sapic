@@ -168,12 +168,13 @@ function getImageBase64(image, fn){
         canvas.height = img.height;
         ctx.drawImage(img, 0, 0);
         $('#bgImgEl').attr('src', canvas.toDataURL());
-        loadedBack = image;
-        fn();
+        $('#bgImgEl').one("load", function(){
+            loadedBack = image;
+            fn();
+        });
     };
 
     img.src = image;
-
 }
 
 function getRandomInt(min, max) {
