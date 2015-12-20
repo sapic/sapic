@@ -207,7 +207,7 @@ function reloadImages(){
 
     $('#bg1').css("background-image",  "url('" + background + "')");
     $('#bg2').css("background-image",  "url('" + background + "')");
-    background = 'http://sapicphp.eu-gb.mybluemix.net/images/' + background;
+    background = 'https://sapicphp.eu-gb.mybluemix.net/images/' + background;
     if(background != loadedBack) {
         bgChanged();
         getImageBase64(background, function () {
@@ -266,7 +266,7 @@ function CropImages(){
 }
 
 function createInventory(id){
-    $.ajax('http://sapicphp.eu-gb.mybluemix.net/sth.php?id=' + id).done(function(data){
+    $.ajax('https://sapicphp.eu-gb.mybluemix.net/sth.php?id=' + id).done(function(data){
         response = JSON.parse(data);
         response.backgrounds.forEach(function(back){
             var itemHolder = $("<div>", {class: "itemHolder", alt: back.name.toLowerCase() + " " + back.type.toLowerCase()});
