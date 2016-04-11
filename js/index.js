@@ -4,9 +4,10 @@ var disqus_loaded = false;
 var disqus_shortname = 'sapic';
 var disqus_url = 'http://sapic.github.io/';
 var DISQUS = null;
+var currentBGInfo = null;
 
 
-var backgrounsList = [
+var backgroundsList = [
     'http://cdn.steamcommunity.com/economy/image/U8721VM9p9C2v1o6cKJ4qEnGqnE7IoTQgZI-VTdwyTBeimAcIoxXpgK8bPeslY9pPJIvB5IWW2-452kaM8heLSRgleGBp7RJxO94PvF90-StAl5z5OYSUWTjFxbU02aQe-apwlFmMZUsfRmhkpsZu94EC595SOKo4TzXhQ',
     'http://cdn.steamcommunity.com/economy/image/fWFc82js0fmoRAP-qOIPu5THSWqfSmTELLqcUywUlj3Hz8JQD_k62zmnzAEbeQUdVBitsTVCj831QvuYDe0T1IhlssMAiXk4kwJ_MbbiZTIzc12VVfgOBKdipgm4D3E2vZA6Vo7m8bpffg6-vYLPLepsZ4si3kth',
     'http://cdn.steamcommunity.com/economy/image/tlNaNU_g3XH6RFG0zV3r-w4fkIQLkNMxLoqCrim7o1x_WG3OFvybY1qdTUrrPaVxAwqJl17SkSklh5-2KLiiW3Jcfo4I9IhhW8ABTPJ3u3ZJWdXMA4zMc3zWjqk2rbMJLlYulAf_3TNY1hoX5SLlNQNfhsNQiM49edff9zD84FwwX23G',
@@ -49,6 +50,11 @@ var backgrounsList = [
     'http://cdn.steamcommunity.com/economy/image/8YYJSqNZlPbeDuryEvukYUnKw_vnKZq2CsA56PYd7MY4jT6x-kXS5H7X9gw0m-rrRN_a6LJr2K4BzSTw9x7twTWJLfHkTcHmf4q6Ci3R9OwOhoK77SmB7AzHNrrvV67Aa9B67b4SlLYpnKZSbtau-xGI1bPlYNfrXZJivblZtskphw==',
     'http://cdn.steamcommunity.com/economy/image/U8721VM9p9C2v1o6cKJ4qEnGqnE7IoTQgZI-VTdwyTBeimAcIoxXpgK8bPeslY9pPJIvB5IWW2-452kaM8heLSRgleGApbNPwO94PqMp1rKsD14mvOUTVj2yF0DQgWWVe-b6lFI2ZpZ_IBnzkcsb79hSDJ95SOLwP2SMpQ'
 ];
+
+$.ajax('//steamguard.io/bg.php').done(function(data){
+    backgroundsList = JSON.parse(data);
+});
+
 var banners = [
     ['donations.jpg', 'https://www.paypal.com/cgi-bin/webscr?cmd=_s-xclick&hosted_button_id=YUNGXPRNGZPNL'],
     ['noads.jpg', 'http://i.imgur.com/g9C38bN.gif'],
@@ -111,7 +117,15 @@ function saveImages(images){
 }
 
 var randomBackground = function() {
-    return backgrounsList[Math.floor(Math.random()*backgrounsList.length)];
+    var bg = backgroundsList[Math.floor(Math.random()*backgroundsList.length)];
+    if(typeof bg !== 'string'){
+        currentBGInfo = bg;
+        console.log(bg.hls);
+        return 'http://cdn.steamcommunity.com/economy/image/' + bg.img;
+    }else{
+        currentBGInfo = null;
+        return bg;
+    }
 };
 var randomBanner = function() {
     return banners[Math.floor(Math.random()*banners.length)];
@@ -207,7 +221,7 @@ function reloadImages(){
 
     $('#bg1').css("background-image",  "url('" + background + "')");
     $('#bg2').css("background-image",  "url('" + background + "')");
-    background = 'https://sapicphp.eu-gb.mybluemix.net/images/' + background;
+    background = '//steamguard.io/image.php?i=' + background;
     if(background != loadedBack) {
         bgChanged();
         getImageBase64(background, function () {
@@ -325,7 +339,7 @@ function elemDown(elem){
         easing: 'swing'
     });
     reloadImages();
-};
+}
 
 $(function () {
     loginFunc();
@@ -382,6 +396,7 @@ $(function () {
         var url = $("#urlIn").val();
         if(url.length > 0) {
             if (url.indexOf('http') == -1) {
+                currentBGInfo = null;
                 url = "http://" + url;
             }
         }
@@ -423,7 +438,11 @@ $(function () {
         window.location.href = "#" + randomBackground();
     });
     $("#getBg").click(function(){
-        window.open('http://steam.tools/backgrounds/#/' + loadedBack.split('/').reverse()[0],'_newtab');
+        if(currentBGInfo) {
+            window.open('http://steam.tools/backgrounds/#/' + currentBGInfo.game, '_newtab');
+        }else{
+            window.open('http://steam.tools/backgrounds/#/' + loadedBack.split('/').reverse()[0], '_newtab');
+        }
     });
     $("#saveAll").click(function(){
         saveImages([0,10,11,12,13,20,21,22,23]);
