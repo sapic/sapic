@@ -1,20 +1,20 @@
 machine:
   node:
-    version: 0.10.25 
-dependencies:  
+    version: 6.2.1 
+dependencies:
   cache_directories:
     - node_modules
   override:
     - npm install
     - npm install --global gulp
     - npm install --save-dev gulp
-    
+
 test:
   override:
     - rm -rf out
     - mkdir out
     - git clone https://github.com/SAPIC/SAPIC.github.io ./:
-        pwd: out 
+        pwd: out
     - gulp
     - git config --global user.name "${GH_NAME}"
     - git config --global user.email "${GH_MAIL}"
