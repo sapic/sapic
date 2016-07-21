@@ -253,10 +253,10 @@ function CropImages(){
 
     fillImage($('#avatar'), leftOffset[ImageType] - 9, 34, 164, 164, ImagesNames[0][1]);
 
-    $(".saveButton").attr("href", "https://steamguard.io/sapic/raw/" + btoa(JSON.stringify(bgSaveInfo)));
+    $(".saveButton").attr("href", "https://steam.design/raw/" + btoa(JSON.stringify(bgSaveInfo)));
 
     $.ajax({
-        url:'https://steamguard.io/sapic/shorten',
+        url:'https://steam.design/shorten',
         dataType: 'json',
         method: 'POST',
         data: JSON.stringify(bgSaveInfo),
