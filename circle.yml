@@ -1,6 +1,6 @@
 machine:
   node:
-    version: 6.2.1 
+    version: 6.2.1
 dependencies:
   cache_directories:
     - node_modules
@@ -23,4 +23,6 @@ test:
     - git commit -m 'AutoPush':
         pwd: out
     - git push --force --quiet "https://${GH_ATOKEN}@github.com/SAPIC/SAPIC.github.io"> /dev/null 2>&1:
+        pwd: out
+    - scp -r ./* circleci@46.101.12.105:/var/www/steam.design/:
         pwd: out

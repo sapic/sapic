@@ -100,3 +100,8 @@
 #disqus_thread > a {
 	color: #5491cf;
 }
+
+#avatar{
+	height: 164px;
+	width: 164px;
+}

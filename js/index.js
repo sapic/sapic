@@ -5,7 +5,10 @@ var disqus_shortname = 'sapic';
 var disqus_url = 'http://sapic.github.io/';
 var DISQUS = null;
 var currentBGInfo = null;
-
+var bgSaveInfo = {
+    url: null,
+    images: [],
+};
 
 var backgroundsList = [
     'http://cdn.steamcommunity.com/economy/image/U8721VM9p9C2v1o6cKJ4qEnGqnE7IoTQgZI-VTdwyTBeimAcIoxXpgK8bPeslY9pPJIvB5IWW2-452kaM8heLSRgleGBp7RJxO94PvF90-StAl5z5OYSUWTjFxbU02aQe-apwlFmMZUsfRmhkpsZu94EC595SOKo4TzXhQ',
@@ -90,10 +93,10 @@ var ImagesNames = {
     12: ['#r12', 'artwork_right_2middle.png'],
     13: ['#r13', 'artwork_right_3bottom.png'],
 
-    20: ['#big2', curDate + '1.jpg'],
-    21: ['#r21', curDate + '2.jpg'],
-    22: ['#r22', curDate + '3.jpg'],
-    23: ['#r23', curDate + '4.jpg']
+    20: ['#big2','screenshot_center.jpg'],
+    21: ['#r21', 'screenshot_right_1top.jpg'],
+    22: ['#r22', 'screenshot_right_2middle.jpg'],
+    23: ['#r23', 'screenshot_right_3bottom.jpg'],
 };
 
 function convertDataURIToBinary(dataURI) {
@@ -170,25 +173,14 @@ function crop(x, y, width, height, type, fn){
         });
     }
 }
-function getImageBase64(image, fn){
-    var canvas = document.createElement('canvas');
-    var ctx = canvas.getContext("2d");
-    var img = new Image();
-    img.crossOrigin = 'anonymous';
+function getImageBase64(image, fn) {
     $('#bgImgEl').attr('src', null);
 
-    img.onload = function(){
-        canvas.width = img.width;
-        canvas.height = img.height;
-        ctx.drawImage(img, 0, 0);
-        $('#bgImgEl').attr('src', canvas.toDataURL());
-        $('#bgImgEl').one("load", function(){
-            loadedBack = image;
-            fn();
-        });
-    };
-
-    img.src = image;
+    $('#bgImgEl').attr('src', image);
+    $('#bgImgEl').one("load", function () {
+        loadedBack = image;
+        fn();
+    });
 }
 
 function getRandomInt(min, max) {
@@ -221,7 +213,8 @@ function reloadImages(){
 
     $('#bg1').css("background-image",  "url('" + background + "')");
     $('#bg2').css("background-image",  "url('" + background + "')");
-    background = '//steamguard.io/image.php?i=' + background;
+
+    console.log('background', background, loadedBack);
     if(background != loadedBack) {
         bgChanged();
         getImageBase64(background, function () {
@@ -241,41 +234,59 @@ function CropImages(){
     var h2 = $('#hBig2').height();
     var rOffset1 = $('#hBig1').offset().top - $('.profile_header').offset().top + 1;
     var rOffset2 = $('#hBig2').offset().top - $('.profile_header').offset().top + 1;
-    crop(leftOffset[ImageType], rOffset1, 506, h1, 1, function(data){
-        $('#big1').attr('src', data);
-    });
-    crop(514 + leftOffset[ImageType], rOffset1, 100, 80, 1, function(data){
-        $('#r11').attr('src', data);
-    });
-    crop(514 + leftOffset[ImageType], rOffset1 + 93, 100, 80, 1, function(data){
-        $('#r12').attr('src', data);
-    });
-    crop(514 + leftOffset[ImageType], rOffset1 + 186, 100, 80, 1, function(data){
-        $('#r13').attr('src', data);
-    });
-    //SECOND
-    crop(leftOffset[ImageType], rOffset2, 506, h2, 0, function(data){
-        $('#big2').attr('src', data);
-    });
-    crop(514 + leftOffset[ImageType], rOffset2, 100, 80, 0, function(data){
-        $('#r21').attr('src', data);
-    });
-    crop(514 + leftOffset[ImageType], rOffset2 + 93, 100, 80, 0, function(data){
-        $('#r22').attr('src', data);
-    });
-    crop(514 + leftOffset[ImageType], rOffset2 + 186, 100, 80, 0, function(data){
-        $('#r23').attr('src', data);
-    });
-    //AVATAR
-    crop(leftOffset[ImageType] - 9, 34, 164, 164, 1, function(data){
-        $('#avatar').attr('src', data);
 
-        $('.minimap.noselect, .miniregion').remove();
-        minimap = $('.body').minimap({
-            heightRatio: 0.15,
-            widthRatio: 0.15
-        });
-        disqusit();
+    bgSaveInfo = {
+        url: background,
+        images: [],
+    };
+
+
+    fillImage($('#big1'), leftOffset[ImageType], rOffset1, 506, h1, ImagesNames[10][1], true);
+    fillImage($('#r11'), 514 + leftOffset[ImageType], rOffset1, 100, 80, ImagesNames[11][1]);
+    fillImage($('#r12'), 514 + leftOffset[ImageType], rOffset1 + 93, 100, 80, ImagesNames[12][1]);
+    fillImage($('#r13'), 514 + leftOffset[ImageType], rOffset1 + 186, 100, 80, ImagesNames[13][1]);
+
+    fillImage($('#big2'), leftOffset[ImageType], rOffset2, 506, h2, ImagesNames[20][1], true);
+    fillImage($('#r21'), 514 + leftOffset[ImageType], rOffset2, 100, 80, ImagesNames[21][1]);
+    fillImage($('#r22'), 514 + leftOffset[ImageType], rOffset2 + 93, 100, 80, ImagesNames[22][1]);
+    fillImage($('#r23'), 514 + leftOffset[ImageType], rOffset2 + 186, 100, 80, ImagesNames[23][1]);
+
+    fillImage($('#avatar'), leftOffset[ImageType] - 9, 34, 164, 164, ImagesNames[0][1]);
+
+    $(".saveButton").attr("href", "https://steamguard.io/sapic/raw/" + btoa(JSON.stringify(bgSaveInfo)));
+
+    $.ajax({
+        url:'https://steamguard.io/sapic/shorten',
+        dataType: 'json',
+        method: 'POST',
+        data: JSON.stringify(bgSaveInfo),
+        contentType: "application/json",
+        success: function(data){
+            if(data.id)
+                $(".saveButton").attr("href", '//steam.design/get/' + data.id);
+        }
+    });
+
+    disqusit();
+}
+
+function fillImage(element, x, y, w, h, name, changeCss){
+    if(!name){
+        name = 'unknownImage.png';
+    }
+    if(changeCss) {
+        element.css("width", "100%");
+        element.css("height", "100%");
+    }
+    element.css("background",  "url('" + background + "') no-repeat");
+    element.css("background-position",  '-' + x + 'px -' + y + 'px');
+
+    bgSaveInfo.images.push({
+        name: name,
+        x: x,
+        y: y,
+        w: w,
+        h: h,
     });
 }
 
@@ -444,7 +455,7 @@ $(function () {
             window.open('http://steam.tools/backgrounds/#/' + loadedBack.split('/').reverse()[0], '_newtab');
         }
     });
-    $("#saveAll").click(function(){
+    /*$("#saveAll").click(function(){
         saveImages([0,10,11,12,13,20,21,22,23]);
     });
     $("#saveFirst").click(function(){
@@ -452,6 +463,6 @@ $(function () {
     });
     $("#saveSecond").click(function(){
         saveImages([20,21,22,23]);
-    });
+    });*/
     disqusit();
 });
