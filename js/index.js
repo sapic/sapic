@@ -353,6 +353,10 @@ function elemDown(elem){
 }
 
 $(function () {
+    if(window.location.hostname == "sapic.github.io"){
+        window.location = 'https://steam.design/' + location.hash;
+    }
+
     loginFunc();
 
     var userId = null;
