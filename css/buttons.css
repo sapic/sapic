@@ -511,7 +511,7 @@ btnv6_border_2px > span {
 	width: 18px;
 	height: 18px;
 	margin: 0 0px;
-	background: url(http://steamcommunity-a.akamaihd.net/public/shared/images/buttons/icons_18.png?v=3);
+	background: url(https://steamcommunity-a.akamaihd.net/public/shared/images/buttons/icons_18.png?v=3);
 	vertical-align: text-top;
 }
 
@@ -544,7 +544,7 @@ btnv6_border_2px > span {
 	display: inline-block;
 	width: 16px;
 	height: 16px;
-	background: url(http://steamcommunity-a.akamaihd.net/public/shared/images/buttons/icons_16.png?v=4);
+	background: url(https://steamcommunity-a.akamaihd.net/public/shared/images/buttons/icons_16.png?v=4);
 	vertical-align: text-top;
 }
 
@@ -668,7 +668,7 @@ btnv6_border_2px > span {
 	display: inline-block;
 	width: 15px;
 	height: 16px;
-	background-image:url('http://steamcommunity-a.akamaihd.net/public/shared/images/buttons/icon_double_arrows.png');
+	background-image:url('https://steamcommunity-a.akamaihd.net/public/shared/images/buttons/icon_double_arrows.png');
 	vertical-align: middle;
 }
 
@@ -706,7 +706,7 @@ btnv6_border_2px > span {
      display: inline-block;
      width: 15px;
      height: 16px;
-     background-image:url('http://steamcommunity-a.akamaihd.net/public/shared/images/buttons/icon_double_arrows.png');
+     background-image:url('https://steamcommunity-a.akamaihd.net/public/shared/images/buttons/icon_double_arrows.png');
 }
 
 .packageTagsArrow.Expand
