@@ -1,4 +1,4 @@
-SAPIC.github.io
+https://steam.design
 ===============
 Small tool to crop Steam background images for profiles.
 
