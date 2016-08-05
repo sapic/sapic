@@ -99,6 +99,11 @@ var ImagesNames = {
     23: ['#r23', 'screenshot_right_3bottom.jpg'],
 };
 
+function hideBacksList(){
+    $('#backsList').toggle('show')
+    $('#backsListImage').toggleClass('flipped')
+}
+
 function convertDataURIToBinary(dataURI) {
     var base64 = dataURI.split(';base64,')[1];
     var raw = window.atob(base64);

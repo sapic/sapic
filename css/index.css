@@ -9,6 +9,9 @@
     overflow-x: hidden;
     width: 940px;
 }
+.flipped {
+    transform: scaleY(-1);
+}
 .screenshot _showcase_screenshot{
 	overflow: hidden;
 }
