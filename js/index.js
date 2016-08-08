@@ -260,18 +260,6 @@ function CropImages(){
 
     $(".saveButton").attr("href", "https://steam.design/raw/" + btoa(JSON.stringify(bgSaveInfo)));
 
-    $.ajax({
-        url:'https://steam.design/shorten',
-        dataType: 'json',
-        method: 'POST',
-        data: JSON.stringify(bgSaveInfo),
-        contentType: "application/json",
-        success: function(data){
-            if(data.id)
-                $(".saveButton").attr("href", '//steam.design/get/' + data.id);
-        }
-    });
-
     disqusit();
 }
 
