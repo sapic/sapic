@@ -20,7 +20,7 @@ gulp.task('css1', function(){
         .pipe(gulp.dest('./out'));
 });
 gulp.task('css2', ['css1'], function(){
-    return gulp.src(['./css/profilev2.css', './css/social-likes_flat.css', './css/minimap.css',  './css/index.css', './out/temp.css'])
+    return gulp.src(['./css/profilev2.css', './css/social-likes_flat.css', './css/index.css', './out/temp.css'])
         .pipe(concatCss('main.css'))
         .pipe(csso())
         .pipe(gulp.dest('./out'));
