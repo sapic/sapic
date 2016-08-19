@@ -284,8 +284,8 @@ function fillImage(element, x, y, w, h, name, changeCss){
 }
 
 function createInventory(id){
-    $.ajax('https://sapicphp.eu-gb.mybluemix.net/sth.php?id=' + id).done(function(data){
-        response = JSON.parse(data);
+    $.ajax('https://steam.design/sth.php?id=' + id).done(function(data){
+        var response = data;
         response.backgrounds.forEach(function(back){
             var itemHolder = $("<div>", {class: "itemHolder", alt: back.name.toLowerCase() + " " + back.type.toLowerCase()});
             var item = $("<div>", {class: "item app753 context6 activeInfo"});
