@@ -200,7 +200,6 @@ function reloadAds(){
         $('.underfr').empty().html('<a href="' + bn[1] + '" target="_blank"><img src="images/' + bn[0] + '"></img></a>');
 }
 
-var minimap;
 function reloadImages(){
     if(window.location.hash && window.location.hash.indexOf('#login') == -1
         && window.location.hash.indexOf('#logout') == -1){
