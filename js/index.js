@@ -86,17 +86,17 @@ var getCurDate = function(){
 
 var curDate = getCurDate();
 var ImagesNames = {
-    0: ['#avatar', 'avatar.png'],
+    0: ['#avatar', 'Avatar.png'],
 
-    10: ['#big1', 'artwork_center.png'],
-    11: ['#r11', 'artwork_right_1top.png'],
-    12: ['#r12', 'artwork_right_2middle.png'],
-    13: ['#r13', 'artwork_right_3bottom.png'],
+    10: ['#big1', 'Artwork_Center.png'],
+    11: ['#r11', 'Artwork_Right_Top.png'],
+    12: ['#r12', 'Artwork_Right_Middle.png'],
+    13: ['#r13', 'Artwork_Right_Bottom.png'],
 
-    20: ['#big2','screenshot_center.jpg'],
-    21: ['#r21', 'screenshot_right_1top.jpg'],
-    22: ['#r22', 'screenshot_right_2middle.jpg'],
-    23: ['#r23', 'screenshot_right_3bottom.jpg'],
+    20: ['#big2','Screenshot_Center.jpg'],
+    21: ['#r21', 'Screenshot_Right_Top.jpg'],
+    22: ['#r22', 'Screenshot_Right_Middle.jpg'],
+    23: ['#r23', 'Screenshot_Right_Bottom.jpg'],
 };
 
 function hideBacksList(){
@@ -255,7 +255,7 @@ function CropImages(){
     fillImage($('#r22'), 514 + leftOffset[ImageType], rOffset2 + 93, 100, 80, ImagesNames[22][1]);
     fillImage($('#r23'), 514 + leftOffset[ImageType], rOffset2 + 186, 100, 80, ImagesNames[23][1]);
 
-    fillImage($('#avatar'), leftOffset[ImageType] - 9, 34, 164, 164, ImagesNames[0][1]);
+    fillImage($('#avatar'), leftOffset[ImageType] - 9, 34, 184, 184, ImagesNames[0][1]);
 
     $(".saveButton").attr("href", "https://steam.design/raw/" + btoa(JSON.stringify(bgSaveInfo)));
 
@@ -301,7 +301,6 @@ function createInventory(id){
         addArrows();
     });
 }
-
 
 function loginFunc(){
     if(window.location.hash.indexOf('#login') !== -1){
