@@ -1,3 +1,4 @@
+var ver = "v1.5";
 var background = null;
 var loadedBack = null;
 var disqus_loaded = false;
@@ -197,7 +198,7 @@ function bgChanged() {
 }
 function reloadAds(){
         var bn = randomBanner();
-        $('.underfr').empty().html('<a href="' + bn[1] + '" target="_blank"><img src="images/' + bn[0] + '"></img></a>');
+        $('.underfr').empty().html('<a href="' + bn[1] + '" target="_blank"><img src="images/' + bn[0] + '"></img></a><a href="https://github.com/SAPIC/SAPIC" target="_blank">' + ver + '</a>');
 }
 
 function reloadImages(){
