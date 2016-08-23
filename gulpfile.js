@@ -7,6 +7,7 @@ var uglify = require('gulp-uglify');
 var useref = require('gulp-useref');
 var htmlmin = require('gulp-minify-html');
 var rimraf = require('gulp-rimraf');
+var fs = require('fs');
 
 gulp.task('css1', function(){
     return gulp.src(['./css/buttons.css','./css/shared_global.css',
@@ -32,6 +33,8 @@ gulp.task('js', ['css2'], function(){
         .pipe(gulp.dest('./out'));
 });
 gulp.task('html', ['js'], function(){
+    var content = fs.readFileSync('index.html', {encoding:'utf-8'});
+    fs.writeFileSync('index.html', content.replace('{{#vernum}}', process.env.CIRCLE_BUILD_NUM));
     return gulp.src(['index.html'])
         .pipe(useref())
         .pipe(htmlmin())
