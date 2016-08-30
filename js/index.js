@@ -421,7 +421,6 @@ $(function () {
             // add the change in coords to the previous width of the target element
             var newHeight = parseFloat(target.style.height) + event.dy;
             if(newHeight >= 284){
-                if(newHeight >= 500 && newHeight <= 510) newHeight = 506;
                 target.style.height = newHeight + 'px';
             }
             //target.textContent = newWidth + '×' + newHeight;
