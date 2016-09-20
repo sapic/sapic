@@ -102,7 +102,26 @@ var ImagesNames = {
 function hideBacksList(){
     $('#backsList').toggle('show')
     $('#backsListImage').toggleClass('flipped')
+    if ($('#backsList').is(':visable')) {
+        localStorage.setItem("backsList", "true")
+        alert("penis");
+    } else {
+        localStorage.setItem("backsList", "false")
+        alert("cocks");
+    }
 }
+
+function addHideButton(){
+    $('#backsListImage').toggle('show')
+}
+
+$( document ).ready(function() {
+    var ls = localStorage.getItem("backsList")
+    if (ls) {
+        hideBacksList();
+        alert("hi");
+    }
+})
 
 function convertDataURIToBinary(dataURI) {
     var base64 = dataURI.split(';base64,')[1];
@@ -299,6 +318,7 @@ function createInventory(id){
             $('.profile_customization_area').append(this);
         });
         addArrows();
+        addHideButton();
     });
 }
 
