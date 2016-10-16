@@ -1,4 +1,5 @@
 var background = null;
+var rh = false;
 var loadedBack = null;
 var disqus_loaded = false;
 var disqus_shortname = 'sapic';
@@ -231,6 +232,8 @@ function reloadImages(){
 }
 
 function CropImages(){
+    var bgheight = $('#bgImgEl').height();
+    var uh = bgheight - 272;
     var bgWidth = $('#bgImgEl').width();
     var ImageType = bgWidth > 2000 ? 1 :
         bgWidth <= 1280 ? 2 : 0;
@@ -244,16 +247,21 @@ function CropImages(){
         images: [],
     };
 
+    if(rh) {
+        fillImage($('#big1'), leftOffset[ImageType], rOffset1, 506, h1, ImagesNames[10][1], true);
+        fillImage($('#r11'), 514 + leftOffset[ImageType], rOffset1, 100, usableheight, ImagesNames[11][1]);
+    }
+    else {
+        fillImage($('#big1'), leftOffset[ImageType], rOffset1, 506, h1, ImagesNames[10][1], true);
+        fillImage($('#r11'), 514 + leftOffset[ImageType], rOffset1, 100, 80, ImagesNames[11][1]);
+        fillImage($('#r12'), 514 + leftOffset[ImageType], rOffset1 + 93, 100, 80, ImagesNames[12][1]);
+        fillImage($('#r13'), 514 + leftOffset[ImageType], rOffset1 + 186, 100, 80, ImagesNames[13][1]);
 
-    fillImage($('#big1'), leftOffset[ImageType], rOffset1, 506, h1, ImagesNames[10][1], true);
-    fillImage($('#r11'), 514 + leftOffset[ImageType], rOffset1, 100, 80, ImagesNames[11][1]);
-    fillImage($('#r12'), 514 + leftOffset[ImageType], rOffset1 + 93, 100, 80, ImagesNames[12][1]);
-    fillImage($('#r13'), 514 + leftOffset[ImageType], rOffset1 + 186, 100, 80, ImagesNames[13][1]);
-
-    fillImage($('#big2'), leftOffset[ImageType], rOffset2, 506, h2, ImagesNames[20][1], true);
-    fillImage($('#r21'), 514 + leftOffset[ImageType], rOffset2, 100, 80, ImagesNames[21][1]);
-    fillImage($('#r22'), 514 + leftOffset[ImageType], rOffset2 + 93, 100, 80, ImagesNames[22][1]);
-    fillImage($('#r23'), 514 + leftOffset[ImageType], rOffset2 + 186, 100, 80, ImagesNames[23][1]);
+        fillImage($('#big2'), leftOffset[ImageType], rOffset2, 506, h2, ImagesNames[20][1], true);
+        fillImage($('#r21'), 514 + leftOffset[ImageType], rOffset2, 100, 80, ImagesNames[21][1]);
+        fillImage($('#r22'), 514 + leftOffset[ImageType], rOffset2 + 93, 100, 80, ImagesNames[22][1]);
+        fillImage($('#r23'), 514 + leftOffset[ImageType], rOffset2 + 186, 100, 80, ImagesNames[23][1]);
+    }
 
     fillImage($('#avatar'), leftOffset[ImageType] - 9, 34, 164, 164, ImagesNames[0][1]);
 
@@ -343,7 +351,7 @@ function elemDown(elem){
     });
     reloadImages();
 }
-
+    
 $(function () {
     if(window.location.hostname == "sapic.github.io"){
         window.location = 'https://steam.design/' + location.hash;
@@ -365,18 +373,37 @@ $(function () {
 
     $('input:radio').change(
         function () {
+            var bgheight = $('#bgImgEl').height();
+            var usableheight = bgheight - 272;
             switch ($('input[type="radio"]:checked').val()){
                 case 'nn':
-                    $('#hBig1').css('height', 284);
-                    $('#hBig2').css('height', 284);
+                    $('#hBig1').css('height', usableheight);
+                    $('#sssc').hide();
+                    $('#r12r').hide();
+                    $('#r13r').hide();
+                    $('#r11').css('height', usableheight);
+                    $('#r11r').css('height', usableheight);
+                    var rh = true
                     break;
                 case 'nb':
                     $('#hBig1').css('height', 284);
                     $('#hBig2').css('height', 506);
+                    $('#sssc').show();
+                    $('#r12r').show();
+                    $('#r13r').show();
+                    $('#r11').css('height', 80);
+                    $('#r11r').css('height', 80);
+                    var rh = false
                     break;
                 case 'bn':
                     $('#hBig1').css('height', 506);
                     $('#hBig2').css('height', 284);
+                    $('#sssc').show();
+                    $('#r12r').show();
+                    $('#r13r').show();
+                    $('#r11').css('height', 80);
+                    $('#r11r').css('height', 80);
+                    var rh = false
                     break;
             }
             reloadImages();
