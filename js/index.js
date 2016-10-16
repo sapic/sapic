@@ -249,7 +249,7 @@ function CropImages(){
 
     if(rh) {
         fillImage($('#big1'), leftOffset[ImageType], rOffset1, 506, h1, ImagesNames[10][1], true);
-        fillImage($('#r11'), 514 + leftOffset[ImageType], rOffset1, 100, usableheight, ImagesNames[11][1]);
+        fillImage($('#r11'), 514 + leftOffset[ImageType], rOffset1, 100, uh, ImagesNames[11][1]);
     }
     else {
         fillImage($('#big1'), leftOffset[ImageType], rOffset1, 506, h1, ImagesNames[10][1], true);
@@ -351,12 +351,12 @@ function elemDown(elem){
     });
     reloadImages();
 }
-    
+
 $(function () {
     if(window.location.hostname == "sapic.github.io"){
         window.location = 'https://steam.design/' + location.hash;
     }
-
+    
     loginFunc();
 
     var userId = null;
@@ -374,15 +374,15 @@ $(function () {
     $('input:radio').change(
         function () {
             var bgheight = $('#bgImgEl').height();
-            var usableheight = bgheight - 272;
+            var uh = bgheight - 272;
             switch ($('input[type="radio"]:checked').val()){
                 case 'nn':
-                    $('#hBig1').css('height', usableheight);
+                    $('#hBig1').css('height', uh);
                     $('#sssc').hide();
                     $('#r12r').hide();
                     $('#r13r').hide();
-                    $('#r11').css('height', usableheight);
-                    $('#r11r').css('height', usableheight);
+                    $('#r11').css('height', uh);
+                    $('#r11r').css('height', uh);
                     var rh = true
                     break;
                 case 'nb':
