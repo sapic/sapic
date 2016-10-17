@@ -1,4 +1,5 @@
 var background = null;
+var t;
 var rh = false;
 var loadedBack = null;
 var disqus_loaded = false;
@@ -87,17 +88,17 @@ var getCurDate = function(){
 
 var curDate = getCurDate();
 var ImagesNames = {
-    0: ['#avatar', 'avatar.png'],
+    0: ['#avatar', 'Avatar.png'],
 
-    10: ['#big1', 'artwork_center.png'],
-    11: ['#r11', 'artwork_right_1top.png'],
-    12: ['#r12', 'artwork_right_2middle.png'],
-    13: ['#r13', 'artwork_right_3bottom.png'],
+    10: ['#big1', 'Artwork_Middle.png'],
+    11: ['#r11', 'Artwork_Right_Top.png'],
+    12: ['#r12', 'Artwork_Right_Middle.png'],
+    13: ['#r13', 'Artwork_Right_Bottom.png'],
 
-    20: ['#big2','screenshot_center.jpg'],
-    21: ['#r21', 'screenshot_right_1top.jpg'],
-    22: ['#r22', 'screenshot_right_2middle.jpg'],
-    23: ['#r23', 'screenshot_right_3bottom.jpg'],
+    20: ['#big2','Screenshot_Middle.jpg'],
+    21: ['#r21', 'Screenshot_Right_Top.jpg'],
+    22: ['#r22', 'Screenshot_Right_Middle.jpg'],
+    23: ['#r23', 'Screenshot_Right_Bottom.jpg'],
 };
 
 function hideBacksList(){
@@ -115,14 +116,6 @@ function convertDataURIToBinary(dataURI) {
         array[i] = raw.charCodeAt(i);
     }
     return array;
-}
-
-function saveImages(images){
-    var zip = new JSZip();
-    images.forEach(function(val){
-        zip.file(ImagesNames[val][1], convertDataURIToBinary($(ImagesNames[val][0]).attr('src')));
-    });
-    saveAs(zip.generate({type:"blob"}), "BackgroundImages.zip");
 }
 
 var randomBackground = function() {
@@ -247,11 +240,11 @@ function CropImages(){
         images: [],
     };
 
-    if(rh) {
+    if(rh){
         fillImage($('#big1'), leftOffset[ImageType], rOffset1, 506, h1, ImagesNames[10][1], true);
         fillImage($('#r11'), 514 + leftOffset[ImageType], rOffset1, 100, uh, ImagesNames[11][1]);
     }
-    else {
+    else{
         fillImage($('#big1'), leftOffset[ImageType], rOffset1, 506, h1, ImagesNames[10][1], true);
         fillImage($('#r11'), 514 + leftOffset[ImageType], rOffset1, 100, 80, ImagesNames[11][1]);
         fillImage($('#r12'), 514 + leftOffset[ImageType], rOffset1 + 93, 100, 80, ImagesNames[12][1]);
@@ -373,37 +366,18 @@ $(function () {
 
     $('input:radio').change(
         function () {
-            var bgheight = $('#bgImgEl').height();
-            var uh = bgheight - 272;
             switch ($('input[type="radio"]:checked').val()){
                 case 'nn':
-                    $('#hBig1').css('height', uh);
-                    $('#sssc').hide();
-                    $('#r12r').hide();
-                    $('#r13r').hide();
-                    $('#r11').css('height', uh);
-                    $('#r11r').css('height', uh);
-                    var rh = true
+                    $('#hBig1').css('height', 284);
+                    $('#hBig2').css('height', 284);
                     break;
                 case 'nb':
                     $('#hBig1').css('height', 284);
                     $('#hBig2').css('height', 506);
-                    $('#sssc').show();
-                    $('#r12r').show();
-                    $('#r13r').show();
-                    $('#r11').css('height', 80);
-                    $('#r11r').css('height', 80);
-                    var rh = false
                     break;
                 case 'bn':
                     $('#hBig1').css('height', 506);
                     $('#hBig2').css('height', 284);
-                    $('#sssc').show();
-                    $('#r12r').show();
-                    $('#r13r').show();
-                    $('#r11').css('height', 80);
-                    $('#r11r').css('height', 80);
-                    var rh = false
                     break;
             }
             reloadImages();
@@ -455,10 +429,32 @@ $(function () {
         .on('resizeend', function(){
             reloadImages();
         });
-    $('#toggleResize').click(function(){
-        $('.resizeType').each(function(i,elem){
-            $(elem).css('display', $(elem).css('display') != 'none' ? 'none' : 'block' )
-        });
+    $('#toggleLong').click(function(){
+        $('.resizeType').each(function(){
+            $(this).toggle()
+        });     
+        if(!t){
+            var bh = $('#bgImgEl').height();
+            var uh = bh - 272;
+            $('#hBig1').css('height', uh);
+            $('#sssc').hide();
+            $('#r12r').hide();
+            $('#r13r').hide();
+            $('#r11').css('height', uh);
+            $('#r11r').css('height', uh);
+            rh = true;
+            t = true;
+        }else{
+            $('#hBig1').css('height', 506);
+            $('#sssc').show();
+            $('#r12r').show();
+            $('#r13r').show();
+            $('#r11').css('height', 80);
+            $('#r11r').css('height', 80);
+            rh = false;
+            t = false;
+        }
+        CropImages();
     });
     $("#slFSize").on("change", function(){
         $('#hBig1').css('height', this.value);
@@ -478,14 +474,5 @@ $(function () {
             window.open('http://steam.tools/backgrounds/#/' + loadedBack.split('/').reverse()[0], '_newtab');
         }
     });
-    /*$("#saveAll").click(function(){
-        saveImages([0,10,11,12,13,20,21,22,23]);
-    });
-    $("#saveFirst").click(function(){
-        saveImages([10,11,12,13]);
-    });
-    $("#saveSecond").click(function(){
-        saveImages([20,21,22,23]);
-    });*/
     disqusit();
 });
