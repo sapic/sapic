@@ -1,4 +1,6 @@
 var background = null;
+var t;
+var rh = false;
 var loadedBack = null;
 var disqus_loaded = false;
 var disqus_shortname = 'sapic';
@@ -86,17 +88,17 @@ var getCurDate = function(){
 
 var curDate = getCurDate();
 var ImagesNames = {
-    0: ['#avatar', 'avatar.png'],
+    0: ['#avatar', 'Avatar.png'],
 
-    10: ['#big1', 'artwork_center.png'],
-    11: ['#r11', 'artwork_right_1top.png'],
-    12: ['#r12', 'artwork_right_2middle.png'],
-    13: ['#r13', 'artwork_right_3bottom.png'],
+    10: ['#big1', 'Artwork_Middle.png'],
+    11: ['#r11', 'Artwork_Right_Top.png'],
+    12: ['#r12', 'Artwork_Right_Middle.png'],
+    13: ['#r13', 'Artwork_Right_Bottom.png'],
 
-    20: ['#big2','screenshot_center.jpg'],
-    21: ['#r21', 'screenshot_right_1top.jpg'],
-    22: ['#r22', 'screenshot_right_2middle.jpg'],
-    23: ['#r23', 'screenshot_right_3bottom.jpg'],
+    20: ['#big2','Screenshot_Middle.jpg'],
+    21: ['#r21', 'Screenshot_Right_Top.jpg'],
+    22: ['#r22', 'Screenshot_Right_Middle.jpg'],
+    23: ['#r23', 'Screenshot_Right_Bottom.jpg'],
 };
 
 function hideBacksList(){
@@ -114,14 +116,6 @@ function convertDataURIToBinary(dataURI) {
         array[i] = raw.charCodeAt(i);
     }
     return array;
-}
-
-function saveImages(images){
-    var zip = new JSZip();
-    images.forEach(function(val){
-        zip.file(ImagesNames[val][1], convertDataURIToBinary($(ImagesNames[val][0]).attr('src')));
-    });
-    saveAs(zip.generate({type:"blob"}), "BackgroundImages.zip");
 }
 
 var randomBackground = function() {
@@ -231,6 +225,8 @@ function reloadImages(){
 }
 
 function CropImages(){
+    var bgheight = $('#bgImgEl').height();
+    var uh = bgheight - 272;
     var bgWidth = $('#bgImgEl').width();
     var ImageType = bgWidth > 2000 ? 1 :
         bgWidth <= 1280 ? 2 : 0;
@@ -244,16 +240,21 @@ function CropImages(){
         images: [],
     };
 
+    if(rh){
+        fillImage($('#big1'), leftOffset[ImageType], rOffset1, 506, h1, ImagesNames[10][1], true);
+        fillImage($('#r11'), 514 + leftOffset[ImageType], rOffset1, 100, uh, ImagesNames[11][1]);
+    }
+    else{
+        fillImage($('#big1'), leftOffset[ImageType], rOffset1, 506, h1, ImagesNames[10][1], true);
+        fillImage($('#r11'), 514 + leftOffset[ImageType], rOffset1, 100, 80, ImagesNames[11][1]);
+        fillImage($('#r12'), 514 + leftOffset[ImageType], rOffset1 + 93, 100, 80, ImagesNames[12][1]);
+        fillImage($('#r13'), 514 + leftOffset[ImageType], rOffset1 + 186, 100, 80, ImagesNames[13][1]);
 
-    fillImage($('#big1'), leftOffset[ImageType], rOffset1, 506, h1, ImagesNames[10][1], true);
-    fillImage($('#r11'), 514 + leftOffset[ImageType], rOffset1, 100, 80, ImagesNames[11][1]);
-    fillImage($('#r12'), 514 + leftOffset[ImageType], rOffset1 + 93, 100, 80, ImagesNames[12][1]);
-    fillImage($('#r13'), 514 + leftOffset[ImageType], rOffset1 + 186, 100, 80, ImagesNames[13][1]);
-
-    fillImage($('#big2'), leftOffset[ImageType], rOffset2, 506, h2, ImagesNames[20][1], true);
-    fillImage($('#r21'), 514 + leftOffset[ImageType], rOffset2, 100, 80, ImagesNames[21][1]);
-    fillImage($('#r22'), 514 + leftOffset[ImageType], rOffset2 + 93, 100, 80, ImagesNames[22][1]);
-    fillImage($('#r23'), 514 + leftOffset[ImageType], rOffset2 + 186, 100, 80, ImagesNames[23][1]);
+        fillImage($('#big2'), leftOffset[ImageType], rOffset2, 506, h2, ImagesNames[20][1], true);
+        fillImage($('#r21'), 514 + leftOffset[ImageType], rOffset2, 100, 80, ImagesNames[21][1]);
+        fillImage($('#r22'), 514 + leftOffset[ImageType], rOffset2 + 93, 100, 80, ImagesNames[22][1]);
+        fillImage($('#r23'), 514 + leftOffset[ImageType], rOffset2 + 186, 100, 80, ImagesNames[23][1]);
+    }
 
     fillImage($('#avatar'), leftOffset[ImageType] - 9, 34, 164, 164, ImagesNames[0][1]);
 
@@ -348,7 +349,7 @@ $(function () {
     if(window.location.hostname == "sapic.github.io"){
         window.location = 'https://steam.design/' + location.hash;
     }
-
+    
     loginFunc();
 
     var userId = null;
@@ -428,10 +429,32 @@ $(function () {
         .on('resizeend', function(){
             reloadImages();
         });
-    $('#toggleResize').click(function(){
-        $('.resizeType').each(function(i,elem){
-            $(elem).css('display', $(elem).css('display') != 'none' ? 'none' : 'block' )
-        });
+    $('#toggleLong').click(function(){
+        $('.resizeType').each(function(){
+            $(this).toggle()
+        });     
+        if(!t){
+            var bh = $('#bgImgEl').height();
+            var uh = bh - 272;
+            $('#hBig1').css('height', uh);
+            $('#sssc').hide();
+            $('#r12r').hide();
+            $('#r13r').hide();
+            $('#r11').css('height', uh);
+            $('#r11r').css('height', uh);
+            rh = true;
+            t = true;
+        }else{
+            $('#hBig1').css('height', 506);
+            $('#sssc').show();
+            $('#r12r').show();
+            $('#r13r').show();
+            $('#r11').css('height', 80);
+            $('#r11r').css('height', 80);
+            rh = false;
+            t = false;
+        }
+        CropImages();
     });
     $("#slFSize").on("change", function(){
         $('#hBig1').css('height', this.value);
@@ -451,14 +474,5 @@ $(function () {
             window.open('http://steam.tools/backgrounds/#/' + loadedBack.split('/').reverse()[0], '_newtab');
         }
     });
-    /*$("#saveAll").click(function(){
-        saveImages([0,10,11,12,13,20,21,22,23]);
-    });
-    $("#saveFirst").click(function(){
-        saveImages([10,11,12,13]);
-    });
-    $("#saveSecond").click(function(){
-        saveImages([20,21,22,23]);
-    });*/
     disqusit();
 });
