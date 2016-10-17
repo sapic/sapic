@@ -1,5 +1,5 @@
 var background = null;
-var t;
+var toggle;
 var rh = false;
 var loadedBack = null;
 var disqus_loaded = false;
@@ -433,7 +433,7 @@ $(function () {
         $('.resizeType').each(function(){
             $(this).toggle()
         });     
-        if(!t){
+        if(!toggle){
             var bh = $('#bgImgEl').height();
             var uh = bh - 272;
             $('#hBig1').css('height', uh);
@@ -443,7 +443,7 @@ $(function () {
             $('#r11').css('height', uh);
             $('#r11r').css('height', uh);
             rh = true;
-            t = true;
+            toggle = true;
         }else{
             $('#hBig1').css('height', 506);
             $('#sssc').show();
@@ -452,7 +452,7 @@ $(function () {
             $('#r11').css('height', 80);
             $('#r11r').css('height', 80);
             rh = false;
-            t = false;
+            toggle = false;
         }
         CropImages();
     });
