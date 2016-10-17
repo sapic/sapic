@@ -133,6 +133,17 @@ var randomBanner = function() {
     return banners[Math.floor(Math.random()*banners.length)];
 };
 
+function updateLength() {
+    setTimeout(function() {
+        var bgheight = $('#bgImgEl').height();
+        var uh = bgheight - 272;
+        if(rh){
+            $('#hBig1').css('height', uh);
+            $('#r11').css('height', uh);
+            $('#r11r').css('height', uh);
+        }
+    }, 500);
+}
 function disqusit() {
     if( disqus_loaded === false ){
             var dsq = document.createElement('script'); dsq.type = 'text/javascript'; dsq.async = true;
@@ -440,6 +451,7 @@ $(function () {
             url = randomBackground();
         }
         window.location.href = "#" + url;
+        updateLength();
     });
 
     interact('.resizable')
@@ -467,6 +479,7 @@ $(function () {
     });
     $("#randomBG").click(function(){
         window.location.href = "#" + randomBackground();
+        updateLength();   
     });
     $("#getBg").click(function(){
         if(currentBGInfo) {
