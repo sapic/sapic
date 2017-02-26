@@ -253,7 +253,7 @@ function CropImages(){
 
     if(rh){
         fillImage($('#big1'), leftOffset[ImageType], rOffset1, 506, h1, ImagesNames[10][1], true);
-        fillImage($('#r11'), 514 + leftOffset[ImageType], rOffset1, 100, uh, ImagesNames[11][1]);
+        fillImage($('#r11'), 514 + leftOffset[ImageType], rOffset1, 100, h1, ImagesNames[11][1]);
     }
     else{
         fillImage($('#big1'), leftOffset[ImageType], rOffset1, 506, h1, ImagesNames[10][1], true);
@@ -462,6 +462,9 @@ $(function () {
             var newHeight = parseFloat(target.style.height) + event.dy;
             if(newHeight >= 284){
                 target.style.height = newHeight + 'px';
+            }
+            if(rh){
+                $('#r11').css('height', newHeight);
             }
             //target.textContent = newWidth + '×' + newHeight;
         })
