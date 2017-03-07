@@ -2,6 +2,14 @@
 	height: auto !important;
 	overflow-x: hidden;
 }
+.social-sapic{
+	position: relative;
+	top: 18px;
+}
+.bg_link{
+	position: relative;
+	top: 5px;
+}
 .backsList{
     height: auto !important;
     max-height: 330px;

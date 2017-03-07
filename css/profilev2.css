@@ -149,6 +149,8 @@ div.profile_page.has_profile_background {
 
 .profile_header_actions {
 	white-space: nowrap;
+	top: 9px;
+	position: relative;
 }
 
 .profile_header .persona_name {
@@ -212,10 +214,13 @@ div.profile_page.has_profile_background {
 	border-radius: 3px;
 	background-color: #222223;
 	height: 70px;
-
+	left: 7px;
+	top: 9px;
+	position: relative;
 	box-shadow: 1px 1px 0 #343944;
 
 	margin-bottom: 13px;
+
 }
 
 .profile_header_badge_instructions {
