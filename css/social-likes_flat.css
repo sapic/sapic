@@ -154,7 +154,7 @@
     font-size: 14px
 }
 .social-likes__widget {
-    margin: .5em;
+    margin: .25em;
     line-height: 1.5;
     border: 0;
     text-align: left;
@@ -264,7 +264,7 @@
     color: #3d5b95
 }
 .social-likes__icon_facebook {
-    left: .25em;
+    left: 8px;
     top: .05em;
     font-size: 1.1em
 }
