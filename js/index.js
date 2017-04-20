@@ -124,7 +124,7 @@ var randomBackground = function() {
     if(typeof bg !== 'string'){
         currentBGInfo = bg;
         console.log(bg.hls);
-        return '/image/' + bg.url + '.jpg';
+        return 'https://steam.design/image/' + bg.url + '.jpg';
     }else{
         currentBGInfo = null;
         return bg;
