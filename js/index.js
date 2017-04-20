@@ -124,7 +124,7 @@ var randomBackground = function() {
     if(typeof bg !== 'string'){
         currentBGInfo = bg;
         console.log(bg.hls);
-        return 'http://cdn.steamcommunity.com/economy/image/' + bg.img;
+        return '/image/' + bg.url + '.jpg';
     }else{
         currentBGInfo = null;
         return bg;
