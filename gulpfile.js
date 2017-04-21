@@ -27,14 +27,14 @@ gulp.task('css2', ['css1'], function(){
         .pipe(gulp.dest('./out'));
 });
 gulp.task('js', ['css2'], function(){
+    var content = fs.readFileSync('./js/index.js', {encoding:'utf-8'});
+    fs.writeFileSync('./js/index.js', content.replace('{{#vernum}}', process.env.CIRCLE_BUILD_NUM));
     return gulp.src(['./js/jquery.min.js', './js/*'])
         .pipe(concat('main.js'))
         .pipe(uglify())
         .pipe(gulp.dest('./out'));
 });
 gulp.task('html', ['js'], function(){
-    var content = fs.readFileSync('index.html', {encoding:'utf-8'});
-    fs.writeFileSync('index.html', content.replace('{{#vernum}}', process.env.CIRCLE_BUILD_NUM));
     return gulp.src(['index.html'])
         .pipe(useref())
         .pipe(htmlmin())
