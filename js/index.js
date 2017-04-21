@@ -135,15 +135,6 @@ var randomBanner = function() {
 };
 
 function updateLength() {
-    setTimeout(function() {
-        var bgheight = $('#bgImgEl').height();
-        var uh = bgheight - 272;
-        if(rh){
-            $('#hBig1').css('height', uh);
-            $('#r11').css('height', uh);
-            $('#r11r').css('height', uh);
-        }
-    }, 500);
 }
 function disqusit() {
     if( disqus_loaded === false ){
