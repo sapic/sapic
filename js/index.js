@@ -1,4 +1,4 @@
-var background = null;
+background = null;
 var toggle;
 var rh = false;
 var loadedBack = null;
@@ -136,8 +136,6 @@ var randomBanner = function() {
     return banners[Math.floor(Math.random()*banners.length)];
 };
 
-function updateLength() {
-}
 function disqusit() {
     if( disqus_loaded === false ){
             var dsq = document.createElement('script'); dsq.type = 'text/javascript'; dsq.async = true;
@@ -324,7 +322,7 @@ function createInventory(id){
     $.ajax('https://steam.design/sth.php?id=' + id).done(function(data){
         var response = data;
         response.backgrounds.forEach(function(back){
-            var itemHolder = $("<div>", {class: "itemHolder", onClick: "updateLength()", alt: back.name.toLowerCase() + " " + back.type.toLowerCase()});
+            var itemHolder = $("<div>", {class: "itemHolder", alt: back.name.toLowerCase() + " " + back.type.toLowerCase()});
             var item = $("<div>", {class: "item app753 context6 activeInfo"});
             var bgUrl = $("<a>", {href: "#" + back.actions[0].link, class: "inventory_item_link"});
             var img = $("<img>", {src: "http://steamcommunity-a.akamaihd.net/economy/image/" + back.icon_url + "/96fx96f"});
@@ -450,7 +448,6 @@ $(function () {
             url = randomBackground();
         }
         window.location.href = "#" + url;
-        updateLength();
     });
 
     interact('.resizable')
@@ -480,8 +477,7 @@ $(function () {
         reloadImages();
     });
     $("#randomBG").click(function(){
-        window.location.href = "#" + randomBackground();
-        updateLength();   
+        window.location.href = "#" + randomBackground();  
     });
     $("#getBg").click(function(){
         if(currentBGInfo) {
