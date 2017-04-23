@@ -290,10 +290,7 @@ function fillImage(element, x, y, w, h, name, changeCss){
         h: h,
     });
 }
-function toggleLong(){
-        $('.resizeType').each(function(){
-            $(this).toggle()
-        });     
+function toggleLong(){    
         if(!toggle){
             var bh = $('#bgImgEl').height();
             var uh = bh - 272;
