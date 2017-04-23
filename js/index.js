@@ -466,11 +466,7 @@ $(function() {
         window.location.href = "#" + randomBackground();
     });
     $("#getBg").click(function() {
-        if (currentBGInfo) {
-            window.open('http://steam.tools/backgrounds/#/' + currentBGInfo.game, '_newtab');
-        } else {
-            window.open('http://steam.tools/backgrounds/#/' + loadedBack.split('/').reverse()[0], '_newtab');
-        }
+            window.open('https://images.google.com/searchbyimage?image_url=' + background, '_newtab');
     });
     $("#version").html("Version #" + version);
 });
