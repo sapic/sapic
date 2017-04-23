@@ -1,6 +1,6 @@
 background = null;
-var toggle;
-var rh = false;
+var toggle = true;
+var rh = true;
 var loadedBack = null;
 var disqus_loaded = false;
 var disqus_shortname = 'sapic';
@@ -291,29 +291,29 @@ function fillImage(element, x, y, w, h, name, changeCss){
     });
 }
 function toggleLong(){    
-        if(!toggle){
-            var bh = $('#bgImgEl').height();
-            var uh = bh - 272;
-            $('#hBig1').css('height', uh);
-            $('#sssc').hide();
-            $('#r12r').hide();
-            $('#r13r').hide();
-            $('#r11').css('height', uh);
-            $('#r11r').css('height', uh);
-            rh = true;
-            toggle = true;
-        }else{
-            $('#hBig1').css('height', 506);
-            $('#sssc').show();
-            $('#r12r').show();
-            $('#r13r').show();
-            $('#r11').css('height', 80);
-            $('#r11r').css('height', 80);
-            rh = false;
-            toggle = false;
-        }
-        CropImages();
+    if(!toggle){
+        var bh = $('#bgImgEl').height();
+        var uh = bh - 272;
+        $('#hBig1').css('height', uh);
+        $('#sssc').hide();
+        $('#r12r').hide();
+        $('#r13r').hide();
+        $('#r11').css('height', uh);
+        $('#r11r').css('height', uh);
+        rh = true;
+        toggle = true;
+    }else{
+        $('#hBig1').css('height', 506);
+        $('#sssc').show();
+        $('#r12r').show();
+        $('#r13r').show();
+        $('#r11').css('height', 80);
+        $('#r11r').css('height', 80);
+        rh = false;
+        toggle = false;
     }
+    CropImages();
+}
 
 function createInventory(id){
     $.ajax('https://steam.design/sth.php?id=' + id).done(function(data){
