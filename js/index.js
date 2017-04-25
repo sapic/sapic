@@ -383,27 +383,6 @@ $(function() {
         addArrows();
     }
 
-    $('input:radio').change(
-        function() {
-            switch ($('input[type="radio"]:checked').val()) {
-                case 'nn':
-                    $('#hBig1').css('height', 284);
-                    $('#hBig2').css('height', 284);
-                    break;
-                case 'nb':
-                    $('#hBig1').css('height', 284);
-                    $('#hBig2').css('height', 506);
-                    break;
-                case 'bn':
-                    $('#hBig1').css('height', 506);
-                    $('#hBig2').css('height', 284);
-                    break;
-            }
-            reloadImages();
-        }
-    );
-
-
     reloadImages();
 
     $(window).bind('hashchange', function() {
