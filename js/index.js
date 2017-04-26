@@ -8,7 +8,7 @@ var bgSaveInfo = {
     images: [],
 };
 var workshop = false;
-var ss;
+var ss = true;
 
 var version = '{{#vernum}}';
 
@@ -249,7 +249,7 @@ function CropImages() {
             fillImage($('#big1'), leftOffset[ImageType], rOffset1, 506, h1, ImagesNames[10][1], true);
             fillImage($('#r11'), 514 + leftOffset[ImageType], rOffset1, 100, h1, ImagesNames[11][1]);
         }
-    } else {
+    } else if (!rh) {
         if (!ss && !workshop) {
             fillImage($('#big1'), leftOffset[ImageType], rOffset1, 506, h1, ImagesNames[10][1], true);
             fillImage($('#r11'), 514 + leftOffset[ImageType], rOffset1, 100, 80, ImagesNames[11][1]);
@@ -275,7 +275,7 @@ function CropImages() {
             fillImage($('#r21'), 514 + leftOffset[ImageType], rOffset2, 100, 80, ImagesNames[21][1]);
             fillImage($('#r22'), 514 + leftOffset[ImageType], rOffset2 + 93, 100, 80, ImagesNames[22][1]);
             fillImage($('#r23'), 514 + leftOffset[ImageType], rOffset2 + 186, 100, 80, ImagesNames[23][1]);
-        } else {
+        } else if (workshop && ss) {
             fillImage($('#big1'), leftOffset[ImageType], rOffset1, 506, h1, ImagesNames[10][1], true);
             fillImage($('#r11'), 514 + leftOffset[ImageType], rOffset1, 100, 80, ImagesNames[11][1]);
             fillImage($('#r12'), 514 + leftOffset[ImageType], rOffset1 + 93, 100, 80, ImagesNames[12][1]);
@@ -290,7 +290,11 @@ function CropImages() {
             fillImage($('#w2'), 156 + leftOffset[ImageType], rOffset3, 150, 150, ImagesNames[31][1]);
             fillImage($('#w3'), 309 + leftOffset[ImageType], rOffset3, 150, 150, ImagesNames[32][1]);
             fillImage($('#w4'), 464 + leftOffset[ImageType], rOffset3, 150, 150, ImagesNames[33][1]);
+        } else { 
+            alert("Nice. You broke it. Please tell oddball in the discord how this happened. Error code 1.")
         }
+    } else {
+        alert("Nice. You broke it. Please tell oddball in the discord how this happened. Error code 2.")
     }
 
     fillImage($('#avatar'), leftOffset[ImageType] - 9, 34, 164, 164, ImagesNames[0][1]);
