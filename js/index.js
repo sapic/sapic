@@ -260,10 +260,10 @@ function fillImage(element, x, y, w, h, name, changeCss) {
 
     bgSaveInfo.images.push({
         name: name,
-        x: x,
-        y: y,
-        w: w,
-        h: h,
+        x: Math.floor(x),
+        y: Math.floor(y),
+        w: Math.floor(w),
+        h: Math.floor(h),
     });
 }
 
