@@ -98,6 +98,11 @@ var ImagesNames = {
     21: ['#r21', 'Screenshot_Right_Top.jpg'],
     22: ['#r22', 'Screenshot_Right_Middle.jpg'],
     23: ['#r23', 'Screenshot_Right_Bottom.jpg'],
+
+    30: ['#w1', 'Workshop_Left.png'],
+    31: ['#w1', 'Workshop_Middle_Left.png'],
+    32: ['#w1', 'Workshop_Middle_Right.png'],
+    33: ['#w1', 'Workshop_Right.png'],
 };
 
 function hideBacksList() {
@@ -195,7 +200,7 @@ function reloadImages() {
     $('#bg1').css("background-image", "url('" + background + "')");
     $('#bg2').css("background-image", "url('" + background + "')");
 
-    console.log('background', background, loadedBack);
+    console.log('The current background URL is:', background);
     if (background != loadedBack) {
         bgChanged();
         getImageBase64(background, function() {
@@ -223,6 +228,7 @@ function CropImages() {
     var h2 = $('#hBig2').height();
     var rOffset1 = $('#hBig1').offset().top - $('.profile_header').offset().top + 1;
     var rOffset2 = $('#hBig2').offset().top - $('.profile_header').offset().top + 1;
+    //var rOffset3 = $('#w1').offset().top - $('.profile_header').offset().top + 1;
 
     bgSaveInfo = {
         url: background,
@@ -232,7 +238,20 @@ function CropImages() {
     if (rh) {
         fillImage($('#big1'), leftOffset[ImageType], rOffset1, 506, h1, ImagesNames[10][1], true);
         fillImage($('#r11'), 514 + leftOffset[ImageType], rOffset1, 100, h1, ImagesNames[11][1]);
-    } else {
+    } else if (workshop) {
+        fillImage($('#w1'), 1 + leftOffset[ImageType], rOffset3, 150, 150, ImagesNames[30][1]);
+        fillImage($('#w2'), 156 + leftOffset[ImageType], rOffset3, 150, 150, ImagesNames[31][1]);
+        fillImage($('#w3'), 309 + leftOffset[ImageType], rOffset3, 150, 150, ImagesNames[32][1]);
+        fillImage($('#w4'), 464 + leftOffset[ImageType], rOffset3, 150, 150, ImagesNames[33][1]);
+    } else if (workshop && rh) {
+        fillImage($('#w1'), 1 + leftOffset[ImageType], rOffset3, 150, 150, ImagesNames[30][1]);
+        fillImage($('#w2'), 156 + leftOffset[ImageType], rOffset3, 150, 150, ImagesNames[31][1]);
+        fillImage($('#w3'), 309 + leftOffset[ImageType], rOffset3, 150, 150, ImagesNames[32][1]);
+        fillImage($('#w4'), 464 + leftOffset[ImageType], rOffset3, 150, 150, ImagesNames[33][1]);
+
+        fillImage($('#big1'), leftOffset[ImageType], rOffset1, 506, h1, ImagesNames[10][1], true);
+        fillImage($('#r11'), 514 + leftOffset[ImageType], rOffset1, 100, h1, ImagesNames[11][1]);
+    } else if (!rh && !workshop) {
         fillImage($('#big1'), leftOffset[ImageType], rOffset1, 506, h1, ImagesNames[10][1], true);
         fillImage($('#r11'), 514 + leftOffset[ImageType], rOffset1, 100, 80, ImagesNames[11][1]);
         fillImage($('#r12'), 514 + leftOffset[ImageType], rOffset1 + 93, 100, 80, ImagesNames[12][1]);
@@ -242,6 +261,23 @@ function CropImages() {
         fillImage($('#r21'), 514 + leftOffset[ImageType], rOffset2, 100, 80, ImagesNames[21][1]);
         fillImage($('#r22'), 514 + leftOffset[ImageType], rOffset2 + 93, 100, 80, ImagesNames[22][1]);
         fillImage($('#r23'), 514 + leftOffset[ImageType], rOffset2 + 186, 100, 80, ImagesNames[23][1]);
+    } else if (!rh && workshop) {
+        fillImage($('#big1'), leftOffset[ImageType], rOffset1, 506, h1, ImagesNames[10][1], true);
+        fillImage($('#r11'), 514 + leftOffset[ImageType], rOffset1, 100, 80, ImagesNames[11][1]);
+        fillImage($('#r12'), 514 + leftOffset[ImageType], rOffset1 + 93, 100, 80, ImagesNames[12][1]);
+        fillImage($('#r13'), 514 + leftOffset[ImageType], rOffset1 + 186, 100, 80, ImagesNames[13][1]);
+
+        fillImage($('#big2'), leftOffset[ImageType], rOffset2, 506, h2, ImagesNames[20][1], true);
+        fillImage($('#r21'), 514 + leftOffset[ImageType], rOffset2, 100, 80, ImagesNames[21][1]);
+        fillImage($('#r22'), 514 + leftOffset[ImageType], rOffset2 + 93, 100, 80, ImagesNames[22][1]);
+        fillImage($('#r23'), 514 + leftOffset[ImageType], rOffset2 + 186, 100, 80, ImagesNames[23][1]);
+
+        fillImage($('#w1'), 1 + leftOffset[ImageType], rOffset3, 150, 150, ImagesNames[30][1]);
+        fillImage($('#w2'), 156 + leftOffset[ImageType], rOffset3, 150, 150, ImagesNames[31][1]);
+        fillImage($('#w3'), 309 + leftOffset[ImageType], rOffset3, 150, 150, ImagesNames[32][1]);
+        fillImage($('#w4'), 464 + leftOffset[ImageType], rOffset3, 150, 150, ImagesNames[33][1]);
+    } else {
+       alert("nice, you broke it. please tell oddball how you did this in the discord.")
     }
 
     fillImage($('#avatar'), leftOffset[ImageType] - 9, 34, 164, 164, ImagesNames[0][1]);
