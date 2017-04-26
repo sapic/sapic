@@ -6,8 +6,8 @@ var bgSaveInfo = {
     url: null,
     images: [],
 };
-var workshop = false;
-var ss = true;
+//var workshop = false;
+//var ss = true;
 
 var version = '{{#vernum}}';
 
@@ -235,7 +235,7 @@ function CropImages() {
         url: background,
         images: [],
     };
-    if (toggle) {
+    /* if (toggle) {
         if (workshop){
             fillImage($('#big1'), leftOffset[ImageType], rOffset1, 506, h1, ImagesNames[10][1], true);
             fillImage($('#r11'), 514 + leftOffset[ImageType], rOffset1, 100, h1, ImagesNames[11][1]);
@@ -294,6 +294,26 @@ function CropImages() {
         }
     } else {
         alert("Nice. You broke it. Please tell oddball in the discord how this happened. Error code 2.")
+    }*/
+
+    if (toggle) {
+            fillImage($('#big1'), leftOffset[ImageType], rOffset1, 506, h1, ImagesNames[10][1], true);
+            fillImage($('#r11'), 514 + leftOffset[ImageType], rOffset1, 100, h1, ImagesNames[11][1]);
+    } else {
+            fillImage($('#big1'), leftOffset[ImageType], rOffset1, 506, h1, ImagesNames[10][1], true);
+            fillImage($('#r11'), 514 + leftOffset[ImageType], rOffset1, 100, 80, ImagesNames[11][1]);
+            fillImage($('#r12'), 514 + leftOffset[ImageType], rOffset1 + 93, 100, 80, ImagesNames[12][1]);
+            fillImage($('#r13'), 514 + leftOffset[ImageType], rOffset1 + 186, 100, 80, ImagesNames[13][1]);
+
+            fillImage($('#big2'), leftOffset[ImageType], rOffset2, 506, h2, ImagesNames[20][1], true);
+            fillImage($('#r21'), 514 + leftOffset[ImageType], rOffset2, 100, 80, ImagesNames[21][1]);
+            fillImage($('#r22'), 514 + leftOffset[ImageType], rOffset2 + 93, 100, 80, ImagesNames[22][1]);
+            fillImage($('#r23'), 514 + leftOffset[ImageType], rOffset2 + 186, 100, 80, ImagesNames[23][1]);
+
+            fillImage($('#w1'), 1 + leftOffset[ImageType], rOffset3, 150, 150, ImagesNames[30][1]);
+            fillImage($('#w2'), 156 + leftOffset[ImageType], rOffset3, 150, 150, ImagesNames[31][1]);
+            fillImage($('#w3'), 309 + leftOffset[ImageType], rOffset3, 150, 150, ImagesNames[32][1]);
+            fillImage($('#w4'), 464 + leftOffset[ImageType], rOffset3, 150, 150, ImagesNames[33][1]);
     }
 
     fillImage($('#avatar'), leftOffset[ImageType] - 9, 34, 164, 164, ImagesNames[0][1]);
@@ -329,6 +349,7 @@ function toggleLong() {
         $('#sssc').hide();
         $('#r12r').hide();
         $('#r13r').hide();
+        $('#ws').hide();
         $('#r11').css('height', uh);
         $('#r11r').css('height', uh);
         toggle = true;
@@ -337,6 +358,7 @@ function toggleLong() {
         $('#sssc').show();
         $('#r12r').show();
         $('#r13r').show();
+        $('#ws').show();
         $('#r11').css('height', 80);
         $('#r11r').css('height', 80);
         toggle = false;
