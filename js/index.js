@@ -200,6 +200,13 @@ function reloadImages() {
         bgChanged();
         getImageBase64(background, function() {
             CropImages();
+            if (toggle) {
+                var bgheight = $('#bgImgEl').height();
+                var uh = bgheight - 272;
+                $('#hBig1').css('height', uh);
+                $('#r11').css('height', uh);
+                $('#r11r').css('height', uh);
+            }
         });
     } else {
         CropImages();
@@ -209,11 +216,6 @@ function reloadImages() {
 function CropImages() {
     var bgheight = $('#bgImgEl').height();
     var uh = bgheight - 272;
-    if (toggle) {
-        $('#hBig1').css('height', uh);
-        $('#r11').css('height', uh);
-        $('#r11r').css('height', uh);
-    }
     var bgWidth = $('#bgImgEl').width();
     var ImageType = bgWidth > 2000 ? 1 :
         bgWidth <= 1280 ? 2 : 0;
