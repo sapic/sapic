@@ -367,7 +367,7 @@ function toggleLong() {
 }
 
 function createInventory(id) {
-    $.ajax('https://steam.design/sth.php?id=' + id).done(function(data) {
+    $.ajax('https://d.steam.design/backpack/' + id + '/items.json').done(function(data) {
         var response = data;
         response.backgrounds.forEach(function(back) {
             var itemHolder = $("<div>", {
