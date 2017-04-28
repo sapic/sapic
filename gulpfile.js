@@ -45,7 +45,7 @@ gulp.task('images', function(){
         .pipe(gulp.dest('./out/images/'));
 });
 
-gulp.task('default', ['html', 'favicon', 'images'], function() {
+gulp.task('default', ['html', 'images'], function() {
     return gulp.src('./out/temp.css', { read: false })
         .pipe(rimraf());
 });
