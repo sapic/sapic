@@ -55,7 +55,7 @@ var backgroundsList = [
     'http://cdn.steamcommunity.com/economy/image/U8721VM9p9C2v1o6cKJ4qEnGqnE7IoTQgZI-VTdwyTBeimAcIoxXpgK8bPeslY9pPJIvB5IWW2-452kaM8heLSRgleGApbNPwO94PqMp1rKsD14mvOUTVj2yF0DQgWWVe-b6lFI2ZpZ_IBnzkcsb79hSDJ95SOLwP2SMpQ'
 ];
 
-$.ajax('https://d.steam.design/bg.json').done(function(data) {
+$.ajax('https://steam.design/bg.json').done(function(data) {
     backgroundsList = data;
 });
 
@@ -128,7 +128,7 @@ var randomBackground = function() {
     if (typeof bg !== 'string') {
         currentBGInfo = bg;
         console.log(bg.hls);
-        return 'https://d.steam.design/image/' + bg.url + '.jpg';
+        return 'https://steam.design/image/' + bg.url + '.jpg';
     } else {
         currentBGInfo = null;
         return bg;
@@ -318,7 +318,7 @@ function CropImages() {
 
     fillImage($('#avatar'), leftOffset[ImageType] - 9, 34, 164, 164, ImagesNames[0][1]);
 
-    $(".saveButton").attr("href", "https://d.steam.design/raw/" + btoa(JSON.stringify(bgSaveInfo)));
+    $(".saveButton").attr("href", "https://steam.design/raw/" + btoa(JSON.stringify(bgSaveInfo)));
 }
 
 function fillImage(element, x, y, w, h, name, changeCss) {
@@ -367,7 +367,7 @@ function toggleLong() {
 }
 
 function createInventory(id) {
-    $.ajax('https://d.steam.design/backpack/' + id + '/items.json').done(function(data) {
+    $.ajax('https://steam.design/backpack/' + id + '/items.json').done(function(data) {
         var response = data;
         response.backgrounds.forEach(function(back) {
             var itemHolder = $("<div>", {
