@@ -55,7 +55,7 @@ var backgroundsList = [
     'http://cdn.steamcommunity.com/economy/image/U8721VM9p9C2v1o6cKJ4qEnGqnE7IoTQgZI-VTdwyTBeimAcIoxXpgK8bPeslY9pPJIvB5IWW2-452kaM8heLSRgleGApbNPwO94PqMp1rKsD14mvOUTVj2yF0DQgWWVe-b6lFI2ZpZ_IBnzkcsb79hSDJ95SOLwP2SMpQ'
 ];
 
-$.ajax('http://d.steam.design/bg.json').done(function(data) {
+$.ajax('https://d.steam.design/bg.json').done(function(data) {
     backgroundsList = data;
 });
 
