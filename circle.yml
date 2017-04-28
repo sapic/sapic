@@ -15,7 +15,7 @@ test:
     - mkdir out
     - git clone https://github.com/SAPIC/SAPIC.github.io ./:
         pwd: out
-    - gulp
+    - CIRCLE_BUILD_NUM=${CIRCLE_BUILD_NUM} gulp
     - git config --global user.name "${GH_NAME}"
     - git config --global user.email "${GH_MAIL}"
     - git add --a:
