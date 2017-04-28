@@ -9,7 +9,7 @@ var bgSaveInfo = {
 //var workshop = false;
 //var ss = true;
 
-var version = '{{#vernum}}';
+var version = 'undefined';
 
 var backgroundsList = [
     'http://cdn.steamcommunity.com/economy/image/U8721VM9p9C2v1o6cKJ4qEnGqnE7IoTQgZI-VTdwyTBeimAcIoxXpgK8bPeslY9pPJIvB5IWW2-452kaM8heLSRgleGBp7RJxO94PvF90-StAl5z5OYSUWTjFxbU02aQe-apwlFmMZUsfRmhkpsZu94EC595SOKo4TzXhQ',
@@ -55,8 +55,8 @@ var backgroundsList = [
     'http://cdn.steamcommunity.com/economy/image/U8721VM9p9C2v1o6cKJ4qEnGqnE7IoTQgZI-VTdwyTBeimAcIoxXpgK8bPeslY9pPJIvB5IWW2-452kaM8heLSRgleGApbNPwO94PqMp1rKsD14mvOUTVj2yF0DQgWWVe-b6lFI2ZpZ_IBnzkcsb79hSDJ95SOLwP2SMpQ'
 ];
 
-$.ajax('//steamguard.io/bg.php').done(function(data) {
-    backgroundsList = JSON.parse(data);
+$.ajax('http://d.steam.design/bg.json').done(function(data) {
+    backgroundsList = data;
 });
 
 var banners = [

@@ -31,7 +31,9 @@ gulp.task('js', ['css2'], function(){
     fs.writeFileSync('./js/index.js', content.replace('{{#vernum}}', process.env.CIRCLE_BUILD_NUM));
     return gulp.src(['./js/jquery.min.js', './js/*'])
         .pipe(concat('main.js'))
-        .pipe(uglify())
+        .pipe(uglify({
+          mangle: true,
+        }))
         .pipe(gulp.dest('./out'));
 });
 gulp.task('html', ['js'], function(){
