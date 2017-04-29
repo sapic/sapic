@@ -6,8 +6,6 @@ var bgSaveInfo = {
     url: null,
     images: [],
 };
-//var workshop = false;
-//var ss = true;
 
 var version = '{{#vernum}}';
 
