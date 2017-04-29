@@ -16,6 +16,8 @@
     overflow: auto;
     overflow-x: hidden;
     width: 940px;
+	position: relative;
+	left: 5px;
 }
 .flipped {
     transform: scaleY(-1);
@@ -69,6 +71,11 @@
 	filter: brightness(1.2) grayscale(.5) opacity(.9);
 }
 
+.filter{
+	position: relative;
+	top: 2px;
+}
+
 .arrow {
 	margin: 0 0 0 10px;
 	cursor: pointer;
@@ -93,6 +100,9 @@
 	text-align: center;
     color: #5491cf;
     font-weight: bold;
+	position: relative;
+	right: 25px;
+	top: 2px;
 }
 .top_hint:hover{
     text-decoration: underline;
