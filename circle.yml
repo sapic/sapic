@@ -20,7 +20,7 @@ test:
     - git config --global user.email "${GH_MAIL}"
     - git add --a:
         pwd: out
-    - git commit -m 'Version ${CIRCLE_BUILD_NUM}':
+    - git commit -m 'AutoPush':
         pwd: out
     - git push --force --quiet "https://${GH_ATOKEN}@github.com/SAPIC/SAPIC.github.io"> /dev/null 2>&1:
         pwd: out
