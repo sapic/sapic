@@ -393,7 +393,7 @@ function createInventory(id) {
             $('.profile_customization_area').append(this);
         });
         addArrows();
-        $("#hideBackList").show();
+        $("#hideBacksList").show();
     });
 }
 
@@ -411,7 +411,7 @@ function loginFunc() {
 }
 
 function addArrows() {
-    $('.profile_customization_header').each(function() {
+    $('.profile_customization_header').not('.guide').each(function() {
         $(this).prepend('<span style="float: right" class="arrow down" onclick="elemDown(this);">Down &#8595;</span>' +
             '<span style="float: right" class="arrow up" onclick="elemUp(this);">Up &#8593;</span>');
     });
