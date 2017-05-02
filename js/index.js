@@ -6,8 +6,8 @@ var bgSaveInfo = {
     url: null,
     images: [],
 };
-//var workshop = false;
-//var ss = true;
+var gAd = '<ins class="adsbygoogle" style="display:block" data-ad-client="ca-pub-1034829471687394" data-ad-slot="3330283669" data-ad-format="auto"></ins>';
+var gAdBottom = '<ins class="adsbygoogle" style="display:inline-block;width:930px;height:180px" data-ad-client="ca-pub-1034829471687394" data-ad-slot="3190682864"></ins>';
 
 var version = '{{#vernum}}';
 
@@ -179,8 +179,9 @@ function bgChanged() {
 }
 
 function reloadAds() {
-    var bn = randomBanner();
-    $('.underfr').empty().html('<a href="' + bn[1] + '" target="_blank"><img src="images/' + bn[0] + '"></a>');
+  $('.underfr').html(gAd);
+  $('#leftColAds').html(gAdBottom);
+  (adsbygoogle = window.adsbygoogle || []).push({});
 }
 
 function reloadImages() {
