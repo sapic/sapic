@@ -180,6 +180,8 @@ function bgChanged() {
 
 function reloadAds() {
   $('.underfr').html(gAd);
+  (adsbygoogle = window.adsbygoogle || []).push({});
+
   $('#leftColAds').html(gAdBottom);
   (adsbygoogle = window.adsbygoogle || []).push({});
 }
