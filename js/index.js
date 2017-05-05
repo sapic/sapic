@@ -173,9 +173,21 @@ function getRandomInt(min, max) {
     return Math.floor(Math.random() * (max - min)) + min;
 }
 
-function reloadAds(){
+function bgChanged() {
+    reloadAds();
+}
+
+function noAds(){
     var bn = randomBanner();
     $('.underfr').empty().html('<a href="' + bn[1] + '" target="_blank"><img src="images/' + bn[0] + '"></a>');
+}
+
+function reloadAds() {
+  $('.underfr').html(gAd);
+  (adsbygoogle = window.adsbygoogle || []).push({});
+
+  $('#leftColAds').html(gAdBottom);
+  (adsbygoogle = window.adsbygoogle || []).push({});
 }
 function reloadImages() {
     if (window.location.hash && window.location.hash.indexOf('#login') == -1 &&
@@ -194,11 +206,12 @@ function reloadImages() {
 
     $('#bg1').css("background-image", "url('" + background + "')");
     $('#bg2').css("background-image", "url('" + background + "')");
-
+    
     console.log('The current background URL is:', background);
     if (background != loadedBack) {
         getImageBase64(background, function() {
             CropImages();
+            bgChanged();
             if (toggle) {
                 var bgheight = $('#bgImgEl').height();
                 var uh = bgheight - 272;
@@ -442,7 +455,7 @@ $(function() {
   loginFunc();
   setTimeout(function(){
     if(!document.getElementById('hiFromOddball')){
-        reloadAds();
+        noAds();
     }
   }, 10);
   
