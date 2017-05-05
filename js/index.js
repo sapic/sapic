@@ -6,8 +6,8 @@ var bgSaveInfo = {
     url: null,
     images: [],
 };
-var gAd = '<ins class="adsbygoogle" style="display:block" data-ad-client="ca-pub-1034829471687394" data-ad-slot="3330283669" data-ad-format="auto"></ins>';
-var gAdBottom = '<ins class="adsbygoogle" style="display:inline-block;width:930px;height:180px" data-ad-client="ca-pub-1034829471687394" data-ad-slot="3190682864"></ins>';
+var gAd = '<ins class="adsbygoogle" style="display:block" data-ad-client="ca-pub-6718897784778373" data-ad-slot="7589608163" data-ad-format="auto"></ins>';
+var gAdBottom = '<ins class="adsbygoogle" style="display:inline-block;width:930px;height:180px" data-ad-client="ca-pub-6718897784778373" data-ad-slot="3019807768"></ins>';
 
 var version = '{{#vernum}}';
 
