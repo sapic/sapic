@@ -6,8 +6,6 @@ var bgSaveInfo = {
     url: null,
     images: [],
 };
-var gAd = '<ins class="adsbygoogle" style="display:block" data-ad-client="ca-pub-6718897784778373" data-ad-slot="7589608163" data-ad-format="auto"></ins>';
-var gAdBottom = '<ins class="adsbygoogle" style="display:inline-block;width:930px;height:180px" data-ad-client="ca-pub-6718897784778373" data-ad-slot="3019807768"></ins>';
 
 var version = '{{#vernum}}';
 
@@ -174,18 +172,10 @@ function getRandomInt(min, max) {
     return Math.floor(Math.random() * (max - min)) + min;
 }
 
-function bgChanged() {
-    reloadAds();
+function reloadAds(){
+    var bn = randomBanner();
+    $('.underfr').empty().html('<a href="' + bn[1] + '" target="_blank"><img src="images/' + bn[0] + '"></a>');
 }
-
-function reloadAds() {
-  $('.underfr').html(gAd);
-  (adsbygoogle = window.adsbygoogle || []).push({});
-
-  $('#leftColAds').html(gAdBottom);
-  (adsbygoogle = window.adsbygoogle || []).push({});
-}
-
 function reloadImages() {
     if (window.location.hash && window.location.hash.indexOf('#login') == -1 &&
         window.location.hash.indexOf('#logout') == -1) {
@@ -206,7 +196,6 @@ function reloadImages() {
 
     console.log('The current background URL is:', background);
     if (background != loadedBack) {
-        bgChanged();
         getImageBase64(background, function() {
             CropImages();
             if (toggle) {
@@ -450,6 +439,12 @@ $(function() {
   }
 
   loginFunc();
+  setTimeout(function(){
+    if(!document.getElementById('hiFromOddball')){
+        reloadAds();
+    }
+  }, 10);
+  
 
   var userId = null;
   userId = window.localStorage.getItem('SteamId');
