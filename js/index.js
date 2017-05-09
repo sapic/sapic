@@ -502,7 +502,7 @@ $(function() {
 
   loginFunc();
   setTimeout(function(){
-    if(!document.getElementById('hiFromOddball')){
+    if(!fuckAdBlock) {
         noAds();
     }
   }, 10);
