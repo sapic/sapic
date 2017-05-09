@@ -179,15 +179,15 @@ function bgChanged() {
 function noAds(){
     var bn = randomBanner();
     $('.underfr').empty().html('<a href="' + bn[1] + '" target="_blank"><img src="images/' + bn[0] + '"></a>');
-    $('#leftColAds').remove();
+    $('.rColAds').remove();
     $('.profile_badges').show();
 }
 
 function reloadAds() {
-  $('.underfr').html(gAd);
+  $('.rColAds').html(gAd);
   (adsbygoogle = window.adsbygoogle || []).push({});
 
-  $('#leftColAds').html(gAdBottom);
+  $('#bottomAds').html(gAdBottom);
   (adsbygoogle = window.adsbygoogle || []).push({});
 }
 function reloadImages() {
