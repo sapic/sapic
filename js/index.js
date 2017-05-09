@@ -106,7 +106,7 @@ var ImagesNames = {
 
 function hideBacksList() {
     $('#backsList').toggle('show')
-    $('#backsListImage').toggleClass('flipped')
+    $('#hideBacksList').toggleClass('flipped')
 }
 
 function convertDataURIToBinary(dataURI) {
@@ -399,9 +399,17 @@ function createInventory(id) {
         });
         addArrows();
         $("#hideBacksList").show();
+        $("#refreshInventory").show();
     });
 }
 
+
+
+function refreshInventory(){
+    $.ajax('https://steam.design/backpack/' + id + '/itemsRefresh.json').done(function() {
+        createInventory();
+    });
+};
 
 function loginFunc() {
     if (window.location.hash.indexOf('#login') !== -1) {
@@ -450,6 +458,12 @@ $(function() {
   if (window.location.hostname == "sapic.github.io") {
     window.location = 'https://steam.design/' + location.hash;
   }
+
+  $("#refreshInventory").hover(function(){
+    $(this).addClass("fa-spin");
+    }, function(){
+        $(this).removeClass("fa-spin");
+   });
 
   loginFunc();
   setTimeout(function(){
