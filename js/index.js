@@ -372,9 +372,10 @@ function toggleLong() {
 }
 
 function createInventory(id) {
-    $.ajax('https://steam.design/backpack/' + id + '/items.json').done(function(data) {
-        var response = data;
-        response.backgrounds.forEach(function(back) {
+    var getitems = store.get('backpack');
+    if (getitems) {
+        var getitems = store.get('backpack');
+        getitems.backgrounds.forEach(function(back) {
             var itemHolder = $("<div>", {
                 class: "itemHolder",
                 alt: back.name.toLowerCase() + " " + back.type.toLowerCase()
@@ -394,13 +395,43 @@ function createInventory(id) {
             $(itemHolder).append(item);
             $('#backsList').append(itemHolder);
         });
-        $(response.page).find('.profile_customization').each(function() {
+        $(getitems.page).find('.profile_customization').each(function() {
             $('.profile_customization_area').append(this);
         });
-        addArrows();
         $("#hideBacksList").show();
         $("#refreshInventory").show();
-    });
+    } else {
+        var expire = new Date().getTime() + 86400000;
+        $.ajax('https://steam.design/backpack/' + id + '/items.json').done(function(data) {
+            store.set('backpack', data, expire)
+            var getitems = store.get('backpack');
+            getitems.backgrounds.forEach(function(back) {
+                var itemHolder = $("<div>", {
+                    class: "itemHolder",
+                    alt: back.name.toLowerCase() + " " + back.type.toLowerCase()
+                });
+                var item = $("<div>", {
+                    class: "item app753 context6 activeInfo"
+                });
+                var bgUrl = $("<a>", {
+                    href: "#" + back.actions[0].link,
+                    class: "inventory_item_link"
+                });
+                var img = $("<img>", {
+                    src: "http://steamcommunity-a.akamaihd.net/economy/image/" + back.icon_url + "/96fx96f"
+                });
+                $(bgUrl).append(img);
+                $(item).append(bgUrl);
+                $(itemHolder).append(item);
+                $('#backsList').append(itemHolder);
+            });
+            $(getitems.page).find('.profile_customization').each(function() {
+                $('.profile_customization_area').append(this);
+            });
+            $("#hideBacksList").show();
+            $("#refreshInventory").show();
+        });
+    }
 }
 
 function refreshInventory(){
