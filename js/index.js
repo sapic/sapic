@@ -179,6 +179,8 @@ function bgChanged() {
 function noAds(){
     var bn = randomBanner();
     $('.underfr').empty().html('<a href="' + bn[1] + '" target="_blank"><img src="images/' + bn[0] + '"></a>');
+    $('#leftColAds').remove();
+    $('.profile_badges').show();
 }
 
 function reloadAds() {
