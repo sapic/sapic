@@ -427,8 +427,8 @@ function loginFunc() {
 
 function addArrows() {
     $('.profile_customization_header').not('.guide').each(function() {
-        $(this).prepend('<span style="float: right" class="arrow down" onclick="elemDown(this);">Down &#8595;</span>' +
-            '<span style="float: right" class="arrow up" onclick="elemUp(this);">Up &#8593;</span>');
+        $(this).prepend('<span style="float: right" class="arrow down" onclick="elemDown(this);">Down <div class="fa fa-arrow-down" style="font-size:17px;"></div></span>' +
+            '<span style="float: right" class="arrow up" onclick="elemUp(this);">Up <div class="fa fa-arrow-up" style="font-size:17px;"></div></span>');
     });
 }
 
