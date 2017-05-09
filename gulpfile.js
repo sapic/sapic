@@ -50,7 +50,7 @@ gulp.task('fonts', function(){
         .pipe(gulp.dest('./out/fonts/'));
 });
 
-gulp.task('default', ['html', 'images'], function() {
+gulp.task('default', ['html', 'images', 'fonts'], function() {
     return gulp.src('./out/temp.css', { read: false })
         .pipe(rimraf());
 });

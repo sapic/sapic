@@ -403,11 +403,13 @@ function createInventory(id) {
     });
 }
 
-
-
 function refreshInventory(){
-    $.ajax('https://steam.design/backpack/' + id + '/itemsRefresh.json').done(function() {
-        createInventory();
+    userId = window.localStorage.getItem('SteamId');
+    $.ajax('https://steam.design/backpack/' + userId + '/itemsRefresh.json').done(function() {
+        $(".itemHolder").each(function(){
+            $(this).remove();
+        });
+        createInventory(userId);
     });
 };
 
