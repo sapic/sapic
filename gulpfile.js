@@ -34,11 +34,11 @@ gulp.task('js', ['css2'], function(){
         .pipe(uglify())
         .pipe(gulp.dest('./out'));
 });
-gulp.task('js2', ['js'], function(){
+gulp.task('js2', function(){
     return gulp.src('./js/ads.js')
         .pipe(gulp.dest('./out'));
 });
-gulp.task('html', ['js2'], function(){
+gulp.task('html', ['js', 'js2'], function(){
     return gulp.src(['index.html'])
         .pipe(useref())
         .pipe(htmlmin())
