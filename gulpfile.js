@@ -29,12 +29,16 @@ gulp.task('css2', ['css1'], function(){
 gulp.task('js', ['css2'], function(){
     var content = fs.readFileSync('./js/index.js', {encoding:'utf-8'});
     fs.writeFileSync('./js/index.js', content.replace('{{#vernum}}', process.env.CIRCLE_BUILD_NUM));
-    return gulp.src(['./js/jquery.min.js', '!./js/ads.js', './js/*'])
+    return gulp.src(['./js/jquery.min.js', './js/store.everything.min.js', './js/release.js', './js/linq.min.js', './js/jszip.js', './js/jquery.smooth-scroll.min.js', './js/interact-1.2.2.min.js', './js/FileSaver.js', './js/index.js'])
         .pipe(concat('main.js'))
         .pipe(uglify())
         .pipe(gulp.dest('./out'));
 });
-gulp.task('html', ['js'], function(){
+gulp.task('js2', ['js'], function(){
+    return gulp.src('./js/ads.js')
+        .pipe(gulp.dest('./out'));
+});
+gulp.task('html', ['js2'], function(){
     return gulp.src(['index.html'])
         .pipe(useref())
         .pipe(htmlmin())
