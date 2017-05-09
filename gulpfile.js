@@ -29,7 +29,7 @@ gulp.task('css2', ['css1'], function(){
 gulp.task('js', ['css2'], function(){
     var content = fs.readFileSync('./js/index.js', {encoding:'utf-8'});
     fs.writeFileSync('./js/index.js', content.replace('{{#vernum}}', process.env.CIRCLE_BUILD_NUM));
-    return gulp.src(['./js/jquery.min.js', './js/*', '!./js/ads.js'])
+    return gulp.src(['./js/jquery.min.js', '!./js/ads.js', './js/*'])
         .pipe(concat('main.js'))
         .pipe(uglify())
         .pipe(gulp.dest('./out'));
