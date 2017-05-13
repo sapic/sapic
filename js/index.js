@@ -360,6 +360,7 @@ function toggleLong() {
         $('#r11').css('height', uh);
         $('#r11r').css('height', uh);
         toggle = true;
+        $('.toggletext').text('Toggle Short Images');    
     } else {
         $('#hBig1').css('height', 506);
         $('#sssc').show();
@@ -369,8 +370,10 @@ function toggleLong() {
         $('#r11').css('height', 80);
         $('#r11r').css('height', 80);
         toggle = false;
+        $('.toggletext').text('Toggle Long Images');
+        
     }
-    CropImages();
+    CropImages();   
 }
 
 function createInventory(id) {
@@ -380,7 +383,7 @@ function createInventory(id) {
         getitems.backgrounds.forEach(function(back) {
             var itemHolder = $("<div>", {
                 class: "itemHolder",
-                alt: back.name.toLowerCase() + " " + back.type.toLowerCase()
+                alt: back.name.toLowerCase()
             });
             var item = $("<div>", {
                 class: "item app753 context6 activeInfo"
@@ -397,11 +400,9 @@ function createInventory(id) {
             $(itemHolder).append(item);
             $('#backsList').append(itemHolder);
         });
-        $(getitems.page).find('.profile_customization').each(function() {
-            $('.profile_customization_area').append(this);
-        });
         $("#hideBacksList").show();
         $("#refreshInventory").show();
+        console.log("Code 1");
     } else {
         var expire = new Date().getTime() + 86400000;
         $.ajax('https://steam.design/backpack/' + id + '/items.json').done(function(data) {
@@ -410,7 +411,7 @@ function createInventory(id) {
             getitems.backgrounds.forEach(function(back) {
                 var itemHolder = $("<div>", {
                     class: "itemHolder",
-                    alt: back.name.toLowerCase() + " " + back.type.toLowerCase()
+                    alt: back.name.toLowerCase()
                 });
                 var item = $("<div>", {
                     class: "item app753 context6 activeInfo"
@@ -427,11 +428,9 @@ function createInventory(id) {
                 $(itemHolder).append(item);
                 $('#backsList').append(itemHolder);
             });
-            $(getitems.page).find('.profile_customization').each(function() {
-                $('.profile_customization_area').append(this);
-            });
             $("#hideBacksList").show();
             $("#refreshInventory").show();
+            console.log("Code 2");
         });
     }
 }
