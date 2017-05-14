@@ -184,12 +184,20 @@ function noAds(){
 }
 
 function reloadAds() {
-  $('.rColAds').html(gAd);
-  (adsbygoogle = window.adsbygoogle || []).push({});
+    userId = window.localStorage.getItem('SteamId');
+    $('.rColAds').html(gAd);
+    (adsbygoogle = window.adsbygoogle || []).push({});
 
-  $('#bottomAds').html(gAdBottom);
-  (adsbygoogle = window.adsbygoogle || []).push({});
+    if (userId) {
+        $('#bottomAds').html(gAdBottom);
+        (adsbygoogle = window.adsbygoogle || []).push({});
+    } else {
+        $('#topAds').html(gAdBottom);
+        (adsbygoogle = window.adsbygoogle || []).push({});
+    }
+
 }
+
 function reloadImages() {
     if (window.location.hash && window.location.hash.indexOf('#login') == -1 &&
         window.location.hash.indexOf('#logout') == -1) {
