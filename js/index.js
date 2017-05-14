@@ -8,7 +8,7 @@ var bgSaveInfo = {
 };
 var gAd = '<ins class="adsbygoogle" style="display:block" data-ad-client="ca-pub-6718897784778373" data-ad-slot="7589608163" data-ad-format="auto"></ins>';
 var gAdBottom = '<ins class="adsbygoogle" style="display:inline-block;width:930px;height:180px" data-ad-client="ca-pub-6718897784778373" data-ad-slot="3019807768"></ins>';
-var gAdTop= '<ins class="adsbygoogle" style="display:inline-block;width:728px;height:90px" data-ad-client="ca-pub-6718897784778373" data-ad-slot="4177836562"></ins>';
+var gAdTop = '<ins class="adsbygoogle" style="display:inline-block;width:728px;height:90px" data-ad-client="ca-pub-6718897784778373" data-ad-slot="4177836562"></ins>';
 var version = '{{#vernum}}';
 var backgroundsList = [
     'http://cdn.steamcommunity.com/economy/image/U8721VM9p9C2v1o6cKJ4qEnGqnE7IoTQgZI-VTdwyTBeimAcIoxXpgK8bPeslY9pPJIvB5IWW2-452kaM8heLSRgleGBp7RJxO94PvF90-StAl5z5OYSUWTjFxbU02aQe-apwlFmMZUsfRmhkpsZu94EC595SOKo4TzXhQ',
@@ -53,6 +53,14 @@ var backgroundsList = [
     'http://cdn.steamcommunity.com/economy/image/8YYJSqNZlPbeDuryEvukYUnKw_vnKZq2CsA56PYd7MY4jT6x-kXS5H7X9gw0m-rrRN_a6LJr2K4BzSTw9x7twTWJLfHkTcHmf4q6Ci3R9OwOhoK77SmB7AzHNrrvV67Aa9B67b4SlLYpnKZSbtau-xGI1bPlYNfrXZJivblZtskphw==',
     'http://cdn.steamcommunity.com/economy/image/U8721VM9p9C2v1o6cKJ4qEnGqnE7IoTQgZI-VTdwyTBeimAcIoxXpgK8bPeslY9pPJIvB5IWW2-452kaM8heLSRgleGApbNPwO94PqMp1rKsD14mvOUTVj2yF0DQgWWVe-b6lFI2ZpZ_IBnzkcsb79hSDJ95SOLwP2SMpQ'
 ];
+
+var donators = [
+    '76561198055336237',
+    '76561198369942542',
+    '76561198048498731',
+    '76561198028933492',
+    '76561198015966799'
+]
 
 $.ajax('https://steam.design/bg.json').done(function(data) {
     backgroundsList = data;
@@ -177,7 +185,7 @@ function bgChanged() {
     reloadAds();
 }
 
-function noAds(){
+function noAds() {
     var bn = randomBanner();
     $('.underfr').empty().html('<a href="' + bn[1] + '" target="_blank"><img src="images/' + bn[0] + '"></a>');
     $('.rColAds').remove();
@@ -186,15 +194,20 @@ function noAds(){
 
 function reloadAds() {
     userId = window.localStorage.getItem('SteamId');
-    $('.rColAds').html(gAd);
-    (adsbygoogle = window.adsbygoogle || []).push({});
-    
-    $('#bottomAds').html(gAdBottom);
-    (adsbygoogle = window.adsbygoogle || []).push({});
-    
-    if (!userId) {
-        $('#topAds').html(gAdTop);
+    if ($.inArray(userId, donators) != -1) {
+        noAds();
+    } else {
+        userId = window.localStorage.getItem('SteamId');
+        $('.rColAds').html(gAd);
         (adsbygoogle = window.adsbygoogle || []).push({});
+
+        $('#bottomAds').html(gAdBottom);
+        (adsbygoogle = window.adsbygoogle || []).push({});
+
+        if (!userId) {
+            $('#topAds').html(gAdTop);
+            (adsbygoogle = window.adsbygoogle || []).push({});
+        }
     }
 }
 
@@ -215,7 +228,7 @@ function reloadImages() {
 
     $('#bg1').css("background-image", "url('" + background + "')");
     $('#bg2').css("background-image", "url('" + background + "')");
-    
+
     console.log('The current background URL is:', background);
     if (background != loadedBack) {
         getImageBase64(background, function() {
@@ -312,23 +325,23 @@ function CropImages() {
     }*/
 
     if (toggle) {
-            fillImage($('#big1'), leftOffset[ImageType], rOffset1, 506, h1, ImagesNames[10][1], true);
-            fillImage($('#r11'), 514 + leftOffset[ImageType], rOffset1, 100, h1, ImagesNames[11][1]);
+        fillImage($('#big1'), leftOffset[ImageType], rOffset1, 506, h1, ImagesNames[10][1], true);
+        fillImage($('#r11'), 514 + leftOffset[ImageType], rOffset1, 100, h1, ImagesNames[11][1]);
     } else {
-            fillImage($('#big1'), leftOffset[ImageType], rOffset1, 506, h1, ImagesNames[10][1], true);
-            fillImage($('#r11'), 514 + leftOffset[ImageType], rOffset1, 100, 80, ImagesNames[11][1]);
-            fillImage($('#r12'), 514 + leftOffset[ImageType], rOffset1 + 93, 100, 80, ImagesNames[12][1]);
-            fillImage($('#r13'), 514 + leftOffset[ImageType], rOffset1 + 186, 100, 80, ImagesNames[13][1]);
+        fillImage($('#big1'), leftOffset[ImageType], rOffset1, 506, h1, ImagesNames[10][1], true);
+        fillImage($('#r11'), 514 + leftOffset[ImageType], rOffset1, 100, 80, ImagesNames[11][1]);
+        fillImage($('#r12'), 514 + leftOffset[ImageType], rOffset1 + 93, 100, 80, ImagesNames[12][1]);
+        fillImage($('#r13'), 514 + leftOffset[ImageType], rOffset1 + 186, 100, 80, ImagesNames[13][1]);
 
-            fillImage($('#big2'), leftOffset[ImageType], rOffset2, 506, h2, ImagesNames[20][1], true);
-            fillImage($('#r21'), 514 + leftOffset[ImageType], rOffset2, 100, 80, ImagesNames[21][1]);
-            fillImage($('#r22'), 514 + leftOffset[ImageType], rOffset2 + 93, 100, 80, ImagesNames[22][1]);
-            fillImage($('#r23'), 514 + leftOffset[ImageType], rOffset2 + 186, 100, 80, ImagesNames[23][1]);
+        fillImage($('#big2'), leftOffset[ImageType], rOffset2, 506, h2, ImagesNames[20][1], true);
+        fillImage($('#r21'), 514 + leftOffset[ImageType], rOffset2, 100, 80, ImagesNames[21][1]);
+        fillImage($('#r22'), 514 + leftOffset[ImageType], rOffset2 + 93, 100, 80, ImagesNames[22][1]);
+        fillImage($('#r23'), 514 + leftOffset[ImageType], rOffset2 + 186, 100, 80, ImagesNames[23][1]);
 
-            fillImage($('#w1'), 1 + leftOffset[ImageType], rOffset3, 150, 150, ImagesNames[30][1]);
-            fillImage($('#w2'), 156 + leftOffset[ImageType], rOffset3, 150, 150, ImagesNames[31][1]);
-            fillImage($('#w3'), 309 + leftOffset[ImageType], rOffset3, 150, 150, ImagesNames[32][1]);
-            fillImage($('#w4'), 464 + leftOffset[ImageType], rOffset3, 150, 150, ImagesNames[33][1]);
+        fillImage($('#w1'), 1 + leftOffset[ImageType], rOffset3, 150, 150, ImagesNames[30][1]);
+        fillImage($('#w2'), 156 + leftOffset[ImageType], rOffset3, 150, 150, ImagesNames[31][1]);
+        fillImage($('#w3'), 309 + leftOffset[ImageType], rOffset3, 150, 150, ImagesNames[32][1]);
+        fillImage($('#w4'), 464 + leftOffset[ImageType], rOffset3, 150, 150, ImagesNames[33][1]);
     }
 
     fillImage($('#avatar'), leftOffset[ImageType] - 9, 34, 164, 164, ImagesNames[0][1]);
@@ -368,7 +381,7 @@ function toggleLong() {
         $('#r11').css('height', uh);
         $('#r11r').css('height', uh);
         toggle = true;
-        $('.toggletext').text('Toggle Short Images');    
+        $('.toggletext').text('Toggle Short Images');
     } else {
         $('#hBig1').css('height', 506);
         $('#sssc').show();
@@ -379,9 +392,9 @@ function toggleLong() {
         $('#r11r').css('height', 80);
         toggle = false;
         $('.toggletext').text('Toggle Long Images');
-        
+
     }
-    CropImages();   
+    CropImages();
 }
 
 function createInventory(id) {
@@ -445,10 +458,10 @@ function createInventory(id) {
     $(".guide").css("left", "0px")
 }
 
-function refreshInventory(){
+function refreshInventory() {
     userId = window.localStorage.getItem('SteamId');
     $.ajax('https://steam.design/backpack/' + userId + '/itemsRefresh.json').done(function() {
-        $(".itemHolder").each(function(){
+        $(".itemHolder").each(function() {
             $(this).remove();
         });
         createInventory(userId);
@@ -469,8 +482,8 @@ function loginFunc() {
 
 function addArrows() {
     $('.profile_customization_header').not('.guide').each(function() {
-        $(this).prepend('<span style="float: right" class="arrow down" onclick="elemDown(this);">Down <div class="fa fa-arrow-down" style="font-size:17px;"></div></span>' +
-            '<span style="float: right" class="arrow up" onclick="elemUp(this);">Up <div class="fa fa-arrow-up" style="font-size:17px;"></div></span>');
+        $(this).prepend('<div id="moveArrows"><span style="float: right" class="arrow down" onclick="elemDown(this);">Down <div class="fa fa-arrow-down" style="font-size:17px;"></div></span>' +
+            '<span style="float: right" class="arrow up" onclick="elemUp(this);">Up <div class="fa fa-arrow-up" style="font-size:17px;"></div></span></div>');
     });
 }
 
@@ -499,102 +512,102 @@ function elemDown(elem) {
 }
 
 $(function() {
-  if (window.location.hostname == "sapic.github.io") {
-    window.location = 'https://steam.design/' + location.hash;
-  }
+    if (window.location.hostname == "sapic.github.io") {
+        window.location = 'https://steam.design/' + location.hash;
+    }
 
-  $("#refreshInventory").hover(function(){
-    $(this).addClass("fa-spin");
-    }, function(){
+    $("#refreshInventory").hover(function() {
+        $(this).addClass("fa-spin");
+    }, function() {
         $(this).removeClass("fa-spin");
-   });
+    });
 
-   addArrows();
+    addArrows();
 
-  loginFunc();
-  setTimeout(function(){
-    if(typeof fuckAdBlock === 'undefined') {
-        noAds();
-    }
-  }, 10);
-  
-
-  var userId = null;
-  userId = window.localStorage.getItem('SteamId');
-  if (userId !== null) {
-    $('#steamAuth').append('<a href="#logout"><img src="data:image/png;base64,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"></a>');
-    createInventory(userId);
-  } else {
-    $('#steamAuth').append('<a href="https://steamcommunity.com/openid/login?openid.ns=http%3A%2F%2Fspecs.openid.net%2Fauth%2F2.0&openid.mode=checkid_setup&openid.return_to=http%3A%2F%2Fsteam.design%2Findex.html%23login&openid.realm=http%3A%2F%2Fsteam.design&openid.ns.sreg=http%3A%2F%2Fopenid.net%2Fextensions%2Fsreg%2F1.1&openid.claimed_id=http%3A%2F%2Fspecs.openid.net%2Fauth%2F2.0%2Fidentifier_select&openid.identity=http%3A%2F%2Fspecs.openid.net%2Fauth%2F2.0%2Fidentifier_select" class="name"><img src="https://steamcommunity-a.akamaihd.net/public/images/signinthroughsteam/sits_01.png" width="129" height="25"></a>');
-  }
-
-  reloadImages();
-
-  $(window).bind('hashchange', function () {
     loginFunc();
-    //var val = $('input[type="radio"]:checked').val() == 'big' ? 1 : 0;
-    reloadImages();
-  });
+    setTimeout(function() {
+        if (typeof fuckAdBlock === 'undefined') {
+            noAds();
+        }
+    }, 10);
 
-  $('#filterIn').bind("change paste keyup", function () {
-    $(".itemHolder:not(.arrow)").css('display', 'none');
-    Enumerable.From($(".itemHolder:not(.arrow)")).Where(function (i) {
-      return i.attributes['alt'].value.indexOf($('#filterIn').val().toLowerCase()) != -1;
-    })
-      .Select().ToArray().forEach(function (elem) {
-      $(elem).css('display', 'block');
-    });
-  });
-  $('#goUrl').click(function () {
-    var url = $("#urlIn").val();
-    if (url.length > 0) {
-      if (url.indexOf('http') == -1) {
-        currentBGInfo = null;
-        url = "http://" + url;
-      }
+
+    var userId = null;
+    userId = window.localStorage.getItem('SteamId');
+    if (userId !== null) {
+        $('#steamAuth').append('<a href="#logout"><img src="data:image/png;base64,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"></a>');
+        createInventory(userId);
     } else {
-      url = randomBackground();
+        $('#steamAuth').append('<a href="https://steamcommunity.com/openid/login?openid.ns=http%3A%2F%2Fspecs.openid.net%2Fauth%2F2.0&openid.mode=checkid_setup&openid.return_to=http%3A%2F%2Fsteam.design%2Findex.html%23login&openid.realm=http%3A%2F%2Fsteam.design&openid.ns.sreg=http%3A%2F%2Fopenid.net%2Fextensions%2Fsreg%2F1.1&openid.claimed_id=http%3A%2F%2Fspecs.openid.net%2Fauth%2F2.0%2Fidentifier_select&openid.identity=http%3A%2F%2Fspecs.openid.net%2Fauth%2F2.0%2Fidentifier_select" class="name"><img src="https://steamcommunity-a.akamaihd.net/public/images/signinthroughsteam/sits_01.png" width="129" height="25"></a>');
     }
-    window.location.href = "#" + url;
-  });
 
-  interact('.resizable')
-    .resizable({
-      axis: 'y'
-    })
-    .on('resizemove', function (event) {
-      var target = event.target;
-      // add the change in coords to the previous width of the target element
-      var newHeight = parseFloat(target.style.height) + event.dy;
-      if (newHeight >= 284) {
-        target.style.height = newHeight + 'px';
-      }
-      if (toggle) {
-        $('#r11').css('height', newHeight);
-      }
-      //target.textContent = newWidth + '×' + newHeight;
-    })
-    .on('resizeend', function () {
-      reloadImages();
+    reloadImages();
+
+    $(window).bind('hashchange', function() {
+        loginFunc();
+        //var val = $('input[type="radio"]:checked').val() == 'big' ? 1 : 0;
+        reloadImages();
     });
 
-  $("#slFSize").on("change", function () {
-    $('#hBig1').css('height', this.value);
-    reloadImages();
-  });
-  $("#slSSize").on("change", function () {
-    $('#hBig2').css('height', this.value);
-    reloadImages();
-  });
-  $("#randomBG").click(function () {
-    window.location.href = "#" + randomBackground();
-  });
-  $("#getBg").click(function () {
-    if (currentBGInfo && currentBGInfo.url) {
-      window.open("https://steamcommunity.com/market/listings/" + currentBGInfo.url)
-      return;
-    }
-    window.open('https://images.google.com/searchbyimage?image_url=' + background, '_newtab');
-  });
-  $("#version").html("Version #" + version);
+    $('#filterIn').bind("change paste keyup", function() {
+        $(".itemHolder:not(.arrow)").css('display', 'none');
+        Enumerable.From($(".itemHolder:not(.arrow)")).Where(function(i) {
+                return i.attributes['alt'].value.indexOf($('#filterIn').val().toLowerCase()) != -1;
+            })
+            .Select().ToArray().forEach(function(elem) {
+                $(elem).css('display', 'block');
+            });
+    });
+    $('#goUrl').click(function() {
+        var url = $("#urlIn").val();
+        if (url.length > 0) {
+            if (url.indexOf('http') == -1) {
+                currentBGInfo = null;
+                url = "http://" + url;
+            }
+        } else {
+            url = randomBackground();
+        }
+        window.location.href = "#" + url;
+    });
+
+    interact('.resizable')
+        .resizable({
+            axis: 'y'
+        })
+        .on('resizemove', function(event) {
+            var target = event.target;
+            // add the change in coords to the previous width of the target element
+            var newHeight = parseFloat(target.style.height) + event.dy;
+            if (newHeight >= 284) {
+                target.style.height = newHeight + 'px';
+            }
+            if (toggle) {
+                $('#r11').css('height', newHeight);
+            }
+            //target.textContent = newWidth + '×' + newHeight;
+        })
+        .on('resizeend', function() {
+            reloadImages();
+        });
+
+    $("#slFSize").on("change", function() {
+        $('#hBig1').css('height', this.value);
+        reloadImages();
+    });
+    $("#slSSize").on("change", function() {
+        $('#hBig2').css('height', this.value);
+        reloadImages();
+    });
+    $("#randomBG").click(function() {
+        window.location.href = "#" + randomBackground();
+    });
+    $("#getBg").click(function() {
+        if (currentBGInfo && currentBGInfo.url) {
+            window.open("https://steamcommunity.com/market/listings/" + currentBGInfo.url)
+            return;
+        }
+        window.open('https://images.google.com/searchbyimage?image_url=' + background, '_newtab');
+    });
+    $("#version").html("Version #" + version);
 });
