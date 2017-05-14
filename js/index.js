@@ -8,6 +8,7 @@ var bgSaveInfo = {
 };
 var gAd = '<ins class="adsbygoogle" style="display:block" data-ad-client="ca-pub-6718897784778373" data-ad-slot="7589608163" data-ad-format="auto"></ins>';
 var gAdBottom = '<ins class="adsbygoogle" style="display:inline-block;width:930px;height:180px" data-ad-client="ca-pub-6718897784778373" data-ad-slot="3019807768"></ins>';
+var gAdTop= '<ins class="adsbygoogle" style="display:inline-block;width:728px;height:90px" data-ad-client="ca-pub-6718897784778373" data-ad-slot="4177836562"></ins>';
 var version = '{{#vernum}}';
 var backgroundsList = [
     'http://cdn.steamcommunity.com/economy/image/U8721VM9p9C2v1o6cKJ4qEnGqnE7IoTQgZI-VTdwyTBeimAcIoxXpgK8bPeslY9pPJIvB5IWW2-452kaM8heLSRgleGBp7RJxO94PvF90-StAl5z5OYSUWTjFxbU02aQe-apwlFmMZUsfRmhkpsZu94EC595SOKo4TzXhQ',
@@ -187,15 +188,14 @@ function reloadAds() {
     userId = window.localStorage.getItem('SteamId');
     $('.rColAds').html(gAd);
     (adsbygoogle = window.adsbygoogle || []).push({});
-
-    if (userId) {
-        $('#bottomAds').html(gAdBottom);
-        (adsbygoogle = window.adsbygoogle || []).push({});
-    } else {
-        $('#topAds').html(gAdBottom);
+    
+    $('#bottomAds').html(gAdBottom);
+    (adsbygoogle = window.adsbygoogle || []).push({});
+    
+    if (!userId) {
+        $('#topAds').html(gAdTop);
         (adsbygoogle = window.adsbygoogle || []).push({});
     }
-
 }
 
 function reloadImages() {
@@ -441,6 +441,8 @@ function createInventory(id) {
             console.log("Code 2");
         });
     }
+    $(".filter").show();
+    $(".guide").css("left", "0px")
 }
 
 function refreshInventory(){
@@ -535,8 +537,8 @@ $(function() {
   });
 
   $('#filterIn').bind("change paste keyup", function () {
-    $(".itemHolder").css('display', 'none');
-    Enumerable.From($(".itemHolder")).Where(function (i) {
+    $(".itemHolder:not(.arrow)").css('display', 'none');
+    Enumerable.From($(".itemHolder:not(.arrow)")).Where(function (i) {
       return i.attributes['alt'].value.indexOf($('#filterIn').val().toLowerCase()) != -1;
     })
       .Select().ToArray().forEach(function (elem) {
