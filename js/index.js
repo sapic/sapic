@@ -59,7 +59,8 @@ var donators = [
     '76561198369942542',
     '76561198048498731',
     '76561198028933492',
-    '76561198015966799'
+    '76561198015966799',
+    '76561198120160633'
 ]
 
 $.ajax('https://steam.design/bg.json').done(function(data) {
@@ -399,7 +400,7 @@ function toggleLong() {
 
 function createInventory(id) {
     var getitems = store.get('backpack');
-    if (getitems) {
+    if (getitems || getitems.backgrounds === null) {
         var getitems = store.get('backpack');
         getitems.backgrounds.forEach(function(back) {
             var itemHolder = $("<div>", {
