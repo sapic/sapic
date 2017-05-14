@@ -401,7 +401,7 @@ function toggleLong() {
 
 function createInventory(id) {
     var getitems = store.get('backpack');
-    if (getitems || getitems.backgrounds === null) {
+    if (getitems && !getitems.backgrounds === null) {
         var getitems = store.get('backpack');
         getitems.backgrounds.forEach(function(back) {
             var itemHolder = $("<div>", {
