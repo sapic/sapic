@@ -6,9 +6,11 @@ var bgSaveInfo = {
     url: null,
     images: [],
 };
-var gAd = '<ins class="adsbygoogle" style="display:block" data-ad-client="ca-pub-6718897784778373" data-ad-slot="7589608163" data-ad-format="auto"></ins>';
-var gAdBottom = '<ins class="adsbygoogle" style="display:inline-block;width:930px;height:180px" data-ad-client="ca-pub-6718897784778373" data-ad-slot="3019807768"></ins>';
-var gAdTop = '<ins class="adsbygoogle" style="display:inline-block;width:728px;height:90px" data-ad-client="ca-pub-6718897784778373" data-ad-slot="4177836562"></ins>';
+var gAds = [
+   '<ins class="adsbygoogle" style="display:block" data-ad-client="ca-pub-6718897784778373" data-ad-slot="7589608163" data-ad-format="auto"></ins>',
+   '<ins class="adsbygoogle" style="display:inline-block;width:930px;height:180px" data-ad-client="ca-pub-6718897784778373" data-ad-slot="3019807768"></ins>',
+   '<ins class="adsbygoogle" style="display:inline-block;width:728px;height:90px" data-ad-client="ca-pub-6718897784778373" data-ad-slot="4177836562"></ins>'
+ ];
 var version = '{{#vernum}}';
 var backgroundsList = [
     'http://cdn.steamcommunity.com/economy/image/U8721VM9p9C2v1o6cKJ4qEnGqnE7IoTQgZI-VTdwyTBeimAcIoxXpgK8bPeslY9pPJIvB5IWW2-452kaM8heLSRgleGBp7RJxO94PvF90-StAl5z5OYSUWTjFxbU02aQe-apwlFmMZUsfRmhkpsZu94EC595SOKo4TzXhQ',
@@ -63,7 +65,7 @@ var donators = [
     '76561198120160633',
     '76561198354093369',
     '76561198111211059'
-]
+];
 
 $.ajax('https://steam.design/bg.json').done(function(data) {
     backgroundsList = data;
@@ -201,14 +203,14 @@ function reloadAds() {
         noAds();
     } else {
         userId = window.localStorage.getItem('SteamId');
-        $('.rColAds').html(gAd);
+        $('.rColAds').html(gAds[1]);
         (adsbygoogle = window.adsbygoogle || []).push({});
 
-        $('#bottomAds').html(gAdBottom);
+        $('#bottomAds').html(gAds[2]);
         (adsbygoogle = window.adsbygoogle || []).push({});
 
         if (!userId) {
-            $('#topAds').html(gAdTop);
+            $('#topAds').html(gAds[3]);
             (adsbygoogle = window.adsbygoogle || []).push({});
         }
     }
@@ -320,7 +322,7 @@ function CropImages() {
             fillImage($('#w2'), 156 + leftOffset[ImageType], rOffset3, 150, 150, ImagesNames[31][1]);
             fillImage($('#w3'), 309 + leftOffset[ImageType], rOffset3, 150, 150, ImagesNames[32][1]);
             fillImage($('#w4'), 464 + leftOffset[ImageType], rOffset3, 150, 150, ImagesNames[33][1]);
-        } else { 
+        } else {
             alert("Nice. You broke it. Please tell oddball in the discord how this happened. Error code 1.")
         }
     } else {
