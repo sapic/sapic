@@ -61,7 +61,8 @@ var donators = [
     '76561198028933492',
     '76561198015966799',
     '76561198120160633',
-    '76561198354093369'
+    '76561198354093369',
+    '76561198111211059'
 ]
 
 $.ajax('https://steam.design/bg.json').done(function(data) {
@@ -484,8 +485,8 @@ function loginFunc() {
 
 function addArrows() {
     $('.profile_customization_header').not('.guide').each(function() {
-        $(this).prepend('<div id="moveArrows"><span style="float: right" class="arrow down" onclick="elemDown(this);">Down <div class="fa fa-arrow-down" style="font-size:17px;"></div></span>' +
-            '<span style="float: right" class="arrow up" onclick="elemUp(this);">Up <div class="fa fa-arrow-up" style="font-size:17px;"></div></span></div>');
+        $(this).prepend('<span style="float: right" class="arrow down" onclick="elemDown(this);">Down <div class="fa fa-arrow-down" style="font-size:17px;"></div></span>' +
+            '<span style="float: right" class="arrow up" onclick="elemUp(this);">Up <div class="fa fa-arrow-up" style="font-size:17px;"></div></span>');
     });
 }
 

@@ -2,6 +2,9 @@
 	height: auto !important;
 	overflow-x: hidden;
 }
+.fa-arrow-down:before{
+	content:"\f063";
+}
 .social-sapic{
 	position: relative;
 	top: 21px;
