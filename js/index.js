@@ -204,7 +204,9 @@ function reloadAds() {
     } else {
         userId = window.localStorage.getItem('SteamId');
         $('.rColAds').html(gAds[0]);
+        (adsbygoogle = window.adsbygoogle || []).push({});
         $('#bottomAds').html(gAds[1]);
+        (adsbygoogle = window.adsbygoogle || []).push({});
 
         if (!userId) {
             $('#topAds').html(gAds[2]);
