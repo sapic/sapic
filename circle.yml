@@ -8,9 +8,6 @@ dependencies:
     - npm install
     - npm install --global gulp
     - npm install --save-dev gulp
-notify:
-  webhooks:
-    - url: https://canary.discordapp.com/api/webhooks/316690851298279434/POzXHErKD11eTgwvz32q279uT4DS68SRSrx1KQQNZzOSKrZSo3M62-z8pqMpXjZZzjok
 
 test:
   override:
