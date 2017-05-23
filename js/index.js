@@ -193,22 +193,28 @@ function noAds() {
    $('.profile_badges').show();
 }
 
+let rAdsCount = 0;
 function reloadAds() {
-   userId = window.localStorage.getItem('SteamId');
-   if ($.inArray(userId, donators) != -1) {
-      noAds();
-   } else {
-      userId = window.localStorage.getItem('SteamId');
-      $('.rColAds').html(gAds[0]);
-      (adsbygoogle = window.adsbygoogle || []).push({});
-      $('#bottomAds').html(gAds[1]);
-      (adsbygoogle = window.adsbygoogle || []).push({});
+  if (rAdsCount % 10 !== 0) {
+    rAdsCount++;
+    return;
+  }
+  rAdsCount++;
 
-      if (!userId) {
-         $('#topAds').html(gAds[2]);
-      }
-      (adsbygoogle = window.adsbygoogle || []).push({});
-   }
+  let userId = window.localStorage.getItem('SteamId');
+  if (donators.indexOf(userId) !== -1) {
+    return noAds();
+  }
+  $('.rColAds').html(gAds[0]);
+
+  (adsbygoogle = window.adsbygoogle || []).push({});
+  $('#bottomAds').html(gAds[1]);
+  (adsbygoogle = window.adsbygoogle || []).push({});
+
+  if (!userId) {
+    $('#topAds').html(gAds[2]);
+    (adsbygoogle = window.adsbygoogle || []).push({});
+  }
 }
 
 function reloadImages() {
