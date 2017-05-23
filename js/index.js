@@ -458,7 +458,13 @@ $(function() {
 
    var bgs = store.get('bgs');
    if (bgs) {
+      var expire = new Date().getTime() + 86400000;
+      $.ajax('http://cdn.steam.tools/data/bg.json').done(function(data) {
+         store.set('bgs', data, expire);
+         backgroundsList = data;
+      });
    } else {
+      backgroundsList = bgs;
    }
 
    $("#refreshInventory").hover(function() {
