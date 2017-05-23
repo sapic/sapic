@@ -1,126 +1,147 @@
-.content{
-	height: auto !important;
-	overflow-x: hidden;
+.content {
+   height: auto !important;
+   overflow-x: hidden;
 }
-.fa-arrow-down:before{
-	content:"\f063";
+
+.fa-arrow-down:before {
+   content: "\f063";
 }
-.social-sapic{
-	position: relative;
-	top: 21px;
+
+.social-sapic {
+   position: relative;
+   top: 21px;
 }
-.bg_link{
-	position: relative;
-	top: 5px;
+
+.bg_link {
+   position: relative;
+   top: 5px;
 }
-.backsList{
-    height: auto !important;
-    max-height: 330px;
-    overflow: auto;
-    overflow-x: hidden;
-    width: 960px;
-	position: relative;
-	left: 5px;
+
+.backsList {
+   height: auto !important;
+   max-height: 330px;
+   overflow: auto;
+   overflow-x: hidden;
+   width: 960px;
+   position: relative;
+   left: 5px;
 }
+
 .flipped {
-    transform: scaleY(-1);
-}
-.screenshot _showcase_screenshot{
-	overflow: hidden;
-}
-.types-selector input{
-	margin:0;padding:0;
-
-    display: none;
-	-webkit-appearance:none;
-	-moz-appearance:none;
-	appearance:none;
-}
-.types-selector input:active +.types{opacity: .9;}
-.types-selector input:checked +.types{
-	-webkit-filter: none;
-	-moz-filter: none;
-	filter: none;
+   transform: scaleY(-1);
 }
 
-.types{
-	cursor:pointer;
-	background-size:contain;
-	background-repeat:no-repeat;
-	display:inline-block;
-	width:72px;height:59px;
-	-webkit-transition: all 100ms ease-in;
-	-moz-transition: all 100ms ease-in;
-	transition: all 100ms ease-in;
-    margin: 0 3px;
-	-webkit-filter: brightness(1.8) grayscale(1) opacity(.7);
-	-moz-filter: brightness(1.8) grayscale(1) opacity(.7);
-	filter: brightness(1.8) grayscale(1) opacity(.7);
-}
-.types:hover{
-	-webkit-filter: brightness(1.2) grayscale(.5) opacity(.9);
-	-moz-filter: brightness(1.2) grayscale(.5) opacity(.9);
-	filter: brightness(1.2) grayscale(.5) opacity(.9);
+.screenshot _showcase_screenshot {
+   overflow: hidden;
 }
 
-.filter{
-	position: relative;
-	top: 2px;
+.types-selector input {
+   margin: 0;
+   padding: 0;
+   display: none;
+   -webkit-appearance: none;
+   -moz-appearance: none;
+   appearance: none;
+}
+
+.types-selector input:active+.types {
+   opacity: .9;
+}
+
+.types-selector input:checked+.types {
+   -webkit-filter: none;
+   -moz-filter: none;
+   filter: none;
+}
+
+.types {
+   cursor: pointer;
+   background-size: contain;
+   background-repeat: no-repeat;
+   display: inline-block;
+   width: 72px;
+   height: 59px;
+   -webkit-transition: all 100ms ease-in;
+   -moz-transition: all 100ms ease-in;
+   transition: all 100ms ease-in;
+   margin: 0 3px;
+   -webkit-filter: brightness(1.8) grayscale(1) opacity(.7);
+   -moz-filter: brightness(1.8) grayscale(1) opacity(.7);
+   filter: brightness(1.8) grayscale(1) opacity(.7);
+}
+
+.types:hover {
+   -webkit-filter: brightness(1.2) grayscale(.5) opacity(.9);
+   -moz-filter: brightness(1.2) grayscale(.5) opacity(.9);
+   filter: brightness(1.2) grayscale(.5) opacity(.9);
+}
+
+.filter {
+   position: relative;
+   top: 2px;
 }
 
 .arrow {
-	margin: 0 0 0 10px;
-	cursor: pointer;
+   margin: 0 0 0 10px;
+   cursor: pointer;
 }
 
 .gray_bevel {
-	margin-top: 4px;
+   margin-top: 4px;
 }
 
 .dynInput {
-	width: 310px;
+   width: 310px;
 }
+
 .resizable {
-	cursor: s-resize;
+   cursor: s-resize;
 }
+
 .imageHolder {
-	cursor: pointer;
+   cursor: pointer;
 }
+
 .top_hint {
-	display: inline-block;
-	width: 550px;
-	text-align: center;
-    color: #5491cf;
-    font-weight: bold;
-	position: relative;
-	right: 25px;
-	top: 2px;
+   display: inline-block;
+   width: 550px;
+   text-align: center;
+   color: #5491cf;
+   font-weight: bold;
+   position: relative;
+   right: 25px;
+   top: 2px;
 }
-.top_hint:hover{
-    text-decoration: underline;
+
+.top_hint:hover {
+   text-decoration: underline;
 }
-.profile_summary_footer{
-    margin-top: -10px
+
+.profile_summary_footer {
+   margin-top: -10px
 }
 
 .customization_header_download {
-    margin-left: 30px;
-    cursor: pointer;
-}
-.customization_header_download:hover{
-    text-decoration: underline;
-}
-#disqus_thread > a {
-	color: #5491cf;
+   margin-left: 30px;
+   cursor: pointer;
 }
 
-#avatar{
-	height: 164px;
-	width: 164px;
+.customization_header_download:hover {
+   text-decoration: underline;
 }
-#leftColAds{
-	height: 180px;
-	width: 930px;
-	float: right;
-	margin: 1px;
+
+#disqus_thread>a {
+   color: #5491cf;
+}
+
+#avatar {
+   height: 164px;
+   width: 164px;
+}
+
+#leftColAds {
+   height: 180px;
+   width: 930px;
+   float: right;
+   margin: 1px;
 }
