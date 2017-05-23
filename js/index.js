@@ -203,11 +203,11 @@ function reloadAds() {
         noAds();
     } else {
         userId = window.localStorage.getItem('SteamId');
-        $('.rColAds').html(gAds[1]);
-        $('#bottomAds').html(gAds[2]);
+        $('.rColAds').html(gAds[0]);
+        $('#bottomAds').html(gAds[1]);
 
         if (!userId) {
-            $('#topAds').html(gAds[3]);
+            $('#topAds').html(gAds[2]);
         }
         (adsbygoogle = window.adsbygoogle || []).push({});
     }
