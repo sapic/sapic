@@ -346,8 +346,7 @@ function toggleLong() {
 
 function createInventory(id) {
    var getitems = store.get('backpack');
-   if (getitems && !getitems.backgrounds === null) {
-      var getitems = store.get('backpack');
+   if (getitems && getitems.backgrounds !== null) {
       getitems.backgrounds.forEach(function(back) {
          var itemHolder = $("<div>", {
             class: "itemHolder",
@@ -372,7 +371,7 @@ function createInventory(id) {
       $("#refreshInventory").show();
       console.log("Code 1");
    } else {
-      var expire = new Date().getTime() + 86400000;
+      var expire = Date.now() + 86400000;
       $.ajax('https://steam.design/backpack/' + id + '/items.json').done(function(data) {
          store.set('backpack', data, expire)
          var getitems = store.get('backpack');
