@@ -464,7 +464,7 @@ $(function() {
    }
 
    var bgs = store.get('bgs');
-   if (bgs && !bgs === undefined) {
+   if (!bgs) {
       var expire = new Date().getTime() + 86400000;
       $.ajax('https://steam.design/bg.json').done(function(data) {
          store.set('bgs', data, expire);
