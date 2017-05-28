@@ -2,8 +2,9 @@ background = null;
 var toggle = true;
 var loadedBack = null;
 var currentBGInfo = null;
-var to = false;
+var value = 180;
 var refresh = false;
+var ref = 0;
 var bgSaveInfo = {
    url: null,
    images: [],
@@ -117,17 +118,17 @@ var ImagesNames = {
 };
 
 function hideBacksList() {
-
    $('#backsList').toggle('show');
-   if (to == true) {
-     $('#hideBacksList').removeClass("spin");
-     $('#hideBacksList').addClass("unspin");
-     to = false;
-     window.setTimeout( function () { $('#hideBacksList').removeClass("unspin"); }, 550 );
-   } else {
-   $('#hideBacksList').addClass("spin");
-   to = true;
- }
+   var value = 0
+   $("#hideBacksList").rotate({
+     bind:
+     {
+       click: function(){
+         value +=180;
+         $(this).rotate({ animateTo:value})
+       }
+     }
+   });
 }
 
 function convertDataURIToBinary(dataURI) {
@@ -304,7 +305,7 @@ function CropImages() {
 
    fillImage($('#avatar'), leftOffset[ImageType] - 9, 34, 164, 164, ImagesNames[0][1]);
 
-   $(".saveButton").attr("href", "https://steam.design/raw/" + btoa(JSON.stringify(bgSaveInfo)));
+     $(".saveButton").attr("href", "https://steam.design/raw/" + btoa(JSON.stringify(bgSaveInfo)));
 }
 
 function fillImage(element, x, y, w, h, name, changeCss) {
@@ -332,25 +333,16 @@ function toggleLong() {
       var bh = $('#bgImgEl').height();
       var uh = bh - 272;
       $('#hBig1').css('height', uh);
-      $('#sssc').hide();
-      $('#r12r').hide();
-      $('#r13r').hide();
-      $('#ws').hide();
-      $('#r11').css('height', uh);
-      $('#r11r').css('height', uh);
+      $('.hidelong').hide();
+      $('.r1').css('height', uh);
       toggle = true;
       $('.toggletext').text('Toggle Short Images');
    } else {
       $('#hBig1').css('height', 506);
-      $('#sssc').show();
-      $('#r12r').show();
-      $('#r13r').show();
-      $('#ws').show();
-      $('#r11').css('height', 80);
-      $('#r11r').css('height', 80);
+      $('.hidelong').show();
+      $('.r1').css('height', 80);
       toggle = false;
       $('.toggletext').text('Toggle Long Images');
-
    }
    CropImages();
 }
@@ -358,7 +350,8 @@ function toggleLong() {
 function createInventory(id) {
    var getitems = store.get('backpack');
    if (refresh == true){
-     $('#refreshInventory').removeClass('fa-spin');
+     clearInterval(ref);
+     $("#refreshInventory").rotate({animateTo:0});
      refresh = false;
    }
    if (getitems && getitems.backgrounds !== null) {
@@ -463,17 +456,37 @@ $(function() {
       backgroundsList = bgs;
    }
 
-   $("#refreshInventory").hover(function() {
-      $(this).addClass("fa-spin");
-      $("#refreshInventory").click(function(){
-        $(this).addClass('fa-spin');
-        refresh = true;
-      });
-   }, function() {
-     if (refresh !== true){
-      $(this).removeClass("fa-spin");
-    }
-  });
+   $('#hideBacksList').click(function(){
+     $('#backsList').toggle('show');
+     $(this).rotate({ animateTo:value});
+     if (value == 180){
+       value = 0;
+     } else {
+       value = 180;
+     }
+     });
+
+     $('#refreshInventory').rotate({
+       bind: {
+         mouseover: function(){
+           var angle = 0;
+          ref = setInterval(function(){
+             angle+=3;
+             $("#refreshInventory").rotate(angle);
+           },15);
+         },
+         click: function(){
+           refresh = true;
+           refreshInventory();
+         },
+         mouseout : function() {
+           if (refresh !== true){
+             clearInterval(ref);
+             $("#refreshInventory").rotate({animateTo:0});
+           }
+         }
+       }
+     });
    addArrows();
 
    loginFunc();

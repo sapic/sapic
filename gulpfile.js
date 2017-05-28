@@ -32,7 +32,7 @@ gulp.task('js', [/*'css2'*/], function() {
       encoding: 'utf-8'
    });
    fs.writeFileSync('./js/index.js', content.replace('{{#vernum}}', process.env.CIRCLE_BUILD_NUM));
-   return gulp.src(['./js/jquery.min.js', './js/store.everything.min.js', './js/release.js', './js/linq.min.js', './js/jszip.js', './js/jquery.smooth-scroll.min.js', './js/interact-1.2.2.min.js', './js/FileSaver.js', './js/index.js'])
+   return gulp.src(['./js/jquery.min.js', './js/store.everything.min.js', './js/release.js', './js/linq.min.js', './js/jszip.js', './js/jquery.smooth-scroll.min.js', './js/interact-1.2.2.min.js', './js/FileSaver.js', './js/index.js', './js/jQueryRotate.js'])
       .pipe(concat('main.js'))
       .pipe(uglify())
       .pipe(gulp.dest('./out'));
