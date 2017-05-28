@@ -32,10 +32,12 @@
    left: 5px;
 }
 
+.spin {
     transform: rotate( -180deg );
     transition: transform 200ms ease;
 }
 
+.unspin {
     transform: rotate( 0deg );
     transition: transform 200ms ease;
 }
