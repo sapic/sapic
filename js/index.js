@@ -2,13 +2,13 @@ background = null;
 var toggle = true;
 var loadedBack = null;
 var currentBGInfo = null;
-var value = 180;
 var refresh = false;
 var ref = 0;
 var bgSaveInfo = {
    url: null,
    images: [],
 };
+
 var gAds = [
    '<ins class="adsbygoogle" style="display:block" data-ad-client="ca-pub-6718897784778373" data-ad-slot="7589608163" data-ad-format="auto"></ins>',
    '<ins class="adsbygoogle" style="display:inline-block;width:930px;height:180px" data-ad-client="ca-pub-6718897784778373" data-ad-slot="3019807768"></ins>',
@@ -117,20 +117,6 @@ var ImagesNames = {
    33: ['#w1', 'Workshop_Right.png'],
 };
 
-function hideBacksList() {
-   $('#backsList').toggle('show');
-   var value = 0
-   $("#hideBacksList").rotate({
-     bind:
-     {
-       click: function(){
-         value +=180;
-         $(this).rotate({ animateTo:value})
-       }
-     }
-   });
-}
-
 function convertDataURIToBinary(dataURI) {
    var base64 = dataURI.split(';base64,')[1];
    var raw = window.atob(base64);
@@ -206,28 +192,29 @@ function noAds() {
 }
 
 var rAdsCount = 0;
+
 function reloadAds() {
-  if (rAdsCount % 10 !== 0) {
-    rAdsCount++;
-    return;
-  }
-  rAdsCount++;
+   if (rAdsCount % 10 !== 0) {
+      rAdsCount++;
+      return;
+   }
+   rAdsCount++;
 
-  var userId = window.localStorage.getItem('SteamId');
-  if (donators.indexOf(userId) !== -1) {
-    return noAds();
-  }
+   var userId = window.localStorage.getItem('SteamId');
+   if (donators.indexOf(userId) !== -1) {
+      return noAds();
+   }
 
-  $('.rColAds').html(gAds[0]);
-  (adsbygoogle = window.adsbygoogle || []).push({});
+   $('.rColAds').html(gAds[0]);
+   (adsbygoogle = window.adsbygoogle || []).push({});
 
-  $('#bottomAds').html(gAds[1]);
-  (adsbygoogle = window.adsbygoogle || []).push({});
+   $('#bottomAds').html(gAds[1]);
+   (adsbygoogle = window.adsbygoogle || []).push({});
 
-  if (!userId) {
-    $('#topAds').html(gAds[2]);
-    (adsbygoogle = window.adsbygoogle || []).push({});
-  }
+   if (!userId) {
+      $('#topAds').html(gAds[2]);
+      (adsbygoogle = window.adsbygoogle || []).push({});
+   }
 }
 
 function reloadImages() {
@@ -305,7 +292,7 @@ function CropImages() {
 
    fillImage($('#avatar'), leftOffset[ImageType] - 9, 34, 164, 164, ImagesNames[0][1]);
 
-     $(".saveButton").attr("href", "https://steam.design/raw/" + btoa(JSON.stringify(bgSaveInfo)));
+   $(".saveButton").attr("href", "https://steam.design/raw/" + btoa(JSON.stringify(bgSaveInfo)));
 }
 
 function fillImage(element, x, y, w, h, name, changeCss) {
@@ -349,13 +336,14 @@ function toggleLong() {
 
 function createInventory(id) {
    var getitems = store.get('backpack');
-   if (refresh == true){
-     clearInterval(ref);
-     $("#refreshInventory").rotate({animateTo:0});
-     refresh = false;
+   if (refresh == true) {
+      clearInterval(ref);
+      $("#refreshInventory").rotate({
+         animateTo: 0
+      });
+      refresh = false;
    }
-   if (getitems && getitems.backgrounds !== null) {
-   } else {
+   if (getitems && getitems.backgrounds !== null) {} else {
       var expire = Date.now() + 86400000;
       $.ajax('https://steam.design/backpack/' + id + '/items.json').done(function(data) {
          store.set('backpack', data, expire);
@@ -455,38 +443,38 @@ $(function() {
    } else {
       backgroundsList = bgs;
    }
+   var hideangle = 0;
+   $('#hideBacksList').click(function() {
+      hideangle += 180;
+      $('#backsList').toggle('show');
+      $(this).rotate({
+         animateTo: hideangle
+      });
+   });
 
-   $('#hideBacksList').click(function(){
-     $('#backsList').toggle('show');
-     $(this).rotate({ animateTo:value});
-     if (value == 180){
-       value = 0;
-     } else {
-       value = 180;
-     }
-     });
-
-     $('#refreshInventory').rotate({
-       bind: {
-         mouseover: function(){
-           var angle = 0;
-          ref = setInterval(function(){
-             angle+=3;
-             $("#refreshInventory").rotate(angle);
-           },15);
+   $('#refreshInventory').rotate({
+      bind: {
+         mouseover: function() {
+            var angle = 0;
+            ref = setInterval(function() {
+               angle += 3;
+               $("#refreshInventory").rotate(angle);
+            }, 15);
          },
-         click: function(){
-           refresh = true;
-           refreshInventory();
+         click: function() {
+            refresh = true;
+            refreshInventory();
          },
-         mouseout : function() {
-           if (refresh !== true){
-             clearInterval(ref);
-             $("#refreshInventory").rotate({animateTo:0});
-           }
+         mouseout: function() {
+            if (refresh !== true) {
+               clearInterval(ref);
+               $("#refreshInventory").rotate({
+                  animateTo: 0
+               });
+            }
          }
-       }
-     });
+      }
+   });
    addArrows();
 
    loginFunc();
