@@ -2,6 +2,8 @@ background = null;
 var toggle = true;
 var loadedBack = null;
 var currentBGInfo = null;
+var to = false;
+var refresh = false;
 var bgSaveInfo = {
    url: null,
    images: [],
@@ -115,8 +117,17 @@ var ImagesNames = {
 };
 
 function hideBacksList() {
-   $('#backsList').toggle('show')
-   $('#hideBacksList').toggleClass('flipped')
+
+   $('#backsList').toggle('show');
+   if (to == true) {
+     $('#hideBacksList').removeClass("spin");
+     $('#hideBacksList').addClass("unspin");
+     to = false;
+     window.setTimeout( function () { $('#hideBacksList').removeClass("unspin"); }, 550 );
+   } else {
+   $('#hideBacksList').addClass("spin");
+   to = true;
+ }
 }
 
 function convertDataURIToBinary(dataURI) {
@@ -346,60 +357,39 @@ function toggleLong() {
 
 function createInventory(id) {
    var getitems = store.get('backpack');
+   if (refresh == true){
+     $('#refreshInventory').removeClass('fa-spin');
+     refresh = false;
+   }
    if (getitems && getitems.backgrounds !== null) {
-      getitems.backgrounds.forEach(function(back) {
-         var itemHolder = $("<div>", {
-            class: "itemHolder",
-            alt: back.name.toLowerCase()
-         });
-         var item = $("<div>", {
-            class: "item app753 context6 activeInfo"
-         });
-         var bgUrl = $("<a>", {
-            href: "#" + back.actions[0].link,
-            class: "inventory_item_link"
-         });
-         var img = $("<img>", {
-            src: "http://steamcommunity-a.akamaihd.net/economy/image/" + back.icon_url + "/96fx96f"
-         });
-         $(bgUrl).append(img);
-         $(item).append(bgUrl);
-         $(itemHolder).append(item);
-         $('#backsList').append(itemHolder);
-      });
-      $("#hideBacksList").show();
-      $("#refreshInventory").show();
-      console.log("Code 1");
    } else {
       var expire = Date.now() + 86400000;
       $.ajax('https://steam.design/backpack/' + id + '/items.json').done(function(data) {
-         store.set('backpack', data, expire)
-         var getitems = store.get('backpack');
-         getitems.backgrounds.forEach(function(back) {
-            var itemHolder = $("<div>", {
-               class: "itemHolder",
-               alt: back.name.toLowerCase()
-            });
-            var item = $("<div>", {
-               class: "item app753 context6 activeInfo"
-            });
-            var bgUrl = $("<a>", {
-               href: "#" + back.actions[0].link,
-               class: "inventory_item_link"
-            });
-            var img = $("<img>", {
-               src: "http://steamcommunity-a.akamaihd.net/economy/image/" + back.icon_url + "/96fx96f"
-            });
-            $(bgUrl).append(img);
-            $(item).append(bgUrl);
-            $(itemHolder).append(item);
-            $('#backsList').append(itemHolder);
-         });
-         $("#hideBacksList").show();
-         $("#refreshInventory").show();
-         console.log("Code 2");
+         store.set('backpack', data, expire);
       });
    }
+   getitems.backgrounds.forEach(function(back) {
+      var itemHolder = $("<div>", {
+         class: "itemHolder",
+         alt: back.name.toLowerCase()
+      });
+      var item = $("<div>", {
+         class: "item app753 context6 activeInfo"
+      });
+      var bgUrl = $("<a>", {
+         href: "#" + back.actions[0].link,
+         class: "inventory_item_link"
+      });
+      var img = $("<img>", {
+         src: "http://steamcommunity-a.akamaihd.net/economy/image/" + back.icon_url + "/96fx96f"
+      });
+      $(bgUrl).append(img);
+      $(item).append(bgUrl);
+      $(itemHolder).append(item);
+      $('#backsList').append(itemHolder);
+   });
+   $("#hideBacksList").show();
+   $("#refreshInventory").show();
    $(".filter").show();
    $(".guide").css("left", "0px")
 }
@@ -475,10 +465,15 @@ $(function() {
 
    $("#refreshInventory").hover(function() {
       $(this).addClass("fa-spin");
+      $("#refreshInventory").click(function(){
+        $(this).addClass('fa-spin');
+        refresh = true;
+      });
    }, function() {
+     if (refresh !== true){
       $(this).removeClass("fa-spin");
-   });
-
+    }
+  });
    addArrows();
 
    loginFunc();

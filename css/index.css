@@ -3,6 +3,11 @@
    overflow-x: hidden;
 }
 
+.fa-spin {
+  -webkit-animation: fa-spin 2s infinite linear;
+  animation: fa-spin 2s infinite linear;
+}
+
 .fa-arrow-down:before {
    content: "\f063";
 }
@@ -27,8 +32,12 @@
    left: 5px;
 }
 
-.flipped {
-   transform: scaleY(-1);
+    transform: rotate( -180deg );
+    transition: transform 200ms ease;
+}
+
+    transform: rotate( 0deg );
+    transition: transform 200ms ease;
 }
 
 .screenshot _showcase_screenshot {
