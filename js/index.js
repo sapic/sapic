@@ -1,10 +1,12 @@
 background = null;
-var toggle = true;
+var oddball = {
+  toggle: true,
+  refresh: false,
+  hidememes: false,
+  ref: 0
+};
 var loadedBack = null;
 var currentBGInfo = null;
-var refresh = false;
-var hidememes = false;
-var ref = 0;
 var bgSaveInfo = {
    url: null,
    images: [],
@@ -241,7 +243,7 @@ function reloadImages() {
       getImageBase64(background, function() {
          CropImages();
          bgChanged();
-         if (toggle) {
+         if (oddball.toggle) {
             var bgheight = $('#bgImgEl').height();
             var uh = bgheight - 272;
             $('#hBig1').css('height', uh);
@@ -271,7 +273,7 @@ function CropImages() {
       images: [],
    };
 
-   if (toggle) {
+   if (oddball.toggle) {
       fillImage($('#big1'), leftOffset[ImageType], rOffset1, 506, h1, ImagesNames[10][1], true);
       fillImage($('#r11'), 514 + leftOffset[ImageType], rOffset1, 100, h1, ImagesNames[11][1]);
    } else {
@@ -317,19 +319,19 @@ function fillImage(element, x, y, w, h, name, changeCss) {
 }
 
 function toggleLong() {
-   if (!toggle) {
+   if (!oddball.toggle) {
       var bh = $('#bgImgEl').height();
       var uh = bh - 272;
       $('#hBig1').css('height', uh);
       $('.hidelong').hide();
       $('.r1').css('height', uh);
-      toggle = true;
+      oddball.toggle = true;
       $('.toggletext').text('Toggle Short Images');
    } else {
       $('#hBig1').css('height', 506);
       $('.hidelong').show();
       $('.r1').css('height', 80);
-      toggle = false;
+      oddball.toggle = false;
       $('.toggletext').text('Toggle Long Images');
    }
    CropImages();
@@ -338,12 +340,12 @@ function toggleLong() {
 function createInventory(id) {
    var hide = store.get('hide');
    var getitems = store.get('backpack');
-   if (refresh == true) {
-      clearInterval(ref);
+   if (oddball.refresh == true) {
+      clearInterval(oddball.ref);
       $("#refreshInventory").rotate({
          animateTo: 0
       });
-      refresh = false;
+      oddball.refresh = false;
    }
    if (getitems && getitems.backgrounds !== null) {} else {
       var expire = Date.now() + 86400000;
@@ -454,15 +456,15 @@ $(function() {
    var hide = store.get('hide');
    if (hide == true) {
       hideangle = 180;
-      hidememes = true;
+      oddball.hidememes = true;
       $('#hideBacksList').rotate({
          animateTo: 180
       });
    }
 
    $('#hideBacksList').click(function() {
-      hidememes = !hidememes;
-      store.set('hide', hidememes);
+      oddball.hidememes = !oddball.hidememes;
+      store.set('hide', oddball.hidememes);
       hideangle += 180;
       $('#backsList').toggle('show');
       $(this).rotate({
@@ -475,18 +477,18 @@ $(function() {
       bind: {
          mouseover: function() {
             var angle = 0;
-            ref = setInterval(function() {
+            oddball.ref = setInterval(function() {
                angle += 3;
                $("#refreshInventory").rotate(angle);
             }, 15);
          },
          click: function() {
-            refresh = true;
+            oddball.refresh = true;
             refreshInventory();
          },
          mouseout: function() {
-            if (refresh !== true) {
-               clearInterval(ref);
+            if (oddball.refresh !== true) {
+               clearInterval(oddball.ref);
                $("#refreshInventory").rotate({
                   animateTo: 0
                });
@@ -554,7 +556,7 @@ $(function() {
          if (newHeight >= 284) {
             target.style.height = newHeight + 'px';
          }
-         if (toggle) {
+         if (oddball.toggle) {
             $('#r11').css('height', newHeight);
          }
          //target.textContent = newWidth + '×' + newHeight;
