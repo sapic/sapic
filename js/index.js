@@ -3,6 +3,7 @@ var toggle = true;
 var loadedBack = null;
 var currentBGInfo = null;
 var refresh = false;
+var hidememes = false;
 var ref = 0;
 var bgSaveInfo = {
    url: null,
@@ -335,6 +336,7 @@ function toggleLong() {
 }
 
 function createInventory(id) {
+   var hide = store.get('hide');
    var getitems = store.get('backpack');
    if (refresh == true) {
       clearInterval(ref);
@@ -349,7 +351,11 @@ function createInventory(id) {
          store.set('backpack', data, expire);
       });
    }
+
    getitems.backgrounds.forEach(function(back) {
+      if (hide == true) {
+         $('.backsList').hide();
+      }
       var itemHolder = $("<div>", {
          class: "itemHolder",
          alt: back.name.toLowerCase()
@@ -443,14 +449,27 @@ $(function() {
    } else {
       backgroundsList = bgs;
    }
+
    var hideangle = 0;
+   var hide = store.get('hide');
+   if (hide == true) {
+      hideangle = 180;
+      hidememes = true;
+      $('#hideBacksList').rotate({
+         animateTo: 180
+      });
+   }
+
    $('#hideBacksList').click(function() {
+      hidememes = !hidememes;
+      store.set('hide', hidememes);
       hideangle += 180;
       $('#backsList').toggle('show');
       $(this).rotate({
          animateTo: hideangle
       });
    });
+
 
    $('#refreshInventory').rotate({
       bind: {
