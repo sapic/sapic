@@ -1,9 +1,9 @@
 background = null;
 var oddball = {
-  toggle: true,
-  refresh: false,
-  hidememes: false,
-  ref: 0
+   toggle: true,
+   refresh: false,
+   hidememes: false,
+   ref: 0
 };
 var loadedBack = null;
 var currentBGInfo = null;

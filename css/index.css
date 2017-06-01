@@ -4,8 +4,8 @@
 }
 
 .fa-spin {
-  -webkit-animation: fa-spin 2s infinite linear;
-  animation: fa-spin 2s infinite linear;
+   -webkit-animation: fa-spin 2s infinite linear;
+   animation: fa-spin 2s infinite linear;
 }
 
 .fa-arrow-down:before {
@@ -33,13 +33,13 @@
 }
 
 .spin {
-    transform: rotate( -180deg );
-    transition: transform 200ms ease;
+   transform: rotate( -180deg);
+   transition: transform 200ms ease;
 }
 
 .unspin {
-    transform: rotate( 0deg );
-    transition: transform 200ms ease;
+   transform: rotate( 0deg);
+   transition: transform 200ms ease;
 }
 
 .screenshot _showcase_screenshot {

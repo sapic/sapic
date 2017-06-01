@@ -1,1170 +1,1135 @@
-
 html {
-	height: 100%;
+   height: 100%;
 }
 
 body {
-	background:  #1b2838;
-	background-color: #1b2838;
-
-	text-align: left;
-
-	color: #8F98A0;
-	font-size: 14px;
-
-	margin:0;
-	padding:0;
+   background: #1b2838;
+   background-color: #1b2838;
+   text-align: left;
+   color: #8F98A0;
+   font-size: 14px;
+   margin: 0;
+   padding: 0;
 }
 
 body.flat_page {
-	position: relative;
-	min-height: 100%;
+   position: relative;
+   min-height: 100%;
 }
 
 body.flat_page.blue {
-	color: #636363;
+   color: #636363;
 }
 
 body.standard_page {
-	min-width: 958px;
+   min-width: 958px;
 }
 
 body, textarea {
-	font-family:Arial, Helvetica, Verdana, sans-serif;
+   font-family: Arial, Helvetica, Verdana, sans-serif;
 }
 
 h1, h2, h3, h4, h5, h6 {
-	margin: 0px;
+   margin: 0px;
 }
 
 .pagecontent {
+   padding-bottom: 128px;
+}
 
-	padding-bottom: 128px;
-}
 .pagecontent.in_client, .pagecontent.no_header {
-	background-position: center top;
+   background-position: center top;
 }
+
 body.flat_page.blue .pagecontent {
-	background: none;
+   background: none;
 }
 
 .pagecontent.no_footerpad {
-	padding-bottom: 0;
+   padding-bottom: 0;
 }
 
 .maincontent {
-	width: 948px;
-	margin: 0 auto;
+   width: 948px;
+   margin: 0 auto;
 }
 
 .ellipsis {
-	overflow: hidden;
-	text-overflow: ellipsis;
-	white-space: nowrap;
+   overflow: hidden;
+   text-overflow: ellipsis;
+   white-space: nowrap;
 }
 
 a, .whiteLink {
-	color: #ebebeb;
-	text-decoration: none;
-	cursor: pointer;
+   color: #ebebeb;
+   text-decoration: none;
+   cursor: pointer;
 }
 
-
 a.hoverunderline:hover {
-	text-decoration: underline;
+   text-decoration: underline;
 }
 
 a.underlinedLink, span.underlinedLink {
-	color: #ebebeb;
-	text-decoration: underline;
-	cursor: pointer;
+   color: #ebebeb;
+   text-decoration: underline;
+   cursor: pointer;
 }
 
 a.whiteLink:hover, .whiteLink:hover, a.linkStandard:hover, a.linkTitle:hover, a.underlinedLink:hover, span.underlinedLink:hover {
-	color: #66C0F4;
-	text-decoration: none;
-	cursor: pointer;
+   color: #66C0F4;
+   text-decoration: none;
+   cursor: pointer;
 }
 
 form {
-	margin:0;
-	padding:0;
+   margin: 0;
+   padding: 0;
 }
 
 input[type=text], input[type=password], select {
-	color: #909090;
-	background-color: rgba( 0, 0, 0, 0.2 );
-	border: 1px solid #000;
-	box-shadow: 1px 1px 0 0 rgba( 91, 132, 181, 0.2 );
-	border-radius: 3px;
+   color: #909090;
+   background-color: rgba( 0, 0, 0, 0.2);
+   border: 1px solid #000;
+   box-shadow: 1px 1px 0 0 rgba( 91, 132, 181, 0.2);
+   border-radius: 3px;
 }
 
-
-
 #footer {
-	position:relative;
-	text-align:left;
-	width: auto;
-	font-size: 12px;
-	color: #8F98A0;
-	border:0;
-	margin: 0;
-	padding: 32px 0;
-	background-color: rgba( 0, 0, 0, 0.4 );
+   position: relative;
+   text-align: left;
+   width: auto;
+   font-size: 12px;
+   color: #8F98A0;
+   border: 0;
+   margin: 0;
+   padding: 32px 0;
+   background-color: rgba( 0, 0, 0, 0.4);
 }
 
 body.flat_page #footer, body.headerless_page #footer {
-	position: absolute;
-	left: 0;
-	right: 0;
-	bottom: 0;
-	padding: 0;
-	margin: 0;
-	padding-top: 16px;
-	background: transparent;
+   position: absolute;
+   left: 0;
+   right: 0;
+   bottom: 0;
+   padding: 0;
+   margin: 0;
+   padding-top: 16px;
+   background: transparent;
 }
+
 body.flat_page #footer {
-	background-color: #000000;
+   background-color: #000000;
 }
+
 body.flat_page.blue #footer {
-	background: none;
+   background: none;
 }
 
 body.flat_page #footer_spacer, body.headerless_page #footer_spacer {
-	height: 78px;
-	padding-top: 16px;
+   height: 78px;
+   padding-top: 16px;
 }
 
 #footer .footer_content {
-	position: relative;
-	width: 958px;
-	margin: 0 auto;
+   position: relative;
+   width: 958px;
+   margin: 0 auto;
 }
 
 #footer a {
-	color: #C6D4DF;
-	text-decoration: none;
+   color: #C6D4DF;
+   text-decoration: none;
 }
 
 #footer a:hover {
-	color: #ffffff;
+   color: #ffffff;
 }
 
 #footerText {
-	padding: 2px 0 0 123px;
-	line-height: 14px;
-	display: block;
-	color: #8F98A0;
+   padding: 2px 0 0 123px;
+   line-height: 14px;
+   display: block;
+   color: #8F98A0;
 }
 
 #footerLogo {
-	position: absolute;
-	left: 16px;
-	top: 4px;
+   position: absolute;
+   left: 16px;
+   top: 4px;
 }
-
 
 .friendBlock {
-	height:36px;
-	padding: 4px 0 4px 4px;
-	margin-bottom:4px;
-	font-size:11px;
-	line-height:13px;
-	overflow: hidden;
-	white-space: nowrap;
-	text-overflow: ellipsis;
-
-	position: relative;
-
-	background-color: rgba( 84, 133, 183, 0.2);
+   height: 36px;
+   padding: 4px 0 4px 4px;
+   margin-bottom: 4px;
+   font-size: 11px;
+   line-height: 13px;
+   overflow: hidden;
+   white-space: nowrap;
+   text-overflow: ellipsis;
+   position: relative;
+   background-color: rgba( 84, 133, 183, 0.2);
 }
+
 a.friendBlock {
-	display: block;
+   display: block;
 }
 
 .friendBlockLinkOverlay {
-	position: absolute;
-	left: 0;
-	top: 0;
-	right: 0;
-	bottom: 0;
-
-	z-index: 2;
+   position: absolute;
+   left: 0;
+   top: 0;
+   right: 0;
+   bottom: 0;
+   z-index: 2;
 }
 
 .friendBlock a.friendBlockInnerLink {
-	position: relative;
-	z-index: 3;
-	color: #ffffff;
+   position: relative;
+   z-index: 3;
+   color: #ffffff;
 }
 
 .friendBlock:hover {
-	cursor:pointer;
-	background-color: rgba( 117, 204, 255, 0.3);
+   cursor: pointer;
+   background-color: rgba( 117, 204, 255, 0.3);
 }
 
 .friendBlock .playerAvatar {
-	float:left;
-	margin-right: 7px;
+   float: left;
+   margin-right: 7px;
 }
 
 .friendBlock .friendBlockContent {
-	overflow: hidden;
-	white-space: nowrap;
-	text-overflow: ellipsis;
+   overflow: hidden;
+   white-space: nowrap;
+   text-overflow: ellipsis;
 }
 
 .friendBlock .friend_join_game_link {
-	text-decoration: underline;
+   text-decoration: underline;
 }
 
 .friendBlock .friend_join_game_link:hover {
-	color: white;
+   color: white;
 }
 
 .friendBlock .blockedText {
-	color: red;
-	font-weight: bold;
+   color: red;
+   font-weight: bold;
 }
 
 .friendBlockStatusIcon {
-	float: right;
-	height: 40px;
-	line-height: 40px;
-	padding: 0 7px;
-}
-.friendBlockStatusIcon img {
-	vertical-align: middle;
+   float: right;
+   height: 40px;
+   line-height: 40px;
+   padding: 0 7px;
 }
 
+.friendBlockStatusIcon img {
+   vertical-align: middle;
+}
 
 .friendBlock .friendPlayerLevel {
-	float: right;
-	margin: 4px 4px 0 0;
+   float: right;
+   margin: 4px 4px 0 0;
 }
 
-
-
-@media screen and (max-width: 910px)
-{
-	html.responsive .responsive_friendblocks .friendBlock,
-	html.responsive .responsive_friendblocks .friendBlock:nth-child(3n) {
-		margin-right: 0.8%;
-	}
+@media screen and (max-width: 910px) {
+   html.responsive .responsive_friendblocks .friendBlock, html.responsive .responsive_friendblocks .friendBlock:nth-child(3n) {
+      margin-right: 0.8%;
+   }
 }
 
-@media screen and (max-width: 910px) and (min-width: 601px)
-{
-
-	html.responsive .responsive_friendblocks .friendBlock {
-		width: 32%;
-	}
-
-	html.responsive .responsive_friendblocks .friendBlock:nth-child(3n) {
-		margin-right: 0;
-	}
+@media screen and (max-width: 910px) and (min-width: 601px) {
+   html.responsive .responsive_friendblocks .friendBlock {
+      width: 32%;
+   }
+   html.responsive .responsive_friendblocks .friendBlock:nth-child(3n) {
+      margin-right: 0;
+   }
 }
 
-@media screen and (max-width: 600px ) and (min-width: 401px)
-{
-	html.responsive .responsive_friendblocks .friendBlock {
-		width: 48%;
-	}
-
-	html.responsive .responsive_friendblocks .friendBlock:nth-child(2n) {
-		margin-right: 0;
-	}
+@media screen and (max-width: 600px) and (min-width: 401px) {
+   html.responsive .responsive_friendblocks .friendBlock {
+      width: 48%;
+   }
+   html.responsive .responsive_friendblocks .friendBlock:nth-child(2n) {
+      margin-right: 0;
+   }
 }
 
-@media screen and (max-width: 400px )
-{
-	html.responsive .responsive_friendblocks .friendBlock {
-		width: auto;
-		float: none;
-	}
+@media screen and (max-width: 400px) {
+   html.responsive .responsive_friendblocks .friendBlock {
+      width: auto;
+      float: none;
+   }
 }
 
-@media screen and (max-width: 910px)
-{
-
-	html.responsive .commentthread_pagelinks {
-		display: none;
-	}
-
-	html.responsive .commentthread_pagedropdown {
-		display: inline;
-	}
-
-	html.responsive .commentthread_comment_author .actionlink {
-		display: none;
-	}
-
+@media screen and (max-width: 910px) {
+   html.responsive .commentthread_pagelinks {
+      display: none;
+   }
+   html.responsive .commentthread_pagedropdown {
+      display: inline;
+   }
+   html.responsive .commentthread_comment_author .actionlink {
+      display: none;
+   }
 }
+
 
 /* used to display the " - public" next to a group name */
+
 .pubGroup {
-	font-size:11px;
-	color:#d05f29;
-	font-weight:bold;
+   font-size: 11px;
+   color: #d05f29;
+   font-weight: bold;
 }
 
-body.flat_page > .perf_timing_area .perf_timing_link, body.headerless_page > .perf_timing_area .perf_timing_link {
-	position: absolute;
-	left: 15px;
-	bottom: 15px;
+body.flat_page>.perf_timing_area .perf_timing_link, body.headerless_page>.perf_timing_area .perf_timing_link {
+   position: absolute;
+   left: 15px;
+   bottom: 15px;
 }
 
 .perf_timing_area {
-	display: block;
-	text-align: center;
-	margin-bottom: 14px;
+   display: block;
+   text-align: center;
+   margin-bottom: 14px;
 }
 
 .perf_timing_data {
-	position: relative;
-	background-color: #000000;
-	margin: 0px auto 48px auto;
-	padding: 8px;
-	text-align: left;
-	width: 936px;
-	font-size: 14px;
-}
-.nowrap {
-	white-space: nowrap;
-	overflow: hidden;
+   position: relative;
+   background-color: #000000;
+   margin: 0px auto 48px auto;
+   padding: 8px;
+   text-align: left;
+   width: 936px;
+   font-size: 14px;
 }
 
+.nowrap {
+   white-space: nowrap;
+   overflow: hidden;
+}
+
+
 /* -------------- paging controls -------------*/
+
 .pagebtn, a.pagebtn {
-	display: inline-block;
-	line-height: 24px;
-	background-color: rgba( 103, 193, 245, 0.2 );
-	border: 1px transparent;
-	border-radius: 3px;
-	cursor: pointer;
-	padding: 0px 16px;
-	color: #66c0f4;
+   display: inline-block;
+   line-height: 24px;
+   background-color: rgba( 103, 193, 245, 0.2);
+   border: 1px transparent;
+   border-radius: 3px;
+   cursor: pointer;
+   padding: 0px 16px;
+   color: #66c0f4;
 }
 
 .pagebtn:hover, a.pagebtn:hover {
-	background-color: #66c0f4;
-	border-color: #66c0f4;
-	color: #fff;
-	text-decoration: none;
+   background-color: #66c0f4;
+   border-color: #66c0f4;
+   color: #fff;
+   text-decoration: none;
 }
 
 .pagebtn.disabled, .pagebtn.disabled:hover, a.pagebtn.disabled, a.pagebtn.disabled:hover {
-	border: 1px solid #253e4c;
-	background-color: transparent;
-	color: #253e4c;
-	cursor: default;
+   border: 1px solid #253e4c;
+   background-color: transparent;
+   color: #253e4c;
+   cursor: default;
 }
 
 a.pagelink:hover {
-	text-decoration: underline;
-	color: #ffffff;
+   text-decoration: underline;
+   color: #ffffff;
 }
 
 
 /* note that the old gameLogoHolder_default style does nothing now */
 
 .gameLogo {
-	width:184px;
-	height:69px;
-	border:0;
-	padding: 4px;
-	margin:0;
-	background: rgba( 0, 0, 0, 0.5 );
+   width: 184px;
+   height: 69px;
+   border: 0;
+   padding: 4px;
+   margin: 0;
+   background: rgba( 0, 0, 0, 0.5);
 }
 
 .gameLogo img {
-	border:0;
-	width:184px;
-	height:69px;
+   border: 0;
+   width: 184px;
+   height: 69px;
 }
 
 
 /* ---------------- comment threads -------------*/
+
 .commentthread_header, .commentthread_footer {
-	font-size: 14px;
-	line-height: 24px;
-	margin-bottom: 1px;
-	padding-bottom: 2px;
+   font-size: 14px;
+   line-height: 24px;
+   margin-bottom: 1px;
+   padding-bottom: 2px;
 }
+
 .commentthread_header {
-	border-bottom: 1px solid #363f4c;
+   border-bottom: 1px solid #363f4c;
 }
+
 .commentthread_footer {
-	border-top: 1px solid #363f4c;
+   border-top: 1px solid #363f4c;
 }
 
 .commentthread_header .commentthread_count, .commentthread_footer .commentthread_count {
-	float: left;
+   float: left;
 }
 
 .commentthread_header .commentthread_count {
-	background-image: url( https://steamcommunity-a.akamaihd.net/public/images/skin_1/comment_quoteicon.png );
-	background-image: url( data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABAAAAAQCAYAAAAf8/9hAAAAGXRFWHRTb2Z0d2FyZQBBZG9iZSBJbWFnZVJlYWR5ccllPAAAAUNJREFUeNqkU11Og0AQnm04QI/AEfQGcAO9QXnRUJuGqml8M75oUhOlhEqtD3IDewO5QfcIHKEH2B8/WqBgTAr4JcMAM/Ptt7OzjIAgjAaMMZOOQGudjkduXP3H/GDxCu9Rc/je+GpSfPSklB6MWlhtMTZ7ftHUHrbCdu6mN2lPgLWLKSk3j08z05BSUEf0YQNDCkn/gSE6KMCRcxzpngAK1vBnLeoTTdpixHICJR3SlOLdQuCkthKx5FcxR84c+V95feGIrm+nFtx3JdnRSmUE1Qk1If+eDlP7YBQRKaq9YI7SiiN5w/bd/gtbxOOSIDvbXFKMBq0R/NQ7yTsFZq0QOVAxDwM/LQkwGBzuNHoLef7rPHu4w1EfhNnWiv7wZbSYHPrUABeXbpUk+Vgt7fIyNSFYvUdbXCJbCMGFqM/NjwADANx60v2kqu2YAAAAAElFTkSuQmCC );
-	background-repeat: no-repeat;
-	background-position: left center;
-	padding-left: 24px;
+   background-image: url(https://steamcommunity-a.akamaihd.net/public/images/skin_1/comment_quoteicon.png );
+   background-image: url(data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABAAAAAQCAYAAAAf8/9hAAAAGXRFWHRTb2Z0d2FyZQBBZG9iZSBJbWFnZVJlYWR5ccllPAAAAUNJREFUeNqkU11Og0AQnm04QI/AEfQGcAO9QXnRUJuGqml8M75oUhOlhEqtD3IDewO5QfcIHKEH2B8/WqBgTAr4JcMAM/Ptt7OzjIAgjAaMMZOOQGudjkduXP3H/GDxCu9Rc/je+GpSfPSklB6MWlhtMTZ7ftHUHrbCdu6mN2lPgLWLKSk3j08z05BSUEf0YQNDCkn/gSE6KMCRcxzpngAK1vBnLeoTTdpixHICJR3SlOLdQuCkthKx5FcxR84c+V95feGIrm+nFtx3JdnRSmUE1Qk1If+eDlP7YBQRKaq9YI7SiiN5w/bd/gtbxOOSIDvbXFKMBq0R/NQ7yTsFZq0QOVAxDwM/LQkwGBzuNHoLef7rPHu4w1EfhNnWiv7wZbSYHPrUABeXbpUk+Vgt7fIyNSFYvUdbXCJbCMGFqM/NjwADANx60v2kqu2YAAAAAElFTkSuQmCC );
+   background-repeat: no-repeat;
+   background-position: left center;
+   padding-left: 24px;
 }
 
 .commentthread_paging {
-	float: right;
+   float: right;
 }
 
 .commentthread_pagelink {
-	cursor: pointer;
-	color: #ffffff;
+   cursor: pointer;
+   color: #ffffff;
 }
 
 .commentthread_pagedropdown {
-	display: none;
+   display: none;
 }
 
+
 /* fix some bad workshop.css styles */
+
 .commentthread_pagedropdown select {
-	width: auto;
+   width: auto;
 }
 
 .commentthread_pagelink:hover {
-	text-decoration: underline;
+   text-decoration: underline;
 }
 
 .commentthread_pagelink.active {
-	cursor: default;
-	color: #939393;
+   cursor: default;
+   color: #939393;
 }
 
 .commentthread_pagelink.active:hover {
-	text-decoration: none;
+   text-decoration: none;
 }
 
 .commentthread_entry {
-	min-height: 44px;
-	background-color: rgba( 0, 0, 0, 0.2 );
-	position: relative;
-
-	padding: 8px 8px 8px 52px;
+   min-height: 44px;
+   background-color: rgba( 0, 0, 0, 0.2);
+   position: relative;
+   padding: 8px 8px 8px 52px;
 }
+
 .commentthread_entry .commentthread_user_avatar {
-	left: 8px;
-	top: 8px;
+   left: 8px;
+   top: 8px;
 }
 
 .commentthread_allcommentslink {
-	margin-right: 12px;
+   margin-right: 12px;
 }
 
 a.commentthread_allcommentslink:hover {
-	text-decoration: underline;
+   text-decoration: underline;
 }
 
 .commentthread_user_avatar {
-	position: absolute;
-	left: 6px;
-	top: 7px;
+   position: absolute;
+   left: 6px;
+   top: 7px;
 }
 
 .commentthread_entry_quotebox_quote {
-	position: absolute;
-	left: 50px;
-	top: 13px;
-	width: 17px;
-	height: 18px;
+   position: absolute;
+   left: 50px;
+   top: 13px;
+   width: 17px;
+   height: 18px;
 }
 
 .commentthread_entry_quotebox {
-	border: none;
-	padding: 4px 6px 4px 6px;
-	font-size: 12px;
-	background-color: rgba( 0, 0, 0, 0.4 );
-	border-radius: 4px;
-	border-left: 1px solid #000;
-	border-top: 1px solid #000;
-	border-right: 1px solid #354357;
-	border-bottom: 1px solid #354357;
+   border: none;
+   padding: 4px 6px 4px 6px;
+   font-size: 12px;
+   background-color: rgba( 0, 0, 0, 0.4);
+   border-radius: 4px;
+   border-left: 1px solid #000;
+   border-top: 1px solid #000;
+   border-right: 1px solid #354357;
+   border-bottom: 1px solid #354357;
 }
 
 .commentthread_textarea {
-	resize: none;
-	outline: none;
-	background-color: transparent;
-	border: none;
-	width: 100%;
-	overflow: hidden;
-	color: #BFBFBF;
+   resize: none;
+   outline: none;
+   background-color: transparent;
+   border: none;
+   width: 100%;
+   overflow: hidden;
+   color: #BFBFBF;
 }
 
 .commentthread_entry_submitlink {
-	text-align: right;
-	padding-top: 5px;
+   text-align: right;
+   padding-top: 5px;
 }
 
 .commentthread_entry_submitlink .emoticon_button {
-	margin-right: 8px;
+   margin-right: 8px;
 }
 
 .commentthread_entry_autosubscribe {
-	padding-bottom: 8px;
+   padding-bottom: 8px;
 }
 
 .commentthread_entry_error {
-	color: #ff0000;
+   color: #ff0000;
 }
 
-.commentthread_textarea::-webkit-input-placeholder{
-	font-style: italic;
-	color: #515152;
+.commentthread_textarea::-webkit-input-placeholder {
+   font-style: italic;
+   color: #515152;
 }
 
 .commentthread_textarea:-moz-placeholder {
-	font-style: italic;
-	color: #515152;
+   font-style: italic;
+   color: #515152;
 }
 
 .commentthread_comment_container {
-	margin-top: 19px;
+   margin-top: 19px;
 }
 
 .commentthread_comment {
-	position: relative;
-	padding-bottom: 19px;
-	min-height: 40px;
-	padding-left: 58px;
+   position: relative;
+   padding-bottom: 19px;
+   min-height: 40px;
+   padding-left: 58px;
 }
 
 .valve_links {
-	margin: 15px 0 0 0;
-	display: block;
+   margin: 15px 0 0 0;
+   display: block;
 }
 
-.commentthread_comment.commentthread_newcomment {
-
-}
+.commentthread_comment.commentthread_newcomment {}
 
 .commentthread_comment_avatar {
-	position: absolute;
-	left: 5px;
-	top: 0px;
+   position: absolute;
+   left: 5px;
+   top: 0px;
 }
 
-.commentthread_valve_icon
-{
-	vertical-align: middle;
-	margin-left: 5px;
-	width: 59px;
-	height: 16px;
+.commentthread_valve_icon {
+   vertical-align: middle;
+   margin-left: 5px;
+   width: 59px;
+   height: 16px;
 }
 
 .commentthread_comment_author {
-	margin-bottom: 2px;
-	line-height: 16px;
+   margin-bottom: 2px;
+   line-height: 16px;
 }
 
 .commentthread_comment_author a {
-	font-size: 14px;
+   font-size: 14px;
 }
 
 .commentthread_comment_author a.actionlink {
-	color: #B0AEAC;
-	font-size: 11px;
-	visibility: hidden;
+   color: #B0AEAC;
+   font-size: 11px;
+   visibility: hidden;
 }
 
 .commentthread_comment_author a.actionlink:hover {
-	text-decoration: underline;
+   text-decoration: underline;
 }
 
 .commentthread_comment:hover .commentthread_comment_author a.actionlink {
-	visibility: visible;
+   visibility: visible;
 }
 
 .commentthread_comment_timestamp {
-	font-size: 11px;
-	color: #535354;
-	margin-left: 4px;
+   font-size: 11px;
+   color: #535354;
+   margin-left: 4px;
 }
 
 .commentthread_comment_text {
-	font-size: 13px;
-	color: #acb2b8;
-	word-wrap: break-word;
-	overflow-y: auto;
-	max-height: 400px;
-	line-height: 18px;
+   font-size: 13px;
+   color: #acb2b8;
+   word-wrap: break-word;
+   overflow-y: auto;
+   max-height: 400px;
+   line-height: 18px;
 }
 
 .commentthread_comment_text a {
-	color: #c6d4df;
-	text-decoration: underline;
+   color: #c6d4df;
+   text-decoration: underline;
 }
 
 .commentthread_comment_text a:hover {
-	color: #EBEBEB;
-	text-decoration: underline;
+   color: #EBEBEB;
+   text-decoration: underline;
 }
 
 .commentthread_comment_friendindicator {
-	position: absolute;
-	left: 33px;
-	top: 24px;
-	background-image: url( 'https://steamcommunity-a.akamaihd.net/public/images/skin_1/comment_friendindicator_small.png' );
-	width: 20px;
-	height: 20px;
-	z-index: 2;
-
-	cursor: pointer;
+   position: absolute;
+   left: 33px;
+   top: 24px;
+   background-image: url('https://steamcommunity-a.akamaihd.net/public/images/skin_1/comment_friendindicator_small.png');
+   width: 20px;
+   height: 20px;
+   z-index: 2;
+   cursor: pointer;
 }
 
 .commentthread_edit_buttons {
-	text-align: right;
+   text-align: right;
 }
 
 .commentthread_workshop_authorbadge {
-	color: #e9d528;
+   color: #e9d528;
 }
 
 .commentthread_workshop_publishedfilesbadge {
-	display: inline-block;
-	padding: 0 6px;
-	border-radius: 3px;
-	line-height: 22px;
-	margin: 0 4px;
-	background-color: #425979;
+   display: inline-block;
+   padding: 0 6px;
+   border-radius: 3px;
+   line-height: 22px;
+   margin: 0 4px;
+   background-color: #425979;
 }
 
 .commentthread_steamworks_developerbadge {
-	display: inline-block;
-	padding: 0 6px;
-	border-radius: 3px;
-	line-height: 22px;
-	margin: 0 4px;
-	background-color: #AC966A;
+   display: inline-block;
+   padding: 0 6px;
+   border-radius: 3px;
+   line-height: 22px;
+   margin: 0 4px;
+   background-color: #AC966A;
 }
+
 
 /** Styles for modal popup */
 
 .modal_top_band {
-	background-color:#37516d;
-	width:548px;
-	height:25px;
-	margin-bottom:1px;
+   background-color: #37516d;
+   width: 548px;
+   height: 25px;
+   margin-bottom: 1px;
 }
 
 .modal_close {
-	float:right;
-	width:9px;
-	height:9px;
-	margin-right:9px;
-	margin-top:7px;
-	line-height: 9px;
-	cursor: pointer;
+   float: right;
+   width: 9px;
+   height: 9px;
+   margin-right: 9px;
+   margin-top: 7px;
+   line-height: 9px;
+   cursor: pointer;
 }
 
 .modal_box {
-	background: -webkit-gradient(linear, left top, left bottom, color-stop(5%,rgba(102,192,244,1)), color-stop(95%,rgba(47,137,188,1)));background: -moz-linear-gradient( top, rgba(102,192,244,1) 5%, rgba(47,137,188,1) 95%);background: -webkit-linear-gradient( top, rgba(102,192,244,1) 5%, rgba(47,137,188,1) 95%);background: -o-linear-gradient( top, rgba(102,192,244,1) 5%, rgba(47,137,188,1) 95%);background: -ms-linear-gradient( top, rgba(102,192,244,1) 5%, rgba(47,137,188,1) 95%);background: linear-gradient( to bottom, rgba(102,192,244,1) 5%, rgba(47,137,188,1) 95%);	padding: 3px;
-	width:542px;
+   background: -webkit-gradient(linear, left top, left bottom, color-stop(5%, rgba(102, 192, 244, 1)), color-stop(95%, rgba(47, 137, 188, 1)));
+   background: -moz-linear-gradient( top, rgba(102, 192, 244, 1) 5%, rgba(47, 137, 188, 1) 95%);
+   background: -webkit-linear-gradient( top, rgba(102, 192, 244, 1) 5%, rgba(47, 137, 188, 1) 95%);
+   background: -o-linear-gradient( top, rgba(102, 192, 244, 1) 5%, rgba(47, 137, 188, 1) 95%);
+   background: -ms-linear-gradient( top, rgba(102, 192, 244, 1) 5%, rgba(47, 137, 188, 1) 95%);
+   background: linear-gradient( to bottom, rgba(102, 192, 244, 1) 5%, rgba(47, 137, 188, 1) 95%);
+   padding: 3px;
+   width: 542px;
+   font-size: 12px;
+   color: #ffffff;
+   text-align: left;
+}
 
-	font-size: 12px;
-	color: #ffffff;
-	text-align: left;
+.modal_box .modal_box_ctn {
+   width: 502px;
+   background-color: #1a2635;
+   padding: 20px;
 }
-.modal_box .modal_box_ctn
-{
-	width:502px;
-	background-color:#1a2635;
-	padding:20px;
-}
+
 .modal_box #forum_movetopic_modal_content #forum_movetopic_form {
-	background: transparent;
+   background: transparent;
 }
 
 .modal_box h1, .modal_box h5 {
-	font-weight: normal;
+   font-weight: normal;
 }
 
 .modal_box h2 {
-	color: #c6d4df;
-	font-family: "Motiva Sans Light", "Motiva Sans", arial, tahoma, sans-serif;
-	font-size: 22px;
-	font-weight: normal;
-	margin-bottom: 10px;
+   color: #c6d4df;
+   font-family: "Motiva Sans Light", "Motiva Sans", arial, tahoma, sans-serif;
+   font-size: 22px;
+   font-weight: normal;
+   margin-bottom: 10px;
 }
 
 .modal_low_block {
-	background-color:#171717;
-	padding:20px 20px 0px 20px;
-	height:54px;
-	padding-top:24px;
-	color:#b0aeac;
+   background-color: #171717;
+   padding: 20px 20px 0px 20px;
+   height: 54px;
+   padding-top: 24px;
+   color: #b0aeac;
 }
-
 
 .modal_steam_ico {
-	float:left;
-	padding-right:18px;
-	margin-top:-4px;
+   float: left;
+   padding-right: 18px;
+   margin-top: -4px;
 }
 
-
-
 #modalBG {
-	position:fixed;
-	z-index:900;
-	background-color:#000000;
-	filter:alpha(opacity=60);
-	opacity:0.8;
-	top: 0;
-	bottom: 0;
-	left: 0;
-	right: 0;
+   position: fixed;
+   z-index: 900;
+   background-color: #000000;
+   filter: alpha(opacity=60);
+   opacity: 0.8;
+   top: 0;
+   bottom: 0;
+   left: 0;
+   right: 0;
 }
 
 .modal_frame {
-	width:508px;
-	position:absolute;
-	z-index:1000;
-	background-color:#000000;
+   width: 508px;
+   position: absolute;
+   z-index: 1000;
+   background-color: #000000;
 }
 
 
 /* big gray buttons for the modal */
+
 .gray_square_button {
-	height: 34px;
-	line-height: 34px;
-	color: #e5e2df;
-	font-size: 14px;
-	padding: 0 2px;
-	margin: 0 8px;
-
-	border: none;
-
-	position: relative;
-	display: inline-block;
-
-	cursor: pointer;
+   height: 34px;
+   line-height: 34px;
+   color: #e5e2df;
+   font-size: 14px;
+   padding: 0 2px;
+   margin: 0 8px;
+   border: none;
+   position: relative;
+   display: inline-block;
+   cursor: pointer;
 }
 
 a.gray_square_button:hover {
-	text-decoration: none;
-	color: #e5e2df;
+   text-decoration: none;
+   color: #e5e2df;
 }
 
 .modal_box .gray_square_button {
-	margin-left: 0;
-	margin-right: 16px;
+   margin-left: 0;
+   margin-right: 16px;
 }
 
 .gray_square_button .left, .gray_square_button .right, .gray_square_button .button_label {
-	background-image: url( 'https://steamcommunity-a.akamaihd.net/public/images/economy/gray_square_button.png' );
+   background-image: url('https://steamcommunity-a.akamaihd.net/public/images/economy/gray_square_button.png');
 }
 
 .gray_square_button .left, .gray_square_button .right {
-	background-repeat: no-repeat;
-	position: absolute;
-	top: 0;
-	height: 34px;
-	width: 2px;
+   background-repeat: no-repeat;
+   position: absolute;
+   top: 0;
+   height: 34px;
+   width: 2px;
 }
 
 .gray_square_button .left {
-	background-position: 0 0;
-	left: 0;
+   background-position: 0 0;
+   left: 0;
 }
 
 .gray_square_button .right {
-	background-position: -2px 0;
-	right: 0;
+   background-position: -2px 0;
+   right: 0;
 }
 
 .gray_square_button .button_label {
-	background-repeat: repeat-x;
-	background-position: 0 -34px;
-	padding: 0 32px;
-	text-align: left;
+   background-repeat: repeat-x;
+   background-position: 0 -34px;
+   padding: 0 32px;
+   text-align: left;
 }
 
 .modal_box .gray_square_button .button_label {
-	min-width: 62px;
+   min-width: 62px;
 }
 
 .gray_square_button.active .left {
-	background-position: 0 -68px;
+   background-position: 0 -68px;
 }
 
 .gray_square_button.active .right {
-	background-position: -2px -68px;
+   background-position: -2px -68px;
 }
 
 .gray_square_button.active .button_label {
-	background-position: 0 -102px;
+   background-position: 0 -102px;
 }
 
-button.gray_square_button::-moz-focus-inner
-{
-	padding: 0;
-	border: none;
+button.gray_square_button::-moz-focus-inner {
+   padding: 0;
+   border: none;
 }
 
 
 /* not logged in modal dialog */
 
 .notLoggedInText {
-	font-size: 20px;
-	padding-bottom: 20px;
-	padding-top: 0;
-	text-align: center;
+   font-size: 20px;
+   padding-bottom: 20px;
+   padding-top: 0;
+   text-align: center;
 }
 
 .notLoggedInButtons {
-	display: block;
-	margin: 0 auto;
-	text-align: center;
+   display: block;
+   margin: 0 auto;
+   text-align: center;
 }
 
-.notLoggedInButtons > a {
-	margin-right: 5px;
+.notLoggedInButtons>a {
+   margin-right: 5px;
 }
 
 
 /* new input styles */
 
 input.gray_bevel:-moz-placeholder, textarea.gray_bevel:-moz-placeholder, .gray_bevel textarea:-moz-placeholder, .gray_bevel input:-moz-placeholder {
-	font-style: italic;
-	color: #7c7c7c;
+   font-style: italic;
+   color: #7c7c7c;
 }
 
 input.gray_bevel::-webkit-input-placeholder, textarea.gray_bevel::-webkit-input-placeholder, .gray_bevel textarea::-webkit-input-placeholder, .gray_bevel input::-webkit-input-placeholder {
-	font-style: italic;
-	color: #7c7c7c;
+   font-style: italic;
+   color: #7c7c7c;
 }
 
 input.gray_bevel, textarea.gray_bevel, .gray_bevel, .commentthread_comment_edit_textarea_ctn {
-	background-color: rgba( 0, 0, 0, 0.2 );
-	border-radius: 3px;
-	border: 1px solid #000;
-	box-shadow: 1px 1px 0 0 rgba( 91, 132, 181, 0.2 );
-	color: #C6D4DF;
-
-	margin-bottom: 6px;
-	outline: none;
-
-
-	padding: 4px 6px;
+   background-color: rgba( 0, 0, 0, 0.2);
+   border-radius: 3px;
+   border: 1px solid #000;
+   box-shadow: 1px 1px 0 0 rgba( 91, 132, 181, 0.2);
+   color: #C6D4DF;
+   margin-bottom: 6px;
+   outline: none;
+   padding: 4px 6px;
 }
 
 .gray_bevel.for_text_input {
-	display: inline-block;
-	padding-bottom: 1px;
-	height: 25px;
+   display: inline-block;
+   padding-bottom: 1px;
+   height: 25px;
 }
 
 .gray_bevel input {
-	line-height: 21px;
-	height: 21px;
+   line-height: 21px;
+   height: 21px;
 }
 
 .newmodal_prompt_textarea {
-	height: 396px;
+   height: 396px;
 }
 
 .newmodal_prompt_with_textarea {
-	display: inline-block;
-	padding-top: 1px;
-	padding-bottom: 1px;
-	width: 500px;
+   display: inline-block;
+   padding-top: 1px;
+   padding-bottom: 1px;
+   width: 500px;
 }
 
 .gray_bevel input, .gray_bevel textarea {
-	border: none;
-	outline: none;
-	box-shadow: none;
-	background-color: transparent;
-	font-size: 13px;
-	color: #C6D4DF;
+   border: none;
+   outline: none;
+   box-shadow: none;
+   background-color: transparent;
+   font-size: 13px;
+   color: #C6D4DF;
 }
 
 .gray_bevel.fullwidth {
-	display: block;
+   display: block;
 }
 
 .gray_bevel.fullwidth.for_text_input input, .gray_bevel.fullwidth textarea {
-	width: 100%;
+   width: 100%;
 }
 
 input.gray_bevel {
-	height: 20px;
+   height: 20px;
 }
 
 textarea.gray_bevel, .gray_bevel textarea {
-	resize: none;
+   resize: none;
 }
 
 select.gray_bevel {
-	background-color: #212f43;
-	border-radius: 3px;
-	border: 1px solid rgba( 91, 132, 181, 0.2 );
-	box-shadow: 1px 1px 0px #000000;
-	color: #BFBFBF;
-
-	margin-bottom: 6px;
-	outline: none;
-
-	padding: 0px;
-	line-height: 27px;
-	height: 27px;
-	font-size: 14px;
+   background-color: #212f43;
+   border-radius: 3px;
+   border: 1px solid rgba( 91, 132, 181, 0.2);
+   box-shadow: 1px 1px 0px #000000;
+   color: #BFBFBF;
+   margin-bottom: 6px;
+   outline: none;
+   padding: 0px;
+   line-height: 27px;
+   height: 27px;
+   font-size: 14px;
 }
 
 
 /* sharing published files*/
-#SharePopup
-{
-	min-width: 550px;
-	background-color: #323232;
-	border: 1px solid #4a4943;
-	padding: 10px;
-	text-align: left;
+
+#SharePopup {
+   min-width: 550px;
+   background-color: #323232;
+   border: 1px solid #4a4943;
+   padding: 10px;
+   text-align: left;
 }
 
-.share_controls_steam, .share_controls_steam a
-{
-	float: left;
-	display: inline-block;
-	width: 328px;
-	height: 50px;
-	margin-right: 15px;
-	font-size: 16px;
-	font-family: Arial;
-	text-align: center;
-	line-height: 50px;
-	text-decoration: none;
-	background-image: url( 'https://steamcommunity-a.akamaihd.net/public/images//sharedfiles/share_status_off.jpg' );
+.share_controls_steam, .share_controls_steam a {
+   float: left;
+   display: inline-block;
+   width: 328px;
+   height: 50px;
+   margin-right: 15px;
+   font-size: 16px;
+   font-family: Arial;
+   text-align: center;
+   line-height: 50px;
+   text-decoration: none;
+   background-image: url('https://steamcommunity-a.akamaihd.net/public/images//sharedfiles/share_status_off.jpg');
 }
 
-.share_controls_steam:hover, .share_controls_steam:hover a
-{
-	background-image: url( 'https://steamcommunity-a.akamaihd.net/public/images//sharedfiles/share_status_on.jpg' );
-	text-decoration: none;
+.share_controls_steam:hover, .share_controls_steam:hover a {
+   background-image: url('https://steamcommunity-a.akamaihd.net/public/images//sharedfiles/share_status_on.jpg');
+   text-decoration: none;
 }
 
-.share_controls_other
-{
-	padding-top: 10px;
+.share_controls_other {
+   padding-top: 10px;
 }
 
-.share_controls_divider
-{
-	background-color: #161616;
-	border-bottom: 1px solid #4c4c4c;
-	height: 1px;
-	margin-top: 15px;
-	margin-bottom: 10px;
+.share_controls_divider {
+   background-color: #161616;
+   border-bottom: 1px solid #4c4c4c;
+   height: 1px;
+   margin-top: 15px;
+   margin-bottom: 10px;
 }
 
-.share_controls_page_link
-{
-	padding-top: 5px;
-	line-height: 26px;
-	height: 26px;
-	font-size: 12px;
-	color: #8f8f8f;
+.share_controls_page_link {
+   padding-top: 5px;
+   line-height: 26px;
+   height: 26px;
+   font-size: 12px;
+   color: #8f8f8f;
 }
 
-.shareItemLink
-{
-	float: left;
-	padding-left: 5px;
+.shareItemLink {
+   float: left;
+   padding-left: 5px;
 }
 
-.shareItemLink .btn_medium > span
-{
-	padding: 0px 10px;
-	line-height: 28px;
+.shareItemLink .btn_medium>span {
+   padding: 0px 10px;
+   line-height: 28px;
 }
 
-.share_controls_page_link form
-{
-	display: inline-block;
+.share_controls_page_link form {
+   display: inline-block;
 }
 
-.share_controls_page_link input
-{
-	top: 0px;
-	padding: 5px;
-	min-width: 500px;
-	background-color: #272626;
-	border: 1px solid #000000;
-	color: #8f8f8f;
+.share_controls_page_link input {
+   top: 0px;
+   padding: 5px;
+   min-width: 500px;
+   background-color: #272626;
+   border: 1px solid #000000;
+   color: #8f8f8f;
 }
 
-#ShareOnSteamDialog
-{
-	min-height: 290px;
-	width: 560px;
+#ShareOnSteamDialog {
+   min-height: 290px;
+   width: 560px;
 }
 
 img.emoticon {
-	vertical-align: text-bottom;
-	height: 18px;
-	width: 18px;
+   vertical-align: text-bottom;
+   height: 18px;
+   width: 18px;
 }
 
-
 .migrated_profile_page_old .pagecontent {
-	padding-bottom: 0;
+   padding-bottom: 0;
 }
 
 .migrated_profile_page_old #BG_bottom, .migrated_profile_page_old #BG_top {
-	margin: 0 auto;
+   margin: 0 auto;
 }
 
 .emoticon_button {
-	display: inline-block;
-
-	height: 36px;
-	width: 36px;
-
-	background-image: url( 'https://steamcommunity-a.akamaihd.net/public/images/chat/btn_emoticon.png' );
-	background-position: center bottom;
-	background-repeat: no-repeat;
+   display: inline-block;
+   height: 36px;
+   width: 36px;
+   background-image: url('https://steamcommunity-a.akamaihd.net/public/images/chat/btn_emoticon.png');
+   background-position: center bottom;
+   background-repeat: no-repeat;
 }
 
 .emoticon_button:hover, .emoticon_button.focus {
-	background-position: center top;
+   background-position: center top;
 }
 
 .emoticon_button.small {
-	height: 22px;
-	width: 22px;
-	vertical-align: middle;
-
-	background-position: center -43px;
+   height: 22px;
+   width: 22px;
+   vertical-align: middle;
+   background-position: center -43px;
 }
 
 .emoticon_button.small:hover, .emoticon_button.small.focus {
-	background-position: center -7px;
+   background-position: center -7px;
 }
 
 .emoticon_popup_ctn {
-	position: absolute;
+   position: absolute;
 }
 
 .emoticon_popup {
-	background-color: #3b3938;
-	padding: 8px;
-	box-shadow: 0 0 12px #000000;
+   background-color: #3b3938;
+   padding: 8px;
+   box-shadow: 0 0 12px #000000;
 }
 
 .emoticon_popup_content {
-	max-height: 96px;
-	max-width: 352px;
-	overflow-y: auto;
+   max-height: 96px;
+   max-width: 352px;
+   overflow-y: auto;
 }
 
 .emoticon_popup_content .emoticon_option {
-	width: 28px;
-	margin: 2px;
-
-	text-align: center;
-
-	line-height: 18px;
-	height: 18px;
-	padding: 5px 0;
-
-	float: left;
+   width: 28px;
+   margin: 2px;
+   text-align: center;
+   line-height: 18px;
+   height: 18px;
+   padding: 5px 0;
+   float: left;
 }
 
 .emoticon_popup_content .emoticon_option:hover {
-	background-color: #201f1d;
-	cursor: pointer;
+   background-color: #201f1d;
+   cursor: pointer;
 }
-
 
 .economyitem_hover {
-	position: absolute;
-	top: 0;
-	left: 0;
-	z-index: 1200;
+   position: absolute;
+   top: 0;
+   left: 0;
+   z-index: 1200;
 }
+
 .economyitem_hover_content {
-	width: 350px;
-	margin: 12px;
-	box-shadow: 0 0 12px #000000;
+   width: 350px;
+   margin: 12px;
+   box-shadow: 0 0 12px #000000;
 }
 
 .tooltip_hint {
-	cursor: default;
-	font-size: 12px;
-	font-style: normal;
-	color: #686868;
+   cursor: default;
+   font-size: 12px;
+   font-style: normal;
+   color: #686868;
 }
 
 .community_tooltip {
-	background: #c2c2c2;
-	color: #3d3d3f;
-	font-size: 11px;
-	border-radius: 3px;
-	padding: 5px;
-	max-width: 225px;
-	white-space: normal;
-	box-shadow: 0 0 3px #000000;
+   background: #c2c2c2;
+   color: #3d3d3f;
+   font-size: 11px;
+   border-radius: 3px;
+   padding: 5px;
+   max-width: 225px;
+   white-space: normal;
+   box-shadow: 0 0 3px #000000;
 }
 
+
 /* formatting help dialog */
+
 .tagrow {
-	margin-bottom: 8px;
-	padding: 0 4px;
-	position: relative;
-	font-size: 12px;
+   margin-bottom: 8px;
+   padding: 0 4px;
+   position: relative;
+   font-size: 12px;
 }
 
 .tagrow.tagrow_header {
-	background-color: #1E1E1F;
-	color: #626467;
-	line-height: 18px;
+   background-color: #1E1E1F;
+   color: #626467;
+   line-height: 18px;
 }
 
 .tagrow .tag {
-	color: #cccccc;
+   color: #cccccc;
 }
 
 .tagsyntax {
-	float: left;
-	width: 57%;
-	margin-left: 1%;
-	margin-right: 3%;
+   float: left;
+   width: 57%;
+   margin-left: 1%;
+   margin-right: 3%;
 }
 
 .tagexample {
-	float: left;
-	width: 38%;
+   float: left;
+   width: 38%;
 }
 
 .tagexample a {
-	text-decoration: underline;
+   text-decoration: underline;
 }
 
 .tagexample a:hover {
-	color: #ffffff;
+   color: #ffffff;
 }
 
-
-@media screen and (max-width: 910px)
-{
-	html.responsive .maincontent {
-		width: auto;
-		margin: 0 1%;
-	}
+@media screen and (max-width: 910px) {
+   html.responsive .maincontent {
+      width: auto;
+      margin: 0 1%;
+   }
 }
+
 
 /* styles that hide things on non-migrated pages */
+
 .responsive_menu_only {
-	display: none;
+   display: none;
 }
 
 .nonresponsive_hidden {
-	display: none;
+   display: none;
 }
