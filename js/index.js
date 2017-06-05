@@ -363,6 +363,7 @@ function createInventory(id) {
 }
 
 function doInventoryThings() {
+  var hide = store.get('hide');
   var getitems = store.get('backpack');
   getitems.backgrounds.forEach(function(back) {
      if (hide == true) {
