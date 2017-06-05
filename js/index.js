@@ -347,40 +347,46 @@ function createInventory(id) {
       });
       oddball.refresh = false;
    }
-   if (getitems && getitems.backgrounds !== null) {} else {
+   if (getitems && getitems.backgrounds !== null) {
+     doInventoryThings();
+   } else {
       var expire = Date.now() + 86400000;
       $.ajax('https://steam.design/backpack/' + id + '/items.json').done(function(data) {
          store.set('backpack', data, expire);
+         doInventoryThings();
       });
    }
-
-   getitems.backgrounds.forEach(function(back) {
-      if (hide == true) {
-         $('.backsList').hide();
-      }
-      var itemHolder = $("<div>", {
-         class: "itemHolder",
-         alt: back.name.toLowerCase()
-      });
-      var item = $("<div>", {
-         class: "item app753 context6 activeInfo"
-      });
-      var bgUrl = $("<a>", {
-         href: "#" + back.actions[0].link,
-         class: "inventory_item_link"
-      });
-      var img = $("<img>", {
-         src: "http://steamcommunity-a.akamaihd.net/economy/image/" + back.icon_url + "/96fx96f"
-      });
-      $(bgUrl).append(img);
-      $(item).append(bgUrl);
-      $(itemHolder).append(item);
-      $('#backsList').append(itemHolder);
-   });
    $("#hideBacksList").show();
    $("#refreshInventory").show();
    $(".filter").show();
    $(".guide").css("left", "0px")
+}
+
+function doInventoryThings() {
+  var getitems = store.get('backpack');
+  getitems.backgrounds.forEach(function(back) {
+     if (hide == true) {
+        $('.backsList').hide();
+     }
+     var itemHolder = $("<div>", {
+        class: "itemHolder",
+        alt: back.name.toLowerCase()
+     });
+     var item = $("<div>", {
+        class: "item app753 context6 activeInfo"
+     });
+     var bgUrl = $("<a>", {
+        href: "#" + back.actions[0].link,
+        class: "inventory_item_link"
+     });
+     var img = $("<img>", {
+        src: "http://steamcommunity-a.akamaihd.net/economy/image/" + back.icon_url + "/96fx96f"
+     });
+     $(bgUrl).append(img);
+     $(item).append(bgUrl);
+     $(itemHolder).append(item);
+     $('#backsList').append(itemHolder);
+  });
 }
 
 function refreshInventory() {
