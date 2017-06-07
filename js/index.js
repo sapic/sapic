@@ -298,7 +298,7 @@ function CropImages() {
       fillImage($('#avatar'), leftOffset[ImageType] - 9, 34, 164, 164, ImagesNames[0][1]);
 
       $(".saveButton").attr("href", "https://steam.design/raw/" + btoa(JSON.stringify(bgSaveInfo)));
-   }, 500);
+   }, 250);
 }
 
 function fillImage(element, x, y, w, h, name, changeCss) {
