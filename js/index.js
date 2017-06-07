@@ -70,7 +70,8 @@ var donators = [
    '76561198015966799',
    '76561198120160633',
    '76561198354093369',
-   '76561198111211059'
+   '76561198111211059',
+   '76561198071282886'
 ];
 
 var banners = [
@@ -393,6 +394,7 @@ function doInventoryThings() {
 }
 
 function refreshInventory() {
+  store.clear('backpack');
    $(".itemHolder").each(function() {
       $(this).remove();
    });
