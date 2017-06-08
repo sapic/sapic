@@ -356,7 +356,10 @@ function createInventory(id) {
       var expire = Date.now() + 86400000;
       $.ajax('https://steam.design/backpack/' + id + '/items.json').done(function(data) {
          store.set('backpack', data, expire);
-         doInventoryThings();
+         if (data.backgrounds == null){
+           return privateInventory();
+         }
+        doInventoryThings();
       });
    }
    $("#hideBacksList").show();
@@ -391,6 +394,11 @@ function doInventoryThings() {
       $(itemHolder).append(item);
       $('#backsList').append(itemHolder);
    });
+}
+
+function privateInventory(){
+  $('#backsList').text("Either your inventory is empty or private. If it isnt, please report this to Oddball in the Discord.");
+  $('#backsList').css("text-align", "center");
 }
 
 function refreshInventory() {
