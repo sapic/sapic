@@ -371,7 +371,7 @@ function doInventoryThings() {
       });
       oddball.refresh = false;
    }
-   
+
    getitems.backgrounds.forEach(function(back) {
       if (hide == true) {
          $('.backsList').hide();
@@ -403,7 +403,7 @@ function privateInventory() {
 }
 
 function refreshInventory() {
-   store.clear('backpack');
+   store.remove('backpack');
    $(".itemHolder").each(function() {
       $(this).remove();
    });
