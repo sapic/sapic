@@ -265,7 +265,7 @@ function CropImages() {
       var bgWidth = $('#bgImgEl').width();
       var ImageType = bgWidth > 2000 ? 1 :
          bgWidth <= 1280 ? 2 :
-         bgWidth = 2000 ? 3 : 0;
+         bgWidth == 2000 ? 3 : 0;
       var h1 = $('#hBig1').height();
       var h2 = $('#hBig2').height();
       var rOffset1 = $('#hBig1').offset().top - $('.profile_header').offset().top + 1;
