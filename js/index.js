@@ -83,7 +83,8 @@ var banners = [
 var leftOffset = {
    0: 508,
    1: 648,
-   2: 188
+   2: 188,
+   3: 545
 };
 
 var getCurDate = function() {
@@ -263,7 +264,8 @@ function CropImages() {
       var uh = bgheight - 272;
       var bgWidth = $('#bgImgEl').width();
       var ImageType = bgWidth > 2000 ? 1 :
-         bgWidth <= 1280 ? 2 : 0;
+         bgWidth <= 1280 ? 2 :
+         bgWidth = 2000 ? 3 : 0;
       var h1 = $('#hBig1').height();
       var h2 = $('#hBig2').height();
       var rOffset1 = $('#hBig1').offset().top - $('.profile_header').offset().top + 1;
