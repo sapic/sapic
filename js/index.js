@@ -3,7 +3,8 @@ var oddball = {
    toggle: true,
    refresh: false,
    hidememes: false,
-   ref: 0
+   ref: 0,
+   rightImageShorter: false
 };
 var loadedBack = null;
 var currentBGInfo = null;
@@ -231,6 +232,7 @@ function reloadImages() {
       }
       window.localStorage.setItem('bg', bg)
    }
+   $('#cSize').css('height', '');
    background = window.localStorage.getItem('bg');
    if (background == null) {
       background = randomBackground();
@@ -246,11 +248,18 @@ function reloadImages() {
          CropImages();
          bgChanged();
          if (oddball.toggle) {
-            var bgheight = $('#bgImgEl').height();
-            var uh = bgheight - 272;
-            $('#hBig1').css('height', uh);
-            $('#r11').css('height', uh);
-            $('#r11r').css('height', uh);
+            if (oddball.rightImageShorter) {
+               var bgheight = $('#bgImgEl').height();
+               var uh = bgheight - 272;
+               var rh = uh - 70;
+               $('#hBig1').css('height', uh);
+               $('.r1').css('height', rh);
+            } else {
+               var bgheight = $('#bgImgEl').height();
+               var uh = bgheight - 272;
+               $('#hBig1').css('height', uh);
+               $('.r1').css('height', uh);
+            }
          }
       });
    } else {
@@ -278,8 +287,14 @@ function CropImages() {
       };
 
       if (oddball.toggle) {
-         fillImage($('#big1'), leftOffset[ImageType], rOffset1, 506, h1, ImagesNames[10][1], true);
-         fillImage($('#r11'), 514 + leftOffset[ImageType], rOffset1, 100, h1, ImagesNames[11][1]);
+         if (oddball.rightImageShorter == true) {
+            var akdk = h1 - 70;
+            fillImage($('#big1'), leftOffset[ImageType], rOffset1, 506, h1, ImagesNames[10][1], true);
+            fillImage($('#r11'), 514 + leftOffset[ImageType], rOffset1, 100, akdk, ImagesNames[11][1]);
+         } else {
+            fillImage($('#big1'), leftOffset[ImageType], rOffset1, 506, h1, ImagesNames[10][1], true);
+            fillImage($('#r11'), 514 + leftOffset[ImageType], rOffset1, 100, h1, ImagesNames[11][1]);
+         }
       } else {
          fillImage($('#big1'), leftOffset[ImageType], rOffset1, 506, h1, ImagesNames[10][1], true);
          fillImage($('#r11'), 514 + leftOffset[ImageType], rOffset1, 100, 80, ImagesNames[11][1]);
@@ -339,7 +354,7 @@ function toggleLong() {
       oddball.toggle = false;
       $('.toggletext').text('Toggle Long Images');
    }
-   CropImages();
+   reloadImages();
 }
 
 function createInventory(id) {
@@ -496,6 +511,42 @@ $(function() {
       });
    });
 
+   $('#shortenRightImage').click(function() {
+      if (oddball.toggle) {
+         if (oddball.rightImageShorter == true) {
+            var bh = $('#big1').height();
+            oddball.rightImageShorter = !oddball.rightImageShorter;
+            $('.r1').css('height', bh);
+            reloadImages();
+            $(this).text("Shorten Right Image");
+            $('.artwork_ammount').hide();
+         } else {
+            var bh = $('#big1').height();
+            var uh = bh - 70;
+            oddball.rightImageShorter = !oddball.rightImageShorter;
+            $('.r1').css('height', uh);
+            reloadImages();
+            $(this).text("Extend Right Image");
+            $('.artwork_ammount').show();
+         }
+      } else {
+         if (oddball.rightImageShorter == true) {
+            oddball.rightImageShorter = !oddball.rightImageShorter;
+            $('.r1').css('height', 506);
+            reloadImages();
+            $(this).text("Shorten Right Image");
+            $('.artwork_ammount').hide();
+            $('.rightimages').show();
+         } else {
+            oddball.rightImageShorter = !oddball.rightImageShorter;
+            $('.r1').css('height', 506);
+            reloadImages();
+            $(this).text("Extend Right Image");
+            $('.artwork_ammount').show();
+            $('.rightimages').hide();
+         }
+      }
+   });
 
    $('#refreshInventory').rotate({
       bind: {
@@ -577,16 +628,24 @@ $(function() {
          var target = event.target;
          // add the change in coords to the previous width of the target element
          var newHeight = parseFloat(target.style.height) + event.dy;
-         if (newHeight >= 284) {
+         var showcase = newHeight + 75;
+         var bgHeight = $('#bgImgEl').height();
+         $('#cSize').css('height', showcase)
+         if (newHeight >= 284 && newHeight <= bgHeight - 272) {
             target.style.height = newHeight + 'px';
          }
          if (oddball.toggle) {
-            $('#r11').css('height', newHeight);
+            if (oddball.rightImageShorter == true) {
+               var rightheight = newHeight - 70;
+               $('.r1').css('height', rightheight);
+            } else {
+               $('.r1').css('height', newHeight);
+            }
          }
          //target.textContent = newWidth + '×' + newHeight;
       })
       .on('resizeend', function() {
-         reloadImages();
+         CropImages();
       });
 
    $("#slFSize").on("change", function() {

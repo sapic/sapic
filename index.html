@@ -179,14 +179,15 @@
                         <div class="profile_customization_header">Artwork Showcase
                         </div>
                         <div class="profile_customization_block">
-                           <div class="screenshot_showcase">
+                           <div id="artworkshowcase" class="screenshot_showcase" style="display:flow-root;">
                               <div class="screenshot_showcase_primary showcase_slot ">
                                  <div class="screenshot_showcase_screenshot resizable" id="hBig1" style="height: 506px;">
                                     <div id="big1" class="imageHolder"></div>
                                  </div>
                                  <div class="screenshot_showcase_itemname" style="color: #5491cf; font-weight: bold;">
-                                    Drag bottom of image to resize&nbsp;
-                                    <div class="fa fa-arrow-up" style="font-size:10px;"></div>
+                                    <span>Drag bottom of image to resize&nbsp;
+                                    <div class="fa fa-arrow-up" style="font-size:10px;"></div></span>
+                                    <span id="shortenRightImage" style="float:right; cursor:pointer;">Shorten Right Image</span>
                                  </div>
                                  <div class="screenshot_showcase_stats">
                                     <span class="screenshot_showcase_stat" title="Комментарии">
@@ -194,23 +195,23 @@
                                  </div>
                               </div>
                               <div id="r11r" class="screenshot_showcase_rightcol r1">
-                                 <div style="height: 82px;" class="screenshot_showcase_smallscreenshot showcase_slot">
+                                 <div style="height: 82px;" class="screenshot_showcase_smallscreenshot showcase_slot r1">
                                     <div class="screenshot_showcase_screenshot" onclick="ShowModalContent( 'http://steamcommunity.com/sharedfiles/filedetails/?id=349772450&amp;insideModal=1', 'http://steamcommunity.com/sharedfiles/filedetails/?id=349772450', 'http://steamcommunity.com/sharedfiles/filedetails/?id=349772450', true );">
                                        <div id="r11" class="r1"></div>
                                     </div>
                                  </div>
-                                 <div id="r12r" style="height: 82px; display: none;" class="screenshot_showcase_smallscreenshot showcase_slot hidelong">
+                                 <div id="r12r" style="height: 82px; display: none;" class="screenshot_showcase_smallscreenshot showcase_slot hidelong rightimages">
                                     <div class="screenshot_showcase_screenshot" onclick="ShowModalContent( 'http://steamcommunity.com/sharedfiles/filedetails/?id=349772562&amp;insideModal=1', 'http://steamcommunity.com/sharedfiles/filedetails/?id=349772562', 'http://steamcommunity.com/sharedfiles/filedetails/?id=349772562', true );">
                                        <div id="r12"></div>
                                     </div>
                                  </div>
-                                 <div id="r13r" style="height: 82px; display: none;" class="screenshot_showcase_smallscreenshot showcase_slot hidelong">
+                                 <div id="r13r" style="height: 82px; display: none;" class="screenshot_showcase_smallscreenshot showcase_slot hidelong rightimages">
                                     <div class="screenshot_showcase_screenshot" onclick="ShowModalContent( 'http://steamcommunity.com/sharedfiles/filedetails/?id=349772655&amp;insideModal=1', 'http://steamcommunity.com/sharedfiles/filedetails/?id=349772655', 'http://steamcommunity.com/sharedfiles/filedetails/?id=349772655', true );">
                                        <div id="r13"></div>
                                     </div>
                                  </div>
-                                 <a class="screenshot_showcase_smallscreenshot screenshot_count" href="http://steamcommunity.com/id/wolfenstian/images/">
-                                    <div class="screenshot_showcase_screenshot">
+                                 <a style="display:none" class="screenshot_showcase_smallscreenshot screenshot_count artwork_ammount hidelong" href="http://steamcommunity.com/id/wolfenstian/images/">
+                                    <div class="screenshot_showcase_screenshot artwork_ammount hidelong">
                                        + 8
                                     </div>
                                  </a>
@@ -223,7 +224,7 @@
                         <div class="profile_customization_header">Screenshot Showcase
                         </div>
                         <div class="profile_customization_block">
-                           <div class="screenshot_showcase">
+                           <div class="screenshot_showcase" style="display:flow-root;">
                               <div class="screenshot_showcase_primary showcase_slot ">
                                  <div class="screenshot_showcase_screenshot resizable" id="hBig2" style="height: 284px">
                                     <div id="big2"></div>
@@ -638,36 +639,36 @@
                            </a>
                      </div>
                      <div class="profile_topfriends profile_count_link_preview">
-                       <div class="friendBlock persona" data-miniprofile="88233003" style="color:#b436ad">
-                          <a class="friendBlockLinkOverlay" href="http://steamcommunity.com/id/TheOddball"></a>
-                          <div class="friendPlayerLevel lvl_100 lvl_plus_60">
-                             <span class="friendPlayerLevelNum">161</span>
-                          </div>
-                          <div class="playerAvatar online" style="background-color:#b436ad;background: #b436ad;">
-                             <img src="http://cdn.edgecast.steamstatic.com/steamcommunity/public/images/avatars/cc/ccde65df82663035d24461a27c21ecaccfb6872f_medium.jpg" style="background-color:#b436ad;background: #b436ad;">
-                          </div>
-                          <div class="friendBlockContent">
-                             The Oddball<br>
-                             <span class="friendSmallText">
+                        <div class="friendBlock persona" data-miniprofile="88233003" style="color:#b436ad">
+                           <a class="friendBlockLinkOverlay" href="http://steamcommunity.com/id/TheOddball"></a>
+                           <div class="friendPlayerLevel lvl_100 lvl_plus_60">
+                              <span class="friendPlayerLevelNum">161</span>
+                           </div>
+                           <div class="playerAvatar online" style="background-color:#b436ad;background: #b436ad;">
+                              <img src="http://cdn.edgecast.steamstatic.com/steamcommunity/public/images/avatars/cc/ccde65df82663035d24461a27c21ecaccfb6872f_medium.jpg" style="background-color:#b436ad;background: #b436ad;">
+                           </div>
+                           <div class="friendBlockContent">
+                              The Oddball<br>
+                              <span class="friendSmallText">
                                 Online
                                 </span>
-                          </div>
-                       </div>
-                       <div class="friendBlock persona online" data-miniprofile="68667764" style="color:#5a181e">
-                          <a class="friendBlockLinkOverlay" href="http://steamcommunity.com/id/wolfenstian"></a>
-                          <div class="friendPlayerLevel lvl_60">
-                             <span class="friendPlayerLevelNum">63</span>
-                          </div>
-                          <div class="playerAvatar online" style="background-color:#5a181e;background: #5a181e;">
-                             <img src="http://cdn.edgecast.steamstatic.com/steamcommunity/public/images/avatars/cc/cc2ba4deaf53f2b916efa115de2437c87dfe9cf2_medium.jpg" style="background-color:#5a181e;background: #5a181e;">
-                          </div>
-                          <div class="friendBlockContent">
-                             SloWolfe<br>
-                             <span class="friendSmallText">
+                           </div>
+                        </div>
+                        <div class="friendBlock persona online" data-miniprofile="68667764" style="color:#5a181e">
+                           <a class="friendBlockLinkOverlay" href="http://steamcommunity.com/id/wolfenstian"></a>
+                           <div class="friendPlayerLevel lvl_60">
+                              <span class="friendPlayerLevelNum">63</span>
+                           </div>
+                           <div class="playerAvatar online" style="background-color:#5a181e;background: #5a181e;">
+                              <img src="http://cdn.edgecast.steamstatic.com/steamcommunity/public/images/avatars/cc/cc2ba4deaf53f2b916efa115de2437c87dfe9cf2_medium.jpg" style="background-color:#5a181e;background: #5a181e;">
+                           </div>
+                           <div class="friendBlockContent">
+                              SloWolfe<br>
+                              <span class="friendSmallText">
                                 Online
                                 </span>
-                          </div>
-                       </div>
+                           </div>
+                        </div>
                         <div class="friendBlock persona" data-miniprofile="55701071" style="color:#8b6e4e">
                            <a class="friendBlockLinkOverlay" href="https://steamcommunity.com/id/TrueCarry"></a>
                            <div class="friendPlayerLevel lvl_30" style="border-color:#fecc23">
@@ -708,13 +709,32 @@
    </div>
    <img id="bgImgEl" style="display:none">
    <script>
-   !function(t,e,a){(e[a]=e[a]||[]).push(function(){try{e.yaCounter27350393=new Ya.Metrika({id:27350393,trackHash:!0})}catch(t){}});var n=t.getElementsByTagName("script")[0],c=t.createElement("script"),r=function(){n.parentNode.insertBefore(c,n)};c.type="text/javascript",c.async=!0,c.src=("https:"==t.location.protocol?"https:":"http:")+"//mc.yandex.ru/metrika/watch.js","[object Opera]"==e.opera?t.addEventListener("DOMContentLoaded",r,!1):r()}(document,window,"yandex_metrika_callbacks");
+      ! function(t, e, a) {
+         (e[a] = e[a] || []).push(function() {
+            try {
+               e.yaCounter27350393 = new Ya.Metrika({
+                  id: 27350393,
+                  trackHash: !0
+               })
+            } catch (t) {}
+         });
+         var n = t.getElementsByTagName("script")[0],
+            c = t.createElement("script"),
+            r = function() {
+               n.parentNode.insertBefore(c, n)
+            };
+         c.type = "text/javascript", c.async = !0, c.src = ("https:" == t.location.protocol ? "https:" : "http:") + "//mc.yandex.ru/metrika/watch.js", "[object Opera]" == e.opera ? t.addEventListener("DOMContentLoaded", r, !1) : r()
+      }(document, window, "yandex_metrika_callbacks");
    </script>
    <noscript>
       <div><img src="//mc.yandex.ru/watch/27350393" style="position:absolute; left:-9999px;" alt="" /></div>
    </noscript>
    <script>
-"sapic.github.io"!==window.location.hostname&&(!function(e,t,a,n,o,c,i){e.GoogleAnalyticsObject=o,e[o]=e[o]||function(){(e[o].q=e[o].q||[]).push(arguments)},e[o].l=1*new Date,c=t.createElement(a),i=t.getElementsByTagName(a)[0],c.async=1,c.src="https://www.google-analytics.com/analytics.js",i.parentNode.insertBefore(c,i)}(window,document,"script",0,"ga"),ga("create","UA-98294219-1","auto"),ga("send","pageview"));
+      "sapic.github.io" !== window.location.hostname && (! function(e, t, a, n, o, c, i) {
+         e.GoogleAnalyticsObject = o, e[o] = e[o] || function() {
+            (e[o].q = e[o].q || []).push(arguments)
+         }, e[o].l = 1 * new Date, c = t.createElement(a), i = t.getElementsByTagName(a)[0], c.async = 1, c.src = "https://www.google-analytics.com/analytics.js", i.parentNode.insertBefore(c, i)
+      }(window, document, "script", 0, "ga"), ga("create", "UA-98294219-1", "auto"), ga("send", "pageview"));
    </script>
    <script async src="//pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script>
 </body>
