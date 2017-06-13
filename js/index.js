@@ -344,15 +344,20 @@ function toggleLong() {
       var uh = bh - 272;
       $('#hBig1').css('height', uh);
       $('.hidelong').hide();
+      $('.showlong').show();
       $('.r1').css('height', uh);
       oddball.toggle = true;
       $('.toggletext').text('Toggle Short Images');
    } else {
       $('#hBig1').css('height', 506);
       $('.hidelong').show();
+      if (oddball.rightImageShorter){
+        $("#shortenRightImage").trigger("click");
+      }
       $('.r1').css('height', 80);
       oddball.toggle = false;
       $('.toggletext').text('Toggle Long Images');
+      $('.showlong').hide();
    }
    reloadImages();
 }
