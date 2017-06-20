@@ -136,7 +136,7 @@
                               <a href="https://discord.gg/jnqnHuX" target="_blank"><img src="https://discordapp.com/api/guilds/304986224467378177/widget.png?style=banner2" style="height: 87%;top: 4px;left: 5px;position: relative;"></a>
                            </div>
                         </div>
-                        <div class="profile_header_actions">
+                        <div class="profile_header_actions" style="position:relative">
                            <div class="btn_profile_action btn_medium" style="left:7px; position:relative;" id="toggleLong" onclick="toggleLong()">
                               <span class="toggletext" style="width:130px; text-align:center; ">Toggle Short Images</span>
                            </div>
@@ -507,12 +507,24 @@
                   </div>
                </div>
                <div class="profile_rightcol">
-                  <div class="profile_in_game persona offline">
-                     <div class="profile_in_game_header">Currently Offline</div>
-                     <div class="profile_in_game_name">Last Online: 9 hrs, 35 mins ago</div>
-                  </div>
+                 <div id="esColors">
+                   <a href="http://www.enhancedsteam.com/" target="_blank">Enhanced Steam Colors:</a>
+                 <select id="colorChange" onchange="addProfileColor(this)">
+                 <option value="0">Default</option>
+                 <option value="1">Blue</option>
+                 <option value="2">Clear</option>
+                 <option value="3">Green</option>
+                 <option value="4">Holiday 2014</option>
+                 <option value="5">Orange</option>
+                 <option value="6">Pink</option>
+                 <option value="7">Purple</option>
+                 <option value="8">Red</option>
+                 <option value="9">Teal</option>
+                 <option value="10">Yellow</option>
+               </select>
+             </div>
                   <div class="rColAds"></div>
-                  <div class="profile_badges" style="display:none;">
+                  <div class="profile_badges" style="display:none; top:10px; position:relative">
                      <div class="profile_count_link_preview_ctn">
                         <div class="profile_count_link ellipsis">
                            <a href="http://steamcommunity.com/id/wolfenstian/badges/">

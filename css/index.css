@@ -8,6 +8,20 @@
    animation: fa-spin 2s infinite linear;
 }
 
+.es_style_clear .profile_header_badge {
+	background-color: rgba(22,22,23, 0.6) !important;
+	background-image: none !important;
+	box-shadow: none !important;
+}
+.es_style_clear .profile_content {
+	border-top-left-radius: 8px;
+	border-top-right-radius: 8px;
+}
+.es_style_clear .profile_header_bg,
+.es_style_clear .profile_header_bg_texture {
+	background-image: none !important;
+}
+
 .fa-arrow-down:before {
    content: "\f063";
 }

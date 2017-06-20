@@ -4,7 +4,8 @@ var oddball = {
    refresh: false,
    hidememes: false,
    ref: 0,
-   rightImageShorter: false
+   rightImageShorter: false,
+   holiday: false
 };
 var loadedBack = null;
 var currentBGInfo = null;
@@ -351,8 +352,8 @@ function toggleLong() {
    } else {
       $('#hBig1').css('height', 506);
       $('.hidelong').show();
-      if (oddball.rightImageShorter){
-        $("#shortenRightImage").trigger("click");
+      if (oddball.rightImageShorter) {
+         $("#shortenRightImage").trigger("click");
       }
       $('.r1').css('height', 80);
       oddball.toggle = false;
@@ -478,6 +479,39 @@ function elemDown(elem) {
       easing: 'swing'
    });
    reloadImages();
+}
+
+function addProfileColor(colorDiv) {
+   var color = colorDiv.value;
+   $('.colorStyle').remove();
+   if (oddball.holiday){
+     clearInterval(animation);
+     $(".profile_header_actions").css('right', '');
+     $('.holidayprofile_header_overlay').remove();
+     $(".body").removeClass("holidayprofile");
+     oddball.holiday = false;
+   }
+   $(".body").removeClass("es_style_clear");
+   $(".profile_header_bg_texture").css("background-image", "");
+   $(".profile_customization").css("background-image", "");
+
+   if (color == 0) {
+   } else if (color == 4) {
+      $("head").append("<link rel='stylesheet' type='text/css' href='https://steamcommunity-a.akamaihd.net/public/css/skin_1/holidayprofile.css'>");
+      $(".profile_header_bg_texture").append("<div class='holidayprofile_header_overlay'></div>");
+      $(".body").addClass("holidayprofile");
+      $(".profile_header_actions").css('right', '30px');
+      $.getScript("http://i.oddball.tf/97Mdh.js").done(function() {
+         StartAnimation();
+         oddball.holiday = true;
+      });
+   } else if (color == 2) {
+     $(".body").addClass("es_style_clear");
+   } else {
+     $("head").append("<link rel='stylesheet' class='colorStyle' type='text/css' href='images/profile_styles/"+ color +"/style.css'>");
+     $(".profile_header_bg_texture").css("background-image", "url('images/profile_styles/"+ color +"/header.jpg')");
+     $(".profile_customization").css("background-image", "url('images/profile_styles/"+ color +"/showcase.png')");
+   }
 }
 
 $(function() {
