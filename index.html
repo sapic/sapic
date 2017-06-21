@@ -86,7 +86,7 @@
          </div>
       </div>
    </div>
-   <div class="body">
+   <div class="body" id="profilebody">
       <div class="no_header profile_page has_profile_background" id="bg1">
          <div class="profile_header_bg">
             <div class="profile_header_bg_texture">
@@ -507,9 +507,9 @@
                   </div>
                </div>
                <div class="profile_rightcol">
-                 <div id="esColors">
-                   <a href="http://www.enhancedsteam.com/" target="_blank">Enhanced Steam Colors:</a>
-                 <select id="colorChange" onchange="addProfileColor(this)">
+                  <div id="esColors">
+                     <a href="http://www.enhancedsteam.com/" target="_blank">Enhanced Steam Colors:</a>
+                     <select id="colorChange" onchange="addProfileColor(this)">
                  <option value="0">Default</option>
                  <option value="1">Blue</option>
                  <option value="2">Clear</option>
@@ -522,7 +522,7 @@
                  <option value="9">Teal</option>
                  <option value="10">Yellow</option>
                </select>
-             </div>
+                  </div>
                   <div class="rColAds"></div>
                   <div class="profile_badges" style="display:none; top:10px; position:relative">
                      <div class="profile_count_link_preview_ctn">
@@ -712,10 +712,9 @@
       <div class="footer_content">
          <span id="footerLogo"><img src="https://steamcommunity-a.akamaihd.net/public/images/skin_1/footerLogo_valve.png" width="96" height="26" border="0" alt="Логотип Valve"></span>
          <span id="footerText">
-            Powered by STEAM. <span id="version">Version #{{#vernum}}</span><br>
-            Made with love by <a href="https://steamcommunity.com/id/truecarry">TrueCarry</a> and <a href="https://steamcommunity.com/id/theoddball">The Oddball</a><br>
+            Powered by STEAM. <span id="version">Version #{{#vernum}}</span><br> Made with love by <a href="https://steamcommunity.com/id/truecarry">TrueCarry</a> and <a href="https://steamcommunity.com/id/theoddball">The Oddball</a><br>
 
-            <span>Thanks to our Patrons:
+         <span>Thanks to our Patrons:
               Hexane Networks, Max Haskiewicz
          </span>
       </div>
