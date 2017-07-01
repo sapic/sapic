@@ -387,7 +387,7 @@ function createInventory(id) {
    var hide = store.get('hide');
    var getitems = store.get('backpack');
    if (getitems && getitems.backgrounds !== null) {
-      doInventoryThings();
+      doInventoryThings(getitems);
    } else {
       var expire = Date.now() + 86400000;
       $.ajax('https://steam.design/backpack/' + id + '/items.json').done(function(data) {
@@ -395,7 +395,7 @@ function createInventory(id) {
          if (data.backgrounds == null) {
             return privateInventory();
          }
-         doInventoryThings();
+         doInventoryThings(data);
       });
    }
    $("#hideBacksList").show();
@@ -404,9 +404,8 @@ function createInventory(id) {
    $(".guide").css("left", "0px")
 }
 
-function doInventoryThings() {
+function doInventoryThings(inventory) {
    var hide = store.get('hide');
-   var getitems = store.get('backpack');
    if (oddball.refresh == true) {
       clearInterval(oddball.ref);
       $("#refreshInventory").rotate({
@@ -415,7 +414,7 @@ function doInventoryThings() {
       oddball.refresh = false;
    }
 
-   getitems.backgrounds.forEach(function(back) {
+   inventory.backgrounds.forEach(function(back) {
       if (hide == true) {
          $('.backsList').hide();
       }
@@ -454,7 +453,7 @@ function refreshInventory() {
    $.ajax('https://steam.design/backpack/' + userId + '/itemsRefresh.json').done(function(data) {
       var expire = Date.now() + 86400000;
       store.set('backpack', data, expire);
-      doInventoryThings();
+      doInventoryThings(data);
    });
 };
 
