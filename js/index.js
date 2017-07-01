@@ -125,6 +125,25 @@ var ImagesNames = {
    33: ['#w1', 'Workshop_Right.png'],
 };
 
+function toggleCustomize() {
+   $('#customize').toggle();
+   $('#customizeBackground').fadeToggle();
+   var hover = false;
+
+   $('#customize').hover(function() {
+      hover = true;
+   }, function() {
+      hover = false;
+   });
+
+   $('body').mouseup(function() {
+      if (($('#customize').is(':visible')) && (!hover)) {
+         $('#customize').hide();
+         $('#customizeBackground').fadeOut();
+      }
+   });
+}
+
 function convertDataURIToBinary(dataURI) {
    var base64 = dataURI.split(';base64,')[1];
    var raw = window.atob(base64);
@@ -349,7 +368,7 @@ function toggleLong() {
       $('.showlong').show();
       $('.r1').css('height', uh);
       oddball.toggle = true;
-      $('.toggletext').text('Toggle Short Images');
+      $('.toggletext').text('Toggle to Short Images');
    } else {
       $('#hBig1').css('height', 506);
       $('.hidelong').show();
@@ -358,7 +377,7 @@ function toggleLong() {
       }
       $('.r1').css('height', 80);
       oddball.toggle = false;
-      $('.toggletext').text('Toggle Long Images');
+      $('.toggletext').text('Toggle to Long Images');
       $('.showlong').hide();
    }
    reloadImages();
@@ -519,6 +538,12 @@ $(function() {
       window.location = 'https://steam.design/' + location.hash;
    }
 
+   $('#customizeButton').click(function() {
+      toggleCustomize();
+   });
+   $('#customizeClose').click(function() {
+      toggleCustomize();
+   });
    var bgs = store.get('bgs');
    if (!bgs) {
       var expire = new Date().getTime() + 86400000;
@@ -557,7 +582,7 @@ $(function() {
             oddball.rightImageShorter = !oddball.rightImageShorter;
             $('.r1').css('height', bh);
             reloadImages();
-            $(this).text("Shorten Right Image");
+            $('#shortenText').text("Shorten Right Image");
             $('.artwork_ammount').hide();
          } else {
             var bh = $('#big1').height();
@@ -565,7 +590,7 @@ $(function() {
             oddball.rightImageShorter = !oddball.rightImageShorter;
             $('.r1').css('height', uh);
             reloadImages();
-            $(this).text("Extend Right Image");
+            $('#shortenText').text("Extend Right Image");
             $('.artwork_ammount').show();
          }
       } else {
@@ -573,14 +598,14 @@ $(function() {
             oddball.rightImageShorter = !oddball.rightImageShorter;
             $('.r1').css('height', 506);
             reloadImages();
-            $(this).text("Shorten Right Image");
+            $('#shortenText').text("Shorten Right Image");
             $('.artwork_ammount').hide();
             $('.rightimages').show();
          } else {
             oddball.rightImageShorter = !oddball.rightImageShorter;
             $('.r1').css('height', 506);
             reloadImages();
-            $(this).text("Extend Right Image");
+            $('#shortenText').text("Extend Right Image");
             $('.artwork_ammount').show();
             $('.rightimages').hide();
          }
