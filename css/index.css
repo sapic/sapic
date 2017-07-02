@@ -27,6 +27,16 @@
 	left: 0;
 }
 
+.market_listing_row {
+	overflow: hidden;
+	clear: left;
+	position: relative;
+	background-color: rgba(0, 0, 0, 0.2);
+	border: 1px solid rgba(0, 0, 0, 0);
+	margin-top: 10px;
+	white-space: nowrap;
+}
+
 .bg_link {
    position: relative;
    top: 5px;
