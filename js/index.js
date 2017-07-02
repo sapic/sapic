@@ -161,7 +161,8 @@ var randomBackground = function() {
    if (typeof bg !== 'string') {
       currentBGInfo = bg;
       console.log(bg.hls);
-      return bg.steamUrl || 'https://steam.design/image/' + bg.url + '.jpg';
+      var httpsLink = bg.steamUrl.replace('http://cdn.akamai.steamstatic.com/', 'https://steamcdn-a.akamaihd.net/');
+      return httpsLink || 'https://steam.design/image/' + bg.url + '.jpg';
    } else {
       currentBGInfo = null;
       return bg;
@@ -415,6 +416,7 @@ function doInventoryThings(inventory) {
    }
 
    inventory.backgrounds.forEach(function(back) {
+     var httpsLink = back.actions[0].link.replace('http://cdn.akamai.steamstatic.com/', 'https://steamcdn-a.akamaihd.net/')
       if (hide == true) {
          $('.backsList').hide();
       }
@@ -426,7 +428,7 @@ function doInventoryThings(inventory) {
          class: "item app753 context6 activeInfo"
       });
       var bgUrl = $("<a>", {
-         href: "#" + back.actions[0].link,
+         href: "#" + httpsLink,
          class: "inventory_item_link"
       });
       var img = $("<img>", {
