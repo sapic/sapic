@@ -43,11 +43,24 @@
 }
 
 #mainContents {
-   width: 926px;
+   max-width: 926px;
    padding: 0;
    text-align: left;
    padding-top: 10px;
-   margin: 0px auto;
+   margin: 0 auto;
+}
+
+.missing_items_in_escrow {
+   background-color: #a6801b;
+   padding: 12px;
+   margin-bottom: 15px;
+   font-size: 14px;
+   line-height: 20px;
+   color: #ffffff;
+}
+
+.missing_items_in_escrow a {
+   text-decoration: underline;
 }
 
 .inventory_rightnav {
@@ -101,6 +114,7 @@
 
 .games_list_tab_icon img {
    vertical-align: middle;
+   border-radius: 3px;
 }
 
 .games_list_tab_name {
@@ -118,6 +132,22 @@
    overflow: hidden;
    white-space: nowrap;
    display: block;
+}
+
+.games_list_tab_failed {
+   width: 24px;
+   line-height: 54px;
+   padding-left: 8px;
+   float: right;
+   display: block;
+   vertical-align: middle;
+   white-space: nowrap;
+}
+
+.games_list_tab_failed img {
+   width: 24px;
+   height: 24px;
+   vertical-align: middle;
 }
 
 .games_list_tab_separator {
@@ -163,11 +193,16 @@ a.games_list_tab:hover {
 .view_inventory_logo {
    width: 904px;
    height: 69px;
+   overflow: hidden;
    padding-left: 16px;
    padding-right: 16px;
    margin-left: -6px;
    padding-top: 32px;
    margin-bottom: 20px;
+}
+
+.view_inventory_logo img {
+   max-width: 100%;
 }
 
 .games_list_tab.active {
@@ -194,7 +229,6 @@ a.games_list_tab:hover {
    float: right;
    width: 350px;
    position: relative;
-   margin-top: 7px;
 }
 
 .view_inventory_page.inventory_msg_ctn {
@@ -205,17 +239,6 @@ a.games_list_tab:hover {
 
 .inventory_msg_content {
    padding-top: 200px;
-}
-
-#iteminfo0, #iteminfo1 {
-   width: 346px;
-   top: 0px;
-   left: 0px;
-}
-
-#iteminfo0 .item_desc_content, #iteminfo1 .item_desc_content {
-   min-height: 207px;
-   /* this + computed height of .item_market_actions should equal 261 */
 }
 
 .view_inventory_page .item.activeInfo, .view_inventory_page .item:hover {
@@ -274,6 +297,16 @@ a.games_list_tab:hover {
    margin-bottom: 12px;
 }
 
+html.responsive .responsive_fixonscroll_ctn #context_selector {
+   margin: 8px 1% 2px 1%;
+}
+
+html.responsive .responsive_fixonscroll_ctn #contextselect {
+   max-width: 430px;
+   width: auto;
+   margin: 0 auto;
+}
+
 #contextselect {
    background-color: #000000;
    background-image: url('https://steamcommunity-a.akamaihd.net/public/images/economy/context_arrow.png');
@@ -314,6 +347,10 @@ a.games_list_tab:hover {
    white-space: nowrap;
    text-overflow: ellipsis;
    overflow: hidden;
+}
+
+#contextselect .context_name {
+   padding-right: 37px;
 }
 
 #contextselect_options .context_name {
@@ -452,8 +489,12 @@ a.recommendation_btn:hover, a.recommendation_imgbtn:hover {
 }
 
 .pending_gifts_header span {
-   background-color: #252525;
+   background-color: #1b2838;
    padding-right: 6px;
+}
+
+#tabcontent_pendinggifts.no_pending_gifts .pending_gifts_header span {
+   background-color: #1F1F1F;
 }
 
 .pending_gift {
@@ -467,15 +508,31 @@ a.recommendation_btn:hover, a.recommendation_imgbtn:hover {
    margin-bottom: 32px;
 }
 
+.pending_gift .item_desc_icon img {
+   max-width: 100%;
+}
+
 .pending_gift_leftcol {
    float: left;
    width: 350px;
    margin-right: 10px;
+   max-width: 48%;
 }
 
 .pending_gift_rightcol {
-   float: left;
-   width: 526px;
+   overflow: hidden;
+}
+
+@media screen and (max-width: 540px) {
+   html.responsive .pending_gift_leftcol {
+      float: none;
+      width: auto;
+      margin: 0 auto 10px auto;
+      max-width: 350px;
+   }
+   html.responsive .content.gift_controls {
+      margin-top: 10px;
+   }
 }
 
 .pending_gift .content {
@@ -492,7 +549,9 @@ a.recommendation_btn:hover, a.recommendation_imgbtn:hover {
 .pending_gift .gift_message {
    color: #d7d7d7;
    font-size: 16px;
-   font-weight: bold;
+   font-family: "Motiva Sans", Sans-serif;
+   font-weight: 300;
+   /* light */
    background-image: url('data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAChCAIAAACJa0IwAAAAGXRFWHRTb2Z0d2FyZQBBZG9iZSBJbWFnZVJlYWR5ccllPAAAADtJREFUeNpiMDI0ZGJgYCAL/ydW7f//1DOPgFmUmEGu3v+khBuS/v/khDtU/38y44xqZmAxk0zzAAIMABL1Grxx35GEAAAAAElFTkSuQmCC');
    background-repeat: repeat-x;
    background-position: top;
@@ -513,7 +572,7 @@ a.recommendation_btn:hover, a.recommendation_imgbtn:hover {
 }
 
 .content.gift_controls {
-   width: 434px;
+   max-width: 434px;
    margin: 70px auto 0px;
    text-align: center;
    color: #b4b4b4;
@@ -633,10 +692,7 @@ p.pending_gifts_none {
    padding: 12px;
 }
 
-#newitems {
-   margin-left: -6px;
-   width: 936px;
-}
+#newitems {}
 
 .alertbox {
    margin-bottom: 40px;
@@ -688,8 +744,9 @@ p.pending_gifts_none {
    background-color: #333333;
    box-shadow: inset 0 0 5px #151515;
    -webkit-box-shadow: inset 0 0 5px #1A1A1A;
-   border-bottom_right-radius: 3px;
+   border-bottom-right-radius: 3px;
    border-bottom-left-radius: 3px;
+   overflow: hidden;
 }
 
 .alertbox_scrollcontrol {
@@ -736,7 +793,8 @@ p.pending_gifts_none {
    padding: 7px;
    position: relative;
    overflow: hidden;
-   height: 85px;
+   overflow-x: auto;
+   height: 105px;
    z-index: 1;
 }
 
@@ -789,11 +847,81 @@ body.migrated_profile_page .inventory_rightnav {
    text-align: center;
 }
 
-.item_market_actions {
+.item_scrap_actions {
    padding: 11px;
    min-height: 32px;
+   background-color: #1f2836;
 }
 
-.item_market_action_button {
-   margin-right: 10px;
+.item_scrap_actions div {
+   margin-bottom: 8px;
+}
+
+.item_scrap_holiday_title {
+   font-size: 20px;
+   font-style: italic;
+   color: white;
+}
+
+.item_scrap_value {
+   color: #5b9ace;
+}
+
+@media screen and (max-width: 910px) {
+   html.responsive .view_inventory_page {
+      width: auto;
+      margin-left: 0;
+      padding: 5px 1%;
+   }
+   html.responsive .view_inventory_page .inventory_page_right {
+      display: none;
+   }
+   html.responsive .view_inventory_page .inventory_page_left {
+      width: auto;
+      height: auto;
+   }
+   html.responsive .view_inventory_logo {
+      width: auto;
+      max-height: 69px;
+   }
+   html.responsive #contextselect, html.responsive #contextselect_options_contexts {
+      max-width: 88vw;
+   }
+   html.responsive .view_inventory_page #inventories {
+      width: auto;
+      padding: 0;
+      height: auto;
+   }
+   /* TODO: This stuff */
+   html.responsive .games_list_tab_row_separator {
+      display: none;
+   }
+   html.responsive .games_list_tabs {
+      width: 5000px;
+   }
+   html.responsive .games_list_tabs_ctn {
+      overflow-x: auto;
+   }
+   html.responsive .filter_ctn .filter_control_ctn {
+      overflow: hidden;
+      float: none;
+   }
+   html.responsive .filter_ctn.inventory_filters #filter_control {
+      width: 96%;
+      max-width: 363px;
+   }
+}
+
+@media screen and (max-width: 475px) {
+   html.responsive .filter_ctn .filter_control_ctn {
+      clear: left;
+   }
+}
+
+html.responsive .responsive_inventory_fixed_ctn {
+   position: fixed;
+   left: 0;
+   right: 0;
+   background: #000000;
+   top: 62px;
 }
