@@ -137,7 +137,6 @@
                            </div>
                         </div>
                         <div class="profile_header_actions" style="position:relative">
-
                            <div id="customize" class="newmodal" style="position: fixed; z-index: 1000; left: 50%; top: 15%; display: none; transform: translateX(-50%);">
                               <div class="newmodal_header_border">
                                  <div class="newmodal_header">
@@ -152,6 +151,22 @@
                                           <div class="btn_profile_action btn_medium" id="toggleLong" onclick="toggleLong()">
                                              <span class="toggletext" style="text-align:center; ">Toggle to Short Images</span></div>
                                           <div class="btn_profile_action btn_medium showlong" id="shortenRightImage"><span id="shortenText" style="text-align:center;">Shorten Right Image</span></div>
+                                          <div id="esColors" style="position:relative;top:5px;">
+                                             <a href="https://www.enhancedsteam.com/" target="_blank">Enhanced Steam Colors: &nbsp;</a>
+                                             <select id="colorChange" onchange="addProfileColor(this)">
+                                            <option value="0">Default</option>
+                                            <option value="1">Blue</option>
+                                            <option value="2">Clear</option>
+                                            <option value="3">Green</option>
+                                            <option value="4">Holiday 2014</option>
+                                            <option value="5">Orange</option>
+                                            <option value="6">Pink</option>
+                                            <option value="7">Purple</option>
+                                            <option value="8">Red</option>
+                                            <option value="9">Teal</option>
+                                            <option value="10">Yellow</option>
+                                          </select>
+                                          </div>
                                        </div>
                                     </div>
                                  </div>
@@ -171,7 +186,7 @@
                      <div class="header_real_name_spacer">&nbsp;</div>
                      <div class="profile_summary">
                         <div class="bb_h1" style="top:20px; position: relative; text-align:center;">
-                           <b>Find us on: <a class="bb_link" href="https://www.patreon.com/steamdesign" target="_blank" rel="noreferrer">Patreon</a> | <a class="bb_link" href="https://github.com/sapic/sapic" target="_blank" rel="noreferrer">GitHub</a></b>
+                           <b>Our: <a class="bb_link" href="https://www.patreon.com/steamdesign" target="_blank" rel="noreferrer">Patreon</a> | <a class="bb_link" href="https://github.com/sapic/sapic" target="_blank" rel="noreferrer">GitHub</a> | <a class="bb_link" href="https://steamcommunity.com/groups/sapic" target="_blank" rel="noreferrer">Steam Group</a></b>
                         </div>
                      </div>
                      <div class="profile_summary_footer">
@@ -526,22 +541,6 @@
                </div>
             </div>
             <div class="profile_rightcol">
-               <div id="esColors">
-                  <a href="https://www.enhancedsteam.com/" target="_blank">Enhanced Steam Colors:</a>
-                  <select id="colorChange" onchange="addProfileColor(this)">
-                 <option value="0">Default</option>
-                 <option value="1">Blue</option>
-                 <option value="2">Clear</option>
-                 <option value="3">Green</option>
-                 <option value="4">Holiday 2014</option>
-                 <option value="5">Orange</option>
-                 <option value="6">Pink</option>
-                 <option value="7">Purple</option>
-                 <option value="8">Red</option>
-                 <option value="9">Teal</option>
-                 <option value="10">Yellow</option>
-               </select>
-               </div>
                <div class="rColAds"></div>
                <div class="profile_badges" style="display:none; top:10px; position:relative">
                   <div class="profile_count_link_preview_ctn">
@@ -671,11 +670,11 @@
                   <div class="profile_topfriends profile_count_link_preview">
                      <div class="friendBlock persona" data-miniprofile="88233003" style="color:#b436ad">
                         <a class="friendBlockLinkOverlay" href="https://steamcommunity.com/id/TheOddball"></a>
-                        <div class="friendPlayerLevel lvl_100 lvl_plus_60">
-                           <span class="friendPlayerLevelNum">161</span>
+                        <div class="friendPlayerLevel lvl_200 lvl_plus_60">
+                           <span class="friendPlayerLevelNum">260</span>
                         </div>
                         <div class="playerAvatar online" style="background-color:#b436ad;background: #b436ad;">
-                           <img src="https://steamcdn-a.akamaihd.net/steamcommunity/public/images/avatars/cc/ccde65df82663035d24461a27c21ecaccfb6872f_medium.jpg" style="background-color:#b436ad;background: #b436ad;">
+                           <img src="https://steamcdn-a.akamaihd.net/steamcommunity/public/images/avatars/7d/7db1bb763909442edafe420039780ad470190170_medium.jpg" style="background-color:#b436ad;background: #b436ad;">
                         </div>
                         <div class="friendBlockContent">
                            The Oddball<br>
