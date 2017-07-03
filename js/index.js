@@ -5,7 +5,10 @@ var oddball = {
    hidememes: false,
    ref: 0,
    rightImageShorter: false,
-   holiday: false
+   holiday: false,
+   esColor: 0,
+   wantsToggle: true,
+   wantsMinus70: false,
 };
 var loadedBack = null;
 var currentBGInfo = null;
@@ -124,25 +127,6 @@ var ImagesNames = {
    32: ['#w1', 'Workshop_Middle_Right.png'],
    33: ['#w1', 'Workshop_Right.png'],
 };
-
-function toggleCustomize() {
-   $('#customize').toggle();
-   $('#customizeBackground').fadeToggle();
-   var hover = false;
-
-   $('#customize').hover(function() {
-      hover = true;
-   }, function() {
-      hover = false;
-   });
-
-   $('body').mouseup(function() {
-      if (($('#customize').is(':visible')) && (!hover)) {
-         $('#customize').hide();
-         $('#customizeBackground').fadeOut();
-      }
-   });
-}
 
 function convertDataURIToBinary(dataURI) {
    var base64 = dataURI.split(';base64,')[1];
@@ -360,30 +344,6 @@ function fillImage(element, x, y, w, h, name, changeCss) {
    });
 }
 
-function toggleLong() {
-   if (!oddball.toggle) {
-      var bh = $('#bgImgEl').height();
-      var uh = bh - 272;
-      $('#hBig1').css('height', uh);
-      $('.hidelong').hide();
-      $('.showlong').show();
-      $('.r1').css('height', uh);
-      oddball.toggle = true;
-      $('.toggletext').text('Toggle to Short Images');
-   } else {
-      $('#hBig1').css('height', 506);
-      $('.hidelong').show();
-      if (oddball.rightImageShorter) {
-         $("#shortenRightImage").trigger("click");
-      }
-      $('.r1').css('height', 80);
-      oddball.toggle = false;
-      $('.toggletext').text('Toggle to Long Images');
-      $('.showlong').hide();
-   }
-   reloadImages();
-}
-
 function createInventory(id) {
    var hide = store.get('hide');
    var getitems = store.get('backpack');
@@ -416,7 +376,7 @@ function doInventoryThings(inventory) {
    }
 
    inventory.backgrounds.forEach(function(back) {
-     var httpsLink = back.actions[0].link.replace('http://cdn.akamai.steamstatic.com/', 'https://steamcdn-a.akamaihd.net/')
+      var httpsLink = back.actions[0].link.replace('http://cdn.akamai.steamstatic.com/', 'https://steamcdn-a.akamaihd.net/')
       if (hide == true) {
          $('.backsList').hide();
       }
@@ -502,8 +462,50 @@ function elemDown(elem) {
    reloadImages();
 }
 
-function addProfileColor(colorDiv) {
-   var color = colorDiv.value;
+function toggleLong() {
+   if (oddball.wantsToggle) {
+      var bh = $('#bgImgEl').height();
+      var uh = bh - 272;
+      $('#hBig1').css('height', uh);
+      $('.hidelong').hide();
+      $('.showlong').show();
+      $('.r1').css('height', uh);
+      oddball.toggle = true;
+   } else {
+      $('#hBig1').css('height', 506);
+      $('.hidelong').show();
+      if (oddball.rightImageShorter) {
+        oddball.rightImageShorter = false;
+        var bh = $('#big1').height();
+        $('.r1').css('height', bh);
+        $('.artwork_ammount').hide();
+      }
+      $('.r1').css('height', 80);
+      $('.showlong').hide();
+      oddball.toggle = false;
+   }
+   reloadImages();
+}
+
+function toggleShortenRight() {
+  if (oddball.wantsToggle){
+    if (oddball.wantsMinus70 == false) {
+       oddball.rightImageShorter = false;
+       var bh = $('#big1').height();
+       $('.r1').css('height', bh);
+       $('.artwork_ammount').hide();
+    } else {
+       oddball.rightImageShorter = true;
+       var bh = $('#big1').height();
+       var uh = bh - 70;
+       $('.r1').css('height', uh);
+       $('.artwork_ammount').show();
+    }
+  }
+}
+
+function addProfileColor() {
+   var color = oddball.esColor;
    $('.colorStyle').remove();
    if (oddball.holiday) {
       clearInterval(animation);
@@ -534,6 +536,37 @@ function addProfileColor(colorDiv) {
    }
 }
 
+function esColorLoad(colorDiv) {
+   var color = colorDiv.value;
+   oddball.esColor = color;
+}
+
+function toggleCustomize() {
+   $('#customize').toggle();
+   $('#customizeBackground').fadeToggle();
+   var hover = false;
+
+   $('#customize').hover(function() {
+      hover = true;
+   }, function() {
+      hover = false;
+   });
+
+   $('body').mouseup(function() {
+      if (($('#customize').is(':visible')) && (!hover)) {
+         closeCustomize();
+      };
+   });
+}
+
+function closeCustomize() {
+   $('#customize').hide();
+   $('#customizeBackground').fadeOut();
+   toggleLong();
+   toggleShortenRight();
+   addProfileColor();
+}
+
 $(function() {
    if (window.location.hostname == "sapic.github.io") {
       window.location = 'https://steam.design/' + location.hash;
@@ -542,20 +575,30 @@ $(function() {
    $('#customizeButton').click(function() {
       toggleCustomize();
    });
-   $('#customizeClose').click(function() {
-      toggleCustomize();
-   });
-   var bgs = store.get('bgs');
-   if (!bgs) {
-      var expire = new Date().getTime() + 86400000;
-      $.ajax('https://steam.design/bg.json').done(function(data) {
-         store.set('bgs', data, expire);
-         backgroundsList = data;
-      });
-   } else {
-      backgroundsList = bgs;
-   }
 
+   $('#customizeClose').click(function() {
+      closeCustomize();
+   });
+
+   $('#toggleLong').click(function() {
+      oddball.wantsToggle = !oddball.wantsToggle;
+      if (oddball.wantsToggle) {
+         $('.toggletext').text('Toggle to Short Images');
+         $('.showlong_buttons').show();
+      } else {
+         $('.toggletext').text('Toggle to Long Images');
+         $('.showlong_buttons').hide();
+      }
+   });
+
+   $('#shortenRightImage').click(function() {
+      oddball.wantsMinus70 = !oddball.wantsMinus70;
+      if (oddball.wantsMinus70) {
+        $('#shortenText').text("Extend Right Image");
+      } else {
+        $('#shortenText').text("Shorten Right Image");
+      }
+   });
    var hideangle = 0;
    var hide = store.get('hide');
    if (hide == true) {
@@ -574,43 +617,6 @@ $(function() {
       $(this).rotate({
          animateTo: hideangle
       });
-   });
-
-   $('#shortenRightImage').click(function() {
-      if (oddball.toggle) {
-         if (oddball.rightImageShorter == true) {
-            var bh = $('#big1').height();
-            oddball.rightImageShorter = !oddball.rightImageShorter;
-            $('.r1').css('height', bh);
-            reloadImages();
-            $('#shortenText').text("Shorten Right Image");
-            $('.artwork_ammount').hide();
-         } else {
-            var bh = $('#big1').height();
-            var uh = bh - 70;
-            oddball.rightImageShorter = !oddball.rightImageShorter;
-            $('.r1').css('height', uh);
-            reloadImages();
-            $('#shortenText').text("Extend Right Image");
-            $('.artwork_ammount').show();
-         }
-      } else {
-         if (oddball.rightImageShorter == true) {
-            oddball.rightImageShorter = !oddball.rightImageShorter;
-            $('.r1').css('height', 506);
-            reloadImages();
-            $('#shortenText').text("Shorten Right Image");
-            $('.artwork_ammount').hide();
-            $('.rightimages').show();
-         } else {
-            oddball.rightImageShorter = !oddball.rightImageShorter;
-            $('.r1').css('height', 506);
-            reloadImages();
-            $('#shortenText').text("Extend Right Image");
-            $('.artwork_ammount').show();
-            $('.rightimages').hide();
-         }
-      }
    });
 
    $('#refreshInventory').rotate({
@@ -636,6 +642,18 @@ $(function() {
          }
       }
    });
+
+   var bgs = store.get('bgs');
+   if (!bgs) {
+      var expire = new Date().getTime() + 86400000;
+      $.ajax('https://steam.design/bg.json').done(function(data) {
+         store.set('bgs', data, expire);
+         backgroundsList = data;
+      });
+   } else {
+      backgroundsList = bgs;
+   }
+
    addArrows();
 
    loginFunc();
