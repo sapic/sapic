@@ -675,6 +675,8 @@ $(function() {
       window.location = 'https://steam.design/' + location.hash;
    }
 
+   $('#cache_text').hide();
+
    $('#customizeButton').click(function() {
       toggleCustomize();
    });
