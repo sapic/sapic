@@ -680,25 +680,6 @@ $(function() {
       closeCustomize();
    });
 
-   $('#toggleLong').click(function() {
-      oddball.wantsToggle = !oddball.wantsToggle;
-      if (oddball.wantsToggle) {
-         $('.toggletext').text('Toggle to Short Images');
-         $('.showlong_buttons').show();
-      } else {
-         $('.toggletext').text('Toggle to Long Images');
-         $('.showlong_buttons').hide();
-      }
-   });
-
-   $('#shortenRightImage').click(function() {
-      oddball.wantsMinus70 = !oddball.wantsMinus70;
-      if (oddball.wantsMinus70) {
-         $('#shortenText').text("Extend Right Image");
-      } else {
-         $('#shortenText').text("Shorten Right Image");
-      }
-   });
    var hideangle = 0;
    var hide = store.get('hide');
    if (hide == true) {
