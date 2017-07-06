@@ -1,14 +1,19 @@
 background = null;
 var oddball = {
-   toggle: true,
    refresh: false,
    hidememes: false,
    ref: 0,
-   rightImageShorter: false,
    holiday: false,
-   esColor: 0,
-   wantsToggle: true,
-   wantsMinus70: false,
+   esColor: 0
+};
+var payload = {
+   SSSC_Enable: false,
+   SSSC_Long: false,
+   SSSC_Long_Minus70: false,
+   AWSC_Enable: true,
+   AWSC_Long: true,
+   AWSC_Long_Minus70: false,
+   WSSC_Enable: false
 };
 var loadedBack = null;
 var currentBGInfo = null;
@@ -248,25 +253,11 @@ function reloadImages() {
    $('#bg1').css("background-image", "url('" + background + "')");
    $('#bg2').css("background-image", "url('" + background + "')");
 
-   console.log('The current background URL is:', background);
    if (background != loadedBack) {
       getImageBase64(background, function() {
-         CropImages();
+         console.log('The current background URL is:', background);
+         payloadHandler();
          bgChanged();
-         if (oddball.toggle) {
-            if (oddball.rightImageShorter) {
-               var bgheight = $('#bgImgEl').height();
-               var uh = bgheight - 272;
-               var rh = uh - 70;
-               $('#hBig1').css('height', uh);
-               $('.r1').css('height', rh);
-            } else {
-               var bgheight = $('#bgImgEl').height();
-               var uh = bgheight - 272;
-               $('#hBig1').css('height', uh);
-               $('.r1').css('height', uh);
-            }
-         }
       });
    } else {
       CropImages();
@@ -291,27 +282,41 @@ function CropImages() {
          url: background,
          images: [],
       };
-
-      if (oddball.toggle) {
-         if (oddball.rightImageShorter == true) {
-            var akdk = h1 - 70;
-            fillImage($('#big1'), leftOffset[ImageType], rOffset1, 506, h1, ImagesNames[10][1], true);
-            fillImage($('#r11'), 514 + leftOffset[ImageType], rOffset1, 100, akdk, ImagesNames[11][1]);
+      if (payload.AWSC_Enable) {
+         if (payload.AWSC_Long) {
+            if (payload.AWSC_Long_Minus70) {
+               var akdk = h1 - 70;
+               fillImage($('#big1'), leftOffset[ImageType], rOffset1, 506, h1, ImagesNames[10][1], true);
+               fillImage($('#r11'), 514 + leftOffset[ImageType], rOffset1, 100, akdk, ImagesNames[11][1]);
+            } else {
+               fillImage($('#big1'), leftOffset[ImageType], rOffset1, 506, h1, ImagesNames[10][1], true);
+               fillImage($('#r11'), 514 + leftOffset[ImageType], rOffset1, 100, h1, ImagesNames[11][1]);
+            }
          } else {
             fillImage($('#big1'), leftOffset[ImageType], rOffset1, 506, h1, ImagesNames[10][1], true);
-            fillImage($('#r11'), 514 + leftOffset[ImageType], rOffset1, 100, h1, ImagesNames[11][1]);
+            fillImage($('#r11'), 514 + leftOffset[ImageType], rOffset1, 100, 80, ImagesNames[11][1]);
+            fillImage($('#r12'), 514 + leftOffset[ImageType], rOffset1 + 93, 100, 80, ImagesNames[12][1]);
+            fillImage($('#r13'), 514 + leftOffset[ImageType], rOffset1 + 186, 100, 80, ImagesNames[13][1]);
          }
-      } else {
-         fillImage($('#big1'), leftOffset[ImageType], rOffset1, 506, h1, ImagesNames[10][1], true);
-         fillImage($('#r11'), 514 + leftOffset[ImageType], rOffset1, 100, 80, ImagesNames[11][1]);
-         fillImage($('#r12'), 514 + leftOffset[ImageType], rOffset1 + 93, 100, 80, ImagesNames[12][1]);
-         fillImage($('#r13'), 514 + leftOffset[ImageType], rOffset1 + 186, 100, 80, ImagesNames[13][1]);
-
-         fillImage($('#big2'), leftOffset[ImageType], rOffset2, 506, h2, ImagesNames[20][1], true);
-         fillImage($('#r21'), 514 + leftOffset[ImageType], rOffset2, 100, 80, ImagesNames[21][1]);
-         fillImage($('#r22'), 514 + leftOffset[ImageType], rOffset2 + 93, 100, 80, ImagesNames[22][1]);
-         fillImage($('#r23'), 514 + leftOffset[ImageType], rOffset2 + 186, 100, 80, ImagesNames[23][1]);
-
+      }
+      if (payload.SSSC_Enable) {
+         if (payload.SSSC_Long) {
+            if (payload.SSSC_Long_Minus70) {
+               var akdk = h1 - 70;
+               fillImage($('#big2'), leftOffset[ImageType], rOffset2, 506, h1, ImagesNames[20][1], true);
+               fillImage($('#r21'), 514 + leftOffset[ImageType], rOffset2, 100, h1, ImagesNames[21][1]);
+            } else {
+               fillImage($('#big2'), leftOffset[ImageType], rOffset2, 506, h1, ImagesNames[20][1], true);
+               fillImage($('#r21'), 514 + leftOffset[ImageType], rOffset2, 100, h1, ImagesNames[21][1]);
+            }
+         } else {
+            fillImage($('#big2'), leftOffset[ImageType], rOffset2, 506, h2, ImagesNames[20][1], true);
+            fillImage($('#r21'), 514 + leftOffset[ImageType], rOffset2, 100, 80, ImagesNames[21][1]);
+            fillImage($('#r22'), 514 + leftOffset[ImageType], rOffset2 + 93, 100, 80, ImagesNames[22][1]);
+            fillImage($('#r23'), 514 + leftOffset[ImageType], rOffset2 + 186, 100, 80, ImagesNames[23][1]);
+         }
+      }
+      if (payload.WSSC_Enable) {
          fillImage($('#w1'), 1 + leftOffset[ImageType], rOffset3, 150, 150, ImagesNames[30][1]);
          fillImage($('#w2'), 156 + leftOffset[ImageType], rOffset3, 150, 150, ImagesNames[31][1]);
          fillImage($('#w3'), 309 + leftOffset[ImageType], rOffset3, 150, 150, ImagesNames[32][1]);
@@ -462,48 +467,6 @@ function elemDown(elem) {
    reloadImages();
 }
 
-function toggleLong() {
-   if (oddball.wantsToggle) {
-      var bh = $('#bgImgEl').height();
-      var uh = bh - 272;
-      $('#hBig1').css('height', uh);
-      $('.hidelong').hide();
-      $('.showlong').show();
-      $('.r1').css('height', uh);
-      oddball.toggle = true;
-   } else {
-      $('#hBig1').css('height', 506);
-      $('.hidelong').show();
-      if (oddball.rightImageShorter) {
-        oddball.rightImageShorter = false;
-        var bh = $('#big1').height();
-        $('.r1').css('height', bh);
-        $('.artwork_ammount').hide();
-      }
-      $('.r1').css('height', 80);
-      $('.showlong').hide();
-      oddball.toggle = false;
-   }
-   reloadImages();
-}
-
-function toggleShortenRight() {
-  if (oddball.wantsToggle){
-    if (oddball.wantsMinus70 == false) {
-       oddball.rightImageShorter = false;
-       var bh = $('#big1').height();
-       $('.r1').css('height', bh);
-       $('.artwork_ammount').hide();
-    } else {
-       oddball.rightImageShorter = true;
-       var bh = $('#big1').height();
-       var uh = bh - 70;
-       $('.r1').css('height', uh);
-       $('.artwork_ammount').show();
-    }
-  }
-}
-
 function addProfileColor() {
    var color = oddball.esColor;
    $('.colorStyle').remove();
@@ -562,15 +525,157 @@ function toggleCustomize() {
 function closeCustomize() {
    $('#customize').hide();
    $('#customizeBackground').fadeOut();
-   toggleLong();
-   toggleShortenRight();
    addProfileColor();
+   payloadHandler();
+}
+
+function customizeCheckboxHandler(id) {
+   var div = $('#' + id + '');
+   var hiddenBelow = div.siblings('.hiddenBelow');
+
+   switch (id) {
+      case "SSSC_Checkbox":
+         payload.SSSC_Enable = !payload.SSSC_Enable;
+         if ($('#SSSC_Long_Checkbox').hasClass('checked')) {
+            $('#SSSC_Long_Checkbox').trigger('click');
+         }
+         break;
+      case "SSSC_Long_Checkbox":
+         payload.SSSC_Long = !payload.SSSC_Long;
+         if ($('#SSSC_Long_Minus70_Checkbox').hasClass('checked')) {
+            $('#SSSC_Long_Minus70_Checkbox').trigger('click');
+         }
+         break;
+      case "SSSC_Long_Minus70_Checkbox":
+         payload.SSSC_Long_Minus70 = !payload.SSSC_Long_Minus70;
+         break;
+      case "AWSC_Checkbox":
+         payload.AWSC_Enable = !payload.AWSC_Enable;
+         if ($('#AWSC_Long_Checkbox').hasClass('checked')) {
+            $('#AWSC_Long_Checkbox').trigger('click');
+         }
+         break;
+      case "AWSC_Long_Checkbox":
+         payload.AWSC_Long = !payload.AWSC_Long;
+         if ($('#AWSC_Long_Minus70_Checkbox').hasClass('checked')) {
+            $('#AWSC_Long_Minus70_Checkbox').trigger('click');
+         }
+         break;
+      case "AWSC_Long_Minus70_Checkbox":
+         payload.AWSC_Long_Minus70 = !payload.AWSC_Long_Minus70;
+         break;
+      case "WSSC_Checkbox":
+         payload.WSSC_Enable = !payload.WSSC_Enable;
+         break;
+      default:
+         console.log("How the hell?");
+         break;
+   }
+
+   if (div.hasClass('checked')) {
+      div.removeClass('checked');
+   } else {
+      div.addClass('checked');
+   }
+   if (hiddenBelow.length) {
+      if (hiddenBelow.hasClass('hidden')) {
+         hiddenBelow.removeClass('hidden')
+      } else {
+         hiddenBelow.addClass('hidden')
+      }
+   }
+}
+
+
+function shortenRight(showcase) {
+   var bh = $('#big' + showcase + '').height();
+   var uh = bh - 70;
+   $('.r' + showcase + '').css('height', uh);
+   $('.r' + showcase + '').addClass('shortened');
+   $('.artwork_ammount_' + showcase + '').show();
+}
+
+function extendRight(showcase) {
+   setTimeout(function() {
+      var bh = $('#big' + showcase + '').height();
+      $('.r' + showcase + '').css('height', bh);
+      $('.r' + showcase + '').removeClass('shortened');
+      $('.artwork_ammount_' + showcase + '').hide();
+   }, 275)
+}
+
+function showDiv(showcase) {
+   $('.showcase_' + showcase + '').removeClass('hidden');
+}
+
+function hideDiv(showcase) {
+   $('.showcase_' + showcase + '').addClass('hidden');
+}
+
+function longImages(showcase) {
+   var bh = $('#bgImgEl').height();
+   var uh = bh - 272;
+   $('#hBig' + showcase + '').css('height', uh);
+   $('.hidelong' + showcase + '').addClass('hidden');
+   $('.showlong' + showcase + '').removeClass('hidden');
+   $('.r' + showcase + '').css('height', uh);
+}
+
+function shortImages(showcase) {
+   $('#hBig' + showcase + '').css('height', 506);
+   $('.hidelong' + showcase + '').removeClass('hidden');
+   $('.r' + showcase + '').css('height', 80);
+   $('.showlong' + showcase + '').addClass('hidden');
+   $('.artwork_ammount_' + showcase + '').show();
+}
+
+function payloadHandler() {
+   if (payload.SSSC_Enable) {
+      showDiv(2);
+      if (payload.SSSC_Long) {
+         longImages(2);
+         if (payload.SSSC_Long_Minus70) {
+            shortenRight(2);
+         } else {
+            extendRight(2);
+         }
+      } else {
+         shortImages(2);
+      }
+   } else {
+      hideDiv(2);
+   }
+
+   if (payload.AWSC_Enable) {
+      showDiv(1);
+      if (payload.AWSC_Long) {
+         longImages(1);
+         if (payload.AWSC_Long_Minus70) {
+            shortenRight(1);
+         } else {
+            extendRight(1);
+         }
+      } else {
+         shortImages(1);
+      }
+   } else {
+      hideDiv(1);
+   }
+
+   if (payload.WSSC_Enable) {
+      showDiv(3);
+   } else {
+      hideDiv(3);
+   }
+   reloadImages();
 }
 
 $(function() {
    if (window.location.hostname == "sapic.github.io") {
       window.location = 'https://steam.design/' + location.hash;
    }
+
+   $('#cache_text').hide();
 
    $('#customizeButton').click(function() {
       toggleCustomize();
@@ -580,25 +685,6 @@ $(function() {
       closeCustomize();
    });
 
-   $('#toggleLong').click(function() {
-      oddball.wantsToggle = !oddball.wantsToggle;
-      if (oddball.wantsToggle) {
-         $('.toggletext').text('Toggle to Short Images');
-         $('.showlong_buttons').show();
-      } else {
-         $('.toggletext').text('Toggle to Long Images');
-         $('.showlong_buttons').hide();
-      }
-   });
-
-   $('#shortenRightImage').click(function() {
-      oddball.wantsMinus70 = !oddball.wantsMinus70;
-      if (oddball.wantsMinus70) {
-        $('#shortenText').text("Extend Right Image");
-      } else {
-        $('#shortenText').text("Shorten Right Image");
-      }
-   });
    var hideangle = 0;
    var hide = store.get('hide');
    if (hide == true) {
@@ -703,46 +789,60 @@ $(function() {
       window.location.href = "#" + url;
    });
 
-   interact('.resizable')
+   interact('.resizable-awsc')
       .resizable({
-         axis: 'y'
+         axis: 'y',
       })
       .on('resizemove', function(event) {
          var target = event.target;
-         var awsc;
-         var sssc;
          // add the change in coords to the previous width of the target element
          var newHeight = parseFloat(target.style.height) + event.dy;
          var showcase = newHeight + 75;
          var bgHeight = $('#bgImgEl').height();
-         $('#cSize').hover(function() {
-            awsc = true;
-         }, function() {
-            awsc = false;
-         });
-         $('#sssc').hover(function() {
-            sssc = true;
-         }, function() {
-            sssc = false;
-         });
-         if (awsc == true){
-           $('#cSize').css('height', showcase)
-         }
-         if (sssc == true){
-           $('#sssc').css('height', showcase)
-         }
 
-         if (newHeight >= 284 && newHeight <= bgHeight - 272) {
-            target.style.height = newHeight + 'px';
-         }
-         if (oddball.toggle) {
-            if (oddball.rightImageShorter == true) {
+         $('#cSize').css('height', showcase);
+         if (payload.AWSC_Long) {
+            if (payload.AWSC_Long_Minus70 == true) {
                var rightheight = newHeight - 70;
                $('.r1').css('height', rightheight);
             } else {
                $('.r1').css('height', newHeight);
             }
          }
+
+         if (newHeight >= 284 && newHeight <= bgHeight - 272) {
+            target.style.height = newHeight + 'px';
+         }
+
+         //target.textContent = newWidth + '×' + newHeight;
+      })
+      .on('resizeend', function() {
+         CropImages();
+      });
+   interact('.resizable-sssc')
+      .resizable({
+         axis: 'y',
+      })
+      .on('resizemove', function(event) {
+         var target = event.target;
+         // add the change in coords to the previous width of the target element
+         var newHeight = parseFloat(target.style.height) + event.dy;
+         var showcase = newHeight + 75;
+         var bgHeight = $('#bgImgEl').height();
+         $('#sssc').css('height', showcase);
+         if (payload.SSSC_Long) {
+            if (payload.SSSC_Long_Minus70 == true) {
+               var rightheight = newHeight - 70;
+               $('.r2').css('height', rightheight);
+            } else {
+               $('.r2').css('height', newHeight);
+            }
+         }
+
+         if (newHeight >= 284 && newHeight <= bgHeight - 272) {
+            target.style.height = newHeight + 'px';
+         }
+
          //target.textContent = newWidth + '×' + newHeight;
       })
       .on('resizeend', function() {

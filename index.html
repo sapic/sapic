@@ -54,7 +54,7 @@
    <script src="./js/jquery.min.js"></script>
    <script src="./js/linq.min.js"></script>
    <script src="./js/jquery.smooth-scroll.min.js"></script>
-   <script src="./js/interact-1.2.2.min.js"></script>
+   <script src="./js/interact-1.2.9.min.js"></script>
    <script src="./js/FileSaver.js"></script>
    <script src="./js/jszip.js"></script>
    <script src="./js/index.js"></script>
@@ -132,7 +132,7 @@
                                  <span class="friendPlayerLevelNum">63</span>
                               </div>
                            </div>
-                           <div class="profile_header_badge">
+                           <div class="profile_header_badge" style="position:relative;top:9px;">
                               <a href="https://discord.gg/jnqnHuX" target="_blank"><img src="https://discordapp.com/api/guilds/304986224467378177/widget.png?style=banner2" style="height: 87%;top: 4px;left: 5px;position: relative;"></a>
                            </div>
                         </div>
@@ -148,14 +148,88 @@
                                  <div class="newmodal_content">
                                     <div class="market_dialog_content">
                                        <div class="market_dialog_iteminfo">
-                                          <div class="btn_profile_action btn_medium" id="toggleLong">
-                                             <span class="toggletext" style="text-align:center; ">Toggle to Short Images</span></div>
-                                          <div class="btn_profile_action btn_medium showlong showlong_buttons" id="shortenRightImage"><span id="shortenText" style="text-align:center;">Shorten Right Image</span></div>
-                                        <!--  <div class="gray_bevel for_text_input showlong_buttons" style="position:relative;display:block;height:15px;width:165px;">
-                                             <input class="dynInput" type="text" size="10" placeholder="Enter a Custom Height Here" style="height:10px;position:relative;bottom:1px;">
-                                          </div> -->
+                                         <div class="bb_h1 customize_textbox" id="cache_text">
+                                            <b>It seems you dont have latest version cached. Please wait or press ctrl + shift + r to get the latest version.</b>
+                                         </div>
+                                          <div class="market_listing_row market_recent_listing_row">
+                                             <div class="bb_h1 customize_textbox">
+                                                <b>Artwork Showcase:</b>
+                                             </div>
+                                             <div class="commentthread_subscribe_ctn checked" onclick="customizeCheckboxHandler(this.id)" id="AWSC_Checkbox">
+                                                <span class="commentthread_subscribe_checkbox">
+                                              <span class="commentthread_subscribe_check"></span>
+                                                </span>
+                                                <span class="commentthread_subscribe_desc">Enable Artwork Showcase</span>
+                                             </div>
+                                             <div class="hiddenBelow">
+                                                <div class="commentthread_subscribe_ctn checked" onclick="customizeCheckboxHandler(this.id)" id="AWSC_Long_Checkbox">
+                                                   <span class="commentthread_subscribe_checkbox">
+                                              <span class="commentthread_subscribe_check"></span>
+                                                   </span>
+                                                   <span class="commentthread_subscribe_desc">Enable Long Images on Artwork Showcase</span>
+                                                </div>
+                                                <div class="hiddenBelow">
+                                                   <div class="commentthread_subscribe_ctn" onclick="customizeCheckboxHandler(this.id)" id="AWSC_Long_Minus70_Checkbox">
+                                                      <span class="commentthread_subscribe_checkbox">
+                                              <span class="commentthread_subscribe_check"></span>
+                                                      </span>
+                                                      <span class="commentthread_subscribe_desc">Shorten Right Image</span>
+                                                   </div>
+                                                   <div class="gray_bevel for_text_input showlong_buttons customize_textbox" style="position:relative;display:inline-block;height:15px;width:165px;top:2px;">
+                                                      <input class="dynInput" type="text" size="10" placeholder="Enter a Custom Height Here" style="height:10px;position:relative;bottom:1px;">
+                                                   </div>
+                                                   <span class="btn_grey_white_innerfade btn_small">
+                                               <span>Reset Height</span>
+                                                   </span>
+                                                </div>
+                                             </div>
+                                          </div>
+                                          <div class="market_listing_row market_recent_listing_row">
+                                             <div class="bb_h1 customize_textbox">
+                                                <b>Screenshot Showcase:</b>
+                                             </div>
+                                             <div class="commentthread_subscribe_ctn" onclick="customizeCheckboxHandler(this.id)" id="SSSC_Checkbox">
+                                                <span class="commentthread_subscribe_checkbox">
+                                               <span class="commentthread_subscribe_check"></span>
+                                                </span>
+                                                <span class="commentthread_subscribe_desc">Enable Screenshot Showcase</span>
+                                             </div>
+                                             <div class="hiddenBelow hidden">
+                                                <div class="commentthread_subscribe_ctn" onclick="customizeCheckboxHandler(this.id)" id="SSSC_Long_Checkbox">
+                                                   <span class="commentthread_subscribe_checkbox">
+                                               <span class="commentthread_subscribe_check"></span>
+                                                   </span>
+                                                   <span class="commentthread_subscribe_desc">Enable Long Images on Screenshot Showcase</span>
+                                                </div>
+                                                <div class="hiddenBelow hidden">
+                                                   <div class="commentthread_subscribe_ctn" onclick="customizeCheckboxHandler(this.id)" id="SSSC_Long_Minus70_Checkbox">
+                                                      <span class="commentthread_subscribe_checkbox">
+                                               <span class="commentthread_subscribe_check"></span>
+                                                      </span>
+                                                      <span class="commentthread_subscribe_desc">Shorten Right Image</span>
+                                                   </div>
+                                                   <div class="gray_bevel for_text_input showlong_buttons customize_textbox" style="position:relative;display:inline-block;height:15px;width:165px;top:2px;">
+                                                      <input class="dynInput" type="text" size="10" placeholder="Enter a Custom Height Here" style="height:10px;position:relative;bottom:1px;">
+                                                   </div>
+                                                   <span class="btn_grey_white_innerfade btn_small">
+                                                <span>Reset Height</span>
+                                                   </span>
+                                                </div>
+                                             </div>
+                                          </div>
+                                          <div class="market_listing_row market_recent_listing_row">
+                                             <div class="bb_h1 customize_textbox">
+                                                <b>Workshop Showcase:</b>
+                                             </div>
+                                             <div class="commentthread_subscribe_ctn" onclick="customizeCheckboxHandler(this.id)" id="WSSC_Checkbox">
+                                                <span class="commentthread_subscribe_checkbox">
+                                               <span class="commentthread_subscribe_check"></span>
+                                                </span>
+                                                <span class="commentthread_subscribe_desc">Enable Workshop Showcase</span>
+                                             </div>
+                                          </div>
                                           <div id="esColors" style="position:relative;top:5px;">
-                                             <a href="https://www.enhancedsteam.com/" target="_blank">Enhanced Steam Colors: &nbsp;</a>
+                                             <a href="https://www.enhancedsteam.com/" target="_blank">Enhanced Steam Colors:&nbsp;</a>
                                              <select id="colorChange" onchange="esColorLoad(this)">
                                             <option value="0">Default</option>
                                             <option value="1">Blue</option>
@@ -176,7 +250,7 @@
                               </div>
                            </div>
                         </div>
-                        <div class="btn_profile_action btn_medium" style="left:7px; position:relative;" onclick="toggleCustomize()">
+                        <div class="btn_profile_action btn_medium" style="left:7px; position:relative;top:9px;" onclick="toggleCustomize()">
                            <span style=" text-align:center; ">Customize Cropping</span>
                         </div>
 
@@ -212,13 +286,13 @@
          <div class="profile_content_inner">
             <div class="profile_leftcol">
                <div class="profile_customization_area">
-                  <div class="profile_customization" id="cSize">
+                  <div class="profile_customization showcase_1" id="cSize">
                      <div class="profile_customization_header">Artwork Showcase
                      </div>
                      <div class="profile_customization_block">
                         <div id="artworkshowcase" class="screenshot_showcase" style="display:flow-root;">
                            <div class="screenshot_showcase_primary showcase_slot ">
-                              <div class="screenshot_showcase_screenshot resizable" id="hBig1" style="height: 506px;">
+                              <div class="screenshot_showcase_screenshot resizable-awsc" id="hBig1" style="height: 506px;">
                                  <div id="big1" class="imageHolder"></div>
                               </div>
                               <div class="screenshot_showcase_itemname" style="color: #5491cf; font-weight: bold;">
@@ -236,18 +310,18 @@
                                     <div id="r11" class="r1"></div>
                                  </div>
                               </div>
-                              <div id="r12r" style="height: 82px; display: none;" class="screenshot_showcase_smallscreenshot showcase_slot hidelong rightimages">
+                              <div id="r12r" style="height: 82px;" class="screenshot_showcase_smallscreenshot showcase_slot hidelong1 rightimages">
                                  <div class="screenshot_showcase_screenshot" onclick="ShowModalContent( 'https://steamcommunity.com/sharedfiles/filedetails/?id=349772562&amp;insideModal=1', 'https://steamcommunity.com/sharedfiles/filedetails/?id=349772562', 'https://steamcommunity.com/sharedfiles/filedetails/?id=349772562', true );">
-                                    <div id="r12"></div>
+                                    <div id="r12" class="rightimages"></div>
                                  </div>
                               </div>
-                              <div id="r13r" style="height: 82px; display: none;" class="screenshot_showcase_smallscreenshot showcase_slot hidelong rightimages">
+                              <div id="r13r" style="height: 82px;" class="screenshot_showcase_smallscreenshot showcase_slot hidelong1 rightimages">
                                  <div class="screenshot_showcase_screenshot" onclick="ShowModalContent( 'https://steamcommunity.com/sharedfiles/filedetails/?id=349772655&amp;insideModal=1', 'https://steamcommunity.com/sharedfiles/filedetails/?id=349772655', 'https://steamcommunity.com/sharedfiles/filedetails/?id=349772655', true );">
-                                    <div id="r13"></div>
+                                    <div id="r13" class="rightimages"></div>
                                  </div>
                               </div>
-                              <a style="display:none;position:relative;top:2px;" class="screenshot_showcase_smallscreenshot screenshot_count artwork_ammount hidelong" href="https://steamcommunity.com/id/wolfenstian/images/">
-                                 <div class="screenshot_showcase_screenshot artwork_ammount hidelong">
+                              <a style="display:none;position:relative;top:2px;" class="screenshot_showcase_smallscreenshot screenshot_count artwork_ammount_1 hidelong1" href="https://steamcommunity.com/id/wolfenstian/images/">
+                                 <div class="screenshot_showcase_screenshot artwork_ammount_1 hidelong1">
                                     + 8
                                  </div>
                               </a>
@@ -256,13 +330,13 @@
                         </div>
                      </div>
                   </div>
-                  <div id="sssc" class="profile_customization hidelong" style="display:none">
+                  <div id="sssc" class="profile_customization showcase_2 hidden">
                      <div class="profile_customization_header">Screenshot Showcase
                      </div>
                      <div class="profile_customization_block">
                         <div class="screenshot_showcase" style="display:flow-root;">
                            <div class="screenshot_showcase_primary showcase_slot ">
-                              <div class="screenshot_showcase_screenshot resizable" id="hBig2" style="height: 284px">
+                              <div class="screenshot_showcase_screenshot resizable-sssc" id="hBig2" style="height: 284px">
                                  <div id="big2"></div>
                               </div>
                               <div class="screenshot_showcase_itemname">
@@ -273,24 +347,24 @@
                                        <img class="screenshot_showcase_staticon" src="https://steamcommunity-a.akamaihd.net/public/images/sharedfiles/icons/icon_rate.png"> 5							</span>
                               </div>
                            </div>
-                           <div class="screenshot_showcase_rightcol">
-                              <div style="height: 82px;" class="screenshot_showcase_smallscreenshot showcase_slot ">
+                           <div class="screenshot_showcase_rightcol r2">
+                              <div style="height: 82px;" class="screenshot_showcase_smallscreenshot showcase_slot r2">
                                  <div class="screenshot_showcase_screenshot" onclick="ShowModalContent( 'https://steamcommunity.com/sharedfiles/filedetails/?id=299605809&amp;insideModal=1', 'https://steamcommunity.com/sharedfiles/filedetails/?id=299605809', 'https://steamcommunity.com/sharedfiles/filedetails/?id=299605809', true );">
-                                    <div id="r21"></div>
+                                    <div id="r21" class="r2"></div>
                                  </div>
                               </div>
-                              <div style="height: 82px;" class="screenshot_showcase_smallscreenshot showcase_slot ">
+                              <div style="height: 82px;" class="screenshot_showcase_smallscreenshot showcase_slot hidelong2">
                                  <div class="screenshot_showcase_screenshot" onclick="ShowModalContent( 'https://steamcommunity.com/sharedfiles/filedetails/?id=299605824&amp;insideModal=1', 'https://steamcommunity.com/sharedfiles/filedetails/?id=299605824', 'https://steamcommunity.com/sharedfiles/filedetails/?id=299605824', true );">
-                                    <div id="r22"></div>
+                                    <div id="r22" class="rightimages"></div>
                                  </div>
                               </div>
-                              <div style="height: 82px;" class="screenshot_showcase_smallscreenshot showcase_slot ">
+                              <div style="height: 82px;" class="screenshot_showcase_smallscreenshot showcase_slot hidelong2">
                                  <div class="screenshot_showcase_screenshot" onclick="ShowModalContent( 'https://steamcommunity.com/sharedfiles/filedetails/?id=299605839&amp;insideModal=1', 'https://steamcommunity.com/sharedfiles/filedetails/?id=299605839', 'https://steamcommunity.com/sharedfiles/filedetails/?id=299605839', true );">
-                                    <div id="r23"></div>
+                                    <div id="r23" class="rightimages"></div>
                                  </div>
                               </div>
-                              <a class="screenshot_showcase_smallscreenshot screenshot_count" href="https://steamcommunity.com/id/wolfenstian/screenshots/">
-                                 <div class="screenshot_showcase_screenshot">
+                              <a class="screenshot_showcase_smallscreenshot screenshot_count artwork_ammount_2 hidelong2" href="https://steamcommunity.com/id/wolfenstian/screenshots/">
+                                 <div class="screenshot_showcase_screenshot artwork_ammount_2 hidelong2">
                                     + 685
                                  </div>
                               </a>
@@ -299,7 +373,7 @@
                         </div>
                      </div>
                   </div>
-                  <div class="profile_customization hidelong" style="display:none" id="ws">
+                  <div class="profile_customization showcase_3 hidden" id="ws">
                      <div class="profile_customization_header">
                         Workshop Showcase
                      </div>

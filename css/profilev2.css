@@ -1,12 +1,15 @@
 div.profile_page {
    position: relative;
-   background-image: url('https://steamcommunity-a.akamaihd.net/public/images/profile/profile_bg.jpg');
-   background-repeat: repeat-x;
-   background-color: #262627;
    min-width: 950px;
 }
 
-div.profile_page.private_profile {
+body.profile_page, div.profile_page {
+   background-image: url('https://steamcommunity-a.akamaihd.net/public/images/profile/profile_bg.jpg');
+   background-repeat: repeat-x;
+   background-color: #262627;
+}
+
+body.profile_page.private_profile, div.profile_page.private_profile {
    background-image: none;
 }
 
@@ -14,6 +17,14 @@ div.profile_page.has_profile_background {
    background-color: #000000;
    background-position: center top;
    background-repeat: no-repeat;
+}
+
+body.profile_page.has_profile_background {
+   background-color: #000000;
+}
+
+body.profile_page.flat_page #footer_spacer {
+   margin-top: 0;
 }
 
 
@@ -65,8 +76,28 @@ div.profile_page.has_profile_background {
 }
 
 .playerAvatar.profile_header_size {
+   position: relative;
    width: 166px;
-   height: auto;
+   height: 166px;
+}
+
+.playerAvatar.profile_header_size .playerAvatarAutoSizeInner img {
+   /* override the gradient behind the image (it won't show anyway) */
+   background: none;
+   filter: none;
+   /* fix space appearing beneath image */
+   display: block;
+   padding: 0;
+   width: 100%;
+   height: 100%;
+}
+
+.playerAvatar.profile_header_size .playerAvatarAutoSizeInner {
+   position: absolute;
+   top: 2px;
+   right: 2px;
+   bottom: 2px;
+   left: 2px;
 }
 
 .profile_header .playerAvatar.profile_header_size {
@@ -87,9 +118,11 @@ div.profile_page.has_profile_background {
       clear: both;
       padding: 8px;
    }
+   html.responsive .profile_header .profile_summary.noexpand {
+      height: auto;
+   }
    html.responsive .profile_header .playerAvatar.profile_header_size {
       max-width: 40%;
-      margin-right: 2%;
    }
    html.responsive .profile_header .profile_header_centered_persona {
       position: static;
@@ -111,34 +144,52 @@ div.profile_page.has_profile_background {
    html.responsive .profile_header_bg_texture {
       background-size: cover;
    }
+   html.responsive .profile_header_badgeinfo {
+      float: none;
+      overflow: hidden;
+   }
 }
 
 @media screen and ( max-width: 460px) {
    html.responsive .profile_header_badgeinfo {
       float: none;
+      overflow: visible;
    }
    html.responsive .profile_header_badgeinfo_badge_area {
-      float: right;
-      max-width: 55%;
+      float: none;
+      overflow: hidden;
+      max-width: 50%;
+      max-width: calc( 100% - 125px - 20px);
+   }
+   html.responsive .profile_header_badgeinfo_badge_area .profile_header_badge {
+      margin-bottom: 0;
    }
    html.responsive .profile_header_actions {
       clear: both;
       padding-top: 8px;
       text-align: center;
    }
+   html.responsive .profile_header .playerAvatar.profile_header_size {
+      max-width: none;
+      width: 125px;
+      height: 125px;
+   }
 }
 
 .profile_header_actions {
    white-space: nowrap;
-   top: 9px;
-   position: relative;
 }
 
 .profile_header .persona_name {
    line-height: 40px;
    font-size: 24px;
    color: #ffffff;
-   font-family: 'Motiva Sans Thin', Arial, Helvetica, Verdana, sans-serif;
+   text-overflow: ellipsis;
+   white-space: nowrap;
+   overflow: hidden;
+   font-family: 'Motiva Sans Thin',Arial,Helvetica,Verdana,sans-serif;
+   font-weight: 200;
+   /* thin */
 }
 
 .profile_header .profile_header_centered_persona {
@@ -169,6 +220,10 @@ div.profile_page.has_profile_background {
    margin-bottom: 8px;
 }
 
+.profile_header .profile_summary.noexpand {
+   height: 76px;
+}
+
 .profile_summary_modal {
    line-height: 18px;
 }
@@ -195,9 +250,6 @@ div.profile_page.has_profile_background {
    border-radius: 3px;
    background-color: #222223;
    height: 70px;
-   left: 7px;
-   top: 9px;
-   position: relative;
    box-shadow: 1px 1px 0 #343944;
    margin-bottom: 13px;
 }
@@ -245,12 +297,7 @@ div.profile_page.has_profile_background {
    border: 1px solid #212121;
    background: #373f4f;
    /* Old browsers */
-   background: -webkit-gradient(linear, left top, left bottom, color-stop(5%, #7a8494), color-stop(95%, #282f3d));
-   filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#7a8494', endColorstr='#282f3d', GradientType=0);
-   background: -moz-linear-gradient( top, #7a8494 5%, #282f3d 95%);
    background: -webkit-linear-gradient( top, #7a8494 5%, #282f3d 95%);
-   background: -o-linear-gradient( top, #7a8494 5%, #282f3d 95%);
-   background: -ms-linear-gradient( top, #7a8494 5%, #282f3d 95%);
    background: linear-gradient( to bottom, #7a8494 5%, #282f3d 95%);
 }
 
@@ -259,12 +306,7 @@ div.profile_page.has_profile_background {
    display: block;
    background: #2e394c;
    /* Old browsers */
-   background: -webkit-gradient(linear, left top, left bottom, color-stop(5%, #33425a), color-stop(95%, #282f3d));
-   filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#33425a', endColorstr='#282f3d', GradientType=0);
-   background: -moz-linear-gradient( top, #33425a 5%, #282f3d 95%);
    background: -webkit-linear-gradient( top, #33425a 5%, #282f3d 95%);
-   background: -o-linear-gradient( top, #33425a 5%, #282f3d 95%);
-   background: -ms-linear-gradient( top, #33425a 5%, #282f3d 95%);
    background: linear-gradient( to bottom, #33425a 5%, #282f3d 95%);
 }
 
@@ -272,24 +314,14 @@ div.profile_page.has_profile_background {
    text-decoration: none;
    background: #688bb1;
    /* Old browsers */
-   background: -webkit-gradient(linear, left top, left bottom, color-stop(5%, #9ba9bf), color-stop(95%, #282f3d));
-   filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#9ba9bf', endColorstr='#282f3d', GradientType=0);
-   background: -moz-linear-gradient( top, #9ba9bf 5%, #282f3d 95%);
    background: -webkit-linear-gradient( top, #9ba9bf 5%, #282f3d 95%);
-   background: -o-linear-gradient( top, #9ba9bf 5%, #282f3d 95%);
-   background: -ms-linear-gradient( top, #9ba9bf 5%, #282f3d 95%);
    background: linear-gradient( to bottom, #9ba9bf 5%, #282f3d 95%);
 }
 
 .btn_profile_action:hover>span, .btn_profile_action.focus>span {
    background: #526d95;
    /* Old browsers */
-   background: -webkit-gradient(linear, left top, left bottom, color-stop(5%, #3c597b), color-stop(95%, #282f3d));
-   filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#3c597b', endColorstr='#282f3d', GradientType=0);
-   background: -moz-linear-gradient( top, #3c597b 5%, #282f3d 95%);
    background: -webkit-linear-gradient( top, #3c597b 5%, #282f3d 95%);
-   background: -o-linear-gradient( top, #3c597b 5%, #282f3d 95%);
-   background: -ms-linear-gradient( top, #3c597b 5%, #282f3d 95%);
    background: linear-gradient( to bottom, #3c597b 5%, #282f3d 95%);
 }
 
@@ -361,7 +393,9 @@ div.profile_page.has_profile_background {
    font-weight: normal;
    line-height: 26px;
    font-size: 20px;
-   font-family: 'Motiva Sans Thin', Arial, Helvetica, Verdana, sans-serif;
+   font-family: 'Motiva Sans Thin',Arial,Helvetica,Verdana,sans-serif;
+   font-weight: 200;
+   /* thin */
 }
 
 .profile_customization {
@@ -378,7 +412,9 @@ div.profile_page.has_profile_background {
 }
 
 .profile_customization_header {
-   font-family: 'Motiva Sans Thin', Arial, Helvetica, Verdana, sans-serif;
+   font-family: 'Motiva Sans Thin',Arial,Helvetica,Verdana,sans-serif;
+   font-weight: 200;
+   /* thin */
    color: #5491cf;
    font-size: 20px;
    line-height: 30px;
@@ -389,12 +425,12 @@ div.profile_page.has_profile_background {
 
 .profile_customization_editlink {
    float: right;
-   visibility: hidden;
+   display: none;
    line-height: 30px;
 }
 
 .profile_customization:hover .profile_customization_editlink {
-   visibility: visible;
+   display: block;
 }
 
 .profile_customization_editlink:hover .profile_customization_editlink_text {
@@ -433,7 +469,9 @@ div.profile_page.has_profile_background {
 
 .showcase_stat .value {
    font-size: 1em;
-   font-family: 'Motiva Sans Thin', Arial, Helvetica, Verdana, sans-serif;
+   font-family: 'Motiva Sans Thin',Arial,Helvetica,Verdana,sans-serif;
+   font-weight: 200;
+   /* thin */
    color: #ffffff;
 }
 
@@ -609,7 +647,7 @@ a.showcase_stat:hover .label {
    padding-left: 12px;
 }
 
-.item_showcase .showcase_slot_row {
+.item_showcase .showcase_slot_row, .trade_showcase .showcase_slot_row {
    margin-left: -5px;
 }
 
@@ -664,7 +702,9 @@ a.showcase_stat:hover .label {
 }
 
 .showcase_item_detail_title {
-   font-family: 'Motiva Sans Thin', Arial, Helvetica, Verdana, sans-serif;
+   font-family: 'Motiva Sans Thin',Arial,Helvetica,Verdana,sans-serif;
+   font-weight: 200;
+   /* thin */
    font-size: 24px;
    padding-top: 10px;
    color: #ffffff;
@@ -719,7 +759,9 @@ a.showcase_stat:hover .label {
 
 .favoritegroup_showcase_group .favoritegroup_namerow .favoritegroup_name {
    font-size: 24px;
-   font-family: 'Motiva Sans Thin', Arial, Helvetica, Verdana, sans-serif;
+   font-family: 'Motiva Sans Thin',Arial,Helvetica,Verdana,sans-serif;
+   font-weight: 200;
+   /* thin */
 }
 
 @media screen and (max-width: 480px) {
@@ -862,7 +904,9 @@ a.showcase_stat:hover .label {
 
 .myworkshop_showcase_header .myworkshop_playerName {
    font-size: 24px;
-   font-family: 'Motiva Sans Thin', Arial, Helvetica, Verdana, sans-serif;
+   font-family: 'Motiva Sans Thin',Arial,Helvetica,Verdana,sans-serif;
+   font-weight: 200;
+   /* thin */
    color: #ffffff;
 }
 
@@ -936,12 +980,7 @@ a.showcase_stat:hover .label {
    border-radius: 3px;
    background-image: none;
    background-color: #000000;
-   background: -webkit-gradient(linear, left top, right top, color-stop(5%, #000000), color-stop(95%, #282828));
-   filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#000000', endColorstr='#282828', GradientType=1);
-   background: -moz-linear-gradient( left, #000000 5%, #282828 95%);
    background: -webkit-linear-gradient( left, #000000 5%, #282828 95%);
-   background: -o-linear-gradient( left, #000000 5%, #282828 95%);
-   background: -ms-linear-gradient( left, #000000 5%, #282828 95%);
    background: linear-gradient( to right, #000000 5%, #282828 95%);
 }
 
@@ -1051,12 +1090,6 @@ a.showcase_stat:hover .label {
    display: block;
 }
 
-.screenshot_showcase_screenshot div {
-   display: block;
-   width: 100px;
-   height: 80px;
-}
-
 .screenshot_showcase_itemname {
    word-wrap: break-word;
 }
@@ -1135,12 +1168,7 @@ a.showcase_stat:hover .label {
    padding: 5px;
    border-radius: 3px;
    background-color: #88c743;
-   background: -webkit-gradient(linear, left top, left bottom, color-stop(5%, #b0f951), color-stop(95%, #88c743));
-   filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#b0f951', endColorstr='#88c743', GradientType=0);
-   background: -moz-linear-gradient( top, #b0f951 5%, #88c743 95%);
    background: -webkit-linear-gradient( top, #b0f951 5%, #88c743 95%);
-   background: -o-linear-gradient( top, #b0f951 5%, #88c743 95%);
-   background: -ms-linear-gradient( top, #b0f951 5%, #88c743 95%);
    background: linear-gradient( to bottom, #b0f951 5%, #88c743 95%);
 }
 
@@ -1237,29 +1265,25 @@ a.showcase_stat:hover .label {
    background-color: #364359;
    height: 8px;
    border-radius: 4px;
-   background: -webkit-gradient(linear, left top, left bottom, color-stop(5%, #516179), color-stop(95%, #2a3547));
-   filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#516179', endColorstr='#2a3547', GradientType=0);
-   background: -moz-linear-gradient( top, #516179 5%, #2a3547 95%);
    background: -webkit-linear-gradient( top, #516179 5%, #2a3547 95%);
-   background: -o-linear-gradient( top, #516179 5%, #2a3547 95%);
-   background: -ms-linear-gradient( top, #516179 5%, #2a3547 95%);
    background: linear-gradient( to bottom, #516179 5%, #2a3547 95%);
 }
 
 .achievement_icons {
    white-space: nowrap;
-}
-
-.game_info_achievements_only_ctn .achievement_icons {
-   position: absolute;
-   left: 366px;
-   top: 0;
+   overflow: hidden;
 }
 
 .game_info_achievement {
    vertical-align: top;
    display: inline-block;
    margin-left: 4px;
+}
+
+.game_info_achievements_only_ctn .game_info_achievements_summary_area {
+   float: left;
+   width: 361px;
+   white-space: nowrap;
 }
 
 .game_info_achievement:first-child {
@@ -1309,7 +1333,7 @@ a.showcase_stat:hover .label {
    left: 7px;
 }
 
-.game_info_badge_icon img {
+.game_info_badge_icon img.badge_icon.small {
    width: 36px;
    height: 36px;
 }
@@ -1341,22 +1365,47 @@ a.showcase_stat:hover .label {
       width: auto;
       max-width: 282px;
    }
-   html.responsive .game_info_achievements_badge .game_info_achievements {
+   html.responsive .game_info_achievements {
       float: none;
       clear: left;
       margin-top: 8px;
       width: auto;
       position: relative;
    }
-   html.responsive .game_info_achievements_badge .achievement_progress_bar_ctn, html.responsive .game_info_achievements_badge .game_info_achievement_summary {
-      width: 49%;
+   html.responsive .game_info_achievements_only_ctn {
+      line-height: normal;
    }
-   html.responsive .game_info_achievements_badge .achievement_icons {
-      position: absolute;
-      right: 0;
-      top: 0;
-      max-width: 49%;
+   html.responsive .game_info_achievement_summary a.whiteLink {
+      white-space: nowrap;
+   }
+   html.responsive .game_info_achievements_summary_area {
+      float: left;
+      margin-right: 1%;
+      max-width: 54%;
+      white-space: normal;
+   }
+   html.responsive .game_info_achievements_summary_area .game_info_achievement_summary {
+      display: block;
+      text-align: center;
+   }
+   html.responsive .game_info_achievements_only_ctn .game_info_achievements_summary_area .achievement_progress_bar_ctn {
+      width: auto;
+      display: block;
+   }
+   html.responsive .game_info_achievements_only_ctn .achievement_icons {
       overflow: hidden;
+   }
+   html.responsive .achievement_icons {
+      overflow: hidden;
+   }
+}
+
+@media screen and (max-width: 480px) {
+   html.responsive .achievement_icons {
+      padding-top: 6px;
+   }
+   html.responsive .game_info_achievements_only_ctn .game_info_achievements {
+      margin-top: 0;
    }
 }
 
@@ -1424,7 +1473,9 @@ a.showcase_stat:hover .label {
 }
 
 .profile_count_link_total {
-   font-family: 'Motiva Sans Thin', Arial, Helvetica, Verdana, sans-serif;
+   font-family: 'Motiva Sans Thin',Arial,Helvetica,Verdana,sans-serif;
+   font-weight: 200;
+   /* thin */
    color: #9b9b9b;
    font-size: 24px;
 }
@@ -1434,12 +1485,19 @@ a.showcase_stat:hover .label {
 }
 
 .profile_in_game_header {
-   font-family: 'Motiva Sans Thin', Arial, Helvetica, Verdana, sans-serif;
+   font-family: 'Motiva Sans Thin',Arial,Helvetica,Verdana,sans-serif;
+   font-weight: 200;
+   /* thin */
    font-size: 20px;
 }
 
 .profile_in_game_name {
    font-size: 15px;
+   margin-bottom: 12px;
+}
+
+.profile_in_game_broadcastpreview {
+   color: #9b9b9b;
    margin-bottom: 12px;
 }
 
@@ -1453,6 +1511,23 @@ a.showcase_stat:hover .label {
    margin-bottom: 32px;
    color: #a94847;
    line-height: 22px;
+}
+
+.profile_country_restriction {
+   border: 1px solid #c1a643;
+   text-align: center;
+   font-size: 16px;
+   margin-bottom: 32px;
+   padding: 10px;
+}
+
+.ban_status_header {
+   text-align: center;
+   font-size: 16px;
+}
+
+.currentTradeBan {
+   color: #95423a;
 }
 
 .profile_ban .profile_ban_info {
@@ -1605,9 +1680,8 @@ body .pagecontent.profile_subpage_column {
    background-image: url('https://steamcommunity-a.akamaihd.net/public/images/profile/profile_subpage_column_bottom.png?v=1'), url('https://steamcommunity-a.akamaihd.net/public/images/profile/profile_subpage_column.png?v=1');
    background-repeat: no-repeat, repeat-y;
    background-position: bottom center, center;
-   width: 950px;
-   padding-top: 12px;
-   padding-bottom: 128px;
+   width: 926px;
+   padding: 12px 12px 128px 12px;
 }
 
 .profile_subpage_general .maincontent {
@@ -1676,14 +1750,19 @@ body.migrated_profile_page #BG_bottom.maincontent {
 .profile_comment_area .commentthread_header, .profile_leftcol_header {
    border-bottom: none;
    padding: 6px 10px;
-   height: 26px;
    line-height: 26px;
    border-radius: 3px;
    background-color: #141414;
 }
 
+.profile_leftcol_header h2 {
+   float: left;
+}
+
 .profile_comment_area .commentthread_header .commentthread_count {
-   font-family: 'Motiva Sans Thin', Arial, Helvetica, Verdana, sans-serif;
+   font-family: 'Motiva Sans Thin',Arial,Helvetica,Verdana,sans-serif;
+   font-weight: 200;
+   /* thin */
    background: none;
    padding-left: 0px;
    font-size: 20px;
@@ -1704,7 +1783,6 @@ body.migrated_profile_page #BG_bottom.maincontent {
 
 .profile_comment_area .commentthread_entry {
    background-color: transparent;
-   padding-left: 54px;
 }
 
 .profile_comment_area .commentthread_entry_quotebox_quote {
@@ -1841,84 +1919,52 @@ body.migrated_profile_page #BG_bottom.maincontent {
    margin-bottom: 18px;
 }
 
-.graytab_ctn {
-   padding-top: 4px;
-   padding-left: 9px;
-   overflow: hidden;
-}
-
-.graytab {
-   display: inline-block;
-   line-height: 26px;
-   padding: 0 11px;
-   margin-right: 8px;
-   background-color: #3a3a3a;
-   font-size: 13px;
-   color: #ffffff;
-   border-top: 1px solid #3a3a3a;
-   border-left: 1px solid #3a3a3a;
-   border-right: 1px solid #3a3a3a;
-   border-top-left-radius: 3px;
-   border-top-right-radius: 3px;
-   box-shadow: 0 0 4px #2a2a2a;
-}
-
-.graytab.active {
-   background-color: #6a6a6a;
-   cursor: default;
-   background: -webkit-gradient(linear, left top, left bottom, color-stop(5%, #7d7d7d), color-stop(95%, #4d4d4d));
-   filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#7d7d7d', endColorstr='#4d4d4d', GradientType=0);
-   background: -moz-linear-gradient( top, #7d7d7d 5%, #4d4d4d 95%);
-   background: -webkit-linear-gradient( top, #7d7d7d 5%, #4d4d4d 95%);
-   background: -o-linear-gradient( top, #7d7d7d 5%, #4d4d4d 95%);
-   background: -ms-linear-gradient( top, #7d7d7d 5%, #4d4d4d 95%);
-   background: linear-gradient( to bottom, #7d7d7d 5%, #4d4d4d 95%);
-}
-
-a.graytab:hover {
-   text-decoration: none;
-}
-
-.graytab_body_wrapper {
-   width: 934px;
-   margin: 0 auto;
-   padding: 1px 1px 0 1px;
-   border-top-left-radius: 3px;
-   border-top-right-radius: 3px;
-   background-color: #272728;
-   background: -webkit-gradient(linear, left top, left bottom, color-stop(19px, #4e4e4d), color-stop(45px, #252526));
-   filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#4e4e4d', endColorstr='#252526', GradientType=0);
-   background: -moz-linear-gradient( top, #4e4e4d 19px, #252526 45px);
-   background: -webkit-linear-gradient( top, #4e4e4d 19px, #252526 45px);
-   background: -o-linear-gradient( top, #4e4e4d 19px, #252526 45px);
-   background: -ms-linear-gradient( top, #4e4e4d 19px, #252526 45px);
-   background: linear-gradient( to bottom, #4e4e4d 19px, #252526 45px);
-   background-repeat: repeat-x;
-   background-position: top;
-}
-
-.graytab_body {
-   background-color: #252526;
-   background: -webkit-gradient(linear, left top, left bottom, color-stop(0, #4f4f4e), color-stop(42px, #252526));
-   filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#4f4f4e', endColorstr='#252526', GradientType=0);
-   background: -moz-linear-gradient( top, #4f4f4e 0, #252526 42px);
-   background: -webkit-linear-gradient( top, #4f4f4e 0, #252526 42px);
-   background: -o-linear-gradient( top, #4f4f4e 0, #252526 42px);
-   background: -ms-linear-gradient( top, #4f4f4e 0, #252526 42px);
-   background: linear-gradient( to bottom, #4f4f4e 0, #252526 42px);
-   background-repeat: repeat-x;
-   background-position: top;
-   border-top-left-radius: 3px;
-   border-top-right-radius: 3px;
-   padding: 24px 13px;
-}
-
-.profile_manage_friends {
-   padding: 0 5px;
-}
-
 .manage_friends_btn_ctn {
    float: right;
+}
+
+.add_friends_btn_ctn {
+   float: right;
+   margin-top: 10px;
+}
+
+@media screen and (max-width: 540px) {
+   html.responsive .add_friends_btn_ctn {
+      float: none;
+      margin-top: 0;
+      margin-bottom: 10px;
+      text-align: center;
+   }
+}
+
+.bulk_action_ctn {
+   white-space: nowrap;
+}
+
+.coplayGroup {
+   border-bottom: 1px solid;
+   margin-bottom: 25px;
+   padding-bottom: 10px;
+}
+
+.gameListRow {
+   height: 77px;
+   margin-bottom: 15px;
+   padding-left: 208px;
+   position: relative;
+}
+
+.gameListRowItem {
+   color: #939393;
+   font-size: 11px;
+   height: 66px;
+   padding: 9px;
+   position: relative;
+}
+
+.gameListRowLogo {
+   left: 0;
+   position: absolute;
 }
 
 .friends_limit_details {
@@ -2082,7 +2128,7 @@ body.profile_page #footer {
 }
 
 .profile_fatalerror {
-   padding: 20px 80px 80px 80px;
+   padding: 20px 9% 80px 9%;
 }
 
 .profile_fatalerror h1 {
@@ -2100,7 +2146,7 @@ body.profile_page #footer {
 .profile_fatalerror_message {
    background-color: #1d1d1d;
    border-radius: 3px;
-   padding: 16px 24px;
+   padding: 16px 4.5%;
    color: #d6d6d6;
    margin-bottom: 32px;
    line-height: 20px;
@@ -2114,6 +2160,96 @@ body.profile_page #footer {
 
 .group_breadcrumbs a:hover {
    text-decoration: underline;
+}
+
+.sectionTabs {
+   position: relative;
+   padding-top: 3px;
+   margin-left: -5px;
+   font-size: 14px;
+   z-index: 10;
+}
+
+.sectionTab, a.sectionTab {
+   margin-top: 7px;
+   display: block;
+   float: left;
+   color: #dadada;
+   background-color: rgba( 0, 0, 0, 0.4);
+   line-height: 29px;
+   height: 29px;
+   padding: 0px 12px;
+   margin-left: 5px;
+   text-decoration: none;
+   border-radius: 2px;
+   border-bottom-left-radius: 0px;
+   border-bottom-right-radius: 0px;
+   -moz-border-radius: 2px;
+   -moz-border-radius-bottomleft: 0px;
+   -moz-border-radius-bottomright: 0px;
+}
+
+.sectionTab:hover {
+   background-color: rgba( 102, 192, 244, 0.4);
+   color: #ffffff;
+}
+
+.sectionTabActive {
+   position: relative;
+   margin-top: 0px;
+   margin-left: 5px;
+   font-size: 14px;
+   color: white;
+   float: left;
+}
+
+.sectionTabActive .sectionTab {
+   margin-top: 0px;
+   display: inline-block;
+   padding-left: 12px;
+   padding-right: 8px;
+   margin-right: 12px;
+   height: 36px;
+   line-height: 36px;
+   background-position: 0 0px;
+   background-repeat: repeat-x;
+   text-decoration: none;
+}
+
+.sectionTabActive .sectionTab:hover {
+   text-decoration: none;
+   color: #ffffff;
+}
+
+.sectionTabInactive, .sectionTabInactive .sectionTab_leftcap, .sectionTabInactive .sectionTab_rightcap {
+   display: inline;
+}
+
+.sectionTab.active {
+   margin-top: 0px;
+   height: 34px;
+   padding: 1px;
+   text-decoration: none;
+   border: none;
+   background: #57749e;
+   /* Old browsers */
+   background: -webkit-linear-gradient( top, #66C0F4 5%, #417B9C 95%);
+   background: linear-gradient( to bottom, #66C0F4 5%, #417B9C 95%);
+}
+
+.sectionTab.active>span {
+   height: 35px;
+   line-height: 36px;
+   padding: 0 19px;
+   border-radius: 2px;
+   border-bottom-left-radius: 0px;
+   border-bottom-right-radius: 0px;
+   color: #ffffff;
+   display: block;
+   background: #417B9C;
+   /* Old browsers */
+   background: -webkit-linear-gradient( top, #5AA9D6 5%, #417B9C 95%);
+   background: linear-gradient( to bottom, #5AA9D6 5%, #417B9C 95%);
 }
 
 .profile_paging {
@@ -2147,6 +2283,10 @@ body.profile_page #footer {
    margin-bottom: 12px
 }
 
+.profile_subpage_selector {
+   margin-bottom: 16px;
+}
+
 @media screen and (max-width: 910px) {
    html.responsive div.profile_page {
       min-width: 0;
@@ -2177,9 +2317,7 @@ body.profile_page #footer {
    html.responsive .profile_leftcol, html.responsive .profile_rightcol {
       float: none;
       width: auto;
-   }
-   html.responsive .profile_leftcol {
-      padding: 1%;
+      padding: 0 1%;
    }
    html.responsive .profile_summary_modal {
       line-height: normal;
@@ -2194,8 +2332,10 @@ body.profile_page #footer {
       margin: 0;
       padding: 0 1%;
    }
-   html.responsive .profile_manage_friends {
-      padding: 0;
+   html.responsive .profile_subpage_general .maincontent {
+      width: auto;
+      padding-left: 1%;
+      padding-right: 1%;
    }
    html.responsive .graytab_body_wrapper {
       width: auto;
@@ -2203,15 +2343,158 @@ body.profile_page #footer {
    html.responsive .profile_background_image_content {
       background-position: center top;
       background-size: 115% auto;
+      background-attachment: fixed;
    }
    html.responsive .profile_background_overlay_content {
       opacity: .65;
       filter: alpha(opacity=65);
       -ms-filter: "progid:DXImageTransform.Microsoft.Alpha(Opacity=65)";
    }
-   html.responsive .profile_content.has_profile_background .profile_content_inner {
-      padding-top: 128px;
+   html.responsive .profile_small_header_avatar {
+      left: 3%;
    }
+   html.responsive .profile_small_header_text {
+      left: 3%;
+      padding-left: calc( 68px + 3%);
+      right: 32px;
+      /* need to avoid right menu hamburger on profile subpages */
+   }
+   /*
+	html.responsive .profile_content.has_profile_background .profile_content_inner {
+		padding-top: 128px;
+	}
+	*/
+   html.responsive .responsive_status_info {
+      padding: 8px;
+      background: rgba( 0, 0, 0, 0.5);
+      margin: 12px 0;
+   }
+   html.responsive .responsive_status_info .profile_in_game {
+      margin: 0;
+   }
+   html.responsive .responsive_status_info .profile_in_game_name, html.responsive .responsive_status_info .profile_ban_status, html.responsive .responsive_status_info .profile_in_game_broadcastpreview, html.responsive .responsive_status_info .profile_in_game_joingame {
+      margin-top: 8px;
+      margin-bottom: 0;
+   }
+   html.responsive .responsive_status_info .profile_ban_status {
+      margin-top: 12px;
+   }
+   html.responsive .responsive_count_link_area {
+      margin: 0 -4px;
+   }
+   html.responsive .profile_count_link_preview {
+      overflow: hidden;
+      line-height: 44px;
+      height: 44px;
+   }
+   html.responsive .profile_count_link_preview>div {
+      float: none;
+      display: inline-block;
+      vertical-align: middle;
+   }
+   html.responsive .profile_count_link, html.responsive .profile_count_link_preview_ctn {
+      background: rgba( 0, 0, 0, 0.5);
+      display: block;
+      float: left;
+      padding: 8px;
+      margin: 0 4px 4px 4px;
+      height: 29px;
+   }
+   html.responsive .profile_count_link_total {
+      font-size: 20px;
+   }
+   html.responsive .profile_count_link_preview_ctn {
+      height: 78px;
+      overflow: hidden;
+   }
+   html.responsive .profile_count_link_preview_ctn .profile_count_link {
+      background: transparent;
+      margin: 0;
+   }
+   html.responsive .profile_badges_badge {
+      margin-right: 6px;
+   }
+   html.responsive .profile_badges_badge, html.responsive .profile_badges_badge img {
+      width: 36px;
+      height: 36px;
+   }
+   html.responsive .profile_badges {
+      margin-bottom: 0;
+   }
+   html.responsive .profile_item_links {
+      margin-bottom: 12px;
+   }
+   html.responsive .profile_group>*:not(.profile_group_avatar), html.responsive .profile_topfriends .friendBlock>div:not(.playerAvatar) {
+      display: none;
+   }
+   html.responsive .profile_count_link_preview_ctn .profile_count_link {
+      width: auto;
+      float: none;
+      padding: 0;
+      margin-bottom: 8px;
+   }
+   html.responsive .profile_group.profile_primary_group, html.responsive .profile_group, html.responsive .profile_topfriends .friendBlock {
+      padding: 0;
+      margin: 0;
+      height: auto;
+      width: auto;
+      margin-right: 6px;
+   }
+   html.responsive .profile_topfriends .friendBlock .playerAvatar {
+      margin: 0;
+      float: none;
+   }
+   html.responsive .profile_primary_group .profile_group_avatar, html.responsive .profile_primary_group .profile_group_avatar img {
+      width: 32px;
+      height: 32px;
+   }
+   html.responsive .profile_group_avatar {
+      position: static;
+   }
+}
+
+@media screen and (min-width: 661px) and (max-width: 910px) {
+   html.responsive .profile_count_link, html.responsive .profile_count_link_preview_ctn {
+      width: calc( 25% - 16px - 8px);
+   }
+   html.responsive .profile_count_link:nth-child(4n) {
+      /* margin-right: 0; */
+   }
+}
+
+@media screen and (min-width: 521px) and ( max-width: 660px) {
+   html.responsive .profile_count_link, html.responsive .profile_count_link_preview_ctn {
+      width: calc( 33% - 16px - 8px);
+   }
+   html.responsive .profile_count_link:nth-child(3n) {
+      /* margin-right: 0; */
+   }
+}
+
+@media screen and (max-width: 520px) {
+   html.responsive .profile_count_link, html.responsive .profile_count_link_preview_ctn {
+      width: calc( 50% - 16px - 8px);
+   }
+   html.responsive .profile_count_link:nth-child(2n) {
+      /* margin-right: 0; */
+   }
+}
+
+@media screen and (max-width: 910px) {
+   html.responsive body.profile_page .responsive_page_template_content {
+      padding-bottom: 0;
+   }
+   html.responsive body.profile_page .profile_content_inner {
+      padding-bottom: 120px;
+   }
+}
+
+html.responsive.touch body.profile_page .responsive_page_template_content {
+   padding-bottom: 0;
+}
+
+html.responsive.touch body.profile_page .profile_content_inner {
+   padding-bottom: 120px;
 }
 
 @media screen and (max-width: 600px) {
@@ -2221,7 +2504,43 @@ body.profile_page #footer {
 }
 
 @media screen and (max-width: 500px) {
-   html.responsive .recentgame_recentplaytime {
-      display: none;
+   html.responsive .profile_leftcol_header>h2 {
+      display: inline-block;
+      margin-right: 8px;
+      float: none;
    }
+   html.responsive .recentgame_recentplaytime {
+      display: inline-block;
+      float: none;
+      vertical-align: bottom;
+   }
+   html.responsive .recentgame_recentplaytime>h2 {
+      font-size: 16px;
+   }
+}
+
+body.flat_page .sectionTabsHR {
+   position: static;
+   width: auto;
+   left: 0;
+   right: 0;
+   top: 0;
+   max-width: 958px;
+}
+
+.manage_friends_max_block_ctn {
+   margin: 20px 10% 0 10%;
+   text-align: center;
+   padding: 15px;
+   background-color: rgba( 0, 0, 0, .3);
+}
+
+.manage_friends_max_block_header {
+   font-size: 16px;
+   margin-bottom: 15px;
+   font-weight: bold;
+}
+
+.manage_friends_max_block_ctn>a {
+   margin-top: 30px;
 }

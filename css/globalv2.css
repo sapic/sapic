@@ -4,7 +4,6 @@ html {
 
 body {
    background: #1b2838;
-   background-color: #1b2838;
    text-align: left;
    color: #8F98A0;
    font-size: 14px;
@@ -19,6 +18,13 @@ body.flat_page {
 
 body.flat_page.blue {
    color: #636363;
+}
+
+
+/* this makes the footer appear at the bottom of the window on short pages */
+
+body.flat_page .responsive_page_frame {
+   position: static;
 }
 
 body.standard_page {
@@ -43,6 +49,16 @@ h1, h2, h3, h4, h5, h6 {
 
 body.flat_page.blue .pagecontent {
    background: none;
+}
+
+@media screen and (max-width: 910px) {
+   html.responsive .pagecontent {
+      padding-bottom: 0;
+   }
+}
+
+html.responsive.touch .pagecontent {
+   padding-bottom: 0;
 }
 
 .pagecontent.no_footerpad {
@@ -91,7 +107,8 @@ input[type=text], input[type=password], select {
    color: #909090;
    background-color: rgba( 0, 0, 0, 0.2);
    border: 1px solid #000;
-   box-shadow: 1px 1px 0 0 rgba( 91, 132, 181, 0.2);
+   /* should set this on individual styles we know look good with it */
+   /* box-shadow: 1px 1px 0 0 rgba( 91, 132, 181, 0.2 ); */
    border-radius: 3px;
 }
 
@@ -124,6 +141,10 @@ body.flat_page #footer {
 
 body.flat_page.blue #footer {
    background: none;
+}
+
+body #footer .responsive_optin_link {
+   display: none;
 }
 
 body.flat_page #footer_spacer, body.headerless_page #footer_spacer {
@@ -236,6 +257,11 @@ a.friendBlock {
    margin: 4px 4px 0 0;
 }
 
+.responsive_friendblocks_ctn {
+   max-width: 898px;
+   margin: 0 auto;
+}
+
 @media screen and (max-width: 910px) {
    html.responsive .responsive_friendblocks .friendBlock, html.responsive .responsive_friendblocks .friendBlock:nth-child(3n) {
       margin-right: 0.8%;
@@ -267,6 +293,12 @@ a.friendBlock {
    }
 }
 
+@media screen and ( max-width: 500px) {
+   html.responsive .commentthread_paging.has_view_all_link .pagebtn, html.responsive .commentthread_paging.has_view_all_link .commentthread_pagelinks, html.responsive .commentthread_paging.has_view_all_link .commentthread_pagedropdown {
+      display: none;
+   }
+}
+
 @media screen and (max-width: 910px) {
    html.responsive .commentthread_pagelinks {
       display: none;
@@ -274,9 +306,28 @@ a.friendBlock {
    html.responsive .commentthread_pagedropdown {
       display: inline;
    }
-   html.responsive .commentthread_comment_author .actionlink {
+   html.responsive .commentthread_comment_author .community_ban_action {
       display: none;
    }
+   html.responsive .commentthread_comment_author .actionlink:not(.community_ban_action) {
+      visibility: visible;
+   }
+}
+
+html.responsive.touch .commentthread_pagelinks {
+   display: none;
+}
+
+html.responsive.touch .commentthread_pagedropdown {
+   display: inline;
+}
+
+html.responsive.touch .commentthread_comment_author .community_ban_action {
+   display: none;
+}
+
+html.responsive.touch .commentthread_comment_author .actionlink:not(.community_ban_action) {
+   visibility: visible;
 }
 
 
@@ -316,39 +367,6 @@ body.flat_page>.perf_timing_area .perf_timing_link, body.headerless_page>.perf_t
 }
 
 
-/* -------------- paging controls -------------*/
-
-.pagebtn, a.pagebtn {
-   display: inline-block;
-   line-height: 24px;
-   background-color: rgba( 103, 193, 245, 0.2);
-   border: 1px transparent;
-   border-radius: 3px;
-   cursor: pointer;
-   padding: 0px 16px;
-   color: #66c0f4;
-}
-
-.pagebtn:hover, a.pagebtn:hover {
-   background-color: #66c0f4;
-   border-color: #66c0f4;
-   color: #fff;
-   text-decoration: none;
-}
-
-.pagebtn.disabled, .pagebtn.disabled:hover, a.pagebtn.disabled, a.pagebtn.disabled:hover {
-   border: 1px solid #253e4c;
-   background-color: transparent;
-   color: #253e4c;
-   cursor: default;
-}
-
-a.pagelink:hover {
-   text-decoration: underline;
-   color: #ffffff;
-}
-
-
 /* note that the old gameLogoHolder_default style does nothing now */
 
 .gameLogo {
@@ -384,16 +402,68 @@ a.pagelink:hover {
    border-top: 1px solid #363f4c;
 }
 
-.commentthread_header .commentthread_count, .commentthread_footer .commentthread_count {
-   float: left;
+.commentthread_header .commentthread_count {
+   background-image: url(data:image/png;base64,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 );
+   background-repeat: no-repeat;
+   background-position: 0 4px;
+   padding-left: 24px;
+   overflow: hidden;
 }
 
-.commentthread_header .commentthread_count {
-   background-image: url(https://steamcommunity-a.akamaihd.net/public/images/skin_1/comment_quoteicon.png );
-   background-image: url(data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABAAAAAQCAYAAAAf8/9hAAAAGXRFWHRTb2Z0d2FyZQBBZG9iZSBJbWFnZVJlYWR5ccllPAAAAUNJREFUeNqkU11Og0AQnm04QI/AEfQGcAO9QXnRUJuGqml8M75oUhOlhEqtD3IDewO5QfcIHKEH2B8/WqBgTAr4JcMAM/Ptt7OzjIAgjAaMMZOOQGudjkduXP3H/GDxCu9Rc/je+GpSfPSklB6MWlhtMTZ7ftHUHrbCdu6mN2lPgLWLKSk3j08z05BSUEf0YQNDCkn/gSE6KMCRcxzpngAK1vBnLeoTTdpixHICJR3SlOLdQuCkthKx5FcxR84c+V95feGIrm+nFtx3JdnRSmUE1Qk1If+eDlP7YBQRKaq9YI7SiiN5w/bd/gtbxOOSIDvbXFKMBq0R/NQ7yTsFZq0QOVAxDwM/LQkwGBzuNHoLef7rPHu4w1EfhNnWiv7wZbSYHPrUABeXbpUk+Vgt7fIyNSFYvUdbXCJbCMGFqM/NjwADANx60v2kqu2YAAAAAElFTkSuQmCC );
-   background-repeat: no-repeat;
-   background-position: left center;
-   padding-left: 24px;
+.commentthread_count_label {
+   margin-right: 8px;
+}
+
+.commentthread_subscribe_ctn {
+   display: inline-block;
+   white-space: nowrap;
+   font-size: 12px;
+   cursor: pointer;
+}
+
+.commentthread_subscribe_hint {
+   font-size: 10px;
+   line-height: 12px;
+   vertical-align: text-top;
+   cursor: default;
+}
+
+.commentthread_subscribe_hint .commentthread_subscribe_hint_q {
+   color: #66c0f4;
+}
+
+.commentthread_subscribe_checkbox {
+   display: inline-block;
+   position: relative;
+   height: 12px;
+   width: 12px;
+   vertical-align: middle;
+   border: 1px solid #385377;
+   border-top-color: #070a0f;
+   border-left-color: #070a0f;
+   border-top-right-radius: 1px;
+   border-bottom-left-radius: 1px;
+   background: rgba( 0, 0, 0, 0.2);
+}
+
+.commentthread_subscribe_check {
+   position: absolute;
+   display: none;
+   top: -1px;
+   left: -1px;
+   right: -1px;
+   bottom: -1px;
+   background: url('data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABAAAAAQCAYAAAAf8/9hAAAAGXRFWHRTb2Z0d2FyZQBBZG9iZSBJbWFnZVJlYWR5ccllPAAAASJJREFUeNpi/P//PwMlgIVcjcGLD70H0UzkaA6cv/cpkBIgywC/mdvOMLGwSsHMIskA145FM1m5eIxB7B+Pnz9YG2t3gGgDrArbi/mkFdJA7J+fPxzYWhWuSLQXlF0CfSUMLOtB7H9/fj87NaW+ESaHYoBJelWaXdWkBnQDdMIzehiZmHhB7Du71pS8unb+AFYD5G08ZopqGtQ7Nc3uZWRkBPvVa9K6TSwcnGog9uvrFxovL5++HFkPI3JC8p+98yayYhANMhBEf3//ZvP2/OBGoPqzOA1AN+T/v3+fQU7/8+P7reP9FenITsfqBRAAKQRpAJsO1Awy5MrKGSXYNGN1AQwELTzwCWTA83NHS471V/biiiFGSjMTEwOFgGIDAAIMAKHJfj735eNRAAAAAElFTkSuQmCC') no-repeat center;
+}
+
+.commentthread_subscribe_ctn.checked .commentthread_subscribe_check {
+   display: block;
+}
+
+.commentthread_subscribe_ctn.waiting .commentthread_subscribe_check {
+   display: block;
+   background-image: url('https://steamcommunity-a.akamaihd.net/public/images/login/throbber.gif');
+   background-size: contain;
 }
 
 .commentthread_paging {
@@ -433,12 +503,7 @@ a.pagelink:hover {
    min-height: 44px;
    background-color: rgba( 0, 0, 0, 0.2);
    position: relative;
-   padding: 8px 8px 8px 52px;
-}
-
-.commentthread_entry .commentthread_user_avatar {
-   left: 8px;
-   top: 8px;
+   padding: 8px;
 }
 
 .commentthread_allcommentslink {
@@ -450,9 +515,8 @@ a.commentthread_allcommentslink:hover {
 }
 
 .commentthread_user_avatar {
-   position: absolute;
-   left: 6px;
-   top: 7px;
+   float: left;
+   margin-right: 8px;
 }
 
 .commentthread_entry_quotebox_quote {
@@ -473,6 +537,7 @@ a.commentthread_allcommentslink:hover {
    border-top: 1px solid #000;
    border-right: 1px solid #354357;
    border-bottom: 1px solid #354357;
+   overflow: hidden;
 }
 
 .commentthread_textarea {
@@ -521,6 +586,8 @@ a.commentthread_allcommentslink:hover {
    padding-bottom: 19px;
    min-height: 40px;
    padding-left: 58px;
+   /* The descendant comment text element has overflow set, but a chrome bug allows some unicode characters to spill out of that.  overflow at this level seems to stop it */
+   overflow: hidden;
 }
 
 .valve_links {
@@ -568,7 +635,7 @@ a.commentthread_allcommentslink:hover {
 
 .commentthread_comment_timestamp {
    font-size: 11px;
-   color: #535354;
+   color: #56707f;
    margin-left: 4px;
 }
 
@@ -628,6 +695,11 @@ a.commentthread_allcommentslink:hover {
    background-color: #AC966A;
 }
 
+.commentthread_prepopulate_prompt {
+   margin-bottom: 8px;
+   color: #67c1f5;
+}
+
 
 /** Styles for modal popup */
 
@@ -649,11 +721,7 @@ a.commentthread_allcommentslink:hover {
 }
 
 .modal_box {
-   background: -webkit-gradient(linear, left top, left bottom, color-stop(5%, rgba(102, 192, 244, 1)), color-stop(95%, rgba(47, 137, 188, 1)));
-   background: -moz-linear-gradient( top, rgba(102, 192, 244, 1) 5%, rgba(47, 137, 188, 1) 95%);
    background: -webkit-linear-gradient( top, rgba(102, 192, 244, 1) 5%, rgba(47, 137, 188, 1) 95%);
-   background: -o-linear-gradient( top, rgba(102, 192, 244, 1) 5%, rgba(47, 137, 188, 1) 95%);
-   background: -ms-linear-gradient( top, rgba(102, 192, 244, 1) 5%, rgba(47, 137, 188, 1) 95%);
    background: linear-gradient( to bottom, rgba(102, 192, 244, 1) 5%, rgba(47, 137, 188, 1) 95%);
    padding: 3px;
    width: 542px;
@@ -678,9 +746,10 @@ a.commentthread_allcommentslink:hover {
 
 .modal_box h2 {
    color: #c6d4df;
-   font-family: "Motiva Sans Light", "Motiva Sans", arial, tahoma, sans-serif;
+   font-family: "Motiva Sans", Sans-serif;
+   font-weight: 300;
+   /* light */
    font-size: 22px;
-   font-weight: normal;
    margin-bottom: 10px;
 }
 
@@ -976,12 +1045,6 @@ select.gray_bevel {
    width: 560px;
 }
 
-img.emoticon {
-   vertical-align: text-bottom;
-   height: 18px;
-   width: 18px;
-}
-
 .migrated_profile_page_old .pagecontent {
    padding-bottom: 0;
 }
@@ -994,24 +1057,20 @@ img.emoticon {
    display: inline-block;
    height: 36px;
    width: 36px;
-   background-image: url('https://steamcommunity-a.akamaihd.net/public/images/chat/btn_emoticon.png');
-   background-position: center bottom;
+   background-image: url('data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAACEAAAAhCAYAAABX5MJvAAAAGXRFWHRTb2Z0d2FyZQBBZG9iZSBJbWFnZVJlYWR5ccllPAAAA2RpVFh0WE1MOmNvbS5hZG9iZS54bXAAAAAAADw/eHBhY2tldCBiZWdpbj0i77u/IiBpZD0iVzVNME1wQ2VoaUh6cmVTek5UY3prYzlkIj8+IDx4OnhtcG1ldGEgeG1sbnM6eD0iYWRvYmU6bnM6bWV0YS8iIHg6eG1wdGs9IkFkb2JlIFhNUCBDb3JlIDUuMC1jMDYwIDYxLjEzNDc3NywgMjAxMC8wMi8xMi0xNzozMjowMCAgICAgICAgIj4gPHJkZjpSREYgeG1sbnM6cmRmPSJodHRwOi8vd3d3LnczLm9yZy8xOTk5LzAyLzIyLXJkZi1zeW50YXgtbnMjIj4gPHJkZjpEZXNjcmlwdGlvbiByZGY6YWJvdXQ9IiIgeG1sbnM6eG1wTU09Imh0dHA6Ly9ucy5hZG9iZS5jb20veGFwLzEuMC9tbS8iIHhtbG5zOnN0UmVmPSJodHRwOi8vbnMuYWRvYmUuY29tL3hhcC8xLjAvc1R5cGUvUmVzb3VyY2VSZWYjIiB4bWxuczp4bXA9Imh0dHA6Ly9ucy5hZG9iZS5jb20veGFwLzEuMC8iIHhtcE1NOk9yaWdpbmFsRG9jdW1lbnRJRD0ieG1wLmRpZDoyMzAyRkRGRkFGMjNFMjExQTExQ0E1RUVDNzk3QzRFRiIgeG1wTU06RG9jdW1lbnRJRD0ieG1wLmRpZDozMzgxRUQ1QjYwOTMxMUU1OUQzNzkwMUIxQjA3MDExNSIgeG1wTU06SW5zdGFuY2VJRD0ieG1wLmlpZDozMzgxRUQ1QTYwOTMxMUU1OUQzNzkwMUIxQjA3MDExNSIgeG1wOkNyZWF0b3JUb29sPSJBZG9iZSBQaG90b3Nob3AgQ1M1IFdpbmRvd3MiPiA8eG1wTU06RGVyaXZlZEZyb20gc3RSZWY6aW5zdGFuY2VJRD0ieG1wLmlpZDpDRDU0MzUwNDM0NUVFNTExOTQ4NEY2QkZCMzgwMjBBMyIgc3RSZWY6ZG9jdW1lbnRJRD0ieG1wLmRpZDoyMzAyRkRGRkFGMjNFMjExQTExQ0E1RUVDNzk3QzRFRiIvPiA8L3JkZjpEZXNjcmlwdGlvbj4gPC9yZGY6UkRGPiA8L3g6eG1wbWV0YT4gPD94cGFja2V0IGVuZD0iciI/Pkg7SNkAAAKgSURBVHjatFftcdswDGV5HsAjqBM0mSDKBFUmqDVBkt/+EefO/m1nAqkTxJnA6gRRJrA6QdkJWjL36HtFKeorxh3Osk2BjwAeAH5ar9dqgKTQK6tzqxf43VitrTZW36zu8dwpy+VSzXqsc5vdWb3Fc9ualL5vrVZWH/EZlS4QbvMHsXkDwz9pgwR6RWC819yae3hqEAi36bM4XWn1KWaM3s0APoGNA4CUoRd04DcX51cC4E7y2WreA4DPj5LeMQBWIEydILwHEnx36K/7JllAHJhLAn8HjYI4EAB3ip2aLg0OUlPSZm0gVkS51viNFCOAFJzsmrL7Fs/7D/JACEhOYd9KEJ6GvPAcUqN2OFn40GuilAIFjUhUx5Q/eGmIOJu/rB4pzApeNgTkHURG8SkDdPUGvg0E4StsIhLRIOQnmxpVTlHtl5lt6P8h8kOEgeXF5+Jms0lmRMmXFnpdYk01EMSKTixB7NnbM6qMdYTnzYREjP33Hm4tYiVFxnOMXEQo29o7FGXuEWX8CPemPTf2jCuIXasxrXyP7E3hkQcou9O0DD4h1+9iIAxRKVRqUwGmy81y8++gvgmE+gSixgZfWgxVxAw/0s0jIGoa90wkXB5ExSAyNK6u+l8FaKZGVNMTaM2FY0DiTZWvHoAddI3GyZqRpXmMJKJXnSj6RLQ8tzcK2UM0Na6GJp/5mQDwIR994mpCdU/U254BANv9p25oUZx2hLj4YAAHGpxuYoMuz5YLlOypockEgP+m91DvyAlIhr6xGMmCZzqIHHZVVwPLaRb0F5cj7gxJj5P79RnlwHVba5/1GEq21De2UD9jOKO/UfLnAXob0H815UJciyaWUd2PVdgGm5eR/tEbhGxiOd22Fc2nDW7pjajAveSvAAMANCO6us8cVJgAAAAASUVORK5CYII=');
    background-repeat: no-repeat;
+   background-size: 100% 100%;
+   cursor: pointer;
 }
 
 .emoticon_button:hover, .emoticon_button.focus {
-   background-position: center top;
+   background-image: url('data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAACEAAAAhCAYAAABX5MJvAAAAGXRFWHRTb2Z0d2FyZQBBZG9iZSBJbWFnZVJlYWR5ccllPAAAA2RpVFh0WE1MOmNvbS5hZG9iZS54bXAAAAAAADw/eHBhY2tldCBiZWdpbj0i77u/IiBpZD0iVzVNME1wQ2VoaUh6cmVTek5UY3prYzlkIj8+IDx4OnhtcG1ldGEgeG1sbnM6eD0iYWRvYmU6bnM6bWV0YS8iIHg6eG1wdGs9IkFkb2JlIFhNUCBDb3JlIDUuMC1jMDYwIDYxLjEzNDc3NywgMjAxMC8wMi8xMi0xNzozMjowMCAgICAgICAgIj4gPHJkZjpSREYgeG1sbnM6cmRmPSJodHRwOi8vd3d3LnczLm9yZy8xOTk5LzAyLzIyLXJkZi1zeW50YXgtbnMjIj4gPHJkZjpEZXNjcmlwdGlvbiByZGY6YWJvdXQ9IiIgeG1sbnM6eG1wTU09Imh0dHA6Ly9ucy5hZG9iZS5jb20veGFwLzEuMC9tbS8iIHhtbG5zOnN0UmVmPSJodHRwOi8vbnMuYWRvYmUuY29tL3hhcC8xLjAvc1R5cGUvUmVzb3VyY2VSZWYjIiB4bWxuczp4bXA9Imh0dHA6Ly9ucy5hZG9iZS5jb20veGFwLzEuMC8iIHhtcE1NOk9yaWdpbmFsRG9jdW1lbnRJRD0ieG1wLmRpZDoyMzAyRkRGRkFGMjNFMjExQTExQ0E1RUVDNzk3QzRFRiIgeG1wTU06RG9jdW1lbnRJRD0ieG1wLmRpZDoxQjU1MUI0MDYwOTMxMUU1OTUyMjlCQ0MwQTgyRDc5MCIgeG1wTU06SW5zdGFuY2VJRD0ieG1wLmlpZDoxQjU1MUIzRjYwOTMxMUU1OTUyMjlCQ0MwQTgyRDc5MCIgeG1wOkNyZWF0b3JUb29sPSJBZG9iZSBQaG90b3Nob3AgQ1M1IFdpbmRvd3MiPiA8eG1wTU06RGVyaXZlZEZyb20gc3RSZWY6aW5zdGFuY2VJRD0ieG1wLmlpZDpDRDU0MzUwNDM0NUVFNTExOTQ4NEY2QkZCMzgwMjBBMyIgc3RSZWY6ZG9jdW1lbnRJRD0ieG1wLmRpZDoyMzAyRkRGRkFGMjNFMjExQTExQ0E1RUVDNzk3QzRFRiIvPiA8L3JkZjpEZXNjcmlwdGlvbj4gPC9yZGY6UkRGPiA8L3g6eG1wbWV0YT4gPD94cGFja2V0IGVuZD0iciI/Pp+wFVoAAAI+SURBVHjavFiBcYMwDHS4DOARvEHZIGSCskEZgU5QOkGuE9BOQDtB2glIJ4BOAJ2AyncyJ1Tj2AlEd3+kYMvvty3J3QzDIAIsQewAEhDj+x5wArSAb8A7/vYzTeIMJKAAdEOYHQGJh3+xOaNEDnjCWRvTM/wE/OBTm0LsUClqus0jKhWkhMSZUCsBsadyGaAhfTt8Z+1jexkzB5qM8pHVgowt48GHhGQE8gsHp9ATqF0+eQfaOFuAAJ0c9Z3OkSgWVsBFpMO/JyQUWbtqBQJ0v9GNPiFR2hiuBKq4MiQkUaFwSBi6R1L027Cj/W88c4wmzAgSdlRDSNA4wydnlNcERYRRTpDYL1h07Mn3EPsiv3nfj0mkJYwLxzlPrtiIc1F2PK5i7uzeAGavFRGRqLdIquVKxXUWz7wfx4scnTNAA6jwWVgy5JxJJF8Cap0nsb/VdCo3uXxPUrNxVDkGPs2ol8y03bP2R2z7vMUPEqXncu2x4QM+lYfMfPA3wKuF8Ohriw31AHczjj6JQqakkw4SJ1Lu9Y7lUqN/zPFj4LgRaICUEQscibiN3U9UQ2YNz2wrQvGaxXzIyYdkZRJHnrFtZV29YjrPbIUTT73DissSkxReu2rMw0pEKIGOlwy2DiUhUi2wNCkjEPvcOziR7sLKW+EkBhcBFwleC5pglntchFI2CbMH4kvvojo0HyxBrEXoYPOLIV9a2umw/eLKoL63clNrlgE3c6OaXOJW7vofhSD1aYu3dHNjb0Mc/gkwADlAbL3OpPROAAAAAElFTkSuQmCC');
 }
 
 .emoticon_button.small {
    height: 22px;
    width: 22px;
    vertical-align: middle;
-   background-position: center -43px;
-}
-
-.emoticon_button.small:hover, .emoticon_button.small.focus {
-   background-position: center -7px;
 }
 
 .emoticon_popup_ctn {
@@ -1028,6 +1087,23 @@ img.emoticon {
    max-height: 96px;
    max-width: 352px;
    overflow-y: auto;
+}
+
+.large .emoticon_popup_content {
+   max-height: 200px;
+   max-width: 352px;
+}
+
+.large .emoticon_popup_content .emoticon_option {
+   width: 60px;
+   height: 60px;
+   margin: 10px;
+}
+
+img.emoticon {
+   vertical-align: text-bottom;
+   height: 18px;
+   width: 18px;
 }
 
 .emoticon_popup_content .emoticon_option {
@@ -1119,8 +1195,37 @@ img.emoticon {
 @media screen and (max-width: 910px) {
    html.responsive .maincontent {
       width: auto;
-      margin: 0 1%;
+      margin-left: 1%;
+      margin-right: 1%;
    }
+   html.responsive .emoticon_popup_ctn {
+      position: fixed;
+      left: 5px;
+      right: 5px;
+      bottom: 5px;
+      overflow-y: auto;
+      z-index: 20;
+      height: 176px;
+      max-height: 40%;
+   }
+   html.responsive .emoticon_popup_content {
+      max-width: none;
+      max-height: none;
+   }
+   /* 16px font size prevents iphone from zooming */
+   html.responsive .gray_bevel input, html.responsive .gray_bevel textarea {
+      font-size: 16px;
+   }
+}
+
+@media screen and (max-width: 910px) {
+   html.responsive textarea.commentthread_textarea {
+      font-size: 16px;
+   }
+}
+
+html.responsive.touch textarea.commentthread_textarea {
+   font-size: 16px;
 }
 
 
@@ -1132,4 +1237,52 @@ img.emoticon {
 
 .nonresponsive_hidden {
    display: none;
+}
+
+#tabs_baseline {
+   clear: left;
+}
+
+.responsive_tab_baseline {
+   background-color: #417B9C;
+   max-width: 958px;
+   height: 5px;
+}
+
+.responsive_tab_ctn.sharedfiles_responsive_tab {
+   text-align: center;
+}
+
+.responsive_tab_ctn.sharedfiles_responsive_tab .responsive_tab_control {
+   display: inline-block;
+   padding: 6px 8px;
+   font-size: 16px;
+   color: #ffffff;
+   background: #57749e;
+   /* Old browsers */
+   background: -webkit-linear-gradient( top, #66C0F4 5%, #417B9C 95%);
+   background: linear-gradient( to bottom, #66C0F4 5%, #417B9C 95%);
+}
+
+@media screen and (max-width: 480px) {
+   html.responsive .responsive_tab_ctn.sharedfiles_responsive_tab .responsive_tab_control {
+      display: block;
+      text-align: center;
+   }
+   html.responsive .responsive_tab_ctn.sharedfiles_responsive_tab .responsive_tab_control select {
+      width: 98%;
+   }
+   html.responsive div.responsive_tab_baseline, html.responsive div.responsive_tab_baseline.nonresponsive_hidden {
+      display: none;
+   }
+}
+
+img.badge_icon {
+   width: 80px;
+   height: 80px;
+}
+
+img.badge_icon.small {
+   width: 54px;
+   height: 54px;
 }
