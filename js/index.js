@@ -709,11 +709,29 @@ $(function() {
       })
       .on('resizemove', function(event) {
          var target = event.target;
+         var awsc;
+         var sssc;
          // add the change in coords to the previous width of the target element
          var newHeight = parseFloat(target.style.height) + event.dy;
          var showcase = newHeight + 75;
          var bgHeight = $('#bgImgEl').height();
-         $('#cSize').css('height', showcase)
+         $('#cSize').hover(function() {
+            awsc = true;
+         }, function() {
+            awsc = false;
+         });
+         $('#sssc').hover(function() {
+            sssc = true;
+         }, function() {
+            sssc = false;
+         });
+         if (awsc == true){
+           $('#cSize').css('height', showcase)
+         }
+         if (sssc == true){
+           $('#sssc').css('height', showcase)
+         }
+
          if (newHeight >= 284 && newHeight <= bgHeight - 272) {
             target.style.height = newHeight + 'px';
          }
