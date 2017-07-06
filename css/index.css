@@ -12,6 +12,24 @@
    content: "\f063";
 }
 
+.commentthread_subscribe_ctn {
+  position:relative;
+  display:block;
+  margin-top:5px;
+  margin-left: 5px;
+  margin-bottom:5px;
+}
+
+.hidden {
+  display: none;
+}
+
+.customize_textbox {
+  position: relative;
+  display: block;
+  margin-left: 5px;
+}
+
 .social-sapic {
    position: relative;
    top: 21px;
