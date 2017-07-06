@@ -588,20 +588,20 @@ function customizeCheckboxHandler(id) {
 
 
 function shortenRight(showcase) {
-      var bh = $('#big' + showcase + '').height();
-      var uh = bh - 70;
-      $('.r' + showcase + '').css('height', uh);
-      $('.r' + showcase + '').addClass('shortened');
-      $('.artwork_ammount_' + showcase + '').show();
+   var bh = $('#big' + showcase + '').height();
+   var uh = bh - 70;
+   $('.r' + showcase + '').css('height', uh);
+   $('.r' + showcase + '').addClass('shortened');
+   $('.artwork_ammount_' + showcase + '').show();
 }
 
-function extendRight(showcase){
-  setTimeout(function(){
-    var bh = $('#big' + showcase + '').height();
-    $('.r' + showcase + '').css('height', bh);
-    $('.r' + showcase + '').removeClass('shortened');
-    $('.artwork_ammount_' + showcase + '').hide();
-  }, 275)
+function extendRight(showcase) {
+   setTimeout(function() {
+      var bh = $('#big' + showcase + '').height();
+      $('.r' + showcase + '').css('height', bh);
+      $('.r' + showcase + '').removeClass('shortened');
+      $('.artwork_ammount_' + showcase + '').hide();
+   }, 275)
 }
 
 function showDiv(showcase) {
@@ -617,7 +617,7 @@ function longImages(showcase) {
    var uh = bh - 272;
    $('#hBig' + showcase + '').css('height', uh);
    $('.hidelong' + showcase + '').addClass('hidden');
-   $('.showlong' + showcase + '').show();
+   $('.showlong' + showcase + '').removeClass('hidden');
    $('.r' + showcase + '').css('height', uh);
 }
 
@@ -625,46 +625,49 @@ function shortImages(showcase) {
    $('#hBig' + showcase + '').css('height', 506);
    $('.hidelong' + showcase + '').removeClass('hidden');
    $('.r' + showcase + '').css('height', 80);
-   $('.showlong' + showcase + '').hide();
+   $('.showlong' + showcase + '').addClass('hidden');
+   $('.artwork_ammount_' + showcase + '').show();
 }
 
 function payloadHandler() {
    if (payload.SSSC_Enable) {
       showDiv(2);
+      if (payload.SSSC_Long) {
+         longImages(2);
+         if (payload.SSSC_Long_Minus70) {
+            shortenRight(2);
+         } else {
+            extendRight(2);
+         }
+      } else {
+         shortImages(2);
+      }
    } else {
       hideDiv(2);
    }
-   if (payload.SSSC_Long) {
-      longImages(2);
-   } else {
-      shortImages(2);
-   }
-   if (payload.SSSC_Long_Minus70) {
-      shortenRight(2);
-   } else {
-     extendRight(2);
-   }
+
    if (payload.AWSC_Enable) {
       showDiv(1);
+      if (payload.AWSC_Long) {
+         longImages(1);
+         if (payload.AWSC_Long_Minus70) {
+            shortenRight(1);
+         } else {
+            extendRight(1);
+         }
+      } else {
+         shortImages(1);
+      }
    } else {
       hideDiv(1);
    }
-   if (payload.AWSC_Long) {
-      longImages(1);
-   } else {
-      shortImages(1);
-   }
-   if (payload.AWSC_Long_Minus70) {
-      shortenRight(1);
-   } else {
-     extendRight(1);
-   }
+
    if (payload.WSSC_Enable) {
       showDiv(3);
    } else {
       hideDiv(3);
    }
-    reloadImages();
+   reloadImages();
 }
 
 $(function() {

@@ -20,6 +20,10 @@
   margin-bottom:5px;
 }
 
+.rightimages {
+  height:80px;
+}
+
 .hidden {
   display: none;
 }
