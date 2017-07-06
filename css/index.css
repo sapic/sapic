@@ -13,25 +13,25 @@
 }
 
 .commentthread_subscribe_ctn {
-  position:relative;
-  display:block;
-  margin-top:5px;
-  margin-left: 5px;
-  margin-bottom:5px;
+   position: relative;
+   display: block;
+   margin-top: 5px;
+   margin-left: 5px;
+   margin-bottom: 5px;
 }
 
 .rightimages {
-  height:80px;
+   height: 80px;
 }
 
 .hidden {
-  display: none;
+   display: none;
 }
 
 .customize_textbox {
-  position: relative;
-  display: block;
-  margin-left: 5px;
+   position: relative;
+   display: block;
+   margin-left: 5px;
 }
 
 .social-sapic {
@@ -40,23 +40,23 @@
 }
 
 .newmodal_background {
-	position: fixed;
-	z-index: 900;
-	background: #000000;
-	top: 0;
-	right: 0;
-	bottom: 0;
-	left: 0;
+   position: fixed;
+   z-index: 900;
+   background: #000000;
+   top: 0;
+   right: 0;
+   bottom: 0;
+   left: 0;
 }
 
 .market_listing_row {
-	overflow: hidden;
-	clear: left;
-	position: relative;
-	background-color: rgba(0, 0, 0, 0.2);
-	border: 1px solid rgba(0, 0, 0, 0);
-	margin-top: 10px;
-	white-space: nowrap;
+   overflow: hidden;
+   clear: left;
+   position: relative;
+   background-color: rgba(0, 0, 0, 0.2);
+   border: 1px solid rgba(0, 0, 0, 0);
+   margin-top: 10px;
+   white-space: nowrap;
 }
 
 .bg_link {
