@@ -148,9 +148,9 @@
                                  <div class="newmodal_content">
                                     <div class="market_dialog_content">
                                        <div class="market_dialog_iteminfo">
-                                         <div class="bb_h1 customize_textbox" id="cache_text">
-                                            <b>It seems you dont have latest version cached. Please wait or press ctrl + shift + r to get the latest version.</b>
-                                         </div>
+                                          <div class="bb_h1 customize_textbox" id="cache_text">
+                                             <b>It seems you dont have latest version cached. Please wait or press ctrl + shift + r to get the latest version.</b>
+                                          </div>
                                           <div class="market_listing_row market_recent_listing_row">
                                              <div class="bb_h1 customize_textbox">
                                                 <b>Artwork Showcase:</b>
@@ -228,9 +228,14 @@
                                                 <span class="commentthread_subscribe_desc">Enable Workshop Showcase</span>
                                              </div>
                                           </div>
-                                          <div id="esColors" style="position:relative;top:5px;">
-                                             <a href="https://www.enhancedsteam.com/" target="_blank">Enhanced Steam Colors:&nbsp;</a>
-                                             <select id="colorChange" onchange="esColorLoad(this)">
+                                          <div class="market_listing_row market_recent_listing_row">
+                                            <div class="bb_h1 customize_textbox">
+                                               <b>Additional Options:</b>
+                                            </div>
+                                             <div class="btn_grey_white_innerfade btn_small" style="margin-top:5px;margin-left:5px;display:none;"id="autoResize"><span>Auto Resize</span></div>
+                                             <div id="esColors" style="margin-left:5px;margin-top:5px;">
+                                                <a href="https://www.enhancedsteam.com/" target="_blank">Enhanced Steam Colors:&nbsp;</a>
+                                                <select id="colorChange" onchange="esColorLoad(this)">
                                             <option value="0">Default</option>
                                             <option value="1">Blue</option>
                                             <option value="2">Clear</option>
@@ -243,6 +248,7 @@
                                             <option value="9">Teal</option>
                                             <option value="10">Yellow</option>
                                           </select>
+                                             </div>
                                           </div>
                                        </div>
                                     </div>
@@ -253,7 +259,6 @@
                         <div class="btn_profile_action btn_medium" style="left:7px; position:relative;top:9px;" onclick="toggleCustomize()">
                            <span style=" text-align:center; ">Customize Cropping</span>
                         </div>
-
                      </div>
                   </div>
                   <div class="profile_header_summary">
