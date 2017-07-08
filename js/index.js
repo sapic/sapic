@@ -517,19 +517,6 @@ function toggleCustomize() {
    $('#customizeBackground').fadeToggle();
    var hover = false;
 
-   if (payload.SSSC_Resized || payload.AWSC_Resized){
-     $('#autoResize').show();
-     $('#autoResize').click(function(){
-       payload.SSSC_Resized = false;
-       payload.AWSC_Resized = false;
-       $('.showcase_2').css('height', '');
-       $('.showcase_1').css('height', '');
-       autoCropHeight();
-       $('#autoResize').hide();
-       closeCustomize();
-     });
-   }
-
    $('#customize').hover(function() {
       hover = true;
    }, function() {
@@ -637,14 +624,14 @@ function longImages(showcase) {
    var bh = $('#bgImgEl').height();
    var rOffset = $('#hBig' + showcase + '').offset().top - $('.profile_header').offset().top + 1;
    var autoHeight = bh - rOffset - 1;
-   if (showcase == 1){
-     if (payload.AWSC_Resized){
-       return;
-     }
+   if (showcase == 1) {
+      if (payload.AWSC_Resized) {
+         return;
+      }
    } else if (showcase == 2) {
-     if (payload.SSSC_Resized){
-       return;
-     }
+      if (payload.SSSC_Resized) {
+         return;
+      }
    }
    $('#hBig' + showcase + '').css('height', autoHeight);
    $('.hidelong' + showcase + '').addClass('hidden');
@@ -653,40 +640,39 @@ function longImages(showcase) {
 }
 
 function autoCropHeight(showcase) {
-   var bh = $('#bgImgEl').height();
-   if (showcase == 1 && !payload.AWSC_Resized){
-     autoCropHeight_2(1);
-     return;
-   } else if (showcase == 2 && !payload.SSSC_Resized){
-     autoCropHeight_2(2);
-     return;
+   if (showcase == 1 && !payload.AWSC_Resized) {
+      autoCropHeight_2(1);
+      return;
+   } else if (showcase == 2 && !payload.SSSC_Resized) {
+      autoCropHeight_2(2);
+      return;
    }
 
-   if (payload.SSSC_Resized || payload.AWSC_Resized){
-     CropImages();
-     return;
+   if (payload.SSSC_Resized || payload.AWSC_Resized) {
+      CropImages();
+      return;
    }
 
    if (payload.SSSC_Long) {
-     autoCropHeight_2(2);
+      autoCropHeight_2(2);
    }
    if (payload.AWSC_Long) {
-     autoCropHeight_2(1);
+      autoCropHeight_2(1);
    }
 }
 
 function autoCropHeight_2(showcase) {
    var bh = $('#bgImgEl').height();
-   var rOffset = $('#hBig'+showcase+'').offset().top - $('.profile_header').offset().top + 1;
+   var rOffset = $('#hBig' + showcase + '').offset().top - $('.profile_header').offset().top + 1;
    var autoHeight = bh - rOffset - 1;
-   if(autoHeight < 284){
-     $('.r'+showcase+'').css('height', 284);
-     $('#hBig'+showcase+'').css('height', 284);
-     reloadImages();
-     return;
+   if (autoHeight < 284) {
+      $('.r' + showcase + '').css('height', 284);
+      $('#hBig' + showcase + '').css('height', 284);
+      reloadImages();
+      return;
    }
-   $('.r'+showcase+'').css('height', autoHeight);
-   $('#hBig'+showcase+'').css('height', autoHeight);
+   $('.r' + showcase + '').css('height', autoHeight);
+   $('#hBig' + showcase + '').css('height', autoHeight);
    reloadImages();
 }
 
@@ -886,11 +872,18 @@ $(function() {
          //target.textContent = newWidth + '×' + newHeight;
       })
       .on('resizeend', function() {
-         payload.AWSC_Resized = true;
+        payload.AWSC_Resized = true;
+         $('#autoResize_AWSC').show();
+         $('#autoResize_AWSC').click(function() {
+            $('.showcase_1').css('height', '');
+            autoCropHeight_2(1);
+            $('#autoResize_AWSC').hide();
+            closeCustomize();
+         });
          if (payload.SSSC_Long) {
             autoCropHeight(2);
          } else {
-           CropImages();
+            CropImages();
          }
       });
    interact('.resizable-sssc')
@@ -921,10 +914,17 @@ $(function() {
       })
       .on('resizeend', function() {
          payload.SSSC_Resized = true;
+         $('#autoResize_SSSC').show();
+         $('#autoResize_SSSC').click(function() {
+            $('.showcase_2').css('height', '');
+            autoCropHeight_2(2);
+            $('#autoResize_SSSC').hide();
+            closeCustomize();
+         });
          if (payload.AWSC_Long) {
             autoCropHeight(1);
          } else {
-           CropImages();
+            CropImages();
          }
       });
 

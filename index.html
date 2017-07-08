@@ -178,9 +178,7 @@
                                                    <div class="gray_bevel for_text_input showlong_buttons customize_textbox hidden" style="position:relative;display:none;height:15px;width:165px;top:2px;">
                                                       <input class="dynInput hidden" type="text" size="10" placeholder="Enter a Custom Height Here" style="height:10px;position:relative;bottom:1px;">
                                                    </div>
-                                                   <span class="btn_grey_white_innerfade btn_small hidden" style="display:none">
-                                               <span>Reset Height</span>
-                                                   </span>
+                                                   <div class="btn_grey_white_innerfade btn_small" style="margin-bottom:5px;margin-left:5px;display:none;" id="autoResize_AWSC" onclick="autoCropHeight_2(1);"><span>Auto Resize</span></div>
                                                 </div>
                                              </div>
                                           </div>
@@ -211,9 +209,7 @@
                                                    <div class="gray_bevel for_text_input showlong_buttons customize_textbox hidden" style="position:relative;display:none;height:15px;width:165px;top:2px;">
                                                       <input class="dynInput hidden" type="text" size="10" placeholder="Enter a Custom Height Here" style="height:10px;position:relative;bottom:1px;">
                                                    </div>
-                                                   <span class="btn_grey_white_innerfade btn_small hidden" style="display:none">
-                                                <span>Reset Height</span>
-                                                   </span>
+                                                    <div class="btn_grey_white_innerfade btn_small" style="margin-bottom:5px;margin-left:5px;display:none;" id="autoResize_SSSC" onclick"autoCropHeight_2(2);"><span>Auto Resize</span></div>
                                                 </div>
                                              </div>
                                           </div>
@@ -232,7 +228,6 @@
                                             <div class="bb_h1 customize_textbox">
                                                <b>Additional Options:</b>
                                             </div>
-                                             <div class="btn_grey_white_innerfade btn_small" style="margin-top:5px;margin-left:5px;display:none;"id="autoResize"><span>Auto Resize</span></div>
                                              <div id="esColors" style="margin-left:5px;margin-top:5px;">
                                                 <a href="https://www.enhancedsteam.com/" target="_blank">Enhanced Steam Colors:&nbsp;</a>
                                                 <select id="colorChange" onchange="esColorLoad(this)">
