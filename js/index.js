@@ -385,7 +385,7 @@ function doInventoryThings(inventory) {
    inventory.backgrounds.forEach(function(back) {
       var httpsLink = back.actions[0].link.replace('http://cdn.akamai.steamstatic.com/', 'https://steamcdn-a.akamaihd.net/')
       if (hide == true) {
-         $('.backsList').hide();
+         $('.backsList').addClass('backsListHide');
       }
       var itemHolder = $("<div>", {
          class: "itemHolder",
@@ -415,15 +415,21 @@ function privateInventory() {
 
 function refreshInventory() {
    store.remove('backpack');
-   $(".itemHolder").each(function() {
-      $(this).remove();
-   });
-   userId = window.localStorage.getItem('SteamId');
-   $.ajax('https://steam.design/backpack/' + userId + '/itemsRefresh.json').done(function(data) {
-      var expire = Date.now() + 86400000;
-      store.set('backpack', data, expire);
-      doInventoryThings(data);
-   });
+   $('#backsList').addClass('backsListHide');
+   setTimeout(function() {
+      $(".itemHolder").each(function() {
+         $(this).remove();
+      });
+      userId = window.localStorage.getItem('SteamId');
+      $.ajax('https://steam.design/backpack/' + userId + '/itemsRefresh.json').done(function(data) {
+         var expire = Date.now() + 86400000;
+         store.set('backpack', data, expire);
+         doInventoryThings(data);
+         setTimeout(function() {
+            $('#backsList').removeClass('backsListHide');
+         }, 20);
+      });
+   }, 150);
 };
 
 function loginFunc() {
@@ -754,7 +760,7 @@ $(function() {
       oddball.hidememes = !oddball.hidememes;
       store.set('hide', oddball.hidememes);
       hideangle += 180;
-      $('#backsList').toggle('show');
+      $('#backsList').toggleClass('backsListHide');
       $(this).rotate({
          animateTo: hideangle
       });
@@ -872,7 +878,7 @@ $(function() {
          //target.textContent = newWidth + '×' + newHeight;
       })
       .on('resizeend', function() {
-        payload.AWSC_Resized = true;
+         payload.AWSC_Resized = true;
          $('#autoResize_AWSC').show();
          $('#autoResize_AWSC').click(function() {
             $('.showcase_1').css('height', '');

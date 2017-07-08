@@ -67,11 +67,17 @@
 .backsList {
    height: auto !important;
    max-height: 330px;
+   transition: max-height 0.25s ease-in;
    overflow: auto;
    overflow-x: hidden;
    width: 960px;
    position: relative;
    left: 5px;
+}
+
+.backsListHide {
+  max-height: 0;
+  transition: max-height 0.25s ease-out;
 }
 
 .spin {
