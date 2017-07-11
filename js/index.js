@@ -446,39 +446,30 @@ function loginFunc() {
 
 function addArrows() {
    $('.profile_customization_header').not('.guide').each(function() {
-      $(this).prepend('<span style="float: right" class="arrow down" onclick="elemDown(this);">Down <div class="fa fa-arrow-down" style="font-size:17px;"></div></span>' +
-         '<span style="float: right" class="arrow up" onclick="elemUp(this);">Up <div class="fa fa-arrow-up" style="font-size:17px;"></div></span>');
+      $(this).prepend('<span style="float: right" class="arrow down" onclick="moveElem(this,2);">Down <div class="fa fa-arrow-down" style="font-size:17px;"></div></span>' +
+         '<span style="float: right" class="arrow up" onclick="moveElem(this,1);"">Up <div class="fa fa-arrow-up" style="font-size:17px;"></div></span>');
    });
 }
 
-function elemUp(elem) {
-   elem = $(elem).parent().parent();
-   var x = $(elem).prev('.profile_customization');
-   $(x).before(elem);
-   $.smoothScroll({
-      offset: $(elem).offset().top - 200,
-      speed: 500,
-      easing: 'swing'
-   });
-   reloadImages();
-   setTimeout(function() {
-      autoCropHeight();
-   }, 100);
-}
-
-function elemDown(elem) {
-   elem = $(elem).parent().parent();
-   var x = $(elem).next('.profile_customization');
-   $(x).after(elem);
-   $.smoothScroll({
-      offset: $(elem).offset().top - 200,
-      speed: 500,
-      easing: 'swing'
-   });
-   reloadImages();
-   setTimeout(function() {
-      autoCropHeight();
-   }, 100);
+function moveElem(elem, direction){
+  elem = $(elem).parent().parent();
+  var x;
+  if (direction == 1){
+    x = $(elem).prev('.profile_customization');
+    $(x).before(elem);
+  } else if (direction == 2) {
+    var x = $(elem).next('.profile_customization');
+    $(x).after(elem);
+  }
+  $.smoothScroll({
+     offset: $(elem).offset().top - 200,
+     speed: 500,
+     easing: 'swing'
+  });
+  reloadImages();
+  setTimeout(function() {
+     autoCropHeight();
+  }, 100);
 }
 
 function addProfileColor() {
