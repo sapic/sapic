@@ -723,9 +723,9 @@ function payloadHandler() {
 }
 
 $(function() {
-   //if (window.location.hostname == "sapic.github.io") {
-      //window.location = 'https://steam.design/' + location.hash;
-   //}
+   if (window.location.hostname == "sapic.github.io") {
+      window.location = 'https://steam.design/' + location.hash;
+   }
 
    $('#cache_text').hide();
 
