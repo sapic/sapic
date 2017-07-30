@@ -948,7 +948,7 @@ $(function() {
     window.open(_goUrl, '_newtab');
   });
   $(".saveButton").click(function() {
-    trackClick('getBGButton', $(this).attr('href'));
+    trackClick('getZIPButton', $(this).attr('href'));
   })
   $("#version").html("Version #" + version);
   $('#openCustomizeButton').click(function(){
