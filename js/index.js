@@ -939,18 +939,21 @@ $(function() {
     window.location.href = "#" + randomBackground();
   });
   $("#getBg").click(function () {
-    let goUrl = currentBGInfo && currentBGInfo.url
+    var _goUrl = currentBGInfo && currentBGInfo.url
       ? "https://steamcommunity.com/market/listings/" + currentBGInfo.url
       : 'https://images.google.com/searchbyimage?image_url=' + background;
 
-    trackClick('getBGButton', goUrl);
+    trackClick('getBGButton', _goUrl);
 
-    window.open(goUrl, '_newtab');
+    window.open(_goUrl, '_newtab');
   });
   $(".saveButton").click(function() {
     trackClick('getBGButton', $(this).attr('href'));
   })
   $("#version").html("Version #" + version);
+  $('#openCustomizeButton').click(function(){
+    trackClick('openCustomizeButton');
+  })
 });
 
 function trackClick(where, subject){
