@@ -7,15 +7,29 @@ var oddball = {
    esColor: 0
 };
 var payload = {
-   SSSC_Enable: false,
-   SSSC_Long: false,
-   SSSC_Long_Minus70: false,
-   SSSC_Rezied: false,
-   AWSC_Enable: true,
-   AWSC_Long: true,
-   AWSC_Long_Minus70: false,
-   AWSC_Resized: false,
-   WSSC_Enable: false
+  toggles:{
+    SSSC_Enable: false,
+    SSSC_Long: false,
+    SSSC_Long_Minus70: false,
+    SSSC_Rezied: false,
+    AWSC_Enable: true,
+    AWSC_Long: true,
+    AWSC_Long_Minus70: false,
+    AWSC_Resized: false,
+    WSSC_Enable: false,
+  },
+  cropInfo:{
+    order:{
+      AWSC: 1,
+      SSSC: 2,
+      WSSW: 3,
+    },
+    customHeight:{
+      AWSC: null,
+      SSSC: null,
+    }
+  }
+   background: null,
 };
 var loadedBack = null;
 var currentBGInfo = null;
@@ -284,9 +298,9 @@ function CropImages() {
          url: background,
          images: [],
       };
-      if (payload.AWSC_Enable) {
-         if (payload.AWSC_Long) {
-            if (payload.AWSC_Long_Minus70) {
+      if (payload.toggles.AWSC_Enable) {
+         if (payload.toggles.AWSC_Long) {
+            if (payload.toggles.AWSC_Long_Minus70) {
                var akdk = h1 - 70;
                fillImage($('#big1'), leftOffset[ImageType], rOffset1, 506, h1, ImagesNames[10][1], true);
                fillImage($('#r11'), 514 + leftOffset[ImageType], rOffset1, 100, akdk, ImagesNames[11][1]);
@@ -301,9 +315,9 @@ function CropImages() {
             fillImage($('#r13'), 514 + leftOffset[ImageType], rOffset1 + 186, 100, 80, ImagesNames[13][1]);
          }
       }
-      if (payload.SSSC_Enable) {
-         if (payload.SSSC_Long) {
-            if (payload.SSSC_Long_Minus70) {
+      if (payload.toggles.SSSC_Enable) {
+         if (payload.toggles.SSSC_Long) {
+            if (payload.toggles.SSSC_Long_Minus70) {
                var akdk = h1 - 70;
                fillImage($('#big2'), leftOffset[ImageType], rOffset2, 506, h1, ImagesNames[20][1], true);
                fillImage($('#r21'), 514 + leftOffset[ImageType], rOffset2, 100, h1, ImagesNames[21][1]);
@@ -318,7 +332,7 @@ function CropImages() {
             fillImage($('#r23'), 514 + leftOffset[ImageType], rOffset2 + 186, 100, 80, ImagesNames[23][1]);
          }
       }
-      if (payload.WSSC_Enable) {
+      if (payload.toggles.WSSC_Enable) {
          fillImage($('#w1'), 1 + leftOffset[ImageType], rOffset3, 150, 150, ImagesNames[30][1]);
          fillImage($('#w2'), 156 + leftOffset[ImageType], rOffset3, 150, 150, ImagesNames[31][1]);
          fillImage($('#w3'), 309 + leftOffset[ImageType], rOffset3, 150, 150, ImagesNames[32][1]);
@@ -327,7 +341,9 @@ function CropImages() {
 
       fillImage($('#avatar'), leftOffset[ImageType] - 9, 34, 164, 164, ImagesNames[0][1]);
 
+      payload.bgSaveInfo = bgSaveInfo
       $(".saveButton").attr("href", "https://steam.design/raw/" + btoa(JSON.stringify(bgSaveInfo)));
+      $("#shareURL").val('https://steam.design?base64=' + btoa(JSON.stringify(payload)));
    }, 250);
 }
 
@@ -349,6 +365,16 @@ function fillImage(element, x, y, w, h, name, changeCss) {
       w: Math.floor(w),
       h: Math.floor(h),
    });
+}
+
+function getParameterByName(name, url) {
+    if (!url) url = window.location.href;
+    name = name.replace(/[\[\]]/g, "\\$&");
+    var regex = new RegExp("[?&]" + name + "(=([^&#]*)|&|#|$)"),
+        results = regex.exec(url);
+    if (!results) return null;
+    if (!results[2]) return '';
+    return decodeURIComponent(results[2].replace(/\+/g, " "));
 }
 
 function createInventory(id) {
@@ -455,7 +481,9 @@ function moveElem(elem, direction){
   elem = $(elem).parent().parent();
   var x;
   if (direction == 1){
-    x = $(elem).prev('.profile_customization');
+    var elemprev = $(elem).prev('.profile_customization');
+    elemprev.find('.locationvar').val($(this).val + 1)
+    x = elemprev
     $(x).before(elem);
   } else if (direction == 2) {
     var x = $(elem).next('.profile_customization');
@@ -540,37 +568,37 @@ function customizeCheckboxHandler(id) {
 
    switch (id) {
       case "SSSC_Checkbox":
-         payload.SSSC_Enable = !payload.SSSC_Enable;
+         payload.toggles.SSSC_Enable = !payload.toggles.SSSC_Enable;
          if ($('#SSSC_Long_Checkbox').hasClass('checked')) {
             $('#SSSC_Long_Checkbox').trigger('click');
          }
          break;
       case "SSSC_Long_Checkbox":
-         payload.SSSC_Long = !payload.SSSC_Long;
+         payload.toggles.SSSC_Long = !payload.toggles.SSSC_Long;
          if ($('#SSSC_Long_Minus70_Checkbox').hasClass('checked')) {
             $('#SSSC_Long_Minus70_Checkbox').trigger('click');
          }
          break;
       case "SSSC_Long_Minus70_Checkbox":
-         payload.SSSC_Long_Minus70 = !payload.SSSC_Long_Minus70;
+         payload.toggles.SSSC_Long_Minus70 = !payload.toggles.SSSC_Long_Minus70;
          break;
       case "AWSC_Checkbox":
-         payload.AWSC_Enable = !payload.AWSC_Enable;
+         payload.toggles.AWSC_Enable = !payload.toggles.AWSC_Enable;
          if ($('#AWSC_Long_Checkbox').hasClass('checked')) {
             $('#AWSC_Long_Checkbox').trigger('click');
          }
          break;
       case "AWSC_Long_Checkbox":
-         payload.AWSC_Long = !payload.AWSC_Long;
+         payload.toggles.AWSC_Long = !payload.toggles.AWSC_Long;
          if ($('#AWSC_Long_Minus70_Checkbox').hasClass('checked')) {
             $('#AWSC_Long_Minus70_Checkbox').trigger('click');
          }
          break;
       case "AWSC_Long_Minus70_Checkbox":
-         payload.AWSC_Long_Minus70 = !payload.AWSC_Long_Minus70;
+         payload.toggles.AWSC_Long_Minus70 = !payload.toggles.AWSC_Long_Minus70;
          break;
       case "WSSC_Checkbox":
-         payload.WSSC_Enable = !payload.WSSC_Enable;
+         payload.toggles.WSSC_Enable = !payload.toggles.WSSC_Enable;
          break;
       default:
          console.log("How the hell?");
@@ -622,11 +650,11 @@ function longImages(showcase) {
    var rOffset = $('#hBig' + showcase + '').offset().top - $('.profile_header').offset().top + 1;
    var autoHeight = bh - rOffset - 1;
    if (showcase == 1) {
-      if (payload.AWSC_Resized) {
+      if (payload.toggles.AWSC_Resized) {
          return;
       }
    } else if (showcase == 2) {
-      if (payload.SSSC_Resized) {
+      if (payload.toggles.SSSC_Resized) {
          return;
       }
    }
@@ -637,23 +665,23 @@ function longImages(showcase) {
 }
 
 function autoCropHeight(showcase) {
-   if (showcase == 1 && !payload.AWSC_Resized) {
+   if (showcase == 1 && !payload.toggles.AWSC_Resized) {
       autoCropHeight_2(1);
       return;
-   } else if (showcase == 2 && !payload.SSSC_Resized) {
+   } else if (showcase == 2 && !payload.toggles.SSSC_Resized) {
       autoCropHeight_2(2);
       return;
    }
 
-   if (payload.SSSC_Resized || payload.AWSC_Resized) {
+   if (payload.toggles.SSSC_Resized || payload.toggles.AWSC_Resized) {
       CropImages();
       return;
    }
 
-   if (payload.SSSC_Long) {
+   if (payload.toggles.SSSC_Long) {
       autoCropHeight_2(2);
    }
-   if (payload.AWSC_Long) {
+   if (payload.toggles.AWSC_Long) {
       autoCropHeight_2(1);
    }
 }
@@ -681,12 +709,58 @@ function shortImages(showcase) {
    $('.artwork_ammount_' + showcase + '').show();
 }
 
+function loadb64(){
+  window.location.href = "#" + payload.background
+  loadb64Checkboxes();
+}
+
+function loadb64Checkboxes(){
+  if(payload.toggles.SSSC_Enable){
+    loadb64Checkboxes_2($('#SSSC_Checkbox'));
+  }
+  if (payload.toggles.SSSC_Long){
+    loadb64Checkboxes_2($('#SSSC_Long_Checkbox'));
+  }
+  if (payload.toggles.SSSC_Long_Minus70){
+    loadb64Checkboxes_2($('#SSSC_Long_Minus70_Checkbox'))
+  }
+  if (!payload.toggles.AWSC_Enable){
+    loadb64Checkboxes_2($('#AWSC_Checkbox'))
+  }
+  if (!payload.toggles.AWSC_Long){
+    loadb64Checkboxes_2($('#AWSC_Long_Checkbox'))
+  }
+  if (payload.toggles.AWSC_Long_Minus70){
+    loadb64Checkboxes_2($('#AWSC_Long_Minus70_Checkbox'))
+  }
+  if (payload.WSSC_Enable){
+    loadb64Checkboxes_2($('#WSSC_Checkbox'))
+  }
+}
+
+function loadb64Checkboxes_2(elem){
+  var hiddenBelow = elem.siblings('.hiddenBelow');
+  if (elem.hasClass('checked')) {
+     elem.removeClass('checked');
+  } else {
+     elem.addClass('checked');
+  }
+  if (hiddenBelow.length) {
+     if (hiddenBelow.hasClass('hidden')) {
+        hiddenBelow.removeClass('hidden')
+     } else {
+        hiddenBelow.addClass('hidden')
+     }
+  }
+}
+
+
 function payloadHandler() {
-   if (payload.SSSC_Enable) {
+   if (payload.toggles.SSSC_Enable) {
       showDiv(2);
-      if (payload.SSSC_Long) {
+      if (payload.toggles.SSSC_Long) {
          longImages(2);
-         if (payload.SSSC_Long_Minus70) {
+         if (payload.toggles.SSSC_Long_Minus70) {
             shortenRight(2);
          } else {
             extendRight(2);
@@ -698,11 +772,11 @@ function payloadHandler() {
       hideDiv(2);
    }
 
-   if (payload.AWSC_Enable) {
+   if (payload.toggles.AWSC_Enable) {
       showDiv(1);
-      if (payload.AWSC_Long) {
+      if (payload.toggles.AWSC_Long) {
          longImages(1);
-         if (payload.AWSC_Long_Minus70) {
+         if (payload.toggles.AWSC_Long_Minus70) {
             shortenRight(1);
          } else {
             extendRight(1);
@@ -714,7 +788,7 @@ function payloadHandler() {
       hideDiv(1);
    }
 
-   if (payload.WSSC_Enable) {
+   if (payload.toggles.WSSC_Enable) {
       showDiv(3);
    } else {
       hideDiv(3);
@@ -728,6 +802,11 @@ $(function() {
   }
 
   $('#cache_text').hide();
+
+  if(getParameterByName('base64') !== null){
+    payload = JSON.parse(atob(getParameterByName('base64')));
+    loadb64();
+  }
 
   $('#customizeButton').click(function () {
     toggleCustomize();
@@ -854,8 +933,8 @@ $(function() {
       var bgHeight = $('#bgImgEl').height();
 
       $('#cSize').css('height', showcase);
-      if (payload.AWSC_Long) {
-        if (payload.AWSC_Long_Minus70 == true) {
+      if (payload.toggles.AWSC_Long) {
+        if (payload.toggles.AWSC_Long_Minus70 == true) {
           var rightheight = newHeight - 70;
           $('.r1').css('height', rightheight);
         } else {
@@ -870,7 +949,7 @@ $(function() {
       //target.textContent = newWidth + '×' + newHeight;
     })
     .on('resizeend', function () {
-      payload.AWSC_Resized = true;
+      payload.toggles.AWSC_Resized = true;
       $('#autoResize_AWSC').show();
       $('#autoResize_AWSC').click(function () {
         $('.showcase_1').css('height', '');
@@ -878,7 +957,7 @@ $(function() {
         $('#autoResize_AWSC').hide();
         closeCustomize();
       });
-      if (payload.SSSC_Long) {
+      if (payload.toggles.SSSC_Long) {
         autoCropHeight(2);
       } else {
         CropImages();
@@ -895,8 +974,8 @@ $(function() {
       var showcase = newHeight + 75;
       var bgHeight = $('#bgImgEl').height();
       $('#sssc').css('height', showcase);
-      if (payload.SSSC_Long) {
-        if (payload.SSSC_Long_Minus70 == true) {
+      if (payload.toggles.SSSC_Long) {
+        if (payload.toggles.SSSC_Long_Minus70 == true) {
           var rightheight = newHeight - 70;
           $('.r2').css('height', rightheight);
         } else {
@@ -911,7 +990,7 @@ $(function() {
       //target.textContent = newWidth + '×' + newHeight;
     })
     .on('resizeend', function () {
-      payload.SSSC_Resized = true;
+      payload.toggles.SSSC_Resized = true;
       $('#autoResize_SSSC').show();
       $('#autoResize_SSSC').click(function () {
         $('.showcase_2').css('height', '');
@@ -919,7 +998,7 @@ $(function() {
         $('#autoResize_SSSC').hide();
         closeCustomize();
       });
-      if (payload.AWSC_Long) {
+      if (payload.toggles.AWSC_Long) {
         autoCropHeight(1);
       } else {
         CropImages();
