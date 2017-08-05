@@ -28,7 +28,7 @@ var payload = {
       AWSC: null,
       SSSC: null,
     }
-  }
+  },
    background: null,
 };
 var loadedBack = null;
@@ -298,6 +298,7 @@ function CropImages() {
          url: background,
          images: [],
       };
+      payload.background = background;
       if (payload.toggles.AWSC_Enable) {
          if (payload.toggles.AWSC_Long) {
             if (payload.toggles.AWSC_Long_Minus70) {
