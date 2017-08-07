@@ -770,7 +770,9 @@ function payloadHandler() {
     if (payload.toggles.SSSC_Long) {
       longImages(2);
       if (payload.toggles.SSSC_Long_Minus70) {
-        shortenRight(2);
+        setTimeout(function() {
+          shortenRight(2);
+        }, 300)
       } else {
         extendRight(2);
       }
