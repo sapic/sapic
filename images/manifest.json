@@ -7,14 +7,13 @@
             "type": "image/png"
         },
         {
-            "src": "/images/android-chrome-256x256.png",
-            "sizes": "256x256",
+            "src": "/images/android-chrome-512x512.png",
+            "sizes": "512x512",
             "type": "image/png"
         }
     ],
-    "theme_color": "#2b5797",
-    "background_color": "#2b5797",
+    "theme_color": "#142436",
+    "background_color": "#142436",
     "start_url": "https://steam.design",
-    "display": "standalone",
-    "orientation": "portrait"
+    "display": "standalone"
 }
