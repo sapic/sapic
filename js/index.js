@@ -891,7 +891,7 @@ $(function() {
       };
     });
   }
-  if (!isNaN(version) && !$('#cache_text_val').val() == version) {
+  if (!isNaN(version) && $('#cache_text_val').val() == version) {
     $('#cache_text').hide();
   }
 
