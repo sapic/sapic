@@ -42,6 +42,10 @@ gulp.task('js2', function() {
       .pipe(gulp.dest('./out'));
 });
 gulp.task('html', ['js', 'js2'], function() {
+  var content = fs.readFileSync('./index.html', {
+     encoding: 'utf-8'
+  });
+  fs.writeFileSync('./index.html', content.replace('{{#vernum}}', process.env.CIRCLE_BUILD_NUM));
    return gulp.src(['index.html'])
       .pipe(useref())
       .pipe(htmlmin())
