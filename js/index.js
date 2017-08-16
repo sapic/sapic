@@ -891,8 +891,9 @@ $(function() {
       };
     });
   }
-
-  $('#cache_text').hide();
+  if (!isNaN(version)) {
+    $('.' + version).hide();
+  }
 
   if (getParameterByName('base64') !== null) {
     payload = JSON.parse(atob(getParameterByName('base64')));
