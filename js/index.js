@@ -565,6 +565,12 @@ function closeCustomize() {
   payloadHandler();
 }
 
+function closeCommunity() {
+  $('#community_updates').hide();
+  $('#customizeBackground').fadeOut();
+  store.set('community', true);
+};
+
 function customizeCheckboxHandler(id) {
   var div = $('#' + id + '');
   var hiddenBelow = div.siblings('.hiddenBelow');
@@ -868,6 +874,23 @@ $(function() {
   if (window.location.hostname == "sapic.github.io") {
     window.location = 'https://steam.design/' + location.hash;
   }
+  if (!store.get('community')) {
+    $('#community_updates').toggle();
+    $('#customizeBackground').fadeToggle();
+    var hover = false;
+
+    $('#community_updates').hover(function() {
+      hover = true;
+    }, function() {
+      hover = false;
+    });
+
+    $('body').mouseup(function() {
+      if (($('#community_updates').is(':visible')) && (!hover)) {
+        closeCommunity();
+      };
+    });
+  }
 
   $('#cache_text').hide();
 
@@ -882,6 +905,10 @@ $(function() {
 
   $('#customizeClose').click(function() {
     closeCustomize();
+  });
+
+  $('#community_close').click(function() {
+    closeCommunity();
   });
 
   var hideangle = 0;
