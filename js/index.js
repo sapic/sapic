@@ -891,8 +891,8 @@ $(function() {
       };
     });
   }
-  if (!isNaN(version)) {
-    $('.' + version).hide();
+  if (!isNaN(version) && !$('#cache_text_val').val() == version) {
+    $('#cache_text').hide();
   }
 
   if (getParameterByName('base64') !== null) {
