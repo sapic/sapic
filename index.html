@@ -59,6 +59,7 @@
   <script src="./js/index.js"></script>
   <script src="./js/store.everything.min.js"></script>
   <script src="./js/jQueryRotate.js"></script>
+  <script src="./js/clipboard.js"></script>
   <!-- endbuild -->
   <script src="/fuckadblock.js"></script>
   <script>
@@ -214,7 +215,7 @@
                                   <div class="gray_bevel for_text_input showlong_buttons customize_textbox hidden" style="position:relative;display:none;height:15px;width:165px;top:2px;">
                                     <input class="dynInput hidden" type="text" size="10" placeholder="Enter a Custom Height Here" style="height:10px;position:relative;bottom:1px;">
                                   </div>
-                                  <div class="btn_grey_white_innerfade btn_small" style="margin-bottom:5px;margin-left:5px;display:none;" id="autoResize_SSSC" onclick "autoCropHeight_2(2);"><span>Auto Resize</span></div>
+                                  <div class="btn_grey_white_innerfade btn_small" style="margin-bottom:5px;margin-left:5px;display:none;" id="autoResize_SSSC" onclick="autoCropHeight_2(2);"><span>Auto Resize</span></div>
                                 </div>
                               </div>
                             </div>
@@ -257,9 +258,16 @@
                               <span style="margin-left:5px;margin-top:5px;">Copy and use this URL to share your background and crop settings with someone else!</span>
                               <span style="margin-left:5px;margin-bottom:5px;margin-top:5px;display:block;">Some parts of the URL are hidden, make sure to triple click to select it all.</span>
                               <span style="margin-left:5px;display:block;">This feature is currently in <b>BETA.</b> If you find any bugs, please tell Oddball in the Discord.</span>
-                              <div class="commentthread_entry_quotebox" style="width:500px;margin:5px;">
-                                <input rows="1" class="commentthread_textarea" id="shareURL" type="text" size="500" style="overflow: hidden;" disabled="disabled" placeholder="">
+
+                              <div class="bg_link">
+                                <div class="gray_bevel for_text_input">
+                                  <div class="btn_profile_action btn_medium copy-btn" data-clipboard-target="#shareURL">
+                                    <span>Copy</span>
+                                  </div>
+                                  <input class="dynInput" type="text" id="shareURL" onFocus="this.select()" readonly>
+                                </div>
                               </div>
+
                             </div>
                           </div>
                         </div>
@@ -867,13 +875,19 @@
       <span id="footerLogo"><img src="https://steamcommunity-a.akamaihd.net/public/images/skin_1/footerLogo_valve.png" width="96" height="26" border="0" alt="Логотип Valve"></span>
       <span id="footerText">
             Powered by STEAM. <span id="version">Version #{{#vernum}}</span><br> Made with love by <a href="https://steamcommunity.com/id/truecarry">TrueCarry</a> and <a href="https://steamcommunity.com/id/theoddball">The Oddball</a><br>
-
+      </span>
       <span>Thanks to our Patrons:
               Dreg, Max Haskiewicz, Seth Startix, and ЦРИСТОВА
-         </span>
+      </span>
     </div>
   </div>
   <img id="bgImgEl" style="display:none">
+
+  <div id="copiedNotification" class="copiedNotification">
+    <div class="notificationBG">
+    </div>
+  </div>
+
   <script>
     ! function(t, e, a) {
       (e[a] = e[a] || []).push(function() {

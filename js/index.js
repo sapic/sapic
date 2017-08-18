@@ -1138,6 +1138,18 @@ $(function() {
   $('#openCustomizeButton').click(function() {
     trackClick('openCustomizeButton');
   })
+
+  var clipboard = new Clipboard('.copy-btn');
+
+  clipboard.on('success', function(e) {
+    var el = $("#copiedNotification");
+
+    el.fadeIn("fast", function(){
+      el.fadeOut("slow");
+    });
+
+    e.clearSelection();
+  });
 });
 
 function trackClick(where, subject) {
