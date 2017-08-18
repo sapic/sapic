@@ -30,6 +30,7 @@ var payload = {
     }
   },
   background: null,
+  esColor: 0,
 };
 var loadedBack = null;
 var currentBGInfo = null;
@@ -504,7 +505,7 @@ function moveElem(elem, direction) {
 }
 
 function addProfileColor() {
-  var color = oddball.esColor;
+  var color = payload.esColor;
   $('.colorStyle').remove();
   if (oddball.holiday) {
     clearInterval(animation);
@@ -537,7 +538,7 @@ function addProfileColor() {
 
 function esColorLoad(colorDiv) {
   var color = colorDiv.value;
-  oddball.esColor = color;
+  payload.esColor = color;
 }
 
 function toggleCustomize() {
@@ -725,6 +726,7 @@ function shortImages(showcase) {
 function loadb64() {
   window.location.href = "#" + payload.background
   loadb64Checkboxes();
+  addProfileColor();
   setTimeout(function() {
     if (payload.cropInfo.customHeight.AWSC) {
       loadCustomHeight(1, payload.cropInfo.customHeight.AWSC)
