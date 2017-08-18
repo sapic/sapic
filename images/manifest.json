@@ -1,5 +1,5 @@
 {
-    "name": "Steam.Design",
+    "name": "",
     "icons": [
         {
             "src": "/images/android-chrome-192x192.png",
@@ -12,8 +12,7 @@
             "type": "image/png"
         }
     ],
-    "theme_color": "#142436",
-    "background_color": "#142436",
-    "start_url": "https://steam.design",
+    "theme_color": "#ffffff",
+    "background_color": "#ffffff",
     "display": "standalone"
 }
