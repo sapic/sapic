@@ -43,7 +43,7 @@ var gAds = [
   '<ins class="adsbygoogle" style="display:inline-block;width:930px;height:180px" data-ad-client="ca-pub-6718897784778373" data-ad-slot="3019807768"></ins>',
   '<ins class="adsbygoogle" style="display:inline-block;width:728px;height:90px" data-ad-client="ca-pub-6718897784778373" data-ad-slot="4177836562"></ins>'
 ];
-var version = '{{#vernum}}';
+var version = 'undefined';
 var backgroundsList = [
   'http://cdn.steamcommunity.com/economy/image/U8721VM9p9C2v1o6cKJ4qEnGqnE7IoTQgZI-VTdwyTBeimAcIoxXpgK8bPeslY9pPJIvB5IWW2-452kaM8heLSRgleGBp7RJxO94PvF90-StAl5z5OYSUWTjFxbU02aQe-apwlFmMZUsfRmhkpsZu94EC595SOKo4TzXhQ',
   'http://cdn.steamcommunity.com/economy/image/fWFc82js0fmoRAP-qOIPu5THSWqfSmTELLqcUywUlj3Hz8JQD_k62zmnzAEbeQUdVBitsTVCj831QvuYDe0T1IhlssMAiXk4kwJ_MbbiZTIzc12VVfgOBKdipgm4D3E2vZA6Vo7m8bpffg6-vYLPLepsZ4si3kth',
@@ -1138,4 +1138,21 @@ function trackClick(where, subject) {
     eventAction: where,
     eventLabel: subject || 'click'
   });
+}
+
+function getShareUrl(base64) {
+  return new Promise(function(resolve, reject) {
+    var shortCode = store.get('shortCode' + base64);
+
+    if (shortCode) return resolve(shortCode);
+
+    $.ajax('https://steam.design/shorten/' + base64)
+      .done(function (data) {
+        store.set('shortCode' + base64, data);
+        resolve(data);
+      })
+      .error(function (error) {
+        reject(error);
+      })
+  })
 }
