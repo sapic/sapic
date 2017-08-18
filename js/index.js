@@ -541,6 +541,10 @@ function esColorLoad(colorDiv) {
 }
 
 function toggleCustomize() {
+  getShareUrl(btoa(JSON.stringify(payload))).then(function(data){
+    $("#shareURL").val('https://steam.design/s/' + data.ShortCode);
+  })
+
   $('#customize').toggle();
   $('#customizeBackground').fadeToggle();
   var hover = false;
@@ -900,6 +904,11 @@ $(function() {
     loadb64();
   }
 
+  if (shareinfo) {
+    JSON.parse(atob(shareinfo));
+    loadb64();
+  }
+
   $('#customizeButton').click(function() {
     toggleCustomize();
   });
@@ -1144,15 +1153,15 @@ function getShareUrl(base64) {
   return new Promise(function(resolve, reject) {
     var shortCode = store.get('shortCode' + base64);
 
-    if (shortCode) return resolve(shortCode);
+    if (shortCode) {
+      console.log(shortCode);
+      return resolve(shortCode);
+    }
 
     $.ajax('https://steam.design/shorten/' + base64)
       .done(function (data) {
-        store.set('shortCode' + base64, data);
-        resolve(data);
-      })
-      .error(function (error) {
-        reject(error);
+        store.set('shortCode' + base64, data.code);
+        resolve(data.code);
       })
   })
 }
