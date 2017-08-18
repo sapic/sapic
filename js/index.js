@@ -905,7 +905,7 @@ $(function() {
   }
 
   if (typeof shareinfo !== 'undefined') {
-    JSON.parse(atob(shareinfo));
+    payload = JSON.parse(atob(shareinfo));
     loadb64();
   }
 
