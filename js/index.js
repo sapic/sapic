@@ -347,7 +347,6 @@ function CropImages() {
 
     payload.bgSaveInfo = bgSaveInfo
     $(".saveButton").attr("href", "https://steam.design/raw/" + btoa(JSON.stringify(bgSaveInfo)));
-    $("#shareURL").val('https://steam.design?base64=' + btoa(JSON.stringify(payload)));
   }, 250);
 }
 

@@ -245,6 +245,7 @@
 .market_listing_row .bg_link .gray_bevel.for_text_input input {
    font-size: 18px;
    width: 415px;
+   padding-left: 3px;
 }
 
 .copiedNotification {
