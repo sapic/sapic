@@ -541,7 +541,7 @@ function esColorLoad(colorDiv) {
 }
 
 function toggleCustomize() {
-  getShareUrl(btoa(JSON.stringify(payload))).then(function(data){
+  getShareUrl(btoa(JSON.stringify(payload))).then(function(data) {
     $("#shareURL").val('https://steam.design/s/' + data.ShortCode);
   })
 
@@ -897,7 +897,7 @@ $(function() {
     });
   }
   if (!isNaN(version) && $('#cache_text_val').val() == version) {
-    $('#cache_text').hide();
+    $('.cache_text').hide();
   }
 
   if (getParameterByName('base64') !== null) {
@@ -1145,7 +1145,7 @@ $(function() {
   clipboard.on('success', function(e) {
     var el = $("#copiedNotification");
 
-    el.fadeIn("fast", function(){
+    el.fadeIn("fast", function() {
       el.fadeOut("slow");
     });
 
@@ -1172,7 +1172,7 @@ function getShareUrl(base64) {
     }
 
     $.ajax('https://steam.design/shorten/' + base64)
-      .done(function (data) {
+      .done(function(data) {
         store.set('shortCode' + base64, data.code);
         resolve(data.code);
       })

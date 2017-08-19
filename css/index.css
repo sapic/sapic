@@ -225,29 +225,6 @@
    width: auto;
 }
 
-.market_listing_row .bg_link .gray_bevel.for_text_input {
-   padding: 0;
-   margin-bottom: 10px;
-   width: 100%;
-}
-
-.market_listing_row .bg_link .gray_bevel.for_text_input .btn_profile_action.btn_medium {
-   position: relative;
-   left: -2px;
-   top: -2px;
-   border-radius: 2px 0 0 2px;
-}
-
-.market_listing_row .bg_link .gray_bevel.for_text_input .btn_profile_action.btn_medium span{
-   line-height: 26px;
-}
-
-.market_listing_row .bg_link .gray_bevel.for_text_input input {
-   font-size: 18px;
-   width: 415px;
-   padding-left: 3px;
-}
-
 .copiedNotification {
    width: 200px;
    height: 75px;
