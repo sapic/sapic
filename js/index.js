@@ -529,9 +529,9 @@ function addProfileColor() {
   } else if (color == 2) {
     $("#profilebody").addClass("es_style_clear");
   } else {
-    $("head").append("<link rel='stylesheet' class='colorStyle' type='text/css' href='images/profile_styles/" + color + "/style.css'>");
-    $(".profile_header_bg_texture").css("background-image", "url('images/profile_styles/" + color + "/header.jpg')");
-    $(".profile_customization").css("background-image", "url('images/profile_styles/" + color + "/showcase.png')");
+    $("head").append("<link rel='stylesheet' class='colorStyle' type='text/css' href='/images/profile_styles/" + color + "/style.css'>");
+    $(".profile_header_bg_texture").css("background-image", "url('/images/profile_styles/" + color + "/header.jpg')");
+    $(".profile_customization").css("background-image", "url('/images/profile_styles/" + color + "/showcase.png')");
   }
 }
 
