@@ -891,6 +891,11 @@ $(function() {
       hover = false;
     });
 
+    if (store.get('shared')) {
+      store.remove('shared');
+      window.location = 'https://steam.design';
+    }
+
     $('body').mouseup(function() {
       if (($('#community_updates').is(':visible')) && (!hover)) {
         closeCommunity();
@@ -903,11 +908,13 @@ $(function() {
 
   if (getParameterByName('base64') !== null) {
     payload = JSON.parse(atob(getParameterByName('base64')));
+    store.set('shared', true);
     loadb64();
   }
 
   if (typeof shareinfo !== 'undefined') {
     payload = JSON.parse(atob(shareinfo));
+    store.set('shared', true);
     loadb64();
   }
 
