@@ -725,6 +725,7 @@ function shortImages(showcase) {
 function loadb64() {
   window.location.href = "#" + payload.background
   loadb64Checkboxes();
+  $('#colorChange').val(payload.esColor);
   addProfileColor();
   setTimeout(function() {
     if (payload.cropInfo.customHeight.AWSC) {
