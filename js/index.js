@@ -551,7 +551,7 @@ function getTextWidth(text, font) {
 function toggleCustomize() {
   getShareUrl(btoa(JSON.stringify(payload))).then(function(data) {
     var textWidth = getTextWidth('https://steam.design/s/' + data.ShortCode, "13px Arial");
-    $('#shareWidth').css('width', Math.ceil(textWidth));
+    $('#shareWidth').css('width', Math.ceil(textWidth) + 5);
     $("#shareURL").val('https://steam.design/s/' + data.ShortCode);
   })
 
