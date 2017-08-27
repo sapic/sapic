@@ -890,28 +890,7 @@ $(function() {
   if (window.location.hostname == "sapic.github.io") {
     window.location = 'https://steam.design/' + location.hash;
   }
-  if (!store.get('community')) {
-    $('#community_updates').toggle();
-    $('#customizeBackground').fadeToggle();
-    var hover = false;
 
-    $('#community_updates').hover(function() {
-      hover = true;
-    }, function() {
-      hover = false;
-    });
-
-    if (store.get('shared')) {
-      store.remove('shared');
-      window.location = 'https://steam.design';
-    }
-
-    $('body').mouseup(function() {
-      if (($('#community_updates').is(':visible')) && (!hover)) {
-        closeCommunity();
-      };
-    });
-  }
   if (!isNaN(version) && $('#cache_text_val').val() == version) {
     $('.cache_text').hide();
   }
