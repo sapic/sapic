@@ -229,8 +229,8 @@
   width: 200px;
   height: 75px;
   position: fixed;
-  left: 50%;
-  top: 50%;
+  left: calc(50% - 70px);
+  top: 55%;
   transform: translateX(-50%);
   z-index: 2000;
   display: none;

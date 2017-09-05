@@ -438,7 +438,7 @@ function doInventoryThings(inventory) {
 }
 
 function privateInventory() {
-  $('#backsList').text("Either your inventory is empty or private. If it isnt, please report this to Oddball in the Discord.");
+  $('#backsList').text("Either your inventory has no backgrounds, or is private.");
   $('#backsList').css("text-align", "center");
 }
 
