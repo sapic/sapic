@@ -16,13 +16,5 @@ test:
     - git clone https://github.com/SAPIC/SAPIC.github.io ./:
         pwd: out
     - CIRCLE_BUILD_NUM=${CIRCLE_BUILD_NUM} gulp
-    - git config --global user.name "${GH_NAME}"
-    - git config --global user.email "${GH_MAIL}"
-    - git add --a:
-        pwd: out
-    - git commit -m 'AutoPush':
-        pwd: out
-    - git push --force --quiet "https://${GH_ATOKEN}@github.com/SAPIC/SAPIC.github.io"> /dev/null 2>&1:
-        pwd: out
-    - scp -r ./* circleci@23.236.54.42:~/www:
+    - scp -r ./* circleci@35.188.219.150:~/www:
         pwd: out
