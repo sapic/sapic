@@ -10,7 +10,7 @@ var rimraf = require('gulp-rimraf');
 var fs = require('fs');
 
 gulp.task('css1', function() {
-   return gulp.src(['./css/buttons.css', './css/shared_global.css',
+   return gulp.src(['./css/buttons.css', './css/social-likes_flat.css', './css/shared_global.css',
          './css/modalContent.css', './css/motiva_sans.css',
          './css/header.css', './css/economy.css', './css/economy_inventory.css', './css/globalv2.css', './css/slider.css', './css/font-awesome.css', './css/font-awesome.min.css'
       ])
@@ -41,6 +41,7 @@ gulp.task('js', ['css2'], function() {
      './js/jquery.smooth-scroll.min.js',
      './js/interact-1.2.9.min.js',
      './js/FileSaver.js',
+	 './js/social-likes.min.js',
      './js/index.js',
      './js/jQueryRotate.js',
      './js/clipboard.js',
