@@ -44,7 +44,7 @@ var gAds = [
   '<ins class="adsbygoogle" style="display:inline-block;width:930px;height:180px" data-ad-client="ca-pub-6718897784778373" data-ad-slot="3019807768"></ins>',
   '<ins class="adsbygoogle" style="display:inline-block;width:728px;height:90px" data-ad-client="ca-pub-6718897784778373" data-ad-slot="4177836562"></ins>'
 ];
-var version = '{{#vernum}}';
+var version = 'undefined';
 var backgroundsList = [
   'http://cdn.steamcommunity.com/economy/image/U8721VM9p9C2v1o6cKJ4qEnGqnE7IoTQgZI-VTdwyTBeimAcIoxXpgK8bPeslY9pPJIvB5IWW2-452kaM8heLSRgleGBp7RJxO94PvF90-StAl5z5OYSUWTjFxbU02aQe-apwlFmMZUsfRmhkpsZu94EC595SOKo4TzXhQ',
   'http://cdn.steamcommunity.com/economy/image/fWFc82js0fmoRAP-qOIPu5THSWqfSmTELLqcUywUlj3Hz8JQD_k62zmnzAEbeQUdVBitsTVCj831QvuYDe0T1IhlssMAiXk4kwJ_MbbiZTIzc12VVfgOBKdipgm4D3E2vZA6Vo7m8bpffg6-vYLPLepsZ4si3kth',
@@ -230,6 +230,7 @@ function noAds() {
 var rAdsCount = 0;
 
 function reloadAds() {
+  if (window.localStorage) return;
   if (rAdsCount % 10 !== 0) {
     rAdsCount++;
     return;
@@ -254,6 +255,7 @@ function reloadAds() {
 }
 
 function reloadImages() {
+  if (window.localStorage) return;
   if (window.location.hash && window.location.hash.indexOf('#login') == -1 &&
     window.location.hash.indexOf('#logout') == -1) {
     var bg = window.location.hash.slice(1);
@@ -443,6 +445,7 @@ function privateInventory() {
 }
 
 function refreshInventory() {
+  if (window.localStorage) return;
   store.remove('backpack');
   $('#backsList').addClass('backsListHide');
   setTimeout(function() {
@@ -462,6 +465,7 @@ function refreshInventory() {
 };
 
 function loginFunc() {
+  if (window.localStorage) return;
   if (window.location.hash.indexOf('#login') !== -1) {
     var userId = window.location.hash.substr(window.location.hash.indexOf("&openid.identity") - 17, 17)
     window.localStorage.setItem('SteamId', userId);

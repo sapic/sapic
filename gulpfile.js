@@ -1,30 +1,36 @@
 var gulp = require('gulp');
-var uncss = require('gulp-uncss');
 var concat = require('gulp-concat');
 var concatCss = require('gulp-concat-css');
-var csso = require('gulp-csso');
 var uglify = require('gulp-uglify');
 var useref = require('gulp-useref');
 var htmlmin = require('gulp-minify-html');
 var rimraf = require('gulp-rimraf');
 var fs = require('fs');
+var postcss = require('gulp-postcss');
+var uncss = require('postcss-uncss');
+var cssnano = require('cssnano');
 
 gulp.task('css1', function() {
   return gulp.src(['./css/buttons.css', './css/social-likes_flat.css', './css/shared_global.css',
     './css/modalContent.css', './css/motiva_sans.css',
     './css/header.css', './css/economy.css', './css/economy_inventory.css', './css/globalv2.css', './css/slider.css', './css/font-awesome.css', './css/font-awesome.min.css', './css/social-likes_flat.css'
     ])
-    .pipe(uncss({
-        html: ['index.html']
-    }))
+    .pipe(postcss([
+      uncss({
+        html: ['./out/index.html'],
+        htmlroot: 'out',
+      }),
+      cssnano()
+    ]))
     .pipe(concatCss('temp.css'))
-    .pipe(csso())
     .pipe(gulp.dest('./out'));
 });
 gulp.task('css2', ['css1'], function() {
   return gulp.src(['./css/profilev2.css', './css/index.css', './out/temp.css'])
     .pipe(concatCss('main.css'))
-    .pipe(csso())
+    .pipe(postcss([
+      cssnano()
+    ]))
     .pipe(gulp.dest('./out'));
 });
 gulp.task('js', ['css2'], function() {
@@ -56,11 +62,11 @@ gulp.task('html', ['js', 'js2'], function() {
   var content = fs.readFileSync('./index.html', {
     encoding: 'utf-8'
   });
-  fs.writeFileSync('./index.html', content.replace('{{#vernum}}', process.env.CIRCLE_BUILD_NUM));
-    return gulp.src(['index.html'])
-      .pipe(useref())
-      .pipe(htmlmin())
-      .pipe(gulp.dest('./out'));
+  fs.writeFileSync('./index_build.html', content.replace('{{#vernum}}', process.env.CIRCLE_BUILD_NUM));
+  return gulp.src(['./out/index_build.html'])
+    .pipe(useref())
+    .pipe(htmlmin())
+    .pipe(gulp.dest('./out'));
 });
 gulp.task('images', function() {
   return gulp.src('./images/**')
