@@ -40,8 +40,7 @@
   <link href="./css/economy.css" rel="stylesheet" type="text/css">
   <link href="./css/economy_inventory.css" rel="stylesheet" type="text/css">
   <link href="./css/font-awesome.min.css" rel="stylesheet" type="text/css">
-  <link href="./css/social-lies_flat.css" rel="stylesheet" type="text/css">
-  <link rel="stylesheet" href="./css/social-likes_flat.css">
+  <link href="./css/social-likes_flat.css" rel="stylesheet" type="text/css">
   <link rel="stylesheet" href="./css/slider.css">
   <link rel="stylesheet" href="./css/index.css">
   <!-- endbuild -->
@@ -57,7 +56,6 @@
   <script src="./js/jquery.smooth-scroll.min.js"></script>
   <script src="./js/interact-1.2.9.min.js"></script>
   <script src="./js/FileSaver.js"></script>
-  <script src="./js/jszip.js"></script>
   <script src="./js/index.js"></script>
   <script src="./js/social-likes.min.js"></script>
   <script src="./js/store.everything.min.js"></script>
@@ -78,11 +76,12 @@
     <div class="content" id="cardsList">
       <div style="margin-top: 5px;">
         <span class="filter" style="float:left; position:relative; display:none;">Filter: <input type="text" id="filterIn"></span>
-        <span class="guide" style="float:left; position:relative; left:23%;"><a class="top_hint" href="https://www.youtube.com/watch?v=MVws18QLOi8">
-               Video Guide!</a></span>
-        <div id="refreshInventory" class="fa fa-refresh" title="Refresh Inventory" style="position:relative; top:2px; left:-16px; cursor:pointer; display:none;"></div>
-        <div id="hideBacksList" class="fa fa-arrow-up" title="Hide Inventory" style="position:relative; top:2px; left:-10px; cursor:pointer; display:none;"></div>
-        <div id="steamAuth" style="float:right"></div>
+        <span class="guide" style="float:left; position:relative; left:23%;"><a class="top_hint" href="https://youtube.com/watch?v=MVws18QLOi8">Video Guide!</a></span>
+        <div id="invbuttons" style="float:right;margin-bottom:9px;">
+          <div id="refreshInventory" class="fa fa-refresh" title="Refresh Inventory" style="position:relative; top:2px; left:-20px; cursor:pointer; display:none;"></div>
+          <div id="hideBacksList" class="fa fa-arrow-up" title="Hide Inventory" style="position:relative; top:2px; left:-15px; cursor:pointer; display:none;"></div>
+          <span id="steamAuth"></span>
+        </div>
       </div>
       <div class="backsList" id="backsList">
         <div id="topAds" style="position:relative; left:9%;"></div>
@@ -98,20 +97,6 @@
               <div class="profile_header_centered_persona">
                 <div class="persona_name" style="font-size: 24px;">
                   <span class="actual_persona_name">SloWolfe</span>
-                  <span class="namehistory_link" onclick="ShowAliasPopup( this );">
-                              <img id="getnamehistory_arrow" src="https://steamcommunity-a.akamaihd.net/public/images/skin_1/arrowDn9x5.gif" width="9" height="5" border="0">
-                              </span>
-                  <div id="NamePopup" class="popup_block_new" style="display: none;">
-                    <div class="popup_body popup_menu">
-                      <div>This user has also played as:</div>
-                      <div id="NamePopupAliases">
-                      </div>
-                    </div>
-                  </div>
-                </div>
-                <div class="header_real_name ellipsis">
-                  <bdi>Dumbfuck</bdi> &nbsp;
-                  <img class="profile_flag" src="https://steamcommunity-a.akamaihd.net/public/images/countryflags/ca.gif"> Canada
                 </div>
                 <div class="bg_link">
                   <div class="gray_bevel for_text_input">
@@ -285,13 +270,13 @@
               </div>
               <div class="header_real_name_spacer">&nbsp;</div>
               <div class="profile_summary">
-                  <div class="social-likes" style="top:12px; left:4%; position: relative;" data-url="https://steam.design/" data-title="I made a cool Steam profile with this! It's so cool!">
+                  <div class="social-likes" style="top:6px; left:4%; position: relative;" data-url="https://steam.design/" data-title="I made a cool Steam profile with this! It's so cool!">
                     <div class="facebook" title="Share link on Facebook">&nbsp;Facebook</div>
                     <div class="twitter" title="Share link on Twitter">&nbsp;Twitter</div>
                     <div class="plusone" title="Share link on Google+">&nbsp;Google+</div>
                     <div class="vkontakte" title="Share link on VK">&nbsp;VK</div>
                   </div><br>
-                  <div class="bb_h1" style="top:12px; position: relative; text-align:center;">
+                  <div class="bb_h1" style="top:8px; position: relative; text-align:center;">
                   <b>
                     Our: <a class="bb_link" href="https://www.patreon.com/steamdesign" target="_blank" rel="noreferrer">Patreon</a> |
                     <a class="bb_link" href="https://github.com/sapic/sapic" target="_blank" rel="noreferrer">GitHub</a> |
@@ -458,287 +443,10 @@
                 </div>
               </div>
             </div>
-            <div class="profile_customization">
-              <div class="profile_customization_header guide">
-                Favorite Guide
-              </div>
-              <div class="profile_customization_block">
-                <div class="favoriteguide_showcase">
-                  <div class="showcase_content_bg">
-                    <div class="workshop_showcase_item showcase_slot ">
-                      <a href="https://steamcommunity.com/sharedfiles/filedetails/?id=299701202">
-                                       <img class="workshop_showcase_item_image" src="https://i.imgur.com/Q8kS6es.png">
-                                       </a>
-                      <div class="workshop_showcase_item_details">
-                        <div class="showcase_item_detail_title"><a class="whiteLink" href="https://steamcommunity.com/sharedfiles/filedetails/?id=299701202">Create Steam Background Showcases</a></div>
-                        <div class="guide_showcase_contributors">
-                          Created by -
-                          <a href="https://steamcommunity.com/id/TrueCarry" class="whiteLink" data-miniprofile="55701071">TrueCarry</a>,
-                          <a href="https://steamcommunity.com/id/BoltActionBeats" class="whiteLink" data-miniprofile="65430799">Dr.Bolt</a>,
-                          <a href="https://steamcommunity.com/id/wolfenstian" class="whiteLink" data-miniprofile="68667764">SloWolfe</a>,
-                          <a href="https://steamcommunity.com/id/cursebroken" class="whiteLink" data-miniprofile="139708282">Curse Broken</a> and
-                          <a href="https://steamcommunity.com/id/theoddball" class="whiteLink" data-miniprofile="88233003">The Oddball</a>
-                        </div>
-                        <div class="guide_showcase_appinfo">
-                          <div class="workshop_showcase_stars">
-                            <img src="https://steamcommunity-a.akamaihd.net/public/images/sharedfiles/5-star.png?v=2"> 7,421 ratings
-                          </div>
-                          <div class="workshop_showcase_app">
-                            <a href="https://steamcommunity.com/workshop/browse/?appid=440"><img src="https://steamcdn-a.akamaihd.net/steamcommunity/public/images/apps/440/e3f595a92552da3d664ad00277fad2107345f743.jpg"></a> <a class="whiteLink" href="https://steamcommunity.com/workshop/browse/?appid=440">Team Fortress 2</a>
-                          </div>
-                        </div>
-                        <div class="guide_showcase_item_description">
-                          A step by step guide into transferring your current Steam background into a showcase to show its full glory.
-                        </div>
-                        <a class="bb_link" href="https://steamcommunity.com/linkfilter/?url=https://steam.design/" target="_blank" rel="noreferrer">Cropping Tool</a>
-                      </div>
-                    </div>
-                  </div>
-                </div>
-              </div>
-            </div>
-          </div>
-          <div class="profile_recentgame_header profile_leftcol_header">
-            <div class="recentgame_quicklinks">
-              <h2>31.5 hours past 2 weeks</h2>
-            </div>
-            <h2>Recent Game Activity</h2>
-          </div>
-          <div class="recent_games">
-            <div class="recent_game">
-              <div class="recent_game_content">
-                <div class="game_info">
-                  <div class="game_info_cap"><a href="https://steamcommunity.com/app/218230"><img src="https://steamcdn-a.akamaihd.net/steamcommunity/public/images/apps/218230/8bb9796bf871a1d620b28db4dfb2abef2138542d.jpg"></a></div>
-                  <div class="game_info_details">
-                    138 hrs on record<br> last played on Dec 1
-                  </div>
-                  <div class="game_name"><a class="whiteLink" href="https://steamcommunity.com/app/218230">PlanetSide 2</a></div>
-                </div>
-                <div class="game_info_stats">
-                  <div class="game_info_stats_publishedfilecounts">
-                    <span class="published_file_count_ctn">
-                                    <span class="published_file_icon screenshot"></span>
-                    <a class="published_file_link" href="https://steamcommunity.com/id/wolfenstian/screenshots/?appid=218230">Screenshots 26</a>
-                    </span>
-                  </div>
-                </div>
-              </div>
-            </div>
-            <div class="recent_game">
-              <div class="recent_game_content">
-                <div class="game_info">
-                  <div class="game_info_cap"><a href="https://steamcommunity.com/app/12900"><img src="https://steamcdn-a.akamaihd.net/steamcommunity/public/images/apps/12900/75dc0398efeae1cc994714e37c893b593f9c9a88.jpg"></a></div>
-                  <div class="game_info_details">
-                    19.9 hrs on record<br> last played on Nov 30
-                  </div>
-                  <div class="game_name"><a class="whiteLink" href="https://steamcommunity.com/app/12900">Audiosurf</a></div>
-                </div>
-                <div class="game_info_stats">
-                  <div class="game_info_achievements_only_ctn">
-                    <div class="game_info_achievements">
-                      <span class="game_info_achievement_summary">
-                                       <a class="whiteLink" href="https://steamcommunity.com/id/wolfenstian/stats/12900/achievements/">Achievement Progress</a>
-                                       &nbsp; 7 of 19						</span>
-                      <div class="achievement_progress_bar_ctn">
-                        <div class="progress_bar" style="width: 36%;">
-                        </div>
-                      </div>
-                      <div class="achievement_icons">
-                        <div class="game_info_achievement" title="Stealth Adept">
-                          <a href="https://steamcommunity.com/id/wolfenstian/stats/12900/achievements/">
-                                             <img src="https://steamcdn-a.akamaihd.net/steamcommunity/public/images/apps/12900/8cbdd7cd9511cf38b2eb0f339d5e505e7a0ef849.jpg">
-                                             </a>
-                        </div>
-                        <div class="game_info_achievement" title="Ninjutsu">
-                          <a href="https://steamcommunity.com/id/wolfenstian/stats/12900/achievements/">
-                                             <img src="https://steamcdn-a.akamaihd.net/steamcommunity/public/images/apps/12900/39e642f0bb60d9a0dfabfcd4e50f14ddcc5d71be.jpg">
-                                             </a>
-                        </div>
-                        <div class="game_info_achievement" title="Stainless">
-                          <a href="https://steamcommunity.com/id/wolfenstian/stats/12900/achievements/">
-                                             <img src="https://steamcdn-a.akamaihd.net/steamcommunity/public/images/apps/12900/fbb3b94d83b69d5a7ae6269cd377414fe214ef1b.jpg">
-                                             </a>
-                        </div>
-                        <div class="game_info_achievement" title="PPM 30,000">
-                          <a href="https://steamcommunity.com/id/wolfenstian/stats/12900/achievements/">
-                                             <img src="https://steamcdn-a.akamaihd.net/steamcommunity/public/images/apps/12900/4135fae98ede979a9b84ff6d940ed4b13598a460.jpg">
-                                             </a>
-                        </div>
-                        <div class="game_info_achievement" title="PPM 10,000">
-                          <a href="https://steamcommunity.com/id/wolfenstian/stats/12900/achievements/">
-                                             <img src="https://steamcdn-a.akamaihd.net/steamcommunity/public/images/apps/12900/4d1751bf3007634e1398a92fe40b33a970b8329d.jpg">
-                                             </a>
-                        </div>
-                        <div class="game_info_achievement plus_more" onclick="window.location='https://steamcommunity.com/id/wolfenstian/stats/12900/achievements/'">
-                          +2
-                        </div>
-                      </div>
-                    </div>
-                    <div style="clear: right;"></div>
-                  </div>
-                </div>
-              </div>
-            </div>
-            <div class="recent_game">
-              <div class="recent_game_content">
-                <div class="game_info">
-                  <div class="game_info_cap"><a href="https://steamcommunity.com/app/227700"><img src="https://steamcdn-a.akamaihd.net/steamcommunity/public/images/apps/227700/89c55efb73b88472ae69315dc691353955edcd98.jpg"></a></div>
-                  <div class="game_info_details">
-                    238 hrs on record<br> last played on Nov 29
-                  </div>
-                  <div class="game_name"><a class="whiteLink" href="https://steamcommunity.com/app/227700">Firefall</a></div>
-                </div>
-                <div class="game_info_stats">
-                  <div class="game_info_achievements_only_ctn">
-                    <div class="game_info_achievements">
-                      <span class="game_info_achievement_summary">
-                                       <a class="whiteLink" href="https://steamcommunity.com/id/wolfenstian/stats/227700/achievements/">Achievement Progress</a>
-                                       &nbsp; 56 of 117						</span>
-                      <div class="achievement_progress_bar_ctn">
-                        <div class="progress_bar" style="width: 47%;">
-                        </div>
-                      </div>
-                      <div class="achievement_icons">
-                        <div class="game_info_achievement" title="Pushing Forty">
-                          <a href="https://steamcommunity.com/id/wolfenstian/stats/227700/achievements/">
-                                             <img src="https://steamcdn-a.akamaihd.net/steamcommunity/public/images/apps/227700/3bd108ac95c37c2aaf44e4b42909ad3113287e04.jpg">
-                                             </a>
-                        </div>
-                        <div class="game_info_achievement" title="Break Their Spine">
-                          <a href="https://steamcommunity.com/id/wolfenstian/stats/227700/achievements/">
-                                             <img src="https://steamcdn-a.akamaihd.net/steamcommunity/public/images/apps/227700/7fcfad75cf8212d0993262c679197a90bdc34858.jpg">
-                                             </a>
-                        </div>
-                        <div class="game_info_achievement" title="Peak Purviewer">
-                          <a href="https://steamcommunity.com/id/wolfenstian/stats/227700/achievements/">
-                                             <img src="https://steamcdn-a.akamaihd.net/steamcommunity/public/images/apps/227700/2aff79c601b9a893d3575358895ebc5ccda28b78.jpg">
-                                             </a>
-                        </div>
-                        <div class="game_info_achievement" title="Tornado Chaser">
-                          <a href="https://steamcommunity.com/id/wolfenstian/stats/227700/achievements/">
-                                             <img src="https://steamcdn-a.akamaihd.net/steamcommunity/public/images/apps/227700/7fcfad75cf8212d0993262c679197a90bdc34858.jpg">
-                                             </a>
-                        </div>
-                        <div class="game_info_achievement" title="Turn on More Lights">
-                          <a href="https://steamcommunity.com/id/wolfenstian/stats/227700/achievements/">
-                                             <img src="https://steamcdn-a.akamaihd.net/steamcommunity/public/images/apps/227700/2aff79c601b9a893d3575358895ebc5ccda28b78.jpg">
-                                             </a>
-                        </div>
-                        <div class="game_info_achievement plus_more" onclick="window.location='https://steamcommunity.com/id/wolfenstian/stats/227700/achievements/'">
-                          +51
-                        </div>
-                      </div>
-                    </div>
-                    <div style="clear: right;"></div>
-                  </div>
-                  <div class="game_info_stats_rule"></div>
-                  <div class="game_info_stats_publishedfilecounts">
-                    <span class="published_file_count_ctn">
-                                    <span class="published_file_icon screenshot"></span>
-                    <a class="published_file_link" href="https://steamcommunity.com/id/wolfenstian/screenshots/?appid=227700">Screenshots 76</a>
-                    </span>
-                    <span class="published_file_count_ctn">
-                                    <span class="published_file_icon guide"></span>
-                    <a class="published_file_link" href="https://steamcommunity.com/id/wolfenstian/myworkshopfiles/?section=guides&amp;appid=227700">Guide 1</a>
-                    </span>
-                  </div>
-                </div>
-              </div>
-            </div>
-          </div>
-          <div>
-            <div class="recentgame_quicklinks">
-              View: <a class="whiteLink" href="https://steamcommunity.com/id/wolfenstian/games/">All 335 Games</a> | <a class="whiteLink" href="https://steamcommunity.com/id/wolfenstian/wishlist/">Wishlist</a>
-            </div>
-            <div style="clear: right;"></div>
           </div>
         </div>
         <div class="profile_rightcol">
-          <div class="rColAds"></div>
-          <div class="profile_badges" style="display:none; top:10px; position:relative">
-            <div class="profile_count_link_preview_ctn">
-              <div class="profile_count_link ellipsis">
-                <a href="https://steamcommunity.com/id/wolfenstian/badges/">
-                              <span class="count_link_label">Badges</span>&nbsp;
-                              <span class="profile_count_link_total">
-                              66															</span>
-                              </a>
-              </div>
-              <div class="profile_count_link_preview">
-                <div class="profile_badges_badge " data-community-tooltip="Game Mechanic<br>
-                                 344 games owned">
-                  <a href="https://steamcommunity.com/id/wolfenstian/badges/13">
-                                 <img src="https://steamcommunity-a.akamaihd.net/public/images/badges/13_gamecollector/250.png" class="badge_icon small">
-                                 </a>
-                </div>
-                <div class="profile_badges_badge " data-community-tooltip="Level 1<br>
-                                 Level 1 Sweet fantasy Badge">
-                  <a href="https://steamcommunity.com/id/wolfenstian/gamecards/612110">
-                                 <img src="https://steamcdn-a.akamaihd.net/steamcommunity/public/images/items/612110/197378569fe289ba15fdbd2521cdee6f5bfcf63b.png" class="badge_icon small">
-                                 </a>
-                </div>
-                <div class="profile_badges_badge " data-community-tooltip="Steam Awards Lvl 2<br>
-                                 Level 2 The Steam Awards Badge">
-                  <a href="https://steamcommunity.com/id/wolfenstian/gamecards/566020">
-                                 <img src="https://steamcdn-a.akamaihd.net/steamcommunity/public/images/items/566020/dea6f03696c4f044c03148bb1ad547afb9f77681.png" class="badge_icon small">
-                                 </a>
-                </div>
-                <div class="profile_badges_badge last" data-community-tooltip="Steam Awards Nomination Committee 2016<br>
-                                 Completed all tasks">
-                  <a href="https://steamcommunity.com/id/wolfenstian/badges/25">
-                                 <img src="https://steamcommunity-a.akamaihd.net/public/images/badges/25_steamawardnominations/level04_54.png" class="badge_icon small">
-                                 </a>
-                </div>
-                <div style="clear: left;"></div>
-              </div>
-            </div>
-          </div>
-          <div class="profile_item_links">
-            <div class="profile_count_link ellipsis">
-              <a href="https://steamcommunity.com/id/wolfenstian/games/?tab=all">
-                           <span class="count_link_label">Games</span>&nbsp;
-                           <span class="profile_count_link_total">
-                           335															</span>
-                           </a>
-            </div>
-            <div class="profile_count_link ellipsis">
-              <a href="https://steamcommunity.com/id/wolfenstian/inventory/">
-                           <span class="count_link_label">Inventory</span>&nbsp;
-                           <span class="profile_count_link_total">
-                           &nbsp;
-                           </span>
-                           </a>
-            </div>
-            <div class="profile_count_link ellipsis">
-              <a href="https://steamcommunity.com/id/wolfenstian/screenshots/">
-                           <span class="count_link_label">Screenshots</span>&nbsp;
-                           <span class="profile_count_link_total">
-                           792															</span>
-                           </a>
-            </div>
-            <div class="profile_count_link ellipsis">
-              <a href="https://steamcommunity.com/id/wolfenstian/myworkshopfiles/?section=guides">
-                           <span class="count_link_label">Guides</span>&nbsp;
-                           <span class="profile_count_link_total">
-                           2															</span>
-                           </a>
-            </div>
-            <div class="profile_count_link ellipsis">
-              <a href="https://steamcommunity.com/id/wolfenstian/images/">
-                           <span class="count_link_label">Artwork</span>&nbsp;
-                           <span class="profile_count_link_total">
-                           12															</span>
-                           </a>
-            </div>
-            <div class="profile_count_link ellipsis">
-              <a href="https://steamcommunity.com/id/wolfenstian/myworkshopfiles/?section=greenlight">
-                           <span class="count_link_label">Greenlight Items</span>&nbsp;
-                           <span class="profile_count_link_total">
-                           1															</span>
-                           </a>
-            </div>
-            <div style="clear: left;"></div>
-          </div>
+          <div class="underfr" width="268"></div>
           <div class="profile_group_links profile_count_link_preview_ctn responsive_groupfriends_element">
             <div class="profile_count_link ellipsis">
               <a href="https://steamcommunity.com/id/wolfenstian/groups/">
@@ -839,7 +547,6 @@
               </div>
             </div>
           </div>
-          <div class="underfr" width="268">
           </div>
         </div>
         <div id="bottomAds"></div>
