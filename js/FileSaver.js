@@ -184,4 +184,4 @@ if (typeof module !== "undefined" && module.exports) {
    define([], function() {
       return saveAs;
    });
-}
+};

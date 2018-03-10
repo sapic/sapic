@@ -170,4 +170,4 @@ function AnimationForShowcase($Showcase) {
    var x = Math.floor(Math.random() * ($Showcase.width() - 2 * xpad)) + (xpad / 2);
    var Animation = new CAnimation(g_rgAnimations[nAnimation], $Showcase, pos.left + x, pos.top - 120);
    Animation.Start();
-}
+};
