@@ -230,7 +230,7 @@ function noAds() {
 var rAdsCount = 0;
 
 function reloadAds() {
-  if (window.localStorage) return;
+  if (!window.localStorage) return;
   if (rAdsCount % 10 !== 0) {
     rAdsCount++;
     return;
@@ -255,7 +255,7 @@ function reloadAds() {
 }
 
 function reloadImages() {
-  if (window.localStorage) return;
+  if (!window.localStorage) return;
   if (window.location.hash && window.location.hash.indexOf('#login') == -1 &&
     window.location.hash.indexOf('#logout') == -1) {
     var bg = window.location.hash.slice(1);
@@ -383,6 +383,7 @@ function getParameterByName(name, url) {
 }
 
 function createInventory(id) {
+  if (!window.localStorage) return;
   var hide = store.get('hide');
   var getitems = store.get('backpack');
   if (getitems && getitems.backgrounds !== null) {
@@ -445,7 +446,7 @@ function privateInventory() {
 }
 
 function refreshInventory() {
-  if (window.localStorage) return;
+  if (!window.localStorage) return;
   store.remove('backpack');
   $('#backsList').addClass('backsListHide');
   setTimeout(function() {
@@ -465,7 +466,7 @@ function refreshInventory() {
 };
 
 function loginFunc() {
-  if (window.localStorage) return;
+  if (!window.localStorage) return;
   if (window.location.hash.indexOf('#login') !== -1) {
     var userId = window.location.hash.substr(window.location.hash.indexOf("&openid.identity") - 17, 17)
     window.localStorage.setItem('SteamId', userId);
@@ -988,6 +989,7 @@ $(function() {
   }, 10);
 
   var userId = null;
+  if (!window.localStorage) return;
   userId = window.localStorage.getItem('SteamId');
   if (userId !== null) {
     $('#steamAuth').append('<div class="fa fa-sign-out" style="display:inline;position:relative;cursor:pointer;top:2px;left:-13px;" title="Sign Out" href="#logout"></div>');

@@ -1253,6 +1253,10 @@ gulp-postcss@^7.0.1:
     postcss-load-config "^1.2.0"
     vinyl-sourcemaps-apply "^0.2.1"
 
+gulp-rename@^1.2.2:
+  version "1.2.2"
+  resolved "https://registry.yarnpkg.com/gulp-rename/-/gulp-rename-1.2.2.tgz#3ad4428763f05e2764dec1c67d868db275687817"
+
 gulp-rimraf@^0.1.1:
   version "0.1.1"
   resolved "https://registry.yarnpkg.com/gulp-rimraf/-/gulp-rimraf-0.1.1.tgz#5aaba8f870559ca4885c044385f9926c0f863f10"
