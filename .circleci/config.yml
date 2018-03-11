@@ -23,8 +23,8 @@ jobs:
       - run: rm -rf out
       - run: mkdir out
       - run: CIRCLE_BUILD_NUM=${CIRCLE_BUILD_NUM} /usr/local/bin/yarn build
-      - run: 
-          command: scp -r ./* circleci@35.188.219.150:~/www:
+      - run:
+          command: scp -r ./* circleci@35.188.219.150:~/www
           working_directory: ~/sapic/out
 
 workflows:
