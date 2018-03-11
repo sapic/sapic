@@ -7,11 +7,11 @@ jobs:
     steps:
       - checkout
       - restore_cache:
-        name: Restore node_modules cache
-        keys:
-          - v2-node-{{ .Branch }}-{{ checksum "yarn.lock" }}
-          - v2-node-{{ .Branch }}-
-          - v2-node-
+          name: Restore node_modules cache
+          keys:
+            - v2-node-{{ .Branch }}-{{ checksum "yarn.lock" }}
+            - v2-node-{{ .Branch }}-
+            - v2-node-
       - run:
           name: Install Dependencies
           command: yarn install --frozen-lockfile
@@ -24,8 +24,8 @@ jobs:
       - run: mkdir out
       - run: CIRCLE_BUILD_NUM=${CIRCLE_BUILD_NUM} /usr/local/bin/yarn build
       - run: 
-        command: scp -r ./* circleci@35.188.219.150:~/www:
-        working_directory: ~/sapic/out
+          command: scp -r ./* circleci@35.188.219.150:~/www:
+          working_directory: ~/sapic/out
 
 workflows:
   version: 2
