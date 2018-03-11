@@ -3,3 +3,4 @@ node_modules/*
 out/*
 yarn-error.log
 index_build.html
+js/index_build.js

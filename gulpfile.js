@@ -38,7 +38,7 @@ gulp.task('js', function() {
   var content = fs.readFileSync('./js/index.js', {
     encoding: 'utf-8'
   });
-  fs.writeFileSync('./js/index.js', content.replace('{{#vernum}}', process.env.CIRCLE_BUILD_NUM));
+  fs.writeFileSync('./js/index_build.js', content.replace(/{{#vernum}}/g, process.env.CIRCLE_BUILD_NUM));
   return gulp.src([
     './js/jquery.min.js',
     './js/store.everything.min.js',
@@ -47,7 +47,7 @@ gulp.task('js', function() {
     './js/interact-1.2.9.min.js',
     './js/FileSaver.js',
     './js/social-likes.min.js',
-    './js/index.js',
+    './js/index_build.js',
     './js/jQueryRotate.js',
     './js/clipboard.js',
   ])
@@ -63,7 +63,7 @@ gulp.task('html', function() {
   var content = fs.readFileSync('./index.html', {
     encoding: 'utf-8'
   });
-  fs.writeFileSync('./index_build.html', content.replace('{{#vernum}}', process.env.CIRCLE_BUILD_NUM));
+  fs.writeFileSync('./index_build.html', content.replace(/{{#vernum}}/g, process.env.CIRCLE_BUILD_NUM));
   return gulp.src(['./index_build.html'])
     .pipe(useref())
     .pipe(htmlmin())
