@@ -23,6 +23,7 @@ jobs:
       - run: rm -rf out
       - run: mkdir out
       - run: CIRCLE_BUILD_NUM=${CIRCLE_BUILD_NUM} /usr/local/bin/yarn build
+      - run: ssh-keyscan -H 35.188.219.150 >> ~/.ssh/known_hosts
       - run:
           command: scp -r ./* circleci@35.188.219.150:~/www
           working_directory: ~/sapic/out
