@@ -26,3 +26,9 @@ jobs:
       - run: 
         command: scp -r ./* circleci@35.188.219.150:~/www:
         working_directory: ~/sapic/out
+
+workflows:
+  version: 2
+  build:
+    jobs:
+      - build
