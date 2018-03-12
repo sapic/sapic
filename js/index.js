@@ -1,11 +1,16 @@
 background = null;
+var loadedBack = null;
+var currentBGInfo = null;
+var version = '{{#vernum}}';
+var rAdsCount = 0;
+
 var oddball = {
   refresh: false,
-  hidememes: false,
-  ref: 0,
-  holiday: false,
-  esColor: 0
+  hideBacks: false,
+  refreshAngle: 0,
+  holiday: false
 };
+
 var payload = {
   toggles: {
     SSSC_Enable: false,
@@ -32,8 +37,7 @@ var payload = {
   background: null,
   esColor: 0,
 };
-var loadedBack = null;
-var currentBGInfo = null;
+
 var bgSaveInfo = {
   url: null,
   images: [],
@@ -44,7 +48,7 @@ var gAds = [
   '<ins class="adsbygoogle" style="display:inline-block;width:930px;height:180px" data-ad-client="ca-pub-6718897784778373" data-ad-slot="3019807768"></ins>',
   '<ins class="adsbygoogle" style="display:inline-block;width:728px;height:90px" data-ad-client="ca-pub-6718897784778373" data-ad-slot="4177836562"></ins>'
 ];
-var version = '{{#vernum}}';
+
 var backgroundsList = [
   'http://cdn.steamcommunity.com/economy/image/U8721VM9p9C2v1o6cKJ4qEnGqnE7IoTQgZI-VTdwyTBeimAcIoxXpgK8bPeslY9pPJIvB5IWW2-452kaM8heLSRgleGBp7RJxO94PvF90-StAl5z5OYSUWTjFxbU02aQe-apwlFmMZUsfRmhkpsZu94EC595SOKo4TzXhQ',
   'http://cdn.steamcommunity.com/economy/image/fWFc82js0fmoRAP-qOIPu5THSWqfSmTELLqcUywUlj3Hz8JQD_k62zmnzAEbeQUdVBitsTVCj831QvuYDe0T1IhlssMAiXk4kwJ_MbbiZTIzc12VVfgOBKdipgm4D3E2vZA6Vo7m8bpffg6-vYLPLepsZ4si3kth',
@@ -110,6 +114,7 @@ var banners = [
   ['song.jpg', 'https://www.youtube.com/watch?v=r50JFfofHes'],
   ['git.jpg', 'https://www.github.com/SAPIC/SAPIC']
 ];
+
 var leftOffset = {
   0: 508,
   1: 648,
@@ -159,18 +164,12 @@ function getImageBase64(image, fn) {
   });
 }
 
-function bgChanged() {
-  reloadAds();
-}
-
 function noAds() {
   var bn = banners[Math.floor(Math.random() * banners.length)];
   $('.underfr').empty().html('<a href="' + bn[1] + '" target="_blank"><img src="./images/' + bn[0] + '"></a>');
   $('.rColAds').remove();
   $('.profile_badges').show();
 }
-
-var rAdsCount = 0;
 
 function reloadAds() {
   if (!window.localStorage) return;
@@ -221,7 +220,7 @@ function reloadImages() {
     getImageBase64(background, function() {
       console.log('The current background URL is:', background);
       payloadHandler();
-      bgChanged();
+      reloadAds();
     });
   } else {
     CropImages();
@@ -346,7 +345,7 @@ function createInventory(id) {
 function doInventoryThings(inventory) {
   var hide = store.get('hide');
   if (oddball.refresh === true) {
-    clearInterval(oddball.ref);
+    clearInterval(oddball.refreshAngle);
     $("#refreshInventory").rotate({
       animateTo: 0
     });
@@ -480,8 +479,7 @@ function addProfileColor() {
 }
 
 function esColorLoad(colorDiv) {
-  var color = colorDiv.value;
-  payload.esColor = color;
+  payload.esColor = colorDiv.value;
 }
 
 function getTextWidth(text, font) {
@@ -585,7 +583,6 @@ function customizeCheckboxHandler(id) {
     }
   }
 }
-
 
 function shortenRight(showcase) {
   var bh = $('#big' + showcase + '').height();
@@ -731,7 +728,6 @@ function loadb64Checkboxes_2(elem) {
   }
 }
 
-
 function payloadHandler() {
   if (payload.toggles.SSSC_Enable) {
     showDiv(2);
@@ -866,15 +862,15 @@ $(function() {
   var hide = store.get('hide');
   if (hide === true) {
     hideangle = 180;
-    oddball.hidememes = true;
+    oddball.hideBacks = true;
     $('#hideBacksList').rotate({
       animateTo: 180
     });
   }
 
   $('#hideBacksList').click(function() {
-    oddball.hidememes = !oddball.hidememes;
-    store.set('hide', oddball.hidememes);
+    oddball.hideBacks = !oddball.hideBacks;
+    store.set('hide', oddball.hideBacks);
     hideangle += 180;
     $('#backsList').toggleClass('backsListHide');
     $(this).rotate({
@@ -886,7 +882,7 @@ $(function() {
     bind: {
       mouseover: function() {
         var angle = 0;
-        oddball.ref = setInterval(function() {
+        oddball.refreshAngle = setInterval(function() {
           angle += 3;
           $("#refreshInventory").rotate(angle);
         }, 15);
@@ -897,7 +893,7 @@ $(function() {
       },
       mouseout: function() {
         if (oddball.refresh !== true) {
-          clearInterval(oddball.ref);
+          clearInterval(oddball.refreshAngle);
           $("#refreshInventory").rotate({
             animateTo: 0
           });
@@ -918,8 +914,8 @@ $(function() {
   }
 
   addArrows();
-
   loginFunc();
+
   setTimeout(function() {
     if (typeof fuckAdBlock === 'undefined') {
       noAds();
@@ -930,7 +926,7 @@ $(function() {
   if (!window.localStorage) return;
   userId = window.localStorage.getItem('SteamId');
   if (userId !== null) {
-    $('#steamAuth').append('<div class="fa fa-sign-out" style="display:inline;position:relative;cursor:pointer;top:2px;left:-13px;" title="Sign Out" href="#logout"></div>');
+    $('#steamAuth').append('<div class="fa fa-sign-out" style="display:inline;position:relative;cursor:pointer;top:2px;left:-10px;" title="Sign Out" href="#logout"></div>');
     createInventory(userId);
   } else {
     $('#steamAuth').append('<a href="https://steamcommunity.com/openid/login?openid.ns=http%3A%2F%2Fspecs.openid.net%2Fauth%2F2.0&openid.mode=checkid_setup&openid.return_to=http%3A%2F%2Fsteam.design%2Findex.html%23login&openid.realm=http%3A%2F%2Fsteam.design&openid.ns.sreg=http%3A%2F%2Fopenid.net%2Fextensions%2Fsreg%2F1.1&openid.claimed_id=http%3A%2F%2Fspecs.openid.net%2Fauth%2F2.0%2Fidentifier_select&openid.identity=http%3A%2F%2Fspecs.openid.net%2Fauth%2F2.0%2Fidentifier_select" class="name"><img src="https://steamcommunity-a.akamaihd.net/public/images/signinthroughsteam/sits_01.png" width="129" height="25"></a>');
