@@ -105,7 +105,7 @@ var donators = [
 ];
 
 var banners = [
-  ['donations.jpg', 'https://www.paypal.com/cgi-bin/webscr?cmd=_s-xclick&hosted_button_id=YUNGXPRNGZPNL'],
+  ['donations.jpg', 'https://paypal.me/steamdesign'],
   ['noads.jpg', 'https://i.imgur.com/g9C38bN.gif'],
   ['song.jpg', 'https://www.youtube.com/watch?v=r50JFfofHes'],
   ['git.jpg', 'https://www.github.com/SAPIC/SAPIC']
