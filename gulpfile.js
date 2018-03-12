@@ -12,7 +12,7 @@ var cssnano = require('cssnano');
 var rename = require('gulp-rename');
 
 gulp.task('css1', ['html', 'js', 'js2'], function() {
-  return gulp.src(['./css/buttons.css', './css/social-likes_flat.css', './css/shared_global.css',
+  return gulp.src(['./css/buttons.css', './css/shared_global.css',
     './css/modalContent.css',
     './css/header.css', './css/economy.css', './css/economy_inventory.css', './css/globalv2.css', './css/slider.css', './css/font-awesome.css', './css/font-awesome.min.css', './css/social-likes_flat.css'
     ])
