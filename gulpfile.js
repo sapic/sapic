@@ -13,9 +13,10 @@ var rename = require('gulp-rename');
 
 gulp.task('css1', ['html', 'js', 'js2'], function() {
   return gulp.src(['./css/buttons.css', './css/social-likes_flat.css', './css/shared_global.css',
-    './css/modalContent.css', './css/motiva_sans.css',
+    './css/modalContent.css',
     './css/header.css', './css/economy.css', './css/economy_inventory.css', './css/globalv2.css', './css/slider.css', './css/font-awesome.css', './css/font-awesome.min.css', './css/social-likes_flat.css'
     ])
+    .pipe(concatCss('temp.css'))
     .pipe(postcss([
       uncss({
         html: ['./out/index.html'],
@@ -23,11 +24,10 @@ gulp.task('css1', ['html', 'js', 'js2'], function() {
       }),
       cssnano()
     ]))
-    .pipe(concatCss('temp.css'))
     .pipe(gulp.dest('./out'));
 });
 gulp.task('css2', ['css1'], function() {
-  return gulp.src(['./css/profilev2.css', './css/index.css', './out/temp.css'])
+  return gulp.src(['./css/profilev2.css', './css/index.css', './css/motiva_sans.css', './out/temp.css'])
     .pipe(concatCss('main.css'))
     .pipe(postcss([
       cssnano()
