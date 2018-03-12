@@ -42,10 +42,8 @@ gulp.task('js', function() {
   return gulp.src([
     './js/jquery.min.js',
     './js/store.everything.min.js',
-    './js/release.js',
     './js/jquery.smooth-scroll.min.js',
     './js/interact-1.2.9.min.js',
-    './js/FileSaver.js',
     './js/social-likes.min.js',
     './js/index_build.js',
     './js/jQueryRotate.js',
