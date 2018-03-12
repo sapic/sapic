@@ -12,10 +12,17 @@ var cssnano = require('cssnano');
 var rename = require('gulp-rename');
 
 gulp.task('css1', ['html', 'js', 'js2'], function() {
-  return gulp.src(['./css/buttons.css', './css/shared_global.css',
+  return gulp.src([
+    './css/buttons.css',
+    './css/shared_global.css',
     './css/modalContent.css',
-    './css/header.css', './css/economy.css', './css/economy_inventory.css', './css/globalv2.css', './css/slider.css', './css/font-awesome.css', './css/font-awesome.min.css',
-    ])
+    './css/header.css',
+    './css/economy.css',
+    './css/economy_inventory.css',
+    './css/globalv2.css',
+    './css/slider.css',
+    './css/font-awesome.css'
+  ])
     .pipe(concatCss('temp.css'))
     .pipe(postcss([
       uncss({
@@ -27,7 +34,13 @@ gulp.task('css1', ['html', 'js', 'js2'], function() {
     .pipe(gulp.dest('./out'));
 });
 gulp.task('css2', ['css1'], function() {
-  return gulp.src(['./css/profilev2.css', './css/index.css', './css/motiva_sans.css', './css/social-likes_flat.css', './out/temp.css'])
+  return gulp.src([
+    './css/profilev2.css',
+    './css/index.css',
+    './css/motiva_sans.css',
+    './css/social-likes_flat.css',
+    './out/temp.css'
+  ])
     .pipe(concatCss('main.css'))
     .pipe(postcss([
       cssnano()
