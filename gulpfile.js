@@ -50,12 +50,13 @@ gulp.task('js', function() {
     './js/clipboard.js',
   ])
     .pipe(concat('main.js'))
-    // .pipe(uglify())
+    .pipe(uglify())
     .pipe(gulp.dest('./out'));
 });
 gulp.task('js2', function() {
-  return gulp.src(['./js/fuckadblock.js', './js/holiday.js'])
-    .pipe(gulp.dest('./out'));
+  return gulp.src(['./fuckadblock.js', './js/holiday.js'])
+  .pipe(uglify())
+  .pipe(gulp.dest('./out'));
 });
 gulp.task('html', function() {
   var content = fs.readFileSync('./index.html', {
