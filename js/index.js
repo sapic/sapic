@@ -926,7 +926,7 @@ $(function() {
   if (!window.localStorage) return;
   userId = window.localStorage.getItem('SteamId');
   if (userId !== null) {
-    $('#steamAuth').append('<div class="fa fa-sign-out" style="display:inline;position:relative;cursor:pointer;top:2px;left:-10px;" title="Sign Out" href="#logout"></div>');
+    $('#steamAuth').append('<a class="fa fa-sign-out" style="display:inline;position:relative;cursor:pointer;top:2px;left:-10px;color:#8f98a0;" title="Sign Out" href="#logout"></a>');
     createInventory(userId);
   } else {
     $('#steamAuth').append('<a href="https://steamcommunity.com/openid/login?openid.ns=http%3A%2F%2Fspecs.openid.net%2Fauth%2F2.0&openid.mode=checkid_setup&openid.return_to=http%3A%2F%2Fsteam.design%2Findex.html%23login&openid.realm=http%3A%2F%2Fsteam.design&openid.ns.sreg=http%3A%2F%2Fopenid.net%2Fextensions%2Fsreg%2F1.1&openid.claimed_id=http%3A%2F%2Fspecs.openid.net%2Fauth%2F2.0%2Fidentifier_select&openid.identity=http%3A%2F%2Fspecs.openid.net%2Fauth%2F2.0%2Fidentifier_select" class="name"><img src="https://steamcommunity-a.akamaihd.net/public/images/signinthroughsteam/sits_01.png" width="129" height="25"></a>');
