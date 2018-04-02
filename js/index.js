@@ -190,10 +190,8 @@ function reloadAds() {
   $('#bottomAds').html(gAds[1]);
   (adsbygoogle = window.adsbygoogle || []).push({});
 
-  if (!userId) {
-    $('#topAds').html(gAds[2]);
-    (adsbygoogle = window.adsbygoogle || []).push({});
-  }
+  $('#topAds').html(gAds[2]);
+  (adsbygoogle = window.adsbygoogle || []).push({});
 }
 
 function reloadImages() {
