@@ -45,7 +45,6 @@ var bgSaveInfo = {
 
 var gAds = [
   '<ins class="adsbygoogle" style="display:block" data-ad-client="ca-pub-6718897784778373" data-ad-slot="7589608163" data-ad-format="auto"></ins>',
-  '<ins class="adsbygoogle" style="display:inline-block;width:930px;height:180px" data-ad-client="ca-pub-6718897784778373" data-ad-slot="3019807768"></ins>',
   '<ins class="adsbygoogle" style="display:inline-block;width:728px;height:90px" data-ad-client="ca-pub-6718897784778373" data-ad-slot="4177836562"></ins>'
 ];
 
@@ -187,13 +186,8 @@ function reloadAds() {
   $('.rColAds').html(gAds[0]);
   (adsbygoogle = window.adsbygoogle || []).push({});
 
-  $('#bottomAds').html(gAds[1]);
+  $('#topAds').html(gAds[2]);
   (adsbygoogle = window.adsbygoogle || []).push({});
-
-  if (!userId) {
-    $('#topAds').html(gAds[2]);
-    (adsbygoogle = window.adsbygoogle || []).push({});
-  }
 }
 
 function reloadImages() {
