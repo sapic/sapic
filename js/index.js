@@ -500,6 +500,7 @@ function closeCommunity() {
 }
 
 function customizeCheckboxHandler(id) {
+  trackClick('settings', id)
   var div = $('#' + id + '');
   var hiddenBelow = div.siblings('.hiddenBelow');
 
