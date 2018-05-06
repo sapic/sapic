@@ -6,17 +6,17 @@
     "build": "gulp"
   },
   "devDependencies": {
-    "gulp": "^3.9.0",
+    "gulp": "^3.9.1",
     "gulp-concat": "^2.5.2",
-    "gulp-concat-css": "^2.1.0",
+    "gulp-concat-css": "^3.1.0",
     "gulp-minify-html": "~1.0.0",
-    "gulp-rimraf": "^0.1.1",
+    "gulp-rimraf": "^0.2.2",
     "gulp-uglify": "^3.0.0",
-    "gulp-useref": "~1.1.1"
+    "gulp-useref": "^3.1.5"
   },
   "dependencies": {
     "cssnano": "^3.10.0",
-    "gulp": "^3.9.0",
+    "gulp": "^3.9.1",
     "gulp-postcss": "^7.0.1",
     "gulp-rename": "^1.2.2",
     "postcss-uncss": "^0.16.1",
