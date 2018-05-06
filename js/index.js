@@ -115,11 +115,28 @@ var ImagesNames = {
   33: ['#w1', 'Workshop_Right.png'],
 };
 
+var randomBgsOrder = []
+
 var randomBackground = function() {
-  var bg = backgroundsList[Math.floor(Math.random() * backgroundsList.length)];
+  if (randomBgsOrder.length < 3) {
+    for(var i = 0; i < 3; i++) {
+      randomBgsOrder.push(Math.floor(Math.random() * backgroundsList.length))
+    }
+  }
+
+  var preloader = $('#bgPreloader')
+  preloader.html('')
+  for(var i = 0; i < randomBgsOrder.length; i++) {
+    var bgInfo = backgroundsList[randomBgsOrder[i]]
+    var image = new Image()
+    image.src = bgInfo.steamUrl
+    preloader.append(image)
+  }
+  
+  var bg = backgroundsList[randomBgsOrder.shift()];
+
   if (typeof bg !== 'string') {
     currentBGInfo = bg;
-    console.log(bg.hls);
     var httpsLink = bg.steamUrl.replace('http://cdn.akamai.steamstatic.com/', 'https://steamcdn-a.akamaihd.net/');
     return httpsLink || 'https://steam.design/image/' + bg.url + '.jpg';
   } else {
@@ -1061,6 +1078,8 @@ $(function() {
 
     e.clearSelection();
   });
+
+  randomBgsOrder.push(Math.floor(Math.random() * backgroundsList.length))
 });
 
 function trackClick(where, subject) {

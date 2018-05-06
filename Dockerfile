@@ -4,7 +4,7 @@ FROM node:10 as build
 WORKDIR /app
 # A wildcard is used to ensure both package.json AND package-lock.json are copied
 # where available (npm@5+)
-COPY package*.json ./
+COPY package*.json yarn* ./
 
 #RUN apt-get update
 #RUN apt-get install build-essential
