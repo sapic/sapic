@@ -820,9 +820,9 @@ $(function() {
     window.location = 'https://steam.design/' + location.hash;
   }
 
-  if (!isNaN(version) && $('#cache_text_val').val() == version) {
+  //if (!isNaN(version) && $('#cache_text_val').val() == version) {
     $('.cache_text').hide();
-  }
+  //}
 
   if (getParameterByName('base64') !== null) {
     payload = JSON.parse(atob(getParameterByName('base64')));
