@@ -16,6 +16,7 @@ COPY . .
 # Remove background folder, so it wont trigger build
 # RUN rm -r background didnt work
 
+ENV CIRCLE_BUILD_NUM=30
 RUN yarn build
 
 FROM nginx:stable-alpine
