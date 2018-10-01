@@ -8,10 +8,6 @@
   animation: fa-spin 2s infinite linear;
 }
 
-.fa-arrow-down:before {
-  content: "\f063";
-}
-
 .commentthread_subscribe_ctn {
   position: relative;
   display: block;
@@ -32,11 +28,6 @@
   position: relative;
   display: block;
   margin-left: 5px;
-}
-
-.social-sapic {
-  position: relative;
-  top: 21px;
 }
 
 .btn_green_white_innerfade {
@@ -130,11 +121,6 @@
   left: 5px;
 }
 
-.backsListHide {
-  max-height: 0;
-  transition: max-height 0.25s ease-out;
-}
-
 .spin {
   transform: rotate( -180deg);
   transition: transform 200ms ease;
@@ -143,51 +129,6 @@
 .unspin {
   transform: rotate( 0deg);
   transition: transform 200ms ease;
-}
-
-.screenshot _showcase_screenshot {
-  overflow: hidden;
-}
-
-.types-selector input {
-  margin: 0;
-  padding: 0;
-  display: none;
-  -webkit-appearance: none;
-  -moz-appearance: none;
-  appearance: none;
-}
-
-.types-selector input:active+.types {
-  opacity: .9;
-}
-
-.types-selector input:checked+.types {
-  -webkit-filter: none;
-  -moz-filter: none;
-  filter: none;
-}
-
-.types {
-  cursor: pointer;
-  background-size: contain;
-  background-repeat: no-repeat;
-  display: inline-block;
-  width: 72px;
-  height: 59px;
-  -webkit-transition: all 100ms ease-in;
-  -moz-transition: all 100ms ease-in;
-  transition: all 100ms ease-in;
-  margin: 0 3px;
-  -webkit-filter: brightness(1.8) grayscale(1) opacity(.7);
-  -moz-filter: brightness(1.8) grayscale(1) opacity(.7);
-  filter: brightness(1.8) grayscale(1) opacity(.7);
-}
-
-.types:hover {
-  -webkit-filter: brightness(1.2) grayscale(.5) opacity(.9);
-  -moz-filter: brightness(1.2) grayscale(.5) opacity(.9);
-  filter: brightness(1.2) grayscale(.5) opacity(.9);
 }
 
 .filter {
@@ -206,10 +147,6 @@
 
 .dynInput {
   width: 310px;
-}
-
-.resizable {
-  cursor: s-resize;
 }
 
 .imageHolder {
@@ -235,44 +172,9 @@
   margin-top: -10px
 }
 
-.customization_header_download {
-  margin-left: 30px;
-  cursor: pointer;
-}
-
-.customization_header_download:hover {
-  text-decoration: underline;
-}
-
-.es_style_clear .profile_header_badge {
-  background-color: rgba(22, 22, 23, 0.6) !important;
-  background-image: none !important;
-  box-shadow: none !important;
-}
-
-.es_style_clear .profile_content {
-  border-top-left-radius: 8px;
-  border-top-right-radius: 8px;
-}
-
-.es_style_clear .profile_header_bg, .es_style_clear .profile_header_bg_texture {
-  background-image: none !important;
-}
-
-#disqus_thread>a {
-  color: #5491cf;
-}
-
 #avatar {
   height: 164px;
   width: 164px;
-}
-
-#leftColAds {
-  height: 180px;
-  width: 930px;
-  float: right;
-  margin: 1px;
 }
 
 .market_listing_row .bg_link {
@@ -303,8 +205,4 @@
   font-size: 25px;
   margin: 23px 20px 20px 55px;
   color: #e2e2e2;
-}
-
-.fa-sign-out:before {
-  content: "\f08b";
 }
