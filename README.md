@@ -8,3 +8,5 @@ Small tool to crop Steam background images for profiles.
 ## Preview:
 
 ![Preview of steam.design](http://i.oddball.tf/ppIHb.jpg?raw=true)
+
+[![Uses BrowserStack](https://i.oddball.tf/8W9UiP.png?raw=true)](https://www.browserstack.com)]
