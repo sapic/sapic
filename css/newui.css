@@ -101,18 +101,14 @@
     margin: 10px 0 10px 0;
 }
 
-.profile_header_badge{
-    position: relative;
-    bottom: 10px;
-}
-
 .profile_header_actions{
+    top: 10px;
     position: relative;
-    height: 50px;
+    height: 40px;
 }
 
 .saveButton>span{
     position: relative;
-    top: 20%;
+    top: 14%;
     font-size: 17px;
 }
