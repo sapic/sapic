@@ -508,6 +508,7 @@ function closeCustomize() {
   $('#customize').hide();
   $('#customizeBackground').fadeOut();
   addProfileColor();
+  addArrows();
   payloadHandler();
 }
 
@@ -903,8 +904,6 @@ $(function() {
   } else {
     backgroundsList = bgs;
   }
-
-  addArrows();
   loginFunc();
 
   setTimeout(function() {

@@ -25,6 +25,10 @@
     background-image: none;
 }
 
+.profile_customization_header{
+    height: 30px !important;
+}
+
 .profile_content{
     margin-top: 0px !important; 
     padding-top: 0px !important;
