@@ -84,6 +84,11 @@
   left: 5px;
 }
 
+.backsListHide {
+  max-height: 0px;
+  transition: max-height 0.25s ease-in;
+}
+
 .spin {
   transform: rotate( -180deg);
   transition: transform 200ms ease;
@@ -167,4 +172,12 @@
   font-size: 25px;
   margin: 23px 20px 20px 55px;
   color: #e2e2e2;
+}
+
+.fa-sign-out:before {
+  content: "\f08b";
+}
+
+.fa-arrow-down:before {
+  content: "\f063";
 }

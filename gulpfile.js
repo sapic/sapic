@@ -11,7 +11,7 @@ var uncss = require('postcss-uncss');
 var cssnano = require('cssnano');
 var rename = require('gulp-rename');
 
-gulp.task('css1', function() {
+gulp.task('uncss', function() {
   fs.unlink('./index_build.html', () => {});
   return gulp.src([
     './css/buttons.css',
@@ -21,7 +21,6 @@ gulp.task('css1', function() {
     './css/globalv2.css',
     './css/slider.css',
     './css/font-awesome.css',
-    './css/newui.css'
   ])
     .pipe(concatCss('temp.css'))
     .pipe(postcss([
@@ -34,13 +33,14 @@ gulp.task('css1', function() {
     .pipe(gulp.dest('./out'));
 });
 
-gulp.task('css2', function() {
+gulp.task('normalcss', function() {
   return gulp.src([
     './css/profilev2.css',
     './css/index.css',
     './css/motiva_sans.css',
     './css/social-likes_flat.css',
-    './out/temp.css'
+    './out/temp.css',
+    './css/newui.css'
   ])
     .pipe(concatCss('main.css'))
     .pipe(postcss([
@@ -70,7 +70,7 @@ gulp.task('js', function() {
 });
 
 gulp.task('js2', function() {
-  return gulp.src(['./fuckadblock.js', './js/holiday.js'])
+  return gulp.src(['./fuckadblock.js'])
   .pipe(uglify())
   .pipe(gulp.dest('./out'));
 });
@@ -97,7 +97,7 @@ gulp.task('fonts', function() {
     .pipe(gulp.dest('./out/fonts/'));
 });
 
-gulp.task('page', gulp.series('html', 'css1', 'css2'))
+gulp.task('page', gulp.series('html', 'uncss', 'normalcss'))
 
 gulp.task('default', gulp.parallel('page', 'js', 'js2', 'images', 'fonts'), function() {
   return gulp.src('./out/temp.css', {
