@@ -9,7 +9,7 @@ COPY package*.json yarn* ./
 #RUN apt-get update
 #RUN apt-get install build-essential
 
-RUN yarn
+RUN yarn install --frozen-lockfile
 # If you are building your code for production
 # RUN npm install --only=production
 COPY . .
