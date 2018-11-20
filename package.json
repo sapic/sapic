@@ -12,7 +12,7 @@
     "gulp-minify-html": "^1.0.6",
     "gulp-rimraf": "^0.2.2",
     "gulp-uglify": "^3.0.1",
-    "gulp-useref": "^3.1.5"
+    "gulp-useref": "^1.1.1"
   },
   "dependencies": {
     "cssnano": "^4.1.4",
