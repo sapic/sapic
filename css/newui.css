@@ -54,6 +54,11 @@
 }
 
 .saveButton{
+    left: 5px;
+    position: relative;
+    width: 256px;
+    height: 100%;
+    text-align: center;
     background: linear-gradient(45deg, #36bbf7 0%, #702df9 100%) !important;
     opacity: 0.8;
     transition: opacity 0.25s ease;
@@ -83,7 +88,7 @@
 
 .profile_header_badgeinfo{
     position: relative;
-    top: 54px;
+    top: 40px;
 }
 
 #filterIn{
@@ -94,4 +99,20 @@
 
 .underfr{
     margin: 10px 0 10px 0;
+}
+
+.profile_header_badge{
+    position: relative;
+    bottom: 10px;
+}
+
+.profile_header_actions{
+    position: relative;
+    height: 50px;
+}
+
+.saveButton>span{
+    position: relative;
+    top: 20%;
+    font-size: 17px;
 }
