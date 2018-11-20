@@ -12,14 +12,13 @@ var cssnano = require('cssnano');
 var rename = require('gulp-rename');
 
 gulp.task('css1', function() {
+  fs.unlink('./index_build.html');
   return gulp.src([
-    './css/buttons.css',
-    './css/shared_global.css',
-    './css/modalContent.css',
-    './css/economy.css',
-    './css/globalv2.css',
-    './css/slider.css',
-    './css/font-awesome.css'
+    './css/*.css',
+    '!./css/profilev2.css',
+    '!./css/index.css',
+    '!./css/motiva_sans.css',
+    '!./css/social-likes_flat.css',
   ])
     .pipe(concatCss('temp.css'))
     .pipe(postcss([
@@ -52,16 +51,7 @@ gulp.task('js', function() {
     encoding: 'utf-8'
   });
   fs.writeFileSync('./js/index_build.js', content.replace(/{{#vernum}}/g, process.env.CIRCLE_BUILD_NUM));
-  return gulp.src([
-    './js/jquery.min.js',
-    './js/store.everything.min.js',
-    './js/jquery.smooth-scroll.min.js',
-    './js/interact-1.2.9.min.js',
-    './js/social-likes.min.js',
-    './js/index_build.js',
-    './js/jQueryRotate.js',
-    './js/clipboard.js',
-  ])
+  return gulp.src(['./js/*.js', '!./fuckadblock.js', '!./js/holiday.js'])
     .pipe(concat('main.js'))
     .pipe(uglify())
     .pipe(gulp.dest('./out'));

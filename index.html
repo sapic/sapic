@@ -40,6 +40,7 @@
   <link href="./css/social-likes_flat.css" rel="stylesheet" type="text/css">
   <link href="./css/index.css" rel="stylesheet" type="text/css">
   <link href="./css/slider.css" rel="stylesheet" type="text/css">
+  <link href="./css/newui.css" rel="stylesheet" type="text/css">
   <!-- endbuild -->
   <!-- build:js /main.js -->
   <script src="./js/jquery.min.js"></script>
@@ -71,7 +72,8 @@
     <div class="content" id="cardsList">
       <div style="margin-top: 5px;">
         <span class="filter" style="float:left; position:relative; display:none;">Filter: <input type="text" id="filterIn"></span>
-        <span class="guide" style="float:left; position:relative; left:23%;"><a class="top_hint" href="https://youtube.com/watch?v=MVws18QLOi8">Video Guide!</a></span>
+        <span class="guide" style="float:left; position:relative; left:23%;"><a class="top_hint" href="https://youtube.com/watch?v=MVws18QLOi8">Video
+            Guide!</a></span>
         <div id="invbuttons" style="float:right;margin-bottom:9px;">
           <div id="refreshInventory" class="fa fa-refresh" title="Refresh Inventory" style="position:relative; top:2px; left:-20px; cursor:pointer; display:none;"></div>
           <div id="hideBacksList" class="fa fa-arrow-up" title="Hide Inventory" style="position:relative; top:2px; left:-15px; cursor:pointer; display:none;"></div>
@@ -95,7 +97,7 @@
                 </div>
                 <div class="bg_link">
                   <div class="gray_bevel for_text_input">
-                    <input class="dynInput" type="text" name="real_name" id="urlIn" size="30" placeholder="You can paste a custom image URL here...">
+                    <input class="dynInput" type="text" name="real_name" id="urlIn" size="30" placeholder="Paste a background URL here">
                   </div>
                   <div class="btn_profile_action btn_medium" id="goUrl" style="left:4px; position:relative;">
                     <span>Change BG</span>
@@ -104,19 +106,14 @@
               </div>
               <div class="playerAvatar playerAvatarAutoSize profile_header_size offline">
                 <div class="playerAvatarAutoSizeInner">
-                  <img id="avatar">
+                  <div id="avatar"></div>
                 </div>
               </div>
               <div class="profile_header_badgeinfo">
                 <div class="profile_header_badgeinfo_badge_area">
-                  <div class="persona_name persona_level">
-                    <span>Level&nbsp;</span>
-                    <div class="friendPlayerLevel lvl_60">
-                      <span class="friendPlayerLevelNum">63</span>
-                    </div>
-                  </div>
                   <div class="profile_header_badge" style="position:relative;top:9px;">
-                    <a href="https://discord.gg/jnqnHuX" target="_blank"><img src="https://discordapp.com/api/guilds/304986224467378177/widget.png?style=banner2" style="height: 87%;top: 4px;left: 5px;position: relative;"></a>
+                    <a href="https://discord.gg/jnqnHuX" target="_blank"><img src="https://discordapp.com/api/guilds/304986224467378177/widget.png?style=banner2"
+                        style="height: 87%;top: 4px;left: 5px;position: relative;"></a>
                   </div>
                 </div>
                 <div class="profile_header_actions" style="position:relative">
@@ -135,39 +132,45 @@
                               <div class="bb_h1 customize_textbox" id="cache_text" style="color:red">
                                 <input id="cache_text_val" value=" {{#vernum}} " style="display:none;">
                                 <b>It seems you dont have latest version cached. <br />
-                                               Some functions of the site may not work. <br />
-                                               Press Ctrl + Shift + R to grab the new version. <br />
-                                               If this still doesn't work, please wait a little bit and do it again.</b>
+                                  Some functions of the site may not work. <br />
+                                  Press Ctrl + Shift + R to grab the new version. <br />
+                                  If this still doesn't work, please wait a little bit and do it again.</b>
                               </div>
                             </div>
                             <div class="market_listing_row market_recent_listing_row">
                               <div class="bb_h1 customize_textbox">
                                 <b>Artwork Showcase:</b>
                               </div>
-                              <div class="commentthread_subscribe_ctn checked" onclick="customizeCheckboxHandler(this.id)" id="AWSC_Checkbox">
+                              <div class="commentthread_subscribe_ctn checked" onclick="customizeCheckboxHandler(this.id)"
+                                id="AWSC_Checkbox">
                                 <span class="commentthread_subscribe_checkbox">
-                                              <span class="commentthread_subscribe_check"></span>
+                                  <span class="commentthread_subscribe_check"></span>
                                 </span>
                                 <span class="commentthread_subscribe_desc">Enable Artwork Showcase</span>
                               </div>
                               <div class="hiddenBelow">
-                                <div class="commentthread_subscribe_ctn checked" onclick="customizeCheckboxHandler(this.id)" id="AWSC_Long_Checkbox">
+                                <div class="commentthread_subscribe_ctn checked" onclick="customizeCheckboxHandler(this.id)"
+                                  id="AWSC_Long_Checkbox">
                                   <span class="commentthread_subscribe_checkbox">
-                                              <span class="commentthread_subscribe_check"></span>
+                                    <span class="commentthread_subscribe_check"></span>
                                   </span>
                                   <span class="commentthread_subscribe_desc">Enable Long Images on Artwork Showcase</span>
                                 </div>
                                 <div class="hiddenBelow">
-                                  <div class="commentthread_subscribe_ctn" onclick="customizeCheckboxHandler(this.id)" id="AWSC_Long_Minus70_Checkbox">
+                                  <div class="commentthread_subscribe_ctn" onclick="customizeCheckboxHandler(this.id)"
+                                    id="AWSC_Long_Minus70_Checkbox">
                                     <span class="commentthread_subscribe_checkbox">
-                                              <span class="commentthread_subscribe_check"></span>
+                                      <span class="commentthread_subscribe_check"></span>
                                     </span>
                                     <span class="commentthread_subscribe_desc">Shorten Right Image</span>
                                   </div>
-                                  <div class="gray_bevel for_text_input showlong_buttons customize_textbox hidden" style="position:relative;display:none;height:15px;width:165px;top:2px;">
-                                    <input class="dynInput hidden" type="text" size="10" placeholder="Enter a Custom Height Here" style="height:10px;position:relative;bottom:1px;">
+                                  <div class="gray_bevel for_text_input showlong_buttons customize_textbox hidden"
+                                    style="position:relative;display:none;height:15px;width:165px;top:2px;">
+                                    <input class="dynInput hidden" type="text" size="10" placeholder="Enter a Custom Height Here"
+                                      style="height:10px;position:relative;bottom:1px;">
                                   </div>
-                                  <div class="btn_grey_white_innerfade btn_small" style="margin-bottom:5px;margin-left:5px;display:none;" id="autoResize_AWSC" onclick="autoCropHeight_2(1);"><span>Auto Resize</span></div>
+                                  <div class="btn_grey_white_innerfade btn_small" style="margin-bottom:5px;margin-left:5px;display:none;"
+                                    id="autoResize_AWSC" onclick="autoCropHeight_2(1);"><span>Auto Resize</span></div>
                                 </div>
                               </div>
                             </div>
@@ -177,28 +180,32 @@
                               </div>
                               <div class="commentthread_subscribe_ctn" onclick="customizeCheckboxHandler(this.id)" id="SSSC_Checkbox">
                                 <span class="commentthread_subscribe_checkbox">
-                                               <span class="commentthread_subscribe_check"></span>
+                                  <span class="commentthread_subscribe_check"></span>
                                 </span>
                                 <span class="commentthread_subscribe_desc">Enable Screenshot Showcase</span>
                               </div>
                               <div class="hiddenBelow hidden">
                                 <div class="commentthread_subscribe_ctn" onclick="customizeCheckboxHandler(this.id)" id="SSSC_Long_Checkbox">
                                   <span class="commentthread_subscribe_checkbox">
-                                               <span class="commentthread_subscribe_check"></span>
+                                    <span class="commentthread_subscribe_check"></span>
                                   </span>
                                   <span class="commentthread_subscribe_desc">Enable Long Images on Screenshot Showcase</span>
                                 </div>
                                 <div class="hiddenBelow hidden">
-                                  <div class="commentthread_subscribe_ctn" onclick="customizeCheckboxHandler(this.id)" id="SSSC_Long_Minus70_Checkbox">
+                                  <div class="commentthread_subscribe_ctn" onclick="customizeCheckboxHandler(this.id)"
+                                    id="SSSC_Long_Minus70_Checkbox">
                                     <span class="commentthread_subscribe_checkbox">
-                                               <span class="commentthread_subscribe_check"></span>
+                                      <span class="commentthread_subscribe_check"></span>
                                     </span>
                                     <span class="commentthread_subscribe_desc">Shorten Right Image</span>
                                   </div>
-                                  <div class="gray_bevel for_text_input showlong_buttons customize_textbox hidden" style="position:relative;display:none;height:15px;width:165px;top:2px;">
-                                    <input class="dynInput hidden" type="text" size="10" placeholder="Enter a Custom Height Here" style="height:10px;position:relative;bottom:1px;">
+                                  <div class="gray_bevel for_text_input showlong_buttons customize_textbox hidden"
+                                    style="position:relative;display:none;height:15px;width:165px;top:2px;">
+                                    <input class="dynInput hidden" type="text" size="10" placeholder="Enter a Custom Height Here"
+                                      style="height:10px;position:relative;bottom:1px;">
                                   </div>
-                                  <div class="btn_grey_white_innerfade btn_small" style="margin-bottom:5px;margin-left:5px;display:none;" id="autoResize_SSSC" onclick="autoCropHeight_2(2);"><span>Auto Resize</span></div>
+                                  <div class="btn_grey_white_innerfade btn_small" style="margin-bottom:5px;margin-left:5px;display:none;"
+                                    id="autoResize_SSSC" onclick="autoCropHeight_2(2);"><span>Auto Resize</span></div>
                                 </div>
                               </div>
                             </div>
@@ -208,7 +215,7 @@
                               </div>
                               <div class="commentthread_subscribe_ctn" onclick="customizeCheckboxHandler(this.id)" id="WSSC_Checkbox">
                                 <span class="commentthread_subscribe_checkbox">
-                                               <span class="commentthread_subscribe_check"></span>
+                                  <span class="commentthread_subscribe_check"></span>
                                 </span>
                                 <span class="commentthread_subscribe_desc">Enable Workshop Showcase</span>
                               </div>
@@ -220,31 +227,34 @@
                               <div id="esColors" style="margin-left:5px;margin-top:5px;">
                                 <a href="https://www.enhancedsteam.com/" target="_blank">Enhanced Steam Colors:&nbsp;</a>
                                 <select id="colorChange" onchange="esColorLoad(this)">
-                                            <option value="0">Default</option>
-                                            <option value="1">Blue</option>
-                                            <option value="2">Clear</option>
-                                            <option value="3">Green</option>
-                                            <option value="4">Holiday 2014</option>
-                                            <option value="5">Orange</option>
-                                            <option value="6">Pink</option>
-                                            <option value="7">Purple</option>
-                                            <option value="8">Red</option>
-                                            <option value="9">Teal</option>
-                                            <option value="10">Yellow</option>
-                                          </select>
+                                  <option value="0">Default</option>
+                                  <option value="1">Blue</option>
+                                  <option value="2">Clear</option>
+                                  <option value="3">Green</option>
+                                  <option value="4">Holiday 2014</option>
+                                  <option value="5">Orange</option>
+                                  <option value="6">Pink</option>
+                                  <option value="7">Purple</option>
+                                  <option value="8">Red</option>
+                                  <option value="9">Teal</option>
+                                  <option value="10">Yellow</option>
+                                </select>
                               </div>
                             </div>
                             <div class="market_listing_row market_recent_listing_row">
                               <div class="bb_h1">
                                 <b>Share URL:</b>
                               </div>
-                              <span style="margin-left:5px;margin-top:5px;">Copy and use this URL to share your background and crop settings with someone else!</span>
+                              <span style="margin-left:5px;margin-top:5px;">Copy and use this URL to share your
+                                background and crop settings with someone else!</span>
                               <div class="bg_link" style="display:-webkit-box">
-                                <div class="btn_grey_white_innerfade btn_small copy-btn" data-clipboard-target="#shareURL" style="position:relative;top:9px;">
+                                <div class="btn_grey_white_innerfade btn_small copy-btn" data-clipboard-target="#shareURL"
+                                  style="position:relative;top:9px;">
                                   <span>Copy</span>
                                 </div>
                                 <div class="commentthread_entry_quotebox" id="shareWidth" style="width:165px;margin:5px;">
-                                  <input class="dynInput commentthread_textarea" type="text" id="shareURL" size="500" onFocus="this.select()" readonly placeholder="Loading...">
+                                  <input class="dynInput commentthread_textarea" type="text" id="shareURL" size="500"
+                                    onFocus="this.select()" readonly placeholder="Loading...">
                                 </div>
                               </div>
                             </div>
@@ -254,7 +264,8 @@
                     </div>
                   </div>
                 </div>
-                <div class="btn_profile_action btn_medium" style="left:7px; position:relative;top:9px;" onclick="toggleCustomize()" id="openCustomizeButton">
+                <div class="btn_profile_action btn_medium" style="left:7px; position:relative;top:9px;" onclick="toggleCustomize()"
+                  id="openCustomizeButton">
                   <span style=" text-align:center; ">Customize Cropping</span>
                 </div>
               </div>
@@ -268,22 +279,27 @@
                 <div class="social-likes" data-url="https://steam.design/" data-title="I made a cool Steam profile with this! It's so cool!">
                   <div class="facebook" title="Share link on Facebook">&nbsp;Facebook</div>
                   <div class="twitter" title="Share link on Twitter">&nbsp;Twitter</div>
-                  <div class="plusone" title="Share link on Google+">&nbsp;Google+</div>
                   <div class="vkontakte" title="Share link on VK">&nbsp;VK</div>
                 </div><br>
                 <div class="bb_h1" style="top:8px; position: relative;">
                   <b>
-                    Our: <a class="bb_link" href="https://paypal.me/steamdesign" target="_blank" rel="noreferrer">Donations</a> |
-                    <a class="bb_link" href="https://github.com/sapic/sapic" target="_blank" rel="noreferrer">GitHub</a> |
-                    <a class="bb_link" href="https://steamcommunity.com/groups/sapic" target="_blank" rel="noreferrer">Steam Group</a> |
-                    <a class="bb_link" href="https://chrome.google.com/webstore/detail/steamdesign-buttons/mjmabgdoainclinjecbkdancpamdiaih">Chrome Extension</a>
+                    Our: <a class="bb_link" href="https://paypal.me/steamdesign" target="_blank" rel="noreferrer">Donations</a>
+                    |
+                    <a class="bb_link" href="https://github.com/sapic/sapic" target="_blank" rel="noreferrer">GitHub</a>
+                    |
+                    <a class="bb_link" href="https://steamcommunity.com/groups/sapic" target="_blank" rel="noreferrer">Steam
+                      Group</a> |
+                    <a class="bb_link" href="https://chrome.google.com/webstore/detail/steamdesign-buttons/mjmabgdoainclinjecbkdancpamdiaih">Chrome
+                      Extension</a>
                   </b>
                 </div>
               </div>
               <div class="profile_summary_footer">
                 <div class="btn_profile_action btn_medium" id="getBg"><span>Get This Background</span></div>
-                <div class="btn_profile_action btn_medium" id="randomBG" style="left:3px; position:relative;"><span>Random BG</span></div>
-                <a class="btn_green_white_innerfade btn_medium saveButton" id="saveAll" style="left:6px; position:relative;"><span style="color:#ffffff">Download ZIP</span></a>
+                <div class="btn_profile_action btn_medium" id="randomBG" style="left:3px; position:relative;"><span>Random
+                    BG</span></div>
+                <a class="btn_green_white_innerfade btn_medium saveButton" id="saveAll" style="left:6px; position:relative;"><span
+                    style="color:#ffffff">Download ZIP</span></a>
                 <!--<a class="btn_profile_action btn_medium" id="userScript" style="left:2px; position:relative;" href="https://chrome.google.com/webstore/detail/mjmabgdoainclinjecbkdancpamdiaih/"><span>Chrome Extension</span></a>-->
               </div>
             </div>
@@ -301,7 +317,7 @@
         <div class="profile_leftcol">
           <div class="profile_customization_area">
             <div class="profile_customization showcase_1" id="cSize">
-              <div class="profile_customization_header">Artwork Showcase
+              <div class="profile_customization_header">
               </div>
               <div class="profile_customization_block">
                 <div id="artworkshowcase" class="screenshot_showcase" style="display:flow-root;">
@@ -312,11 +328,7 @@
                     </div>
                     <div class="screenshot_showcase_itemname" style="color: #5491cf; font-weight: bold;">
                       <span>Drag bottom of image to resize&nbsp;
-                                    <div class="fa fa-arrow-up" style="font-size:10px;"></div></span>
-                    </div>
-                    <div class="screenshot_showcase_stats">
-                      <span class="screenshot_showcase_stat" title="Комментарии">
-                                       <img class="screenshot_showcase_staticon" src="https://steamcommunity-a.akamaihd.net/public/images/skin_1/icon_btn_comment.png"> 1							</span>
+                        <div class="fa fa-arrow-up" style="font-size:10px;"></div></span>
                     </div>
                   </div>
                   <div id="r11r" class="screenshot_showcase_rightcol r1">
@@ -335,7 +347,8 @@
                         <div id="r13" class="rightimages"></div>
                       </div>
                     </div>
-                    <a style="display:none;position:relative;top:2px;" class="screenshot_showcase_smallscreenshot screenshot_count artwork_ammount_1 hidelong1" href="https://steamcommunity.com/id/wolfenstian/images/">
+                    <a style="display:none;position:relative;top:2px;" class="screenshot_showcase_smallscreenshot screenshot_count artwork_ammount_1 hidelong1"
+                      href="https://steamcommunity.com/id/wolfenstian/images/">
                       <div class="screenshot_showcase_screenshot artwork_ammount_1 hidelong1">
                         + 8
                       </div>
@@ -357,10 +370,6 @@
                     </div>
                     <div class="screenshot_showcase_itemname">
                       Mabinogi
-                    </div>
-                    <div class="screenshot_showcase_stats">
-                      <span class="screenshot_showcase_stat" title="понравилось">
-                                       <img class="screenshot_showcase_staticon" src="https://steamcommunity-a.akamaihd.net/public/images/sharedfiles/icons/icon_rate.png"> 5							</span>
                     </div>
                   </div>
                   <div class="screenshot_showcase_rightcol r2">
@@ -399,7 +408,7 @@
                   <a href="https://steamcommunity.com/id/wolfenstian/" data-miniprofile="68667764"><img src="https://steamcdn-a.akamaihd.net/steamcommunity/public/images/avatars/cc/cc2ba4deaf53f2b916efa115de2437c87dfe9cf2_medium.jpg"></a>
                 </div>
                 <a href="https://steamcommunity.com/id/wolfenstian/myworkshopfiles/" class="myworkshop_playerName">
-                              SloWolfe's Workshop		</a>
+                  SloWolfe's Workshop </a>
               </div>
               <div class="profile_customization_block">
                 <div class="myworkshop_showcase">
@@ -446,109 +455,54 @@
           <div class="profile_group_links profile_count_link_preview_ctn responsive_groupfriends_element">
             <div class="profile_count_link ellipsis">
               <a href="https://steamcommunity.com/id/wolfenstian/groups/">
-                           <span class="count_link_label">Partners of Steam.Design</span>&nbsp;
-                           <span class="profile_count_link_total">
-                           3															</span>
-                           </a>
+                <span class="count_link_label">Partners of Steam.Design</span>&nbsp;
+                <span class="profile_count_link_total">
+                  3 </span>
+              </a>
             </div>
             <div class="profile_count_link_preview">
               <div class="profile_group profile_primary_group">
                 <div class="profile_group_avatar">
                   <a href="https://www.steamladder.com/">
-                                 <img src="https://steamcdn-a.akamaihd.net/steamcommunity/public/images/avatars/f4/f4b94e8c28be9b33d6abf3a4f3a5ff5fcd43be82_medium.jpg">
-                                 </a>
+                    <img src="https://steamcdn-a.akamaihd.net/steamcommunity/public/images/avatars/f4/f4b94e8c28be9b33d6abf3a4f3a5ff5fcd43be82_medium.jpg">
+                  </a>
                 </div>
                 <a class="whiteLink" href="https://www.steamladder.com/">
-                              Steam Ladder										</a>
+                  Steam Ladder </a>
                 <div class="profile_group_membercount">Leaderboard and ranking site for Steam profiles!</div>
                 <div style="clear: left;"></div>
               </div>
               <div class="profile_group profile_primary_group">
                 <div class="profile_group_avatar">
                   <a href="https://steamcommunity.com/groups/FreeArtwork">
-                                 <img src="https://steamcdn-a.akamaihd.net/steamcommunity/public/images/avatars/07/07371a76a92abf8fb481a8921b9f0888012e1a4f_medium.jpg">
-                                 </a>
+                    <img src="https://steamcdn-a.akamaihd.net/steamcommunity/public/images/avatars/07/07371a76a92abf8fb481a8921b9f0888012e1a4f_medium.jpg">
+                  </a>
                 </div>
                 <a class="whiteLink" href="https://steamcommunity.com/groups/FreeArtwork">
-                              Free Artwork										</a>
+                  Free Artwork </a>
                 <div class="profile_group_membercount">A bot that makes free animated art for your showcase!</div>
                 <div style="clear: left;"></div>
               </div>
               <div class="profile_group profile_primary_group">
                 <div class="profile_group_avatar">
                   <a href="https://steamcommunity.com/groups/ArtworkProfiles">
-                                <img src="https://steamcdn-a.akamaihd.net/steamcommunity/public/images/avatars/a8/a8dbf5dc460745146602a2e9b61b25d7aebfed09_medium.jpg">
-                                </a> </div>
+                    <img src="https://steamcdn-a.akamaihd.net/steamcommunity/public/images/avatars/a8/a8dbf5dc460745146602a2e9b61b25d7aebfed09_medium.jpg">
+                  </a> </div>
                 <a class="whiteLink" href="https://steamcommunity.com/groups/ArtworkProfiles">
-                           Artwork Profiles									</a>
+                  Artwork Profiles </a>
                 <div class="profile_group_membercount">Celebrating the Beauty of Steam Profiles.</div>
 
                 <div style="clear: left;"></div>
               </div>
             </div>
           </div>
-          <div class="profile_friend_links profile_count_link_preview_ctn responsive_groupfriends_element">
-            <div class="profile_count_link ellipsis">
-              <a href="https://steamcommunity.com/id/wolfenstian/friends/">
-                           <span class="count_link_label">Developers</span>&nbsp;
-                           <span class="profile_count_link_total">
-                           3															</span>
-                           </a>
-            </div>
-            <div class="profile_topfriends profile_count_link_preview">
-              <div class="friendBlock persona" data-miniprofile="88233003" style="color:#b436ad">
-                <a class="friendBlockLinkOverlay" href="https://steamcommunity.com/id/TheOddball"></a>
-                <div class="friendPlayerLevel lvl_200 lvl_plus_60">
-                  <span class="friendPlayerLevelNum">260</span>
-                </div>
-                <div class="playerAvatar online" style="background-color:#b436ad;background: #b436ad;">
-                  <img src="https://steamcdn-a.akamaihd.net/steamcommunity/public/images/avatars/7d/7db1bb763909442edafe420039780ad470190170_medium.jpg" style="background-color:#b436ad;background: #b436ad;">
-                </div>
-                <div class="friendBlockContent">
-                  The Oddball<br>
-                  <span class="friendSmallText">
-                                Online
-                                </span>
-                </div>
-              </div>
-              <div class="friendBlock persona online" data-miniprofile="68667764" style="color:#5a181e">
-                <a class="friendBlockLinkOverlay" href="https://steamcommunity.com/id/wolfenstian"></a>
-                <div class="friendPlayerLevel lvl_60">
-                  <span class="friendPlayerLevelNum">63</span>
-                </div>
-                <div class="playerAvatar online" style="background-color:#5a181e;background: #5a181e;">
-                  <img src="https://steamcdn-a.akamaihd.net/steamcommunity/public/images/avatars/cc/cc2ba4deaf53f2b916efa115de2437c87dfe9cf2_medium.jpg" style="background-color:#5a181e;background: #5a181e;">
-                </div>
-                <div class="friendBlockContent">
-                  SloWolfe<br>
-                  <span class="friendSmallText">
-                                Online
-                                </span>
-                </div>
-              </div>
-              <div class="friendBlock persona" data-miniprofile="55701071" style="color:#8b6e4e">
-                <a class="friendBlockLinkOverlay" href="https://steamcommunity.com/id/TrueCarry"></a>
-                <div class="friendPlayerLevel lvl_30" style="border-color:#fecc23">
-                  <span class="friendPlayerLevelNum">31</span>
-                </div>
-                <div class="playerAvatar online" style="background-color:#8b6e4e;background: #8b6e4e;">
-                  <img src="https://steamcdn-a.akamaihd.net/steamcommunity/public/images/avatars/76/76ed70e8addd6a8c58352d850f881a3385235177_medium.jpg" style="background-color:#8b6e4e;background: #8b6e4e;">
-                </div>
-                <div class="friendBlockContent">
-                  TrueCarry<br>
-                  <span class="friendSmallText">
-                                 Online
-                                 </span>
-                </div>
-              </div>
-            </div>
-          </div>
-          </div>
         </div>
-        <div id="bottomAds"></div>
       </div>
-      <div style="clear: both;"></div>
     </div>
+    <div id="bottomAds"></div>
+  </div>
+  <div style="clear: both;"></div>
+  </div>
   </div>
   </div>
   </div>
@@ -558,12 +512,14 @@
     <div class="footer_content">
       <span id="footerLogo"><img src="./images/sapic.png" width="50" height="50" border="0" alt="Steam.Design" style="position:relative;left:40px;bottom:7px;"></span>
       <span id="footerText">
-        Copyright © 2018 Steam.Design<br>Powered by STEAM. <span id="version">Version #{{#vernum}}</span><br> Made with love by <a href="https://steamcommunity.com/id/truecarry">TrueCarry</a> and <a href="https://steamcommunity.com/id/theoddball">The Oddball</a><br>
+        Copyright © 2018 Steam.Design<br>Powered by STEAM. <span id="version">Version #{{#vernum}}</span><br> Made with
+        love by <a href="https://steamcommunity.com/id/truecarry">TrueCarry</a> and <a href="https://steamcommunity.com/id/theoddball">The
+          Oddball</a><br>
       </span>
     </div>
   </div>
   <img id="bgImgEl" style="display:none">
-  <div id="bgPreloader" style="display:hidden;"></div>
+  <div id="bgPreloader" style="display:none;"></div>
 
   <div id="copiedNotification" class="copiedNotification">
     <div class="notificationBG">
@@ -572,8 +528,8 @@
   </div>
 
   <script>
-    ! function(t, e, a) {
-      (e[a] = e[a] || []).push(function() {
+    ! function (t, e, a) {
+      (e[a] = e[a] || []).push(function () {
         try {
           e.yaCounter27350393 = new Ya.Metrika({
             id: 27350393,
@@ -583,20 +539,23 @@
       });
       var n = t.getElementsByTagName("script")[0],
         c = t.createElement("script"),
-        r = function() {
+        r = function () {
           n.parentNode.insertBefore(c, n)
         };
-      c.type = "text/javascript", c.async = !0, c.src = ("https:" == t.location.protocol ? "https:" : "http:") + "//mc.yandex.ru/metrika/watch.js", "[object Opera]" == e.opera ? t.addEventListener("DOMContentLoaded", r, !1) : r()
+      c.type = "text/javascript", c.async = !0, c.src = ("https:" == t.location.protocol ? "https:" : "http:") +
+        "//mc.yandex.ru/metrika/watch.js", "[object Opera]" == e.opera ? t.addEventListener("DOMContentLoaded", r, !1) :
+        r()
     }(document, window, "yandex_metrika_callbacks");
   </script>
   <noscript>
-      <div><img src="//mc.yandex.ru/watch/27350393" style="position:absolute; left:-9999px;" alt="" /></div>
-   </noscript>
+    <div><img src="//mc.yandex.ru/watch/27350393" style="position:absolute; left:-9999px;" alt="" /></div>
+  </noscript>
   <script>
-    "sapic.github.io" !== window.location.hostname && (! function(e, t, a, n, o, c, i) {
-      e.GoogleAnalyticsObject = o, e[o] = e[o] || function() {
-        (e[o].q = e[o].q || []).push(arguments)
-      }, e[o].l = 1 * new Date, c = t.createElement(a), i = t.getElementsByTagName(a)[0], c.async = 1, c.src = "https://www.google-analytics.com/analytics.js", i.parentNode.insertBefore(c, i)
+    "sapic.github.io" !== window.location.hostname && (! function (e, t, a, n, o, c, i) {
+      e.GoogleAnalyticsObject = o, e[o] = e[o] || function () {
+          (e[o].q = e[o].q || []).push(arguments)
+        }, e[o].l = 1 * new Date, c = t.createElement(a), i = t.getElementsByTagName(a)[0], c.async = 1, c.src =
+        "https://www.google-analytics.com/analytics.js", i.parentNode.insertBefore(c, i)
     }(window, document, "script", 0, "ga"), ga("create", "UA-98294219-1", "auto"), ga("send", "pageview"));
   </script>
   <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script>

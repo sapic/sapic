@@ -370,6 +370,7 @@ function doInventoryThings(inventory) {
 function privateInventory() {
   $('#backsList').text("Either your inventory has no backgrounds, or is private.");
   $('#backsList').css("text-align", "center");
+  $('.filter, #hideBacksList, #refreshInventory').css("opacity", "0.0");
 }
 
 function refreshInventory() {

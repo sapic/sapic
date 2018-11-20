@@ -159,31 +159,15 @@ div.profile_page {
     display: inline-block;
     text-decoration: none;
     cursor: pointer;
-    border: 1px solid #212121;
-    background: #373f4f;
-    background: -webkit-linear-gradient( top, #7a8494 5%, #282f3d 95%);
-    background: linear-gradient( to bottom, #7a8494 5%, #282f3d 95%);
  }
  
  .btn_profile_action>span {
     border-radius: 2px;
     display: block;
-    background: #2e394c;
-    background: -webkit-linear-gradient( top, #33425a 5%, #282f3d 95%);
-    background: linear-gradient( to bottom, #33425a 5%, #282f3d 95%);
  }
  
  .btn_profile_action:hover {
     text-decoration: none;
-    background: #688bb1;
-    background: -webkit-linear-gradient( top, #9ba9bf 5%, #282f3d 95%);
-    background: linear-gradient( to bottom, #9ba9bf 5%, #282f3d 95%);
- }
- 
- .btn_profile_action:hover>span {
-    background: #526d95;
-    background: -webkit-linear-gradient( top, #3c597b 5%, #282f3d 95%);
-    background: linear-gradient( to bottom, #3c597b 5%, #282f3d 95%);
  }
  
  .profile_content {
