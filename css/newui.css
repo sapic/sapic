@@ -1,63 +1,65 @@
-.global_header, .global_header.content, #footer{
+.global_header,
+.global_header.content,
+#footer {
     background-color: #12151a;
 }
 
-.profile_header_bg{
-    background: rgba(18,21,26,0.8);
+.profile_header_bg {
+    background: rgba(18, 21, 26, 0.8);
     background-image: none;
 }
 
-.profile_header_bg_texture{
+.profile_header_bg_texture {
     background: transparent;
 }
 
-.profile_background_overlay_content{
-    background: rgba(18,21,26,0.8);
+.profile_background_overlay_content {
+    background: rgba(18, 21, 26, 0.8);
     opacity: 1.1
 }
 
-.profile_background_image_content{
+.profile_background_image_content {
     background-position: center -240px;
 }
 
-.profile_customization{
+.profile_customization {
     background-color: transparent;
     background-image: none;
 }
 
-.profile_customization_header{
+.profile_customization_header {
     height: 30px !important;
 }
 
-.profile_content{
-    margin-top: 0px !important; 
+.profile_content {
+    margin-top: 0px !important;
     padding-top: 0px !important;
 }
 
-.btn_profile_action{
+.btn_profile_action {
     background: #08090b;
     border: 2px;
     transition: all 0.25s ease;
 }
 
-.btn_profile_action:hover{
+.btn_profile_action:hover {
     background: #1c2129;
     transition: all 0.25s ease;
 }
 
-.btn_profile_action>span{
+.btn_profile_action>span {
     background: none !important;
 }
 
-.playerAvatar{
+.playerAvatar {
     background: none !important;
 }
 
-#avatar{
+#avatar {
     border-radius: 5px;
 }
 
-.saveButton{
+.saveButton {
     left: 5px;
     position: relative;
     width: 256px;
@@ -68,50 +70,50 @@
     transition: opacity 0.25s ease;
 }
 
-.saveButton>span{
+.saveButton>span {
     background: none !important
 }
 
-.saveButton:hover{
+.saveButton:hover {
     opacity: 1;
     transition: opacity 0.25s ease;
 }
 
-.saveButton>span{
+.saveButton>span {
     background: none;
 }
 
-.bgUrl{
+.bgUrl {
     text-align: center
 }
 
-.social-likes{
+.social-likes {
     position: relative;
     left: 12%;
 }
 
-.profile_header_badgeinfo{
+.profile_header_badgeinfo {
     position: relative;
     top: 40px;
 }
 
-#filterIn{
+#filterIn {
     border: none;
     background: #08090b;
     outline: none;
 }
 
-.underfr{
+.underfr {
     margin: 10px 0 10px 0;
 }
 
-.profile_header_actions{
+.profile_header_actions {
     top: 10px;
     position: relative;
     height: 40px;
 }
 
-.saveButton>span{
+.saveButton>span {
     position: relative;
     top: 14%;
     font-size: 17px;
