@@ -76,7 +76,7 @@
 .backsList {
   height: auto !important;
   max-height: 330px;
-  transition: max-height 0.25s ease-in;
+  transition: max-height 0.25s ease;
   overflow: auto;
   overflow-x: hidden;
   width: 960px;

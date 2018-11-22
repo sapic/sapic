@@ -325,9 +325,7 @@ function createInventory(id) {
       doInventoryThings(data);
     });
   }
-  $("#hideBacksList").show();
-  $("#refreshInventory").show();
-  $(".filter").show();
+  $("#hideBacksList, #refreshInventory, .filter").show();
   $(".guide").css("left", "0px");
 }
 
@@ -368,9 +366,15 @@ function doInventoryThings(inventory) {
 }
 
 function privateInventory() {
+  $('#backsList').hide();
+  $('#backsList').css("max-height", "0px");
   $('#backsList').text("Either your inventory has no backgrounds, or is private.");
   $('#backsList').css("text-align", "center");
-  $('.filter, #hideBacksList, #refreshInventory').css("opacity", "0.0");
+  setTimeout(() => {
+    $('#backsList').show();
+    $('#backsList').css("max-height", "20px");
+  }, 500);
+  $('#hideBacksList, #refreshInventory, .filter').toggleClass('filterHide');
 }
 
 function refreshInventory() {
@@ -871,6 +875,7 @@ $(function() {
     store.set('hide', oddball.hideBacks);
     hideangle += 180;
     $('#backsList').toggleClass('backsListHide');
+    $('.filter').toggleClass('filterHide');
     $(this).rotate({
       animateTo: hideangle
     });
