@@ -34,8 +34,7 @@ var payload = {
       SSSC: null,
     }
   },
-  background: null,
-  esColor: 0,
+  background: null
 };
 
 var bgSaveInfo = {
@@ -446,42 +445,6 @@ function moveElem(elem, direction) {
   }, 100);
 }
 
-function addProfileColor() {
-  var color = payload.esColor;
-  $('.colorStyle').remove();
-  if (oddball.holiday) {
-    clearInterval(animation);
-    $(".profile_header_actions").css('right', '');
-    $('.holidayprofile_header_overlay').remove();
-    $("#profilebody").removeClass("holidayprofile");
-    oddball.holiday = false;
-  }
-  $("#profilebody").removeClass("es_style_clear");
-  $(".profile_header_bg_texture").css("background-image", "");
-  $(".profile_customization").css("background-image", "");
-
-  if (color === 0) {} else if (color == 4) {
-    $("head").append("<link rel='stylesheet' type='text/css' href='https://steamcommunity-a.akamaihd.net/public/css/skin_1/holidayprofile.css'>");
-    $(".profile_header_bg_texture").append("<div class='holidayprofile_header_overlay'></div>");
-    $("#profilebody").addClass("holidayprofile");
-    $(".profile_header_actions").css('right', '30px');
-    $.getScript("https://steam.design/holiday.js").done(function() {
-      StartAnimation();
-      oddball.holiday = true;
-    });
-  } else if (color == 2) {
-    $("#profilebody").addClass("es_style_clear");
-  } else {
-    $("head").append("<link rel='stylesheet' class='colorStyle' type='text/css' href='/images/profile_styles/" + color + "/style.css'>");
-    $(".profile_header_bg_texture").css("background-image", "url('/images/profile_styles/" + color + "/header.jpg')");
-    $(".profile_customization").css("background-image", "url('/images/profile_styles/" + color + "/showcase.png')");
-  }
-}
-
-function esColorLoad(colorDiv) {
-  payload.esColor = colorDiv.value;
-}
-
 function getTextWidth(text, font) {
   var canvas = getTextWidth.canvas || (getTextWidth.canvas = document.createElement("canvas"));
   var context = canvas.getContext("2d");
@@ -517,7 +480,6 @@ function toggleCustomize() {
 function closeCustomize() {
   $('#customize').hide();
   $('#customizeBackground').fadeOut();
-  addProfileColor();
   addArrows();
   payloadHandler();
 }
@@ -678,8 +640,6 @@ function shortImages(showcase) {
 function loadb64() {
   window.location.href = "#" + payload.background;
   loadb64Checkboxes();
-  $('#colorChange').val(payload.esColor);
-  addProfileColor();
   setTimeout(function() {
     if (payload.cropInfo.customHeight.AWSC) {
       loadCustomHeight(1, payload.cropInfo.customHeight.AWSC);
