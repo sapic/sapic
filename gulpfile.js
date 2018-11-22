@@ -100,7 +100,7 @@ gulp.task('fonts', function () {
 gulp.task('page', gulp.series('html', 'uncss', 'normalcss'))
 
 gulp.task('default', gulp.parallel('page', 'js', 'js2', 'images', 'fonts'), function () {
-  return gulp.src('./out/temp.css', {
+  return gulp.src('./out/temp.css', './js/index_build.js', {
       read: false
     })
     .pipe(rimraf());
