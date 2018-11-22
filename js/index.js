@@ -370,7 +370,7 @@ function privateInventory() {
   $('#backsList').css("max-height", "0px");
   $('#backsList').text("Either your inventory has no backgrounds, or is private.");
   $('#backsList').css("text-align", "center");
-  setTimeout(() => {
+  setTimeout(function () {
     $('#backsList').show();
     $('#backsList').css("max-height", "20px");
   }, 500);
