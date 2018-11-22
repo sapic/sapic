@@ -406,7 +406,13 @@ function loginFunc() {
   }
 }
 
+var arrows;
+
 function addArrows() {
+  if (arrows) {
+    return;
+  }
+  arrows = true
   $('.profile_customization_header').not('.guide').each(function() {
     $(this).prepend('<span style="float: right" class="arrow down" onclick="moveElem(this,2);">Down <div class="fa fa-arrow-down" style="font-size:17px;"></div></span>' +
       '<span style="float: right" class="arrow up" onclick="moveElem(this,1);"">Up <div class="fa fa-arrow-up" style="font-size:17px;"></div></span>');
