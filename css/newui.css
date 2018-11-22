@@ -66,17 +66,30 @@
     height: 100%;
     text-align: center;
     background: linear-gradient(45deg, #36bbf7 0%, #702df9 100%) !important;
-    opacity: 0.8;
-    transition: opacity 0.25s ease;
+    transition: all 0.25s ease;
+    opacity: 0.9;
 }
 
 .saveButton>span {
-    background: none !important
+    background: none !important;
+    top: -36px;
+    opacity: 1;
+    position: relative;
+    font-size: 17px;
 }
 
 .saveButton:hover {
+    transition: all 0.25s ease;
     opacity: 1;
-    transition: opacity 0.25s ease;
+}
+
+.saveButtonShadow {
+    background: linear-gradient(45deg, #36bbf7 0%, #702df9 100%);
+    filter: blur(12px);
+    position: relative;
+    right: 1px;
+    height: 42px;
+    width: 258px;
 }
 
 .saveButton>span {
@@ -118,10 +131,4 @@
     top: 10px;
     position: relative;
     height: 40px;
-}
-
-.saveButton>span {
-    position: relative;
-    top: 14%;
-    font-size: 17px;
 }
