@@ -132,3 +132,7 @@
     position: relative;
     height: 40px;
 }
+
+.commentthread_textarea {
+    border: none;
+}
