@@ -11,7 +11,7 @@
     "gulp-minify-html": "^1.0.6",
     "gulp-rimraf": "^0.2.2",
     "gulp-uglify": "^3.0.1",
-    "gulp-useref": "^2.1.0"
+    "gulp-useref": "git+https://github.com/sapic/gulp-useref.git"
   },
   "dependencies": {
     "cssnano": "^4.1.7",
