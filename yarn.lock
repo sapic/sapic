@@ -1386,13 +1386,12 @@ event-emitter@~0.3.4:
     d "1"
     es5-ext "~0.10.14"
 
-event-stream@^3.3.1:
-  version "3.3.6"
-  resolved "https://registry.yarnpkg.com/event-stream/-/event-stream-3.3.6.tgz#cac1230890e07e73ec9cacd038f60a5b66173eef"
-  integrity sha512-dGXNg4F/FgVzlApjzItL+7naHutA3fDqbV/zAZqDDlXTjiMnQmZKu+prImWKszeBM5UQeGvAl3u1wBiKeDh61g==
+event-stream@^3.3.4:
+  version "3.3.5"
+  resolved "https://registry.yarnpkg.com/event-stream/-/event-stream-3.3.5.tgz#e5dd8989543630d94c6cf4d657120341fa31636b"
+  integrity sha512-vyibDcu5JL20Me1fP734QBH/kenBGLZap2n0+XXM7mvuUPzJ20Ydqj1aKcIeMdri1p+PU+4yAKugjN8KCVst+g==
   dependencies:
     duplexer "^0.1.1"
-    flatmap-stream "^0.1.0"
     from "^0.1.7"
     map-stream "0.0.7"
     pause-stream "^0.0.11"
@@ -1580,11 +1579,6 @@ flagged-respawn@^1.0.0:
   version "1.0.0"
   resolved "https://registry.yarnpkg.com/flagged-respawn/-/flagged-respawn-1.0.0.tgz#4e79ae9b2eb38bf86b3bb56bf3e0a56aa5fcabd7"
   integrity sha1-Tnmumy6zi/hrO7Vr8+ClaqX8q9c=
-
-flatmap-stream@^0.1.0:
-  version "0.1.2"
-  resolved "https://registry.yarnpkg.com/flatmap-stream/-/flatmap-stream-0.1.2.tgz#b1da359a93f24f6d96e46f948552d997e3c2863d"
-  integrity sha512-ucyr6WkLXjyMuHPtOUq4l+nSAxgWi7v4QO508eQ9resnGj+lSup26oIsUI5aH8k4Qfpjsxa8dDf9UCKkS2KHzQ==
 
 flush-write-stream@^1.0.2:
   version "1.0.3"
@@ -1974,12 +1968,11 @@ gulp-uglify@^3.0.1:
     uglify-js "^3.0.5"
     vinyl-sourcemaps-apply "^0.2.0"
 
-gulp-useref@^2.1.0:
+"gulp-useref@git+https://github.com/sapic/gulp-useref.git":
   version "2.1.0"
-  resolved "https://registry.yarnpkg.com/gulp-useref/-/gulp-useref-2.1.0.tgz#e85adb7ba8f4df278a15e948f92cbfa9803cddce"
-  integrity sha1-6Frbe6j03yeKFelI+Sy/qYA83c4=
+  resolved "git+https://github.com/sapic/gulp-useref.git#bdecd2680565c1c1596feb6a71b69ee783a9e6cc"
   dependencies:
-    event-stream "^3.3.1"
+    event-stream "^3.3.4"
     glob "^5.0.15"
     gulp-concat "^2.5.2"
     gulp-if "^2.0.0"
