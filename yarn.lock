@@ -1970,7 +1970,8 @@ gulp-uglify@^3.0.1:
 
 "gulp-useref@git+https://github.com/sapic/gulp-useref.git":
   version "2.1.0"
-  resolved "git+https://github.com/sapic/gulp-useref.git#86b76e8fa0cb4c46cfd612a180d0ee34c23aeae2"
+  uid "86b76e8fa0cb4c46cfd612a180d0ee34c23aeae2"
+  resolved "https://github.com/sapic/gulp-useref.git#86b76e8fa0cb4c46cfd612a180d0ee34c23aeae2"
   dependencies:
     event-stream "3.3.4"
     glob "^5.0.15"
