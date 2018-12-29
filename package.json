@@ -14,7 +14,7 @@
     "gulp-useref": "git+https://github.com/sapic/gulp-useref.git"
   },
   "dependencies": {
-    "cssnano": "^4.1.7",
+    "cssnano": "^4.1.8",
     "good-listener": "^1.2.2",
     "gulp-postcss": "^8.0.0",
     "gulp-rename": "^1.4.0",
