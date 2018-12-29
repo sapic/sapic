@@ -1,19 +1,20 @@
 {
     "name": "Steam.Design",
+    "short_name": "Steam.Design",
     "icons": [
         {
-            "src": "/images/android-chrome-192x192.png",
+            "src": "/android-chrome-192x192.png",
             "sizes": "192x192",
             "type": "image/png"
         },
         {
-            "src": "/images/android-chrome-512x512.png",
+            "src": "/android-chrome-512x512.png",
             "sizes": "512x512",
             "type": "image/png"
         }
     ],
-    "theme_color": "#142436",
-    "background_color": "#142436",
-    "start_url": "https://steam.design",
+    "theme_color": "#12151a",
+    "background_color": "#12151a",
+    "start_url": "https://Steam.Design",
     "display": "standalone"
 }
