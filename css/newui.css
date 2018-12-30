@@ -1,7 +1,7 @@
-.global_header,
+#global_header,
 .global_header.content,
-#footer {
-    background-color: #12151a;
+#footer, #cardsList {
+    background-color: #12151a !important;
 }
 
 .profile_header_bg {
