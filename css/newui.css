@@ -107,7 +107,7 @@
 
 .profile_header_badgeinfo {
     position: relative;
-    top: 40px;
+    top: 62px;
 }
 
 #filterIn {
@@ -135,4 +135,15 @@
 
 .commentthread_textarea {
     border: none;
+}
+
+.social-likes__widget {
+    border-radius: 3px !important;
+}
+
+.discordImage {
+    left: 6px;
+    position: relative;
+    width: 258px;
+    border-radius: 3px;
 }
