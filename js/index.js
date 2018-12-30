@@ -1038,7 +1038,7 @@ $(function() {
     trackClick('openCustomizeButton');
   });
 
-  var clipboard = new Clipboard('.copy-btn');
+  var clipboard = new ClipboardJS('.copy-btn');
 
   clipboard.on('success', function(e) {
     var el = $("#copiedNotification");
