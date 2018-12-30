@@ -156,7 +156,7 @@ function getImageBase64(image, fn) {
 
 function noAds() {
   var bn = banners[Math.floor(Math.random() * banners.length)];
-  $('.underfr').empty().html('<a href="' + bn[1] + '" target="_blank"><img src="/images/' + bn[0] + '"></a>');
+  $('.underfr').empty().html('<a href="' + bn[1] + '" target="_blank"><img src="./images/' + bn[0] + '"></a>');
   $('.rColAds').remove();
   $('.profile_badges').show();
 }

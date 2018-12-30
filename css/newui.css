@@ -162,3 +162,29 @@
     margin-right: 1em;
     margin-left: 1em;
 }
+
+.profile_count_link {
+    margin-bottom: 0 !important;
+    min-height: 0 !important;
+    text-align: center;
+}
+
+.partnerLabel{
+    font-size: 16px;
+    color: white;
+}
+
+.profile_primary_group {
+    text-align: center;
+    width: 184px;
+}
+
+.underfr>a>img{
+    width: 258px;
+    position: relative;
+    left: 6px;
+}
+
+.profile_group_avatar{
+    left: 5px;
+}
