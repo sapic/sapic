@@ -107,7 +107,7 @@
 
 .profile_header_badgeinfo {
     position: relative;
-    top: 62px;
+    top: 63px;
 }
 
 #filterIn {
@@ -146,4 +146,5 @@
     position: relative;
     width: 258px;
     border-radius: 3px;
+    bottom: 14px;
 }
