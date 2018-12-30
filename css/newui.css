@@ -100,11 +100,6 @@
     text-align: center
 }
 
-.social-likes {
-    position: relative;
-    left: 12%;
-}
-
 .profile_header_badgeinfo {
     position: relative;
     top: 63px;
@@ -147,4 +142,23 @@
     width: 258px;
     border-radius: 3px;
     bottom: 14px;
+}
+
+.kofi-button {
+    height: 21px;
+}
+
+.kofitext {
+    position: relative;
+    bottom: 7px;
+}
+
+.kofiimg {
+    position: relative;
+    top: 1px;
+}
+
+.btn-container {
+    margin-right: 1em;
+    margin-left: 1em;
 }
