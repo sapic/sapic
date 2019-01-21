@@ -8,7 +8,6 @@
     "gulp": "^4.0.0",
     "gulp-concat": "^2.6.1",
     "gulp-concat-css": "^3.1.0",
-    "gulp-minify-html": "^1.0.6",
     "gulp-rimraf": "^0.2.2",
     "gulp-uglify": "^3.0.1",
     "gulp-useref": "git+https://github.com/sapic/gulp-useref.git"

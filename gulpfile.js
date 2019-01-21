@@ -3,7 +3,6 @@ var concat = require('gulp-concat');
 var concatCss = require('gulp-concat-css');
 var uglify = require('gulp-uglify');
 var useref = require('gulp-useref');
-var htmlmin = require('gulp-minify-html');
 var rimraf = require('gulp-rimraf');
 var fs = require('fs');
 var postcss = require('gulp-postcss');
@@ -82,7 +81,6 @@ gulp.task('html', function () {
   fs.writeFileSync('./index_build.html', content.replace(/{{#vernum}}/g, process.env.CIRCLE_BUILD_NUM));
   return gulp.src(['./index_build.html'])
     .pipe(useref())
-    .pipe(htmlmin())
     .pipe(rename('index.html'))
     .pipe(gulp.dest('./out'));
 });
