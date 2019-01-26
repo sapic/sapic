@@ -188,3 +188,12 @@
 .profile_group_avatar{
     left: 5px;
 }
+
+.bb_h1{
+    text-align: center;
+}
+
+#shareURL{
+    border: none;
+    background-color: transparent;
+}

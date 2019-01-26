@@ -73,7 +73,8 @@
     <div class="content" id="cardsList">
       <div style="margin-top: 5px;">
         <span class="filter" style="float:left; position:relative; display:none;">Filter: <input type="text" id="filterIn"></span>
-        <span class="guide" style="float:left; position:relative; left:23%;"><a class="top_hint" href="https://steamcommunity.com/sharedfiles/filedetails/?id=299701202">Our Guide!</a></span>
+        <span class="guide" style="float:left; position:relative; left:23%;"><a class="top_hint" href="https://steamcommunity.com/sharedfiles/filedetails/?id=299701202">Our
+            Guide!</a></span>
         <div id="invbuttons" style="float:right;margin-bottom:9px;">
           <div id="refreshInventory" class="fa fa-refresh" title="Refresh Inventory" style="position:relative; top:2px; left:-20px; cursor:pointer; display:none;"></div>
           <div id="hideBacksList" class="fa fa-arrow-up" title="Hide Inventory" style="position:relative; top:2px; left:-15px; cursor:pointer; display:none;"></div>
@@ -111,7 +112,7 @@
               </div>
               <div class="profile_header_badgeinfo">
                 <div class="profile_header_badgeinfo_badge_area">
-                    <a href="https://discord.gg/jnqnHuX" target="_blank"><img class="discordImage" src="https://discordapp.com/api/guilds/304986224467378177/widget.png?style=banner2"></a>
+                  <a href="https://discord.gg/jnqnHuX" target="_blank"><img class="discordImage" src="https://discordapp.com/api/guilds/304986224467378177/widget.png?style=banner2"></a>
                 </div>
                 <div class="profile_header_actions" style="position:relative">
                   <div id="customize" class="newmodal" style="position: fixed; z-index: 1000; left: 50%; top: 15%; display: none; transform: translateX(-50%);">
@@ -125,15 +126,6 @@
                       <div class="newmodal_content">
                         <div class="market_dialog_content">
                           <div class="market_dialog_iteminfo">
-                            <div class="market_listing_row market_recent_listing_row cache_text">
-                              <div class="bb_h1 customize_textbox" id="cache_text" style="color:red">
-                                <input id="cache_text_val" value=" {{#vernum}} " style="display:none;">
-                                <b>It seems you dont have latest version cached. <br />
-                                  Some functions of the site may not work. <br />
-                                  Press Ctrl + Shift + R to grab the new version. <br />
-                                  If this still doesn't work, please wait a little bit and do it again.</b>
-                              </div>
-                            </div>
                             <div class="market_listing_row market_recent_listing_row">
                               <div class="bb_h1 customize_textbox">
                                 <b>Artwork Showcase:</b>
@@ -241,8 +233,8 @@
                   </div>
                 </div>
                 <a class="btn_green_white_innerfade btn_medium saveButton" id="saveAll" style="left:6px; position:relative;">
-                <div class="saveButtonShadow"></div>
-                <span style="color:#ffffff">Download Images</span>
+                  <div class="saveButtonShadow"></div>
+                  <span style="color:#ffffff">Download Images</span>
                 </a>
               </div>
             </div>
@@ -252,20 +244,22 @@
               </div>
               <div class="header_real_name_spacer">&nbsp;</div>
               <div class="profile_summary">
-                  <script type='text/javascript' src='https://ko-fi.com/widgets/widget_2.js'></script><script type='text/javascript'>kofiwidget2.init('Support Us on Ko-fi', '#08090b', 'H2H8NYMB');kofiwidget2.draw();</script>
+                <script type='text/javascript' src='https://ko-fi.com/widgets/widget_2.js'></script>
+                <script type='text/javascript'>
+                  kofiwidget2.init('Support Us on Ko-fi', '#08090b', 'H2H8NYMB');
+                  kofiwidget2.draw();
+                </script>
                 <div class="social-likes" data-url="https://steam.design/" data-title="I made a cool Steam profile with this! It's so cool!">
                   <div class="twitter" title="Share link on Twitter">&nbsp;Twitter</div>
                   <div class="vkontakte" title="Share link on VK">&nbsp;VK</div>
-                </div> 
-                <div class="bb_h1" style="top:8px; position: relative; left: 38px;">
+                </div>
+                <div class="bb_h1" style="top:8px; position: relative;">
                   <b>
                     Our:
                     <a class="bb_link" href="https://github.com/sapic/sapic" target="_blank" rel="noreferrer">GitHub</a>
                     |
-                    <a class="bb_link" href="https://steamcommunity.com/groups/sapic" target="_blank" rel="noreferrer">Steam
-                      Group</a> |
-                    <a class="bb_link" href="https://chrome.google.com/webstore/detail/steamdesign-buttons/mjmabgdoainclinjecbkdancpamdiaih">Chrome
-                      Extension</a>
+                    <a class="bb_link" href="https://steamcommunity.com/groups/sapic" target="_blank" rel="noreferrer">Steam Group</a>
+                    <span id="extension"></span>
                   </b>
                 </div>
               </div>
@@ -431,7 +425,7 @@
           <div class="underfr" width="268"></div>
           <div class="profile_group_links profile_count_link_preview_ctn responsive_groupfriends_element">
             <div class="profile_count_link ellipsis">
-                <span class="partnerLabel">Our Partners</span>
+              <span class="partnerLabel">Our Partners</span>
             </div>
             <div class="profile_count_link_preview">
               <div class="profile_group profile_primary_group">
