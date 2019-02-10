@@ -13,13 +13,13 @@ var rename = require('gulp-rename');
 gulp.task('uncss', function () {
   fs.unlink('./index_build.html', () => {});
   return gulp.src([
-      './css/buttons.css',
-      './css/shared_global.css',
-      './css/modalContent.css',
-      './css/economy.css',
-      './css/globalv2.css',
-      './css/slider.css',
-      './css/font-awesome.css',
+      './src/css/buttons.css',
+      './src/css/shared_global.css',
+      './src/css/modalContent.css',
+      './src/css/economy.css',
+      './src/css/globalv2.css',
+      './src/css/slider.css',
+      './src/css/font-awesome.css',
     ])
     .pipe(concatCss('temp.css'))
     .pipe(postcss([
@@ -34,12 +34,12 @@ gulp.task('uncss', function () {
 
 gulp.task('normalcss', function () {
   return gulp.src([
-      './css/profilev2.css',
-      './css/index.css',
-      './css/motiva_sans.css',
-      './css/social-likes_flat.css',
+      './src/css/profilev2.css',
+      './src/css/index.css',
+      './src/css/motiva_sans.css',
+      './src/css/social-likes_flat.css',
       './out/temp.css',
-      './css/newui.css'
+      './src/css/newui.css'
     ])
     .pipe(concatCss('main.css'))
     .pipe(postcss([
@@ -49,19 +49,19 @@ gulp.task('normalcss', function () {
 });
 
 gulp.task('js', function () {
-  var content = fs.readFileSync('./js/index.js', {
+  var content = fs.readFileSync('./src/js/index.js', {
     encoding: 'utf-8'
   });
-  fs.writeFileSync('./js/index_build.js', content.replace(/{{#vernum}}/g, process.env.CIRCLE_BUILD_NUM));
+  fs.writeFileSync('./src/js/index_build.js', content.replace(/{{#vernum}}/g, process.env.CIRCLE_BUILD_NUM));
   return gulp.src([
-      './js/jquery.min.js',
-      './js/store.everything.min.js',
-      './js/jquery.smooth-scroll.min.js',
-      './js/interact-1.2.9.min.js',
-      './js/social-likes.min.js',
-      './js/index_build.js',
-      './js/jQueryRotate.js',
-      './js/clipboard.js',
+      './src/js/jquery.min.js',
+      './src/js/store.everything.min.js',
+      './src/js/jquery.smooth-scroll.min.js',
+      './src/js/interact-1.2.9.min.js',
+      './src/js/social-likes.min.js',
+      './src/js/index_build.js',
+      './src/js/jQueryRotate.js',
+      './src/js/clipboard.js',
     ])
     .pipe(concat('main.js'))
     .pipe(uglify())
@@ -69,13 +69,13 @@ gulp.task('js', function () {
 });
 
 gulp.task('js2', function () {
-  return gulp.src(['./fuckadblock.js'])
+  return gulp.src(['./src/fuckadblock.js'])
     .pipe(uglify())
     .pipe(gulp.dest('./out'));
 });
 
 gulp.task('html', function () {
-  var content = fs.readFileSync('./index.html', {
+  var content = fs.readFileSync('./src/index.html', {
     encoding: 'utf-8'
   });
   fs.writeFileSync('./index_build.html', content.replace(/{{#vernum}}/g, process.env.CIRCLE_BUILD_NUM));
@@ -86,12 +86,12 @@ gulp.task('html', function () {
 });
 
 gulp.task('images', function () {
-  return gulp.src('./images/**')
+  return gulp.src('./src/images/**')
     .pipe(gulp.dest('./out/images/'));
 });
 
 gulp.task('fonts', function () {
-  return gulp.src('./fonts/*')
+  return gulp.src('./src/fonts/*')
     .pipe(gulp.dest('./out/fonts/'));
 });
 
