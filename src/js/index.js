@@ -900,6 +900,8 @@ $(function () {
     }
   }, 10);
 
+  $('.newmodal_header').append('<span class="title_text">Customize Cropping</span>')
+
   var userId = null;
   if (!window.localStorage) return;
   userId = window.localStorage.getItem('SteamId');
