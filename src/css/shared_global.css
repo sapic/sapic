@@ -86,7 +86,7 @@
    .modal_top_bar {
       width: 100%;
       height: 1px;
-      background: linear-gradient(to right, #00ccff, #3366ff);
+      background: linear-gradient(45deg, #36bbf7 0%, #702df9 100%);
    }
    
    .newmodal_header {
