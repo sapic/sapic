@@ -4,4 +4,4 @@ out/*
 yarn-error.log
 index_build.html
 package-lock.json
-js/index_build.js
+src/js/index_build.js
