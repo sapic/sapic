@@ -110,8 +110,9 @@ var ImagesNames = {
 
   30: ['#w1', 'Workshop_Left.png'],
   31: ['#w1', 'Workshop_Middle_Left.png'],
-  32: ['#w1', 'Workshop_Middle_Right.png'],
-  33: ['#w1', 'Workshop_Right.png'],
+  32: ['#w1', 'Workshop_Middle.png'],
+  33: ['#w1', 'Workshop_Middle_Right.png'],
+  34: ['#w1', 'Workshop_Right.png'],
 };
 
 var randomBgsOrder = []
@@ -266,10 +267,11 @@ function CropImages() {
       }
     }
     if (payload.toggles.WSSC_Enable) {
-      fillImage($('#w1'), 1 + leftOffset[ImageType], rOffset3, 150, 150, ImagesNames[30][1]);
-      fillImage($('#w2'), 156 + leftOffset[ImageType], rOffset3, 150, 150, ImagesNames[31][1]);
-      fillImage($('#w3'), 309 + leftOffset[ImageType], rOffset3, 150, 150, ImagesNames[32][1]);
-      fillImage($('#w4'), 464 + leftOffset[ImageType], rOffset3, 150, 150, ImagesNames[33][1]);
+      fillImage($('#w1'), 1 + leftOffset[ImageType], rOffset3, 119, 119, ImagesNames[30][1]);
+      fillImage($('#w2'), 120 + leftOffset[ImageType], rOffset3, 119, 119, ImagesNames[31][1]);
+      fillImage($('#w3'), 239 + leftOffset[ImageType], rOffset3, 119, 119, ImagesNames[32][1]);
+      fillImage($('#w4'), 358 + leftOffset[ImageType], rOffset3, 119, 119, ImagesNames[33][1]);
+      fillImage($('#w5'), 477 + leftOffset[ImageType], rOffset3, 119, 119, ImagesNames[34][1]);
     }
 
     fillImage($('#avatar'), leftOffset[ImageType] - 9, 34, 164, 164, ImagesNames[0][1]);

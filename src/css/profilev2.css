@@ -280,14 +280,14 @@ div.profile_page {
  
  .workshop_showcase_mutiitem_ctn {
     float: left;
-    max-width: 25%;
-    width: 154px;
+    max-width: 20%;
  }
  
  .workshop_showcase_multiitem.showcase_slot {
     position: relative;
     float: none;
     margin: 2px;
+    width: 119px;
  }
  
  .myworkshop_showcase_header {
@@ -296,7 +296,6 @@ div.profile_page {
     height: 38px;
     padding: 10px;
     line-height: 38px;
-    background-image: url('https://steamcommunity-a.akamaihd.net/public/images/profile/profile_showcase_myworkshop.png');
     margin-bottom: 14px;
  }
  
