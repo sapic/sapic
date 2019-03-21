@@ -902,7 +902,7 @@ $(function () {
     }
   }, 10);
 
-  $('.newmodal_header').append('<span class="title_text">Customize Cropping</span>')
+  $('.newmodal_header').append('<span class="title_text" style="padding: 32px 32px 0; display: block;">Customize Cropping</span>')
 
   var userId = null;
   if (!window.localStorage) return;
