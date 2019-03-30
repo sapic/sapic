@@ -181,3 +181,15 @@
 .fa-arrow-down:before {
   content: "\f063";
 }
+
+.profile_summary,.profile_summary_footer,img,a,#goUrl,.screenshot_showcase_itemname,.actual_persona_name {
+  -moz-user-select: none;
+  -o-user-select: none;
+  -khtml-user-select: none;
+  -webkit-user-select: none;
+  -ms-user-select: none;
+  user-select: none;
+}
+.profile_count_link_preview img {
+  border-radius: 4px;
+}
