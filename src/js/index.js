@@ -82,10 +82,9 @@ var donators = [
 ];
 
 var banners = [
-  ['donations.jpg', 'https://paypal.me/steamdesign'],
-  ['noads.jpg', 'https://i.imgur.com/g9C38bN.gif'],
-  ['song.jpg', 'https://www.youtube.com/watch?v=r50JFfofHes'],
-  ['git.jpg', 'https://www.github.com/SAPIC/SAPIC']
+  ['donate.png', 'https://paypal.me/steamdesign'],
+  ['share.png', 'https://twitter.com/intent/tweet?url=https%3A%2F%2Fsteam.design%2F&text=I%20made%20a%20cool%20Steam%20profile%20with%20this!%20It%27s%20so%20cool!%3A'],
+  ['git.png', 'https://www.github.com/SAPIC/SAPIC']
 ];
 
 var leftOffset = {
@@ -871,7 +870,9 @@ $(function () {
       },
       click: function () {
         oddball.refresh = true;
-        refreshInventory();
+        if (!oddball.refresh){
+          refreshInventory();
+        }
       },
       mouseout: function () {
         if (oddball.refresh !== true) {
