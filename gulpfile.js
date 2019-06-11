@@ -18,8 +18,7 @@ gulp.task('uncss', function () {
       './src/css/modalContent.css',
       './src/css/economy.css',
       './src/css/globalv2.css',
-      './src/css/slider.css',
-      './src/css/font-awesome.css',
+      './src/css/slider.css'
     ])
     .pipe(concatCss('temp.css'))
     .pipe(postcss([
@@ -39,7 +38,8 @@ gulp.task('normalcss', function () {
       './src/css/motiva_sans.css',
       './src/css/social-likes_flat.css',
       './out/temp.css',
-      './src/css/newui.css'
+      './src/css/newui.css',
+      './src/css/font-awesome.css'
     ])
     .pipe(concatCss('main.css'))
     .pipe(postcss([

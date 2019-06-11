@@ -197,3 +197,20 @@
     border: none;
     background-color: transparent;
 }
+
+.screenshot_showcase_screenshot{
+    border: 1px transparent;
+    border-radius: 5px;
+    cursor: auto;
+}
+
+.screenshot_showcase_screenshot:hover {
+    border: 1px transparent;
+}
+
+.imageGrabber{
+    height: 15px;
+    position: relative;
+    cursor: n-resize;
+    top: calc(100% - 15px);
+}
