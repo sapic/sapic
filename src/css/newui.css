@@ -1,6 +1,7 @@
 #global_header,
 .global_header.content,
-#footer, #cardsList {
+#footer,
+#cardsList {
     background-color: #12151a !important;
 }
 
@@ -169,7 +170,7 @@
     text-align: center;
 }
 
-.partnerLabel{
+.partnerLabel {
     font-size: 16px;
     color: white;
 }
@@ -179,26 +180,26 @@
     width: 184px;
 }
 
-.underfr>a>img{
+.underfr>a>img {
     width: 258px;
     position: relative;
     left: 6px;
 }
 
-.profile_group_avatar{
+.profile_group_avatar {
     left: 5px;
 }
 
-.bb_h1{
+.bb_h1 {
     text-align: center;
 }
 
-#shareURL{
+#shareURL {
     border: none;
     background-color: transparent;
 }
 
-.screenshot_showcase_screenshot{
+.screenshot_showcase_screenshot {
     border: 1px transparent;
     border-radius: 5px;
     cursor: auto;
@@ -208,9 +209,9 @@
     border: 1px transparent;
 }
 
-.imageGrabber{
+.imageGrabber {
     height: 15px;
     position: relative;
     cursor: n-resize;
-    top: calc(100% - 15px);
+    top: calc(100% - 20px);
 }

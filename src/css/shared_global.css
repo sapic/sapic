@@ -1,39 +1,47 @@
+/* Avatars */
+
+.playerAvatar {
+    width: 34px;
+    height: 34px;
+    position: relative;
+    border-radius: 0;
+    padding: 1px;
+}
 
 
-	/* Avatars */
+/* Offline State */
 
-   .playerAvatar {
-      width: 34px;
-      height: 34px;
-      position: relative;
-      border-radius: 0;
-      padding: 1px;
-   
-   }
-   
-   /* Offline State */
-   .playerAvatar.offline {
-   
-      background: -webkit-linear-gradient( top, rgba(106,106,106,1) 5%, rgba(85,85,85,1) 95%);background: linear-gradient( to bottom, rgba(106,106,106,1) 5%, rgba(85,85,85,1) 95%);	/* IE <= 9 doesn't support rounded corners and gradient.  The gradient isn't too noticable so just disable the filter in IE9 */
-      filter: none;
-   }
-   
-   /* Online State */
-   .playerAvatar.online {
-      background-color: #57cbde;
-   
-      background: -webkit-linear-gradient( top, rgba(83,164,196,1) 5%, rgba(69,128,151,1) 95%);background: linear-gradient( to bottom, rgba(83,164,196,1) 5%, rgba(69,128,151,1) 95%);	/* IE <= 9 doesn't support rounded corners and gradient.  The gradient isn't too noticable so just disable the filter in IE9 */
-      filter: none;
-   }
-   .playerAvatar.online img {
-      background: -webkit-linear-gradient( top, #41778f 5%, #3d697b 95%);background: linear-gradient( to bottom, #41778f 5%, #3d697b 95%);}
-   
-   /* In-Game State */
-   
-   
-   /* Golden State */
-   
-   /*
+.playerAvatar.offline {
+    background: -webkit-linear-gradient( top, rgba(106, 106, 106, 1) 5%, rgba(85, 85, 85, 1) 95%);
+    background: linear-gradient( to bottom, rgba(106, 106, 106, 1) 5%, rgba(85, 85, 85, 1) 95%);
+    /* IE <= 9 doesn't support rounded corners and gradient.  The gradient isn't too noticable so just disable the filter in IE9 */
+    filter: none;
+}
+
+
+/* Online State */
+
+.playerAvatar.online {
+    background-color: #57cbde;
+    background: -webkit-linear-gradient( top, rgba(83, 164, 196, 1) 5%, rgba(69, 128, 151, 1) 95%);
+    background: linear-gradient( to bottom, rgba(83, 164, 196, 1) 5%, rgba(69, 128, 151, 1) 95%);
+    /* IE <= 9 doesn't support rounded corners and gradient.  The gradient isn't too noticable so just disable the filter in IE9 */
+    filter: none;
+}
+
+.playerAvatar.online img {
+    background: -webkit-linear-gradient( top, #41778f 5%, #3d697b 95%);
+    background: linear-gradient( to bottom, #41778f 5%, #3d697b 95%);
+}
+
+
+/* In-Game State */
+
+
+/* Golden State */
+
+
+/*
    .playerAvatar.golden img,
    .friend_status_golden .friend_block_avatar img,
    .appHubIconHolder.golden img,
@@ -41,210 +49,211 @@
       background-color: #e4ca63
       background: -webkit-linear-gradient( 145deg, #d5bf6a 10%,#ffe2a9 40%,#ba995c 52%,#ba995c 61%,#d5bf6a 85%);background: linear-gradient( 145deg, #d5bf6a 10%,#ffe2a9 40%,#ba995c 52%,#ba995c 61%,#d5bf6a 85%);}
    */
-   
-   .playerAvatar img {
-      width: 32px;
-      height: 32px;
-      padding: 1px;
-      border-radius: 0;
-      border: none;
-   }
-   
-   
-   /*
+
+.playerAvatar img {
+    width: 32px;
+    height: 32px;
+    padding: 1px;
+    border-radius: 0;
+    border: none;
+}
+
+
+/*
     * GENERIC POPUP
     */
-   
-   
-   
-   .newmodal {
-            font-family: "Motiva Sans", Sans-serif;
-         font-weight: normal; /* normal */
-   
-            position: absolute;
-   
-      max-width: 900px;	/* our page width */
-      min-width: 500px;
-   
-      background: radial-gradient(circle at top left, rgba(74, 81, 92, 0.4) 0%, rgba(75, 81, 92, 0) 60%), #25282e;
-   }
-   
-   .newmodal_background {
-      position: fixed;
-      z-index: 900;
-      background: #000000;
-      top: 0;
-      right: 0;
-      bottom: 0;
-      left: 0;
-   }
-   
-   .newmodal_header .title_text {
-      padding: 32px 32px 0px 32px;
-      display: block;
-   }
-   .modal_top_bar {
-      width: 100%;
-      height: 1px;
-      background: linear-gradient(45deg, #36bbf7 0%, #702df9 100%);
-   }
-   
-   .newmodal_header {
-      padding: 0px 0px 0px 0px;
-      text-align: left;
-   
-      font-weight: 300;
-      font-size: 32px;
-      line-height: 36px;
-      letter-spacing: 2px;
-      color: #ffffff;
-      text-transform: uppercase;
-      flex-shrink: 0;
-   }
-   
-   .newmodal_close {
-      background-image: url( data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABAAAAAQCAYAAAAf8/9hAAAAGXRFWHRTb2Z0d2FyZQBBZG9iZSBJbWFnZVJlYWR5ccllPAAAAyBpVFh0WE1MOmNvbS5hZG9iZS54bXAAAAAAADw/eHBhY2tldCBiZWdpbj0i77u/IiBpZD0iVzVNME1wQ2VoaUh6cmVTek5UY3prYzlkIj8+IDx4OnhtcG1ldGEgeG1sbnM6eD0iYWRvYmU6bnM6bWV0YS8iIHg6eG1wdGs9IkFkb2JlIFhNUCBDb3JlIDUuMC1jMDYwIDYxLjEzNDc3NywgMjAxMC8wMi8xMi0xNzozMjowMCAgICAgICAgIj4gPHJkZjpSREYgeG1sbnM6cmRmPSJodHRwOi8vd3d3LnczLm9yZy8xOTk5LzAyLzIyLXJkZi1zeW50YXgtbnMjIj4gPHJkZjpEZXNjcmlwdGlvbiByZGY6YWJvdXQ9IiIgeG1sbnM6eG1wPSJodHRwOi8vbnMuYWRvYmUuY29tL3hhcC8xLjAvIiB4bWxuczp4bXBNTT0iaHR0cDovL25zLmFkb2JlLmNvbS94YXAvMS4wL21tLyIgeG1sbnM6c3RSZWY9Imh0dHA6Ly9ucy5hZG9iZS5jb20veGFwLzEuMC9zVHlwZS9SZXNvdXJjZVJlZiMiIHhtcDpDcmVhdG9yVG9vbD0iQWRvYmUgUGhvdG9zaG9wIENTNSBXaW5kb3dzIiB4bXBNTTpJbnN0YW5jZUlEPSJ4bXAuaWlkOjVBREZBRDlBNzdCNzExRTI5ODAzRUE3MDU0Mzk5MjM5IiB4bXBNTTpEb2N1bWVudElEPSJ4bXAuZGlkOjVBREZBRDlCNzdCNzExRTI5ODAzRUE3MDU0Mzk5MjM5Ij4gPHhtcE1NOkRlcml2ZWRGcm9tIHN0UmVmOmluc3RhbmNlSUQ9InhtcC5paWQ6NUFERkFEOTg3N0I3MTFFMjk4MDNFQTcwNTQzOTkyMzkiIHN0UmVmOmRvY3VtZW50SUQ9InhtcC5kaWQ6NUFERkFEOTk3N0I3MTFFMjk4MDNFQTcwNTQzOTkyMzkiLz4gPC9yZGY6RGVzY3JpcHRpb24+IDwvcmRmOlJERj4gPC94OnhtcG1ldGE+IDw/eHBhY2tldCBlbmQ9InIiPz4iulRzAAABPElEQVR42mI8cuQIAyWABUqbAXEylH0fiDtwqI8FYhsoewEQH4cZcBaI64DYG8p/AVWADDyAeD4QMwPxJiA+BRJkgkr+BeJoIL4D5U8DYi0kzepAvAKq+TJU7V9kA0DgIxD7Q2lOIF4NpfmBeAuUfg3EPkD8BaaJCc2Z14A4EcoGuWAC1NkqQPwLqvkRsgYmLAG1HoiboOw0IA6EshNh/iZkAAjUA/FBJP5KIF6GTSEuAwygUQsDflAxogwQAuJ10AAExcpNKHsjEIsSMoAZGl2K0EALBeIIKFsOKSpxGtACxK5Qdi4QX4DiAqiYExB34TIgBIgrkAJtFpLcdKgYCBQBcRRMghGamUBxfhKIeaB+NkFOLFAAkjsDTZXfgdgK5DpYXvBGiqYpWDQzQMVAYZKDlDcuMFKanQECDAAqw0LA+GRiqAAAAABJRU5ErkJggg== );
-      background-repeat: no-repeat;
-      background-position: center right;
-      cursor: pointer;
-      float: right;
-      margin-top: 9px;
-      margin-right: 9px;
-      height: 16px;
-      width: 16px;
-   
-      opacity: 0.7;
-   }
-   
-   /* for labelling the close button with text, used on market */
-   
-   .newmodal_close:hover {
-      opacity: 1;
-   }
-   
-   .newmodal_content_border {
-      padding: 0 1px 1px 1px;
-   }
-   
-   .newmodal_content {
-   
-   
-      overflow: auto;
-      word-wrap: break-word;
-   
-      padding: 32px;
-   
-      font-size: 14px;
-      color: #969696;
-   
-      position: relative;
-   }
-   
-   .gray_bevel input {
-      border: none;
-      outline: none;
-      background-color: rgba(0,0,0,0.2);
-      border: 1px solid #000;
-      box-shadow: 1px 1px 0 0 rgba( 91, 132, 181, 0.2 );
-      font-size: 13px;
-      color: #BFBFBF;
-   }
-   
-   .gray_bevel input:-moz-read-only {
-      background: transparent;
-      border: transparent;
-      box-shadow: none;
-      color: #919191;
-   }
-   
-   .gray_bevel input:read-only {
-      background: transparent;
-      border: transparent;
-      box-shadow: none;
-      color: #919191;
-   }
-   
-   
-   
-   /*
+
+.newmodal {
+    font-family: "Motiva Sans", Sans-serif;
+    font-weight: normal;
+    /* normal */
+    position: absolute;
+    max-width: 900px;
+    /* our page width */
+    min-width: 500px;
+    background: radial-gradient(circle at top left, rgba(74, 81, 92, 0.4) 0%, rgba(75, 81, 92, 0) 60%), #25282e;
+}
+
+.newmodal_background {
+    position: fixed;
+    z-index: 900;
+    background: #000000;
+    top: 0;
+    right: 0;
+    bottom: 0;
+    left: 0;
+}
+
+.newmodal_header .title_text {
+    padding: 32px 32px 0px 32px;
+    display: block;
+}
+
+.modal_top_bar {
+    width: 100%;
+    height: 1px;
+    background: linear-gradient(45deg, #36bbf7 0%, #702df9 100%);
+}
+
+.newmodal_header {
+    padding: 0px 0px 0px 0px;
+    text-align: left;
+    font-weight: 300;
+    font-size: 32px;
+    line-height: 36px;
+    letter-spacing: 2px;
+    color: #ffffff;
+    text-transform: uppercase;
+    flex-shrink: 0;
+}
+
+.newmodal_close {
+    background-image: url(data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABAAAAAQCAYAAAAf8/9hAAAAGXRFWHRTb2Z0d2FyZQBBZG9iZSBJbWFnZVJlYWR5ccllPAAAAyBpVFh0WE1MOmNvbS5hZG9iZS54bXAAAAAAADw/eHBhY2tldCBiZWdpbj0i77u/IiBpZD0iVzVNME1wQ2VoaUh6cmVTek5UY3prYzlkIj8+IDx4OnhtcG1ldGEgeG1sbnM6eD0iYWRvYmU6bnM6bWV0YS8iIHg6eG1wdGs9IkFkb2JlIFhNUCBDb3JlIDUuMC1jMDYwIDYxLjEzNDc3NywgMjAxMC8wMi8xMi0xNzozMjowMCAgICAgICAgIj4gPHJkZjpSREYgeG1sbnM6cmRmPSJodHRwOi8vd3d3LnczLm9yZy8xOTk5LzAyLzIyLXJkZi1zeW50YXgtbnMjIj4gPHJkZjpEZXNjcmlwdGlvbiByZGY6YWJvdXQ9IiIgeG1sbnM6eG1wPSJodHRwOi8vbnMuYWRvYmUuY29tL3hhcC8xLjAvIiB4bWxuczp4bXBNTT0iaHR0cDovL25zLmFkb2JlLmNvbS94YXAvMS4wL21tLyIgeG1sbnM6c3RSZWY9Imh0dHA6Ly9ucy5hZG9iZS5jb20veGFwLzEuMC9zVHlwZS9SZXNvdXJjZVJlZiMiIHhtcDpDcmVhdG9yVG9vbD0iQWRvYmUgUGhvdG9zaG9wIENTNSBXaW5kb3dzIiB4bXBNTTpJbnN0YW5jZUlEPSJ4bXAuaWlkOjVBREZBRDlBNzdCNzExRTI5ODAzRUE3MDU0Mzk5MjM5IiB4bXBNTTpEb2N1bWVudElEPSJ4bXAuZGlkOjVBREZBRDlCNzdCNzExRTI5ODAzRUE3MDU0Mzk5MjM5Ij4gPHhtcE1NOkRlcml2ZWRGcm9tIHN0UmVmOmluc3RhbmNlSUQ9InhtcC5paWQ6NUFERkFEOTg3N0I3MTFFMjk4MDNFQTcwNTQzOTkyMzkiIHN0UmVmOmRvY3VtZW50SUQ9InhtcC5kaWQ6NUFERkFEOTk3N0I3MTFFMjk4MDNFQTcwNTQzOTkyMzkiLz4gPC9yZGY6RGVzY3JpcHRpb24+IDwvcmRmOlJERj4gPC94OnhtcG1ldGE+IDw/eHBhY2tldCBlbmQ9InIiPz4iulRzAAABPElEQVR42mI8cuQIAyWABUqbAXEylH0fiDtwqI8FYhsoewEQH4cZcBaI64DYG8p/AVWADDyAeD4QMwPxJiA+BRJkgkr+BeJoIL4D5U8DYi0kzepAvAKq+TJU7V9kA0DgIxD7Q2lOIF4NpfmBeAuUfg3EPkD8BaaJCc2Z14A4EcoGuWAC1NkqQPwLqvkRsgYmLAG1HoiboOw0IA6EshNh/iZkAAjUA/FBJP5KIF6GTSEuAwygUQsDflAxogwQAuJ10AAExcpNKHsjEIsSMoAZGl2K0EALBeIIKFsOKSpxGtACxK5Qdi4QX4DiAqiYExB34TIgBIgrkAJtFpLcdKgYCBQBcRRMghGamUBxfhKIeaB+NkFOLFAAkjsDTZXfgdgK5DpYXvBGiqYpWDQzQMVAYZKDlDcuMFKanQECDAAqw0LA+GRiqAAAAABJRU5ErkJggg== );
+    background-repeat: no-repeat;
+    background-position: center right;
+    cursor: pointer;
+    float: right;
+    margin-top: 9px;
+    margin-right: 9px;
+    height: 16px;
+    width: 16px;
+    opacity: 0.7;
+}
+
+
+/* for labelling the close button with text, used on market */
+
+.newmodal_close:hover {
+    opacity: 1;
+}
+
+.newmodal_content_border {
+    padding: 0 1px 1px 1px;
+}
+
+.newmodal_content {
+    overflow: auto;
+    word-wrap: break-word;
+    padding: 32px;
+    font-size: 14px;
+    color: #969696;
+    position: relative;
+}
+
+.gray_bevel input {
+    border: none;
+    outline: none;
+    background-color: rgba(0, 0, 0, 0.2);
+    border: 1px solid #000;
+    box-shadow: 1px 1px 0 0 rgba( 91, 132, 181, 0.2);
+    font-size: 13px;
+    color: #BFBFBF;
+}
+
+.gray_bevel input:-moz-read-only {
+    background: transparent;
+    border: transparent;
+    box-shadow: none;
+    color: #919191;
+}
+
+.gray_bevel input:read-only {
+    background: transparent;
+    border: transparent;
+    box-shadow: none;
+    color: #919191;
+}
+
+
+/*
     * HEADER
     */
-   
-   /* apply 16px padding to the sides of all the page-wide divs to prevent content
+
+
+/* apply 16px padding to the sides of all the page-wide divs to prevent content
       from touching the sides on small resolutions */
-   div#footer, div#global_header {
-      padding-left: 16px;
-      padding-right: 16px;
-   }
-   
-   
-   div#global_header {
-      background: #171a21;
-      background-position: center top;
-      min-width: 940px;
-   
-            font-family: "Motiva Sans", Sans-serif;
-         font-weight: normal; /* normal */
-   
-            font-size: 14px;
-   }
-   
-   /**/
-   div#global_header .content {
-      background: #171a21;
-      position: relative;
-      width: 940px;
-      height: 104px;
-      margin: 0px auto;
-   
-      z-index: 402;
-   }
-   
-   /* make sure we override any global a styles on the site */
-   
-   /* -------------- paging controls -------------*/
-   
-   
-   /* steam inbox */
-   
-   
-   /* notification box */
-   
-   /* these are shown conditionally so not a big deal that they aren't in the sprite */
-   
-   /* re-uses comment icon */
-   
-   
-   
-   /* ugc with adult content */
-   
-   /* ugc_options defines the per-ugc preferences dropdown */
-   
-   /* early access tag on reviews*/
-   
-   /* pre release tag on reviews*/
-   
-   /* shared bbcode styles */
-   
-   div.bb_h1 {
-      font-size: 15px;
-      color: #5aa9d6;
-      font-weight: normal;
-   }
-   
-   /* V6 */
-   
-   /*
+
+div#footer,
+div#global_header {
+    padding-left: 16px;
+    padding-right: 16px;
+}
+
+div#global_header {
+    background: #171a21;
+    background-position: center top;
+    min-width: 940px;
+    font-family: "Motiva Sans", Sans-serif;
+    font-weight: normal;
+    /* normal */
+    font-size: 14px;
+}
+
+
+/**/
+
+div#global_header .content {
+    background: #171a21;
+    position: relative;
+    width: 940px;
+    height: 104px;
+    margin: 0px auto;
+    z-index: 402;
+}
+
+
+/* make sure we override any global a styles on the site */
+
+
+/* -------------- paging controls -------------*/
+
+
+/* steam inbox */
+
+
+/* notification box */
+
+
+/* these are shown conditionally so not a big deal that they aren't in the sprite */
+
+
+/* re-uses comment icon */
+
+
+/* ugc with adult content */
+
+
+/* ugc_options defines the per-ugc preferences dropdown */
+
+
+/* early access tag on reviews*/
+
+
+/* pre release tag on reviews*/
+
+
+/* shared bbcode styles */
+
+div.bb_h1 {
+    font-size: 15px;
+    color: #5aa9d6;
+    font-weight: normal;
+}
+
+
+/* V6 */
+
+
+/*
     * DYNAMIC STORE - ownership styling
     */
-   
-   /* Scrollbar CSS. Move this to somewhere common before checking in thankx */
-   
-   @media screen and (max-width: 910px)
-   {
-   
-      /* workaround for ios safari, having the background be position: fixed introduces display glitches */
-   
-   }
-   
-      /* workaround for ios safari, having the background be position: fixed introduces display glitches */
+
+
+/* Scrollbar CSS. Move this to somewhere common before checking in thankx */
+
+@media screen and (max-width: 910px) {
+    /* workaround for ios safari, having the background be position: fixed introduces display glitches */
+}
+
+
+/* workaround for ios safari, having the background be position: fixed introduces display glitches */

@@ -1,11 +1,10 @@
-
 .ellipsis {
     overflow: hidden;
     text-overflow: ellipsis;
     white-space: nowrap;
- }
- 
- .itemHolder {
+}
+
+.itemHolder {
     position: relative;
     width: 98px;
     height: 98px;
@@ -16,9 +15,8 @@
     float: left;
     margin-right: 6px;
     margin-bottom: 6px;
- }
- 
- .market_dialog_content {
+}
+
+.market_dialog_content {
     padding: 11px;
- }
- 
+}

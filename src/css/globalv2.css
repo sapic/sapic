@@ -1,50 +1,53 @@
 html {
     height: 100%;
- }
- 
- body {
+}
+
+body {
     background: #12151a;
     text-align: left;
     color: #8F98A0;
     font-size: 14px;
     margin: 0;
     padding: 0;
- }
- 
- body {
+}
+
+body {
     font-family: Arial, Helvetica, Verdana, sans-serif;
- }
- 
- h1 {
+}
+
+h1 {
     margin: 0px;
- }
- 
- .ellipsis {
+}
+
+.ellipsis {
     overflow: hidden;
     text-overflow: ellipsis;
     white-space: nowrap;
- }
- 
- a, .whiteLink {
+}
+
+a,
+.whiteLink {
     color: #ebebeb;
     text-decoration: none;
     cursor: pointer;
- }
- 
- a.whiteLink:hover, .whiteLink:hover {
+}
+
+a.whiteLink:hover,
+.whiteLink:hover {
     color: #66C0F4;
     text-decoration: none;
     cursor: pointer;
- }
- 
- input[type=text], select {
+}
+
+input[type=text],
+select {
     color: #909090;
     background-color: rgba( 0, 0, 0, 0.2);
     border: 1px solid #000;
     border-radius: 3px;
- }
- 
- #footer {
+}
+
+#footer {
     position: relative;
     text-align: left;
     width: auto;
@@ -54,37 +57,37 @@ html {
     margin: 0;
     padding: 32px 0;
     background-color: rgba( 0, 0, 0, 0.4);
- }
- 
- #footer .footer_content {
+}
+
+#footer .footer_content {
     position: relative;
     width: 958px;
     margin: 0 auto;
- }
- 
- #footer a {
+}
+
+#footer a {
     color: #C6D4DF;
     text-decoration: none;
- }
- 
- #footer a:hover {
+}
+
+#footer a:hover {
     color: #ffffff;
- }
- 
- #footerText {
+}
+
+#footerText {
     padding: 2px 0 0 123px;
     line-height: 14px;
     display: block;
     color: #8F98A0;
- }
- 
- #footerLogo {
+}
+
+#footerLogo {
     position: absolute;
     left: 16px;
     top: 4px;
- }
- 
- .friendBlock {
+}
+
+.friendBlock {
     height: 36px;
     padding: 4px 0 4px 4px;
     margin-bottom: 4px;
@@ -95,46 +98,46 @@ html {
     text-overflow: ellipsis;
     position: relative;
     background-color: rgba( 84, 133, 183, 0.2);
- }
- 
- .friendBlockLinkOverlay {
+}
+
+.friendBlockLinkOverlay {
     position: absolute;
     left: 0;
     top: 0;
     right: 0;
     bottom: 0;
     z-index: 2;
- }
- 
- .friendBlock:hover {
+}
+
+.friendBlock:hover {
     cursor: pointer;
     background-color: rgba( 117, 204, 255, 0.3);
- }
- 
- .friendBlock .playerAvatar {
+}
+
+.friendBlock .playerAvatar {
     float: left;
     margin-right: 7px;
- }
- 
- .friendBlock .friendBlockContent {
+}
+
+.friendBlock .friendBlockContent {
     overflow: hidden;
     white-space: nowrap;
     text-overflow: ellipsis;
- }
- 
- .friendBlock .friendPlayerLevel {
+}
+
+.friendBlock .friendPlayerLevel {
     float: right;
     margin: 4px 4px 0 0;
- }
- 
- .commentthread_subscribe_ctn {
+}
+
+.commentthread_subscribe_ctn {
     display: inline-block;
     white-space: nowrap;
     font-size: 12px;
     cursor: pointer;
- }
- 
- .commentthread_subscribe_checkbox {
+}
+
+.commentthread_subscribe_checkbox {
     display: inline-block;
     position: relative;
     height: 12px;
@@ -146,9 +149,9 @@ html {
     border-top-right-radius: 1px;
     border-bottom-left-radius: 1px;
     background: rgba( 0, 0, 0, 0.2);
- }
- 
- .commentthread_subscribe_check {
+}
+
+.commentthread_subscribe_check {
     position: absolute;
     display: none;
     top: -1px;
@@ -156,13 +159,13 @@ html {
     right: -1px;
     bottom: -1px;
     background: url('data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABAAAAAQCAYAAAAf8/9hAAAAGXRFWHRTb2Z0d2FyZQBBZG9iZSBJbWFnZVJlYWR5ccllPAAAASJJREFUeNpi/P//PwMlgIVcjcGLD70H0UzkaA6cv/cpkBIgywC/mdvOMLGwSsHMIskA145FM1m5eIxB7B+Pnz9YG2t3gGgDrArbi/mkFdJA7J+fPxzYWhWuSLQXlF0CfSUMLOtB7H9/fj87NaW+ESaHYoBJelWaXdWkBnQDdMIzehiZmHhB7Du71pS8unb+AFYD5G08ZopqGtQ7Nc3uZWRkBPvVa9K6TSwcnGog9uvrFxovL5++HFkPI3JC8p+98yayYhANMhBEf3//ZvP2/OBGoPqzOA1AN+T/v3+fQU7/8+P7reP9FenITsfqBRAAKQRpAJsO1Awy5MrKGSXYNGN1AQwELTzwCWTA83NHS471V/biiiFGSjMTEwOFgGIDAAIMAKHJfj735eNRAAAAAElFTkSuQmCC') no-repeat center;
- }
- 
- .commentthread_subscribe_ctn.checked .commentthread_subscribe_check {
+}
+
+.commentthread_subscribe_ctn.checked .commentthread_subscribe_check {
     display: block;
- }
- 
- .commentthread_entry_quotebox {
+}
+
+.commentthread_entry_quotebox {
     border: none;
     padding: 4px 6px 4px 6px;
     font-size: 12px;
@@ -173,9 +176,9 @@ html {
     border-right: 1px solid #354357;
     border-bottom: 1px solid #354357;
     overflow: hidden;
- }
- 
- .commentthread_textarea {
+}
+
+.commentthread_textarea {
     resize: none;
     outline: none;
     background-color: transparent;
@@ -183,29 +186,29 @@ html {
     width: 100%;
     overflow: hidden;
     color: #BFBFBF;
- }
- 
- .commentthread_textarea::-webkit-input-placeholder {
+}
+
+.commentthread_textarea::-webkit-input-placeholder {
     font-style: italic;
     color: #515152;
- }
- 
- .commentthread_textarea:-moz-placeholder {
+}
+
+.commentthread_textarea:-moz-placeholder {
     font-style: italic;
     color: #515152;
- }
- 
- .gray_bevel input:-moz-placeholder {
+}
+
+.gray_bevel input:-moz-placeholder {
     font-style: italic;
     color: #7c7c7c;
- }
- 
- .gray_bevel input::-webkit-input-placeholder {
+}
+
+.gray_bevel input::-webkit-input-placeholder {
     font-style: italic;
     color: #7c7c7c;
- }
- 
- .gray_bevel {
+}
+
+.gray_bevel {
     background-color: rgba( 0, 0, 0, 0.2);
     border-radius: 3px;
     border: 1px solid #000;
@@ -214,25 +217,24 @@ html {
     margin-bottom: 6px;
     outline: none;
     padding: 4px 6px;
- }
- 
- .gray_bevel.for_text_input {
+}
+
+.gray_bevel.for_text_input {
     display: inline-block;
     padding-bottom: 1px;
     height: 25px;
- }
- 
- .gray_bevel input {
+}
+
+.gray_bevel input {
     line-height: 21px;
     height: 21px;
- }
- 
- .gray_bevel input {
+}
+
+.gray_bevel input {
     border: none;
     outline: none;
     box-shadow: none;
     background-color: transparent;
     font-size: 13px;
     color: #C6D4DF;
- }
- 
+}

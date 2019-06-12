@@ -1,27 +1,27 @@
 div.profile_page {
     position: relative;
     min-width: 950px;
- }
- 
- div.profile_page {
+}
+
+div.profile_page {
     background-image: url('https://steamcommunity-a.akamaihd.net/public/images/profile/profile_bg.jpg');
     background-repeat: repeat-x;
     background-color: #262627;
- }
- 
- div.profile_page.has_profile_background {
+}
+
+div.profile_page.has_profile_background {
     background-color: #000000;
     background-position: center top;
     background-repeat: no-repeat;
- }
- 
- @media screen and (-webkit-min-device-pixel-ratio:0) {
+}
+
+@media screen and (-webkit-min-device-pixel-ratio:0) {
     div.profile_page.has_profile_background {
-       background-position: 49.999% 0;
+        background-position: 49.999% 0;
     }
- }
- 
- .profile_header_bg {
+}
+
+.profile_header_bg {
     position: relative;
     max-width: 1018px;
     min-height: 224px;
@@ -30,147 +30,147 @@ div.profile_page {
     background-image: url('https://steamcommunity-a.akamaihd.net/public/images/profile/profile_header_bg.png');
     background-repeat: no-repeat;
     background-position: center bottom;
- }
- 
- .profile_header_bg_texture {
+}
+
+.profile_header_bg_texture {
     max-width: 976px;
     min-height: 224px;
     margin: 0 auto;
     background-image: url('https://steamcommunity-a.akamaihd.net/public/images/profile/profile_header_bg_texture.jpg');
     background-repeat: no-repeat;
     background-position: center;
- }
- 
- .profile_header {
+}
+
+.profile_header {
     position: relative;
     max-width: 926px;
     margin: 0 auto;
     padding-top: 24px;
- }
- 
- .profile_header_content {
+}
+
+.profile_header_content {
     position: relative;
     padding-top: 8px;
     color: #898989;
     font-size: 13px;
- }
- 
- .profile_header_summary {
+}
+
+.profile_header_summary {
     overflow: hidden;
     padding-right: 18px;
- }
- 
- .playerAvatar.profile_header_size {
+}
+
+.playerAvatar.profile_header_size {
     position: relative;
     width: 166px;
     height: 166px;
- }
- 
- .playerAvatar.profile_header_size .playerAvatarAutoSizeInner img {
+}
+
+.playerAvatar.profile_header_size .playerAvatarAutoSizeInner img {
     background: none;
     filter: none;
     display: block;
     padding: 0;
     width: 100%;
     height: 100%;
- }
- 
- .playerAvatar.profile_header_size .playerAvatarAutoSizeInner {
+}
+
+.playerAvatar.profile_header_size .playerAvatarAutoSizeInner {
     position: absolute;
     top: 2px;
     right: 2px;
     bottom: 2px;
     left: 2px;
- }
- 
- .profile_header .playerAvatar.profile_header_size {
+}
+
+.profile_header .playerAvatar.profile_header_size {
     float: left;
     margin-right: 18px;
- }
- 
- .profile_header_badgeinfo {
+}
+
+.profile_header_badgeinfo {
     float: right;
- }
- 
- .profile_header_badgeinfo_badge_area {
+}
+
+.profile_header_badgeinfo_badge_area {
     width: 268px;
- }
- 
- .profile_header_actions {
+}
+
+.profile_header_actions {
     white-space: nowrap;
- }
- 
- .profile_header .persona_name {
+}
+
+.profile_header .persona_name {
     line-height: 40px;
     font-size: 24px;
     color: #ffffff;
     text-overflow: ellipsis;
     white-space: nowrap;
     overflow: hidden;
-    font-family: 'Motiva Sans Thin',Arial,Helvetica,Verdana,sans-serif;
+    font-family: 'Motiva Sans Thin', Arial, Helvetica, Verdana, sans-serif;
     font-weight: 200;
     /* thin */
- }
- 
- .profile_header .profile_header_centered_persona {
+}
+
+.profile_header .profile_header_centered_persona {
     position: absolute;
     left: 186px;
     right: 268px;
     white-space: nowrap;
- }
- 
- .header_real_name_spacer {
+}
+
+.header_real_name_spacer {
     height: 52px;
- }
- 
- .profile_header .profile_summary {
+}
+
+.profile_header .profile_summary {
     line-height: 18px;
     height: 57px;
     overflow: hidden;
     margin-bottom: 8px;
- }
- 
- .profile_header_badgeinfo .persona_level {
+}
+
+.profile_header_badgeinfo .persona_level {
     line-height: 40px;
     margin-bottom: 13px;
- }
- 
- .profile_header_badgeinfo .persona_level .friendPlayerLevel {
+}
+
+.profile_header_badgeinfo .persona_level .friendPlayerLevel {
     vertical-align: middle;
- }
- 
- .profile_header_badgeinfo .persona_level .friendPlayerLevel .friendPlayerLevelNum {
+}
+
+.profile_header_badgeinfo .persona_level .friendPlayerLevel .friendPlayerLevelNum {
     color: #ffffff;
- }
- 
- .profile_header_badge {
+}
+
+.profile_header_badge {
     border: 1px solid #212121;
     border-radius: 3px;
     background-color: #222223;
     height: 70px;
     box-shadow: 1px 1px 0 #343944;
     margin-bottom: 13px;
- }
- 
- .btn_profile_action {
+}
+
+.btn_profile_action {
     border-radius: 2px;
     color: #fff !important;
     padding: 1px;
     display: inline-block;
     text-decoration: none;
     cursor: pointer;
- }
- 
- .btn_profile_action>span {
+}
+
+.btn_profile_action>span {
     border-radius: 2px;
     display: block;
- }
- 
- .btn_profile_action:hover {
+}
+
+.btn_profile_action:hover {
     text-decoration: none;
- }
- 
- .profile_content {
+}
+
+.profile_content {
     position: relative;
     background-image: url('https://steamcommunity-a.akamaihd.net/public/images/profile/profile_content_bg.png');
     background-position: center;
@@ -179,30 +179,30 @@ div.profile_page {
     width: 926px;
     margin: 0 auto;
     font-size: 13px;
- }
- 
- .profile_content.has_profile_background {
+}
+
+.profile_content.has_profile_background {
     background: none;
     margin-top: -14px;
     overflow: hidden;
     padding-top: 14px;
- }
- 
- .profile_content_inner {
+}
+
+.profile_content_inner {
     position: relative;
- }
- 
- .profile_leftcol {
+}
+
+.profile_leftcol {
     width: 636px;
     float: left;
- }
- 
- .profile_rightcol {
+}
+
+.profile_rightcol {
     width: 268px;
     float: right;
- }
- 
- .profile_customization {
+}
+
+.profile_customization {
     position: relative;
     background-image: url('https://steamcommunity-a.akamaihd.net/public/images/profile/showcase_bg.png');
     background-position: top left;
@@ -213,10 +213,10 @@ div.profile_page {
     margin-bottom: 12px;
     font-size: 13px;
     overflow: hidden;
- }
- 
- .profile_customization_header {
-    font-family: 'Motiva Sans Thin',Arial,Helvetica,Verdana,sans-serif;
+}
+
+.profile_customization_header {
+    font-family: 'Motiva Sans Thin', Arial, Helvetica, Verdana, sans-serif;
     font-weight: 200;
     color: #5491cf;
     font-size: 20px;
@@ -224,215 +224,216 @@ div.profile_page {
     overflow: hidden;
     white-space: nowrap;
     text-overflow: ellipsis;
- }
- 
- .showcase_content_bg {
+}
+
+.showcase_content_bg {
     background-color: #101214;
     background-color: rgba( 0, 0, 0, 0.3);
     padding: 8px;
     border-radius: 3px;
     margin-bottom: 9px;
     overflow: hidden;
- }
- 
- .showcase_content_bg:last-child {
+}
+
+.showcase_content_bg:last-child {
     margin-bottom: 0;
- }
- 
- .showcase_stats_row {
+}
+
+.showcase_stats_row {
     white-space: nowrap;
- }
- 
- .showcase_stats_row .showcase_stat {
+}
+
+.showcase_stats_row .showcase_stat {
     margin-left: 42px;
     display: inline-block;
- }
- 
- .showcase_stat {
+}
+
+.showcase_stat {
     font-size: 34px;
- }
- 
- .showcase_stats_row .showcase_stat:first-child {
+}
+
+.showcase_stats_row .showcase_stat:first-child {
     margin-left: 0;
- }
- 
- .showcase_stat .value {
+}
+
+.showcase_stat .value {
     font-size: 1em;
-    font-family: 'Motiva Sans Thin',Arial,Helvetica,Verdana,sans-serif;
+    font-family: 'Motiva Sans Thin', Arial, Helvetica, Verdana, sans-serif;
     font-weight: 200;
     color: #ffffff;
- }
- 
- .showcase_stat .label {
+}
+
+.showcase_stat .label {
     font-size: 0.5em;
     color: #9b9b9b;
- }
- 
- a.showcase_stat:hover .label {
+}
+
+a.showcase_stat:hover .label {
     color: #ffffff;
- }
- 
- .showcase_slot {
+}
+
+.showcase_slot {
     display: block;
     float: left;
     position: relative;
- }
- 
- .workshop_showcase_mutiitem_ctn {
+}
+
+.workshop_showcase_mutiitem_ctn {
     float: left;
     max-width: 20%;
- }
- 
- .workshop_showcase_multiitem.showcase_slot {
+}
+
+.workshop_showcase_multiitem.showcase_slot {
     position: relative;
     float: none;
     margin: 2px;
     width: 119px;
- }
- 
- .myworkshop_showcase_header {
+}
+
+.myworkshop_showcase_header {
     /* 620 x 58 */
     width: 600px;
     height: 38px;
     padding: 10px;
     line-height: 38px;
     margin-bottom: 14px;
- }
- 
- .myworkshop_showcase_header .playerAvatar {
+}
+
+.myworkshop_showcase_header .playerAvatar {
     float: left;
     margin-right: 10px;
- }
- 
- .myworkshop_showcase_header .myworkshop_playerName {
+}
+
+.myworkshop_showcase_header .myworkshop_playerName {
     font-size: 24px;
-    font-family: 'Motiva Sans Thin',Arial,Helvetica,Verdana,sans-serif;
+    font-family: 'Motiva Sans Thin', Arial, Helvetica, Verdana, sans-serif;
     font-weight: 200;
     /* thin */
     color: #ffffff;
- }
- 
- .screenshot_showcase_primary {
+}
+
+.screenshot_showcase_primary {
     width: 508px;
     max-width: 83%;
     float: left;
- }
- 
- .screenshot_showcase_screenshot {
+}
+
+.screenshot_showcase_screenshot {
     cursor: pointer;
     border: 1px solid #000000;
     display: block;
     white-space: nowrap;
     overflow: hidden;
- }
- 
- .screenshot_showcase_screenshot:hover {
+}
+
+.screenshot_showcase_screenshot:hover {
     border: 1px solid #97C0E3;
- }
- 
- .screenshot_showcase_primary .screenshot_showcase_screenshot {
+}
+
+.screenshot_showcase_primary .screenshot_showcase_screenshot {
     margin-bottom: 4px;
- }
- 
- .screenshot_showcase_itemname {
+}
+
+.screenshot_showcase_itemname {
     word-wrap: break-word;
- }
- 
- .screenshot_showcase_rightcol {
+}
+
+.screenshot_showcase_rightcol {
     float: right;
     max-width: 17%;
     width: 102px;
     text-align: center;
- }
- 
- .screenshot_showcase_smallscreenshot {
+}
+
+.screenshot_showcase_smallscreenshot {
     float: none;
     margin-bottom: 11px;
- }
- 
- .screenshot_showcase_smallscreenshot.screenshot_count {
+}
+
+.screenshot_showcase_smallscreenshot.screenshot_count {
     display: block;
     height: 57px;
     line-height: 57px;
     background-color: #222223;
     color: #ffffff;
- }
- 
- .screenshot_showcase_stats {
+}
+
+.screenshot_showcase_stats {
     line-height: 24px;
- }
- 
- .screenshot_showcase_stat {
+}
+
+.screenshot_showcase_stat {
     margin-right: 12px;
     cursor: default;
- }
- 
- .screenshot_showcase_stats .screenshot_showcase_staticon {
+}
+
+.screenshot_showcase_stats .screenshot_showcase_staticon {
     vertical-align: text-bottom;
- }
- 
- .profile_count_link {
+}
+
+.profile_count_link {
     font-size: 14px;
     margin-bottom: 4px;
     min-height: 29px;
- }
- 
- .profile_count_link a:hover .count_link_label {
+}
+
+.profile_count_link a:hover .count_link_label {
     text-decoration: underline;
- }
- 
- .profile_count_link_total {
-    font-family: 'Motiva Sans Thin',Arial,Helvetica,Verdana,sans-serif;
+}
+
+.profile_count_link_total {
+    font-family: 'Motiva Sans Thin', Arial, Helvetica, Verdana, sans-serif;
     font-weight: 200;
     /* thin */
     color: #9b9b9b;
     font-size: 24px;
- }
- 
- .profile_group_links, .profile_friend_links {
+}
+
+.profile_group_links,
+.profile_friend_links {
     margin-bottom: 40px;
- }
- 
- .profile_group {
+}
+
+.profile_group {
     position: relative;
     word-wrap: break-word;
     overflow: hidden;
     padding-top: 1px;
     padding-left: 42px;
     height: 36px;
- }
- 
- .profile_group.profile_primary_group {
+}
+
+.profile_group.profile_primary_group {
     padding-top: 10px;
     padding-left: 80px;
     height: 60px;
     margin-bottom: 12px;
     margin-top: 12px;
- }
- 
- .profile_group_avatar {
+}
+
+.profile_group_avatar {
     position: absolute;
     left: 0;
     top: 0;
     box-shadow: 2px 2px 3px #0c0c0c;
     width: 32px;
     height: 32px;
- }
- 
- .profile_primary_group .profile_group_avatar {
+}
+
+.profile_primary_group .profile_group_avatar {
     width: 64px;
     height: 64px;
- }
- 
- .profile_topfriends .friendBlock {
+}
+
+.profile_topfriends .friendBlock {
     background: none;
- }
- 
- .profile_topfriends .friendBlock:hover {
+}
+
+.profile_topfriends .friendBlock:hover {
     background-color: #3a3a3a;
- }
- 
- .profile_background_holder_content {
+}
+
+.profile_background_holder_content {
     position: absolute;
     top: 0;
     right: 0;
@@ -440,9 +441,9 @@ div.profile_page {
     left: 0;
     background-color: #000000;
     z-index: 0;
- }
- 
- .profile_background_image_content {
+}
+
+.profile_background_image_content {
     position: absolute;
     top: 0;
     right: 0;
@@ -451,9 +452,9 @@ div.profile_page {
     background-position: center -226px;
     background-repeat: no-repeat;
     z-index: 0;
- }
- 
- .profile_background_overlay_content {
+}
+
+.profile_background_overlay_content {
     position: absolute;
     top: 0;
     right: 0;
@@ -464,9 +465,8 @@ div.profile_page {
     opacity: .85;
     filter: alpha(opacity=85);
     -ms-filter: "progid:DXImageTransform.Microsoft.Alpha(Opacity=85)";
- }
- 
- .profile_summary a.bb_link:hover {
+}
+
+.profile_summary a.bb_link:hover {
     text-decoration: underline;
- }
- 
+}

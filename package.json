@@ -1,23 +1,23 @@
 {
-  "name": "sapic",
-  "version": "1.0.0",
-  "scripts": {
-    "build": "gulp"
-  },
-  "devDependencies": {
-    "gulp": "^4.0.2",
-    "gulp-concat": "^2.6.1",
-    "gulp-concat-css": "^3.1.0",
-    "gulp-rimraf": "^0.2.2",
-    "gulp-uglify": "^3.0.2",
-    "gulp-useref": "git+https://github.com/sapic/gulp-useref.git"
-  },
-  "dependencies": {
-    "cssnano": "^4.1.10",
-    "good-listener": "^1.2.2",
-    "gulp-postcss": "^8.0.0",
-    "gulp-rename": "^1.4.0",
-    "postcss-uncss": "^0.16.1",
-    "uncss": "^0.16.2"
-  }
+    "name": "sapic",
+    "version": "1.0.0",
+    "scripts": {
+        "build": "gulp"
+    },
+    "devDependencies": {
+        "gulp": "^4.0.2",
+        "gulp-concat": "^2.6.1",
+        "gulp-concat-css": "^3.1.0",
+        "gulp-rimraf": "^0.2.2",
+        "gulp-uglify": "^3.0.2",
+        "gulp-useref": "git+https://github.com/sapic/gulp-useref.git"
+    },
+    "dependencies": {
+        "cssnano": "^4.1.10",
+        "good-listener": "^1.2.2",
+        "gulp-postcss": "^8.0.0",
+        "gulp-rename": "^1.4.0",
+        "postcss-uncss": "^0.16.1",
+        "uncss": "^0.16.2"
+    }
 }
