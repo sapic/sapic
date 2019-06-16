@@ -215,3 +215,24 @@
     cursor: n-resize;
     top: calc(100% - 20px);
 }
+
+.gray_bevel {
+    margin-top: 4px;
+    height: 26px !important;
+    border: none;
+    box-shadow: none;
+    outline: none;
+    padding: 5px 6px;
+}
+
+.discordImage,
+.profile_group_avatar,
+.saveButton {
+    transition: all 0.4s ease-in-out;
+}
+
+.discordImage:hover,
+.profile_group_avatar:hover,
+.saveButton:hover {
+    transform: scale(1.01) rotate(.000001deg);
+}
