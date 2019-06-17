@@ -936,14 +936,17 @@ $(function() {
     $('#goUrl').click(function() {
         var url = $("#urlIn").val();
         if (url.length > 0) {
-            if (url.indexOf('http') == -1) {
-                currentBGInfo = null;
-                url = "https://" + url;
+            if (url.match(/\.(jpeg|jpg|gif|png)$/)) {
+                if (url.indexOf('http') == -1) {
+                    currentBGInfo = null;
+                    url = "https://" + url;
+                }
+            } else {
+                $("#urlIn").val("Text inputted was not a direct image URL.");
             }
         } else {
             url = randomBackground();
         }
-
         trackClick('goURLButton', url);
         window.location.href = "#" + url;
     });
