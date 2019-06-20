@@ -252,11 +252,11 @@ function CropImages() {
         if (payload.toggles.SSSC_Enable) {
             if (payload.toggles.SSSC_Long) {
                 if (payload.toggles.SSSC_Long_Minus70) {
-                    fillImage($('#big2'), leftOffset[ImageType], rOffset2, 506, h1, ImagesNames[20][1], true);
-                    fillImage($('#r21'), 514 + leftOffset[ImageType], rOffset2, 100, h1, ImagesNames[21][1]);
+                    fillImage($('#big2'), leftOffset[ImageType], rOffset2, 506, h2, ImagesNames[20][1], true);
+                    fillImage($('#r21'), 514 + leftOffset[ImageType], rOffset2, 100, h2, ImagesNames[21][1]);
                 } else {
-                    fillImage($('#big2'), leftOffset[ImageType], rOffset2, 506, h1, ImagesNames[20][1], true);
-                    fillImage($('#r21'), 514 + leftOffset[ImageType], rOffset2, 100, h1, ImagesNames[21][1]);
+                    fillImage($('#big2'), leftOffset[ImageType], rOffset2, 506, h2, ImagesNames[20][1], true);
+                    fillImage($('#r21'), 514 + leftOffset[ImageType], rOffset2, 100, h2, ImagesNames[21][1]);
                 }
             } else {
                 fillImage($('#big2'), leftOffset[ImageType], rOffset2, 506, h2, ImagesNames[20][1], true);
