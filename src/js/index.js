@@ -250,9 +250,9 @@ function cropAWSC() {
         var rightheight = height;
     } else {
         var rightheight = 80;
-        fillSmallImages(0, 11);
-        fillSmallImages(0, 12);
-        fillSmallImages(0, 13);
+        fillSmallImages(1, 11);
+        fillSmallImages(1, 12);
+        fillSmallImages(1, 13);
     }
 
     fillImage($('#r11'), 514 + leftOffset[ImageType], rOffset1, 100, rightheight, ImagesNames[11][1]);
@@ -278,9 +278,9 @@ function cropSSSC() {
         var rightheight = height;
     } else {
         var rightheight = 80;
-        fillSmallImages(1, 21);
-        fillSmallImages(1, 22);
-        fillSmallImages(1, 23);
+        fillSmallImages(2, 21);
+        fillSmallImages(2, 22);
+        fillSmallImages(2, 23);
     }
 
     fillImage($('#r21'), 514 + leftOffset[ImageType], rOffset2, 100, rightheight, ImagesNames[21][1]);
@@ -310,11 +310,18 @@ function fillSmallImages(sc, num) {
     var ImageType = bgWidth > 2000 ? 1 :
         bgWidth <= 1280 ? 2 :
         bgWidth == 2000 ? 3 : 0;
+    var defaultoffset = $('#hBig' + sc).offset().top - $('.profile_header').offset().top + 1;
 
-    if (sc == 0) {
-        var rOffset = $('#hBig1').offset().top - $('.profile_header').offset().top + 1;
-    } else {
-        var rOffset = $('#hBig2').offset().top - $('.profile_header').offset().top + 1;
+    switch (num) {
+        case 11 || 21:
+            var rOffset = defaultoffset;
+            break;
+        case 12 || 22:
+            var rOffset = defaultoffset + 93;
+            break;
+        case 13 || 23:
+            var rOffset = defaultoffset + 186;
+            break;
     }
 
     fillImage($('#r' + num), 514 + leftOffset[ImageType], rOffset, 100, 80, ImagesNames[num][1]);
