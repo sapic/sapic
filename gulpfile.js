@@ -1,18 +1,18 @@
-var gulp = require('gulp');
-var concat = require('gulp-concat');
-var concatCss = require('gulp-concat-css');
-var uglify = require('gulp-uglify');
-var useref = require('gulp-useref');
-var rimraf = require('gulp-rimraf');
-var fs = require('fs');
-var postcss = require('gulp-postcss');
-var uncss = require('postcss-uncss');
-var cssnano = require('cssnano');
-var rename = require('gulp-rename');
+const { src, dest, parallel, series } = require('gulp');
+const concat = require('gulp-concat');
+const concatCss = require('gulp-concat-css');
+const uglify = require('gulp-uglify');
+const useref = require('gulp-useref');
+const rimraf = require('gulp-rimraf');
+const fs = require('fs');
+const postcss = require('gulp-postcss');
+const uncss = require('postcss-uncss');
+const cssnano = require('cssnano');
+const rename = require('gulp-rename');
 
-gulp.task('uncss', function() {
+function css1() {
     fs.unlink('./index_build.html', () => {});
-    return gulp.src([
+    return src([
             './src/css/buttons.css',
             './src/css/shared_global.css',
             './src/css/modalContent.css',
@@ -25,14 +25,13 @@ gulp.task('uncss', function() {
             uncss({
                 html: ['./out/index.html'],
                 htmlroot: 'out',
-            }),
-            cssnano()
+            })
         ]))
-        .pipe(gulp.dest('./out'));
-});
+        .pipe(dest('./out'));
+}
 
-gulp.task('normalcss', function() {
-    return gulp.src([
+function css2() {
+    return src([
             './src/css/profilev2.css',
             './src/css/index.css',
             './src/css/motiva_sans.css',
@@ -45,15 +44,15 @@ gulp.task('normalcss', function() {
         .pipe(postcss([
             cssnano()
         ]))
-        .pipe(gulp.dest('./out'));
-});
+        .pipe(dest('./out'));
+}
 
-gulp.task('js', function() {
-    var content = fs.readFileSync('./src/js/index.js', {
+function js() {
+    const content = fs.readFileSync('./src/js/index.js', {
         encoding: 'utf-8'
     });
     fs.writeFileSync('./src/js/index_build.js', content.replace(/{{#vernum}}/g, process.env.CIRCLE_BUILD_NUM));
-    return gulp.src([
+    return src([
             './src/js/jquery.min.js',
             './src/js/store.everything.min.js',
             './src/js/jquery.smooth-scroll.min.js',
@@ -62,44 +61,68 @@ gulp.task('js', function() {
             './src/js/index_build.js',
             './src/js/jQueryRotate.js',
             './src/js/clipboard.js',
-        ])
+        ], { sourcemaps: true })
         .pipe(concat('main.js'))
         .pipe(uglify())
-        .pipe(gulp.dest('./out'));
-});
+        .pipe(dest('./out', { sourcemaps: true }));
+}
 
-gulp.task('js2', function() {
-    return gulp.src(['./src/fuckadblock.js'])
+function js2() {
+    return src(['./src/fuckadblock.js'])
         .pipe(uglify())
-        .pipe(gulp.dest('./out'));
-});
+        .pipe(dest('./out'));
+}
 
-gulp.task('html', function() {
-    var content = fs.readFileSync('./src/index.html', {
+function html() {
+    const content = fs.readFileSync('./src/index.html', {
         encoding: 'utf-8'
     });
     fs.writeFileSync('./index_build.html', content.replace(/{{#vernum}}/g, process.env.CIRCLE_BUILD_NUM));
-    return gulp.src(['./index_build.html'])
+    return src(['./index_build.html'])
         .pipe(useref())
         .pipe(rename('index.html'))
-        .pipe(gulp.dest('./out'));
-});
+        .pipe(dest('./out'));
+}
 
-gulp.task('images', function() {
-    return gulp.src('./src/images/**')
-        .pipe(gulp.dest('./out/images/'));
-});
+function images() {
+    return src('./src/images/**')
+        .pipe(dest('./out/images/'));
+}
 
-gulp.task('fonts', function() {
-    return gulp.src('./src/fonts/*')
-        .pipe(gulp.dest('./out/fonts/'));
-});
+function fonts() {
+    return src('./src/fonts/*')
+        .pipe(dest('./out/fonts/'));
+}
 
-gulp.task('page', gulp.series('html', 'uncss', 'normalcss'))
-
-gulp.task('default', gulp.parallel('page', 'js', 'js2', 'images', 'fonts'), function() {
-    return gulp.src('./out/temp.css', './js/index_build.js', {
+function cleanup() {
+    return src('./out/temp.css', './js/index_build.js', {
             read: false
         })
         .pipe(rimraf());
-});
+}
+
+function page() {
+    return;
+}
+
+function all() {
+    return
+}
+
+exports.css1 = css1;
+exports.css2 = css2;
+exports.js = js;
+exports.js2 = js2;
+exports.html = html;
+exports.images = images;
+exports.fonts = fonts;
+exports.cleanup = cleanup;
+exports.page = page;
+exports.all = all;
+
+exports.default = series(
+    parallel(
+        series(html, css1, css2),
+        js, js2, images, fonts
+    ),
+    cleanup);
