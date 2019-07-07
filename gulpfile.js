@@ -109,8 +109,6 @@ exports.html = html;
 exports.images = images;
 exports.fonts = fonts;
 exports.cleanup = cleanup;
-exports.page = page;
-exports.all = all;
 
 exports.default = series(
     parallel(
