@@ -101,14 +101,6 @@ function cleanup() {
         .pipe(rimraf());
 }
 
-function page() {
-    return;
-}
-
-function all() {
-    return
-}
-
 exports.css1 = css1;
 exports.css2 = css2;
 exports.js = js;
@@ -125,4 +117,5 @@ exports.default = series(
         series(html, css1, css2),
         js, js2, images, fonts
     ),
-    cleanup);
+    cleanup
+);
