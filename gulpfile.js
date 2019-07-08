@@ -11,7 +11,7 @@ const cssnano = require('cssnano');
 const rename = require('gulp-rename');
 
 function css1() {
-    fs.unlink('./index_build.html', () => {});
+    fs.unlink('./src/index_build.html', () => {});
     return src([
             './src/css/buttons.css',
             './src/css/shared_global.css',
@@ -20,13 +20,14 @@ function css1() {
             './src/css/globalv2.css',
             './src/css/slider.css'
         ])
-        .pipe(concatCss('temp.css'))
         .pipe(postcss([
             uncss({
                 html: ['./out/index.html'],
                 htmlroot: 'out',
+                jsdom: {},
             })
         ]))
+        .pipe(concatCss('temp.css'))
         .pipe(dest('./out'));
 }
 
@@ -77,10 +78,10 @@ function html() {
     const content = fs.readFileSync('./src/index.html', {
         encoding: 'utf-8'
     });
-    fs.writeFileSync('./index_build.html', content.replace(/{{#vernum}}/g, process.env.CIRCLE_BUILD_NUM));
-    return src(['./index_build.html'])
-        .pipe(useref())
+    fs.writeFileSync('./src/index_build.html', content.replace(/{{#vernum}}/g, process.env.CIRCLE_BUILD_NUM));
+    return src(['./src/index_build.html'])
         .pipe(rename('index.html'))
+        .pipe(useref())
         .pipe(dest('./out'));
 }
 
