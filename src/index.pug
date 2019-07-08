@@ -1,0 +1,371 @@
+doctype html
+head
+    meta(charset='utf-8')
+    title Steam.Design
+    meta(name='keywords' content='steam, profile, crop, steam profile, background crop, background crop tool, background, backgrounds, valve, steamdesign, design')
+    link(rel='apple-touch-icon' sizes='180x180' href='./images/apple-touch-icon.png')
+    link(rel='icon' type='image/png' sizes='32x32' href='./images/favicon-32x32.png')
+    link(rel='manifest' href='./images/manifest.json')
+    link(rel='mask-icon' href='./images/safari-pinned-tab.svg' color='#12151a')
+    link(rel='shortcut icon' href='./images/favicon.ico')
+    meta(name='apple-mobile-web-app-title' content='Steam.Design')
+    meta(name='description' content='A small tool to crop Steam profile backgrounds to showcases. Make your profile awesome today!')
+    meta(name='application-name' content='Steam.Design')
+    meta(name='msapplication-config' content='./images/browserconfig.xml')
+    meta(name='msapplication-TileColor' content='#12151a')
+    meta(name='theme-color' content='#12151a')
+    meta(name='google-site-verification' content='bohKQMzUSNTnkPrEz27bgyzAFbTAOWhFTgKwrnejHEE')
+    // for Facebook
+    meta(property='og:title' content='Steam.Design')
+    meta(property='og:type' content='website')
+    meta(property='og:image' content='https://i.oddball.tf/WFODru7.png')
+    meta(property='og:url' content='https://steam.design/')
+    meta(property='og:description' content='A small tool to crop Steam profile backgrounds to showcases.')
+    // for Twitter
+    meta(name='twitter:card' content='summary_large_image')
+    meta(name='twitter:title' content='Steam.Design')
+    meta(name='twitter:description' content='A small tool to crop Steam profile backgrounds to showcases.')
+    meta(name='twitter:image' content='https://i.oddball.tf/WFODru7.png')
+    meta(name='twitter:url' content='https://steam.design/')
+    // build:css ./main.css 
+    link(href='./css/motiva_sans.css' rel='stylesheet' type='text/css')
+    link(href='./css/buttons.css' rel='stylesheet' type='text/css')
+    link(href='./css/shared_global.css' rel='stylesheet' type='text/css')
+    link(href='./css/globalv2.css' rel='stylesheet' type='text/css')
+    link(href='./css/modalContent.css?v=.fruFbqx6YTdG' rel='stylesheet' type='text/css')
+    link(href='./css/profilev2.css' rel='stylesheet' type='text/css')
+    link(href='./css/economy.css' rel='stylesheet' type='text/css')
+    link(href='./css/font-awesome.css' rel='stylesheet' type='text/css')
+    link(href='./css/social-likes_flat.css' rel='stylesheet' type='text/css')
+    link(href='./css/index.css' rel='stylesheet' type='text/css')
+    link(href='./css/slider.css' rel='stylesheet' type='text/css')
+    link(href='./css/newui.css' rel='stylesheet' type='text/css')
+    // endbuild 
+    // build:js ./main.js 
+    script(src='./js/jquery.min.js')
+    script(src='./js/jquery.smooth-scroll.min.js')
+    script(src='./js/interact-1.2.9.min.js')
+    script(src='./js/index.js')
+    script(src='./js/social-likes.min.js')
+    script(src='./js/store.everything.min.js')
+    script(src='./js/jQueryRotate.js')
+    script(src='./js/clipboard.js')
+    // endbuild 
+    script(src='./fuckadblock.js')
+    script.
+        if (typeof module === 'object') {
+        window.module = module;
+        module = undefined;
+        }
+    script.
+        if (window.module) module = window.module;
+.spin.unspin.fa-spin(style='display: none')
+.itemHolder.arrow(style='display: none')
+h1.entry-title(style='display:none') A small tool to crop Steam profile backgrounds to showcases.
+#global_header
+    #cardsList.content
+        div(style='margin-top: 5px;')
+            span.filter(style='float:left; position:relative; display:none;')
+                | Filter: 
+                input#filterIn(type='text')
+            span.guide(style='float:left; position:relative; left:23%;')
+                a.top_hint(href='https://steamcommunity.com/sharedfiles/filedetails/?id=299701202')
+                    | Our Guide!
+            #invbuttons(style='float:right;margin-bottom:9px;')
+                #refreshInventory.fa.fa-refresh(title='Refresh Inventory' style='position:relative; top:2px; left:-20px; cursor:pointer; display:none;')
+                #hideBacksList.fa.fa-arrow-up(title='Hide Inventory' style='position:relative; top:2px; left:-15px; cursor:pointer; display:none;')
+                span#steamAuth
+        #backsList.backsList
+            #topAds(style='position:relative; left:9%;')
+#profilebody.body
+    #bg1.no_header.profile_page.has_profile_background
+        .profile_header_bg
+            .profile_header_bg_texture
+                .profile_header
+                    .profile_header_content
+                        .profile_header_centered_persona
+                            .persona_name(style='font-size: 24px;')
+                                span.actual_persona_name SloWolfe
+                            .bg_link
+                                .gray_bevel.for_text_input
+                                    input#urlIn.dynInput.bgUrl(type='text' name='real_name' size='30' placeholder='Paste a background URL here')
+                                #goUrl.btn_profile_action.btn_medium(style='left:4px; position:relative;')
+                                    span Change BG
+                        .playerAvatar.playerAvatarAutoSize.profile_header_size.offline
+                            .playerAvatarAutoSizeInner
+                                #avatar
+                        .profile_header_badgeinfo
+                            .profile_header_badgeinfo_badge_area
+                                a(href='https://discord.gg/jnqnHuX' target='_blank')
+                                    img.discordImage(src='https://discordapp.com/api/guilds/304986224467378177/widget.png?style=banner2')
+                            .profile_header_actions(style='position:relative')
+                                #customize.newmodal(style='position: fixed; z-index: 1000; left: 50%; top: 15%; display: none; transform: translateX(-50%);')
+                                    .modal_top_bar
+                                    .newmodal_header_border
+                                        .newmodal_header
+                                            #customizeClose.newmodal_close
+                                        .newmodal_content_border
+                                            .newmodal_content
+                                                .market_dialog_content
+                                                    .market_dialog_iteminfo
+                                                        .market_listing_row.market_recent_listing_row
+                                                            .bb_h1.customize_textbox
+                                                                b Artwork Showcase:
+                                                            #AWSC_Checkbox.commentthread_subscribe_ctn.checked(onclick='customizeCheckboxHandler(this.id)')
+                                                                span.commentthread_subscribe_checkbox
+                                                                    span.commentthread_subscribe_check
+                                                                span.commentthread_subscribe_desc Enable Artwork Showcase
+                                                            .hiddenBelow
+                                                                #AWSC_Long_Checkbox.commentthread_subscribe_ctn.checked(onclick='customizeCheckboxHandler(this.id)')
+                                                                    span.commentthread_subscribe_checkbox
+                                                                        span.commentthread_subscribe_check
+                                                                    span.commentthread_subscribe_desc Enable Long Images on Artwork Showcase
+                                                                .hiddenBelow
+                                                                    #AWSC_Long_Minus70_Checkbox.commentthread_subscribe_ctn(onclick='customizeCheckboxHandler(this.id)')
+                                                                        span.commentthread_subscribe_checkbox
+                                                                            span.commentthread_subscribe_check
+                                                                        span.commentthread_subscribe_desc Shorten Right Image
+                                                                    .gray_bevel.for_text_input.showlong_buttons.customize_textbox.hidden(style='position:relative;display:none;height:15px;width:165px;top:2px;')
+                                                                        input.dynInput.hidden(type='text' size='10' placeholder='Enter a Custom Height Here' style='height:10px;position:relative;bottom:1px;')
+                                                                    #autoResize_AWSC.btn_grey_white_innerfade.btn_small(style='margin-bottom:5px;margin-left:5px;display:none;' onclick='autoCropHeight_2(1);')
+                                                                        span Auto Resize
+                                                        .market_listing_row.market_recent_listing_row
+                                                            .bb_h1.customize_textbox
+                                                                b Screenshot Showcase:
+                                                            #SSSC_Checkbox.commentthread_subscribe_ctn(onclick='customizeCheckboxHandler(this.id)')
+                                                                span.commentthread_subscribe_checkbox
+                                                                    span.commentthread_subscribe_check
+                                                                span.commentthread_subscribe_desc Enable Screenshot Showcase
+                                                            .hiddenBelow.hidden
+                                                                #SSSC_Long_Checkbox.commentthread_subscribe_ctn(onclick='customizeCheckboxHandler(this.id)')
+                                                                    span.commentthread_subscribe_checkbox
+                                                                        span.commentthread_subscribe_check
+                                                                    span.commentthread_subscribe_desc Enable Long Images on Screenshot Showcase
+                                                                .hiddenBelow.hidden
+                                                                    #SSSC_Long_Minus70_Checkbox.commentthread_subscribe_ctn(onclick='customizeCheckboxHandler(this.id)')
+                                                                        span.commentthread_subscribe_checkbox
+                                                                            span.commentthread_subscribe_check
+                                                                        span.commentthread_subscribe_desc Shorten Right Image
+                                                                    .gray_bevel.for_text_input.showlong_buttons.customize_textbox.hidden(style='position:relative;display:none;height:15px;width:165px;top:2px;')
+                                                                        input.dynInput.hidden(type='text' size='10' placeholder='Enter a Custom Height Here' style='height:10px;position:relative;bottom:1px;')
+                                                                    #autoResize_SSSC.btn_grey_white_innerfade.btn_small(style='margin-bottom:5px;margin-left:5px;display:none;' onclick='autoCropHeight_2(2);')
+                                                                        span Auto Resize
+                                                        .market_listing_row.market_recent_listing_row
+                                                            .bb_h1.customize_textbox
+                                                                b Workshop Showcase:
+                                                            #WSSC_Checkbox.commentthread_subscribe_ctn(onclick='customizeCheckboxHandler(this.id)')
+                                                                span.commentthread_subscribe_checkbox
+                                                                    span.commentthread_subscribe_check
+                                                                span.commentthread_subscribe_desc Enable Workshop Showcase
+                                                        .market_listing_row.market_recent_listing_row
+                                                            .bb_h1
+                                                                b Share URL:
+                                                            span(style='margin-left:5px;margin-top:5px;')
+                                                                | Copy and use this URL to share your background and crop settings with someone else!
+                                                            .bg_link(style='display:-webkit-box')
+                                                                .btn_grey_white_innerfade.btn_small.copy-btn(data-clipboard-target='#shareURL' style='position:relative;top:9px;')
+                                                                    span Copy
+                                                                #shareWidth.commentthread_entry_quotebox(style='width:165px;margin:5px;')
+                                                                    input#shareURL.dynInput.commentthread_textarea(type='text' size='500' onfocus='this.select()' readonly='' placeholder='Loading...')
+                                a#saveAll.btn_green_white_innerfade.btn_medium.saveButton(style='left:6px; position:relative;')
+                                    .saveButtonShadow
+                                    span(style='color:#ffffff')
+                                        .fa.fa-check-circle
+                                        |  Download Images
+                        .profile_header_summary
+                            .persona_name.persona_name_spacer(style='font-size: 24px;')
+                                span.actual_persona_name &nbsp;
+                            .header_real_name_spacer &nbsp;
+                            .profile_summary
+                                script(type='text/javascript' src='https://ko-fi.com/widgets/widget_2.js')
+                                script(type='text/javascript').
+                                    kofiwidget2.init('Support Us on Ko-fi', '#08090b', 'H2H8NYMB');
+                                    kofiwidget2.draw();
+                                .social-likes(data-url='https://steam.design/' data-title="I made a cool Steam profile with this! It's so cool!")
+                                    .twitter(title='Share link on Twitter') &nbsp;Twitter
+                                    .vkontakte(title='Share link on VK') &nbsp;VK
+                                .bb_h1(style='top:8px; position: relative;')
+                                    b
+                                        | Our: 
+                                        a.bb_link(href='https://github.com/sapic/sapic' target='_blank' rel='noreferrer') GitHub
+                                        |                     | 
+                                        a.bb_link(href='https://steamcommunity.com/groups/sapic' target='_blank' rel='noreferrer') Steam Group
+                                        span#extension
+                            .profile_summary_footer
+                                #getBg.btn_profile_action.btn_medium
+                                    span Get This BG
+                                #randomBG.btn_profile_action.btn_medium(style='left:3px; position:relative;')
+                                    span
+                                        | Random BG
+                                #openCustomizeButton.btn_profile_action.btn_medium(style='left:7px; position:relative;' onclick='toggleCustomize()')
+                                    span(style=' text-align:center; ') Customize Cropping
+                                // <a class="btn_profile_action btn_medium" id="userScript" style="left:2px; position:relative;" href="https://chrome.google.com/webstore/detail/mjmabgdoainclinjecbkdancpamdiaih/"><span>Chrome Extension</span></a>
+        .profile_content.has_profile_background
+            .profile_background_holder_content
+                .profile_background_overlay_content
+                #bg2.profile_background_image_content
+            .profile_content_inner
+                .profile_leftcol
+                    .profile_customization_area
+                        #cSize.profile_customization.showcase_1
+                            .profile_customization_header
+                            .profile_customization_block
+                                #artworkshowcase.screenshot_showcase(style='display:flow-root;')
+                                    input#AWSC_Location.locationvar.hidden(value='1')
+                                    .screenshot_showcase_primary.showcase_slot
+                                        #hBig1.screenshot_showcase_screenshot.resizable-awsc(style='height: 506px;')
+                                            #big1.imageHolder
+                                                .imageGrabber
+                                        .screenshot_showcase_itemname(style='color: #5491cf; font-weight: bold;')
+                                            span
+                                                | Drag bottom of image to resize&nbsp;
+                                                .fa.fa-arrow-up(style='font-size:10px;')
+                                    #r11r.screenshot_showcase_rightcol.r1
+                                        .screenshot_showcase_smallscreenshot.showcase_slot.r1(style='height: 82px;')
+                                            .screenshot_showcase_screenshot(onclick="ShowModalContent( 'https://steamcommunity.com/sharedfiles/filedetails/?id=349772450&insideModal=1', 'https://steamcommunity.com/sharedfiles/filedetails/?id=349772450', 'https://steamcommunity.com/sharedfiles/filedetails/?id=349772450', true );")
+                                                #r11.r1
+                                        #r12r.screenshot_showcase_smallscreenshot.showcase_slot.hidelong1.rightimages(style='height: 82px;')
+                                            .screenshot_showcase_screenshot(onclick="ShowModalContent( 'https://steamcommunity.com/sharedfiles/filedetails/?id=349772562&insideModal=1', 'https://steamcommunity.com/sharedfiles/filedetails/?id=349772562', 'https://steamcommunity.com/sharedfiles/filedetails/?id=349772562', true );")
+                                                #r12.rightimages
+                                        #r13r.screenshot_showcase_smallscreenshot.showcase_slot.hidelong1.rightimages(style='height: 82px;')
+                                            .screenshot_showcase_screenshot(onclick="ShowModalContent( 'https://steamcommunity.com/sharedfiles/filedetails/?id=349772655&insideModal=1', 'https://steamcommunity.com/sharedfiles/filedetails/?id=349772655', 'https://steamcommunity.com/sharedfiles/filedetails/?id=349772655', true );")
+                                                #r13.rightimages
+                                        a.screenshot_showcase_smallscreenshot.screenshot_count.artwork_ammount_1.hidelong1(style='display:none;position:relative;top:2px;' href='https://steamcommunity.com/id/wolfenstian/images/')
+                                            .screenshot_showcase_screenshot.artwork_ammount_1.hidelong1
+                                                | + 8
+                                    div(style='clear: both;')
+                        #sssc.profile_customization.showcase_2.hidden
+                            input#SSSC_Location.locationvar.hidden(value='2')
+                            .profile_customization_header
+                                | Screenshot Showcase
+                            .profile_customization_block
+                                .screenshot_showcase(style='display:flow-root;')
+                                    .screenshot_showcase_primary.showcase_slot
+                                        #hBig2.screenshot_showcase_screenshot.resizable-sssc(style='height: 284px')
+                                            #big2
+                                        .screenshot_showcase_itemname
+                                            | Mabinogi
+                                    .screenshot_showcase_rightcol.r2
+                                        .screenshot_showcase_smallscreenshot.showcase_slot.r2(style='height: 82px;')
+                                            .screenshot_showcase_screenshot(onclick="ShowModalContent( 'https://steamcommunity.com/sharedfiles/filedetails/?id=299605809&insideModal=1', 'https://steamcommunity.com/sharedfiles/filedetails/?id=299605809', 'https://steamcommunity.com/sharedfiles/filedetails/?id=299605809', true );")
+                                                #r21.r2
+                                        .screenshot_showcase_smallscreenshot.showcase_slot.hidelong2(style='height: 82px;')
+                                            .screenshot_showcase_screenshot(onclick="ShowModalContent( 'https://steamcommunity.com/sharedfiles/filedetails/?id=299605824&insideModal=1', 'https://steamcommunity.com/sharedfiles/filedetails/?id=299605824', 'https://steamcommunity.com/sharedfiles/filedetails/?id=299605824', true );")
+                                                #r22.rightimages
+                                        .screenshot_showcase_smallscreenshot.showcase_slot.hidelong2(style='height: 82px;')
+                                            .screenshot_showcase_screenshot(onclick="ShowModalContent( 'https://steamcommunity.com/sharedfiles/filedetails/?id=299605839&insideModal=1', 'https://steamcommunity.com/sharedfiles/filedetails/?id=299605839', 'https://steamcommunity.com/sharedfiles/filedetails/?id=299605839', true );")
+                                                #r23.rightimages
+                                        a.screenshot_showcase_smallscreenshot.screenshot_count.artwork_ammount_2.hidelong2(href='https://steamcommunity.com/id/wolfenstian/screenshots/')
+                                            .screenshot_showcase_screenshot.artwork_ammount_2.hidelong2
+                                                | + 685
+                                    div(style='clear: both;')
+                        #ws.profile_customization.showcase_3.hidden
+                            input#WSSC_Location.locationvar.hidden(value='3')
+                            .profile_customization_header
+                                | Workshop Showcase
+                            .myworkshop_showcase_header
+                            .profile_customization_block
+                                .myworkshop_showcase
+                                    .workshop_showcase_mutiitem_ctn
+                                        .workshop_showcase_multiitem.showcase_slot
+                                            #w1(style='height:119px;')
+                                    .workshop_showcase_mutiitem_ctn
+                                        .workshop_showcase_multiitem.showcase_slot
+                                            #w2(style='height:119px;')
+                                    .workshop_showcase_mutiitem_ctn
+                                        .workshop_showcase_multiitem.showcase_slot
+                                            #w3(style='height:119px;')
+                                    .workshop_showcase_mutiitem_ctn
+                                        .workshop_showcase_multiitem.showcase_slot
+                                            #w4(style='height:119px;')
+                                    .workshop_showcase_mutiitem_ctn
+                                        .workshop_showcase_multiitem.showcase_slot
+                                            #w5(style='height:119px;')
+                                    div(style='clear: left;')
+                                    .showcase_stats_row.showcase_content_bg(style='height:70px;')
+                .profile_rightcol
+                    .rColAds
+                    .underfr(width='268')
+                    .profile_group_links.profile_count_link_preview_ctn.responsive_groupfriends_element
+                        .profile_count_link.ellipsis
+                            span.partnerLabel Our Other Projects
+                        .profile_count_link_preview(style='margin-top:25px')
+                            .profile_group.profile_primary_group
+                                .profile_group_avatar
+                                    a(href='https://designerlist.guide/')
+                                        img(src='https://i.oddball.tf/AspGoS4.jpg' width='64')
+                                a.whiteLink(href='https://designerlist.guide/') Safe Designer List
+                                .profile_group_membercount A list of safe, verified artwork designers on Steam.
+                                div(style='clear: left;')
+                        .profile_count_link.ellipsis(style='margin-top:25px')
+                            span.partnerLabel Our Partners
+                        .profile_count_link_preview(style='margin-top:25px')
+                            .profile_group.profile_primary_group
+                                .profile_group_avatar
+                                    a(href='https://www.steamladder.com/')
+                                        img(src='https://steamcdn-a.akamaihd.net/steamcommunity/public/images/avatars/f4/f4b94e8c28be9b33d6abf3a4f3a5ff5fcd43be82_medium.jpg')
+                                a.whiteLink(href='https://www.steamladder.com/') Steam Ladder
+                                .profile_group_membercount Leaderboard and ranking site for Steam profiles!
+                                div(style='clear: left;')
+                            .profile_group.profile_primary_group
+                                .profile_group_avatar
+                                    a(href='https://steamcommunity.com/groups/ArtworkProfiles')
+                                        img(src='https://steamcdn-a.akamaihd.net/steamcommunity/public/images/avatars/a8/a8dbf5dc460745146602a2e9b61b25d7aebfed09_medium.jpg')
+                                a.whiteLink(href='https://steamcommunity.com/groups/ArtworkProfiles') Artwork Profiles
+                                .profile_group_membercount Celebrating the beauty of Steam profiles.
+                                div(style='clear: left;')
+                #bottomAds
+    div(style='clear: both;')
+#footer_spacer
+#footer
+    .footer_content
+        span#footerLogo
+            img(src='./images/sapic.png' width='50' height='50' border='0' alt='Steam.Design' style='position:relative;left:40px;bottom:7px;')
+        span#footerText
+            | Copyright &copy; 2019 Steam.Design
+            br
+            | Powered by Steam. 
+            span#version Version #\{{#vernum}}
+            br
+            |  Made with love by 
+            a(href='https://steamcommunity.com/id/truecarry') TrueCarry
+            |  and 
+            a(href='https://steamcommunity.com/id/theoddball')
+                | The Oddball
+            br
+img#bgImgEl(style='display:none')
+#bgPreloader(style='display:none;')
+#copiedNotification.copiedNotification
+    .notificationBG
+        div Copied!
+script.
+    ! function(t, e, a) {
+    (e[a] = e[a] || []).push(function() {
+    try {
+    e.yaCounter27350393 = new Ya.Metrika({
+    id: 27350393,
+    trackHash: !0
+    })
+    } catch (t) {}
+    });
+    var n = t.getElementsByTagName("script")[0],
+    c = t.createElement("script"),
+    r = function() {
+    n.parentNode.insertBefore(c, n)
+    };
+    c.type = "text/javascript", c.async = !0, c.src = ("https:" == t.location.protocol ? "https:" : "http:") +
+    "//mc.yandex.ru/metrika/watch.js", "[object Opera]" == e.opera ? t.addEventListener("DOMContentLoaded", r, !1) :
+    r()
+    }(document, window, "yandex_metrika_callbacks");
+noscript
+    div
+        img(src='//mc.yandex.ru/watch/27350393' style='position:absolute; left:-9999px;' alt='')
+script.
+    "sapic.github.io" !== window.location.hostname && (! function(e, t, a, n, o, c, i) {
+    e.GoogleAnalyticsObject = o, e[o] = e[o] || function() {
+    (e[o].q = e[o].q || []).push(arguments)
+    }, e[o].l = 1 * new Date, c = t.createElement(a), i = t.getElementsByTagName(a)[0], c.async = 1, c.src =
+    "https://www.google-analytics.com/analytics.js", i.parentNode.insertBefore(c, i)
+    }(window, document, "script", 0, "ga"), ga("create", "UA-98294219-1", "auto"), ga("send", "pageview"));
+script(async='' src='https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js')
+#customizeBackground.newmodal_background(style='opacity: 0.8; display: none;')

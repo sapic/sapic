@@ -8,7 +8,9 @@ const fs = require('fs');
 const postcss = require('gulp-postcss');
 const uncss = require('postcss-uncss');
 const cssnano = require('cssnano');
+const pug = require('gulp-pug');
 const rename = require('gulp-rename');
+const htmlbeautify = require('gulp-html-beautify');
 
 function css1() {
     fs.unlink('./src/index_build.html', () => {});
@@ -74,7 +76,14 @@ function js2() {
         .pipe(dest('./out'));
 }
 
-function html() {
+function html1() {
+    return src(['./src/index.pug'])
+        .pipe(pug())
+        .pipe(htmlbeautify())
+        .pipe(dest('./src'))
+}
+
+function html2() {
     const content = fs.readFileSync('./src/index.html', {
         encoding: 'utf-8'
     });
@@ -96,19 +105,19 @@ function fonts() {
 }
 
 function cleanup() {
-    return src('./out/temp.css', './js/index_build.js', {
+    return src(['./out/temp.css', './src/js/index_build.js', './src/index.html'], {
             read: false
         })
         .pipe(rimraf());
 }
 
 exports.miscFiles = parallel(images, fonts);
-exports.page = series(html, css1, css2);
+exports.page = series(html1, html2, css1, css2);
 exports.js = parallel(js, js2);
 
 exports.default = series(
     parallel(
-        series(html, css1, css2),
+        series(html1, html2, css1, css2),
         js, js2, images, fonts
     ),
     cleanup
