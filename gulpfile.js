@@ -101,14 +101,9 @@ function cleanup() {
         .pipe(rimraf());
 }
 
-exports.css1 = css1;
-exports.css2 = css2;
-exports.js = js;
-exports.js2 = js2;
-exports.html = html;
-exports.images = images;
-exports.fonts = fonts;
-exports.cleanup = cleanup;
+exports.miscFiles = parallel(images, fonts);
+exports.page = series(html, css1, css2);
+exports.js = parallel(js, js2);
 
 exports.default = series(
     parallel(
