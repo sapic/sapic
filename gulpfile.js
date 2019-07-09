@@ -11,6 +11,7 @@ const cssnano = require('cssnano');
 const pug = require('gulp-pug');
 const rename = require('gulp-rename');
 const htmlbeautify = require('gulp-html-beautify');
+const pugLinter = require('gulp-pug-linter');
 
 function css1() {
     fs.unlink('./src/index_build.html', () => {});
@@ -78,6 +79,7 @@ function js2() {
 
 function html1() {
     return src(['./src/index.pug'])
+        .pipe(pugLinter({ reporter: 'default', failAfterError: true }))
         .pipe(pug())
         .pipe(htmlbeautify())
         .pipe(dest('./src'))

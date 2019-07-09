@@ -18,6 +18,7 @@
         "gulp-html-beautify": "^1.0.1",
         "gulp-postcss": "^8.0.0",
         "gulp-pug": "^4.0.1",
+        "gulp-pug-linter": "^1.2.0",
         "gulp-rename": "^1.4.0",
         "postcss-uncss": "^0.17.0",
         "uncss": "^0.17.0"
