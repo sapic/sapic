@@ -12,8 +12,16 @@ const pug = require('gulp-pug');
 const rename = require('gulp-rename');
 const htmlbeautify = require('gulp-html-beautify');
 const pugLinter = require('gulp-pug-linter');
+const stylus = require('gulp-stylus');
 
 function css1() {
+    return src(['./src/css/*.styl'])
+        .pipe(stylus())
+        .pipe(concatCss('styl.css'))
+        .pipe(dest('./out'));
+}
+
+function css2() {
     fs.unlink('./src/index_build.html', () => {});
     return src([
             './src/css/buttons.css',
@@ -34,15 +42,14 @@ function css1() {
         .pipe(dest('./out'));
 }
 
-function css2() {
+function css3() {
     return src([
             './src/css/profilev2.css',
-            './src/css/index.css',
             './src/css/motiva_sans.css',
             './src/css/social-likes_flat.css',
+            './src/css/font-awesome.css',
             './out/temp.css',
-            './src/css/newui.css',
-            './src/css/font-awesome.css'
+            './out/styl.css'
         ])
         .pipe(concatCss('main.css'))
         .pipe(postcss([
@@ -107,20 +114,32 @@ function fonts() {
 }
 
 function cleanup() {
-    return src(['./out/temp.css', './src/js/index_build.js', './src/index.html'], {
+    return src(['./out/temp.css', './src/js/index_build.js', './src/index.html', './out/styl.css'], {
             read: false
         })
         .pipe(rimraf());
 }
 
 exports.miscFiles = parallel(images, fonts);
-exports.page = series(html1, html2, css1, css2);
 exports.js = parallel(js, js2);
 
-exports.default = series(
-    parallel(
-        series(html1, html2, css1, css2),
-        js, js2, images, fonts
-    ),
-    cleanup
-);
+exports.page =
+    series(
+        html1, html2,
+        parallel(
+            css1, css2),
+        css3);
+
+exports.default =
+    series(
+        parallel(
+            series(
+                html1, html2,
+                parallel(
+                    css1, css2),
+                css3
+            ),
+            js, js2, images, fonts
+        ),
+        cleanup
+    );
