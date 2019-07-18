@@ -3,7 +3,7 @@ const concat = require('gulp-concat');
 const concatCss = require('gulp-concat-css');
 const uglify = require('gulp-uglify');
 const useref = require('gulp-useref');
-const rimraf = require('gulp-rimraf');
+const del = require('del');
 const fs = require('fs');
 const postcss = require('gulp-postcss');
 const uncss = require('postcss-uncss');
@@ -114,10 +114,12 @@ function fonts() {
 }
 
 function cleanup() {
-    return src(['./out/temp.css', './src/js/index_build.js', './src/index.html', './out/styl.css'], {
-            read: false
-        })
-        .pipe(rimraf());
+    return del([
+        './out/temp.css',
+        './src/js/index_build.js',
+        './src/index.html',
+        './out/styl.css'
+    ])
 }
 
 exports.miscFiles = parallel(images, fonts);
