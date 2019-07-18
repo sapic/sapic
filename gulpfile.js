@@ -10,7 +10,7 @@ const uncss = require('postcss-uncss');
 const cssnano = require('cssnano');
 const pug = require('gulp-pug');
 const rename = require('gulp-rename');
-const htmlbeautify = require('gulp-html-beautify');
+const prettyHtml = require('gulp-pretty-html');
 const pugLinter = require('gulp-pug-linter');
 const stylus = require('gulp-stylus');
 
@@ -88,7 +88,7 @@ function html1() {
     return src(['./src/index.pug'])
         .pipe(pugLinter({ reporter: 'default', failAfterError: true }))
         .pipe(pug())
-        .pipe(htmlbeautify())
+        .pipe(prettyHtml())
         .pipe(dest('./src'))
 }
 
