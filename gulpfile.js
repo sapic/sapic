@@ -11,7 +11,7 @@ const cssnano = require('cssnano')
 const pug = require('gulp-pug')
 const rename = require('gulp-rename')
 const prettyHtml = require('gulp-pretty-html')
-const pugLinter = require('gulp-pug-linter')
+// const pugLinter = require('gulp-pug-linter')
 const stylus = require('gulp-stylus')
 
 function css1() {
@@ -22,7 +22,7 @@ function css1() {
 }
 
 function css2() {
-  fs.unlink('./src/index_build.html', () => {})
+  fs.unlink('./src/index_build.html', () => { })
   return src([
     './src/css/buttons.css',
     './src/css/shared_global.css',
@@ -68,6 +68,7 @@ function js() {
   )
   return src(
     [
+      './src/js/clipboard.js',
       './src/js/jquery.min.js',
       './src/js/store.everything.min.js',
       './src/js/jquery.smooth-scroll.min.js',
@@ -75,12 +76,17 @@ function js() {
       './src/js/social-likes.min.js',
       './src/js/index_build.js',
       './src/js/jQueryRotate.js',
-      './src/js/clipboard.js',
     ],
     { sourcemaps: true },
   )
     .pipe(concat('main.js'))
     .pipe(uglify())
+    .pipe(dest('./out', { sourcemaps: true }))
+}
+
+function jsfin() {
+  return src(['./out/main.js', './src/js/networkn.js'])
+    .pipe(concat('main.js'))
     .pipe(dest('./out', { sourcemaps: true }))
 }
 
@@ -91,11 +97,13 @@ function js2() {
 }
 
 function html1() {
-  return src(['./src/index.pug'])
-    .pipe(pugLinter({ reporter: 'default', failAfterError: true }))
-    .pipe(pug())
-    .pipe(prettyHtml())
-    .pipe(dest('./src'))
+  return (
+    src(['./src/index.pug'])
+      // .pipe(pugLinter({ reporter: 'default', failAfterError: true }))
+      .pipe(pug())
+      .pipe(prettyHtml())
+      .pipe(dest('./src'))
+  )
 }
 
 function html2() {
@@ -134,18 +142,22 @@ function static() {
 }
 
 exports.miscFiles = parallel(images, fonts)
-exports.js = parallel(js, js2)
+exports.js = parallel(
+  series(js, jsfin),
+  js2,
+)
 
 exports.page = series(html1, html2, parallel(css1, css2), css3)
 
 exports.default = series(
   parallel(
     series(html1, html2, parallel(css1, css2), css3),
-    js,
-    js2,
     images,
     fonts,
   ),
+  js,
+  js2,
+  jsfin,
   cleanup,
   static,
 )

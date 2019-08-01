@@ -162,26 +162,26 @@ function noAds() {
 }
 
 function reloadAds() {
-    if (!window.localStorage) return;
-    if (rAdsCount % 10 !== 0) {
-        rAdsCount++;
-        return;
-    }
-    rAdsCount++;
+    // if (!window.localStorage) return;
+    // if (rAdsCount % 10 !== 0) {
+    //     rAdsCount++;
+    //     return;
+    // }
+    // rAdsCount++;
 
-    var userId = window.localStorage.getItem('SteamId');
-    if (donators.indexOf(userId) !== -1) {
-        return noAds();
-    }
+    // var userId = window.localStorage.getItem('SteamId');
+    // if (donators.indexOf(userId) !== -1) {
+    //     return noAds();
+    // }
 
-    $('.rColAds').html(gAds[0]);
-    (adsbygoogle = window.adsbygoogle || []).push({});
+    // $('.rColAds').html(gAds[0]);
+    // (adsbygoogle = window.adsbygoogle || []).push({});
 
-    $('#bottomAds').html(gAds[1]);
-    (adsbygoogle = window.adsbygoogle || []).push({});
+    // $('#bottomAds').html(gAds[1]);
+    // (adsbygoogle = window.adsbygoogle || []).push({});
 
-    $('#topAds').html(gAds[2]);
-    (adsbygoogle = window.adsbygoogle || []).push({});
+    // $('#topAds').html(gAds[2]);
+    // (adsbygoogle = window.adsbygoogle || []).push({});
 }
 
 function reloadImages() {
