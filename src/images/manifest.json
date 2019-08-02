@@ -3,7 +3,7 @@
     "short_name": "Steam.Design",
     "icons": [
         {
-            "src": "/imgaes/android-chrome-192x192.png",
+            "src": "/images/android-chrome-192x192.png",
             "sizes": "192x192",
             "type": "image/png"
         },
