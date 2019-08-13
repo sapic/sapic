@@ -27,6 +27,8 @@ html
     meta(name='twitter:image', content='https://i.oddball.tf/WFODru7.png')
     meta(name='twitter:url', content='https://steam.design/')
 
+    link(href='https://fonts.googleapis.com/css?family=Roboto:300,700&display=swap' rel='stylesheet')
+
     // build:css /download/main.css
     link(href='/download/main.css', rel='stylesheet', type='text/css')
     // endbuild
@@ -44,7 +46,9 @@ html
         if (window.module) module = window.module;
 
 body
-  h2 Thank you for using our site.
-  h3 Your download will start shortly, if it didn't happen you can use this link.
-  h4 Please consider watching ad below, to help us!
-  <iframe width="560" height="315" src="https://www.youtube.com/embed/U4J_yaN2cpk" frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+  .container
+    h2 Thank you for using Steam.Design.
+    h3 Your download will start shortly, if it didn't happen you can use 
+      a(id="clickableLink") this link.
+    h4 Please consider watching ad below, to help us!
+    <iframe width="560" height="315" src="https://www.youtube.com/embed/U4J_yaN2cpk" frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
