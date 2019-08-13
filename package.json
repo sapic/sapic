@@ -2,7 +2,8 @@
     "name": "sapic",
     "version": "1.0.0",
     "scripts": {
-        "build": "gulp"
+        "build": "gulp",
+        "watch": "nodemon --watch src --exec yarn build"
     },
     "devDependencies": {
         "gulp": "^4.0.2",

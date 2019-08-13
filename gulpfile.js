@@ -63,7 +63,7 @@ function js() {
     encoding: 'utf-8',
   })
   fs.writeFileSync(
-    './src/js/index_build.js',
+    './out/index_build.js',
     content.replace(/{{#vernum}}/g, process.env.CIRCLE_BUILD_NUM),
   )
   return src(
@@ -74,7 +74,7 @@ function js() {
       './src/js/jquery.smooth-scroll.min.js',
       './src/js/interact-1.2.9.min.js',
       './src/js/social-likes.min.js',
-      './src/js/index_build.js',
+      './out/index_build.js',
       './src/js/jQueryRotate.js',
     ],
     { sourcemaps: true },
@@ -102,21 +102,21 @@ function html1() {
       // .pipe(pugLinter({ reporter: 'default', failAfterError: true }))
       .pipe(pug())
       .pipe(prettyHtml())
-      .pipe(dest('./src'))
+      .pipe(dest('./out'))
   )
 }
 
 function html2() {
-  const content = fs.readFileSync('./src/index.html', {
+  const content = fs.readFileSync('./out/index.html', {
     encoding: 'utf-8',
   })
   fs.writeFileSync(
-    './src/index_build.html',
+    './out/index_build.html',
     content.replace(/{{#vernum}}/g, process.env.CIRCLE_BUILD_NUM),
   )
-  return src(['./src/index_build.html'])
+  return src(['./out/index_build.html'])
     .pipe(rename('index.html'))
-    .pipe(useref())
+    .pipe(useref({ searchPath: './src/' }))
     .pipe(dest('./out'))
 }
 
@@ -131,14 +131,32 @@ function fonts() {
 function cleanup() {
   return del([
     './out/temp.css',
-    './src/js/index_build.js',
+    './out/index_build.js',
     './src/index.html',
     './out/styl.css',
   ])
 }
 
 function static() {
-  return src('./static/*').pipe(dest('./out'))
+  return src(['./static/*', 'serve.json']).pipe(dest('./out'))
+}
+
+function downloadHtml() {
+  return src('./src/download.pug')
+    .pipe(pug())
+    .pipe(prettyHtml())
+    .pipe(rename('index.html'))
+    .pipe(dest('./out/download'))
+}
+
+function downloadJs() {
+  return src('./src/js/download/main.js')
+    .pipe(dest('./out/download'))
+}
+
+function downloadCss() {
+  return src('./src/css/download/main.css')
+    .pipe(dest('./out/download'))
 }
 
 exports.miscFiles = parallel(images, fonts)
@@ -149,11 +167,20 @@ exports.js = parallel(
 
 exports.page = series(html1, html2, parallel(css1, css2), css3)
 
+exports.pug = series(html1, html2, downloadHtml)
+
+exports.buildDownload = buildDownload = series(
+  downloadHtml,
+  downloadCss,
+  downloadJs,
+)
+
 exports.default = series(
   parallel(
     series(html1, html2, parallel(css1, css2), css3),
     images,
     fonts,
+    buildDownload,
   ),
   js,
   js2,

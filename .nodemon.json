@@ -1,0 +1,9 @@
+{
+  "verbose": true,
+  "watch": [
+    "src"
+  ],
+  "restartable": "rs",
+  "ext": "js, css, pug",
+  "exec": "yarn build"
+}
