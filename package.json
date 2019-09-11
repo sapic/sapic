@@ -20,7 +20,7 @@
         "gulp-pug-linter": "^1.2.0",
         "gulp-rename": "^1.4.0",
         "gulp-stylus": "^2.7.0",
-        "postcss-uncss": "^0.17.0",
-        "uncss": "^0.17.0"
+        "postcss-uncss": "0.16",
+        "uncss": "0.16"
     }
 }
