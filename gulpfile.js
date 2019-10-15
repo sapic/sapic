@@ -150,6 +150,7 @@ exports.js = parallel(
 exports.page = series(html1, html2, parallel(css1, css2), css3)
 
 exports.default = series(
+  static,
   parallel(
     series(html1, html2, parallel(css1, css2), css3),
     images,
@@ -159,5 +160,4 @@ exports.default = series(
   js2,
   jsfin,
   cleanup,
-  static,
 )
