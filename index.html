@@ -1,0 +1,440 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset="utf-8">
+    <title>Steam.Design</title>
+    <meta name="keywords" content="steam, profile, crop, steam profile, background crop, background crop tool, background, backgrounds, valve, steamdesign, design">
+    <link rel="apple-touch-icon" sizes="180x180" href="./images/apple-touch-icon.png">
+    <link rel="icon" type="image/png" sizes="32x32" href="./images/favicon-32x32.png">
+    <link rel="manifest" href="./images/manifest.json">
+    <link rel="mask-icon" href="./images/safari-pinned-tab.svg" color="#12151a">
+    <link rel="shortcut icon" href="./images/favicon.ico">
+    <meta name="apple-mobile-web-app-title" content="Steam.Design">
+    <meta name="description" content="A small tool to crop Steam profile backgrounds to showcases. Make your profile awesome today!">
+    <meta name="application-name" content="Steam.Design">
+    <meta name="msapplication-config" content="./images/browserconfig.xml">
+    <meta name="msapplication-TileColor" content="#12151a">
+    <meta name="theme-color" content="#12151a">
+    <meta name="google-site-verification" content="bohKQMzUSNTnkPrEz27bgyzAFbTAOWhFTgKwrnejHEE">
+    <meta property="og:title" content="Steam.Design">
+    <meta property="og:type" content="website">
+    <meta property="og:image" content="https://i.oddball.tf/WFODru7.png">
+    <meta property="og:url" content="https://steam.design/">
+    <meta property="og:description" content="A small tool to crop Steam profile backgrounds to showcases.">
+    <meta name="twitter:card" content="summary_large_image">
+    <meta name="twitter:title" content="Steam.Design">
+    <meta name="twitter:description" content="A small tool to crop Steam profile backgrounds to showcases.">
+    <meta name="twitter:image" content="https://i.oddball.tf/WFODru7.png">
+    <link rel="stylesheet" href="./main.css">
+    <script src="./main.js"></script>
+    <script src="./fuckadblock.js"></script>
+    <script>
+        if (typeof module === 'object') {
+            window.module = module;
+            module = undefined;
+        }
+    </script>
+    <script>
+        if (window.module) module = window.module;
+    </script>
+</head>
+
+<body>
+    <div class="spin unspin fa-spin" style="display: none"></div>
+    <div class="itemHolder arrow" style="display: none"></div>
+    <h1 class="entry-title" style="display:none">A small tool to crop Steam profile backgrounds to showcases.</h1>
+    <div id="global_header">
+        <div class="content" id="cardsList">
+            <div style="margin-top: 5px;"><span class="filter" style="float:left; position:relative; display:none;">Filter: <input id="filterIn" type="text"></span><span class="guide" style="float:left; position:relative; left:23%;"><a class="top_hint" href="https://steamcommunity.com/sharedfiles/filedetails/?id=299701202">Our Guide!</a></span>
+                <div id="invbuttons" style="float:right;margin-bottom:9px;">
+                    <div class="fa fa-refresh" id="refreshInventory" title="Refresh Inventory" style="position:relative; top:2px; left:-20px; cursor:pointer; display:none;"></div>
+                    <div class="fa fa-arrow-up" id="hideBacksList" title="Hide Inventory" style="position:relative; top:2px; left:-15px; cursor:pointer; display:none;"></div><span id="steamAuth"></span>
+                </div>
+            </div>
+            <div class="backsList" id="backsList">
+                <div id="nn_lb1" style="position:relative; left:9%;"></div>
+            </div>
+        </div>
+    </div>
+    <div class="body" id="profilebody">
+        <div class="no_header profile_page has_profile_background" id="bg1">
+            <div class="profile_header_bg">
+                <div class="profile_header_bg_texture">
+                    <div class="profile_header">
+                        <div class="profile_header_content">
+                            <div class="profile_header_centered_persona">
+                                <div class="persona_name" style="font-size: 24px;"><span class="actual_persona_name">SloWolfe</span></div>
+                                <div class="bg_link">
+                                    <div class="gray_bevel for_text_input"><input class="dynInput bgUrl" id="urlIn" type="text" name="real_name" size="30" placeholder="Paste a background URL here"></div>
+                                    <div class="btn_profile_action btn_medium" id="goUrl" style="left:4px; position:relative;"><span>Change BG</span></div>
+                                </div>
+                            </div>
+                            <div class="playerAvatar playerAvatarAutoSize profile_header_size offline">
+                                <div class="playerAvatarAutoSizeInner">
+                                    <div id="avatar"></div>
+                                </div>
+                            </div>
+                            <div class="profile_header_badgeinfo">
+                                <div class="profile_header_badgeinfo_badge_area"><a href="https://discord.gg/jnqnHuX" target="_blank"><img class="discordImage" src="https://discordapp.com/api/guilds/304986224467378177/widget.png?style=banner2"></a></div>
+                                <div class="profile_header_actions" style="position:relative">
+                                    <div class="newmodal" id="customize" style="position: fixed; z-index: 1000; left: 50%; top: 15%; display: none; transform: translateX(-50%);">
+                                        <div class="modal_top_bar"></div>
+                                        <div class="newmodal_header_border">
+                                            <div class="newmodal_header">
+                                                <div class="newmodal_close" id="customizeClose"></div>
+                                            </div>
+                                            <div class="newmodal_content_border">
+                                                <div class="newmodal_content">
+                                                    <div class="market_dialog_content">
+                                                        <div class="market_dialog_iteminfo">
+                                                            <div class="market_listing_row market_recent_listing_row">
+                                                                <div class="bb_h1 customize_textbox"><b>Artwork Showcase:</b></div>
+                                                                <div class="commentthread_subscribe_ctn checked" id="AWSC_Checkbox" onclick="customizeCheckboxHandler(this.id)"><span class="commentthread_subscribe_checkbox"><span class="commentthread_subscribe_check"></span></span><span class="commentthread_subscribe_desc"> Enable Artwork Showcase</span></div>
+                                                                <div class="hiddenBelow">
+                                                                    <div class="commentthread_subscribe_ctn checked" id="AWSC_Long_Checkbox" onclick="customizeCheckboxHandler(this.id)"><span class="commentthread_subscribe_checkbox"><span class="commentthread_subscribe_check"></span></span><span class="commentthread_subscribe_desc"> Enable Long Images on Artwork Showcase</span></div>
+                                                                    <div class="hiddenBelow">
+                                                                        <div class="commentthread_subscribe_ctn" id="AWSC_Long_Minus70_Checkbox" onclick="customizeCheckboxHandler(this.id)"><span class="commentthread_subscribe_checkbox"><span class="commentthread_subscribe_check"></span></span><span class="commentthread_subscribe_desc"> Shorten Right Image</span></div>
+                                                                        <div class="gray_bevel for_text_input showlong_buttons customize_textbox hidden" style="position:relative;display:none;height:15px;width:165px;top:2px;"><input class="dynInput hidden" type="text" size="10" placeholder="Enter a Custom Height Here" style="height:10px;position:relative;bottom:1px;"></div>
+                                                                        <div class="btn_grey_white_innerfade btn_small" id="autoResize_AWSC" style="margin-bottom:5px;margin-left:5px;display:none;" onclick="autoCropHeight_2(1);"><span> Auto Resize</span></div>
+                                                                    </div>
+                                                                </div>
+                                                            </div>
+                                                            <div class="market_listing_row market_recent_listing_row">
+                                                                <div class="bb_h1 customize_textbox"><b>Screenshot Showcase:</b></div>
+                                                                <div class="commentthread_subscribe_ctn" id="SSSC_Checkbox" onclick="customizeCheckboxHandler(this.id)"><span class="commentthread_subscribe_checkbox"><span class="commentthread_subscribe_check"></span></span><span class="commentthread_subscribe_desc"> Enable Screenshot Showcase</span></div>
+                                                                <div class="hiddenBelow hidden">
+                                                                    <div class="commentthread_subscribe_ctn" id="SSSC_Long_Checkbox" onclick="customizeCheckboxHandler(this.id)"><span class="commentthread_subscribe_checkbox"><span class="commentthread_subscribe_check"></span></span><span class="commentthread_subscribe_desc"> Enable Long Images on Screenshot Showcase</span></div>
+                                                                    <div class="hiddenBelow hidden">
+                                                                        <div class="commentthread_subscribe_ctn" id="SSSC_Long_Minus70_Checkbox" onclick="customizeCheckboxHandler(this.id)"><span class="commentthread_subscribe_checkbox"><span class="commentthread_subscribe_check"></span></span><span class="commentthread_subscribe_desc"> Shorten Right Image</span></div>
+                                                                        <div class="gray_bevel for_text_input showlong_buttons customize_textbox hidden" style="position:relative;display:none;height:15px;width:165px;top:2px;"><input class="dynInput hidden" type="text" size="10" placeholder="Enter a Custom Height Here" style="height:10px;position:relative;bottom:1px;"></div>
+                                                                        <div class="btn_grey_white_innerfade btn_small" id="autoResize_SSSC" style="margin-bottom:5px;margin-left:5px;display:none;" onclick="autoCropHeight_2(2);"><span> Auto Resize</span></div>
+                                                                    </div>
+                                                                </div>
+                                                            </div>
+                                                            <div class="market_listing_row market_recent_listing_row">
+                                                                <div class="bb_h1 customize_textbox"><b>Workshop Showcase:</b></div>
+                                                                <div class="commentthread_subscribe_ctn" id="WSSC_Checkbox" onclick="customizeCheckboxHandler(this.id)"><span class="commentthread_subscribe_checkbox"><span class="commentthread_subscribe_check"></span></span><span class="commentthread_subscribe_desc"> Enable Workshop Showcase</span></div>
+                                                            </div>
+                                                            <div class="market_listing_row market_recent_listing_row">
+                                                                <div class="bb_h1"><b>Share URL:</b></div><span style="margin-left:5px;margin-top:5px;">Copy and use this URL to share your background and crop settings with someone else!</span>
+                                                                <div class="bg_link" style="display:-webkit-box">
+                                                                    <div class="btn_grey_white_innerfade btn_small copy-btn" data-clipboard-target="#shareURL" style="position:relative;top:9px;"><span>Copy</span></div>
+                                                                    <div class="commentthread_entry_quotebox" id="shareWidth" style="width:165px;margin:5px;"><input class="dynInput commentthread_textarea" id="shareURL" type="text" size="500" onfocus="this.select()" readonly="" placeholder="Loading..."></div>
+                                                                </div>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div><a class="btn_green_white_innerfade btn_medium saveButton" id="saveAll" style="left:6px; position:relative;">
+                                        <div class="saveButtonShadow"></div><span style="color:#ffffff"><div class="fa fa-check-circle"></div> Download Images</span>
+                                    </a>
+                                </div>
+                            </div>
+                            <div class="profile_header_summary">
+                                <div class="persona_name persona_name_spacer" style="font-size: 24px;"><span class="actual_persona_name"> </span></div>
+                                <div class="header_real_name_spacer"> </div>
+                                <div class="profile_summary">
+                                    <script type="text/javascript" src="https://ko-fi.com/widgets/widget_2.js"></script>
+                                    <script type="text/javascript">
+                                        kofiwidget2.init('Support Us on Ko-fi', '#08090b', 'H2H8NYMB');
+                                        kofiwidget2.draw();
+                                    </script>
+                                    <div class="social-likes" data-url="https://steam.design/" data-title="I made a cool Steam profile with this! It's so cool!">
+                                        <div class="twitter" title="Share link on Twitter"> Twitter</div>
+                                        <div class="vkontakte" title="Share link on VK"> VK</div>
+                                    </div>
+                                    <div class="bb_h1" style="top:8px; position: relative;"><b>Our: <a class="bb_link" href="https://github.com/sapic/sapic" target="_blank" rel="noreferrer">GitHub</a>                    | <a class="bb_link" href="https://steamcommunity.com/groups/sapic" target="_blank" rel="noreferrer">Steam Group</a><span id="extension"></span></b></div>
+                                </div>
+                                <div class="profile_summary_footer">
+                                    <div class="btn_profile_action btn_medium" id="getBg"><span>Get This BG</span></div>
+                                    <div class="btn_profile_action btn_medium" id="randomBG" style="left:3px; position:relative;"><span>Random BG</span></div>
+                                    <div class="btn_profile_action btn_medium" id="openCustomizeButton" style="left:7px; position:relative;" onclick="toggleCustomize()"><span style=" text-align:center; ">Customize Cropping</span></div><!-- <a class="btn_profile_action btn_medium" id="userScript" style="left:2px; position:relative;" href="https://chrome.google.com/webstore/detail/mjmabgdoainclinjecbkdancpamdiaih/"><span>Chrome Extension</span></a>-->
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="profile_content has_profile_background">
+                <div class="profile_background_holder_content">
+                    <div class="profile_background_overlay_content"></div>
+                    <div class="profile_background_image_content" id="bg2"></div>
+                </div>
+                <div class="profile_content_inner">
+                    <div class="profile_leftcol">
+                        <div class="profile_customization_area">
+                            <div class="profile_customization showcase_1" id="cSize">
+                                <div class="profile_customization_header"></div>
+                                <div class="profile_customization_block">
+                                    <div class="screenshot_showcase" id="artworkshowcase" style="display:flow-root;"><input class="locationvar hidden" id="AWSC_Location" value="1">
+                                        <div class="screenshot_showcase_primary showcase_slot">
+                                            <div class="screenshot_showcase_screenshot resizable-awsc" id="hBig1" style="height: 506px;">
+                                                <div class="imageHolder" id="big1">
+                                                    <div class="imageGrabber"></div>
+                                                </div>
+                                            </div>
+                                            <div class="screenshot_showcase_itemname" style="color: #5491cf; font-weight: bold;"><span>Drag bottom of image to resize <div class="fa fa-arrow-up" style="font-size:10px;"></div></span></div>
+                                        </div>
+                                        <div class="screenshot_showcase_rightcol r1" id="r11r">
+                                            <div class="screenshot_showcase_smallscreenshot showcase_slot r1" style="height: 82px;">
+                                                <div class="screenshot_showcase_screenshot" onclick="ShowModalContent( 'https://steamcommunity.com/sharedfiles/filedetails/?id=349772450&amp;insideModal=1', 'https://steamcommunity.com/sharedfiles/filedetails/?id=349772450', 'https://steamcommunity.com/sharedfiles/filedetails/?id=349772450', true );">
+                                                    <div class="r1" id="r11"></div>
+                                                </div>
+                                            </div>
+                                            <div class="screenshot_showcase_smallscreenshot showcase_slot hidelong1 rightimages" id="r12r" style="height: 82px;">
+                                                <div class="screenshot_showcase_screenshot" onclick="ShowModalContent( 'https://steamcommunity.com/sharedfiles/filedetails/?id=349772562&amp;insideModal=1', 'https://steamcommunity.com/sharedfiles/filedetails/?id=349772562', 'https://steamcommunity.com/sharedfiles/filedetails/?id=349772562', true );">
+                                                    <div class="rightimages" id="r12"></div>
+                                                </div>
+                                            </div>
+                                            <div class="screenshot_showcase_smallscreenshot showcase_slot hidelong1 rightimages" id="r13r" style="height: 82px;">
+                                                <div class="screenshot_showcase_screenshot" onclick="ShowModalContent( 'https://steamcommunity.com/sharedfiles/filedetails/?id=349772655&amp;insideModal=1', 'https://steamcommunity.com/sharedfiles/filedetails/?id=349772655', 'https://steamcommunity.com/sharedfiles/filedetails/?id=349772655', true );">
+                                                    <div class="rightimages" id="r13"></div>
+                                                </div>
+                                            </div><a class="screenshot_showcase_smallscreenshot screenshot_count artwork_ammount_1 hidelong1" style="display:none;position:relative;top:2px;" href="https://steamcommunity.com/id/wolfenstian/images/">
+                                                <div class="screenshot_showcase_screenshot artwork_ammount_1 hidelong1">+ 8</div>
+                                            </a>
+                                        </div>
+                                        <div style="clear: both;"></div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="profile_customization showcase_2 hidden" id="sssc"><input class="locationvar hidden" id="SSSC_Location" value="2">
+                                <div class="profile_customization_header">Screenshot Showcase</div>
+                                <div class="profile_customization_block">
+                                    <div class="screenshot_showcase" style="display:flow-root;">
+                                        <div class="screenshot_showcase_primary showcase_slot">
+                                            <div class="screenshot_showcase_screenshot resizable-sssc" id="hBig2" style="height: 284px">
+                                                <div id="big2"></div>
+                                            </div>
+                                            <div class="screenshot_showcase_itemname">Mabinogi</div>
+                                        </div>
+                                        <div class="screenshot_showcase_rightcol r2">
+                                            <div class="screenshot_showcase_smallscreenshot showcase_slot r2" style="height: 82px;">
+                                                <div class="screenshot_showcase_screenshot" onclick="ShowModalContent( 'https://steamcommunity.com/sharedfiles/filedetails/?id=299605809&amp;insideModal=1', 'https://steamcommunity.com/sharedfiles/filedetails/?id=299605809', 'https://steamcommunity.com/sharedfiles/filedetails/?id=299605809', true );">
+                                                    <div class="r2" id="r21"></div>
+                                                </div>
+                                            </div>
+                                            <div class="screenshot_showcase_smallscreenshot showcase_slot hidelong2" style="height: 82px;">
+                                                <div class="screenshot_showcase_screenshot" onclick="ShowModalContent( 'https://steamcommunity.com/sharedfiles/filedetails/?id=299605824&amp;insideModal=1', 'https://steamcommunity.com/sharedfiles/filedetails/?id=299605824', 'https://steamcommunity.com/sharedfiles/filedetails/?id=299605824', true );">
+                                                    <div class="rightimages" id="r22"></div>
+                                                </div>
+                                            </div>
+                                            <div class="screenshot_showcase_smallscreenshot showcase_slot hidelong2" style="height: 82px;">
+                                                <div class="screenshot_showcase_screenshot" onclick="ShowModalContent( 'https://steamcommunity.com/sharedfiles/filedetails/?id=299605839&amp;insideModal=1', 'https://steamcommunity.com/sharedfiles/filedetails/?id=299605839', 'https://steamcommunity.com/sharedfiles/filedetails/?id=299605839', true );">
+                                                    <div class="rightimages" id="r23"></div>
+                                                </div>
+                                            </div><a class="screenshot_showcase_smallscreenshot screenshot_count artwork_ammount_2 hidelong2" href="https://steamcommunity.com/id/wolfenstian/screenshots/">
+                                                <div class="screenshot_showcase_screenshot artwork_ammount_2 hidelong2">+ 685</div>
+                                            </a>
+                                        </div>
+                                        <div style="clear: both;"></div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="profile_customization showcase_3 hidden" id="ws"><input class="locationvar hidden" id="WSSC_Location" value="3">
+                                <div class="profile_customization_header">Workshop Showcase</div>
+                                <div class="myworkshop_showcase_header"></div>
+                                <div class="profile_customization_block">
+                                    <div class="myworkshop_showcase">
+                                        <div class="workshop_showcase_mutiitem_ctn">
+                                            <div class="workshop_showcase_multiitem showcase_slot">
+                                                <div id="w1" style="height:119px;"></div>
+                                            </div>
+                                        </div>
+                                        <div class="workshop_showcase_mutiitem_ctn">
+                                            <div class="workshop_showcase_multiitem showcase_slot">
+                                                <div id="w2" style="height:119px;"></div>
+                                            </div>
+                                        </div>
+                                        <div class="workshop_showcase_mutiitem_ctn">
+                                            <div class="workshop_showcase_multiitem showcase_slot">
+                                                <div id="w3" style="height:119px;"></div>
+                                            </div>
+                                        </div>
+                                        <div class="workshop_showcase_mutiitem_ctn">
+                                            <div class="workshop_showcase_multiitem showcase_slot">
+                                                <div id="w4" style="height:119px;"></div>
+                                            </div>
+                                        </div>
+                                        <div class="workshop_showcase_mutiitem_ctn">
+                                            <div class="workshop_showcase_multiitem showcase_slot">
+                                                <div id="w5" style="height:119px;"></div>
+                                            </div>
+                                        </div>
+                                        <div style="clear: left;"></div>
+                                        <div class="showcase_stats_row showcase_content_bg" style="height:70px;"></div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="profile_rightcol">
+                        <div class="rColAds" id="nn_mpu1"></div>
+                        <div class="underfr" width="268"></div>
+                        <div class="profile_group_links profile_count_link_preview_ctn responsive_groupfriends_element">
+                            <div class="profile_count_link ellipsis"><span class="partnerLabel">Our Other Projects</span></div>
+                            <div class="profile_count_link_preview" style="margin-top:25px">
+                                <div class="profile_group profile_primary_group">
+                                    <div class="profile_group_avatar"><a href="https://designerlist.guide/"><img src="https://i.oddball.tf/AspGoS4.jpg" width="64"></a></div><a class="whiteLink" href="https://designerlist.guide/">Safe Designer List</a>
+                                    <div class="profile_group_membercount">A list of safe, verified artwork designers on Steam.</div>
+                                    <div style="clear: left;"></div>
+                                </div>
+                            </div>
+                            <div class="profile_count_link ellipsis" style="margin-top:25px"><span class="partnerLabel">Our Partners</span></div>
+                            <div class="profile_count_link_preview" style="margin-top:25px">
+                                <div class="profile_group profile_primary_group">
+                                    <div class="profile_group_avatar"><a href="https://www.steamladder.com/"><img src="https://steamcdn-a.akamaihd.net/steamcommunity/public/images/avatars/f4/f4b94e8c28be9b33d6abf3a4f3a5ff5fcd43be82_medium.jpg"></a></div><a class="whiteLink" href="https://www.steamladder.com/">Steam Ladder</a>
+                                    <div class="profile_group_membercount">Leaderboard and ranking site for Steam profiles!</div>
+                                    <div style="clear: left;"></div>
+                                </div>
+                                <div class="profile_group profile_primary_group">
+                                    <div class="profile_group_avatar"><a href="https://steamcommunity.com/groups/ArtworkProfiles"><img src="https://steamcdn-a.akamaihd.net/steamcommunity/public/images/avatars/a8/a8dbf5dc460745146602a2e9b61b25d7aebfed09_medium.jpg"></a></div><a class="whiteLink" href="https://steamcommunity.com/groups/ArtworkProfiles">Artwork Profiles</a>
+                                    <div class="profile_group_membercount">Celebrating the beauty of Steam profiles.</div>
+                                    <div style="clear: left;"></div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div id="nn_lb2"></div>
+                </div>
+            </div>
+        </div>
+        <div style="clear: both;"></div>
+    </div>
+    <div id="footer_spacer"></div>
+    <div id="footer">
+        <div class="footer_content"><span id="footerLogo"><img src="./images/sapic.png" alt="Steam.Design" style="position:relative;left:40px;bottom:7px;" width="50" height="50" border="0"></span><span id="footerText">Copyright © 2019 Steam.Design<br>Powered by Steam. <span id="version">Version #\undefined</span><br> Made with love by <a href="https://steamcommunity.com/id/truecarry">TrueCarry</a> and <a href="https://steamcommunity.com/id/theoddball">The Oddball</a><br><a style="cursor:pointer" href="/privacy_policy.pdf" target="_blank">Privacy Policy</a>&nbsp;&nbsp;<a style="cursor:pointer" onclick="window.__cmp('showConsentModal')">Manage Cookie Settings</a></span></div>
+    </div><img id="bgImgEl" style="display:none">
+    <div id="bgPreloader" style="display:none;"></div>
+    <div class="copiedNotification" id="copiedNotification">
+        <div class="notificationBG">
+            <div>Copied!</div>
+        </div>
+    </div>
+    <script>
+        ! function(t, e, a) {
+            (e[a] = e[a] || []).push(function() {
+                try {
+                    e.yaCounter27350393 = new Ya.Metrika({
+                        id: 27350393,
+                        trackHash: !0
+                    })
+                } catch (t) {}
+            });
+            var n = t.getElementsByTagName("script")[0],
+                c = t.createElement("script"),
+                r = function() {
+                    n.parentNode.insertBefore(c, n)
+                };
+            c.type = "text/javascript", c.async = !0, c.src = ("https:" == t.location.protocol ? "https:" : "http:") +
+                "//mc.yandex.ru/metrika/watch.js", "[object Opera]" == e.opera ? t.addEventListener("DOMContentLoaded", r, !1) :
+                r()
+        }(document, window, "yandex_metrika_callbacks");
+    </script><noscript>
+        <div><img src="//mc.yandex.ru/watch/27350393" style="position:absolute; left:-9999px;" alt=""></div>
+    </noscript>
+    <script>
+        "sapic.github.io" !== window.location.hostname && (! function(e, t, a, n, o, c, i) {
+            e.GoogleAnalyticsObject = o, e[o] = e[o] || function() {
+                    (e[o].q = e[o].q || []).push(arguments)
+                }, e[o].l = 1 * new Date, c = t.createElement(a), i = t.getElementsByTagName(a)[0], c.async = 1, c.src =
+                "https://www.google-analytics.com/analytics.js", i.parentNode.insertBefore(c, i)
+        }(window, document, "script", 0, "ga"), ga("create", "UA-98294219-1", "auto"), ga("send", "pageview"));
+    </script>
+    <script>
+        ! function(o, n) {
+            if (o._localCS = {
+                    consent: null,
+                    loaded: !1,
+                    tx: null
+                }, o._comscore = o._comscore || [], o.__cmp) {
+                o.__cmp("getVendorConsents", [77], function(o, c) {
+                        function e(o) {
+                            return "object" == typeof o
+                        }
+                        c && (_localCS.consent = e(o) &&
+                            e(o.vendorConsents) && o.vendorConsents[77], _localCS.consent = _localCS.consent ? "1" : "0", t())
+                    }),
+                    function c() {
+                        o.__cmp("ping", null, function(o) {
+                            if (!1 === o.cmpLoaded) {
+                                if (null === _localCS.tx) return void(_localCS.tx = setTimeout(c, 3e3));
+                                t()
+                            }
+                            o.cmpLoaded && (clearTimeout(_localCS.tx), t())
+                        })
+                    }()
+            }
+
+            function t() {
+                var o, c, e;
+                _localCS.loaded ||
+                    (_comscore.push({
+                            c1: "2",
+                            c2: "25110922",
+                            cs_ucfr: _localCS.consent
+                        }), c = (o = n).createElement("script"),
+                        e = o.getElementsByTagName("script")[0], c.async = !0, c.src = ("https:" == o.location.protocol ? "https://sb" : "http://b") +
+                        ".scorecardresearch.com/beacon.js", e.parentNode.insertBefore(c, e), _localCS.loaded = !0)
+            }
+            o.__cmp || t()
+        }(window, document);
+    </script><noscript><img src="https://sb.scorecardresearch.com/p?c1=2&amp;c2=25110922&amp;cv=2.0&amp;cj=1"></noscript>
+    <script>
+        ! function(e, a) {
+            if (function(e) {
+                    "string" == typeof e && (e = [e]);
+                    for (var n = 0; n < e.length; n++) a.cookie = e[n] +
+                        "=;max-age=-1;domain=." + a.domain + ";path=/"
+                }(["euconsent", "eupubconsent", "googlepersonalization"]),
+                !e.__cmp) {
+                e.__cmp = function() {
+                    (e.attachEvent || e.addEventListener)("message", function(a) {
+                        e.__cmp.receiveMessage(a)
+                    }, !1),
+                    function n() {
+                        if (!e.frames.__cmpLocator)
+                            if (a.body) {
+                                var o = a.createElement("iframe");
+                                o.style.display = "none",
+                                    o.name = "__cmpLocator", a.body.appendChild(o)
+                            } else setTimeout(n, 5)
+                    }();
+                    var n = [],
+                        o = function(a, o, c) {
+                            "ping" === a ? c && c({
+                                    gdprAppliesGlobally: !!(e.__cmp && e.__cmp.config && e.__cmp.config.storeConsentGlobally),
+                                    cmpLoaded: !1
+                                }) :
+                                n.push({
+                                    command: a,
+                                    parameter: o,
+                                    callback: c
+                                })
+                        };
+                    return o.commandQueue = n, o.receiveMessage = function(e) {
+                            var a = e && e.data && e.data.__cmpCall;
+                            a && n.push({
+                                callId: a.callId,
+                                command: a.command,
+                                parameter: a.parameter,
+                                event: e
+                            })
+                        }, o.config = e.cmpConfig || {
+                            globalVendorListLocation: "https://cmp.network-n.com/vendorlist.json"
+                        },
+                        o
+                }();
+                var n = a.createElement("script");
+                n.async = !0, n.src = "https://cmp.network-n.com/js/cmp.complete.bundle.js",
+                    a.getElementsByTagName("head")[0].appendChild(n)
+            }
+        }(window, document);
+    </script>
+    <div class="newmodal_background" id="customizeBackground" style="opacity: 0.8; display: none;"></div>
+</body>
+
+</html>
