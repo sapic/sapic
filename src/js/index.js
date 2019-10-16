@@ -365,13 +365,13 @@ function getParameterByName(name, url) {
 
 function createInventory(id) {
     if (!window.localStorage) return;
-    var getitems = store.raw.get('backpack');
+    var getitems = store.get('backpack');
     if (getitems && getitems.backgrounds !== null) {
         doInventoryThings(getitems);
     } else {
         var expire = Date.now() + 86400000;
         $.ajax('https://steam.design/backpack/' + id + '/items.json').done(function (data) {
-            store.raw.set('backpack', data, expire);
+            store.set('backpack', data, expire);
             if (data.backgrounds === null) {
                 return privateInventory();
             }
@@ -383,7 +383,7 @@ function createInventory(id) {
 }
 
 function doInventoryThings(inventory) {
-    var hide = store.raw.get('hide');
+    var hide = store.get('hide');
     if (oddball.refresh === true) {
         clearInterval(oddball.refreshAngle);
         $("#refreshInventory").rotate({
@@ -441,7 +441,7 @@ function refreshInventory() {
         userId = window.localStorage.getItem('SteamId');
         $.ajax('https://steam.design/backpack/' + userId + '/itemsRefresh.json').done(function (data) {
             var expire = Date.now() + 86400000;
-            store.raw.set('backpack', data, expire);
+            store.set('backpack', data, expire);
             doInventoryThings(data);
             setTimeout(function () {
                 $('#backsList').removeClass('backsListHide');
@@ -541,7 +541,7 @@ function closeCustomize() {
 function closeCommunity() {
     $('#community_updates').hide();
     $('#customizeBackground').fadeOut();
-    store.raw.set('community', true);
+    store.set('community', true);
 }
 
 function customizeCheckboxHandler(id) {
@@ -857,6 +857,17 @@ function loadExtension(browser) {
 }
 
 $(function () {
+    try {
+        store.get('bgs')
+        store.get('backpack')
+        store.get('community')
+        store.get('shared')
+        store.get('hide')
+        store.get('bgs')
+    } catch (e) {
+        // hack to clear store on migration
+        store.clearAll()
+    }
     if (window.location.hostname == "sapic.github.io") {
         window.location = 'https://steam.design/' + location.hash;
     }
@@ -869,13 +880,13 @@ $(function () {
 
     if (getParameterByName('base64') !== null) {
         payload = JSON.parse(atob(getParameterByName('base64')));
-        store.raw.set('shared', true);
+        store.set('shared', true);
         loadb64();
     }
 
     if (typeof shareinfo !== 'undefined') {
         payload = JSON.parse(atob(shareinfo));
-        store.raw.set('shared', true);
+        store.set('shared', true);
         loadb64();
     }
 
@@ -892,7 +903,7 @@ $(function () {
     });
 
     var hideangle = 0;
-    var hide = store.raw.get('hide');
+    var hide = store.get('hide');
     if (hide === true) {
         hideangle = 180;
         oddball.hideBacks = true;
@@ -903,7 +914,7 @@ $(function () {
 
     $('#hideBacksList').click(function () {
         oddball.hideBacks = !oddball.hideBacks;
-        store.raw.set('hide', oddball.hideBacks);
+        store.set('hide', oddball.hideBacks);
         hideangle += 180;
         $('#backsList').toggleClass('backsListHide');
         $('.filter').toggleClass('filterHide');
@@ -938,11 +949,11 @@ $(function () {
         }
     });
 
-    var bgs = store.raw.get('bgs');
+    var bgs = store.get('bgs');
     if (!bgs) {
         var expire = new Date().getTime() + 86400000;
         $.ajax('https://steam.design/bg.json').done(function (data) {
-            store.raw.set('bgs', data, expire);
+            store.set('bgs', data, expire);
             backgroundsList = data;
         });
     } else {
@@ -1143,7 +1154,7 @@ function trackClick(where, subject) {
 
 function getShareUrl(base64) {
     return new Promise(function (resolve, reject) {
-        var shortCode = store.raw.get('shortCode' + base64);
+        var shortCode = store.get('shortCode' + base64);
 
         if (shortCode) {
             console.log(shortCode);
@@ -1152,7 +1163,7 @@ function getShareUrl(base64) {
 
         $.ajax('https://steam.design/shorten/' + base64)
             .done(function (data) {
-                store.raw.set('shortCode' + base64, data.code);
+                store.set('shortCode' + base64, data.code);
                 resolve(data.code);
             });
     });
