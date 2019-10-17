@@ -30,16 +30,6 @@ html
 
         link(href='./css/index.styl', rel='stylesheet', type='text/css')
         link(href='./css/social-likes_flat.css', rel='stylesheet', type='text/css')
-
-        script(src='./js/index.js')
-        script(src='./fuckadblock.js')
-        script.
-            if (typeof module === 'object') {
-            window.module = module;
-            module = undefined;
-            }
-        script.
-            if (window.module) module = window.module;
     body
         .spin.unspin.fa-spin(style='display: none')
         .itemHolder.arrow(style='display: none')
@@ -320,6 +310,16 @@ html
         #copiedNotification.copiedNotification
             .notificationBG
                 div Copied!
+
+        script(src='./js/index.js')
+        script(src='./fuckadblock.js')
+        script.
+            if (typeof module === 'object') {
+            window.module = module;
+            module = undefined;
+            }
+        script.
+            if (window.module) module = window.module;
         script.
             ! function(t, e, a) {
             (e[a] = e[a] || []).push(function() {
