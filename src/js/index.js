@@ -319,13 +319,16 @@ function fillSmallImages(sc, num) {
     var defaultoffset = $('#hBig' + sc).offset().top - $('.profile_header').offset().top + 1;
 
     switch (num) {
-        case 11 || 21:
+        case 11:
+        case 21:
             var rOffset = defaultoffset;
             break;
-        case 12 || 22:
+        case 12:
+        case 22:
             var rOffset = defaultoffset + 93;
             break;
-        case 13 || 23:
+        case 13:
+        case 23:
             var rOffset = defaultoffset + 186;
             break;
     }
