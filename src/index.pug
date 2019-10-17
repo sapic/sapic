@@ -3,10 +3,11 @@ html
     head
         meta(charset='utf-8')
         title Steam.Design
+
         meta(name='keywords', content='steam, profile, crop, steam profile, background crop, background crop tool, background, backgrounds, valve, steamdesign, design')
         link(rel='apple-touch-icon', sizes='180x180', href='./images/apple-touch-icon.png')
         link(rel='icon', type='image/png', sizes='32x32', href='./images/favicon-32x32.png')
-        link(rel='manifest', href='./images/manifest.json')
+        link(rel='manifest', href='./images/manifest.webmanifest')
         link(rel='mask-icon', href='./images/safari-pinned-tab.svg', color='#12151a')
         link(rel='shortcut icon', href='./images/favicon.ico')
         meta(name='apple-mobile-web-app-title', content='Steam.Design')
@@ -27,30 +28,10 @@ html
         meta(name='twitter:image', content='https://i.oddball.tf/WFODru7.png')
         meta(name='twitter:url', content='https://steam.design/')
 
-
-        // build:css ./main.css 
-        link(href='./css/motiva_sans.css', rel='stylesheet', type='text/css')
-        link(href='./css/buttons.css', rel='stylesheet', type='text/css')
-        link(href='./css/shared_global.css', rel='stylesheet', type='text/css')
-        link(href='./css/globalv2.css', rel='stylesheet', type='text/css')
-        link(href='./css/modalContent.css?v=.fruFbqx6YTdG', rel='stylesheet', type='text/css')
-        link(href='./css/profilev2.css', rel='stylesheet', type='text/css')
-        link(href='./css/economy.css', rel='stylesheet', type='text/css')
-        link(href='./css/font-awesome.css', rel='stylesheet', type='text/css')
+        link(href='./css/index.styl', rel='stylesheet', type='text/css')
         link(href='./css/social-likes_flat.css', rel='stylesheet', type='text/css')
-        link(href='./css/slider.css', rel='stylesheet', type='text/css')
-        // endbuild 
-        // build:js ./main.js 
-        script(src='./js/jquery.min.js')
-        script(src='./js/jquery.smooth-scroll.min.js')
-        script(src='./js/interact-1.2.9.min.js')
+
         script(src='./js/index.js')
-        script(src='./js/social-likes.min.js')
-        script(src='./js/store.everything.min.js')
-        script(src='./js/jQueryRotate.js')
-        script(src='./js/clipboard.js')
-        script(src='./js/networkn.js')
-        // endbuild 
         script(src='./fuckadblock.js')
         script.
             if (typeof module === 'object') {
@@ -198,7 +179,7 @@ html
                                         #randomBG.btn_profile_action.btn_medium(style='left:3px; position:relative;')
                                             span
                                                 | Random BG
-                                        #openCustomizeButton.btn_profile_action.btn_medium(style='left:7px; position:relative;', onclick='toggleCustomize()')
+                                        #openCustomizeButton.btn_profile_action.btn_medium(style='left:7px; position:relative;')
                                             span(style=' text-align:center; ') Customize Cropping
                                         // <a class="btn_profile_action btn_medium" id="userScript" style="left:2px; position:relative;" href="https://chrome.google.com/webstore/detail/mjmabgdoainclinjecbkdancpamdiaih/"><span>Chrome Extension</span></a>
                 .profile_content.has_profile_background
@@ -373,6 +354,7 @@ html
             }(window, document, "script", 0, "ga"), ga("create", "UA-98294219-1", "auto"), ga("send", "pageview"));
 
         //- NetworkN code
+        script(src="//networkn.min.js")
         script.
             !function(o,n){if(o._localCS={consent:null,loaded:!1,tx:null},o._comscore=o._comscore||[],o.__cmp){
             o.__cmp("getVendorConsents",[77],function(o,c){function e(o){return"object"==typeof o}c&&(_localCS.consent=e(o)

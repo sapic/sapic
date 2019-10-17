@@ -1,4 +1,15 @@
-background = null;
+import store from './store.everything.min.js'
+import $ from './jquery.min.js'
+import interact from './interact-1.2.9.min.js'
+import ClipboardJS from './clipboard.js'
+
+window.$ = window.jQuery = $
+
+require('./jquery.smooth-scroll.min.js')
+require('./jQueryRotate.js')
+require('./social-likes.min.js')
+
+var background = null;
 var loadedBack = null;
 var currentBGInfo = null;
 var version = '{{#vernum}}';
@@ -547,7 +558,7 @@ function closeCommunity() {
     store.set('community', true);
 }
 
-function customizeCheckboxHandler(id) {
+window.customizeCheckboxHandler = function customizeCheckboxHandler(id) {
     trackClick('settings', id)
     var div = $('#' + id + '');
     var hiddenBelow = div.siblings('.hiddenBelow');
@@ -671,7 +682,7 @@ function autoCropHeight(showcase) {
     }
 }
 
-function autoCropHeight_2(showcase) {
+window.autoCropHeight_2 = function autoCropHeight_2(showcase) {
     var bh = $('#bgImgEl').height();
     var rOffset = $('#hBig' + showcase + '').offset().top - $('.profile_header').offset().top + 1;
     var autoHeight = bh - rOffset - 1;
@@ -859,7 +870,7 @@ function loadExtension(browser) {
     $('#extension').after(' | <a class="bb_link" href="' + extensionURL + '">' + extensionBrowser + ' Extension</a>')
 }
 
-$(function () {
+window.onload = function () {
     try {
         store.get('bgs')
         store.get('backpack')
@@ -893,7 +904,7 @@ $(function () {
         loadb64();
     }
 
-    $('#customizeButton').click(function () {
+    $('#openCustomizeButton').click(function () {
         toggleCustomize();
     });
 
@@ -1144,7 +1155,7 @@ $(function () {
     });
 
     randomBgsOrder.push(Math.floor(Math.random() * backgroundsList.length))
-});
+}
 
 function trackClick(where, subject) {
     ga('send', {

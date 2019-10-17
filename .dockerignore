@@ -2,3 +2,5 @@
 build
 node_modules
 out
+.cache
+dist

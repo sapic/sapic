@@ -2,14 +2,21 @@
     "name": "sapic",
     "version": "1.0.0",
     "scripts": {
-        "build": "gulp"
+        "start": "parcel ./src/index.pug",
+        "build": "parcel build ./src/index.pug"
+    },
+    "staticFiles": {
+        "staticPath": "static"
     },
     "devDependencies": {
         "gulp": "^4.0.2",
         "gulp-concat": "^2.6.1",
         "gulp-concat-css": "^3.1.0",
         "gulp-uglify": "^3.0.2",
-        "gulp-useref": "^3.1.6"
+        "gulp-useref": "^3.1.6",
+        "parcel-bundler": "^1.12.4",
+        "parcel-plugin-purgecss": "^2.1.2",
+        "parcel-plugin-static-files-copy": "^2.2.1"
     },
     "dependencies": {
         "cssnano": "^4.1.10",
@@ -20,6 +27,7 @@
         "gulp-pug-linter": "^1.2.0",
         "gulp-rename": "^1.4.0",
         "gulp-stylus": "^2.7.0",
+        "jquery": "^3.4.1",
         "postcss-uncss": "0.16",
         "uncss": "0.16"
     }

@@ -6,3 +6,5 @@ index_build.html
 package-lock.json
 src/js/index_build.js
 js/index_build.js
+.cache
+dist
