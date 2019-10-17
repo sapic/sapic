@@ -2,6 +2,7 @@ import store from './store.everything.min.js'
 import $ from './jquery.min.js'
 import interact from './interact-1.2.9.min.js'
 import ClipboardJS from './clipboard.js'
+import kofiwidget from './kofi.js'
 
 window.$ = window.jQuery = $
 
@@ -1155,6 +1156,11 @@ window.onload = function () {
     });
 
     randomBgsOrder.push(Math.floor(Math.random() * backgroundsList.length))
+
+    const kofi = kofiwidget()
+    kofi.init('Support Us on Ko-fi', '#08090b', 'H2H8NYMB')
+    const kofiHTML = kofi.getHTML()
+    $("#kofiplace").html(kofiHTML)
 }
 
 function trackClick(where, subject) {

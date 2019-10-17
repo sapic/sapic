@@ -3,7 +3,7 @@
     "version": "1.0.0",
     "scripts": {
         "start": "parcel ./src/index.pug",
-        "build": "parcel build ./src/index.pug --no-minify"
+        "build": "parcel build ./src/index.pug"
     },
     "staticFiles": {
         "staticPath": "static"
