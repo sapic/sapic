@@ -2,13 +2,9 @@ import store from './store.everything.min.js'
 import $ from './jquery.min.js'
 import interact from './interact-1.2.9.min.js'
 import ClipboardJS from './clipboard.js'
-import kofiwidget from './kofi.js'
+// import kofiwidget from './kofi.js'
 
 window.$ = window.jQuery = $
-
-require('./jquery.smooth-scroll.min.js')
-require('./jQueryRotate.js')
-require('./social-likes.min.js')
 
 var background = null;
 var loadedBack = null;
@@ -398,39 +394,41 @@ function createInventory(id) {
 }
 
 function doInventoryThings(inventory) {
-    var hide = store.get('hide');
-    if (oddball.refresh === true) {
-        clearInterval(oddball.refreshAngle);
-        $("#refreshInventory").rotate({
-            animateTo: 0
-        });
-        oddball.refresh = false;
-    }
-
-    inventory.backgrounds.forEach(function (back) {
-        var httpsLink = back.actions[0].link.replace('http://cdn.akamai.steamstatic.com/', 'https://steamcdn-a.akamaihd.net/');
-        if (hide === true) {
-            $('.backsList').addClass('backsListHide');
+    (function () {
+        var hide = store.get('hide');
+        if (oddball.refresh === true) {
+            clearInterval(oddball.refreshAngle);
+            $("#refreshInventory").rotate({
+                animateTo: 0
+            });
+            oddball.refresh = false;
         }
-        var itemHolder = $("<div>", {
-            class: "itemHolder",
-            alt: back.name.toLowerCase()
+
+        inventory.backgrounds.forEach(function (back) {
+            var httpsLink = back.actions[0].link.replace('http://cdn.akamai.steamstatic.com/', 'https://steamcdn-a.akamaihd.net/');
+            if (hide === true) {
+                $('.backsList').addClass('backsListHide');
+            }
+            var itemHolder = $("<div>", {
+                class: "itemHolder",
+                alt: back.name.toLowerCase()
+            });
+            var item = $("<div>", {
+                class: "item app753 context6 activeInfo"
+            });
+            var bgUrl = $("<a>", {
+                href: "#" + httpsLink,
+                class: "inventory_item_link"
+            });
+            var img = $("<img>", {
+                src: "https://steamcommunity-a.akamaihd.net/economy/image/" + back.icon_url + "/96fx96f"
+            });
+            $(bgUrl).append(img);
+            $(item).append(bgUrl);
+            $(itemHolder).append(item);
+            $('#backsList').append(itemHolder);
         });
-        var item = $("<div>", {
-            class: "item app753 context6 activeInfo"
-        });
-        var bgUrl = $("<a>", {
-            href: "#" + httpsLink,
-            class: "inventory_item_link"
-        });
-        var img = $("<img>", {
-            src: "https://steamcommunity-a.akamaihd.net/economy/image/" + back.icon_url + "/96fx96f"
-        });
-        $(bgUrl).append(img);
-        $(item).append(bgUrl);
-        $(itemHolder).append(item);
-        $('#backsList').append(itemHolder);
-    });
+    })()
 }
 
 function privateInventory() {
@@ -872,19 +870,20 @@ function loadExtension(browser) {
 }
 
 window.onload = function () {
+    if (window.location.hostname == "sapic.github.io") {
+        window.location = 'https://steam.design/' + location.hash;
+        return
+    }
+
     try {
-        store.get('bgs')
+        // store.get('bgs')
         store.get('backpack')
         store.get('community')
         store.get('shared')
         store.get('hide')
-        store.get('bgs')
     } catch (e) {
         // hack to clear store on migration
         store.clearAll()
-    }
-    if (window.location.hostname == "sapic.github.io") {
-        window.location = 'https://steam.design/' + location.hash;
     }
 
     if (navigator.userAgent.indexOf("Chrome") != -1) {
@@ -938,42 +937,44 @@ window.onload = function () {
         });
     });
 
-    $('#refreshInventory').rotate({
-        bind: {
-            mouseover: function () {
-                var angle = 0;
-                oddball.refreshAngle = setInterval(function () {
-                    angle += 3;
-                    $("#refreshInventory").rotate(angle);
-                }, 15);
-            },
-            click: function () {
-                oddball.refresh = true;
-                if (!oddball.refresh) {
-                    refreshInventory();
-                }
-            },
-            mouseout: function () {
-                if (oddball.refresh !== true) {
-                    clearInterval(oddball.refreshAngle);
-                    $("#refreshInventory").rotate({
-                        animateTo: 0
-                    });
-                }
-            }
-        }
-    });
+    // $('#refreshInventory').rotate({
+    //     bind: {
+    //         mouseover: function () {
+    //             var angle = 0;
+    //             oddball.refreshAngle = setInterval(function () {
+    //                 angle += 3;
+    //                 $("#refreshInventory").rotate(angle);
+    //             }, 15);
+    //         },
+    //         click: function () {
+    //             oddball.refresh = true;
+    //             if (!oddball.refresh) {
+    //                 refreshInventory();
+    //             }
+    //         },
+    //         mouseout: function () {
+    //             if (oddball.refresh !== true) {
+    //                 clearInterval(oddball.refreshAngle);
+    //                 $("#refreshInventory").rotate({
+    //                     animateTo: 0
+    //                 });
+    //             }
+    //         }
+    //     }
+    // });
 
-    var bgs = store.get('bgs');
+    // this.setImmediate(() => {
+    var bgs = store.raw.get('bgs');
     if (!bgs) {
         var expire = new Date().getTime() + 86400000;
         $.ajax('https://steam.design/bg.json').done(function (data) {
-            store.set('bgs', data, expire);
+            store.raw.set('bgs', data, expire);
             backgroundsList = data;
         });
     } else {
         backgroundsList = bgs;
     }
+    // })
     loginFunc();
 
     setTimeout(function () {
@@ -988,11 +989,11 @@ window.onload = function () {
     if (!window.localStorage) return;
     userId = window.localStorage.getItem('SteamId');
     if (userId !== null) {
-        $('#steamAuth').append('<a class="fa fa-sign-out" style="display:inline;position:relative;cursor:pointer;top:2px;left:-10px;color:#8f98a0;" title="Sign Out" href="#logout"></a>');
+        $('#steamAuth').html('<a class="fa fa-sign-out" style="display:inline;position:relative;cursor:pointer;top:2px;left:-10px;color:#8f98a0;" title="Sign Out" href="#logout"></a>');
         createInventory(userId);
     } else {
         $('#invbuttons').css('margin-bottom', '0px')
-        $('#steamAuth').append('<a href="https://steamcommunity.com/openid/login?openid.ns=http%3A%2F%2Fspecs.openid.net%2Fauth%2F2.0&openid.mode=checkid_setup&openid.return_to=http%3A%2F%2Fsteam.design%2Findex.html%23login&openid.realm=http%3A%2F%2Fsteam.design&openid.ns.sreg=http%3A%2F%2Fopenid.net%2Fextensions%2Fsreg%2F1.1&openid.claimed_id=http%3A%2F%2Fspecs.openid.net%2Fauth%2F2.0%2Fidentifier_select&openid.identity=http%3A%2F%2Fspecs.openid.net%2Fauth%2F2.0%2Fidentifier_select" class="name"><img src="https://steamcommunity-a.akamaihd.net/public/images/signinthroughsteam/sits_01.png" width="129" height="25"></a>');
+        // $('#steamAuth').append('<a href="https://steamcommunity.com/openid/login?openid.ns=http%3A%2F%2Fspecs.openid.net%2Fauth%2F2.0&openid.mode=checkid_setup&openid.return_to=http%3A%2F%2Fsteam.design%2Findex.html%23login&openid.realm=http%3A%2F%2Fsteam.design&openid.ns.sreg=http%3A%2F%2Fopenid.net%2Fextensions%2Fsreg%2F1.1&openid.claimed_id=http%3A%2F%2Fspecs.openid.net%2Fauth%2F2.0%2Fidentifier_select&openid.identity=http%3A%2F%2Fspecs.openid.net%2Fauth%2F2.0%2Fidentifier_select" class="name"><img src="https://steamcommunity-a.akamaihd.net/public/images/signinthroughsteam/sits_01.png" width="129" height="25"></a>');
     }
 
     reloadImages();
@@ -1157,10 +1158,15 @@ window.onload = function () {
 
     randomBgsOrder.push(Math.floor(Math.random() * backgroundsList.length))
 
-    const kofi = kofiwidget()
-    kofi.init('Support Us on Ko-fi', '#08090b', 'H2H8NYMB')
-    const kofiHTML = kofi.getHTML()
-    $("#kofiplace").html(kofiHTML)
+    require('./jquery.smooth-scroll.min.js')
+    require('./jQueryRotate.js')
+    require('./social-likes.min.js')
+    // setTimeout(() => {
+    //     const kofi = kofiwidget()
+    //     kofi.init('Support Us on Ko-fi', '#08090b', 'H2H8NYMB')
+    //     const kofiHTML = kofi.getHTML()
+    //     $("#kofiplace").html(kofiHTML)
+    // }, 250)
 }
 
 function trackClick(where, subject) {

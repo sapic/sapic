@@ -10,6 +10,9 @@ html
         link(rel='manifest', href='./manifest.webmanifest')
         link(rel='mask-icon', href='./images/safari-pinned-tab.svg', color='#12151a')
         link(rel='shortcut icon', href='./images/favicon.ico')
+
+        link(href="https://steamcdn-a.akamaihd.net" rel="preconnect" crossorigin)
+
         meta(name='apple-mobile-web-app-title', content='Steam.Design')
         meta(name='description', content='A small tool to crop Steam profile backgrounds to showcases. Make your profile awesome today!')
         meta(name='application-name', content='Steam.Design')
@@ -47,6 +50,14 @@ html
                         #refreshInventory.fa.fa-refresh(title='Refresh Inventory', style='position:relative; top:2px; left:-20px; cursor:pointer; display:none;')
                         #hideBacksList.fa.fa-arrow-up(title='Hide Inventory', style='position:relative; top:2px; left:-15px; cursor:pointer; display:none;')
                         span#steamAuth
+                            a(
+                                href="https://steamcommunity.com/openid/login?openid.ns=http%3A%2F%2Fspecs.openid.net%2Fauth%2F2.0&openid.mode=checkid_setup&openid.return_to=http%3A%2F%2Fsteam.design%2Findex.html%23login&openid.realm=http%3A%2F%2Fsteam.design&openid.ns.sreg=http%3A%2F%2Fopenid.net%2Fextensions%2Fsreg%2F1.1&openid.claimed_id=http%3A%2F%2Fspecs.openid.net%2Fauth%2F2.0%2Fidentifier_select&openid.identity=http%3A%2F%2Fspecs.openid.net%2Fauth%2F2.0%2Fidentifier_select"
+                                class="name"
+                            )
+                                img(src="https://steamcommunity-a.akamaihd.net/public/images/signinthroughsteam/sits_01.png"
+                                    width="129"
+                                    height="25"
+                                )
                 #backsList.backsList
                     #nn_lb1(style='position:relative; left:9%;')
         #profilebody.body
@@ -149,10 +160,15 @@ html
                                         span.actual_persona_name  
                                     .header_real_name_spacer  
                                     .profile_summary
-                                        span.kofiplace(id="kofiplace")
-                                        .social-likes(data-url='https://steam.design/', data-title="I made a cool Steam profile with this! It's so cool!")
-                                            .twitter(title='Share link on Twitter')  Twitter
-                                            .vkontakte(title='Share link on VK')  VK
+                                        .profile_summary_social
+                                            span.kofi-btn-container
+                                                a(title="Support me on ko-fi.com" class="kofi-button" style="background-color:#08090b;" href="https://ko-fi.com/H2H8NYMB" target="_blank")
+                                                    span(class="kofitext")
+                                                        img(src="./images/cup-border.png" class="kofiimg")
+                                                        span.kofidescription Support Us on Ko-fi
+                                            .social-likes(data-url='https://steam.design/', data-title="I made a cool Steam profile with this! It's so cool!")
+                                                .twitter(title='Share link on Twitter')  Twitter
+                                                .vkontakte(title='Share link on VK')  VK
                                         .bb_h1(style='top:8px; position: relative;')
                                             b
                                                 | Our: 
@@ -360,7 +376,9 @@ html
             t()}o.cmpLoaded&&(clearTimeout(_localCS.tx),t())})}()}function t(){var o,c,e;_localCS.loaded||
             (_comscore.push({c1:"2",c2:"25110922",cs_ucfr:_localCS.consent}),c=(o=n).createElement("script"),
             e=o.getElementsByTagName("script")[0],c.async=!0,c.src=("https:"==o.location.protocol?"https://sb":"http://b")
-            +".scorecardresearch.com/beacon.js",e.parentNode.insertBefore(c,e),_localCS.loaded=!0)}o.__cmp||t()}(window,document);
+            +".scorecardresearch.com/beacon.js",e.parentNode.insertBefore(c,e),_localCS.loaded=!0)}o.__cmp||t()}(window,document)
+        //-     document.body.appendChild("<script src=\"https://steam.design/networkn.min.js\"></script>")
+        //-     //(window,document);
 
         noscript
             img(src="https://sb.scorecardresearch.com/p?c1=2&c2=25110922&cv=2.0&cj=1")
