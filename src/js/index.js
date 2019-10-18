@@ -965,7 +965,7 @@ window.onload = function () {
 
     // this.setImmediate(() => {
     var bgs = store.raw.get('bgs');
-    if (!bgs) {
+    if (!bgs || typeof bgs !== 'object') {
         var expire = new Date().getTime() + 86400000;
         $.ajax('https://steam.design/bg.json').done(function (data) {
             store.raw.set('bgs', data, expire);
