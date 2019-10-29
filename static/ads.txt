@@ -1,4 +1,4 @@
-# Ads.txt file 09-09-2019
+# Network N Ads.txt file 15-10-2019
 
 google.com, pub-6177961780147591, DIRECT, f08c47fec0942fa0 # AdSense
 google.com, pub-2145138345242651, DIRECT, f08c47fec0942fa0 # Network N AdX
@@ -31,19 +31,22 @@ indexexchange.com, 189345, DIRECT # Index Exchange EB
 conversantmedia.com, 42024, DIRECT, 03113cd04947736d #Conversant HB
 rubiconproject.com, 17960, RESELLER, 0bfd66d529a55807 # Sovrn EB
 pubmatic.com, 158540, RESELLER, 5d62403b186f2ace #Pubmatic EB
-EMXDGT.com, 1290, DIRECT, 1e1d41537f7cad7f #EMX
-Appnexus.com, 1356, RESELLER, f5ab79cb980f11d1 #EMX
+emxdgt.com, 1290, DIRECT, 1e1d41537f7cad7f #EMX
+appnexus.com, 1356, RESELLER, f5ab79cb980f11d1 #EMX
+pubmatic.com, 158684, DIRECT, 5d62403b186f2ace #Pubmatic HB
+
 
 #Amazon
 
-aps.amazon.com, 26c60b4f-549a-4efd-8ae0-f00e07c46204, DIRECT #display
-openx.com, 540191398, RESELLER, 6a698e2ec38604c6 #display
-pubmatic.com, 157150, RESELLER, 5d62403b186f2ace #display
-districtm.io,100962,RESELLER,3fd707be9c4527c3
-appnexus.com, 1908, RESELLER, f5ab79cb980f11d1 #display
-rubiconproject.com, 18020, RESELLER, 0bfd66d529a55807
-rhythmone.com, 1654642120, RESELLER, a670c89d4a324e47
+aps.amazon.com,26c60b4f-549a-4efd-8ae0-f00e07c46204,DIRECT
+pubmatic.com,157150,RESELLER,5d62403b186f2ace
+openx.com,540191398,RESELLER,6a698e2ec38604c6
+rubiconproject.com,18020,RESELLER,0bfd66d529a55807
+appnexus.com,1908,RESELLER,f5ab79cb980f11d1
 adtech.com,12068,RESELLER,e1a5b5b6e3255540
+ad-generation.jp,12474,RESELLER
+districtm.io,100962,RESELLER,3fd707be9c4527c3
+rhythmone.com,1654642120,RESELLER,a670c89d4a324e47
 
 
 # Video [SpringServe]
@@ -69,6 +72,19 @@ appnexus.com, 2234, RESELLER # SpringServe
 openx.com, 537153564, RESELLER, 6a698e2ec38604c6 # SpringServe
 synacor.com, 82101, DIRECT, e108f11b2cdf7d5b # SpringServe
 advertising.com, 19623, RESELLER # SpringServe
+spotxchange.com, 239904, RESELLER, 7842df1d2fe2db34
+spotx.tv, 239904, RESELLER, 7842df1d2fe2db34
+contextweb.com, 561910, RESELLER, 89ff185a4c4e857c
+openx.com, 540226160, RESELLER, 6a698e2ec38604c6
+google.com, pub-9685734445476814, RESELLER, f08c47fec0942fa0
+undertone.com, 3817, DIRECT
+appnexus.com, 2234, RESELLER
+openx.com, 537153564, RESELLER, 6a698e2ec38604c6
+synacor.com, 82101, DIRECT, e108f11b2cdf7d5b
+advertising.com, 19623, RESELLER
+openx.com, 540634634, DIRECT, 6a698e2ec38604c6
+emxdgt.com, 1251, RESELLER, 1e1d41537f7cad7f
+districtm.io, 101856, DIRECT, 3fd707be9c4527c3
 
 # Video [Yieldnexus]
 
@@ -88,3 +104,18 @@ rubiconproject.com, 17270, RESELLER
 
 teads.tv, 13367, DIRECT, 15a9c44f6d26cbe1 # Teads outstream
 teads.tv, 13471, DIRECT, 15a9c44f6d26cbe1 # Teads outstream
+
+# Video [SpotX]
+
+spotxchange.com, 268145, DIRECT, 7842df1d2fe2db34
+spotx.tv, 268145, DIRECT, 7842df1d2fe2db34
+spotxchange.com, 268145, RESELLER, 7842df1d2fe2db34
+spotx.tv, 268145, RESELLER, 7842df1d2fe2db34
+
+# Video [EMX]
+
+emxdgt.com,1309, DIRECT, 1e1d41537f7cad7f
+appnexus.com, 1356, RESELLER, f5ab79cb980f11d1
+
+# Video [Pubmatic]
+pubmatic.com, 158682, DIRECT, 5d62403b186f2ace
