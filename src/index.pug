@@ -271,63 +271,14 @@ html
                         .profile_rightcol
                             .rColAds#nn_mpu1
                             .underfr(width='268')
-                            .profile_group_links.profile_count_link_preview_ctn.responsive_groupfriends_element
-                                .profile_count_link.ellipsis
-                                    span.partnerLabel Our Other Projects
-                                .profile_count_link_preview(style='margin-top:25px')
-                                    .profile_group.profile_primary_group
-                                        .profile_group_avatar
-                                            a(href='https://designerlist.guide/' target="_blank" rel="noopener noreferrer")
-                                                img(src='https://i.oddball.tf/AspGoS4.jpg', width='64')
-                                        a.whiteLink(href='https://designerlist.guide/' target="_blank" rel="noopener noreferrer") Safe Designer List
-                                        .profile_group_membercount A list of safe, verified artwork designers on Steam.
-                                        div(style='clear: left;')
-                                .profile_count_link.ellipsis(style='margin-top:25px')
-                                    span.partnerLabel Our Partners
-                                .profile_count_link_preview(style='margin-top:25px')
-                                    .profile_group.profile_primary_group
-                                        .profile_group_avatar
-                                            a(href='https://www.steamladder.com/' target="_blank" rel="noopener noreferrer")
-                                                img(src='https://steamcdn-a.akamaihd.net/steamcommunity/public/images/avatars/f4/f4b94e8c28be9b33d6abf3a4f3a5ff5fcd43be82_medium.jpg')
-                                        a.whiteLink(href='https://www.steamladder.com/' target="_blank" rel="noopener noreferrer") Steam Ladder
-                                        .profile_group_membercount Leaderboard and ranking site for Steam profiles!
-                                        div(style='clear: left;')
-                                    .profile_group.profile_primary_group
-                                        .profile_group_avatar
-                                            a(href='https://steamcommunity.com/groups/ArtworkProfiles' target="_blank" rel="noopener noreferrer")
-                                                img(src='https://steamcdn-a.akamaihd.net/steamcommunity/public/images/avatars/a8/a8dbf5dc460745146602a2e9b61b25d7aebfed09_medium.jpg')
-                                        a.whiteLink(href='https://steamcommunity.com/groups/ArtworkProfiles' target="_blank" rel="noopener noreferrer") Artwork Profiles
-                                        .profile_group_membercount Celebrating the beauty of Steam profiles.
-                                        div(style='clear: left;')
-                                    .profile_group.profile_primary_group
-                                        .profile_group_avatar
-                                            a(href='https://www.steamwishlistcalculator.com/' target="_blank" rel="noopener noreferrer")
-                                                img(src='images/steamwishlist.png')
-                                        a.whiteLink(href='https://www.steamwishlistcalculator.com/' target="_blank" rel="noopener noreferrer") Steam Wishlist Calculator
-                                        .profile_group_membercount Calculate the total cost of your Steam wishlist!
-                                        div(style='clear: left;')
+                            include pug/partners.pug
+ 
                         #nn_lb2
             div(style='clear: both;')
         #footer_spacer
-        #footer
-            .footer_content
-                span#footerLogo
-                    img(src='./images/sapic.png', alt='Steam.Design', style='position:relative;left:40px;bottom:7px;', width='50', height='50', border='0')
-                span#footerText
-                    | Copyright © 2019 Steam.Design
-                    br
-                    | Powered by Steam. 
-                    span#version Version #\{{#vernum}}
-                    br
-                    |  Made with love by 
-                    a(href='https://steamcommunity.com/id/truecarry') TrueCarry
-                    |  and 
-                    a(href='https://steamcommunity.com/id/theoddball')
-                        | The Oddball
-                    br
-                    a(style="cursor:pointer" href="/privacy_policy.pdf" target="_blank") Privacy Policy
-                    | &nbsp;&nbsp;
-                    a(style="cursor:pointer" onclick="window.__cmp('showConsentModal')") Manage Cookie Settings
+
+        include pug/footer.pug
+
         img#bgImgEl(style='display:none')
         #bgPreloader(style='display:none;')
         #copiedNotification.copiedNotification

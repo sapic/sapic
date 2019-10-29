@@ -9,7 +9,6 @@ window.$ = window.jQuery = $
 var background = null;
 var loadedBack = null;
 var currentBGInfo = null;
-var version = '{{#vernum}}';
 var rAdsCount = 0;
 
 var oddball = {
@@ -1139,7 +1138,6 @@ window.onload = function () {
     $(".saveButton").click(function () {
         trackClick('getZIPButton', $(this).attr('href'));
     });
-    $("#version").html("Version #" + version);
     $('#openCustomizeButton').click(function () {
         trackClick('openCustomizeButton');
     });
