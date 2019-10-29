@@ -1,6 +1,12 @@
 {
     "name": "sapic",
     "version": "1.1.0",
+    "homepage": "https://steam.design",
+    "license": "MIT",
+    "repository": {
+        "type": "git",
+        "directory": "https://github.com/sapic/sapic.git"
+    },
     "scripts": {
         "start": "parcel ./src/index.pug",
         "build": "parcel build ./src/index.pug"
