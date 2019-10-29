@@ -1,4 +1,4 @@
-FROM node:10 as build
+FROM node:12-alpine as build
 
 # Create app directory
 WORKDIR /app
@@ -16,9 +16,9 @@ COPY . .
 # Remove background folder, so it wont trigger build
 # RUN rm -r background didnt work
 
-ENV CIRCLE_BUILD_NUM=30
-RUN yarn build
+ARG CIRCLE_BUILD_NUM=30
+RUN CIRCLE_BUILD_NUM=$CIRCLE_BUILD_NUM yarn build
 
 FROM nginx:stable-alpine
 
-COPY --from=build /app/out /usr/share/nginx/html
+COPY --from=build /app/dist /usr/share/nginx/html

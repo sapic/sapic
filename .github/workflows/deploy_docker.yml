@@ -1,0 +1,37 @@
+name: Deploy docker
+
+on:
+  push:
+    branches:
+      - master
+
+
+jobs:
+  buildpush:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v1
+      - name: Build
+        run: |
+          githubsha="${{ github.sha }}"
+          docker build --build-arg CIRCLE_BUILD_NUM=${githubsha:0:8} . -t sapic/sapic
+      - name: Login
+        run: docker login -u ${{ secrets.DOCKER_USER }} -p ${{ secrets.DOCKER_PASS }}
+      - name: Push
+        run: docker push sapic/sapic
+      - name: Update on server
+        run: |
+          ssh_path="$HOME/.ssh"
+          mkdir "$ssh_path"
+          touch "$ssh_path/known_hosts"
+          echo "${{ secrets.SSH_PRIVATE_KEY }}" > "$ssh_path/deploy_key"
+          chmod 700 "$ssh_path"
+          chmod 600 "$ssh_path/known_hosts"
+          chmod 600 "$ssh_path/deploy_key"
+          ssh-keyscan -H 159.65.199.184 >> "$ssh_path/known_hosts"
+
+          ssh -i $HOME/.ssh/deploy_key root@159.65.199.184 << EOF
+            docker pull sapic/sapic
+            docker stop sapic && docker rm sapic
+            docker run -d -it --restart="always" --name sapic --network sapic sapic/sapic:latest
+          EOF

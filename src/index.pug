@@ -3,62 +3,36 @@ html
     head
         meta(charset='utf-8')
         title Steam.Design
+
         meta(name='keywords', content='steam, profile, crop, steam profile, background crop, background crop tool, background, backgrounds, valve, steamdesign, design')
-        link(rel='apple-touch-icon', sizes='180x180', href='./images/apple-touch-icon.png')
-        link(rel='icon', type='image/png', sizes='32x32', href='./images/favicon-32x32.png')
-        link(rel='manifest', href='./images/manifest.json')
-        link(rel='mask-icon', href='./images/safari-pinned-tab.svg', color='#12151a')
-        link(rel='shortcut icon', href='./images/favicon.ico')
+        link(rel='apple-touch-icon', sizes='180x180', href='./images/favicon/apple-touch-icon.png')
+        link(rel='icon', type='image/png', sizes='32x32', href='./images/favicon/favicon-32x32.png')
+        link(rel='manifest', href='./manifest.webmanifest')
+        link(rel='mask-icon', href='./images/favicon/safari-pinned-tab.svg', color='#12151a')
+        link(rel='shortcut icon', href='./images/favicon/favicon.ico')
+
+        link(href="https://steamcdn-a.akamaihd.net" rel="preconnect" crossorigin)
+
         meta(name='apple-mobile-web-app-title', content='Steam.Design')
         meta(name='description', content='A small tool to crop Steam profile backgrounds to showcases. Make your profile awesome today!')
         meta(name='application-name', content='Steam.Design')
-        meta(name='msapplication-config', content='./images/browserconfig.xml')
+        meta(name='msapplication-config', content='./images/favicon/browserconfig.xml')
         meta(name='msapplication-TileColor', content='#12151a')
         meta(name='theme-color', content='#12151a')
         meta(name='google-site-verification', content='bohKQMzUSNTnkPrEz27bgyzAFbTAOWhFTgKwrnejHEE')
         meta(property='og:title', content='Steam.Design')
         meta(property='og:type', content='website')
-        meta(property='og:image', content='https://i.oddball.tf/WFODru7.png')
+        meta(property='og:image', content='images/SocialBanner.png')
         meta(property='og:url', content='https://steam.design/')
         meta(property='og:description', content='A small tool to crop Steam profile backgrounds to showcases.')
         meta(name='twitter:card', content='summary_large_image')
         meta(name='twitter:title', content='Steam.Design')
         meta(name='twitter:description', content='A small tool to crop Steam profile backgrounds to showcases.')
-        meta(name='twitter:image', content='https://i.oddball.tf/WFODru7.png')
+        meta(name='twitter:image', content='images/SocialBanner.png')
         meta(name='twitter:url', content='https://steam.design/')
 
-
-        // build:css ./main.css
-        link(href='./css/motiva_sans.css', rel='stylesheet', type='text/css')
-        link(href='./css/buttons.css', rel='stylesheet', type='text/css')
-        link(href='./css/shared_global.css', rel='stylesheet', type='text/css')
-        link(href='./css/globalv2.css', rel='stylesheet', type='text/css')
-        link(href='./css/modalContent.css?v=.fruFbqx6YTdG', rel='stylesheet', type='text/css')
-        link(href='./css/profilev2.css', rel='stylesheet', type='text/css')
-        link(href='./css/economy.css', rel='stylesheet', type='text/css')
-        link(href='./css/font-awesome.css', rel='stylesheet', type='text/css')
+        link(href='./css/index.styl', rel='stylesheet', type='text/css')
         link(href='./css/social-likes_flat.css', rel='stylesheet', type='text/css')
-        link(href='./css/slider.css', rel='stylesheet', type='text/css')
-        // endbuild
-        // build:js ./main.js
-        script(src='./js/jquery.min.js')
-        script(src='./js/jquery.smooth-scroll.min.js')
-        script(src='./js/interact-1.2.9.min.js')
-        script(src='./js/index.js')
-        script(src='./js/social-likes.min.js')
-        script(src='./js/store.everything.min.js')
-        script(src='./js/jQueryRotate.js')
-        script(src='./js/clipboard.js')
-        script(src='./js/networkn.js')
-        // endbuild
-        script(src='./fuckadblock.js')
-        script.
-            if (typeof module === 'object') {
-            window.module = module;
-            module = undefined;
-            }
-        script.
-            if (window.module) module = window.module;
     body
         .spin.unspin.fa-spin(style='display: none')
         .itemHolder.arrow(style='display: none')
@@ -76,6 +50,14 @@ html
                         #refreshInventory.fa.fa-refresh(title='Refresh Inventory', style='position:relative; top:2px; left:-20px; cursor:pointer; display:none;')
                         #hideBacksList.fa.fa-arrow-up(title='Hide Inventory', style='position:relative; top:2px; left:-15px; cursor:pointer; display:none;')
                         span#steamAuth
+                            a(
+                                href="https://steamcommunity.com/openid/login?openid.ns=http%3A%2F%2Fspecs.openid.net%2Fauth%2F2.0&openid.mode=checkid_setup&openid.return_to=http%3A%2F%2Fsteam.design%2Findex.html%23login&openid.realm=http%3A%2F%2Fsteam.design&openid.ns.sreg=http%3A%2F%2Fopenid.net%2Fextensions%2Fsreg%2F1.1&openid.claimed_id=http%3A%2F%2Fspecs.openid.net%2Fauth%2F2.0%2Fidentifier_select&openid.identity=http%3A%2F%2Fspecs.openid.net%2Fauth%2F2.0%2Fidentifier_select"
+                                class="name"
+                            )
+                                img(src="images/steamsignin.png"
+                                    width="129"
+                                    height="25"
+                                )
                 #backsList.backsList
                     #nn_lb1(style='position:relative; left:9%;')
         #profilebody.body
@@ -178,13 +160,15 @@ html
                                         span.actual_persona_name  
                                     .header_real_name_spacer  
                                     .profile_summary
-                                        script(type='text/javascript', src='https://ko-fi.com/widgets/widget_2.js')
-                                        script(type='text/javascript').
-                                            kofiwidget2.init('Support Us on Ko-fi', '#08090b', 'H2H8NYMB');
-                                            kofiwidget2.draw();
-                                        .social-likes(data-url='https://steam.design/', data-title="I made a cool Steam profile with this! It's so cool!")
-                                            .twitter(title='Share link on Twitter')  Twitter
-                                            .vkontakte(title='Share link on VK')  VK
+                                        .profile_summary_social
+                                            span.kofi-btn-container
+                                                a(title="Support me on ko-fi.com" class="kofi-button" style="background-color:#08090b;" href="https://ko-fi.com/H2H8NYMB" target="_blank")
+                                                    span(class="kofitext")
+                                                        img(src="./images/cup-border.png" class="kofiimg")
+                                                        span.kofidescription Support Us on Ko-fi
+                                            .social-likes(data-url='https://steam.design/', data-title="I made a cool Steam profile with this! It's so cool!")
+                                                .twitter(title='Share link on Twitter')  Twitter
+                                                .vkontakte(title='Share link on VK')  VK
                                         .bb_h1(style='top:8px; position: relative;')
                                             b
                                                 | Our: 
@@ -198,7 +182,7 @@ html
                                         #randomBG.btn_profile_action.btn_medium(style='left:3px; position:relative;')
                                             span
                                                 | Random BG
-                                        #openCustomizeButton.btn_profile_action.btn_medium(style='left:7px; position:relative;', onclick='toggleCustomize()')
+                                        #openCustomizeButton.btn_profile_action.btn_medium(style='left:7px; position:relative;')
                                             span(style=' text-align:center; ') Customize Cropping
                                         // <a class="btn_profile_action btn_medium" id="userScript" style="left:2px; position:relative;" href="https://chrome.google.com/webstore/detail/mjmabgdoainclinjecbkdancpamdiaih/"><span>Chrome Extension</span></a>
                 .profile_content.has_profile_background
@@ -287,61 +271,29 @@ html
                         .profile_rightcol
                             .rColAds#nn_mpu1
                             .underfr(width='268')
-                            .profile_group_links.profile_count_link_preview_ctn.responsive_groupfriends_element
-                                .profile_count_link.ellipsis
-                                    span.partnerLabel Our Other Projects
-                                .profile_count_link_preview(style='margin-top:25px')
-                                    .profile_group.profile_primary_group
-                                        .profile_group_avatar
-                                            a(href='https://designerlist.guide/')
-                                                img(src='https://i.oddball.tf/AspGoS4.jpg', width='64')
-                                        a.whiteLink(href='https://designerlist.guide/') Safe Designer List
-                                        .profile_group_membercount A list of safe, verified artwork designers on Steam.
-                                        div(style='clear: left;')
-                                .profile_count_link.ellipsis(style='margin-top:25px')
-                                    span.partnerLabel Our Partners
-                                .profile_count_link_preview(style='margin-top:25px')
-                                    .profile_group.profile_primary_group
-                                        .profile_group_avatar
-                                            a(href='https://www.steamladder.com/')
-                                                img(src='https://steamcdn-a.akamaihd.net/steamcommunity/public/images/avatars/f4/f4b94e8c28be9b33d6abf3a4f3a5ff5fcd43be82_medium.jpg')
-                                        a.whiteLink(href='https://www.steamladder.com/') Steam Ladder
-                                        .profile_group_membercount Leaderboard and ranking site for Steam profiles!
-                                        div(style='clear: left;')
-                                    .profile_group.profile_primary_group
-                                        .profile_group_avatar
-                                            a(href='https://steamcommunity.com/groups/ArtworkProfiles')
-                                                img(src='https://steamcdn-a.akamaihd.net/steamcommunity/public/images/avatars/a8/a8dbf5dc460745146602a2e9b61b25d7aebfed09_medium.jpg')
-                                        a.whiteLink(href='https://steamcommunity.com/groups/ArtworkProfiles') Artwork Profiles
-                                        .profile_group_membercount Celebrating the beauty of Steam profiles.
-                                        div(style='clear: left;')
+                            include pug/partners.pug
+
                         #nn_lb2
             div(style='clear: both;')
         #footer_spacer
-        #footer
-            .footer_content
-                span#footerLogo
-                    img(src='./images/sapic.png', alt='Steam.Design', style='position:relative;left:40px;bottom:7px;', width='50', height='50', border='0')
-                span#footerText
-                    | Copyright © 2019 Steam.Design
-                    br
-                    | Powered by Steam. 
-                    span#version Version #\{{#vernum}}
-                    br
-                    |  Made with love by 
-                    a(href='https://steamcommunity.com/id/truecarry') TrueCarry
-                    |  and 
-                    a(href='https://steamcommunity.com/id/theoddball')
-                        | The Oddball
-                    br
-                    a(style="cursor:pointer" href="/privacy_policy.pdf" target="_blank") Privacy Policy
-                    | &nbsp;&nbsp;
-                    a(style="cursor:pointer" onclick="window.__cmp('showConsentModal')") Manage Cookie Settings
+
+        include pug/footer.pug
+
         img#bgImgEl(style='display:none')
         #bgPreloader(style='display:none;')
         #copiedNotification.copiedNotification
             .notificationBG
                 div Copied!
+
+        script(src='./js/index.js')
+        script(src='./fuckadblock.js')
+        script.
+            if (typeof module === 'object') {
+            window.module = module;
+            module = undefined;
+            }
+        script.
+            if (window.module) module = window.module;
         script.
             ! function(t, e, a) {
             (e[a] = e[a] || []).push(function() {
@@ -373,6 +325,7 @@ html
             }(window, document, "script", 0, "ga"), ga("create", "UA-98294219-1", "auto"), ga("send", "pageview"));
 
         //- NetworkN code
+        script(src="https://steam.design/networkn.min.js")
         script.
             !function(o,n){if(o._localCS={consent:null,loaded:!1,tx:null},o._comscore=o._comscore||[],o.__cmp){
             o.__cmp("getVendorConsents",[77],function(o,c){function e(o){return"object"==typeof o}c&&(_localCS.consent=e(o)
@@ -381,7 +334,9 @@ html
             t()}o.cmpLoaded&&(clearTimeout(_localCS.tx),t())})}()}function t(){var o,c,e;_localCS.loaded||
             (_comscore.push({c1:"2",c2:"25110922",cs_ucfr:_localCS.consent}),c=(o=n).createElement("script"),
             e=o.getElementsByTagName("script")[0],c.async=!0,c.src=("https:"==o.location.protocol?"https://sb":"http://b")
-            +".scorecardresearch.com/beacon.js",e.parentNode.insertBefore(c,e),_localCS.loaded=!0)}o.__cmp||t()}(window,document);
+            +".scorecardresearch.com/beacon.js",e.parentNode.insertBefore(c,e),_localCS.loaded=!0)}o.__cmp||t()}(window,document)
+        //-     document.body.appendChild("<script src=\"https://steam.design/networkn.min.js\"></script>")
+        //-     //(window,document);
 
         noscript
             img(src="https://sb.scorecardresearch.com/p?c1=2&c2=25110922&cv=2.0&cj=1")

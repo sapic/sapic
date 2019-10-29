@@ -1,7 +1,14 @@
-background = null;
+import store from './store.everything.min.js'
+import $ from './jquery.min.js'
+import interact from './interact-1.2.9.min.js'
+import ClipboardJS from './clipboard.js'
+// import kofiwidget from './kofi.js'
+
+window.$ = window.jQuery = $
+
+var background = null;
 var loadedBack = null;
 var currentBGInfo = null;
-var version = '{{#vernum}}';
 var rAdsCount = 0;
 
 var oddball = {
@@ -116,7 +123,7 @@ var ImagesNames = {
 
 var randomBgsOrder = []
 
-var randomBackground = function () {
+var randomBackground = function() {
     if (randomBgsOrder.length < 3) {
         for (var i = 0; i < 3; i++) {
             randomBgsOrder.push(Math.floor(Math.random() * backgroundsList.length))
@@ -148,7 +155,7 @@ function getImageBase64(image, fn) {
     $('#bgImgEl').attr('src', null);
 
     $('#bgImgEl').attr('src', image);
-    $('#bgImgEl').one("load", function () {
+    $('#bgImgEl').one("load", function() {
         loadedBack = image;
         fn();
     });
@@ -205,7 +212,7 @@ function reloadImages() {
     $('#bg2').css("background-image", "url('" + background + "')");
 
     if (background != loadedBack) {
-        getImageBase64(background, function () {
+        getImageBase64(background, function() {
             console.log('The current background URL is:', background);
             payloadHandler();
             reloadAds();
@@ -216,7 +223,7 @@ function reloadImages() {
 }
 
 function CropImages() {
-    setTimeout(function () {
+    setTimeout(function() {
         bgSaveInfo = {
             url: background,
             images: [],
@@ -236,9 +243,12 @@ function cropAWSC() {
     }
 
     var bgWidth = $('#bgImgEl').width();
-    var ImageType = bgWidth > 2000 ? 1 :
-        bgWidth <= 1280 ? 2 :
-            bgWidth == 2000 ? 3 : 0;
+    var ImageType = bgWidth > 2000 ?
+        1 :
+        bgWidth <= 1280 ?
+        2 :
+        bgWidth == 2000 ?
+        3 : 0;
     var height = $('#hBig1').height();
     var h1 = $('#hBig1').height();
     var rOffset1 = $('#hBig1').offset().top - $('.profile_header').offset().top + 1;
@@ -264,9 +274,12 @@ function cropSSSC() {
         return;
     }
     var bgWidth = $('#bgImgEl').width();
-    var ImageType = bgWidth > 2000 ? 1 :
-        bgWidth <= 1280 ? 2 :
-            bgWidth == 2000 ? 3 : 0;
+    var ImageType = bgWidth > 2000 ?
+        1 :
+        bgWidth <= 1280 ?
+        2 :
+        bgWidth == 2000 ?
+        3 : 0;
     var height = $('#hBig2').height();
     var h2 = $('#hBig2').height();
     var rOffset2 = $('#hBig2').offset().top - $('.profile_header').offset().top + 1;
@@ -291,7 +304,7 @@ function miscCrop() {
     var bgWidth = $('#bgImgEl').width();
     var ImageType = bgWidth > 2000 ? 1 :
         bgWidth <= 1280 ? 2 :
-            bgWidth == 2000 ? 3 : 0;
+        bgWidth == 2000 ? 3 : 0;
     var rOffset3 = $('#w1').offset().top - $('.profile_header').offset().top + 1;
 
     if (payload.toggles.WSSC_Enable) {
@@ -309,17 +322,20 @@ function fillSmallImages(sc, num) {
     var bgWidth = $('#bgImgEl').width();
     var ImageType = bgWidth > 2000 ? 1 :
         bgWidth <= 1280 ? 2 :
-            bgWidth == 2000 ? 3 : 0;
+        bgWidth == 2000 ? 3 : 0;
     var defaultoffset = $('#hBig' + sc).offset().top - $('.profile_header').offset().top + 1;
 
     switch (num) {
-        case 11 || 21:
+        case 11:
+        case 21:
             var rOffset = defaultoffset;
             break;
-        case 12 || 22:
+        case 12:
+        case 22:
             var rOffset = defaultoffset + 93;
             break;
-        case 13 || 23:
+        case 13:
+        case 23:
             var rOffset = defaultoffset + 186;
             break;
     }
@@ -364,7 +380,7 @@ function createInventory(id) {
         doInventoryThings(getitems);
     } else {
         var expire = Date.now() + 86400000;
-        $.ajax('https://steam.design/backpack/' + id + '/items.json').done(function (data) {
+        $.ajax('https://steam.design/backpack/' + id + '/items.json').done(function(data) {
             store.set('backpack', data, expire);
             if (data.backgrounds === null) {
                 return privateInventory();
@@ -377,39 +393,41 @@ function createInventory(id) {
 }
 
 function doInventoryThings(inventory) {
-    var hide = store.get('hide');
-    if (oddball.refresh === true) {
-        clearInterval(oddball.refreshAngle);
-        $("#refreshInventory").rotate({
-            animateTo: 0
-        });
-        oddball.refresh = false;
-    }
-
-    inventory.backgrounds.forEach(function (back) {
-        var httpsLink = back.actions[0].link.replace('http://cdn.akamai.steamstatic.com/', 'https://steamcdn-a.akamaihd.net/');
-        if (hide === true) {
-            $('.backsList').addClass('backsListHide');
+    (function() {
+        var hide = store.get('hide');
+        if (oddball.refresh === true) {
+            clearInterval(oddball.refreshAngle);
+            $("#refreshInventory").rotate({
+                animateTo: 0
+            });
+            oddball.refresh = false;
         }
-        var itemHolder = $("<div>", {
-            class: "itemHolder",
-            alt: back.name.toLowerCase()
+
+        inventory.backgrounds.forEach(function(back) {
+            var httpsLink = back.actions[0].link.replace('http://cdn.akamai.steamstatic.com/', 'https://steamcdn-a.akamaihd.net/');
+            if (hide === true) {
+                $('.backsList').addClass('backsListHide');
+            }
+            var itemHolder = $("<div>", {
+                class: "itemHolder",
+                alt: back.name.toLowerCase()
+            });
+            var item = $("<div>", {
+                class: "item app753 context6 activeInfo"
+            });
+            var bgUrl = $("<a>", {
+                href: "#" + httpsLink,
+                class: "inventory_item_link"
+            });
+            var img = $("<img>", {
+                src: "https://steamcommunity-a.akamaihd.net/economy/image/" + back.icon_url + "/96fx96f"
+            });
+            $(bgUrl).append(img);
+            $(item).append(bgUrl);
+            $(itemHolder).append(item);
+            $('#backsList').append(itemHolder);
         });
-        var item = $("<div>", {
-            class: "item app753 context6 activeInfo"
-        });
-        var bgUrl = $("<a>", {
-            href: "#" + httpsLink,
-            class: "inventory_item_link"
-        });
-        var img = $("<img>", {
-            src: "https://steamcommunity-a.akamaihd.net/economy/image/" + back.icon_url + "/96fx96f"
-        });
-        $(bgUrl).append(img);
-        $(item).append(bgUrl);
-        $(itemHolder).append(item);
-        $('#backsList').append(itemHolder);
-    });
+    })()
 }
 
 function privateInventory() {
@@ -417,7 +435,7 @@ function privateInventory() {
     $('#backsList').css("max-height", "0px");
     $('#backsList').text("Either your inventory has no backgrounds, or is private.");
     $('#backsList').css("text-align", "center");
-    setTimeout(function () {
+    setTimeout(function() {
         $('#backsList').show();
         $('#backsList').css("max-height", "20px");
     }, 500);
@@ -428,16 +446,16 @@ function refreshInventory() {
     if (!window.localStorage) return;
     store.remove('backpack');
     $('#backsList').addClass('backsListHide');
-    setTimeout(function () {
-        $(".itemHolder").each(function () {
+    setTimeout(function() {
+        $(".itemHolder").each(function() {
             $(this).remove();
         });
         userId = window.localStorage.getItem('SteamId');
-        $.ajax('https://steam.design/backpack/' + userId + '/itemsRefresh.json').done(function (data) {
+        $.ajax('https://steam.design/backpack/' + userId + '/itemsRefresh.json').done(function(data) {
             var expire = Date.now() + 86400000;
             store.set('backpack', data, expire);
             doInventoryThings(data);
-            setTimeout(function () {
+            setTimeout(function() {
                 $('#backsList').removeClass('backsListHide');
             }, 20);
         });
@@ -464,7 +482,7 @@ function addArrows() {
         return;
     }
     arrows = true
-    $('.profile_customization_header').not('.guide').each(function () {
+    $('.profile_customization_header').not('.guide').each(function() {
         $(this).prepend('<span style="float: right" class="arrow down" onclick="moveElem(this,2);">Down <div class="fa fa-arrow-down" style="font-size:17px;"></div></span>' +
             '<span style="float: right" class="arrow up" onclick="moveElem(this,1);"">Up <div class="fa fa-arrow-up" style="font-size:17px;"></div></span>');
     });
@@ -488,7 +506,7 @@ function moveElem(elem, direction) {
         easing: 'swing'
     });
     reloadImages();
-    setTimeout(function () {
+    setTimeout(function() {
         autoCropHeight();
     }, 100);
 }
@@ -502,7 +520,7 @@ function getTextWidth(text, font) {
 }
 
 function toggleCustomize() {
-    getShareUrl(btoa(JSON.stringify(payload))).then(function (data) {
+    getShareUrl(btoa(JSON.stringify(payload))).then(function(data) {
         var textWidth = getTextWidth('https://steam.design/s/' + data.ShortCode, "13px Arial");
         $('#shareWidth').css('width', Math.ceil(textWidth) + 5);
         $("#shareURL").val('https://steam.design/s/' + data.ShortCode);
@@ -512,13 +530,13 @@ function toggleCustomize() {
     $('#customizeBackground').fadeToggle();
     var hover = false;
 
-    $('#customize').hover(function () {
+    $('#customize').hover(function() {
         hover = true;
-    }, function () {
+    }, function() {
         hover = false;
     });
 
-    $('body').mouseup(function () {
+    $('body').mouseup(function() {
         if (($('#customize').is(':visible')) && (!hover)) {
             closeCustomize();
         }
@@ -538,7 +556,7 @@ function closeCommunity() {
     store.set('community', true);
 }
 
-function customizeCheckboxHandler(id) {
+window.customizeCheckboxHandler = function customizeCheckboxHandler(id) {
     trackClick('settings', id)
     var div = $('#' + id + '');
     var hiddenBelow = div.siblings('.hiddenBelow');
@@ -605,7 +623,7 @@ function shortenRight(showcase) {
 }
 
 function extendRight(showcase) {
-    setTimeout(function () {
+    setTimeout(function() {
         var bh = $('#big' + showcase + '').height();
         $('.r' + showcase + '').css('height', bh);
         $('.r' + showcase + '').removeClass('shortened');
@@ -662,7 +680,7 @@ function autoCropHeight(showcase) {
     }
 }
 
-function autoCropHeight_2(showcase) {
+window.autoCropHeight_2 = function autoCropHeight_2(showcase) {
     var bh = $('#bgImgEl').height();
     var rOffset = $('#hBig' + showcase + '').offset().top - $('.profile_header').offset().top + 1;
     var autoHeight = bh - rOffset - 1;
@@ -688,7 +706,7 @@ function shortImages(showcase) {
 function loadb64() {
     window.location.href = "#" + payload.background;
     loadb64Checkboxes();
-    setTimeout(function () {
+    setTimeout(function() {
         if (payload.cropInfo.customHeight.AWSC) {
             loadCustomHeight(1, payload.cropInfo.customHeight.AWSC);
         }
@@ -744,7 +762,7 @@ function payloadHandler() {
         if (payload.toggles.SSSC_Long) {
             longImages(2);
             if (payload.toggles.SSSC_Long_Minus70) {
-                setTimeout(function () {
+                setTimeout(function() {
                     shortenRight(2);
                 }, 300);
             } else {
@@ -799,7 +817,7 @@ function loadCustomHeight(showcase, newHeight) {
         }
         payload.toggles.AWSC_Resized = true;
         $('#autoResize_AWSC').show();
-        $('#autoResize_AWSC').click(function () {
+        $('#autoResize_AWSC').click(function() {
             $('.showcase_1').css('height', '');
             autoCropHeight_2(1);
             $('#autoResize_AWSC').hide();
@@ -823,7 +841,7 @@ function loadCustomHeight(showcase, newHeight) {
         }
         payload.toggles.SSSC_Resized = true;
         $('#autoResize_SSSC').show();
-        $('#autoResize_SSSC').click(function () {
+        $('#autoResize_SSSC').click(function() {
             $('.showcase_2').css('height', '');
             autoCropHeight_2(2);
             $('#autoResize_SSSC').hide();
@@ -850,9 +868,21 @@ function loadExtension(browser) {
     $('#extension').after(' | <a class="bb_link" href="' + extensionURL + '">' + extensionBrowser + ' Extension</a>')
 }
 
-$(function () {
+window.onload = function() {
     if (window.location.hostname == "sapic.github.io") {
         window.location = 'https://steam.design/' + location.hash;
+        return
+    }
+
+    try {
+        // store.get('bgs')
+        store.get('backpack')
+        store.get('community')
+        store.get('shared')
+        store.get('hide')
+    } catch (e) {
+        // hack to clear store on migration
+        store.clearAll()
     }
 
     if (navigator.userAgent.indexOf("Chrome") != -1) {
@@ -873,15 +903,15 @@ $(function () {
         loadb64();
     }
 
-    $('#customizeButton').click(function () {
+    $('#openCustomizeButton').click(function() {
         toggleCustomize();
     });
 
-    $('#customizeClose').click(function () {
+    $('#customizeClose').click(function() {
         closeCustomize();
     });
 
-    $('#community_close').click(function () {
+    $('#community_close').click(function() {
         closeCommunity();
     });
 
@@ -895,7 +925,7 @@ $(function () {
         });
     }
 
-    $('#hideBacksList').click(function () {
+    $('#hideBacksList').click(function() {
         oddball.hideBacks = !oddball.hideBacks;
         store.set('hide', oddball.hideBacks);
         hideangle += 180;
@@ -906,45 +936,47 @@ $(function () {
         });
     });
 
-    $('#refreshInventory').rotate({
-        bind: {
-            mouseover: function () {
-                var angle = 0;
-                oddball.refreshAngle = setInterval(function () {
-                    angle += 3;
-                    $("#refreshInventory").rotate(angle);
-                }, 15);
-            },
-            click: function () {
-                oddball.refresh = true;
-                if (!oddball.refresh) {
-                    refreshInventory();
-                }
-            },
-            mouseout: function () {
-                if (oddball.refresh !== true) {
-                    clearInterval(oddball.refreshAngle);
-                    $("#refreshInventory").rotate({
-                        animateTo: 0
-                    });
-                }
-            }
-        }
-    });
+    // $('#refreshInventory').rotate({
+    //     bind: {
+    //         mouseover: function () {
+    //             var angle = 0;
+    //             oddball.refreshAngle = setInterval(function () {
+    //                 angle += 3;
+    //                 $("#refreshInventory").rotate(angle);
+    //             }, 15);
+    //         },
+    //         click: function () {
+    //             oddball.refresh = true;
+    //             if (!oddball.refresh) {
+    //                 refreshInventory();
+    //             }
+    //         },
+    //         mouseout: function () {
+    //             if (oddball.refresh !== true) {
+    //                 clearInterval(oddball.refreshAngle);
+    //                 $("#refreshInventory").rotate({
+    //                     animateTo: 0
+    //                 });
+    //             }
+    //         }
+    //     }
+    // });
 
-    var bgs = store.get('bgs');
-    if (!bgs) {
+    // this.setImmediate(() => {
+    var bgs = store.raw.get('bgs');
+    if (!bgs || typeof bgs !== 'object') {
         var expire = new Date().getTime() + 86400000;
-        $.ajax('https://steam.design/bg.json').done(function (data) {
-            store.set('bgs', data, expire);
+        $.ajax('https://steam.design/bg.json').done(function(data) {
+            store.raw.set('bgs', data, expire);
             backgroundsList = data;
         });
     } else {
         backgroundsList = bgs;
     }
+    // })
     loginFunc();
 
-    setTimeout(function () {
+    setTimeout(function() {
         if (typeof fuckAdBlock === 'undefined') {
             noAds();
         }
@@ -956,31 +988,31 @@ $(function () {
     if (!window.localStorage) return;
     userId = window.localStorage.getItem('SteamId');
     if (userId !== null) {
-        $('#steamAuth').append('<a class="fa fa-sign-out" style="display:inline;position:relative;cursor:pointer;top:2px;left:-10px;color:#8f98a0;" title="Sign Out" href="#logout"></a>');
+        $('#steamAuth').html('<a class="fa fa-sign-out" style="display:inline;position:relative;cursor:pointer;top:2px;left:-10px;color:#8f98a0;" title="Sign Out" href="#logout"></a>');
         createInventory(userId);
     } else {
         $('#invbuttons').css('margin-bottom', '0px')
-        $('#steamAuth').append('<a href="https://steamcommunity.com/openid/login?openid.ns=http%3A%2F%2Fspecs.openid.net%2Fauth%2F2.0&openid.mode=checkid_setup&openid.return_to=http%3A%2F%2Fsteam.design%2Findex.html%23login&openid.realm=http%3A%2F%2Fsteam.design&openid.ns.sreg=http%3A%2F%2Fopenid.net%2Fextensions%2Fsreg%2F1.1&openid.claimed_id=http%3A%2F%2Fspecs.openid.net%2Fauth%2F2.0%2Fidentifier_select&openid.identity=http%3A%2F%2Fspecs.openid.net%2Fauth%2F2.0%2Fidentifier_select" class="name"><img src="https://steamcommunity-a.akamaihd.net/public/images/signinthroughsteam/sits_01.png" width="129" height="25"></a>');
+            // $('#steamAuth').append('<a href="https://steamcommunity.com/openid/login?openid.ns=http%3A%2F%2Fspecs.openid.net%2Fauth%2F2.0&openid.mode=checkid_setup&openid.return_to=http%3A%2F%2Fsteam.design%2Findex.html%23login&openid.realm=http%3A%2F%2Fsteam.design&openid.ns.sreg=http%3A%2F%2Fopenid.net%2Fextensions%2Fsreg%2F1.1&openid.claimed_id=http%3A%2F%2Fspecs.openid.net%2Fauth%2F2.0%2Fidentifier_select&openid.identity=http%3A%2F%2Fspecs.openid.net%2Fauth%2F2.0%2Fidentifier_select" class="name"><img src="https://steamcommunity-a.akamaihd.net/public/images/signinthroughsteam/sits_01.png" width="129" height="25"></a>');
     }
 
     reloadImages();
 
-    $(window).bind('hashchange', function () {
+    $(window).bind('hashchange', function() {
         loginFunc();
         //var val = $('input[type="radio"]:checked').val() == 'big' ? 1 : 0;
         reloadImages();
     });
 
-    $('#filterIn').bind("change paste keyup", function () {
+    $('#filterIn').bind("change paste keyup", function() {
         $(".itemHolder:not(.arrow)").css('display', 'none');
-        Enumerable.From($(".itemHolder:not(.arrow)")).Where(function (i) {
-            return i.attributes('alt').value.indexOf($('#filterIn').val().toLowerCase()) != -1;
-        })
-            .Select().ToArray().forEach(function (elem) {
+        Enumerable.From($(".itemHolder:not(.arrow)")).Where(function(i) {
+                return i.attributes('alt').value.indexOf($('#filterIn').val().toLowerCase()) != -1;
+            })
+            .Select().ToArray().forEach(function(elem) {
                 $(elem).css('display', 'block');
             });
     });
-    $('#goUrl').click(function () {
+    $('#goUrl').click(function() {
         var url = $("#urlIn").val();
         if (url.length > 0) {
             if (url.match(/\.(jpeg|jpg|gif|png)$/)) {
@@ -1002,7 +1034,7 @@ $(function () {
         .resizable({
             axis: 'y',
         })
-        .on('resizemove', function (event) {
+        .on('resizemove', function(event) {
             var target = event.target;
             // add the change in coords to the previous width of the target element
             var newHeight = parseFloat(target.style.height) + event.dy;
@@ -1025,10 +1057,10 @@ $(function () {
 
             payload.cropInfo.customHeight.AWSC = newHeight;
         })
-        .on('resizeend', function () {
+        .on('resizeend', function() {
             payload.toggles.AWSC_Resized = true;
             $('#autoResize_AWSC').show();
-            $('#autoResize_AWSC').click(function () {
+            $('#autoResize_AWSC').click(function() {
                 $('.showcase_1').css('height', '');
                 autoCropHeight_2(1);
                 $('#autoResize_AWSC').hide();
@@ -1044,7 +1076,7 @@ $(function () {
         .resizable({
             axis: 'y',
         })
-        .on('resizemove', function (event) {
+        .on('resizemove', function(event) {
             var target = event.target;
             // add the change in coords to the previous width of the target element
             var newHeight = parseFloat(target.style.height) + event.dy;
@@ -1066,10 +1098,10 @@ $(function () {
 
             payload.cropInfo.customHeight.SSSC = newHeight;
         })
-        .on('resizeend', function () {
+        .on('resizeend', function() {
             payload.toggles.SSSC_Resized = true;
             $('#autoResize_SSSC').show();
-            $('#autoResize_SSSC').click(function () {
+            $('#autoResize_SSSC').click(function() {
                 $('.showcase_2').css('height', '');
                 autoCropHeight_2(2);
                 $('#autoResize_SSSC').hide();
@@ -1082,19 +1114,19 @@ $(function () {
             }
         });
 
-    $("#slFSize").on("change", function () {
+    $("#slFSize").on("change", function() {
         $('#hBig1').css('height', this.value);
         reloadImages();
     });
-    $("#slSSize").on("change", function () {
+    $("#slSSize").on("change", function() {
         $('#hBig2').css('height', this.value);
         reloadImages();
     });
-    $("#randomBG").click(function () {
+    $("#randomBG").click(function() {
         trackClick('randomBGButton');
         window.location.href = "#" + randomBackground();
     });
-    $("#getBg").click(function () {
+    $("#getBg").click(function() {
         var _goUrl = currentBGInfo && currentBGInfo.url ?
             "https://steamcommunity.com/market/listings/" + currentBGInfo.url :
             'https://images.google.com/searchbyimage?image_url=' + background;
@@ -1103,20 +1135,19 @@ $(function () {
 
         window.open(_goUrl, '_newtab');
     });
-    $(".saveButton").click(function () {
+    $(".saveButton").click(function() {
         trackClick('getZIPButton', $(this).attr('href'));
     });
-    $("#version").html("Version #" + version);
-    $('#openCustomizeButton').click(function () {
+    $('#openCustomizeButton').click(function() {
         trackClick('openCustomizeButton');
     });
 
     var clipboard = new ClipboardJS('.copy-btn');
 
-    clipboard.on('success', function (e) {
+    clipboard.on('success', function(e) {
         var el = $("#copiedNotification");
 
-        el.fadeIn("fast", function () {
+        el.fadeIn("fast", function() {
             el.fadeOut("slow");
         });
 
@@ -1124,7 +1155,17 @@ $(function () {
     });
 
     randomBgsOrder.push(Math.floor(Math.random() * backgroundsList.length))
-});
+
+    require('./jquery.smooth-scroll.min.js')
+    require('./jQueryRotate.js')
+    require('./social-likes.min.js')
+        // setTimeout(() => {
+        //     const kofi = kofiwidget()
+        //     kofi.init('Support Us on Ko-fi', '#08090b', 'H2H8NYMB')
+        //     const kofiHTML = kofi.getHTML()
+        //     $("#kofiplace").html(kofiHTML)
+        // }, 250)
+}
 
 function trackClick(where, subject) {
     ga('send', {
@@ -1136,7 +1177,7 @@ function trackClick(where, subject) {
 }
 
 function getShareUrl(base64) {
-    return new Promise(function (resolve, reject) {
+    return new Promise(function(resolve, reject) {
         var shortCode = store.get('shortCode' + base64);
 
         if (shortCode) {
@@ -1145,7 +1186,7 @@ function getShareUrl(base64) {
         }
 
         $.ajax('https://steam.design/shorten/' + base64)
-            .done(function (data) {
+            .done(function(data) {
                 store.set('shortCode' + base64, data.code);
                 resolve(data.code);
             });
