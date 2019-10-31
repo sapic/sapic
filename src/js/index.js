@@ -1,7 +1,7 @@
-import store from './store.everything.min.js'
+import store from 'store'
 import $ from 'cash-dom'
-import interact from './interact-1.2.9.min.js'
-import ClipboardJS from './clipboard.js'
+import interact from 'interactjs'
+import ClipboardJS from 'clipboard'
 // import kofiwidget from './kofi.js'
 
 window.$ = window.jQuery = $
@@ -152,6 +152,7 @@ var randomBackground = function () {
 };
 
 function getImageBase64(image, fn) {
+    console.log('geti', image)
     $('#bgImgEl').attr('src', null);
 
     $('#bgImgEl').attr('src', image);
@@ -377,15 +378,29 @@ function createInventory(id) {
     if (!window.localStorage) return;
     var getitems = store.get('backpack');
     if (getitems && getitems.backgrounds !== null) {
+        console.log('adasd')
         doInventoryThings(getitems);
     } else {
         var expire = Date.now() + 86400000;
-        $.ajax('https://steam.design/backpack/' + id + '/items.json').done(function (data) {
-            store.set('backpack', data, expire);
-            if (data.backgrounds === null) {
+        tinyxhr('https://steam.design/backpack/' + id + '/items.json', function (err, data) {
+            if (err) {
                 return privateInventory();
             }
-            doInventoryThings(data);
+
+            let result;
+            try {
+                result = JSON.parse(data)
+            } catch (e) {
+                console.error(e)
+                return privateInventory()
+            }
+            console.log('asdsad')
+            console.log('err', err, result)
+            store.set('backpack', result, expire);
+            if (result.backgrounds === null) {
+                return privateInventory();
+            }
+            doInventoryThings(result);
         });
     }
     $("#hideBacksList, #refreshInventory, .filter").show();
@@ -451,7 +466,12 @@ function refreshInventory() {
             $(this).remove();
         });
         userId = window.localStorage.getItem('SteamId');
-        $.ajax('https://steam.design/backpack/' + userId + '/itemsRefresh.json').done(function (data) {
+        tinyxhr('https://steam.design/backpack/' + userId + '/itemsRefresh.json', function (err, data) {
+            if (err) {
+                return
+            }
+            data = JSON.parse(data)
+
             var expire = Date.now() + 86400000;
             store.set('backpack', data, expire);
             doInventoryThings(data);
@@ -817,7 +837,7 @@ function loadCustomHeight(showcase, newHeight) {
         }
         payload.toggles.AWSC_Resized = true;
         $('#autoResize_AWSC').show();
-        $('#autoResize_AWSC').click(function () {
+        $('#autoResize_AWSC').on('click', function () {
             $('.showcase_1').css('height', '');
             autoCropHeight_2(1);
             $('#autoResize_AWSC').hide();
@@ -841,7 +861,7 @@ function loadCustomHeight(showcase, newHeight) {
         }
         payload.toggles.SSSC_Resized = true;
         $('#autoResize_SSSC').show();
-        $('#autoResize_SSSC').click(function () {
+        $('#autoResize_SSSC').on('click', function () {
             $('.showcase_2').css('height', '');
             autoCropHeight_2(2);
             $('#autoResize_SSSC').hide();
@@ -903,15 +923,15 @@ window.onload = function () {
         loadb64();
     }
 
-    $('#openCustomizeButton').click(function () {
+    $('#openCustomizeButton').on('click', function () {
         toggleCustomize();
     });
 
-    $('#customizeClose').click(function () {
+    $('#customizeClose').on('click', function () {
         closeCustomize();
     });
 
-    $('#community_close').click(function () {
+    $('#community_close').on('click', function () {
         closeCommunity();
     });
 
@@ -925,7 +945,7 @@ window.onload = function () {
         });
     }
 
-    $('#hideBacksList').click(function () {
+    $('#hideBacksList').on('click', function () {
         oddball.hideBacks = !oddball.hideBacks;
         store.set('hide', oddball.hideBacks);
         hideangle += 180;
@@ -966,7 +986,12 @@ window.onload = function () {
     var bgs = store.raw.get('bgs');
     if (!bgs || typeof bgs !== 'object') {
         var expire = new Date().getTime() + 86400000;
-        $.ajax('https://steam.design/bg.json').done(function (data) {
+        tinyxhr('https://steam.design/bg.json', function (err, data) {
+            if (err) {
+                return
+            }
+            data = JSON.parse(data)
+
             store.raw.set('bgs', data, expire);
             backgroundsList = data;
         });
@@ -997,13 +1022,13 @@ window.onload = function () {
 
     reloadImages();
 
-    $(window).bind('hashchange', function () {
+    $(window).on('hashchange', function () {
         loginFunc();
         //var val = $('input[type="radio"]:checked').val() == 'big' ? 1 : 0;
         reloadImages();
     });
 
-    $('#filterIn').bind("change paste keyup", function () {
+    $('#filterIn').on("change paste keyup", function () {
         $(".itemHolder:not(.arrow)").css('display', 'none');
         Enumerable.From($(".itemHolder:not(.arrow)")).Where(function (i) {
             return i.attributes('alt').value.indexOf($('#filterIn').val().toLowerCase()) != -1;
@@ -1012,7 +1037,7 @@ window.onload = function () {
                 $(elem).css('display', 'block');
             });
     });
-    $('#goUrl').click(function () {
+    $('#goUrl').on('click', function () {
         var url = $("#urlIn").val();
         if (url.length > 0) {
             if (url.match(/\.(jpeg|jpg|gif|png)$/)) {
@@ -1060,7 +1085,7 @@ window.onload = function () {
         .on('resizeend', function () {
             payload.toggles.AWSC_Resized = true;
             $('#autoResize_AWSC').show();
-            $('#autoResize_AWSC').click(function () {
+            $('#autoResize_AWSC').on('click', function () {
                 $('.showcase_1').css('height', '');
                 autoCropHeight_2(1);
                 $('#autoResize_AWSC').hide();
@@ -1101,7 +1126,7 @@ window.onload = function () {
         .on('resizeend', function () {
             payload.toggles.SSSC_Resized = true;
             $('#autoResize_SSSC').show();
-            $('#autoResize_SSSC').click(function () {
+            $('#autoResize_SSSC').on('click', function () {
                 $('.showcase_2').css('height', '');
                 autoCropHeight_2(2);
                 $('#autoResize_SSSC').hide();
@@ -1122,11 +1147,11 @@ window.onload = function () {
         $('#hBig2').css('height', this.value);
         reloadImages();
     });
-    $("#randomBG").click(function () {
+    $("#randomBG").on('click', function () {
         trackClick('randomBGButton');
         window.location.href = "#" + randomBackground();
     });
-    $("#getBg").click(function () {
+    $("#getBg").on('click', function () {
         var _goUrl = currentBGInfo && currentBGInfo.url ?
             "https://steamcommunity.com/market/listings/" + currentBGInfo.url :
             'https://images.google.com/searchbyimage?image_url=' + background;
@@ -1135,10 +1160,10 @@ window.onload = function () {
 
         window.open(_goUrl, '_newtab');
     });
-    $(".saveButton").click(function () {
+    $(".saveButton").on('click', function () {
         trackClick('getZIPButton', $(this).attr('href'));
     });
-    $('#openCustomizeButton').click(function () {
+    $('#openCustomizeButton').on('click', function () {
         trackClick('openCustomizeButton');
     });
 
@@ -1184,10 +1209,51 @@ function getShareUrl(base64) {
             return resolve(shortCode);
         }
 
-        $.ajax('https://steam.design/shorten/' + base64)
-            .done(function (data) {
-                store.set('shortCode' + base64, data.code);
-                resolve(data.code);
-            });
+        tinyxhr('https://steam.design/shorten/' + base64, function (err, data) {
+            if (err) {
+                return
+            }
+            data = JSON.parse(data)
+
+            store.set('shortCode' + base64, data.code);
+            resolve(data.code);
+        });
     });
 }
+
+// tinyxhr by Shimon Doodkin - licanse: public doamin - https://gist.github.com/4706967
+//
+// tinyxhr("http://site.com/action",function (err,data,xhr){ if (err) console.log("goterr ",err,'status='+xhr.status); console.log(data)  });
+// tinyxhr("http://site.com/action",function (err,data,xhr){ if (err) console.log("goterr ",err,'status='+xhr.status); console.log(data)  },'POST','value1=1&value2=2');
+// tinyxhr("http://site.com/action.json",function (err,data,xhr){ if (err) console.log("goterr ",err,'status='+xhr.status); console.log(data); console.log(JSON.parse(data))  },'POST',JSON.stringify({value:1}),'application/javascript'); 
+// cb - a callback function like: function (err,data,XMLHttpRequestObject){ if (err) throw err;   }
+// 
+
+function tinyxhr(url, cb, method, post, contenttype) {
+    var requestTimeout, xhr;
+    try { xhr = new XMLHttpRequest(); } catch (e) {
+        try { xhr = new ActiveXObject("Msxml2.XMLHTTP"); } catch (e) {
+            if (console) console.log("tinyxhr: XMLHttpRequest not supported");
+            return null;
+        }
+    }
+    requestTimeout = setTimeout(function () { xhr.abort(); cb(new Error("tinyxhr: aborted by a timeout"), "", xhr); }
+        , 10000);
+    xhr.onreadystatechange = function () {
+        if (xhr.readyState != 4) return;
+        clearTimeout(requestTimeout);
+        cb(xhr.status != 200 ? new Error("tinyxhr: server respnse status is " + xhr.status) : false, xhr.responseText, xhr);
+    }
+    xhr.open(method ? method.toUpperCase() : "GET", url, true);
+
+    //xhr.withCredentials = true;
+
+    if (!post)
+        xhr.send();
+    else {
+        xhr.setRequestHeader('Content-type', contenttype ? contenttype : 'application/x-www-form-urlencoded');
+        xhr.send(post)
+    }
+}
+
+//tinyxhr("/test",function (err,data,xhr){ if (err) console.log("goterr ",err); console.log(data)  });
