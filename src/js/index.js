@@ -557,11 +557,9 @@ function toggleCustomize() {
         hover = false;
     });
 
-    // $('body').on('mouseup', function () {
-    //     if (($('#customize').is(':visible')) && (!hover)) {
-    //         closeCustomize();
-    //     }
-    // });
+    $('#customizeBackground').on('mouseup', function () {
+        closeCustomize();
+    });
 }
 
 function closeCustomize() {
