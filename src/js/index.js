@@ -1158,13 +1158,12 @@ window.onload = function() {
 
     require('./jquery.smooth-scroll.min.js')
     require('./jQueryRotate.js')
-    require('./social-likes.min.js')
-        // setTimeout(() => {
-        //     const kofi = kofiwidget()
-        //     kofi.init('Support Us on Ko-fi', '#08090b', 'H2H8NYMB')
-        //     const kofiHTML = kofi.getHTML()
-        //     $("#kofiplace").html(kofiHTML)
-        // }, 250)
+    // setTimeout(() => {
+    //     const kofi = kofiwidget()
+    //     kofi.init('Support Us on Ko-fi', '#08090b', 'H2H8NYMB')
+    //     const kofiHTML = kofi.getHTML()
+    //     $("#kofiplace").html(kofiHTML)
+    // }, 250)
 }
 
 function trackClick(where, subject) {
