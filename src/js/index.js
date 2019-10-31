@@ -244,6 +244,7 @@ function cropAWSC() {
     }
 
     var bgWidth = $('#bgImgEl').width();
+    console.log('bgWidth', bgWidth)
     var ImageType = bgWidth > 2000 ?
         1 :
         bgWidth <= 1280 ?
@@ -547,32 +548,32 @@ function toggleCustomize() {
     });
 
     $('#customize').toggle();
-    $('#customizeBackground').fadeToggle();
+    $('#customizeBackground').toggle();
     var hover = false;
 
-    $('#customize').hover(function () {
+    $('#customize').on('hover', function () {
         hover = true;
     }, function () {
         hover = false;
     });
 
-    $('body').mouseup(function () {
-        if (($('#customize').is(':visible')) && (!hover)) {
-            closeCustomize();
-        }
-    });
+    // $('body').on('mouseup', function () {
+    //     if (($('#customize').is(':visible')) && (!hover)) {
+    //         closeCustomize();
+    //     }
+    // });
 }
 
 function closeCustomize() {
     $('#customize').hide();
-    $('#customizeBackground').fadeOut();
+    $('#customizeBackground').hide();
     addArrows();
     payloadHandler();
 }
 
 function closeCommunity() {
     $('#community_updates').hide();
-    $('#customizeBackground').fadeOut();
+    $('#customizeBackground').hide();
     store.set('community', true);
 }
 
