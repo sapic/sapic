@@ -203,13 +203,13 @@ html
                                                         .fa.fa-arrow-up(style='font-size:10px;')
                                             #r11r.screenshot_showcase_rightcol.r1
                                                 .screenshot_showcase_smallscreenshot.showcase_slot.r1(style='height: 82px;')
-                                                    .screenshot_showcase_screenshot(onclick="ShowModalContent( 'https://steamcommunity.com/sharedfiles/filedetails/?id=349772450&insideModal=1', 'https://steamcommunity.com/sharedfiles/filedetails/?id=349772450', 'https://steamcommunity.com/sharedfiles/filedetails/?id=349772450', true );")
+                                                    .screenshot_showcase_screenshot
                                                         #r11.r1
                                                 #r12r.screenshot_showcase_smallscreenshot.showcase_slot.hidelong1.rightimages(style='height: 82px;')
-                                                    .screenshot_showcase_screenshot(onclick="ShowModalContent( 'https://steamcommunity.com/sharedfiles/filedetails/?id=349772562&insideModal=1', 'https://steamcommunity.com/sharedfiles/filedetails/?id=349772562', 'https://steamcommunity.com/sharedfiles/filedetails/?id=349772562', true );")
+                                                    .screenshot_showcase_screenshot
                                                         #r12.rightimages
                                                 #r13r.screenshot_showcase_smallscreenshot.showcase_slot.hidelong1.rightimages(style='height: 82px;')
-                                                    .screenshot_showcase_screenshot(onclick="ShowModalContent( 'https://steamcommunity.com/sharedfiles/filedetails/?id=349772655&insideModal=1', 'https://steamcommunity.com/sharedfiles/filedetails/?id=349772655', 'https://steamcommunity.com/sharedfiles/filedetails/?id=349772655', true );")
+                                                    .screenshot_showcase_screenshot
                                                         #r13.rightimages
                                                 a.screenshot_showcase_smallscreenshot.screenshot_count.artwork_ammount_1.hidelong1(style='display:none;position:relative;top:2px;', href='https://steamcommunity.com/id/wolfenstian/images/')
                                                     .screenshot_showcase_screenshot.artwork_ammount_1.hidelong1
@@ -275,8 +275,8 @@ html
 
         include pug/footer.pug
 
-        img#bgImgEl(style='display:none')
-        #bgPreloader(style='display:none;')
+        img#bgImgEl(style='position: absolute; left: -9999px; top: -9999px;')
+        #bgPreloader(style='position: absolute; left: -9999px; top: -9999px;')
         #copiedNotification.copiedNotification
             .notificationBG
                 div Copied!

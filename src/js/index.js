@@ -1,7 +1,7 @@
-import store from './store.everything.min.js'
-import $ from './jquery.min.js'
-import interact from './interact-1.2.9.min.js'
-import ClipboardJS from './clipboard.js'
+import store from 'store'
+import $ from 'cash-dom'
+import interact from 'interactjs'
+import ClipboardJS from 'clipboard'
 // import kofiwidget from './kofi.js'
 
 window.$ = window.jQuery = $
@@ -123,7 +123,7 @@ var ImagesNames = {
 
 var randomBgsOrder = []
 
-var randomBackground = function() {
+var randomBackground = function () {
     if (randomBgsOrder.length < 3) {
         for (var i = 0; i < 3; i++) {
             randomBgsOrder.push(Math.floor(Math.random() * backgroundsList.length))
@@ -152,10 +152,11 @@ var randomBackground = function() {
 };
 
 function getImageBase64(image, fn) {
+    console.log('geti', image)
     $('#bgImgEl').attr('src', null);
 
     $('#bgImgEl').attr('src', image);
-    $('#bgImgEl').one("load", function() {
+    $('#bgImgEl').one("load", function () {
         loadedBack = image;
         fn();
     });
@@ -212,7 +213,7 @@ function reloadImages() {
     $('#bg2').css("background-image", "url('" + background + "')");
 
     if (background != loadedBack) {
-        getImageBase64(background, function() {
+        getImageBase64(background, function () {
             console.log('The current background URL is:', background);
             payloadHandler();
             reloadAds();
@@ -223,7 +224,7 @@ function reloadImages() {
 }
 
 function CropImages() {
-    setTimeout(function() {
+    setTimeout(function () {
         bgSaveInfo = {
             url: background,
             images: [],
@@ -243,12 +244,13 @@ function cropAWSC() {
     }
 
     var bgWidth = $('#bgImgEl').width();
+    console.log('bgWidth', bgWidth)
     var ImageType = bgWidth > 2000 ?
         1 :
         bgWidth <= 1280 ?
-        2 :
-        bgWidth == 2000 ?
-        3 : 0;
+            2 :
+            bgWidth == 2000 ?
+                3 : 0;
     var height = $('#hBig1').height();
     var h1 = $('#hBig1').height();
     var rOffset1 = $('#hBig1').offset().top - $('.profile_header').offset().top + 1;
@@ -277,9 +279,9 @@ function cropSSSC() {
     var ImageType = bgWidth > 2000 ?
         1 :
         bgWidth <= 1280 ?
-        2 :
-        bgWidth == 2000 ?
-        3 : 0;
+            2 :
+            bgWidth == 2000 ?
+                3 : 0;
     var height = $('#hBig2').height();
     var h2 = $('#hBig2').height();
     var rOffset2 = $('#hBig2').offset().top - $('.profile_header').offset().top + 1;
@@ -304,7 +306,7 @@ function miscCrop() {
     var bgWidth = $('#bgImgEl').width();
     var ImageType = bgWidth > 2000 ? 1 :
         bgWidth <= 1280 ? 2 :
-        bgWidth == 2000 ? 3 : 0;
+            bgWidth == 2000 ? 3 : 0;
     var rOffset3 = $('#w1').offset().top - $('.profile_header').offset().top + 1;
 
     if (payload.toggles.WSSC_Enable) {
@@ -322,7 +324,7 @@ function fillSmallImages(sc, num) {
     var bgWidth = $('#bgImgEl').width();
     var ImageType = bgWidth > 2000 ? 1 :
         bgWidth <= 1280 ? 2 :
-        bgWidth == 2000 ? 3 : 0;
+            bgWidth == 2000 ? 3 : 0;
     var defaultoffset = $('#hBig' + sc).offset().top - $('.profile_header').offset().top + 1;
 
     switch (num) {
@@ -377,15 +379,29 @@ function createInventory(id) {
     if (!window.localStorage) return;
     var getitems = store.get('backpack');
     if (getitems && getitems.backgrounds !== null) {
+        console.log('adasd')
         doInventoryThings(getitems);
     } else {
         var expire = Date.now() + 86400000;
-        $.ajax('https://steam.design/backpack/' + id + '/items.json').done(function(data) {
-            store.set('backpack', data, expire);
-            if (data.backgrounds === null) {
+        tinyxhr('https://steam.design/backpack/' + id + '/items.json', function (err, data) {
+            if (err) {
                 return privateInventory();
             }
-            doInventoryThings(data);
+
+            let result;
+            try {
+                result = JSON.parse(data)
+            } catch (e) {
+                console.error(e)
+                return privateInventory()
+            }
+            console.log('asdsad')
+            console.log('err', err, result)
+            store.set('backpack', result, expire);
+            if (result.backgrounds === null) {
+                return privateInventory();
+            }
+            doInventoryThings(result);
         });
     }
     $("#hideBacksList, #refreshInventory, .filter").show();
@@ -393,7 +409,7 @@ function createInventory(id) {
 }
 
 function doInventoryThings(inventory) {
-    (function() {
+    (function () {
         var hide = store.get('hide');
         if (oddball.refresh === true) {
             clearInterval(oddball.refreshAngle);
@@ -403,7 +419,7 @@ function doInventoryThings(inventory) {
             oddball.refresh = false;
         }
 
-        inventory.backgrounds.forEach(function(back) {
+        inventory.backgrounds.forEach(function (back) {
             var httpsLink = back.actions[0].link.replace('http://cdn.akamai.steamstatic.com/', 'https://steamcdn-a.akamaihd.net/');
             if (hide === true) {
                 $('.backsList').addClass('backsListHide');
@@ -435,7 +451,7 @@ function privateInventory() {
     $('#backsList').css("max-height", "0px");
     $('#backsList').text("Either your inventory has no backgrounds, or is private.");
     $('#backsList').css("text-align", "center");
-    setTimeout(function() {
+    setTimeout(function () {
         $('#backsList').show();
         $('#backsList').css("max-height", "20px");
     }, 500);
@@ -446,16 +462,21 @@ function refreshInventory() {
     if (!window.localStorage) return;
     store.remove('backpack');
     $('#backsList').addClass('backsListHide');
-    setTimeout(function() {
-        $(".itemHolder").each(function() {
+    setTimeout(function () {
+        $(".itemHolder").each(function () {
             $(this).remove();
         });
         userId = window.localStorage.getItem('SteamId');
-        $.ajax('https://steam.design/backpack/' + userId + '/itemsRefresh.json').done(function(data) {
+        tinyxhr('https://steam.design/backpack/' + userId + '/itemsRefresh.json', function (err, data) {
+            if (err) {
+                return
+            }
+            data = JSON.parse(data)
+
             var expire = Date.now() + 86400000;
             store.set('backpack', data, expire);
             doInventoryThings(data);
-            setTimeout(function() {
+            setTimeout(function () {
                 $('#backsList').removeClass('backsListHide');
             }, 20);
         });
@@ -482,7 +503,7 @@ function addArrows() {
         return;
     }
     arrows = true
-    $('.profile_customization_header').not('.guide').each(function() {
+    $('.profile_customization_header').not('.guide').each(function () {
         $(this).prepend('<span style="float: right" class="arrow down" onclick="moveElem(this,2);">Down <div class="fa fa-arrow-down" style="font-size:17px;"></div></span>' +
             '<span style="float: right" class="arrow up" onclick="moveElem(this,1);"">Up <div class="fa fa-arrow-up" style="font-size:17px;"></div></span>');
     });
@@ -506,7 +527,7 @@ function moveElem(elem, direction) {
         easing: 'swing'
     });
     reloadImages();
-    setTimeout(function() {
+    setTimeout(function () {
         autoCropHeight();
     }, 100);
 }
@@ -520,39 +541,37 @@ function getTextWidth(text, font) {
 }
 
 function toggleCustomize() {
-    getShareUrl(btoa(JSON.stringify(payload))).then(function(data) {
+    getShareUrl(btoa(JSON.stringify(payload))).then(function (data) {
         var textWidth = getTextWidth('https://steam.design/s/' + data.ShortCode, "13px Arial");
         $('#shareWidth').css('width', Math.ceil(textWidth) + 5);
         $("#shareURL").val('https://steam.design/s/' + data.ShortCode);
     });
 
     $('#customize').toggle();
-    $('#customizeBackground').fadeToggle();
+    $('#customizeBackground').toggle();
     var hover = false;
 
-    $('#customize').hover(function() {
+    $('#customize').on('hover', function () {
         hover = true;
-    }, function() {
+    }, function () {
         hover = false;
     });
 
-    $('body').mouseup(function() {
-        if (($('#customize').is(':visible')) && (!hover)) {
-            closeCustomize();
-        }
+    $('#customizeBackground').on('mouseup', function () {
+        closeCustomize();
     });
 }
 
 function closeCustomize() {
     $('#customize').hide();
-    $('#customizeBackground').fadeOut();
+    $('#customizeBackground').hide();
     addArrows();
     payloadHandler();
 }
 
 function closeCommunity() {
     $('#community_updates').hide();
-    $('#customizeBackground').fadeOut();
+    $('#customizeBackground').hide();
     store.set('community', true);
 }
 
@@ -623,7 +642,7 @@ function shortenRight(showcase) {
 }
 
 function extendRight(showcase) {
-    setTimeout(function() {
+    setTimeout(function () {
         var bh = $('#big' + showcase + '').height();
         $('.r' + showcase + '').css('height', bh);
         $('.r' + showcase + '').removeClass('shortened');
@@ -706,7 +725,7 @@ function shortImages(showcase) {
 function loadb64() {
     window.location.href = "#" + payload.background;
     loadb64Checkboxes();
-    setTimeout(function() {
+    setTimeout(function () {
         if (payload.cropInfo.customHeight.AWSC) {
             loadCustomHeight(1, payload.cropInfo.customHeight.AWSC);
         }
@@ -762,7 +781,7 @@ function payloadHandler() {
         if (payload.toggles.SSSC_Long) {
             longImages(2);
             if (payload.toggles.SSSC_Long_Minus70) {
-                setTimeout(function() {
+                setTimeout(function () {
                     shortenRight(2);
                 }, 300);
             } else {
@@ -817,7 +836,7 @@ function loadCustomHeight(showcase, newHeight) {
         }
         payload.toggles.AWSC_Resized = true;
         $('#autoResize_AWSC').show();
-        $('#autoResize_AWSC').click(function() {
+        $('#autoResize_AWSC').on('click', function () {
             $('.showcase_1').css('height', '');
             autoCropHeight_2(1);
             $('#autoResize_AWSC').hide();
@@ -841,7 +860,7 @@ function loadCustomHeight(showcase, newHeight) {
         }
         payload.toggles.SSSC_Resized = true;
         $('#autoResize_SSSC').show();
-        $('#autoResize_SSSC').click(function() {
+        $('#autoResize_SSSC').on('click', function () {
             $('.showcase_2').css('height', '');
             autoCropHeight_2(2);
             $('#autoResize_SSSC').hide();
@@ -868,7 +887,7 @@ function loadExtension(browser) {
     $('#extension').after(' | <a class="bb_link" href="' + extensionURL + '">' + extensionBrowser + ' Extension</a>')
 }
 
-window.onload = function() {
+window.onload = function () {
     if (window.location.hostname == "sapic.github.io") {
         window.location = 'https://steam.design/' + location.hash;
         return
@@ -903,15 +922,15 @@ window.onload = function() {
         loadb64();
     }
 
-    $('#openCustomizeButton').click(function() {
+    $('#openCustomizeButton').on('click', function () {
         toggleCustomize();
     });
 
-    $('#customizeClose').click(function() {
+    $('#customizeClose').on('click', function () {
         closeCustomize();
     });
 
-    $('#community_close').click(function() {
+    $('#community_close').on('click', function () {
         closeCommunity();
     });
 
@@ -925,7 +944,7 @@ window.onload = function() {
         });
     }
 
-    $('#hideBacksList').click(function() {
+    $('#hideBacksList').on('click', function () {
         oddball.hideBacks = !oddball.hideBacks;
         store.set('hide', oddball.hideBacks);
         hideangle += 180;
@@ -966,7 +985,12 @@ window.onload = function() {
     var bgs = store.raw.get('bgs');
     if (!bgs || typeof bgs !== 'object') {
         var expire = new Date().getTime() + 86400000;
-        $.ajax('https://steam.design/bg.json').done(function(data) {
+        tinyxhr('https://steam.design/bg.json', function (err, data) {
+            if (err) {
+                return
+            }
+            data = JSON.parse(data)
+
             store.raw.set('bgs', data, expire);
             backgroundsList = data;
         });
@@ -976,7 +1000,7 @@ window.onload = function() {
     // })
     loginFunc();
 
-    setTimeout(function() {
+    setTimeout(function () {
         if (typeof fuckAdBlock === 'undefined') {
             noAds();
         }
@@ -992,27 +1016,27 @@ window.onload = function() {
         createInventory(userId);
     } else {
         $('#invbuttons').css('margin-bottom', '0px')
-            // $('#steamAuth').append('<a href="https://steamcommunity.com/openid/login?openid.ns=http%3A%2F%2Fspecs.openid.net%2Fauth%2F2.0&openid.mode=checkid_setup&openid.return_to=http%3A%2F%2Fsteam.design%2Findex.html%23login&openid.realm=http%3A%2F%2Fsteam.design&openid.ns.sreg=http%3A%2F%2Fopenid.net%2Fextensions%2Fsreg%2F1.1&openid.claimed_id=http%3A%2F%2Fspecs.openid.net%2Fauth%2F2.0%2Fidentifier_select&openid.identity=http%3A%2F%2Fspecs.openid.net%2Fauth%2F2.0%2Fidentifier_select" class="name"><img src="https://steamcommunity-a.akamaihd.net/public/images/signinthroughsteam/sits_01.png" width="129" height="25"></a>');
+        // $('#steamAuth').append('<a href="https://steamcommunity.com/openid/login?openid.ns=http%3A%2F%2Fspecs.openid.net%2Fauth%2F2.0&openid.mode=checkid_setup&openid.return_to=http%3A%2F%2Fsteam.design%2Findex.html%23login&openid.realm=http%3A%2F%2Fsteam.design&openid.ns.sreg=http%3A%2F%2Fopenid.net%2Fextensions%2Fsreg%2F1.1&openid.claimed_id=http%3A%2F%2Fspecs.openid.net%2Fauth%2F2.0%2Fidentifier_select&openid.identity=http%3A%2F%2Fspecs.openid.net%2Fauth%2F2.0%2Fidentifier_select" class="name"><img src="https://steamcommunity-a.akamaihd.net/public/images/signinthroughsteam/sits_01.png" width="129" height="25"></a>');
     }
 
     reloadImages();
 
-    $(window).bind('hashchange', function() {
+    $(window).on('hashchange', function () {
         loginFunc();
         //var val = $('input[type="radio"]:checked').val() == 'big' ? 1 : 0;
         reloadImages();
     });
 
-    $('#filterIn').bind("change paste keyup", function() {
+    $('#filterIn').on("change paste keyup", function () {
         $(".itemHolder:not(.arrow)").css('display', 'none');
-        Enumerable.From($(".itemHolder:not(.arrow)")).Where(function(i) {
-                return i.attributes('alt').value.indexOf($('#filterIn').val().toLowerCase()) != -1;
-            })
-            .Select().ToArray().forEach(function(elem) {
+        Enumerable.From($(".itemHolder:not(.arrow)")).Where(function (i) {
+            return i.attributes('alt').value.indexOf($('#filterIn').val().toLowerCase()) != -1;
+        })
+            .Select().ToArray().forEach(function (elem) {
                 $(elem).css('display', 'block');
             });
     });
-    $('#goUrl').click(function() {
+    $('#goUrl').on('click', function () {
         var url = $("#urlIn").val();
         if (url.length > 0) {
             if (url.match(/\.(jpeg|jpg|gif|png)$/)) {
@@ -1034,7 +1058,7 @@ window.onload = function() {
         .resizable({
             axis: 'y',
         })
-        .on('resizemove', function(event) {
+        .on('resizemove', function (event) {
             var target = event.target;
             // add the change in coords to the previous width of the target element
             var newHeight = parseFloat(target.style.height) + event.dy;
@@ -1057,10 +1081,10 @@ window.onload = function() {
 
             payload.cropInfo.customHeight.AWSC = newHeight;
         })
-        .on('resizeend', function() {
+        .on('resizeend', function () {
             payload.toggles.AWSC_Resized = true;
             $('#autoResize_AWSC').show();
-            $('#autoResize_AWSC').click(function() {
+            $('#autoResize_AWSC').on('click', function () {
                 $('.showcase_1').css('height', '');
                 autoCropHeight_2(1);
                 $('#autoResize_AWSC').hide();
@@ -1076,7 +1100,7 @@ window.onload = function() {
         .resizable({
             axis: 'y',
         })
-        .on('resizemove', function(event) {
+        .on('resizemove', function (event) {
             var target = event.target;
             // add the change in coords to the previous width of the target element
             var newHeight = parseFloat(target.style.height) + event.dy;
@@ -1098,10 +1122,10 @@ window.onload = function() {
 
             payload.cropInfo.customHeight.SSSC = newHeight;
         })
-        .on('resizeend', function() {
+        .on('resizeend', function () {
             payload.toggles.SSSC_Resized = true;
             $('#autoResize_SSSC').show();
-            $('#autoResize_SSSC').click(function() {
+            $('#autoResize_SSSC').on('click', function () {
                 $('.showcase_2').css('height', '');
                 autoCropHeight_2(2);
                 $('#autoResize_SSSC').hide();
@@ -1114,19 +1138,19 @@ window.onload = function() {
             }
         });
 
-    $("#slFSize").on("change", function() {
+    $("#slFSize").on("change", function () {
         $('#hBig1').css('height', this.value);
         reloadImages();
     });
-    $("#slSSize").on("change", function() {
+    $("#slSSize").on("change", function () {
         $('#hBig2').css('height', this.value);
         reloadImages();
     });
-    $("#randomBG").click(function() {
+    $("#randomBG").on('click', function () {
         trackClick('randomBGButton');
         window.location.href = "#" + randomBackground();
     });
-    $("#getBg").click(function() {
+    $("#getBg").on('click', function () {
         var _goUrl = currentBGInfo && currentBGInfo.url ?
             "https://steamcommunity.com/market/listings/" + currentBGInfo.url :
             'https://images.google.com/searchbyimage?image_url=' + background;
@@ -1135,19 +1159,19 @@ window.onload = function() {
 
         window.open(_goUrl, '_newtab');
     });
-    $(".saveButton").click(function() {
+    $(".saveButton").on('click', function () {
         trackClick('getZIPButton', $(this).attr('href'));
     });
-    $('#openCustomizeButton').click(function() {
+    $('#openCustomizeButton').on('click', function () {
         trackClick('openCustomizeButton');
     });
 
     var clipboard = new ClipboardJS('.copy-btn');
 
-    clipboard.on('success', function(e) {
+    clipboard.on('success', function (e) {
         var el = $("#copiedNotification");
 
-        el.fadeIn("fast", function() {
+        el.fadeIn("fast", function () {
             el.fadeOut("slow");
         });
 
@@ -1176,7 +1200,7 @@ function trackClick(where, subject) {
 }
 
 function getShareUrl(base64) {
-    return new Promise(function(resolve, reject) {
+    return new Promise(function (resolve, reject) {
         var shortCode = store.get('shortCode' + base64);
 
         if (shortCode) {
@@ -1184,10 +1208,51 @@ function getShareUrl(base64) {
             return resolve(shortCode);
         }
 
-        $.ajax('https://steam.design/shorten/' + base64)
-            .done(function(data) {
-                store.set('shortCode' + base64, data.code);
-                resolve(data.code);
-            });
+        tinyxhr('https://steam.design/shorten/' + base64, function (err, data) {
+            if (err) {
+                return
+            }
+            data = JSON.parse(data)
+
+            store.set('shortCode' + base64, data.code);
+            resolve(data.code);
+        });
     });
 }
+
+// tinyxhr by Shimon Doodkin - licanse: public doamin - https://gist.github.com/4706967
+//
+// tinyxhr("http://site.com/action",function (err,data,xhr){ if (err) console.log("goterr ",err,'status='+xhr.status); console.log(data)  });
+// tinyxhr("http://site.com/action",function (err,data,xhr){ if (err) console.log("goterr ",err,'status='+xhr.status); console.log(data)  },'POST','value1=1&value2=2');
+// tinyxhr("http://site.com/action.json",function (err,data,xhr){ if (err) console.log("goterr ",err,'status='+xhr.status); console.log(data); console.log(JSON.parse(data))  },'POST',JSON.stringify({value:1}),'application/javascript'); 
+// cb - a callback function like: function (err,data,XMLHttpRequestObject){ if (err) throw err;   }
+// 
+
+function tinyxhr(url, cb, method, post, contenttype) {
+    var requestTimeout, xhr;
+    try { xhr = new XMLHttpRequest(); } catch (e) {
+        try { xhr = new ActiveXObject("Msxml2.XMLHTTP"); } catch (e) {
+            if (console) console.log("tinyxhr: XMLHttpRequest not supported");
+            return null;
+        }
+    }
+    requestTimeout = setTimeout(function () { xhr.abort(); cb(new Error("tinyxhr: aborted by a timeout"), "", xhr); }
+        , 10000);
+    xhr.onreadystatechange = function () {
+        if (xhr.readyState != 4) return;
+        clearTimeout(requestTimeout);
+        cb(xhr.status != 200 ? new Error("tinyxhr: server respnse status is " + xhr.status) : false, xhr.responseText, xhr);
+    }
+    xhr.open(method ? method.toUpperCase() : "GET", url, true);
+
+    //xhr.withCredentials = true;
+
+    if (!post)
+        xhr.send();
+    else {
+        xhr.setRequestHeader('Content-type', contenttype ? contenttype : 'application/x-www-form-urlencoded');
+        xhr.send(post)
+    }
+}
+
+//tinyxhr("/test",function (err,data,xhr){ if (err) console.log("goterr ",err); console.log(data)  });
