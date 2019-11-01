@@ -152,7 +152,7 @@ var randomBackground = function () {
 };
 
 function getImageBase64(image, fn) {
-    console.log('geti', image)
+    console.log('get', image)
     $('#bgImgEl').attr('src', null);
 
     $('#bgImgEl').attr('src', image);
