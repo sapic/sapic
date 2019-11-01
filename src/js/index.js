@@ -379,7 +379,7 @@ function createInventory(id) {
     if (!window.localStorage) return;
     var getitems = store.get('backpack');
     if (getitems && getitems.backgrounds !== null) {
-        console.log('adasd')
+        console.log('getitems', getitems)
         doInventoryThings(getitems);
     } else {
         var expire = Date.now() + 86400000;
@@ -395,12 +395,12 @@ function createInventory(id) {
                 console.error(e)
                 return privateInventory()
             }
-            console.log('asdsad')
             console.log('err', err, result)
             store.set('backpack', result, expire);
             if (result.backgrounds === null) {
                 return privateInventory();
             }
+            console.log('addings bgs', result)
             doInventoryThings(result);
         });
     }
@@ -424,21 +424,21 @@ function doInventoryThings(inventory) {
             if (hide === true) {
                 $('.backsList').addClass('backsListHide');
             }
-            var itemHolder = $("<div>", {
-                class: "itemHolder",
-                alt: back.name.toLowerCase()
-            });
-            var item = $("<div>", {
-                class: "item app753 context6 activeInfo"
-            });
-            var bgUrl = $("<a>", {
-                href: "#" + httpsLink,
-                class: "inventory_item_link"
-            });
-            var img = $("<img>", {
-                src: "https://steamcommunity-a.akamaihd.net/economy/image/" + back.icon_url + "/96fx96f"
-            });
-            $(bgUrl).append(img);
+            const itemHolder = document.createElement("div")
+            itemHolder.setAttribute("class", 'itemHolder')
+            itemHolder.setAttribute("alt", back.name.toLowerCase())
+
+            const item = document.createElement("div")
+            item.setAttribute("class", "item app753 context6 activeInfo")
+
+            const bgUrl = document.createElement("a")
+            bgUrl.setAttribute("href", "#" + httpsLink)
+            bgUrl.setAttribute("class", "inventory_item_link")
+
+            const itemImage = document.createElement("img")
+            itemImage.setAttribute("src", "https://steamcommunity-a.akamaihd.net/economy/image/" + back.icon_url + "/96fx96f")
+
+            $(bgUrl).append(itemImage);
             $(item).append(bgUrl);
             $(itemHolder).append(item);
             $('#backsList').append(itemHolder);
@@ -509,7 +509,7 @@ function addArrows() {
     });
 }
 
-function moveElem(elem, direction) {
+window.moveElem = function moveElem(elem, direction) {
     elem = $(elem).parent().parent();
     var x;
     if (direction == 1) {
@@ -521,11 +521,10 @@ function moveElem(elem, direction) {
         x = $(elem).next('.profile_customization');
         $(x).after(elem);
     }
-    $.smoothScroll({
-        offset: $(elem).offset().top - 200,
-        speed: 500,
-        easing: 'swing'
-    });
+    window.scroll({
+        top: $(elem).offset().top - 200,
+        behavior: 'smooth'
+    })
     reloadImages();
     setTimeout(function () {
         autoCropHeight();
@@ -939,9 +938,9 @@ window.onload = function () {
     if (hide === true) {
         hideangle = 180;
         oddball.hideBacks = true;
-        $('#hideBacksList').rotate({
-            animateTo: 180
-        });
+        // $('#hideBacksList').rotate({
+        //     animateTo: 180
+        // });
     }
 
     $('#hideBacksList').on('click', function () {
@@ -950,9 +949,9 @@ window.onload = function () {
         hideangle += 180;
         $('#backsList').toggleClass('backsListHide');
         $('.filter').toggleClass('filterHide');
-        $(this).rotate({
-            animateTo: hideangle
-        });
+        // $(this).rotate({
+        //     animateTo: hideangle
+        // });
     });
 
     // $('#refreshInventory').rotate({
@@ -1180,8 +1179,7 @@ window.onload = function () {
 
     randomBgsOrder.push(Math.floor(Math.random() * backgroundsList.length))
 
-    require('./jquery.smooth-scroll.min.js')
-    require('./jQueryRotate.js')
+    // require('./jQueryRotate.js')
     // setTimeout(() => {
     //     const kofi = kofiwidget()
     //     kofi.init('Support Us on Ko-fi', '#08090b', 'H2H8NYMB')
