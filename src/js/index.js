@@ -1011,7 +1011,7 @@ window.onload = function () {
     if (!window.localStorage) return;
     userId = window.localStorage.getItem('SteamId');
     if (userId !== null) {
-        $('#steamAuth').html('<a class="fa fa-sign-out" style="display:inline;position:relative;cursor:pointer;top:2px;left:-10px;color:#8f98a0;" title="Sign Out" href="#logout"></a>');
+        $('#steamAuth').html('<a style="display:inline;position:relative;cursor:pointer;top:2px;left:-10px;color:#8f98a0;" title="Sign Out" href="#logout"><i class="fa fa-sign-out" ></a>');
         createInventory(userId);
     } else {
         $('#invbuttons').css('margin-bottom', '0px')
