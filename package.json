@@ -29,6 +29,7 @@
         "store": "^2.0.12"
     },
     "workbox": {
-        "importScripts": []
+        "importScripts": [],
+        "globPatterns": "**/*.{css,html,js,gif,ico,jpg,png,svg,webp,woff,woff2,ttf,otf}"
     }
 }
