@@ -413,10 +413,14 @@ function doInventoryThings(inventory) {
         var hide = store.get('hide');
         if (oddball.refresh === true) {
             clearInterval(oddball.refreshAngle);
-            $("#refreshInventory").rotate({
-                animateTo: 0
-            });
+            // $("#refreshInventory").rotate({
+            //     animateTo: 0
+            // });
             oddball.refresh = false;
+        }
+
+        if (!inventory.backgrounds) {
+            return
         }
 
         inventory.backgrounds.forEach(function (back) {
