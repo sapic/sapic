@@ -1,4 +1,4 @@
-# Network N Ads.txt file 15-10-2019
+# Network N Ads.txt file 01-11-2019
 
 google.com, pub-6177961780147591, DIRECT, f08c47fec0942fa0 # AdSense
 google.com, pub-2145138345242651, DIRECT, f08c47fec0942fa0 # Network N AdX
@@ -119,3 +119,9 @@ appnexus.com, 1356, RESELLER, f5ab79cb980f11d1
 
 # Video [Pubmatic]
 pubmatic.com, 158682, DIRECT, 5d62403b186f2ace
+
+# Video [Telaria]
+telaria.com,znsps-tw3lc,DIRECT,1a4e959a1b50034a
+tremorhub.com,znsps-tw3lc,DIRECT,1a4e959a1b50034a
+telaria.com,znsps-tw3lc,RESELLER,1a4e959a1b50034a
+tremorhub.com,znsps-tw3lc,RESELLER,1a4e959a1b50034a
