@@ -610,67 +610,79 @@
   version "2.2.3"
   resolved "https://registry.yarnpkg.com/@iarna/toml/-/toml-2.2.3.tgz#f060bf6eaafae4d56a7dac618980838b0696e2ab"
 
-"@interactjs/actions@1.6.3":
-  version "1.6.3"
-  resolved "https://registry.yarnpkg.com/@interactjs/actions/-/actions-1.6.3.tgz#3c48f789136512e3650ccc43242b617cb1da7fe3"
+"@interactjs/actions@1.7.0":
+  version "1.7.0"
+  resolved "https://registry.yarnpkg.com/@interactjs/actions/-/actions-1.7.0.tgz#12be97043afa9f3ac663524ebfac1f3a9f294fbb"
+  integrity sha512-Hh0zmcbjTu8wT2lgaQa6b1hw2rn09wh2RFS51bDRTpOGE+vW45/3BXKF37cgtVjgt7UhOXD+2xS1hw0YsepOfQ==
 
-"@interactjs/auto-scroll@1.6.3":
-  version "1.6.3"
-  resolved "https://registry.yarnpkg.com/@interactjs/auto-scroll/-/auto-scroll-1.6.3.tgz#92247842e236e555da07d7d873a1fa2c6e00c972"
+"@interactjs/auto-scroll@1.7.0":
+  version "1.7.0"
+  resolved "https://registry.yarnpkg.com/@interactjs/auto-scroll/-/auto-scroll-1.7.0.tgz#58cbbb4b96859674ac42ce9e1e1843236f297df4"
+  integrity sha512-nuGS5Gh9L78GavN2a69zyd8qgPyHxtmhsndDaHy4GsemFqXvdZwnsHmYne71Jq3Rd8baOYG0ZgW+lWw+TUuPsA==
 
-"@interactjs/auto-start@1.6.3":
-  version "1.6.3"
-  resolved "https://registry.yarnpkg.com/@interactjs/auto-start/-/auto-start-1.6.3.tgz#119ab922ef61952ae2e035758713b6c13dda63a3"
+"@interactjs/auto-start@1.7.0":
+  version "1.7.0"
+  resolved "https://registry.yarnpkg.com/@interactjs/auto-start/-/auto-start-1.7.0.tgz#fd2e6e99670baeb6509341c8659cf723bae6bb72"
+  integrity sha512-va2ROEBT7TxJNNR2D3Y3lCVbniUOA5Egd4GU0nVPOoUg9f/I+9LnGmXcG0zgn6RhgpxaxDTArI3IK7C/DPWjvg==
 
-"@interactjs/core@1.6.3":
-  version "1.6.3"
-  resolved "https://registry.yarnpkg.com/@interactjs/core/-/core-1.6.3.tgz#0d628ad34a9f0cd84a1302b3e429109052bb78ef"
+"@interactjs/core@1.7.0":
+  version "1.7.0"
+  resolved "https://registry.yarnpkg.com/@interactjs/core/-/core-1.7.0.tgz#02e2de4c37dd00ac9b00a954435405c8b5542d8c"
+  integrity sha512-FLZqeZ3e3MISkKLlDqUrl6xYBbnC71z7xxi49ZrhCC4vjbGlxyjnbYfsmwqBb323IFMXG+gpL51SQjZK3TNNZg==
 
-"@interactjs/dev-tools@1.6.3":
-  version "1.6.3"
-  resolved "https://registry.yarnpkg.com/@interactjs/dev-tools/-/dev-tools-1.6.3.tgz#dc9b7c7ce630608b10d49177ab1d889756a7f1fa"
+"@interactjs/dev-tools@1.7.0":
+  version "1.7.0"
+  resolved "https://registry.yarnpkg.com/@interactjs/dev-tools/-/dev-tools-1.7.0.tgz#d181c0e113496549f15f5f29d6adcc60cbe50424"
+  integrity sha512-AxTAfqA01DmDKQkDHvwZ5409YQWmqPDnZvRsGmD1ZJv55M2PYzVVuyQu0Ooc1rYQSuY68PdwCyLuvACqisykxw==
   dependencies:
-    "@interactjs/utils" "1.6.3"
+    "@interactjs/utils" "1.7.0"
 
-"@interactjs/inertia@1.6.3":
-  version "1.6.3"
-  resolved "https://registry.yarnpkg.com/@interactjs/inertia/-/inertia-1.6.3.tgz#4b8023ce4c23d6df8597adf68881bffd1cde9b06"
+"@interactjs/inertia@1.7.0":
+  version "1.7.0"
+  resolved "https://registry.yarnpkg.com/@interactjs/inertia/-/inertia-1.7.0.tgz#d35959a268eeb593b6a877e2ff6284828cf0b7af"
+  integrity sha512-+5qgLf3x2rERTvfjGYpTCJkStH5p8NG4/GCHhVh4HfmcR600jSoV9HKITvx/W92/rZ+0xV0EtsEjTU2lTmD/AA==
 
-"@interactjs/interact@1.6.3":
-  version "1.6.3"
-  resolved "https://registry.yarnpkg.com/@interactjs/interact/-/interact-1.6.3.tgz#54786b06865bd13994e6c4d6dd89f5c48b6c3e4a"
+"@interactjs/interact@1.7.0":
+  version "1.7.0"
+  resolved "https://registry.yarnpkg.com/@interactjs/interact/-/interact-1.7.0.tgz#9996c3435829ac3b134ea5f9daa5f5adfbcb71c1"
+  integrity sha512-2hCIhW8RqOJiXnmOfLLbqaVzif5HeFTobziPmmFsdweQCH8hP9SQZDVB8yDT67MeSdXQYpjGk4odv63WU/EiXw==
 
-"@interactjs/modifiers@1.6.3":
-  version "1.6.3"
-  resolved "https://registry.yarnpkg.com/@interactjs/modifiers/-/modifiers-1.6.3.tgz#ff550364eb8efd88e6543e3b1c0d792951e1eaba"
+"@interactjs/modifiers@1.7.0":
+  version "1.7.0"
+  resolved "https://registry.yarnpkg.com/@interactjs/modifiers/-/modifiers-1.7.0.tgz#3093a36d046057f8b9199ed0deef72f3f8233b3c"
+  integrity sha512-xuljItf0E7HFA5DZ6KT8/ZSeUYbrePWr8brRWiFON6yO/cR1rpRX3pwTX9fi2Vkmk7vd2O3tybjU9WOKGBW6+A==
 
-"@interactjs/pointer-events@1.6.3":
-  version "1.6.3"
-  resolved "https://registry.yarnpkg.com/@interactjs/pointer-events/-/pointer-events-1.6.3.tgz#7aae6ed7239494c2e6f8903d8f3e36c58cfcd845"
+"@interactjs/pointer-events@1.7.0":
+  version "1.7.0"
+  resolved "https://registry.yarnpkg.com/@interactjs/pointer-events/-/pointer-events-1.7.0.tgz#01a5a1735d7b1887bef2c49a06faec9043188413"
+  integrity sha512-1fwNiBK82lFsMLqgg9XV8dCE+BAlmFqj3EqvHiYjoFjQwbrkKbpnyzMDaOQOOFKo4i5tgaOHMG520CZevz2LqQ==
 
-"@interactjs/reflow@1.6.3":
-  version "1.6.3"
-  resolved "https://registry.yarnpkg.com/@interactjs/reflow/-/reflow-1.6.3.tgz#654dab816ec764b49d8ca9cef7d983aff6c04b19"
+"@interactjs/reflow@1.7.0":
+  version "1.7.0"
+  resolved "https://registry.yarnpkg.com/@interactjs/reflow/-/reflow-1.7.0.tgz#9bf758dfa7dbe2a7d002b4e492fbbf221988fa8d"
+  integrity sha512-xDyV/HuU2p3jg9YYfXWiPZmZ8zs5GIDun1y1rIqzilTYjXBecEP8GIh4v2wHphBAeBLckdf/l6zeWIi07K13xQ==
 
-"@interactjs/types@1.6.3":
-  version "1.6.3"
-  resolved "https://registry.yarnpkg.com/@interactjs/types/-/types-1.6.3.tgz#51c50a621427b33af276821d40f8cbf964a690ef"
+"@interactjs/types@1.7.0":
+  version "1.7.0"
+  resolved "https://registry.yarnpkg.com/@interactjs/types/-/types-1.7.0.tgz#02accd00eaaa536d55a0fadad94170a127f96f6d"
+  integrity sha512-0nk5GDdl8X+XwW0ihgkaLCahx25TRDs1IZtKIoCYYcm9DGqZrlTq4Z4muofOTS/Jp7sfGqQnWnz4JWwFiAb/Qg==
   dependencies:
-    "@interactjs/actions" "1.6.3"
-    "@interactjs/auto-scroll" "1.6.3"
-    "@interactjs/auto-start" "1.6.3"
-    "@interactjs/core" "1.6.3"
-    "@interactjs/dev-tools" "1.6.3"
-    "@interactjs/inertia" "1.6.3"
-    "@interactjs/interact" "1.6.3"
-    "@interactjs/modifiers" "1.6.3"
-    "@interactjs/pointer-events" "1.6.3"
-    "@interactjs/reflow" "1.6.3"
-    "@interactjs/utils" "1.6.3"
+    "@interactjs/actions" "1.7.0"
+    "@interactjs/auto-scroll" "1.7.0"
+    "@interactjs/auto-start" "1.7.0"
+    "@interactjs/core" "1.7.0"
+    "@interactjs/dev-tools" "1.7.0"
+    "@interactjs/inertia" "1.7.0"
+    "@interactjs/interact" "1.7.0"
+    "@interactjs/modifiers" "1.7.0"
+    "@interactjs/pointer-events" "1.7.0"
+    "@interactjs/reflow" "1.7.0"
+    "@interactjs/utils" "1.7.0"
 
-"@interactjs/utils@1.6.3":
-  version "1.6.3"
-  resolved "https://registry.yarnpkg.com/@interactjs/utils/-/utils-1.6.3.tgz#aaf0e23f70664557eb2c5abffac6ac359f2577a9"
+"@interactjs/utils@1.7.0":
+  version "1.7.0"
+  resolved "https://registry.yarnpkg.com/@interactjs/utils/-/utils-1.7.0.tgz#10b5de083ca5186777abd383e5fdc4c162da9635"
+  integrity sha512-fvCajaT+e1ApN0MKmwOb0R6LnL8cONZ0B/tSbu0Si2sFLi1+fWvCZn1NdLL3XfyWTn2aChqDMV6JROCtm7gZqg==
 
 "@mrmlnc/readdir-enhanced@^2.2.1":
   version "2.2.1"
@@ -2471,11 +2483,12 @@ ini@~1.3.0:
   version "1.3.5"
   resolved "https://registry.yarnpkg.com/ini/-/ini-1.3.5.tgz#eee25f56db1c9ec6085e0c22778083f596abf927"
 
-interactjs@^1.6.3:
-  version "1.6.3"
-  resolved "https://registry.yarnpkg.com/interactjs/-/interactjs-1.6.3.tgz#2187bf454a9477c39046001d6fa7fd09eafdf458"
+interactjs@^1.7.0:
+  version "1.7.0"
+  resolved "https://registry.yarnpkg.com/interactjs/-/interactjs-1.7.0.tgz#55634ce36c410a038155b96cc3f80ec0e20f97de"
+  integrity sha512-QtrziS4s6OhGrGJAHzsS9voFOfXA7rQYPvgGmAUXO8pl1OdROZYcYWInXRJZAtuKcyxGETXz8xmNQumlodnA9g==
   dependencies:
-    "@interactjs/types" "1.6.3"
+    "@interactjs/types" "1.7.0"
 
 invariant@^2.2.2:
   version "2.2.4"

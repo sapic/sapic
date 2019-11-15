@@ -24,7 +24,7 @@
     "dependencies": {
         "cash-dom": "^4.1.5",
         "clipboard": "^2.0.4",
-        "interactjs": "^1.6.3",
+        "interactjs": "^1.7.0",
         "store": "^2.0.12"
     },
     "workbox": {
