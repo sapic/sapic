@@ -253,7 +253,7 @@ function cropAWSC() {
                 3 : 0;
     var height = $('#hBig1').height();
     var h1 = $('#hBig1').height();
-    var rOffset1 = $('#hBig1').offset().top - $('.profile_header').offset().top + 1;
+    var rOffset1 = $('#hBig1').offset().top - $('.profile_header').offset().top - 14;
 
     if (payload.toggles.AWSC_Long) {
         if (payload.toggles.AWSC_Long_Minus70) {
@@ -267,8 +267,8 @@ function cropAWSC() {
         fillSmallImages(1, 13);
     }
 
-    fillImage($('#r11'), 514 + leftOffset[ImageType], rOffset1, 100, rightheight, ImagesNames[11][1]);
-    fillImage($('#big1'), leftOffset[ImageType], rOffset1, 506, h1, ImagesNames[10][1], true);
+    fillImage($('#r11'), 514 + leftOffset[ImageType] - 15, rOffset1, 100, rightheight, ImagesNames[11][1]);
+    fillImage($('#big1'), leftOffset[ImageType] - 15, rOffset1, 506, h1, ImagesNames[10][1], true);
 }
 
 function cropSSSC() {
