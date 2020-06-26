@@ -253,7 +253,7 @@ function cropAWSC() {
                 3 : 0;
     var height = $('#hBig1').height();
     var h1 = $('#hBig1').height();
-    var rOffset1 = $('#hBig1').offset().top - $('.profile_header').offset().top - 14;
+    var rOffset1 = $('#hBig1').offset().top - $('.profile_header').offset().top;
 
     if (payload.toggles.AWSC_Long) {
         if (payload.toggles.AWSC_Long_Minus70) {
