@@ -258,8 +258,9 @@ function cropAWSC() {
     if (payload.toggles.AWSC_Long) {
         if (payload.toggles.AWSC_Long_Minus70) {
             var rightheight = height - 70;
+        } else {
+            var rightheight = height;
         }
-        var rightheight = height;
     } else {
         var rightheight = 80;
         fillSmallImages(1, 11);
@@ -284,13 +285,14 @@ function cropSSSC() {
                 3 : 0;
     var height = $('#hBig2').height();
     var h2 = $('#hBig2').height();
-    var rOffset2 = $('#hBig2').offset().top - $('.profile_header').offset().top + 1;
+    var rOffset2 = $('#hBig2').offset().top - $('.profile_header').offset().top;
 
     if (payload.toggles.SSSC_Long) {
         if (payload.toggles.SSSC_Long_Minus70) {
             var rightheight = height - 70;
+        } else {
+            var rightheight = height;
         }
-        var rightheight = height;
     } else {
         var rightheight = 80;
         fillSmallImages(2, 21);
@@ -298,8 +300,8 @@ function cropSSSC() {
         fillSmallImages(2, 23);
     }
 
-    fillImage($('#r21'), 514 + leftOffset[ImageType], rOffset2, 100, rightheight, ImagesNames[21][1]);
-    fillImage($('#big2'), leftOffset[ImageType], rOffset2, 506, h2, ImagesNames[20][1], true);
+    fillImage($('#r21'), 514 + leftOffset[ImageType] - 15, rOffset2, 100, rightheight, ImagesNames[21][1]);
+    fillImage($('#big2'), leftOffset[ImageType] - 15, rOffset2, 506, h2, ImagesNames[20][1], true);
 }
 
 function miscCrop() {
