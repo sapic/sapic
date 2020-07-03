@@ -1,0 +1,25 @@
+{
+  "name": "sapic",
+  "version": "1.0.0",
+  "main": "index.js",
+  "repository": "git@github.com:sapic/sapic.git",
+  "author": "Tim <truecarry@gmail.com>",
+  "license": "MIT",
+  "dependencies": {
+    "vue": "^2.6.11",
+    "vue-hot-reload-api": "^2.3.4"
+  },
+  "devDependencies": {
+    "@vue/component-compiler-utils": "^3.1.2",
+    "babel-eslint": "^10.1.0",
+    "eslint": "^7.4.0",
+    "eslint-config-standard": "^14.1.1",
+    "eslint-plugin-import": "^2.22.0",
+    "eslint-plugin-node": "^11.1.0",
+    "eslint-plugin-promise": "^4.2.1",
+    "eslint-plugin-standard": "^4.0.1",
+    "eslint-plugin-vue": "^6.2.2",
+    "pug": "^3.0.0",
+    "vue-template-compiler": "^2.6.11"
+  }
+}
