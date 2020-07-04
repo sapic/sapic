@@ -7,7 +7,6 @@
   "license": "MIT",
   "dependencies": {
     "@tweenjs/tween.js": "^18.6.0",
-    "parcel": "^1.12.4",
     "vue": "^2.0.0",
     "vue-hot-reload-api": "^2.3.4",
     "vuex": "^3.5.1"
@@ -23,8 +22,11 @@
     "eslint-plugin-standard": "^4.0.1",
     "eslint-plugin-vue": "^6.2.2",
     "pug": "^3.0.0",
+    "pug-plain-loader": "^1.0.0",
     "stylus": "^0.54.7",
-    "vue-template-compiler": "^2.6.11"
+    "stylus-loader": "^3.0.2",
+    "vue-template-compiler": "^2.6.11",
+    "webpack": "^4.43.0"
   },
   "targets": {
     "browser": {
@@ -35,8 +37,5 @@
         ]
       }
     }
-  },
-  "browserslist": [
-    "last 1 Chrome versions"
-  ]
+  }
 }

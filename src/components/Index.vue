@@ -69,7 +69,6 @@ export default {
 
 <style scoped lang="stylus">
 @import '../assets/css/color'
-@import '../assets/fonts/opensans.css'
 
 .body__wrapper
   height 100%
@@ -155,4 +154,4 @@ body {
   background: transparent;
 }
 </style>
-<style scoped src="~/assets/fonts/opensans.css"></style>
+<style scoped src="@/assets/fonts/opensans.css"></style>

@@ -4,7 +4,7 @@ export default (store) => {
   const { dispatch } = store
 
   if (!state.backgrounds || state.backgrounds.length < 10) {
-    const bgs = require('~/assets/bg.json')
+    const bgs = require('@/assets/bg.json')
     commit('setBackgrounds', bgs)
   }
 

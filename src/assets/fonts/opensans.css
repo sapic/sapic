@@ -1,69 +1,69 @@
 @font-face {
     font-family: 'Open Sans';
-    src: url('~/assets/fonts/OpenSans-Light.ttf') format('truetype');
+    src: url('OpenSans-Light.ttf') format('truetype');
     font-weight: 300;
     font-style: normal;
 }
 
 @font-face {
     font-family: 'Open Sans';
-    src: url('~/assets/fonts/OpenSans-BoldItalic.ttf') format('truetype');
+    src: url('OpenSans-BoldItalic.ttf') format('truetype');
     font-weight: bold;
     font-style: italic;
 }
 
 @font-face {
     font-family: 'Open Sans';
-    src: url('~/assets/fonts/OpenSans-Bold.ttf') format('truetype');
+    src: url('OpenSans-Bold.ttf') format('truetype');
     font-weight: bold;
     font-style: normal;
 }
 
 @font-face {
     font-family: 'Open Sans';
-    src: url('~/assets/fonts/OpenSans-LightItalic.ttf') format('truetype');
+    src: url('OpenSans-LightItalic.ttf') format('truetype');
     font-weight: 300;
     font-style: italic;
 }
 
 @font-face {
     font-family: 'Open Sans';
-    src: url('~/assets/fonts/OpenSans-Italic.ttf') format('truetype');
+    src: url('OpenSans-Italic.ttf') format('truetype');
     font-weight: normal;
     font-style: italic;
 }
 
 @font-face {
     font-family: 'Open Sans';
-    src: url('~/assets/fonts/OpenSans-ExtraBold.ttf') format('truetype');
+    src: url('OpenSans-ExtraBold.ttf') format('truetype');
     font-weight: 800;
     font-style: normal;
 }
 
 @font-face {
     font-family: 'Open Sans';
-    src: url('~/assets/fonts/OpenSans-SemiBoldItalic.ttf') format('truetype');
+    src: url('OpenSans-SemiBoldItalic.ttf') format('truetype');
     font-weight: 600;
     font-style: italic;
 }
 
 @font-face {
     font-family: 'Open Sans';
-    src: url('~/assets/fonts/OpenSans-ExtraBoldItalic.ttf') format('truetype');
+    src: url('OpenSans-ExtraBoldItalic.ttf') format('truetype');
     font-weight: 800;
     font-style: italic;
 }
 
 @font-face {
     font-family: 'Open Sans';
-    src: url('~/assets/fonts/OpenSans-Regular.ttf') format('truetype');
+    src: url('OpenSans-Regular.ttf') format('truetype');
     font-weight: normal;
     font-style: normal;
 }
 
 @font-face {
     font-family: 'Open Sans';
-    src: url('~/assets/fonts/OpenSans-SemiBold.ttf') format('truetype');
+    src: url('OpenSans-SemiBold.ttf') format('truetype');
     font-weight: 600;
     font-style: normal;
 }
