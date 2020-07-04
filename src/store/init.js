@@ -13,7 +13,7 @@ export default (store) => {
         pos: [0, 7, 0],
         price: '1.57',
         url: '753/315930-Old%20stump%20background',
-        steamUrl: 'http://cdn.akamai.steamstatic.com/steamcommunity/public/images/items/315930/d11e368332f1aec6ae4bc1b1423978bd7496141a.jpg',
+        steamUrl: 'https://cdn.akamai.steamstatic.com/steamcommunity/public/images/items/315930/d11e368332f1aec6ae4bc1b1423978bd7496141a.jpg',
       },
       {
         game: 'Bravada Rare',
