@@ -1,0 +1,61 @@
+<template lang="pug">
+  .bgPreloader(:style="{\
+    position: 'absolute',\
+    opacity: 0,\
+    left: '-9999px',\
+    top: '-9999px'\
+  }")
+    template(
+      v-for='background in nextBackgrounds'
+    )
+      img(
+        :src='background.steamUrl'
+        v-if="background.steamUrl.indexOf('webm') === -1"
+        :key='background.steamUrl'
+      )
+      video(:src='background.steamUrl' :key='background.steamUrl' v-else)
+
+    img(
+      :src='$store.state.background'
+      ref='currentBgImageHolder'
+      @load='imageUpdated'
+      v-if="$store.state.background.indexOf('webm') === -1"
+      key="currentBgImageHolder"
+    )
+    video(
+      :src='$store.state.background'
+      ref='currentBgVideoHolder'
+      @loadeddata='videoUpdated'
+      key="currentBgVideoHolder"
+      v-else
+    )
+</template>
+
+<script>
+export default {
+  computed: {
+    nextBackgrounds () {
+      return this.$store.state.nextRandomBackgrounds
+    },
+  },
+
+  methods: {
+    imageUpdated () {
+      if (this.$refs.currentBgImageHolder.naturalHeight && this.$refs.currentBgImageHolder.naturalWidth) {
+        this.$store.commit('setBgSize', {
+          w: this.$refs.currentBgImageHolder.naturalWidth,
+          h: this.$refs.currentBgImageHolder.naturalHeight,
+        })
+      }
+    },
+    videoUpdated () {
+      if (this.$refs.currentBgVideoHolder.videoHeight && this.$refs.currentBgVideoHolder.videoWidth) {
+        this.$store.commit('setBgSize', {
+          w: this.$refs.currentBgVideoHolder.videoWidth,
+          h: this.$refs.currentBgVideoHolder.videoHeight,
+        })
+      }
+    },
+  },
+}
+</script>

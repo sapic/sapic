@@ -20,6 +20,7 @@ const state = {
     w: 0,
     h: 0,
   },
+  format: 'jpg',
   inventory: [],
 }
 
@@ -27,9 +28,11 @@ const mutations = {
   setBackground (state, { background, info }) {
     state.background = background
     state.bgInfo = info
+    state.format = background.split('.').slice(-1)[0]
   },
   setBackgroundURL (state, value) {
     state.background = value
+    state.format = value.split('.').slice(-1)[0]
   },
   setBackgrounds (state, backgrounds) {
     state.backgrounds = backgrounds
@@ -56,14 +59,24 @@ const mutations = {
     if (newBg) {
       state.background = newBg.steamUrl
       state.bgInfo = newBg
+      state.format = newBg.steamUrl.split('.').slice(-1)[0]
     }
 
-    while (state.nextRandomBackgrounds.length < 3) {
-      state.nextRandomBackgrounds.push(state.backgrounds[Math.floor(state.backgrounds.length * Math.random())])
-      state.nextRandomBackgrounds.push(state.backgrounds[Math.floor(state.backgrounds.length * Math.random())])
-      state.nextRandomBackgrounds.push(state.backgrounds[Math.floor(state.backgrounds.length * Math.random())])
-      state.nextRandomBackgrounds.push(state.backgrounds[Math.floor(state.backgrounds.length * Math.random())])
-      state.nextRandomBackgrounds.push(state.backgrounds[Math.floor(state.backgrounds.length * Math.random())])
+    if (state.nextRandomBackgrounds.length < 3) {
+      for (let i = 0; i < 5; i++) {
+        const randomBg = state.backgrounds[Math.floor(state.backgrounds.length * Math.random())]
+        let found = false
+        for (const bg of state.nextRandomBackgrounds) {
+          if (bg.steamUrl === randomBg.steamUrl) {
+            found = true
+            break
+          }
+        }
+
+        if (!found) {
+          state.nextRandomBackgrounds.push(randomBg)
+        }
+      }
     }
   },
   setPreviewScale (state, value) {
@@ -103,7 +116,9 @@ const actions = {
       ],
     }
 
-    const url = 'https://steam.design/raw/' + btoa(JSON.stringify(bgSaveInfo))
+    // const backUrl = 'https://steam.design/raw/'
+    const backUrl = 'http://localhost:8899/raw/'
+    const url = backUrl + btoa(JSON.stringify(bgSaveInfo))
     window.open(url)
   },
 

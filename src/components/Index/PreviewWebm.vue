@@ -2,7 +2,18 @@
 .responsive_page_frame.with_header.main-container
   .responsive_page_content
     .responsive_page_template_content
-      .no_header.profile_page.has_profile_background(:style="{ backgroundImage: `url('${$store.state.background}')` }")
+      .no_header.profile_page.has_profile_background
+        .profile__bg__absolute
+          video(
+            :src="$store.state.background"
+            muted
+            autoplay
+            loop
+            :style="{ \
+              width: `${$store.state.bgSize.w}px`,\
+              height: `${$store.state.bgSize.h}px`\
+            }"
+          )
         .profile_header_bg
           .profile_header_bg_texture
             .profile_header
@@ -30,20 +41,49 @@
                       .screenshot_showcase_primary.showcase_slot
                         .screenshot_showcase_screenshot
                           .profile_main_artbox(:style="{ \
-                            backgroundImage: `url('${$store.state.background}')`,\
-                            width: `${$store.state.bgSize.w}px`,\
+                            overflow: 'hidden',\
+                            position: 'relative',\
+                            width: `506px`,\
                             height: `${$store.state.bgSize.h - 272}px`\
                           }")
+                            video(
+                              :src="$store.state.background"
+                              muted
+                              autoplay
+                              loop
+                              :style="{ \
+                                position: 'absolute',\
+                                width: `${$store.state.bgSize.w}px`,\
+                                height: `${$store.state.bgSize.h}px`,\
+                                \
+                                left: `-${$store.state.bgSize.w/2 - 410}px`,\
+                                top: `-${272}px`\
+                              }"
+                            )
                         .screenshot_showcase_itemname
                       .screenshot_showcase_rightcol
                         .screenshot_showcase_smallscreenshot.showcase_slot
                           .screenshot_showcase_screenshot
                             .profile_main_artbox_side1(:style="{ \
-                              backgroundImage: `url('${$store.state.background}')`,\
-                              width: `${$store.state.bgSize.w}px`,\
+                              position: 'relative',\
+                              overflow: 'hidden',\
+                              width: `102px`,\
                               height: `${$store.state.bgSize.h - 272}px`\
                             }")
-                            // <img width="100%" style="max-width: 100px;" :src="$store.state.background">
+                              video(
+                                :src="$store.state.background"
+                                muted
+                                autoplay
+                                loop
+                                :style="{ \
+                                  position: 'absolute',\
+                                  width: `${$store.state.bgSize.w}px`,\
+                                  height: `${$store.state.bgSize.h}px`,\
+                                  \
+                                  left: `-${$store.state.bgSize.w/2 + 100}px`,\
+                                  top: `-${272}px`\
+                                }"
+                              )
                         .screenshot_showcase_smallscreenshot.screenshot_count
                           .screenshot_showcase_screenshot
 
@@ -292,5 +332,16 @@ div
   bottom 0
   left 0
   z-index 0
+
+.profile__bg__absolute
+  position absolute
+  left 0
+  top 0
+  // left 50%
+  // transform translateX(-50%)
+  width 100%
+  // background red
+  display flex
+  justify-content center
 </style>
 <style scoped src="@/assets/css/motiva_sans.css"></style>

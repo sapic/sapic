@@ -10,7 +10,10 @@
             height: `calc(100% / ${scalePercent}) !important`,\
           }"
         )
-          Preview
+          Preview(v-if="$store.state.format !== 'webm'")
+          PreviewWebm(v-else)
+
+          BgPreloader
       Inventory
 </template>
 
@@ -18,9 +21,11 @@
 import TWEEN from '@tweenjs/tween.js'
 
 import Preview from './Index/Preview'
+import PreviewWebm from './Index/PreviewWebm'
 import Inventory from './Index/Inventory'
 import TitleBar from './Index/TitleBar'
 import MenuWindow from './Index/MenuWindow'
+import BgPreloader from './Index/BgPrealoader'
 
 export default {
   components: {
@@ -28,6 +33,8 @@ export default {
     TitleBar,
     MenuWindow,
     Inventory,
+    PreviewWebm,
+    BgPreloader,
   },
   data () {
     return {
