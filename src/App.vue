@@ -1,21 +1,20 @@
 <template lang="pug">
-  .container Hello {{bundler}}
+  index
 </template>
 
 <script>
-import Vue from "vue";
+import Index from './components/Index'
+import Vue from 'vue'
 
 export default Vue.extend({
-  data() {
-    return {
-      bundler: "Parcel111"
-    };
-  }
-});
+  components: {
+    Index,
+  },
+})
 </script>
 
 <style scoped>
 .container {
   color: green;
 }
-</style> 
+</style>

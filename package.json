@@ -6,8 +6,11 @@
   "author": "Tim <truecarry@gmail.com>",
   "license": "MIT",
   "dependencies": {
-    "vue": "^2.6.11",
-    "vue-hot-reload-api": "^2.3.4"
+    "@tweenjs/tween.js": "^18.6.0",
+    "parcel": "^1.12.4",
+    "vue": "^2.0.0",
+    "vue-hot-reload-api": "^2.3.4",
+    "vuex": "^3.5.1"
   },
   "devDependencies": {
     "@vue/component-compiler-utils": "^3.1.2",
@@ -20,6 +23,20 @@
     "eslint-plugin-standard": "^4.0.1",
     "eslint-plugin-vue": "^6.2.2",
     "pug": "^3.0.0",
+    "stylus": "^0.54.7",
     "vue-template-compiler": "^2.6.11"
-  }
+  },
+  "targets": {
+    "browser": {
+      "engines": {
+        "browsers": [
+          "> 1%",
+          "not dead"
+        ]
+      }
+    }
+  },
+  "browserslist": [
+    "last 1 Chrome versions"
+  ]
 }
