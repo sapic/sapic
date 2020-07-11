@@ -7,7 +7,7 @@
           :style="{\
             transform: `scale(${scalePercent})`,\
             width: `calc(100% / ${scalePercent}) !important`,\
-            height: `calc(100% / ${scalePercent}) !important`,\
+            height: `calc(100% * ${scalePercent}) !important`,\
           }"
         )
           Preview(v-if="$store.state.format !== 'webm'")

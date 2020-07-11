@@ -6,7 +6,8 @@
   "author": "Tim <truecarry@gmail.com>",
   "license": "MIT",
   "scripts": {
-    "build": "vue-cli-service build src/index.js"
+    "build": "vue-cli-service build src/index.js",
+    "dev": "vue-cli-service serve src/index.js"
   },
   "dependencies": {
     "@tweenjs/tween.js": "^18.6.0",
