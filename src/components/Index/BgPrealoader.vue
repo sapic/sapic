@@ -9,11 +9,11 @@
       v-for='background in nextBackgrounds'
     )
       img(
-        :src='background.steamUrl'
+        :src='getUrl(background.steamUrl)'
         v-if="background.steamUrl.indexOf('webm') === -1"
         :key='background.steamUrl'
       )
-      video(:src='background.steamUrl' :key='background.steamUrl' v-else)
+      video(:src='getUrl(background.steamUrl)' :key='background.steamUrl' v-else)
 
     img(
       :src='$store.state.background'
@@ -37,6 +37,7 @@ export default {
     nextBackgrounds () {
       return this.$store.state.nextRandomBackgrounds
     },
+
   },
 
   methods: {
@@ -54,6 +55,14 @@ export default {
           w: this.$refs.currentBgVideoHolder.videoWidth,
           h: this.$refs.currentBgVideoHolder.videoHeight,
         })
+      }
+    },
+
+    getUrl (url) {
+      if (url.indexOf('http://cdn.akamai.steamstatic.com') !== -1) {
+        return url.replace('http://cdn.akamai.steamstatic.com', 'https://steamcdn-a.akamaihd.net')
+      } else {
+        return url
       }
     },
   },
