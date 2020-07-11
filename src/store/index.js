@@ -8,20 +8,20 @@ const state = {
   background: null,
   // bgInfo: BackgroundInfo(),
   backgrounds: [],
+  backgroundsUpdateTime: 0,
   nextRandomBackgrounds: [],
-  // currWindow: null,
-  isMaximized: false,
-  windowWidth: 1280,
-  windowHeight: 720,
   previewScale: 75,
-  // greenworks: null,
-  user: {},
+  user: {
+    id: 0,
+  },
   bgSize: {
     w: 0,
     h: 0,
   },
   format: 'jpg',
   inventory: [],
+  inventoryUpdateTime: 0,
+  v: 1,
 }
 
 const mutations = {
@@ -37,6 +37,7 @@ const mutations = {
   setBackgrounds (state, backgrounds) {
     state.backgrounds = backgrounds
     state.nextRandomBackgrounds.push(state.backgrounds[Math.floor(state.backgrounds.length * Math.random())])
+    state.backgroundsUpdateTime = Date.now()
   },
   setCurrentWindow (state, window) {
     state.currWindow = window
@@ -102,6 +103,14 @@ const mutations = {
   },
   setInventoryBackgrounds (state, items) {
     state.inventory = items
+    state.inventoryUpdateTime = Date.now()
+  },
+
+  logout () {
+    state.user = {
+      id: 0,
+    }
+    state.inventory = []
   },
 }
 
@@ -135,7 +144,7 @@ const actions = {
   },
 
   async loadBackpack ({ commit }) {
-    const data = await fetch(`https://steam.design/backpack/${state.user.steamId}/items.json`).then(r => r.json())
+    const data = await fetch(`https://steam.design/backpack/${state.user.id}/items.json`).then(r => r.json())
     commit('setInventoryBackgrounds', data.backgrounds)
   },
 }

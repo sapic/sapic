@@ -22,7 +22,6 @@
       //-   input.menu__window-button.textbox.px(placeholder="px")
 
       .menu__window-section-container
-
         .menu__window-button.noclick.small
           .menu__window-button-text Zoom Scale
 
@@ -67,6 +66,11 @@
           label(for="scale125").menu__window-scale__label
             .menu__window-scale__button 125%
 
+        a.menu__window-button(:href="loginUrl" v-if="!$store.state.user.id")
+          .menu__window-button-text Login in steam
+        .menu__window-button(@click="logout" v-else)
+          .menu__window-button-text Logout
+
     .menu__window-credits
       img.menu__window-discord-image(
         src="https://discordapp.com/api/guilds/304986224467378177/widget.png?style=banner2",
@@ -96,8 +100,20 @@ export default {
       },
       get () {
       }
-    }
+    },
     /* eslint-enable */
+
+    loginUrl () {
+      const returnUrl = encodeURIComponent('https://next.steam.design')
+      const realm = encodeURIComponent('https://next.steam.design')
+      return `https://steamcommunity.com/openid/login?openid.ns=http%3A%2F%2Fspecs.openid.net%2Fauth%2F2.0&openid.mode=checkid_setup&openid.return_to=${returnUrl}&openid.realm=${realm}&openid.ns.sreg=http%3A%2F%2Fopenid.net%2Fextensions%2Fsreg%2F1.1&openid.claimed_id=http%3A%2F%2Fspecs.openid.net%2Fauth%2F2.0%2Fidentifier_select&openid.identity=http%3A%2F%2Fspecs.openid.net%2Fauth%2F2.0%2Fidentifier_select`
+    },
+  },
+
+  methods: {
+    logout () {
+      this.$store.commit('logout')
+    },
   },
 }
 </script>
@@ -141,6 +157,7 @@ export default {
   display flex
   align-items center
   justify-content center
+  text-decoration none
 
   &:hover
     transition background-color 0.25s ease
@@ -196,6 +213,7 @@ export default {
   font-weight 300
   color $color-white
   margin 15px 0
+  text-decoration none
 
 .menu__window-button-download
   background linear-gradient(45deg, $color-button-gradient-1 0%, $color-button-gradient-2 100%)
