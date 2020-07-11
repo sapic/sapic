@@ -1,17 +1,18 @@
 <template lang="pug">
 .backgrounds_container
+  template(v-if="$store.state.user.id")
     p.hover-button Inventory
     .inventory-list
       template(v-for="item in items")
         .inventory-item(:key="item.id" @click="setBackground(item)")
           img.inventory-item-inner(:src="`https://steamcommunity-a.akamaihd.net/economy/image/${item.icon_url_large}/96fx96f`")
 
-    p.hover-button Random backgrounds
-    .inventory-list
-      template(v-for="item in $store.state.backgrounds.slice(0, 100)")
-        .inventory-item(:key="item.id" @click="setBackgroundItem(item)")
-          img.inventory-item-inner(:src="item.steamUrl")
-    .spacer
+  p.hover-button Random backgrounds
+  .inventory-list
+    template(v-for="item in $store.state.backgrounds.slice(0, 100)")
+      .inventory-item(:key="item.id" @click="setBackgroundItem(item)")
+        img.inventory-item-inner(:src="item.steamUrl")
+  .spacer
 </template>
 
 <style lang="stylus" scoped>

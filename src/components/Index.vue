@@ -14,7 +14,7 @@
           PreviewWebm(v-else)
 
           BgPreloader
-      Inventory(v-if="$store.state.user.id")
+      Inventory
 </template>
 
 <script>
