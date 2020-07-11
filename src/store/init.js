@@ -21,7 +21,6 @@ export default async (store) => {
     }
   }
 
-  const state = JSON.parse(JSON.stringify(store.state))
   const { commit } = store
   const { dispatch } = store
 
@@ -35,6 +34,9 @@ export default async (store) => {
       }
     }
   }
+
+  const state = JSON.parse(JSON.stringify(store.state))
+
   // console.log('url', parseQuery())
 
   // If state has no bgs, fetch some from api
