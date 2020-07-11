@@ -58,7 +58,11 @@ const mutations = {
   randomBackground (state) {
     const newBg = state.nextRandomBackgrounds.shift()
     if (newBg) {
-      state.background = newBg.steamUrl
+      if (newBg.steamUrl.indexOf('http://cdn.akamai.steamstatic.com') !== -1) {
+        state.background = newBg.steamUrl.replace('http://cdn.akamai.steamstatic.com', 'https://steamcdn-a.akamaihd.net')
+      } else {
+        state.background = newBg.steamUrl
+      }
       state.bgInfo = newBg
       state.format = newBg.steamUrl.split('.').slice(-1)[0]
     }
