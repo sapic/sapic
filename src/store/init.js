@@ -31,6 +31,7 @@ export default async (store) => {
       const arr = params['openid.identity'].split('/').slice(-1)
       if (arr && arr.length > 0) {
         commit('setUser', { id: arr[0] })
+        history.replaceState('', document.title, window.location.pathname)
       }
     }
   }
