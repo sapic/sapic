@@ -123,8 +123,8 @@ const actions = {
     const bgSaveInfo = {
       url: state.background,
       images: [
-        { name: 'Artwork_Middle.png', x: 508, y: 298, w: 506, h: 2000 },
-        { name: 'Artwork_Right_Top.png', x: 1022, y: 298, w: 100, h: 2000 },
+        { name: 'Artwork_Middle.png', x: 492, y: 256, w: 506, h: 2000 },
+        { name: 'Artwork_Right_Top.png', x: 1006, y: 256, w: 100, h: 2000 },
         { name: 'Avatar.png', x: 499, y: 34, w: 164, h: 164 },
       ],
     }
