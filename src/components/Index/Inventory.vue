@@ -96,6 +96,9 @@ export default {
       background url('https://steamcommunity-a.akamaihd.net/public/images/economy/trade_itemholder.png')
       background-position top
       background-repeat no-repeat
+      display flex
+      justify-content center
+      flex-direction column
 
       .inventory-item-inner
         width 92px
