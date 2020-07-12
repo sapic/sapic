@@ -11,9 +11,54 @@
   .inventory-list
     template(v-for="item in $store.state.backgrounds.slice(0, 100)")
       .inventory-item(:key="item.id" @click="setBackgroundItem(item)")
-        img.inventory-item-inner(:src="item.steamUrl")
+        img.inventory-item-inner(:src="getUrl(item.steamUrl)")
   .spacer
 </template>
+
+<script>
+export default {
+  computed: {
+    /* eslint-disable */
+    bgURL: {
+      set (value) {
+        if (value.match(/\.(?:jpeg|jpg|png)$/i)) {
+          this.$store.commit('setBackgroundURL', value)
+        }
+      },
+      get () {
+      }
+    },
+    /* eslint-enable */
+    items () {
+      return this.$store.state.inventory
+    },
+  },
+
+  methods: {
+    setBackground (item) {
+      this.$store.commit('setBackground', {
+        background: item.actions[0].link,
+        info: item,
+      })
+    },
+
+    setBackgroundItem (item) {
+      this.$store.commit('setBackground', {
+        background: item.steamUrl,
+        info: item,
+      })
+    },
+
+    getUrl (url) {
+      if (url.indexOf('http://cdn.akamai.steamstatic.com') !== -1) {
+        return url.replace('http://cdn.akamai.steamstatic.com', 'https://steamcdn-a.akamaihd.net')
+      } else {
+        return url
+      }
+    },
+  },
+}
+</script>
 
 <style lang="stylus" scoped>
 @import '../../assets/css/color'
@@ -86,40 +131,3 @@
       p
         // color transparent
 </style>
-
-<script>
-export default {
-  computed: {
-    /* eslint-disable */
-    bgURL: {
-      set (value) {
-        if (value.match(/\.(?:jpeg|jpg|png)$/i)) {
-          this.$store.commit('setBackgroundURL', value)
-        }
-      },
-      get () {
-      }
-    },
-    /* eslint-enable */
-    items () {
-      return this.$store.state.inventory
-    },
-  },
-
-  methods: {
-    setBackground (item) {
-      this.$store.commit('setBackground', {
-        background: item.actions[0].link,
-        info: item,
-      })
-    },
-
-    setBackgroundItem (item) {
-      this.$store.commit('setBackground', {
-        background: item.steamUrl,
-        info: item,
-      })
-    },
-  },
-}
-</script>
