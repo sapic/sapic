@@ -15,6 +15,7 @@
 
           BgPreloader
       Inventory
+      Scripts
 </template>
 
 <script>
@@ -26,9 +27,12 @@ import Inventory from './Index/Inventory'
 import TitleBar from './Index/TitleBar'
 import MenuWindow from './Index/MenuWindow'
 import BgPreloader from './Index/BgPrealoader'
+import Scripts from './Scripts'
 
 export default {
   components: {
+    Scripts,
+
     Preview,
     TitleBar,
     MenuWindow,
