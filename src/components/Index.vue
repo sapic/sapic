@@ -14,9 +14,9 @@
           PreviewWebm(v-else)
 
           BgPreloader
+      RightMenu
       Inventory
       Scripts
-      div(id="nn_mpu1")
       div(id="nn_lb2")
 </template>
 
@@ -30,6 +30,7 @@ import TitleBar from './Index/TitleBar'
 import MenuWindow from './Index/MenuWindow'
 import BgPreloader from './Index/BgPrealoader'
 import Scripts from './Scripts'
+import RightMenu from './Index/RightMenu'
 
 export default {
   components: {
@@ -41,6 +42,7 @@ export default {
     Inventory,
     PreviewWebm,
     BgPreloader,
+    RightMenu,
   },
   data () {
     return {

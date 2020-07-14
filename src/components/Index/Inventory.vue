@@ -69,8 +69,8 @@ export default {
 .backgrounds_container
   position absolute
   bottom -212px
-  right 109px
-  width calc(100% - 300px - 200px - 9px)
+  right 409px
+  width calc(100% - 250px - 300px - 200px - 9px)
   height 350px
   background $color-main
   transition all 0.25s ease-in-out
