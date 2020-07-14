@@ -71,6 +71,8 @@
         .menu__window-button(@click="logout" v-else)
           .menu__window-button-text Logout
 
+        div(id="nn_mpu1")
+
     .menu__window-credits
       img.menu__window-discord-image(
         src="https://discordapp.com/api/guilds/304986224467378177/widget.png?style=banner2",
@@ -131,7 +133,7 @@ export default {
 
 .menu__window
   height 100%
-  width 250px
+  width 300px
   background $color-main
   flex-shrink 0
   user-select none

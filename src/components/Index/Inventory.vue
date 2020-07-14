@@ -70,7 +70,7 @@ export default {
   position absolute
   bottom -212px
   right 109px
-  width calc(100% - 259px - 200px)
+  width calc(100% - 300px - 200px - 9px)
   height 350px
   background $color-main
   transition all 0.25s ease-in-out
