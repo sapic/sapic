@@ -16,6 +16,8 @@
           BgPreloader
       Inventory
       Scripts
+      div(id="nn_mpu1")
+      div(id="nn_lb2")
 </template>
 
 <script>
