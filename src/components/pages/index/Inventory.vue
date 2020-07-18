@@ -61,7 +61,7 @@ export default {
 </script>
 
 <style lang="stylus" scoped>
-@import '../../assets/css/color'
+@import '../../../assets/css/color'
 
 .spacer
   margin-bottom 8px

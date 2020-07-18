@@ -15,6 +15,6 @@
     ],
     "theme_color": "#12151a",
     "background_color": "#12151a",
-    "start_url": "https://Steam.Design",
+    "start_url": "/",
     "display": "standalone"
 }

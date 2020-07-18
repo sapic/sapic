@@ -94,7 +94,7 @@ export default {
 </script>
 
 <style scoped lang="stylus">
-@import '../../assets/css/color'
+@import '../../../assets/css/color'
 
 .titlebar
   height 40px

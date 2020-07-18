@@ -3,7 +3,7 @@
     section.body__wrapper
       MenuWindow
       .preview__window
-        img(src="../assets/SteamLevelsGif.gif" :style="{\
+        img(src="@/assets/SteamLevelsGif.gif" :style="{\
           display: 'block',\
           margin: '0 auto',\
         }")
@@ -27,14 +27,14 @@
 <script>
 import TWEEN from '@tweenjs/tween.js'
 
-import Preview from './Index/Preview'
-import PreviewWebm from './Index/PreviewWebm'
-import Inventory from './Index/Inventory'
-import TitleBar from './Index/TitleBar'
-import MenuWindow from './Index/MenuWindow'
-import BgPreloader from './Index/BgPrealoader'
-import Scripts from './Scripts'
-import RightMenu from './Index/RightMenu'
+import Preview from './Preview'
+import PreviewWebm from './PreviewWebm'
+import Inventory from './Inventory'
+import TitleBar from './TitleBar'
+import MenuWindow from './MenuWindow'
+import BgPreloader from './BgPrealoader'
+import Scripts from '../../Scripts'
+import RightMenu from './RightMenu'
 
 export default {
   components: {
@@ -87,7 +87,7 @@ export default {
 </script>
 
 <style scoped lang="stylus">
-@import '../assets/css/color'
+@import '../../../assets/css/color'
 
 .body__wrapper
   height 100%

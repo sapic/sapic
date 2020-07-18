@@ -1,14 +1,16 @@
 <template lang="pug">
-  index
+  div
+    //- index
+    <router-view></router-view>
 </template>
 
 <script>
-import Index from './components/Index'
+// import Index from './components/Index'
 import Vue from 'vue'
 
 export default Vue.extend({
   components: {
-    Index,
+    // Index,
   },
 })
 </script>

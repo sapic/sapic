@@ -127,7 +127,7 @@ export default {
 </script>
 
 <style scoped lang="stylus">
-@import '../../assets/css/color'
+@import '../../../assets/css/color'
 
 .menu__window
   height 100%
