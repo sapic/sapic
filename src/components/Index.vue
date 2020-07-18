@@ -3,6 +3,10 @@
     section.body__wrapper
       MenuWindow
       .preview__window
+        img(src="../assets/SteamLevelsGif.gif" :style="{\
+          display: 'block',\
+          margin: '0 auto',\
+        }")
         .zoom_out(
           :style="{\
             transform: `scale(${scalePercent})`,\
@@ -14,7 +18,7 @@
           PreviewWebm(v-else)
 
           BgPreloader
-      RightMenu
+      //- RightMenu
       Inventory
       Scripts
       div(id="nn_lb2")
