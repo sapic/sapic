@@ -9,14 +9,30 @@
 
   p.hover-button Random backgrounds
   .inventory-list
-    template(v-for="item in $store.state.backgrounds.slice(0, 100)")
+    template(v-for="item in randomBgs")
       .inventory-item(:key="item.id" @click="setBackgroundItem(item)")
         img.inventory-item-inner(:src="getUrl(item.steamUrl)")
+  .inventory-more(@click="addRandomBgs").hover-button Load more
   .spacer
 </template>
 
 <script>
 export default {
+  data () {
+    const width = window.innerWidth - 250 - 300 - 200 - 9
+    const itemsIncr = Math.floor(width / 108)
+    const startRows = 3
+    const bgsLen = this.$store.state.backgrounds.length
+    const start = Math.floor((Math.random() * bgsLen)) - itemsIncr * startRows
+
+    return {
+      width,
+      itemsIncr,
+
+      randomBgs: this.$store.state.backgrounds.slice(start, start + itemsIncr * startRows),
+    }
+  },
+
   computed: {
     /* eslint-disable */
     bgURL: {
@@ -54,6 +70,26 @@ export default {
         return url.replace('http://cdn.akamai.steamstatic.com', 'https://steamcdn-a.akamaihd.net')
       } else {
         return url
+      }
+    },
+
+    addRandomBgs () {
+      let i = this.itemsIncr * 3
+      while (i > 0) {
+        const randomBg = this.$store.state.backgrounds[
+          Math.floor(this.$store.state.backgrounds.length * Math.random())
+        ]
+        for (const bg of this.randomBgs) {
+          if (bg.url === randomBg.url) {
+            continue
+          }
+        }
+        this.randomBgs.push(
+          this.$store.state.backgrounds[
+            Math.floor(this.$store.state.backgrounds.length * Math.random())
+          ],
+        )
+        i--
       }
     },
   },
@@ -111,7 +147,6 @@ export default {
     outline none
     cursor pointer
     height 25px
-    right 18px
     // border-radius 10px 0 0 0
     background $color-main
     border-style none
@@ -122,6 +157,7 @@ export default {
     transition all 0.25s ease-in-out
     margin 0
     text-align center
+    margin-top 10px
 
   &:hover
     bottom 0
