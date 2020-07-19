@@ -3,10 +3,6 @@
     section.body__wrapper
       MenuWindow
       .preview__window
-        img(src="@/assets/SteamLevelsGif.gif" :style="{\
-          display: 'block',\
-          margin: '0 auto',\
-        }")
         .zoom_out(
           :style="{\
             transform: `scale(${scalePercent})`,\
@@ -18,7 +14,7 @@
           PreviewWebm(v-else)
 
           BgPreloader
-      //- RightMenu
+      RightMenu
       Inventory
       Scripts
       div(id="nn_lb2")
@@ -152,6 +148,7 @@ body {
 ::-webkit-scrollbar-thumb {
   background: #666666;
   transition: background-color 0.25s ease;
+  border-radius: 20px;
 }
 ::-webkit-scrollbar-thumb:hover {
   transition: background-color 0.25s ease;
@@ -162,6 +159,7 @@ body {
 }
 ::-webkit-scrollbar-track {
   background: #12151a;
+  border-radius: 0 20px 0 0;
 }
 ::-webkit-scrollbar-track:hover {
   background: #1c2129;
