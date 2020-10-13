@@ -10,7 +10,7 @@
   .profile_count_link
     span.partnerLabel Our Other Projects
 
-  .profile_count_link_preview(style="margin-top:25px")
+  .profile_count_link_preview
     .profile_group.profile_primary_group
       .profile_group_avatar
         a(
@@ -41,12 +41,12 @@
           target="_blank",
           rel="noopener noreferrer"
         ) Quick Avatar Cropper
-        .profile_group_membercount A small webpage that allows you to quickly crop avatars for many sites.
+        .profile_group_membercount Webpage that allows you to crop avatars for many sites.
 
-  .profile_count_link.ellipsis(style="margin-top:25px")
+  .profile_count_link.ellipsis
     span.partnerLabel Our Partners
 
-  .profile_count_link_preview(style="margin-top:25px")
+  .profile_count_link_preview
     .profile_group.profile_primary_group
       .profile_group_avatar
         a(
@@ -128,6 +128,10 @@ export default {
 
   .profile_count_link_preview
     padding 0 10px
+    margin-bottom 20px
+
+  .profile_count_link
+    margin-bottom 20px
 
   .profile_group
     display flex
@@ -146,4 +150,11 @@ export default {
     &_text
       a
         color $color-white
+        font-size 13px
+        text-decoration none
+        font-weight 600
+
+      .profile_group_membercount
+        font-size 13px
+        color #8f98a0
 </style>
