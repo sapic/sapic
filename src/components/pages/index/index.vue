@@ -99,6 +99,10 @@ export default {
   border-top-left-radius 20px
   background $color-black
 
+  &::-webkit-scrollbar
+    width 0
+    height 0
+
 .wrapper
   display flex
   flex-direction column

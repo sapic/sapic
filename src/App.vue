@@ -1,7 +1,7 @@
 <template lang="pug">
-  div
-    //- index
-    <router-view></router-view>
+.main__container
+  //- index
+  router-view 
 </template>
 
 <script>
@@ -18,5 +18,9 @@ export default Vue.extend({
 <style scoped>
 .container {
   color: green;
+}
+
+.main__container {
+  height: 100%;
 }
 </style>
