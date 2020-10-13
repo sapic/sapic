@@ -133,6 +133,10 @@ export default {
   .profile_count_link
     margin-bottom 20px
 
+  .profile_group_avatar
+    img
+      border-radius 4px
+
   .profile_group
     display flex
     margin-bottom 10px
