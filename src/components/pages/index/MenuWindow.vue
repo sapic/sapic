@@ -1,83 +1,90 @@
 <template lang="pug">
-  .menu__window
-    .menu__window-buttons
-      .menu__window-button.menu__window-button-download(@click="$store.dispatch('downloadZip')")
-        .menu__window-button-text Download ZIP
+.menu__window
+  .menu__window-buttons
+    .menu__window-button.menu__window-button-download(
+      @click="$store.dispatch('downloadZip')"
+    )
+      .menu__window-button-text Download ZIP
 
-      .menu__window-shadow
+    .menu__window-shadow
 
-      .menu__window-button(@click="$store.dispatch('randomBackground')")
-        .menu__window-button-text Random BG
+    .menu__window-button(@click="$store.dispatch('randomBackground')")
+      .menu__window-button-text Random BG
 
-      .menu__window-button(@click="$store.dispatch('getCurrentBg')")
-        .menu__window-button-text Get this BG
+    .menu__window-button(@click="$store.dispatch('getCurrentBg')")
+      .menu__window-button-text Get this BG
 
-      input.menu__window-button.textbox.noclick#urltextbox(placeholder="Paste a background URL here", v-model="bgURL")
+    input#urltextbox.menu__window-button.textbox.noclick(
+      placeholder="Paste a background URL here",
+      v-model="bgURL"
+    )
 
-      //- .menu__window-section-container
-      //-   .menu__window-button.noclick.small
-      //-     .menu__window-button-text Image Height
+    //- .menu__window-section-container
+    //-   .menu__window-button.noclick.small
+    //-     .menu__window-button-text Image Height
 
-      //-   input.menu__window-button.length__slider(type="range")
-      //-   input.menu__window-button.textbox.px(placeholder="px")
+    //-   input.menu__window-button.length__slider(type="range")
+    //-   input.menu__window-button.textbox.px(placeholder="px")
 
-      .menu__window-section-container
-        .menu__window-button.noclick.small
-          .menu__window-button-text Zoom Scale
+    .menu__window-section-container
+      .menu__window-button.noclick.small
+        .menu__window-button-text Zoom Scale
 
-        .menu__window-scale__container
-          input.menu__window-scale__input(
-            name="scale"
-            type="radio"
-            value="50"
-            v-model="previewScale"
-            id="scale50"
-          )
-          label(for="scale50").menu__window-scale__label
-            .menu__window-scale__button 50%
+      .menu__window-scale__container
+        input#scale50.menu__window-scale__input(
+          name="scale",
+          type="radio",
+          value="50",
+          v-model="previewScale"
+        )
+        label.menu__window-scale__label(for="scale50")
+          .menu__window-scale__button 50%
 
-          input.menu__window-scale__input(
-            name="scale"
-            type="radio"
-            value="75"
-            v-model="previewScale"
-            id="scale75"
-          )
-          label(for="scale75").menu__window-scale__label
-            .menu__window-scale__button 75%
+        input#scale75.menu__window-scale__input(
+          name="scale",
+          type="radio",
+          value="75",
+          v-model="previewScale"
+        )
+        label.menu__window-scale__label(for="scale75")
+          .menu__window-scale__button 75%
 
-          input.menu__window-scale__input(
-            name="scale"
-            type="radio"
-            value="100"
-            v-model="previewScale"
-            id="scale100"
-          )
-          label(for="scale100").menu__window-scale__label
-            .menu__window-scale__button 100%
+        input#scale100.menu__window-scale__input(
+          name="scale",
+          type="radio",
+          value="100",
+          v-model="previewScale"
+        )
+        label.menu__window-scale__label(for="scale100")
+          .menu__window-scale__button 100%
 
-          input.menu__window-scale__input(
-            name="scale"
-            type="radio"
-            value="125"
-            v-model="previewScale"
-            id="scale125"
-          )
-          label(for="scale125").menu__window-scale__label
-            .menu__window-scale__button 125%
+        input#scale125.menu__window-scale__input(
+          name="scale",
+          type="radio",
+          value="125",
+          v-model="previewScale"
+        )
+        label.menu__window-scale__label(for="scale125")
+          .menu__window-scale__button 125%
 
-        a.menu__window-button(:href="loginUrl" v-if="!$store.state.user.id")
-          .menu__window-button-text Login in steam
-        .menu__window-button(@click="logout" v-else)
-          .menu__window-button-text Logout
+      a.menu__window-button(:href="loginUrl", v-if="!$store.state.user.id")
+        .menu__window-button-text Login in steam
+      .menu__window-button(@click="logout", v-else)
+        .menu__window-button-text Logout
 
-    .menu__window-credits
-      img.menu__window-discord-image(
-        src="https://discordapp.com/api/guilds/304986224467378177/widget.png?style=banner2",
-        @click="$store.dispatch('openDiscord')"
-      )
-      .menu__window-credits-text Made with ❤️  by TrueCarry and The Oddball
+  .menu__window-credits
+    a.menu__window-button(
+      href="https://old.steam.design",
+      target="_blank",
+      rel="noopener noreferrer"
+    )
+      .menu__window-button-text Old version
 
+    img.menu__window-discord-image(
+      src="https://discordapp.com/api/guilds/304986224467378177/widget.png?style=banner2",
+      @click="$store.dispatch('openDiscord')"
+    )
+    .menu__window-credits-text Made with ❤️ by TrueCarry and The Oddball
 </template>
 
 <script>
