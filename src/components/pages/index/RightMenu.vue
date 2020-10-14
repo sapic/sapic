@@ -131,13 +131,16 @@ export default {
   height 100%
   display flex
   flex-direction column
-  overflow-y scroll
+  overflow-y hidden
 
   .profile_video
     width 300px
     height 600px
     display block
-    margin-bottom 20px
+    margin-bottom 30px
+    position relative
+    left 5px
+    top 10px
 
   .partnerLabel
     margin-left 10px
