@@ -4,15 +4,17 @@
     p.hover-button Inventory
     .inventory-list
       template(v-for="item in items")
-        .inventory-item(:key="item.id" @click="setBackground(item)")
-          img.inventory-item-inner(:src="`https://steamcommunity-a.akamaihd.net/economy/image/${item.icon_url_large}/96fx96f`")
+        .inventory-item(:key="item.id", @click="setBackground(item)")
+          img.inventory-item-inner(
+            :src="`https://steamcommunity-a.akamaihd.net/economy/image/${item.icon_url_large}/96fx96f`"
+          )
 
   p.hover-button Random backgrounds
   .inventory-list
     template(v-for="item in randomBgs")
-      .inventory-item(:key="item.id" @click="setBackgroundItem(item)")
+      .inventory-item(:key="item.id", @click="setBackgroundItem(item)")
         img.inventory-item-inner(:src="getUrl(item.steamUrl)")
-  .inventory-more(@click="addRandomBgs").hover-button Load more
+  .inventory-more.hover-button(@click="addRandomBgs") Load more
   .spacer
 </template>
 
@@ -22,14 +24,11 @@ export default {
     const width = window.innerWidth - 250 - 300 - 200 - 9
     const itemsIncr = Math.floor(width / 108)
     const startRows = 3
-    const bgsLen = this.$store.state.backgrounds.length
-    const start = Math.floor((Math.random() * bgsLen)) - itemsIncr * startRows
 
     return {
       width,
       itemsIncr,
-
-      randomBgs: this.$store.state.backgrounds.slice(start, start + itemsIncr * startRows),
+      startRows,
     }
   },
 
@@ -47,6 +46,31 @@ export default {
     /* eslint-enable */
     items () {
       return this.$store.state.inventory
+    },
+
+    randomBgs () {
+      if (this.$store.state.backgrounds.length === 0) {
+        return []
+      }
+
+      let end = this.start + this.itemsIncr * this.startRows
+      if (end > this.$store.state.backgrounds.length - 1) {
+        end = this.$store.state.backgrounds.length
+      }
+
+      return this.$store.state.backgrounds.slice(this.start, end)
+    },
+
+    start () {
+      if (this.$store.state.backgrounds.length === 0) {
+        return 0
+      }
+      let start = Math.floor((Math.random() * this.$store.state.backgrounds.length)) - this.itemsIncr * this.startRows
+      if (start < 0) {
+        start = 0
+      }
+
+      return start
     },
   },
 

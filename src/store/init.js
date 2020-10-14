@@ -45,28 +45,7 @@ export default async (store) => {
     (state.backgroundsUpdateTime > 0 && new Date() - state.backgroundsUpdateTime > 604800000) // or if last bg update > week ago
   ) {
     const bgs = await fetch('/bg.json').then(r => r.json())
-    console.log('got bgs', bgs)
-    // const bgs = require('@/assets/bg.json')
-    // const bgs = [
-    //   {
-    //     game: 'Bravada Rare',
-    //     hls: [21, 33, 44],
-    //     name: 'Old stump background',
-    //     pos: [0, 7, 0],
-    //     price: '1.57',
-    //     url: '753/315930-Old%20stump%20background',
-    //     steamUrl: 'http://cdn.akamai.steamstatic.com/steamcommunity/public/images/items/315930/d11e368332f1aec6ae4bc1b1423978bd7496141a.jpg',
-    //   },
-    //   {
-    //     game: 'Bravada Rare',
-    //     hls: [21, 33, 44],
-    //     name: 'Old stump background',
-    //     pos: [0, 7, 0],
-    //     price: '1.57',
-    //     url: '753/315930-Old%20stump%20background',
-    //     steamUrl: 'https://steamcdn-a.akamaihd.net/steamcommunity/public/images/items/1263950/4d466f77edf3265a253fba79d47bc91a37e34920.webm',
-    //   },
-    // ]
+
     commit('setBackgrounds', bgs)
     dispatch('randomBackground')
   }

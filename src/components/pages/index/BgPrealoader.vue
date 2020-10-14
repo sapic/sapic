@@ -19,10 +19,11 @@
       :src='$store.state.background'
       ref='currentBgImageHolder'
       @load='imageUpdated'
-      v-if="$store.state.background.indexOf('webm') === -1"
+      v-if="$store.state.background && $store.state.background.indexOf('webm') === -1"
       key="currentBgImageHolder"
     )
     video(
+      v-else-if="$store.state.background"
       :src='$store.state.background'
       ref='currentBgVideoHolder'
       @loadeddata='videoUpdated'
