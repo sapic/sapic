@@ -15,11 +15,17 @@
     "vue-hot-reload-api": "^2.3.4",
     "vue-meta": "^2.4.0",
     "vue-router": "^3.4.6",
-    "vuex": "^3.5.1"
-  },
-  "devDependencies": {
+    "vuex": "^3.5.1",
     "@vue/cli-service": "^4.5.7",
     "@vue/component-compiler-utils": "^3.2.0",
+    "vue-template-compiler": "^2.6.12",
+    "pug": "^3.0.0",
+    "pug-plain-loader": "^1.0.0",
+    "stylus": "^0.54.8",
+    "stylus-loader": "^3.0.0",
+    "webpack": "^5.0.0"
+  },
+  "devDependencies": {
     "babel-eslint": "^10.1.0",
     "eslint": "^7.11.0",
     "eslint-config-standard": "^14.1.1",
@@ -27,13 +33,7 @@
     "eslint-plugin-node": "^11.1.0",
     "eslint-plugin-promise": "^4.2.1",
     "eslint-plugin-standard": "^4.0.1",
-    "eslint-plugin-vue": "^6.0.0",
-    "pug": "^3.0.0",
-    "pug-plain-loader": "^1.0.0",
-    "stylus": "^0.54.8",
-    "stylus-loader": "^3.0.0",
-    "vue-template-compiler": "^2.6.12",
-    "webpack": "^5.0.0"
+    "eslint-plugin-vue": "^6.0.0"
   },
   "targets": {
     "browser": {
