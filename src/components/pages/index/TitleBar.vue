@@ -4,7 +4,7 @@
     <div class="resizeHandle resizeHandleLeft" />
     <img
       class="titlelogo"
-      src="@/assets/images/logo.png"
+      src="@/assets/images/logo.svg"
     >
     <span class="titletext">
       Profile Background Cropper
