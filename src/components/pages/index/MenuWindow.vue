@@ -1,17 +1,15 @@
 <template lang="pug">
 .menu__window
   .menu__window-buttons
-    .menu__window-button.menu__window-button-download(
-      @click="$store.dispatch('downloadZip')"
-    )
+    .menu__window-button.menu__window-button-download(@click="getZipClick")
       .menu__window-button-text Download ZIP
 
     .menu__window-shadow
 
-    .menu__window-button(@click="$store.dispatch('randomBackground')")
+    .menu__window-button(@click="randomBGClick")
       .menu__window-button-text Random BG
 
-    .menu__window-button(@click="$store.dispatch('getCurrentBg')")
+    .menu__window-button(@click="getCurrentBGClick")
       .menu__window-button-text Get this BG
 
     input#urltextbox.menu__window-button.textbox.noclick(
@@ -128,6 +126,21 @@ export default {
   methods: {
     logout () {
       this.$store.commit('logout')
+    },
+
+    randomBGClick () {
+      this.$store.dispatch('randomBackground')
+      this.$store.dispatch('trackClick', ['randomBGButton'])
+    },
+
+    getZipClick () {
+      this.$store.dispatch('downloadZip')
+      this.$store.dispatch('trackClick', ['getZIPButton'])
+    },
+
+    getCurrentBGClick () {
+      this.$store.dispatch('getCurrentBg')
+      this.$store.dispatch('trackClick', ['getBGButton'])
     },
   },
 }

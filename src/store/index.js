@@ -153,6 +153,17 @@ const actions = {
     const data = await fetch(`https://steam.design/backpack/${state.user.id}/items.json`).then(r => r.json())
     commit('setInventoryBackgrounds', data.backgrounds)
   },
+
+  trackClick (ctx, [where, subject]) {
+    if (window && window.ga) {
+      window.ga('send', {
+        hitType: 'event',
+        eventCategory: 'userClick',
+        eventAction: where,
+        eventLabel: subject || 'click',
+      })
+    }
+  },
 }
 
 export default new Vuex.Store({
