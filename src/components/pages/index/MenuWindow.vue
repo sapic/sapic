@@ -66,7 +66,7 @@
           .menu__window-scale__button 125%
 
       a.menu__window-button(:href="loginUrl", v-if="!$store.state.user.id")
-        .menu__window-button-text Login in steam
+        .menu__window-button-text Login with Steam
       .menu__window-button(@click="logout", v-else)
         .menu__window-button-text Logout
 

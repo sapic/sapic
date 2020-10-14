@@ -94,9 +94,8 @@ export default {
 .preview__window
   height 100%
   flex 1 1 auto
-  overflow-y scroll
   overflow-x hidden
-  border-top-left-radius 20px
+  border-radius 20px
   background $color-black
 
   &::-webkit-scrollbar
