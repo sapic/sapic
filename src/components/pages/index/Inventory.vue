@@ -10,7 +10,7 @@
           )
 
   p.hover-button Random backgrounds
-  .inventory-list
+  .inventory-list(v-if="shouldShowRandomBgs")
     template(v-for="item in randomBgs")
       .inventory-item(:key="item.id", @click="setBackgroundItem(item)")
         img.inventory-item-inner(:src="getUrl(item.steamUrl)")
@@ -31,6 +31,8 @@ export default {
       itemsIncr,
       startRows,
       pagination,
+
+      shouldShowRandomBgs: false,
     }
   },
 
@@ -74,6 +76,12 @@ export default {
 
       return start
     },
+  },
+
+  mounted () {
+    setTimeout(() => {
+      this.shouldShowRandomBgs = true
+    }, 256)
   },
 
   methods: {
