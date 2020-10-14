@@ -24,11 +24,13 @@ export default {
     const width = window.innerWidth - 250 - 300 - 200 - 9
     const itemsIncr = Math.floor(width / 108)
     const startRows = 3
+    const pagination = 1
 
     return {
       width,
       itemsIncr,
       startRows,
+      pagination,
     }
   },
 
@@ -53,7 +55,7 @@ export default {
         return []
       }
 
-      let end = this.start + this.itemsIncr * this.startRows
+      let end = this.start + (this.itemsIncr * this.startRows * this.pagination)
       if (end > this.$store.state.backgrounds.length - 1) {
         end = this.$store.state.backgrounds.length
       }
@@ -98,23 +100,24 @@ export default {
     },
 
     addRandomBgs () {
-      let i = this.itemsIncr * 3
-      while (i > 0) {
-        const randomBg = this.$store.state.backgrounds[
-          Math.floor(this.$store.state.backgrounds.length * Math.random())
-        ]
-        for (const bg of this.randomBgs) {
-          if (bg.url === randomBg.url) {
-            continue
-          }
-        }
-        this.randomBgs.push(
-          this.$store.state.backgrounds[
-            Math.floor(this.$store.state.backgrounds.length * Math.random())
-          ],
-        )
-        i--
-      }
+      this.pagination++
+      // let i = this.itemsIncr * 3
+      // while (i > 0) {
+      //   const randomBg = this.$store.state.backgrounds[
+      //     Math.floor(this.$store.state.backgrounds.length * Math.random())
+      //   ]
+      //   for (const bg of this.randomBgs) {
+      //     if (bg.url === randomBg.url) {
+      //       continue
+      //     }
+      //   }
+      //   this.randomBgs.push(
+      //     this.$store.state.backgrounds[
+      //       Math.floor(this.$store.state.backgrounds.length * Math.random())
+      //     ],
+      //   )
+      //   i--
+      // }
     },
   },
 }
