@@ -155,12 +155,10 @@ const actions = {
   },
 
   trackClick (ctx, [where, subject]) {
-    if (window && window.ga) {
-      window.ga('send', {
-        hitType: 'event',
-        eventCategory: 'userClick',
-        eventAction: where,
-        eventLabel: subject || 'click',
+    if (window && window.gtag) {
+      window.gtag('event', where, {
+        event_category: 'userClick',
+        event_label: subject || 'click',
       })
     }
   },

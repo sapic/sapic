@@ -13,41 +13,6 @@
 
       gtag('config', 'UA-98294219-4');
     </component>
-
-    <component :is="'script'">
-      if (typeof module === 'object') {
-      window.module = module;
-      module = undefined;
-      }
-
-      if (window.module) module = window.module;
-
-      // yandex
-      !function(t, e, a) {
-      (e[a] = e[a] || []).push(function() {
-      try {
-      e.yaCounter27350393 = new Ya.Metrika({
-      id: 27350393,
-      trackHash: !0
-      })
-      } catch (t) {}
-      });
-      var n = t.getElementsByTagName("script")[0],
-      c = t.createElement("script"),
-      r = function() {
-      n.parentNode.insertBefore(c, n)
-      };
-      c.type = "text/javascript", c.async = !0, c.src = ("https:" == t.location.protocol ? "https:" : "http:") +
-      "//mc.yandex.ru/metrika/watch.js", "[object Opera]" == e.opera ? t.addEventListener("DOMContentLoaded", r, !1) :
-      r()
-      }(document, window, "yandex_metrika_callbacks");
-    </component>
-    <noscript>
-      <!-- yandex -->
-      <div>
-      <img src='//mc.yandex.ru/watch/27350393' style='position:absolute; left:-9999px;' alt=''>
-      </div>
-    </noscript>
   </div>
 </template>
 
