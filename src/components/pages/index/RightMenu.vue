@@ -98,6 +98,22 @@
     .profile_group.profile_primary_group
       .profile_group_avatar
         a(
+          href="https://www.steamwishlistcalculator.com/",
+          target="_blank",
+          rel="noopener noreferrer"
+        )
+          img(src="@/assets/images/steamwishlist.png")
+      .profile_group_text
+        a.whiteLink(
+          href="https://www.steamwishlistcalculator.com/",
+          target="_blank",
+          rel="noopener noreferrer"
+        ) Steam Wishlist Calculator
+        .profile_group_membercount Calculate the total cost of your Steam wishlist!
+
+    .profile_group.profile_primary_group
+      .profile_group_avatar
+        a(
           href="https://steamlevels.com/r/steamdesign",
           target="_blank",
           rel="noopener noreferrer"
@@ -131,7 +147,7 @@ export default {
   height 100%
   display flex
   flex-direction column
-  overflow-y hidden
+  overflow-y scroll
 
   .profile_video
     width 300px
@@ -139,8 +155,6 @@ export default {
     display block
     margin-bottom 30px
     position relative
-    left 5px
-    top 10px
 
   .partnerLabel
     margin-left 10px
