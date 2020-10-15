@@ -109,6 +109,7 @@ export default {
 
     addRandomBgs () {
       this.pagination++
+      this.$store.dispatch('trackClick', ['loadMoreRandomBGs'])
       // let i = this.itemsIncr * 3
       // while (i > 0) {
       //   const randomBg = this.$store.state.backgrounds[

@@ -94,6 +94,7 @@ export default {
       },
       set (value) {
         this.$store.commit('setPreviewScale', value)
+        this.$store.dispatch('trackClick', ['setPreviewScale', value])
       },
     },
     /* eslint-disable */
