@@ -95,11 +95,11 @@ export default {
 
     setBackgroundItem (item) {
       this.$store.commit('setBackground', {
-        background: item.steamUrl,
+        background: this.getUrl(item.steamUrl),
         info: item,
       })
 
-      window.location.hash = '#' + item.steamUrl
+      window.location.hash = '#' + this.getUrl(item.steamUrl)
     },
 
     getUrl (url) {
