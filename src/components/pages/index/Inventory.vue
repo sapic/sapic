@@ -90,6 +90,7 @@ export default {
         background: item.actions[0].link,
         info: item,
       })
+      window.location.hash = '#' + item.actions[0].link
     },
 
     setBackgroundItem (item) {
@@ -97,6 +98,8 @@ export default {
         background: item.steamUrl,
         info: item,
       })
+
+      window.location.hash = '#' + item.steamUrl
     },
 
     getUrl (url) {

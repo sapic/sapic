@@ -65,6 +65,7 @@ const mutations = {
       }
       state.bgInfo = newBg
       state.format = newBg.steamUrl.split('.').slice(-1)[0]
+      window.location.hash = '#' + state.background
     }
 
     if (state.nextRandomBackgrounds.length < 3) {
