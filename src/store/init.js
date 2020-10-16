@@ -1,3 +1,5 @@
+const StoreImageRegex = /steamcdn-a\.akamaihd\.net\/steamcommunity\/public\/images\/items\/.+(jpg|webm)$/i
+
 export default async (store) => {
   if (localStorage) {
   // listen to updates to save store
@@ -57,6 +59,13 @@ export default async (store) => {
     )
   ) {
     dispatch('loadBackpack')
+  }
+
+  if (window.location.hash !== '') {
+    const url = window.location.hash.slice(1)
+    if (StoreImageRegex.test(url)) {
+      commit('setBackgroundURL', url)
+    }
   }
 }
 
