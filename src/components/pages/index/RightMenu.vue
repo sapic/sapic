@@ -148,6 +148,7 @@ export default {
   display flex
   flex-direction column
   overflow-y scroll
+  scrollbar-width thin
 
   .profile_video
     width 300px
