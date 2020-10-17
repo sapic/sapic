@@ -14,14 +14,14 @@
     .profile_group.profile_primary_group
       .profile_group_avatar
         a(
-          href="https://center.steam.design/",
+          href="https://center.steam.design/?utm_source=steam.design",
           target="_blank",
           rel="noopener noreferrer"
         )
           img(src="@/assets/images/text-center.svg", width="64")
       .profile_group_text
         a.whiteLink(
-          href="https://center.steam.design/",
+          href="https://center.steam.design/?utm_source=steam.design",
           target="_blank",
           rel="noopener noreferrer"
         ) Text Center Tool
