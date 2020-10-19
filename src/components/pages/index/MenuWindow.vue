@@ -2,6 +2,7 @@
 .menu__window
   .menu__window-buttons
     .menu__window-button.menu__window-button-download(@click="getZipClick")
+      font-awesome-icon.menu__window-icon(icon="check-circle")
       .menu__window-button-text Download ZIP
 
     .menu__window-shadow
@@ -333,6 +334,10 @@ export default {
   margin-bottom 5px
   margin-top 5px
   text-align center
+
+.menu__window-icon
+  color $color-white
+  margin-right 6px
 
 *
   box-sizing border-box

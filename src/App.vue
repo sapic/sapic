@@ -1,7 +1,7 @@
 <template lang="pug">
 .main__container
   //- index
-  router-view 
+  router-view
 </template>
 
 <script>
