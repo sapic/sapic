@@ -12,7 +12,6 @@
                     span.actual_persona_name {{ $store.state.user.screenName }}
                 .playerAvatar.profile_header_size.online
                   .playerAvatarAutoSizeInner
-                    img.sapicAva(:src='$store.state.user.avatar')
                 .profile_header_badgeinfo
                   .profile_header_badgeinfo_badge_area
                   .profile_header_actions
@@ -44,8 +43,6 @@
                               height: `${$store.state.bgSize.h - 272}px`\
                             }")
                             // <img width="100%" style="max-width: 100px;" :src="$store.state.background">
-                        .screenshot_showcase_smallscreenshot.screenshot_count
-                          .screenshot_showcase_screenshot
 
 </template>
 
@@ -72,6 +69,7 @@ export default {
   margin 0 auto
   background-repeat no-repeat
   background-position center bottom
+  border-radius 0px 0px 5px 5px
 
 .profile_background_overlay_content
   background-color $color-main-transparent
@@ -81,6 +79,7 @@ export default {
   bottom 0
   left 0
   z-index 1
+  border-radius 0px 0px 5px 5px
 
 .profile_main_artbox_side1
   width 100%
@@ -155,7 +154,7 @@ div
         width 100%
         height 100%
 
-@media screen and (-webkit-min-device-pixel-ratio: 0)
+@media screen and (-webkit-min-device-pixel-ratio 0)
   div
     &.profile_page
       &.has_profile_background
@@ -260,7 +259,8 @@ div
     margin-bottom 4px
 
 .screenshot_showcase_screenshot
-  border 1px solid $color-black
+  border 1px solid transparent
+  border-radius 5px
   display block
   white-space nowrap
   overflow hidden
