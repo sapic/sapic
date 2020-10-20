@@ -91,16 +91,11 @@
         rel="noopener noreferrer"
       )
         .menu__window-multi-button Old Site
+
       a.menu__window-multi-label(
-        href="https://chrome.google.com/webstore/detail/steam-profile-assistant/mjmabgdoainclinjecbkdancpamdiaih?hl=en",
+        :href="extensionLink",
         target="_blank",
-        v-if="testUserAgent() == 1"
-      )
-        .menu__window-multi-button Extension
-      a.menu__window-multi-label(
-        href="https://addons.mozilla.org/en-US/firefox/addon/steam-design-buttons/",
-        target="_blank",
-        v-if="testUserAgent() == 2"
+        v-if="extensionLink"
       )
         .menu__window-multi-button Extension
 
@@ -154,6 +149,16 @@ export default {
       )
       return `https://steamcommunity.com/openid/login?openid.ns=http%3A%2F%2Fspecs.openid.net%2Fauth%2F2.0&openid.mode=checkid_setup&openid.return_to=${returnUrl}&openid.realm=${realm}&openid.ns.sreg=http%3A%2F%2Fopenid.net%2Fextensions%2Fsreg%2F1.1&openid.claimed_id=http%3A%2F%2Fspecs.openid.net%2Fauth%2F2.0%2Fidentifier_select&openid.identity=http%3A%2F%2Fspecs.openid.net%2Fauth%2F2.0%2Fidentifier_select`
     },
+
+    extensionLink () {
+      if (navigator.userAgent.indexOf('Chrome') !== -1) {
+        return 'https://chrome.google.com/webstore/detail/steam-profile-assistant/mjmabgdoainclinjecbkdancpamdiaih'
+      } else if (navigator.userAgent.indexOf('Firefox') !== -1) {
+        return 'https://addons.mozilla.org/en-US/firefox/addon/steam-design-buttons/'
+      }
+
+      return null
+    },
   },
 
   methods: {
@@ -174,16 +179,6 @@ export default {
     getCurrentBGClick () {
       this.$store.dispatch('getCurrentBg')
       this.$store.dispatch('trackClick', ['getBGButton'])
-    },
-
-    testUserAgent () {
-      if (navigator.userAgent.indexOf('Chrome') !== -1) {
-        return 1
-      } else if (navigator.userAgent.indexOf('Firefox') !== -1) {
-        return 2
-      } else {
-        return 0
-      }
     },
   },
 }
