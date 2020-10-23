@@ -1,11 +1,6 @@
 <template lang="pug">
 .right__menu
-  a.profile_video(
-    href="https://steamlevels.com/r/steamdesign",
-    target="_blank",
-    rel="noreferrer noopener"
-  )
-    video(muted, autoplay, playsinline, loop, ref="profile_video")
+  ads
 
   .profile_count_link
     span.partnerLabel Our Other Projects
@@ -129,11 +124,11 @@
 </template>
 
 <script>
+import Ads from './Ads'
+
 export default {
-  mounted () {
-    this.$nextTick(() => {
-      this.$refs.profile_video.src = require('@/assets/images/steam_levels.mp4')
-    })
+  components: {
+    Ads,
   },
 }
 </script>
