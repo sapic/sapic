@@ -10,9 +10,6 @@
     "dev": "vue-cli-service serve src/index.js"
   },
   "dependencies": {
-    "@fortawesome/fontawesome-svg-core": "^1.2.32",
-    "@fortawesome/free-solid-svg-icons": "^5.15.1",
-    "@fortawesome/vue-fontawesome": "2",
     "@tweenjs/tween.js": "^18.6.0",
     "@vue/cli-service": "^4.5.7",
     "@vue/component-compiler-utils": "^3.2.0",

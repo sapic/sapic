@@ -2,7 +2,7 @@
 .menu__window
   .menu__window-buttons
     .menu__window-button.menu__window-button-download(@click="getZipClick")
-      font-awesome-icon.menu__window-icon(icon="check-circle")
+      cloud-download.menu__window-icon
       .menu__window-button-text Download ZIP
 
     .menu__window-shadow
@@ -87,7 +87,13 @@
 </template>
 
 <script>
+import CloudDownload from './CloudDownload'
+
 export default {
+  components: {
+    CloudDownload,
+  },
+
   computed: {
     previewScale: {
       get () {
@@ -338,6 +344,10 @@ export default {
 .menu__window-icon
   color $color-white
   margin-right 6px
+  width 20px
+  height 20px
+  color white
+  fill currentColor
 
 *
   box-sizing border-box
