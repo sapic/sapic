@@ -72,12 +72,32 @@
         .menu__window-button-text Logout
 
   .menu__window-credits
-    a.menu__window-button(
-      href="https://old.steam.design",
-      target="_blank",
-      rel="noopener noreferrer"
-    )
-      .menu__window-button-text Old version
+    .menu__window-button.noclick.small
+      .menu__window-button-text Our:
+    .menu__window-multi-container
+      a.menu__window-multi-label(
+        href="https://github.com/sapic/sapic",
+        target="_blank"
+      )
+        .menu__window-multi-button GitHub
+      a.menu__window-multi-label(
+        href="https://steamcommunity.com/groups/sapic",
+        target="_blank"
+      )
+        .menu__window-multi-button Group
+      a.menu__window-multi-label(
+        href="https://old.steam.design",
+        target="_blank",
+        rel="noopener noreferrer"
+      )
+        .menu__window-multi-button Old Site
+
+      a.menu__window-multi-label(
+        :href="extensionLink",
+        target="_blank",
+        v-if="extensionLink"
+      )
+        .menu__window-multi-button Extension
 
     img.menu__window-discord-image(
       src="https://discordapp.com/api/guilds/304986224467378177/widget.png?style=banner2",
@@ -128,6 +148,16 @@ export default {
           : 'http://localhost:3000',
       )
       return `https://steamcommunity.com/openid/login?openid.ns=http%3A%2F%2Fspecs.openid.net%2Fauth%2F2.0&openid.mode=checkid_setup&openid.return_to=${returnUrl}&openid.realm=${realm}&openid.ns.sreg=http%3A%2F%2Fopenid.net%2Fextensions%2Fsreg%2F1.1&openid.claimed_id=http%3A%2F%2Fspecs.openid.net%2Fauth%2F2.0%2Fidentifier_select&openid.identity=http%3A%2F%2Fspecs.openid.net%2Fauth%2F2.0%2Fidentifier_select`
+    },
+
+    extensionLink () {
+      if (navigator.userAgent.indexOf('Chrome') !== -1) {
+        return 'https://chrome.google.com/webstore/detail/steam-profile-assistant/mjmabgdoainclinjecbkdancpamdiaih'
+      } else if (navigator.userAgent.indexOf('Firefox') !== -1) {
+        return 'https://addons.mozilla.org/en-US/firefox/addon/steam-design-buttons/'
+      }
+
+      return null
     },
   },
 
@@ -348,6 +378,34 @@ export default {
   height 20px
   color white
   fill currentColor
+
+.menu__window-multi-container
+  display flex
+  flex-direction row
+  flex-wrap wrap
+  justify-content space-between
+  padding 0 10px
+  max-width 250px
+
+.menu__window-multi-label
+  transition all 0.25s ease
+  background-color $color-button
+  border-radius 3px
+  cursor pointer
+  margin-top 5px
+  text-align center
+  width 49%
+  flex 0 0 auto
+  padding 12px
+  text-decoration none
+
+  &:hover
+    background $color-button-hover
+
+.menu__window-multi-button
+  bottom 11px
+  text-shadow 0px 4px 10px $color-black
+  color $color-white
 
 *
   box-sizing border-box
