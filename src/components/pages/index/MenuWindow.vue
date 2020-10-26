@@ -86,7 +86,7 @@
       )
         .menu__window-multi-button Group
       a.menu__window-multi-label(
-        href="https://old.steam.design",
+        href="https://old.steam.design/?utm_source=steam.design",
         target="_blank",
         rel="noopener noreferrer"
       )
