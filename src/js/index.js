@@ -546,12 +546,6 @@ function getTextWidth(text, font) {
 }
 
 function toggleCustomize() {
-    getShareUrl(btoa(JSON.stringify(payload))).then(function (data) {
-        var textWidth = getTextWidth('https://steam.design/s/' + data.ShortCode, "13px Arial");
-        $('#shareWidth').css('width', Math.ceil(textWidth) + 5);
-        $("#shareURL").val('https://steam.design/s/' + data.ShortCode);
-    });
-
     $('#customize').toggle();
     $('#customizeBackground').toggle();
     var hover = false;
@@ -1192,27 +1186,6 @@ function trackClick(where, subject) {
         eventCategory: 'userClick',
         eventAction: where,
         eventLabel: subject || 'click'
-    });
-}
-
-function getShareUrl(base64) {
-    return new Promise(function (resolve, reject) {
-        var shortCode = store.get('shortCode' + base64);
-
-        if (shortCode) {
-            console.log(shortCode);
-            return resolve(shortCode);
-        }
-
-        tinyxhr('https://steam.design/shorten/' + base64, function (err, data) {
-            if (err) {
-                return
-            }
-            data = JSON.parse(data)
-
-            store.set('shortCode' + base64, data.code);
-            resolve(data.code);
-        });
     });
 }
 

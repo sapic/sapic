@@ -52,7 +52,7 @@ html
                         #hideBacksList.fa.fa-arrow-up(title='Hide Inventory', style='position:relative; top:2px; left:-15px; cursor:pointer; display:none;')
                         span#steamAuth
                             a(
-                                href="https://steamcommunity.com/openid/login?openid.ns=http%3A%2F%2Fspecs.openid.net%2Fauth%2F2.0&openid.mode=checkid_setup&openid.return_to=http%3A%2F%2Fsteam.design%2Findex.html%23login&openid.realm=http%3A%2F%2Fsteam.design&openid.ns.sreg=http%3A%2F%2Fopenid.net%2Fextensions%2Fsreg%2F1.1&openid.claimed_id=http%3A%2F%2Fspecs.openid.net%2Fauth%2F2.0%2Fidentifier_select&openid.identity=http%3A%2F%2Fspecs.openid.net%2Fauth%2F2.0%2Fidentifier_select"
+                                href="https://steamcommunity.com/openid/login?openid.ns=http%3A%2F%2Fspecs.openid.net%2Fauth%2F2.0&openid.mode=checkid_setup&openid.return_to=http%3A%2F%2Fold.steam.design%2Findex.html%23login&openid.realm=http%3A%2F%2Fold.steam.design&openid.ns.sreg=http%3A%2F%2Fopenid.net%2Fextensions%2Fsreg%2F1.1&openid.claimed_id=http%3A%2F%2Fspecs.openid.net%2Fauth%2F2.0%2Fidentifier_select&openid.identity=http%3A%2F%2Fspecs.openid.net%2Fauth%2F2.0%2Fidentifier_select"
                                 class="name"
                             )
                                 img(src="images/steamsignin.png"
@@ -141,16 +141,7 @@ html
                                                                         span.commentthread_subscribe_checkbox
                                                                             span.commentthread_subscribe_check
                                                                         span.commentthread_subscribe_desc  Enable Workshop Showcase
-                                                                .market_listing_row.market_recent_listing_row
-                                                                    .bb_h1
-                                                                        b Share URL:
-                                                                    span(style='margin-left:5px;margin-top:5px;')
-                                                                        | Copy and use this URL to share your background and crop settings with someone else!
-                                                                    .bg_link(style='display:-webkit-box')
-                                                                        .btn_grey_white_innerfade.btn_small.copy-btn(data-clipboard-target='#shareURL', style='position:relative;top:9px;')
-                                                                            span Copy
-                                                                        #shareWidth.commentthread_entry_quotebox(style='width:165px;margin:5px;')
-                                                                            input#shareURL.dynInput.commentthread_textarea(type='text', size='500', onfocus='this.select()', readonly='', placeholder='Loading...')
+
                                         a#saveAll.btn_green_white_innerfade.btn_medium.saveButton(style='left:6px; position:relative;')
                                             .saveButtonShadow
                                             span(style='color:#ffffff')
