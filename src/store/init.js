@@ -41,14 +41,17 @@ export default async (store) => {
 
   // console.log('url', parseQuery())
 
+  const jsonUrl = require('@/assets/bg-asset.json')
   // If state has no bgs, fetch some from api
   if (
-    (!state.backgrounds || state.backgrounds.length < 10) || // if no bgs
-    (state.backgroundsUpdateTime > 0 && new Date() - state.backgroundsUpdateTime > 604800000) // or if last bg update > week ago
+    state.bgJsonUrl !== jsonUrl || // if we have new bgs json
+    (!state.backgrounds || state.backgrounds.length < 10) // if no bgs
+    // (state.backgroundsUpdateTime > 0 && new Date() - state.backgroundsUpdateTime > 604800000) // or if last bg update > week ago
   ) {
-    const bgs = await fetch('/bg.json').then(r => r.json())
+    const bgs = await fetch(jsonUrl).then(r => r.json())
 
     commit('setBackgrounds', bgs)
+    commit('setBgJsonUrl', jsonUrl)
     dispatch('randomBackground')
   }
 

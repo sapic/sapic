@@ -22,6 +22,7 @@ const state = {
   inventory: [],
   inventoryUpdateTime: 0,
   v: 1,
+  bgJsonUrl: null, // url of file with backgrounds
 }
 
 const mutations = {
@@ -116,6 +117,10 @@ const mutations = {
       id: 0,
     }
     state.inventory = []
+  },
+
+  setBgJsonUrl (state, v) {
+    state.bgJsonUrl = v
   },
 }
 
