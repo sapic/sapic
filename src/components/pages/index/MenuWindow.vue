@@ -10,6 +10,12 @@
     .menu__window-button(@click="randomBGClick")
       .menu__window-button-text Random BG
 
+    .menu__window-hint
+      a.menu__window-hint__text(
+        href="https://bgs.steam.design/?utm_source=steam.design",
+        target="_blank"
+      ) If you like Random BG button, check out our new experiment!
+
     .menu__window-button(@click="getCurrentBGClick")
       .menu__window-button-text Get this BG
 
@@ -196,6 +202,16 @@ export default {
   display flex
   flex-direction column
   align-items center
+
+  &-hint
+    padding 0px 20px
+    margin 5px 0 20px 0
+    text-align center
+
+    &__text
+      text-align center
+      font-size 12px
+      color white
 
 .menu__window-section-container
   margin-top 10px
