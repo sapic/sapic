@@ -1181,10 +1181,12 @@ window.onload = function () {
 }
 
 function trackClick(where, subject) {
-    gtag('event', where, {
-        event_category: 'userClick',
-        event_label: subject || 'click'
-    });
+    if (window && window.gtag) {
+        window.gtag('event', where, {
+            event_category: 'userClick',
+            event_label: subject || 'click'
+        });
+    }
 }
 
 // tinyxhr by Shimon Doodkin - licanse: public doamin - https://gist.github.com/4706967
