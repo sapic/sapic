@@ -1181,11 +1181,9 @@ window.onload = function () {
 }
 
 function trackClick(where, subject) {
-    ga('send', {
-        hitType: 'event',
-        eventCategory: 'userClick',
-        eventAction: where,
-        eventLabel: subject || 'click'
+    gtag('event', where, {
+        event_category: 'userClick',
+        event_label: subject || 'click'
     });
 }
 

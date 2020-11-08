@@ -15,7 +15,7 @@
         "staticPath": "static"
     },
     "devDependencies": {
-        "parcel-bundler": "^1.12.4",
+        "parcel-bundler": "^1.12.3",
         "parcel-plugin-purgecss": "^3.0.0",
         "parcel-plugin-static-files-copy": "^2.4.3",
         "pug": "^3.0.0",

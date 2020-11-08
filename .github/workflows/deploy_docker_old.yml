@@ -3,8 +3,7 @@ name: Deploy docker
 on:
   push:
     branches:
-      - master
-
+      - old
 
 jobs:
   buildpush:
@@ -14,11 +13,11 @@ jobs:
       - name: Build
         run: |
           githubsha="${{ github.sha }}"
-          docker build --build-arg CIRCLE_BUILD_NUM=${githubsha:0:8} . -t sapic/sapic
+          docker build --build-arg CIRCLE_BUILD_NUM=${githubsha:0:8} . -t sapic/sapic:old
       - name: Login
         run: docker login -u ${{ secrets.DOCKER_USER }} -p ${{ secrets.DOCKER_PASS }}
       - name: Push
-        run: docker push sapic/sapic
+        run: docker push sapic/sapic:old
       - name: Update on server
         run: |
           ssh_path="$HOME/.ssh"
@@ -31,7 +30,7 @@ jobs:
           ssh-keyscan -H 159.65.199.184 >> "$ssh_path/known_hosts"
 
           ssh -i $HOME/.ssh/deploy_key root@159.65.199.184 << EOF
-            docker pull sapic/sapic
-            docker stop sapic && docker rm sapic
-            docker run -d -it --restart="always" --name sapic --network sapic sapic/sapic:latest
+            docker pull sapic/sapic:old
+            docker stop sapicold && docker rm sapicold
+            docker run -d -it --restart="always" --name sapicold --network sapic sapic/sapic:latest
           EOF
