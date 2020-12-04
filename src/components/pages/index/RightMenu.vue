@@ -72,7 +72,7 @@
           target="_blank",
           rel="noopener noreferrer"
         ) twitch.tv/ashsii
-        .profile_group_membercount Animating steam artwork livestreams with After Effects & Photoshop
+        .profile_group_membercount Animating steam artwork livestreams with Adobe AE & PS
 
     .profile_group.profile_primary_group
       .profile_group_avatar
