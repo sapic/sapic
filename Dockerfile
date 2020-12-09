@@ -18,9 +18,8 @@ COPY . .
 
 RUN yarn build
 
-ARG CIRCLE_BUILD_NUM=30
-RUN CIRCLE_BUILD_NUM=$CIRCLE_BUILD_NUM yarn build
-
 FROM nginx:stable
+
+COPY nginx.conf /etc/nginx/conf.d/default.conf
 
 COPY --from=build /app/dist /usr/share/nginx/html
