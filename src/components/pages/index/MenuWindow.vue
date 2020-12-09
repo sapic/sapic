@@ -177,8 +177,8 @@ export default {
       this.$store.dispatch('trackClick', ['randomBGButton'])
     },
 
-    getZipClick () {
-      this.$store.dispatch('downloadZip')
+    getZipClick (e) {
+      this.$store.dispatch('downloadZip', { ctrl: e.ctrlKey, alt: e.altKey })
       this.$store.dispatch('trackClick', ['getZIPButton'])
     },
 

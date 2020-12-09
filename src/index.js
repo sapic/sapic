@@ -4,6 +4,7 @@ import store from './store'
 import App from './App.vue'
 import Index from './components/pages/index/index'
 import Download from './components/pages/download'
+import Converter from './components/pages/converter'
 
 Vue.config.productionTip = false
 
@@ -17,6 +18,12 @@ const router = new VueRouter({
     },
     {
       path: '/download', component: Download,
+    },
+    {
+      path: '/converter', component: Converter,
+    },
+    {
+      path: '/converter/:raw', component: Converter,
     },
     {
       path: '*', component: Index,

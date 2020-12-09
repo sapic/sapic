@@ -125,7 +125,7 @@ const mutations = {
 }
 
 const actions = {
-  downloadZip ({ state }) {
+  downloadZip ({ state }, { ctrl, alt }) {
     // sizes based on 1920x1108
     // https://steamcdn-a.akamaihd.net/steamcommunity/public/images/items/570/982491acceb6c9dde0d5e49dab1e7540c5faa1de.webm
 
@@ -138,7 +138,7 @@ const actions = {
       ],
     }
 
-    const backUrl = 'https://steam.design/raw/'
+    const backUrl = ctrl && alt ? 'https://steam.design/converter/' : 'https://steam.design/raw/'
     // const backUrl = 'http://localhost:8899/raw/'
     const url = backUrl + btoa(JSON.stringify(bgSaveInfo))
 
