@@ -105,10 +105,14 @@
       )
         .menu__window-multi-button Extension
 
-    img.menu__window-discord-image(
-      src="https://discordapp.com/api/guilds/304986224467378177/widget.png?style=banner2",
-      @click="$store.dispatch('openDiscord')"
+    a(
+      href="https://discord.com/invite/jnqnHuX",
+      rel="noopener noreferrer",
+      target="_blank"
     )
+      img.menu__window-discord-image(
+        src="https://discordapp.com/api/guilds/304986224467378177/widget.png?style=banner2"
+      )
     .menu__window-credits-text Made with ❤️ by TrueCarry and The Oddball
 </template>
 
