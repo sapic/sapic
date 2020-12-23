@@ -138,7 +138,8 @@ const actions = {
       ],
     }
 
-    const backUrl = ctrl && alt ? 'https://steam.design/converter/' : 'https://steam.design/raw/'
+    // const backUrl = ctrl && alt ? 'https://steam.design/converter/' : 'https://steam.design/raw/'
+    const backUrl = state.background.indexOf('.webm') !== -1 ? 'https://steam.design/converter/' : 'https://steam.design/raw/'
     // const backUrl = 'http://localhost:8899/raw/'
     const url = backUrl + btoa(JSON.stringify(bgSaveInfo))
 
