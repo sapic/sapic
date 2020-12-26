@@ -108,6 +108,7 @@
 
       <button
         v-if="!downloadStarted"
+        class="download__button"
         @click="downloadClick"
       >
         Download
@@ -425,4 +426,22 @@ async function digestMessage (message) {
 
     .input__container
       margin 0 10px
+
+.download__button
+  width 200px
+  height 60px
+  background #09BC8A
+  border none
+  color white
+  font-weight 600
+  font-size 24px
+  font-family 'Source Sans Pro', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, 'Helvetica Neue', Arial, sans-serif
+  border-radius 12px
+  cursor pointer
+
+  &:hover
+    background #0AD69C
+
+  &:focus
+    outline none
 </style>
