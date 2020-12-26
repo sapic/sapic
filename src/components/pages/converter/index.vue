@@ -43,7 +43,7 @@
 
 <script>
 
-const url = 'https://cdn.cloudflare.steamstatic.com/steamcommunity/public/images/items/1263950/4d466f77edf3265a253fba79d47bc91a37e34920.webm'
+// const url = 'https://cdn.cloudflare.steamstatic.com/steamcommunity/public/images/items/1263950/4d466f77edf3265a253fba79d47bc91a37e34920.webm'
 export default {
   data () {
     return {
@@ -162,7 +162,7 @@ export default {
         await ffmpeg.load()
       }
 
-      ffmpeg.FS('writeFile', 'inputfile', await window.FFmpeg.fetchFile(url))
+      ffmpeg.FS('writeFile', 'inputfile', await window.FFmpeg.fetchFile(this.url))
 
       for (const info of this.images) {
         const convertString = `crop=${info.w}:min(ih-${info.y}\\,${info.h}):${info.x}:${info.y}`
