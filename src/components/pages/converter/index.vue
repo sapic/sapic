@@ -300,7 +300,7 @@ export default {
         const convertString = `crop=${info.w}:min(ih-${info.y}\\,${info.h}):${info.x}:${info.y}`
         const outputName = 'test.' + this.outputFormat
 
-        const convertArgs = [
+        let convertArgs = [
           '-i', 'inputfile',
           // "-i", palette.Name(),
           '-vf', convertString,
@@ -311,6 +311,23 @@ export default {
           '-row-mt', '1',
           '-y', outputName,
         ]
+
+        if (this.outputFormat === 'mp4') {
+          convertArgs = [
+            '-i', 'inputfile',
+            '-vf', convertString + ',format=yuv420p',
+            // '-b:v', '0',
+            // '-crf', '30',
+            // '-pass', '2',
+            // "-lossless", "1",
+            // '-row-mt', '1',
+            // '-vf', 'format=yuv420p',
+            '-c:v', 'libx264',
+            // '-preset', 'veryslow',
+            '-crf', '5',
+            '-y', outputName,
+          ]
+        }
 
         await ffmpeg.run(...convertArgs)
         // await ffmpeg.run('-i', 'inputfile', 'test.mp4')
