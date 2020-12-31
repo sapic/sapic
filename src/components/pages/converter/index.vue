@@ -9,6 +9,16 @@
       >
     </div>
 
+    <div class="url__container">
+      <label for="fileInput">Image Input:</label>
+      <input
+        id="fileInput"
+        ref="fileInput"
+        type="file"
+        @change="onUploadFiles"
+      >
+    </div>
+
     <div class="format__container">
       <div>Format:</div>
       <div class="inputs">
@@ -154,6 +164,8 @@ export default {
 
       downloadStarted: false,
       outputFormat: 'mp4',
+
+      file: null,
     }
   },
 
@@ -199,6 +211,14 @@ export default {
   },
 
   methods: {
+    async onUploadFiles () {
+      if (this.$refs.fileInput && this.$refs.fileInput.files && this.$refs.fileInput.files.length > 0) {
+        this.file = this.$refs.fileInput.files[0]
+      } else {
+        this.file = null
+      }
+    },
+
     async addFfmpegScript () {
       if (document.getElementById('ffmpegimport')) return // was already loaded
       var scriptTag = document.createElement('script')
@@ -285,7 +305,11 @@ export default {
 
       this.downloadStarted = true
 
-      ffmpeg.FS('writeFile', 'inputfile', await window.FFmpeg.fetchFile(this.url))
+      const fileData = this.file
+        ? await window.FFmpeg.fetchFile(this.file)
+        : await window.FFmpeg.fetchFile(this.url)
+
+      ffmpeg.FS('writeFile', 'inputfile', fileData)
 
       for (const info of this.images) {
         if (info.enabled) {
