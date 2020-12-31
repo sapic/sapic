@@ -305,9 +305,24 @@ export default {
 
       this.downloadStarted = true
 
-      const fileData = this.file
-        ? await window.FFmpeg.fetchFile(this.file)
-        : await window.FFmpeg.fetchFile(this.url)
+      let fileData
+      try {
+        fileData = this.file
+          ? await window.FFmpeg.fetchFile(this.file)
+          : await window.FFmpeg.fetchFile(this.url)
+      } catch (e) {
+        this.logs += `
+================================
+================================
+================================
+================================
+File download error, try uploading it manually
+================================
+================================
+================================
+================================
+        `
+      }
 
       ffmpeg.FS('writeFile', 'inputfile', fileData)
 
