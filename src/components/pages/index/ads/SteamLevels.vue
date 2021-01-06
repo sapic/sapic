@@ -1,7 +1,7 @@
 <template>
   <a
     class="profile_video"
-    href="https://steamlevels.com/r/steamdesign"
+    href="https://steamlevels.com"
     target="_blank"
     rel="noreferrer noopener"
   >

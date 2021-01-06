@@ -125,14 +125,14 @@
     .profile_group.profile_primary_group
       .profile_group_avatar
         a(
-          href="https://steamlevels.com/r/steamdesign",
+          href="https://steamlevels.com",
           target="_blank",
           rel="noopener noreferrer"
         )
           img(src="@/assets/images/steamlevels.jpg")
       .profile_group_text
         a.whiteLink(
-          href="https://steamlevels.com/r/steamdesign",
+          href="https://steamlevels.com",
           target="_blank",
           rel="noopener noreferrer"
         ) SteamLevels
