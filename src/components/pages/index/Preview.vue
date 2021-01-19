@@ -32,7 +32,7 @@
                             backgroundImage: `url('${$store.state.background}')`,\
                             width: `${$store.state.bgSize.w}px`,\
                             height: `${$store.state.bgSize.h - 272}px`,\
-                            backgroundPosition: `${($store.state.bgSize.w / 2) + 451}px -271px` \
+                            backgroundPosition: `${($store.state.bgSize.w / 2) + 451}px -272px` \
                           }")
                         .screenshot_showcase_itemname
                       .screenshot_showcase_rightcol
@@ -42,7 +42,7 @@
                               backgroundImage: `url('${$store.state.background}')`,\
                               width: `${$store.state.bgSize.w}px`,\
                               height: `${$store.state.bgSize.h - 272}px`,\
-                              backgroundPosition: `${($store.state.bgSize.w / 2) - 63}px -271px` \
+                              backgroundPosition: `${($store.state.bgSize.w / 2) - 63}px -272px` \
                             }")
                             // <img width="100%" style="max-width: 100px;" :src="$store.state.background">
 

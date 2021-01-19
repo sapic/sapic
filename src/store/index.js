@@ -134,8 +134,8 @@ const actions = {
       images: [
         { name: 'Artwork_Middle.png', x: (state.bgSize.w / 2) - 466, y: 256, w: 506, h: 2000 },
         { name: 'Artwork_Right_Top.png', x: (state.bgSize.w / 2) + 49, y: 256, w: 100, h: 2000 },
-        { name: 'Artwork_Featured.png', x: 492, y: 256, w: 630, h: 2000 },
-        { name: 'Avatar.png', x: 499, y: 34, w: 164, h: 164 },
+        { name: 'Artwork_Featured.png', x: (state.bgSize.w / 2) - 466, y: 256, w: 630, h: 2000 },
+        { name: 'Avatar.png', x: (state.bgSize.w / 2) - 463, y: 34, w: 164, h: 164 },
       ],
     }
 
