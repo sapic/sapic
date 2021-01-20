@@ -5,21 +5,33 @@
     target="_blank"
     rel="noreferrer noopener"
   >
-    <video
+    <div ref="lottie" />
+    <!-- <video
       ref="profile_video"
       muted
       autoplay
       playsinline
       loop
-    />
+    /> -->
   </a>
 </template>
 
 <script>
+// import lottie from 'lottie-web'
+
 export default {
   mounted () {
     this.$nextTick(() => {
-      this.$refs.profile_video.src = require('@/assets/images/steam_levels.mp4')
+      const lottie = require('lottie-web/build/player/lottie_light.min.js')
+      // this.$refs.profile_video.src = require('@/assets/images/steam_levels.mp4')
+      lottie.loadAnimation({
+        container: this.$refs.lottie, // the dom element that will contain the animation
+        renderer: 'svg',
+        loop: true,
+        autoplay: true,
+        // path: require('../../../../assets/steam_levels.lottie'), // the path to the animation json
+        animationData: require('../../../../assets/steam_levels.json'),
+      })
     })
   },
 }
