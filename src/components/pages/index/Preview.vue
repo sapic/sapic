@@ -31,7 +31,8 @@
                           .profile_main_artbox(:style="{ \
                             backgroundImage: `url('${$store.state.background}')`,\
                             width: `${$store.state.bgSize.w}px`,\
-                            height: `${$store.state.bgSize.h - 272}px`\
+                            height: `${$store.state.bgSize.h - 272}px`,\
+                            backgroundPosition: `${($store.state.bgSize.w / 2) + 451}px -272px` \
                           }")
                         .screenshot_showcase_itemname
                       .screenshot_showcase_rightcol
@@ -40,7 +41,8 @@
                             .profile_main_artbox_side1(:style="{ \
                               backgroundImage: `url('${$store.state.background}')`,\
                               width: `${$store.state.bgSize.w}px`,\
-                              height: `${$store.state.bgSize.h - 272}px`\
+                              height: `${$store.state.bgSize.h - 272}px`,\
+                              backgroundPosition: `${($store.state.bgSize.w / 2) - 63}px -272px` \
                             }")
                             // <img width="100%" style="max-width: 100px;" :src="$store.state.background">
 
@@ -58,7 +60,6 @@ export default {
 .profile_main_artbox
   width 100%
   height 850px
-  background-position -508px -271px
 
 .profile_header_bg
   background $color-main-transparent
@@ -84,7 +85,6 @@ export default {
 .profile_main_artbox_side1
   width 100%
   height 850px
-  background-position -1022px -271px
 
 .profile_customization
   background-color transparent
