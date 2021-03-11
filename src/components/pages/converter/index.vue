@@ -234,6 +234,7 @@ export default {
 
       scriptTag.src = isFirefox ? '/ffmpeg/ffmpeg.min.js' : 'https://unpkg.com/@ffmpeg/ffmpeg@0.9.5/dist/ffmpeg.min.js'
       scriptTag.id = 'ffmpegimport'
+      scriptTag.crossOrigin = 'true'
 
       scriptTag.onload = async () => {
         if (!window.FFmpeg || !window.FFmpeg.createFFmpeg) {
@@ -264,9 +265,9 @@ export default {
           },
         }
 
-        if (isFirefox) {
-          options.corePath = '../ffmpeg/ffmpeg-core.js'
-        }
+        // if (isFirefox) {
+        //   options.corePath = '../ffmpeg/ffmpeg-core.js'
+        // }
 
         const ffmpeg = window.FFmpeg.createFFmpeg(options)
         await ffmpeg.load()
