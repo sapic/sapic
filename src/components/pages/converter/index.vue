@@ -222,7 +222,7 @@ export default {
     async addFfmpegScript () {
       if (document.getElementById('ffmpegimport')) return // was already loaded
       var scriptTag = document.createElement('script')
-      scriptTag.src = 'https://unpkg.com/@ffmpeg/ffmpeg@0.9.5/dist/ffmpeg.min.js'
+      scriptTag.src = '/ffmpeg/ffmpeg.min.js'
       scriptTag.id = 'ffmpegimport'
 
       scriptTag.onload = async () => {
@@ -230,6 +230,7 @@ export default {
           return console.log('no ffmpeg')
         }
         const ffmpeg = window.FFmpeg.createFFmpeg({
+          corePath: '../ffmpeg/ffmpeg-core.js',
           log: false,
           logger: (data) => {
             // console.log('info', data)
