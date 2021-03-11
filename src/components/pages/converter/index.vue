@@ -117,7 +117,14 @@
       <br>
 
       <button
-        v-if="!downloadStarted"
+        v-if="!ffmpeg"
+        class="download__button"
+        disabled
+      >
+        Loading...
+      </button>
+      <button
+        v-else-if="!downloadStarted"
         class="download__button"
         @click="downloadClick"
       >
@@ -221,16 +228,19 @@ export default {
 
     async addFfmpegScript () {
       if (document.getElementById('ffmpegimport')) return // was already loaded
+
+      const isFirefox = navigator.userAgent.toLowerCase().indexOf('firefox') > -1
       var scriptTag = document.createElement('script')
-      scriptTag.src = '/ffmpeg/ffmpeg.min.js'
+
+      scriptTag.src = isFirefox ? '/ffmpeg/ffmpeg.min.js' : 'https://unpkg.com/@ffmpeg/ffmpeg@0.9.5/dist/ffmpeg.min.js'
       scriptTag.id = 'ffmpegimport'
 
       scriptTag.onload = async () => {
         if (!window.FFmpeg || !window.FFmpeg.createFFmpeg) {
           return console.log('no ffmpeg')
         }
-        const ffmpeg = window.FFmpeg.createFFmpeg({
-          corePath: '../ffmpeg/ffmpeg-core.js',
+
+        const options = {
           log: false,
           logger: (data) => {
             // console.log('info', data)
@@ -252,7 +262,13 @@ export default {
             const completedRatio = this.itemsDone / this.itemsTotal
             this.progress = relativeRatio + completedRatio
           },
-        })
+        }
+
+        if (isFirefox) {
+          options.corePath = '../ffmpeg/ffmpeg-core.js'
+        }
+
+        const ffmpeg = window.FFmpeg.createFFmpeg(options)
         await ffmpeg.load()
 
         this.ffmpeg = ffmpeg
@@ -484,4 +500,7 @@ async function digestMessage (message) {
 
   &:focus
     outline none
+
+  &:disabled
+    opacity 0.5
 </style>
