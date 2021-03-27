@@ -137,7 +137,7 @@ export default {
     /* eslint-disable */
     bgURL: {
       set (value) {
-        if (value.match(/\.(?:jpeg|jpg|png|webm)$/i)) {
+        if (value.match(/\.(?:jpeg|jpg|png|webm|mp4)$/i)) {
           this.$store.commit('setBackgroundURL', value)
         }
       },

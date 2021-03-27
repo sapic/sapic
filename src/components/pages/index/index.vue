@@ -10,8 +10,8 @@
             height: `calc(100% * ${scalePercent}) !important`,\
           }"
         )
-          Preview(v-if="$store.state.format !== 'webm'")
-          PreviewWebm(v-else)
+          PreviewWebm(v-if="$store.getters.isVideo")
+          Preview(v-else)
 
           BgPreloader
       RightMenu

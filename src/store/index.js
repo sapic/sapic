@@ -25,6 +25,12 @@ const state = {
   bgJsonUrl: null, // url of file with backgrounds
 }
 
+const getters = {
+  isVideo (state) {
+    return state.format === 'webm' || state.format === 'mp4'
+  },
+}
+
 const mutations = {
   setBackground (state, { background, info }) {
     state.background = background
@@ -125,7 +131,7 @@ const mutations = {
 }
 
 const actions = {
-  downloadZip ({ state }, { ctrl, alt }) {
+  downloadZip ({ state, getters }, { ctrl, alt }) {
     // sizes based on 1920x1108
     // https://steamcdn-a.akamaihd.net/steamcommunity/public/images/items/570/982491acceb6c9dde0d5e49dab1e7540c5faa1de.webm
 
@@ -140,7 +146,7 @@ const actions = {
     }
 
     // const backUrl = ctrl && alt ? 'https://steam.design/converter/' : 'https://steam.design/raw/'
-    const backUrl = state.background.indexOf('.webm') !== -1 ? 'https://steam.design/converter/' : 'https://steam.design/raw/'
+    const backUrl = getters.isVideo ? 'https://steam.design/converter/' : 'https://steam.design/raw/'
     // const backUrl = 'http://localhost:8899/raw/'
     const url = backUrl + btoa(JSON.stringify(bgSaveInfo))
 
@@ -182,6 +188,7 @@ export default new Vuex.Store({
   state,
   mutations,
   actions,
+  getters,
 
   modules: {
   },
