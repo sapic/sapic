@@ -1,5 +1,5 @@
 const StoreImageRegex = /steamcdn-a\.akamaihd\.net\/steamcommunity\/public\/images\/items\/.+(jpg|webm|mp4)$/i
-const AnimatedStoreImageRegex = /cdn\.akamai\.steamstatic\.com\/steamcommunity\/public\/images\/items\/(d+)\/.+.(jpg|webm|mp4)$/i
+const AnimatedStoreImageRegex = /cdn\.akamai\.steamstatic\.com\/steamcommunity\/public\/images\/items\/(\d+)\/.+.(jpg|webm|mp4)$/i
 
 export default async (store) => {
   if (localStorage) {
