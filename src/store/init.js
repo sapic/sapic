@@ -1,4 +1,5 @@
-const StoreImageRegex = /steamcdn-a\.akamaihd\.net\/steamcommunity\/public\/images\/items\/.+(jpg|webm)$/i
+const StoreImageRegex = /steamcdn-a\.akamaihd\.net\/steamcommunity\/public\/images\/items\/.+(jpg|webm|mp4)$/i
+const AnimatedStoreImageRegex = /cdn\.akamai\.steamstatic\.com\/steamcommunity\/public\/images\/items\/(d+)\/.+.(jpg|webm|mp4)$/i
 
 export default async (store) => {
   if (localStorage) {
@@ -66,7 +67,7 @@ export default async (store) => {
 
   if (window.location.hash !== '') {
     const url = window.location.hash.slice(1)
-    if (StoreImageRegex.test(url)) {
+    if (StoreImageRegex.test(url) || AnimatedStoreImageRegex.test(url)) {
       commit('setBackgroundURL', url)
     }
   }
