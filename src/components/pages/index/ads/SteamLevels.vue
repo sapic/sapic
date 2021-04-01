@@ -6,48 +6,41 @@
     rel="noreferrer noopener"
   >
     <div ref="lottie" />
-    <!-- <video
-      ref="profile_video"
-      muted
-      autoplay
-      playsinline
-      loop
-    /> -->
   </a>
 </template>
 
 <script>
-import lottie from 'lottie-web'
-
 export default {
+  data () {
+    return {
+      lottie: null,
+    }
+  },
+
   mounted () {
-    this.$nextTick(() => {
-      // const lottie = require('lottie-web')
-      // require('lottie-web/build/player/lottie_light.min.js')
-      // this.$refs.profile_video.src = require('@/assets/images/steam_levels.mp4')
-      console.log('requiing animaion')
-      const animation = lottie.loadAnimation({
+    // setTimeout(() => {
+    this.$nextTick(async () => {
+      this.lottie = await import(/* webpackChunkName: "stlvl" */'lottie-web/build/player/lottie_light.min.js')
+      const animation = this.lottie.loadAnimation({
         container: this.$refs.lottie, // the dom element that will contain the animation
         renderer: 'svg',
         loop: true,
         autoplay: true,
-        // path: require('../../../../assets/steam_levels.lottie'), // the path to the animation json
-        animationData: require('../../../../assets/steam_levels.json'),
+        animationData: await import(/* webpackChunkName: "stlvl" */'../../../../assets/steam_levels.json'),
       })
 
       animation.addEventListener('data_failed', (e) => {
         console.log('lottie fail', e)
       })
-      // lottie.pause()
-    })
-
-    window.addEventListener('keydown', () => {
-      console.log('pause')
-      lottie.pause()
     })
   },
 }
 </script>
 
 <style>
+.profile_video {
+  width: 300px;
+  height: 600px;
+  display: block;
+}
 </style>
