@@ -21,8 +21,6 @@
 </template>
 
 <script>
-import TWEEN from '@tweenjs/tween.js'
-
 import Preview from './Preview'
 import PreviewWebm from './PreviewWebm'
 import Inventory from './Inventory'
@@ -31,6 +29,8 @@ import MenuWindow from './MenuWindow'
 import BgPreloader from './BgPrealoader'
 import Scripts from '../../Scripts'
 import RightMenu from './RightMenu'
+
+const easeOutQuad = t => t * (2 - t)
 
 export default {
   components: {
@@ -58,23 +58,26 @@ export default {
     },
   },
   watch: {
-    previewScale: function (newValue) {
-      console.log('new preview scale', newValue)
-      function animate () {
-        if (TWEEN.update()) {
+    previewScale (newValue) {
+      const start = Date.now()
+      const end = start + 375
+      let shouldEnd = false
+      const fromValue = this.animatedScale
+      const valueDiff = newValue - this.animatedScale
+
+      const animate = () => {
+        const progress = easeOutQuad(Math.min((Date.now() - start) / 375, 1))
+        const change = valueDiff * progress
+        this.animatedScale = fromValue + change
+
+        if (!shouldEnd) {
           requestAnimationFrame(animate)
         }
+
+        if (Date.now() > end) {
+          shouldEnd = true
+        }
       }
-
-      const that = this
-
-      new TWEEN.Tween({ tweeningValue: this.animatedScale })
-        .to({ tweeningValue: this.previewScale }, 375)
-        .easing(TWEEN.Easing.Quadratic.Out)
-        .onUpdate(function (o, n, q) {
-          that.animatedScale = o.tweeningValue
-        })
-        .start()
 
       animate()
     },
