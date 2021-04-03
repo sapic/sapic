@@ -511,7 +511,7 @@ export default {
     &-title
       background-color $color-button
       width 100%
-      // margin 0 5px
+      margin 0
       box-sizing border-box
       border-radius 3px
       text-align center
