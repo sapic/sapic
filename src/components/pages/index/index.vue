@@ -14,8 +14,10 @@
           Preview(v-else)
 
           BgPreloader
-      RightMenu
-      Inventory
+      template(v-if="!isMobile")
+        RightMenu
+        Inventory
+      MobileHeader(v-else)
       Scripts
       div(id="nn_lb2")
 </template>
@@ -29,6 +31,7 @@ import MenuWindow from './MenuWindow'
 import BgPreloader from './BgPrealoader'
 import Scripts from '../../Scripts'
 import RightMenu from './RightMenu'
+import MobileHeader from './MobileHeader'
 
 const easeOutQuad = t => t * (2 - t)
 
@@ -43,6 +46,7 @@ export default {
     PreviewWebm,
     BgPreloader,
     RightMenu,
+    MobileHeader,
   },
   data () {
     return {
@@ -55,6 +59,10 @@ export default {
     },
     previewScale () {
       return this.$store.state.previewScale
+    },
+
+    isMobile () {
+      return window.screen.width < 560
     },
   },
   watch: {
@@ -115,6 +123,10 @@ export default {
 .zoom_out
   margin 0
   transform-origin 0 0
+
+@media screen and (max-width 560px)
+  .body__wrapper
+    flex-direction column-reverse
 </style>
 
 <style>

@@ -5,12 +5,12 @@
       cloud-download.menu__window-icon
       .menu__window-button-text Download ZIP
 
-    .menu__window-shadow
+    //- .menu__window-shadow
 
     .menu__window-button(@click="randomBGClick")
       .menu__window-button-text Random BG
 
-    .menu__window-hint
+    .menu__window-hint(v-if="!isMobile")
       a.menu__window-hint__text(
         href="https://bgs.steam.design/top?utm_source=steam.design",
         target="_blank"
@@ -32,53 +32,90 @@
     //-   input.menu__window-button.textbox.px(placeholder="px")
 
     .menu__window-section-container
-      .menu__window-button.noclick.small
+      .menu__window-title
         .menu__window-button-text Zoom Scale
 
       .menu__window-scale__container
-        input#scale50.menu__window-scale__input(
-          name="scale",
-          type="radio",
-          value="50",
-          v-model="previewScale"
-        )
-        label.menu__window-scale__label(for="scale50")
-          .menu__window-scale__button 50%
+        template(v-if="!isMobile")
+          input#scale50.menu__window-scale__input(
+            name="scale",
+            type="radio",
+            value="50",
+            v-model="previewScale"
+          )
+          label.menu__window-scale__label(for="scale50")
+            .menu__window-scale__button 50%
 
-        input#scale75.menu__window-scale__input(
-          name="scale",
-          type="radio",
-          value="75",
-          v-model="previewScale"
-        )
-        label.menu__window-scale__label(for="scale75")
-          .menu__window-scale__button 75%
+          input#scale75.menu__window-scale__input(
+            name="scale",
+            type="radio",
+            value="75",
+            v-model="previewScale"
+          )
+          label.menu__window-scale__label(for="scale75")
+            .menu__window-scale__button 75%
 
-        input#scale100.menu__window-scale__input(
-          name="scale",
-          type="radio",
-          value="100",
-          v-model="previewScale"
-        )
-        label.menu__window-scale__label(for="scale100")
-          .menu__window-scale__button 100%
+          input#scale100.menu__window-scale__input(
+            name="scale",
+            type="radio",
+            value="100",
+            v-model="previewScale"
+          )
+          label.menu__window-scale__label(for="scale100")
+            .menu__window-scale__button 100%
 
-        input#scale125.menu__window-scale__input(
-          name="scale",
-          type="radio",
-          value="125",
-          v-model="previewScale"
-        )
-        label.menu__window-scale__label(for="scale125")
-          .menu__window-scale__button 125%
+          input#scale125.menu__window-scale__input(
+            name="scale",
+            type="radio",
+            value="125",
+            v-model="previewScale"
+          )
+          label.menu__window-scale__label(for="scale125")
+            .menu__window-scale__button 125%
+        template(v-else)
+          input#scale50.menu__window-scale__input(
+            name="scale",
+            type="radio",
+            value="15",
+            v-model="previewScale"
+          )
+          label.menu__window-scale__label(for="scale50")
+            .menu__window-scale__button 15%
 
-      a.menu__window-button(:href="loginUrl", v-if="!$store.state.user.id")
-        .menu__window-button-text Login with Steam
-      .menu__window-button(@click="logout", v-else)
-        .menu__window-button-text Logout
+          input#scale75.menu__window-scale__input(
+            name="scale",
+            type="radio",
+            value="20",
+            v-model="previewScale"
+          )
+          label.menu__window-scale__label(for="scale75")
+            .menu__window-scale__button 20%
+
+          input#scale100.menu__window-scale__input(
+            name="scale",
+            type="radio",
+            value="25",
+            v-model="previewScale"
+          )
+          label.menu__window-scale__label(for="scale100")
+            .menu__window-scale__button 25%
+
+          //- input#scale125.menu__window-scale__input(
+          //-   name="scale",
+          //-   type="radio",
+          //-   value="25",
+          //-   v-model="previewScale"
+          //- )
+          //- label.menu__window-scale__label(for="scale125")
+          //-   .menu__window-scale__button 25%
+
+    a.menu__window-button.steam(:href="loginUrl", v-if="!$store.state.user.id")
+      .menu__window-button-text Login with Steam
+    .menu__window-button(@click="logout", v-else)
+      .menu__window-button-text Logout
 
   .menu__window-credits
-    .menu__window-button.noclick.small
+    .menu__window-title
       .menu__window-button-text Our:
     .menu__window-multi-container
       a.menu__window-multi-label(
@@ -105,7 +142,7 @@
       )
         .menu__window-multi-button Extension
 
-    a(
+    a.menu__window-discord(
       href="https://discord.com/invite/jnqnHuX",
       rel="noopener noreferrer",
       target="_blank"
@@ -158,6 +195,10 @@ export default {
           : 'http://localhost:3000',
       )
       return `https://steamcommunity.com/openid/login?openid.ns=http%3A%2F%2Fspecs.openid.net%2Fauth%2F2.0&openid.mode=checkid_setup&openid.return_to=${returnUrl}&openid.realm=${realm}&openid.ns.sreg=http%3A%2F%2Fopenid.net%2Fextensions%2Fsreg%2F1.1&openid.claimed_id=http%3A%2F%2Fspecs.openid.net%2Fauth%2F2.0%2Fidentifier_select&openid.identity=http%3A%2F%2Fspecs.openid.net%2Fauth%2F2.0%2Fidentifier_select`
+    },
+
+    isMobile () {
+      return window.screen.width < 560
     },
 
     extensionLink () {
@@ -216,6 +257,19 @@ export default {
       text-align center
       font-size 12px
       color white
+
+  &-title
+    background-color $color-button
+    // width 100%
+    margin 0 10px
+    box-sizing border-box
+    border-radius 3px
+    text-align center
+    display flex
+    align-items center
+    justify-content center
+    text-decoration none
+    height 27px
 
 .menu__window-section-container
   margin-top 10px
@@ -429,4 +483,77 @@ export default {
 
 *
   box-sizing border-box
+
+@media screen and (max-width 560px)
+  .menu__window
+    height auto
+    flex-direction column
+    width 100%
+
+    &-buttons
+      display flex
+      flex-direction row
+      flex-wrap wrap
+      align-items flex-start
+
+    &-button
+      width 48%
+      // height 20px
+      margin 5px 1%
+
+      &.textbox
+        width 48%
+        height 53px
+
+      &.steam
+        height 59px
+
+    &-title
+      background-color $color-button
+      width 100%
+      // margin 0 5px
+      box-sizing border-box
+      border-radius 3px
+      text-align center
+      display flex
+      align-items center
+      justify-content center
+      text-decoration none
+      height 27px
+
+    &-section-container
+      width 48%
+      margin 5px 1%
+
+    &-scale
+      &__container
+        padding 0
+
+      &__label
+        width 32%
+        height 27px
+        padding 0
+        display flex
+        align-items center
+        justify-content center
+
+    &-multi-container
+      max-width none
+      padding 0
+
+    &-multi-label
+      width 32%
+
+    &-credits
+      position relative
+      width 100%
+      margin-top 10px
+      padding 0 1%
+
+    &-discord
+      display flex
+      margin 10px 0 0 0
+
+      img
+        margin 0 auto
 </style>
