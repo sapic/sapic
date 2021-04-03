@@ -10,7 +10,7 @@ const state = {
   backgrounds: [],
   backgroundsUpdateTime: 0,
   nextRandomBackgrounds: [],
-  previewScale: 75,
+  previewScale: window.screen.width < 560 ? 25 : 75,
   user: {
     id: 0,
   },
