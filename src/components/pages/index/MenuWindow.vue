@@ -7,14 +7,15 @@
 
     //- .menu__window-shadow
 
+    a.menu__window-button.purple-paradise(
+      v-if="!isMobile",
+      href="https://bgs.steam.design/?utm_source=steam.design",
+      target="_blank"
+    )
+      .menu__window-button-text Backgrounds
+
     .menu__window-button(@click="randomBGClick")
       .menu__window-button-text Random BG
-
-    .menu__window-hint(v-if="!isMobile")
-      a.menu__window-hint__text(
-        href="https://bgs.steam.design/?utm_source=steam.design",
-        target="_blank"
-      ) If you like Random BG button, check out our new experiment!
 
     .menu__window-button(@click="getCurrentBGClick")
       .menu__window-button-text Get this BG
@@ -298,6 +299,16 @@ export default {
   align-items center
   justify-content center
   text-decoration none
+
+  &.purple-paradise
+    // opacity 0.8
+    background #AA076B /* fallback for old browsers */
+    background -webkit-linear-gradient(45deg, #61045F, #AA076B) /* Chrome 10-25, Safari 5.1-6 */
+    background linear-gradient(45deg, #61045F, #AA076B) /* W3C, IE 10+/ Edge, Firefox 16+, Chrome 26+, Opera 12+, Safari 7+ */
+    transition background 0.25s ease
+
+    &:hover
+      background linear-gradient(45deg, #7a0578, #ab076c) /* W3C, IE 10+/ Edge, Firefox 16+, Chrome 26+, Opera 12+, Safari 7+ */
 
   &:hover
     transition background-color 0.25s ease
