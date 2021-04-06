@@ -10,8 +10,7 @@
             height: `calc(100% * ${scalePercent}) !important`,\
           }"
         )
-          PreviewWebm(v-if="$store.getters.isVideo")
-          Preview(v-else)
+          Preview
 
           BgPreloader
       template(v-if="!isMobile")
@@ -24,7 +23,6 @@
 
 <script>
 import Preview from './Preview'
-import PreviewWebm from './PreviewWebm'
 import Inventory from './Inventory'
 import TitleBar from './TitleBar'
 import MenuWindow from './MenuWindow'
@@ -43,7 +41,6 @@ export default {
     TitleBar,
     MenuWindow,
     Inventory,
-    PreviewWebm,
     BgPreloader,
     RightMenu,
     MobileHeader,
