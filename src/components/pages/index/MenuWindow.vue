@@ -12,7 +12,7 @@
 
     .menu__window-hint(v-if="!isMobile")
       a.menu__window-hint__text(
-        href="https://bgs.steam.design/top?utm_source=steam.design",
+        href="https://bgs.steam.design/?utm_source=steam.design",
         target="_blank"
       ) If you like Random BG button, check out our new experiment!
 
