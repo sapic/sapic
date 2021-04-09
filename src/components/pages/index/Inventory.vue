@@ -1,7 +1,7 @@
 <template lang="pug">
 .backgrounds_container
   template(v-if="$store.state.user.id")
-    p.hover-button Inventory
+    p.hover-button {{ $t('inventory.inventory') }}
     .inventory-list
       template(v-for="item in items")
         .inventory-item(:key="item.id", @click="setBackground(item)")
@@ -9,12 +9,12 @@
             :src="`https://steamcommunity-a.akamaihd.net/economy/image/${item.icon_url_large}/96fx96f`"
           )
 
-  p.hover-button Random backgrounds
+  p.hover-button {{ $t('inventory.random') }}
   .inventory-list(v-if="shouldShowRandomBgs")
     template(v-for="item in randomBgs")
       .inventory-item(:key="item.id", @click="setBackgroundItem(item)")
         img.inventory-item-inner(:src="getUrl(item.steamUrl)")
-  .inventory-more.hover-button(@click="addRandomBgs") Load more
+  p.inventory-more.purple-paradise(@click="addRandomBgs") {{ $t('inventory.loadMore') }}
   .spacer
 </template>
 
@@ -153,6 +153,9 @@ export default {
   // overflow-x hidden
   border-radius 10px 10px 0 0
   overflow-y scroll
+  display flex
+  flex-direction column
+  align-items center
 
   .inventory-list
     position relative
@@ -197,6 +200,22 @@ export default {
     margin 0
     text-align center
     margin-top 10px
+
+  .inventory-more
+    color $color-white
+    padding 10px 20px
+    border-radius 3px
+    cursor pointer
+
+    &.purple-paradise
+      // opacity 0.8
+      background #AA076B /* fallback for old browsers */
+      background -webkit-linear-gradient(45deg, #61045F, #AA076B)
+      background linear-gradient(45deg, #61045F, #AA076B)
+      transition background 0.25s ease
+
+      &:hover
+        background linear-gradient(45deg, #7a0578, #ab076c)
 
   &:hover
     bottom 0

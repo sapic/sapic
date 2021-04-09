@@ -3,7 +3,7 @@
   .menu__window-buttons
     .menu__window-button.menu__window-button-download(@click="getZipClick")
       cloud-download.menu__window-icon
-      .menu__window-button-text Download ZIP
+      .menu__window-button-text {{ $t('index.download') }}
 
     //- .menu__window-shadow
 
@@ -12,16 +12,16 @@
       href="https://bgs.steam.design/?utm_source=steam.design",
       target="_blank"
     )
-      .menu__window-button-text Backgrounds
+      .menu__window-button-text {{ $t('index.backgrounds') }}
 
     .menu__window-button(@click="randomBGClick")
-      .menu__window-button-text Random BG
+      .menu__window-button-text {{ $t('index.random') }}
 
     .menu__window-button(@click="getCurrentBGClick")
-      .menu__window-button-text Get this BG
+      .menu__window-button-text {{ $t('index.getThisBg') }}
 
     input#urltextbox.menu__window-button.textbox.noclick(
-      placeholder="Paste a background URL here",
+      :placeholder="$t('index.pasteUrlPlaceholder')",
       v-model="bgURL"
     )
 
@@ -34,7 +34,7 @@
 
     .menu__window-section-container
       .menu__window-title
-        .menu__window-button-text Zoom Scale
+        .menu__window-button-text {{ $t('index.zoomScale') }}:
 
       .menu__window-scale__container
         template(v-if="!isMobile")
@@ -111,13 +111,13 @@
           //-   .menu__window-scale__button 25%
 
     a.menu__window-button.steam(:href="loginUrl", v-if="!$store.state.user.id")
-      .menu__window-button-text Login with Steam
+      .menu__window-button-text {{ $t('index.login') }}
     .menu__window-button(@click="logout", v-else)
-      .menu__window-button-text Logout
+      .menu__window-button-text {{ $t('index.logout') }}
 
   .menu__window-credits
     .menu__window-title
-      .menu__window-button-text Our:
+      .menu__window-button-text {{ $t('index.our') }}:
     .menu__window-multi-container
       a.menu__window-multi-label(
         href="https://github.com/sapic/sapic",
@@ -128,20 +128,20 @@
         href="https://steamcommunity.com/groups/sapic",
         target="_blank"
       )
-        .menu__window-multi-button Group
+        .menu__window-multi-button {{ $t('index.ourGroup') }}
       a.menu__window-multi-label(
         href="https://old.steam.design/?utm_source=steam.design",
         target="_blank",
         rel="noopener noreferrer"
       )
-        .menu__window-multi-button Old Site
+        .menu__window-multi-button {{ $t('index.ourOldSite') }}
 
       a.menu__window-multi-label(
         :href="extensionLink",
         target="_blank",
         v-if="extensionLink"
       )
-        .menu__window-multi-button Extension
+        .menu__window-multi-button {{ $t('index.ourExtension') }}
 
     a.menu__window-discord(
       href="https://discord.com/invite/jnqnHuX",
@@ -303,12 +303,12 @@ export default {
   &.purple-paradise
     // opacity 0.8
     background #AA076B /* fallback for old browsers */
-    background -webkit-linear-gradient(45deg, #61045F, #AA076B) /* Chrome 10-25, Safari 5.1-6 */
-    background linear-gradient(45deg, #61045F, #AA076B) /* W3C, IE 10+/ Edge, Firefox 16+, Chrome 26+, Opera 12+, Safari 7+ */
+    background -webkit-linear-gradient(45deg, #61045F, #AA076B)
+    background linear-gradient(45deg, #61045F, #AA076B)
     transition background 0.25s ease
 
     &:hover
-      background linear-gradient(45deg, #7a0578, #ab076c) /* W3C, IE 10+/ Edge, Firefox 16+, Chrome 26+, Opera 12+, Safari 7+ */
+      background linear-gradient(45deg, #7a0578, #ab076c)
 
   &:hover
     transition background-color 0.25s ease
