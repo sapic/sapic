@@ -8,6 +8,7 @@ module.exports = {
     pasteUrlPlaceholder: 'Paste a background URL here',
     zoomScale: 'Zoom Scale',
     login: 'Login with Steam',
+    logout: 'Logout',
     our: 'Our',
     ourGroup: 'Group',
     ourOldSite: 'Old Site',
