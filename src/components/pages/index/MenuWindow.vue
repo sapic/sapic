@@ -9,7 +9,7 @@
 
     a.menu__window-button.purple-paradise(
       v-if="!isMobile",
-      href="https://bgs.steam.design/?utm_source=steam.design",
+      href="https://backgrounds.gallery/?utm_source=steam.design",
       target="_blank"
     )
       .menu__window-button-text {{ $t('index.backgrounds') }}
