@@ -1,5 +1,5 @@
 <template lang="pug">
-  .bgPreloader(:style="{\
+  .bgPreloader(v-if="shouldRender" :style="{\
     position: 'absolute',\
     opacity: 0,\
     left: '-9999px',\
@@ -34,11 +34,22 @@
 
 <script>
 export default {
+  data () {
+    return {
+      shouldRender: false,
+    }
+  },
+
   computed: {
     nextBackgrounds () {
       return this.$store.state.nextRandomBackgrounds
     },
+  },
 
+  mounted () {
+    setTimeout(() => {
+      this.shouldRender = true
+    }, 256)
   },
 
   methods: {

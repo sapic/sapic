@@ -6,14 +6,16 @@
       template(v-for="item in items")
         .inventory-item(:key="item.id", @click="setBackground(item)")
           img.inventory-item-inner(
-            :src="`https://steamcommunity-a.akamaihd.net/economy/image/${item.icon_url_large}/96fx96f`"
+            :src="`https://community.cloudflare.steamstatic.com/economy/image/${item.icon_url_large}/62fx62f`"
           )
 
   p.hover-button {{ $t('inventory.random') }}
   .inventory-list(v-if="shouldShowRandomBgs")
     template(v-for="item in randomBgs")
       .inventory-item(:key="item.id", @click="setBackgroundItem(item)")
-        img.inventory-item-inner(:src="getUrl(item.steamUrl)")
+        img.inventory-item-inner(
+          :src="`https://community.cloudflare.steamstatic.com/economy/image/${item.iconUrl}/62fx62f`"
+        )
   p.inventory-more.purple-paradise(@click="addRandomBgs") {{ $t('inventory.loadMore') }}
   .spacer
 </template>
