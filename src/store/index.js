@@ -134,14 +134,15 @@ const actions = {
   downloadZip ({ state, getters }, { ctrl, alt }) {
     // sizes based on 1920x1108
     // https://steamcdn-a.akamaihd.net/steamcommunity/public/images/items/570/982491acceb6c9dde0d5e49dab1e7540c5faa1de.webm
+    const halfWidth = Math.floor(state.bgSize.w / 2)
 
     const bgSaveInfo = {
       url: state.background,
       images: [
-        { name: 'Artwork_Middle.png', x: (state.bgSize.w / 2) - 466, y: 256, w: 506, h: 2000 },
-        { name: 'Artwork_Right_Top.png', x: (state.bgSize.w / 2) + 49, y: 256, w: 100, h: 2000 },
-        { name: 'Artwork_Featured.png', x: (state.bgSize.w / 2) - 466, y: 256, w: 630, h: 2000 },
-        { name: 'Avatar.png', x: (state.bgSize.w / 2) - 463, y: 34, w: 164, h: 164 },
+        { name: 'Artwork_Middle.png', x: halfWidth - 466, y: 256, w: 506, h: 2000 },
+        { name: 'Artwork_Right_Top.png', x: halfWidth + 49, y: 256, w: 100, h: 2000 },
+        { name: 'Artwork_Featured.png', x: halfWidth - 466, y: 256, w: 630, h: 2000 },
+        { name: 'Avatar.png', x: halfWidth - 463, y: 34, w: 164, h: 164 },
       ],
     }
 
