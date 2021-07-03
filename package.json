@@ -10,7 +10,7 @@
     "dev": "vue-cli-service serve src/index.js"
   },
   "dependencies": {
-    "@vue/cli-service": "^4.5.12",
+    "@vue/cli-service": "^4.5.13",
     "@vue/component-compiler-utils": "^3.2.0",
     "lottie-web": "^5.7.7",
     "pug": "^3.0.0",
