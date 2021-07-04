@@ -14,11 +14,12 @@
       }"
     )
 
-  .profile__preview-header
-    .profile__preview-header__avatar
+  .profile__preview-container
+    .profile__preview-header
+      .profile__preview-header__avatar
 
-  WebmBody.profile__preview-body(v-if="$store.getters.isVideo")
-  StaticBody.profile__preview-body(v-else)
+    WebmBody.profile__preview-body(v-if="$store.getters.isVideo")
+    StaticBody.profile__preview-body(v-else)
 </template>
 
 <script>
@@ -41,16 +42,20 @@ export default {
   background-position 49.999% 0
   background-repeat no-repeat
 
+  &-container
+    background-color rgba(18, 21, 26, 0.5)
+    width 976px
+    margin 0 auto
+
   &-header
-    background-color rgba(18, 21, 26, 0.9)
-    max-width 1018px
+    max-width 976px
     min-height 240px
     width 100%
     margin 0 auto
-    padding 32px 0 0 46px
+    padding 32px 26px
     box-sizing border-box
-    border-radius 0 0 5px 5px
 
+    // border-radius 0 0 5px 5px
     &__avatar
       width 162px
       height 162px
@@ -59,9 +64,8 @@ export default {
       border-radius 5px
 
   &-body
-    width 950px
-    background-color rgba(18, 21, 26, 0.9)
-    padding 30px 22px 87px 22px
+    width 976px
+    padding 30px 23px 87px 23px
     margin 0 auto
     box-sizing border-box
     display flex
