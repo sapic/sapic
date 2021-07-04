@@ -15,21 +15,23 @@
     )
 
   .profile__preview-container
-    .profile__preview-header
-      .profile__preview-header__avatar
+    Overlay(:imageHeight="$store.state.bgSize.h")
 
-    WebmBody.profile__preview-body(v-if="$store.getters.isVideo")
-    StaticBody.profile__preview-body(v-else)
+    //- .profile__preview-header
+    //-   .profile__preview-header__avatar
+
+    //- WebmBody.profile__preview-body(v-if="$store.getters.isVideo")
+    //- StaticBody.profile__preview-body(v-else)
 </template>
 
 <script>
-import WebmBody from './preview/WebmBody'
-import StaticBody from './preview/StaticBody'
+// import WebmBody from './preview/WebmBody'
+// import StaticBody from './preview/StaticBody'
+import Overlay from './preview/Overlay'
 
 export default {
   components: {
-    WebmBody,
-    StaticBody,
+    Overlay,
   },
 }
 </script>
@@ -43,9 +45,10 @@ export default {
   background-repeat no-repeat
 
   &-container
-    background-color rgba(18, 21, 26, 0.5)
+    // background-color rgba(18, 21, 26, 0.5)
     width 976px
     margin 0 auto
+    min-height 1080px
 
   &-header
     max-width 976px
