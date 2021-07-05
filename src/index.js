@@ -5,7 +5,7 @@ import App from './App.vue'
 import Index from './components/pages/index/index'
 import Download from './components/pages/download'
 import Converter from './components/pages/converter'
-import { createI18n } from 'vue-i18n'
+import { createI18n } from 'vue-i18n-lite'
 
 import localeRu from '@/assets/locales/ru'
 import localeEn from '@/assets/locales/en'
@@ -66,8 +66,8 @@ router.beforeEach((to, from, next) => {
     return next()
   }
 
-  if (i18n.global.locale !== lang) {
-    i18n.global.locale = lang
+  if (i18n.locale !== lang) {
+    i18n.changeLocale(lang)
   }
 
   return next()
