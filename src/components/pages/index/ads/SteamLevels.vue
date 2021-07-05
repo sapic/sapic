@@ -34,4 +34,9 @@ export default {
   display: block;
   background: #19191d;
 }
+
+.profile_video > video {
+  width: 300px;
+  height: 600px;
+}
 </style>
