@@ -2,13 +2,14 @@ import { createApp } from 'vue'
 import { createRouter, createWebHistory, RouterView } from 'vue-router'
 import store from './store'
 import App from './App.vue'
-import Index from './components/pages/index/index'
-import Download from './components/pages/download'
-import Converter from './components/pages/converter'
+// import Download from './components/pages/download'
 import { createI18n } from 'vue-i18n-lite'
 
 import localeRu from '@/assets/locales/ru'
 import localeEn from '@/assets/locales/en'
+
+const Converter = import(/* webpackChunkName: "converter" */'./components/pages/converter')
+const Index = import(/* webpackChunkName: "index" */'./components/pages/index/index')
 
 const router = createRouter({
   history: createWebHistory(),
@@ -16,9 +17,9 @@ const router = createRouter({
     {
       path: '/', component: Index,
     },
-    {
-      path: '/download', component: Download,
-    },
+    // {
+    // path: '/download', component: Download,
+    // },
     {
       path: '/converter', component: Converter,
     },
@@ -32,9 +33,9 @@ const router = createRouter({
         {
           path: '', component: Index,
         },
-        {
-          path: 'download', component: Download,
-        },
+        // {
+        // path: 'download', component: Download,
+        // },
         {
           path: 'converter', component: Converter,
         },
