@@ -6,13 +6,13 @@
 
 <script>
 // import Index from './components/Index'
-import Vue from 'vue'
+// import Vue from 'vue'
 
-export default Vue.extend({
+export default {
   components: {
     // Index,
   },
-})
+}
 </script>
 
 <style scoped>

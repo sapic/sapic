@@ -1,24 +1,24 @@
 <template lang="pug">
-  .wrapper
-    section.body__wrapper
-      MenuWindow
-      .preview__window
-        .zoom_out(
-          :style="{\
-            transform: `scale(${scalePercent})`,\
-            width: `calc(100% / ${scalePercent}) !important`,\
-            height: `calc(100% * ${scalePercent}) !important`,\
-          }"
-        )
-          Preview
+.wrapper
+  section.body__wrapper
+    MenuWindow
+    .preview__window
+      .zoom_out(
+        :style="{\
+          transform: `scale(${scalePercent})`,\
+          width: `calc(100% / ${scalePercent}) !important`,\
+          height: `calc(100% * ${scalePercent}) !important`,\
+        }"
+      )
+        Preview
 
-          BgPreloader
-      template(v-if="!isMobile")
-        RightMenu
-        Inventory
-      MobileHeader(v-else)
-      Scripts
-      div(id="nn_lb2")
+        BgPreloader
+    template(v-if="!isMobile")
+      RightMenu
+      Inventory
+    MobileHeader(v-else)
+    Scripts
+    div(id="nn_lb2")
 </template>
 
 <script>

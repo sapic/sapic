@@ -42,7 +42,7 @@ export default async (store) => {
 
   // console.log('url', parseQuery())
 
-  const jsonUrl = require('@/assets/bg-asset.json')
+  const jsonUrl = require('@/assets/bg-asset.json').default
   // If state has no bgs, fetch some from api
   if (
     state.bgJsonUrl !== jsonUrl || // if we have new bgs json

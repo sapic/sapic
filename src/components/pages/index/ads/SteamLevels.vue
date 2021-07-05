@@ -20,7 +20,7 @@ export default {
   mounted () {
     setTimeout(() => {
       this.$nextTick(async () => {
-        this.$refs.video.src = require('@/assets/images/steam_levels.mp4')
+        this.$refs.video.src = require('@/assets/images/steam_levels.mp4').default
       })
     }, 128)
   },
