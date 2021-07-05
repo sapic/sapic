@@ -140,6 +140,8 @@ body {
 body {
   margin: 0;
   overflow: hidden;
+  font-family: "Source Sans Pro", -apple-system, BlinkMacSystemFont, "Segoe UI",
+    Roboto, "Helvetica Neue", Arial, sans-serif;
 }
 
 #app {
