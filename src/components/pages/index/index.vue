@@ -139,7 +139,6 @@ body {
 
 body {
   margin: 0;
-  font-family: "open sans";
   overflow: hidden;
 }
 
@@ -186,4 +185,3 @@ body {
   background: transparent;
 }
 </style>
-<style scoped src="@/assets/fonts/opensans.css"></style>
