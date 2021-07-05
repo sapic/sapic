@@ -5,34 +5,24 @@
     target="_blank"
     rel="noreferrer noopener"
   >
-    <div ref="lottie" />
+    <video
+      ref="video"
+      autoplay
+      muted
+      playsinline
+      loop
+    />
   </a>
 </template>
 
 <script>
 export default {
-  data () {
-    return {
-      lottie: null,
-    }
-  },
-
   mounted () {
-    // setTimeout(() => {
-    this.$nextTick(async () => {
-      this.lottie = await import(/* webpackChunkName: "stlvl" */'lottie-web/build/player/lottie_light.min.js')
-      const animation = this.lottie.loadAnimation({
-        container: this.$refs.lottie, // the dom element that will contain the animation
-        renderer: 'svg',
-        loop: true,
-        autoplay: true,
-        animationData: await import(/* webpackChunkName: "stlvl" */'../../../../assets/steam_levels.json'),
+    setTimeout(() => {
+      this.$nextTick(async () => {
+        this.$refs.video.src = require('@/assets/images/steam_levels.mp4')
       })
-
-      animation.addEventListener('data_failed', (e) => {
-        console.log('lottie fail', e)
-      })
-    })
+    }, 128)
   },
 }
 </script>
@@ -42,5 +32,6 @@ export default {
   width: 300px;
   height: 600px;
   display: block;
+  background: #19191d;
 }
 </style>
