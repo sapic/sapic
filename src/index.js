@@ -1,29 +1,25 @@
-import Vue from 'vue'
-import VueRouter from 'vue-router'
+import { createApp } from 'vue'
+import { createRouter, createWebHistory, RouterView } from 'vue-router'
 import store from './store'
 import App from './App.vue'
-import Index from './components/pages/index/index'
-import Download from './components/pages/download'
-import Converter from './components/pages/converter'
-import VueI18n from 'vue-i18n'
+// import Download from './components/pages/download'
+import { createI18n } from 'vue-i18n-lite'
 
 import localeRu from '@/assets/locales/ru'
 import localeEn from '@/assets/locales/en'
 
-Vue.config.productionTip = false
+const Index = () => import(/* webpackChunkName: "index" */'./components/pages/index/index')
+const Converter = () => import(/* webpackChunkName: "converter" */'./components/pages/converter')
 
-Vue.use(VueRouter)
-Vue.use(VueI18n)
-
-const router = new VueRouter({
-  mode: 'history',
+const router = createRouter({
+  history: createWebHistory(),
   routes: [
     {
       path: '/', component: Index,
     },
-    {
-      path: '/download', component: Download,
-    },
+    // {
+    // path: '/download', component: Download,
+    // },
     {
       path: '/converter', component: Converter,
     },
@@ -31,20 +27,15 @@ const router = new VueRouter({
       path: '/converter/:raw', component: Converter,
     },
     {
-      path: '*', component: Index,
-    },
-    {
       path: '/:lang',
-      component: {
-        render: h => h('router-view'),
-      },
+      component: RouterView,
       children: [
         {
           path: '', component: Index,
         },
-        {
-          path: 'download', component: Download,
-        },
+        // {
+        // path: 'download', component: Download,
+        // },
         {
           path: 'converter', component: Converter,
         },
@@ -59,8 +50,9 @@ const router = new VueRouter({
   ],
 })
 
-// Create VueI18n instance with options
-const i18n = new VueI18n({
+const i18n = createI18n({
+  // legacy: false, // you must specify 'legacy: false' option
+
   locale: (navigator.language || navigator.userLanguage).split('-')[0],
   messages: {
     ru: localeRu,
@@ -76,15 +68,16 @@ router.beforeEach((to, from, next) => {
   }
 
   if (i18n.locale !== lang) {
-    i18n.locale = lang
+    i18n.changeLocale(lang)
   }
 
   return next()
 })
 
-new Vue({
-  render: createElement => createElement(App),
-  router,
-  store,
-  i18n,
-}).$mount('#app')
+const app = createApp(App)
+
+app.use(store)
+app.use(router)
+app.use(i18n)
+
+app.mount('#app')

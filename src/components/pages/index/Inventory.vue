@@ -3,16 +3,16 @@
   template(v-if="$store.state.user.id")
     p.hover-button {{ $t('inventory.inventory') }}
     .inventory-list
-      template(v-for="item in items")
-        .inventory-item(:key="item.id", @click="setBackground(item)")
+      template(v-for="item in items", :key="item.id")
+        .inventory-item(@click="setBackground(item)")
           img.inventory-item-inner(
             :src="`https://community.cloudflare.steamstatic.com/economy/image/${item.icon_url_large}/62fx62f`"
           )
 
   p.hover-button {{ $t('inventory.random') }}
   .inventory-list(v-if="shouldShowRandomBgs")
-    template(v-for="item in randomBgs")
-      .inventory-item(:key="item.id", @click="setBackgroundItem(item)")
+    template(v-for="item in randomBgs", :key="item.id")
+      .inventory-item(@click="setBackgroundItem(item)")
         img.inventory-item-inner(
           :src="`https://community.cloudflare.steamstatic.com/economy/image/${item.iconUrl}/62fx62f`"
         )

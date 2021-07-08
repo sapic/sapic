@@ -1,8 +1,5 @@
-import Vue from 'vue'
-import Vuex from 'vuex'
 import init from './init'
-
-Vue.use(Vuex)
+import { createStore } from 'vuex'
 
 const state = {
   background: null,
@@ -185,7 +182,7 @@ const actions = {
   },
 }
 
-export default new Vuex.Store({
+export default createStore({
   state,
   mutations,
   actions,
