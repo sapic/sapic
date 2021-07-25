@@ -229,10 +229,11 @@ export default {
     async addFfmpegScript () {
       if (document.getElementById('ffmpegimport')) return // was already loaded
 
-      const isFirefox = navigator.userAgent.toLowerCase().indexOf('firefox') > -1
+      // const isFirefox = navigator.userAgent.toLowerCase().indexOf('firefox') > -1
       var scriptTag = document.createElement('script')
 
-      scriptTag.src = isFirefox ? '/ffmpeg/ffmpeg.min.js' : 'https://unpkg.com/@ffmpeg/ffmpeg@0.9.5/dist/ffmpeg.min.js'
+      scriptTag.src = '/ffmpeg/ffmpeg.min.js'
+      // : 'https://unpkg.com/@ffmpeg/ffmpeg@0.9.5/dist/ffmpeg.min.js'
       scriptTag.id = 'ffmpegimport'
       scriptTag.crossOrigin = 'true'
 
