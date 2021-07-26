@@ -13,6 +13,8 @@ module.exports = {
     ourGroup: 'Группа',
     ourOldSite: 'Old Site',
     ourExtension: 'Плагин',
+    ourOtherProjects: 'Наши проекты',
+    ourPartners: 'Наши партнёры'
   },
   inventory: {
     inventory: 'Инвентарь',
