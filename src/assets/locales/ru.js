@@ -5,7 +5,7 @@ module.exports = {
     backgrounds: 'Фоны',
     random: 'Случайный фон',
     getThisBg: 'Найти этот фон',
-    pasteUrlPlaceholder: 'Вставтье ссылку на фон сюда',
+    pasteUrlPlaceholder: 'Вставьте ссылку на фон',
     zoomScale: 'Размер превью',
     login: 'Войти через Steam',
     logout: 'Выйти',
