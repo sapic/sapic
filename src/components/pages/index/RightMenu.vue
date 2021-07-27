@@ -3,7 +3,7 @@
   ads
 
   .profile_count_link
-    span.partnerLabel Our Other Projects
+    span.partnerLabel {{ $t('index.ourOtherProjects') }}
 
   .profile_count_link_preview
     .profile_group.profile_primary_group
@@ -55,7 +55,7 @@
         .profile_group_membercount Webpage that allows you to crop avatars for many sites.
 
   .profile_count_link.ellipsis
-    span.partnerLabel Our Partners
+    span.partnerLabel {{ $t('index.ourPartners') }}
 
   .profile_count_link_preview
     .profile_group.profile_primary_group
