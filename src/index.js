@@ -54,6 +54,8 @@ const i18n = createI18n({
   // legacy: false, // you must specify 'legacy: false' option
 
   locale: (navigator.language || navigator.userLanguage).split('-')[0],
+  fallbackLocale: 'en',
+
   messages: {
     ru: localeRu,
     en: localeEn,
