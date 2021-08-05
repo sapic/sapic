@@ -50,10 +50,21 @@ const router = createRouter({
   ],
 })
 
+function getLocale () {
+  const allowed = ['en', 'ru']
+  const userLocale = (navigator.language || navigator.userLanguage).split('-')[0]
+
+  if (allowed.indexOf(userLocale) > 0) {
+    return userLocale
+  }
+
+  return 'en'
+}
+
 const i18n = createI18n({
   // legacy: false, // you must specify 'legacy: false' option
 
-  locale: (navigator.language || navigator.userLanguage).split('-')[0],
+  locale: getLocale(),
   fallbackLocale: 'en',
 
   messages: {
