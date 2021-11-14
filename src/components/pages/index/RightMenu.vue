@@ -61,22 +61,6 @@
     .profile_group.profile_primary_group
       .profile_group_avatar
         a(
-          href="https://twitch.tv/ashsii",
-          target="_blank",
-          rel="noopener noreferrer"
-        )
-          img(src="@/assets/images/ashsiiicon.png")
-      .profile_group_text
-        a.whiteLink(
-          href="https://twitch.tv/ashsii",
-          target="_blank",
-          rel="noopener noreferrer"
-        ) twitch.tv/ashsii
-        .profile_group_membercount Animating steam artwork livestreams with Adobe AE & PS
-
-    .profile_group.profile_primary_group
-      .profile_group_avatar
-        a(
           href="https://www.steamladder.com/",
           target="_blank",
           rel="noopener noreferrer"
