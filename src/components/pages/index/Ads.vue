@@ -1,5 +1,5 @@
 <template>
-  <div class="ads__container">
+  <div class="infofriends__container">
     <SteamLevels />
   </div>
 </template>
