@@ -13,12 +13,12 @@ module.exports = {
     ourGroup: 'Group',
     ourOldSite: 'Old Site',
     ourExtension: 'Extension',
-    ourOtherProjects: 'Our Other Projects',
-    ourPartners: 'Our Partners'
+    ourOtherProjects: 'Our Other Projects:',
+    ourPartners: 'Our Partners:'
   },
   inventory: {
     inventory: 'Inventory',
-    random: 'Random backgrounds',
-    loadMore: 'Load more',
+    random: 'Random Backgrounds',
+    loadMore: 'Load More',
   },
 }
