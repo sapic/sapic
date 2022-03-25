@@ -98,17 +98,6 @@ export default {
   flex 0 0 auto
   text-align center
 
-  .profile_video
-    width 280px
-    height 560px
-    display block
-    margin 10px 10px 30px 10px
-    position relative
-    overflow hidden
-
-    video
-      border-radius 10px
-
   .profile_count_link_preview
     padding 0 10px
     margin-bottom 10px
