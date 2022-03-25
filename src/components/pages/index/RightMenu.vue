@@ -99,16 +99,15 @@ export default {
   text-align center
 
   .profile_video
-    width 300px
-    height 600px
+    width 280px
+    height 560px
     display block
     margin 10px 10px 30px 10px
     position relative
+    overflow hidden
 
     video
       border-radius 10px
-      width 300px
-      height 600px
 
   .profile_count_link_preview
     padding 0 10px
