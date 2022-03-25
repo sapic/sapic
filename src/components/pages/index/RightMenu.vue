@@ -2,124 +2,75 @@
 .right__menu
   ads
 
-  .profile_count_link
+  .right__menu-header
     span.partnerLabel {{ $t('index.ourOtherProjects') }}
 
   .profile_count_link_preview
-    .profile_group.profile_primary_group
+    .profile_group.profile_primary_group(
+      onclick="window.open('https://center.steam.design/?utm_source=steam.design')"
+    )
       .profile_group_avatar
-        a(
-          href="https://center.steam.design/?utm_source=steam.design",
-          target="_blank",
-          rel="noopener noreferrer"
-        )
-          img(src="@/assets/images/text-center.svg", width="64")
+        img(src="@/assets/images/text-center.svg", width="64")
       .profile_group_text
-        a.whiteLink(
-          href="https://center.steam.design/?utm_source=steam.design",
-          target="_blank",
-          rel="noopener noreferrer"
-        ) Text Center Tool
+        a.whiteLink Text Center Tool
         .profile_group_membercount Website that helps you center text in steam showcases.
 
-    .profile_group.profile_primary_group
+    .profile_group.profile_primary_group(
+      onclick="window.open('https://designerlist.guide/')"
+    )
       .profile_group_avatar
-        a(
-          href="https://designerlist.guide/",
-          target="_blank",
-          rel="noopener noreferrer"
-        )
-          img(src="@/assets/images/List.jpg", width="64")
+        img(src="@/assets/images/List.jpg", width="64")
       .profile_group_text
-        a.whiteLink(
-          href="https://designerlist.guide/",
-          target="_blank",
-          rel="noopener noreferrer"
-        ) Safe Designer List
+        a.whiteLink Safe Designer List
         .profile_group_membercount A list of safe, verified artwork designers on Steam.
 
-    .profile_group.profile_primary_group
+    .profile_group.profile_primary_group(
+      onclick="window.open('https://avatarcropper.com/')"
+    )
       .profile_group_avatar
-        a(
-          href="https://avatarcropper.com/",
-          target="_blank",
-          rel="noopener noreferrer"
-        )
-          img(src="@/assets/images/AvatarCropper.jpg", width="64")
+        img(src="@/assets/images/AvatarCropper.jpg", width="64")
       .profile_group_text
-        a.whiteLink(
-          href="https://avatarcropper.com/",
-          target="_blank",
-          rel="noopener noreferrer"
-        ) Quick Avatar Cropper
+        a.whiteLink Quick Avatar Cropper
         .profile_group_membercount Webpage that allows you to crop avatars for many sites.
 
-  .profile_count_link.ellipsis
+  .right__menu-header
     span.partnerLabel {{ $t('index.ourPartners') }}
 
   .profile_count_link_preview
-    .profile_group.profile_primary_group
+    .profile_group.profile_primary_group(
+      onclick="window.open('https://www.steamladder.com/')"
+    )
       .profile_group_avatar
-        a(
-          href="https://www.steamladder.com/",
-          target="_blank",
-          rel="noopener noreferrer"
-        )
-          img(src="@/assets/images/ladder.jpg")
+        img(src="@/assets/images/ladder.jpg")
       .profile_group_text
-        a.whiteLink(
-          href="https://www.steamladder.com/",
-          target="_blank",
-          rel="noopener noreferrer"
-        ) Steam Ladder
+        a.whiteLink Steam Ladder
         .profile_group_membercount Leaderboard and ranking site for Steam profiles!
 
-    .profile_group.profile_primary_group
+    .profile_group.profile_primary_group(
+      onclick="window.open('https://steamcommunity.com/groups/ArtworkProfiles')"
+    )
       .profile_group_avatar
-        a(
-          href="https://steamcommunity.com/groups/ArtworkProfiles",
-          target="_blank",
-          rel="noopener noreferrer"
-        )
-          img(src="@/assets/images/ap.jpg")
+        img(src="@/assets/images/ap.jpg")
       .profile_group_text
-        a.whiteLink(
-          href="https://steamcommunity.com/groups/ArtworkProfiles",
-          target="_blank",
-          rel="noopener noreferrer"
-        ) Artwork Profiles
+        a.whiteLink Artwork Profiles
         .profile_group_membercount Celebrating the beauty of Steam profiles.
 
-    .profile_group.profile_primary_group
+    .profile_group.profile_primary_group(
+      onclick="window.open('https://www.steamwishlistcalculator.com')"
+    )
       .profile_group_avatar
-        a(
-          href="https://www.steamwishlistcalculator.com/",
-          target="_blank",
-          rel="noopener noreferrer"
-        )
-          img(src="@/assets/images/steamwishlist.png")
+        img(src="@/assets/images/steamwishlist.png")
       .profile_group_text
-        a.whiteLink(
-          href="https://www.steamwishlistcalculator.com/",
-          target="_blank",
-          rel="noopener noreferrer"
-        ) Steam Wishlist Calculator
+        a.whiteLink Steam Wishlist Calculator
         .profile_group_membercount Calculate the total cost of your Steam wishlist!
 
-    .profile_group.profile_primary_group
+    .profile_group.profile_primary_group(
+      onclick="window.open('https://steamlevels.com')"
+    )
       .profile_group_avatar
-        a(
-          href="https://steamlevels.com",
-          target="_blank",
-          rel="noopener noreferrer"
-        )
-          img(src="@/assets/images/steamlevels.jpg")
+        img(src="@/assets/images/steamlevels.jpg")
       .profile_group_text
-        a.whiteLink(
-          href="https://steamlevels.com",
-          target="_blank",
-          rel="noopener noreferrer"
-        ) SteamLevels
+        a.whiteLink SteamLevels
         .profile_group_membercount A fast and extremely easy way to level up your profile!
 </template>
 
@@ -138,30 +89,29 @@ export default {
 
 .right__menu
   width 309px
-  color $color-white
+  background $color-main
   height 100%
   display flex
   flex-direction column
   overflow-y scroll
   scrollbar-width thin
   flex 0 0 auto
+  text-align center
 
   .profile_video
-    width 300px
-    height 600px
+    width 280px
+    height 560px
     display block
-    margin-bottom 30px
+    margin 10px 10px 30px 10px
     position relative
+    overflow hidden
 
-  .partnerLabel
-    margin-left 10px
+    video
+      border-radius 10px
 
   .profile_count_link_preview
     padding 0 10px
-    margin-bottom 20px
-
-  .profile_count_link
-    margin-bottom 20px
+    margin-bottom 10px
 
   .profile_group_avatar
     img
@@ -169,17 +119,27 @@ export default {
 
   .profile_group
     display flex
-    margin-bottom 10px
+    margin 10px 0 10px 0
+    background $color-button
+    border-radius 7px
+    cursor pointer
+
+    &:hover
+      transition background-color 0.25s ease
+      background-color $color-button-hover
 
     &_avatar
-      width 60px
-      height 60px
+      width 65px
+      height 65px
       margin auto 10px auto 0
 
       img
-        width 60px
-        height 60px
-        // border-radius 100%
+        position relative
+        top 5px
+        left 5px
+        width 55px
+        height 55px
+        border-radius 7px
 
     &_text
       a
@@ -191,4 +151,17 @@ export default {
       .profile_group_membercount
         font-size 13px
         color #8f98a0
+
+  &-header
+    background-color $color-button
+    // width 100%
+    margin 0 10px
+    box-sizing border-box
+    border-radius 3px
+    text-align center
+    display flex
+    align-items center
+    justify-content center
+    text-decoration none
+    height 27px
 </style>

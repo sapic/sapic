@@ -8,20 +8,21 @@
   },
   "main": "index.js",
   "dependencies": {
-    "@vue/cli-service": "~5.0.0-beta.2",
+    "@vue/cli-service": "^5.0.4",
     "@vue/component-compiler-utils": "^3.2.0",
-    "lottie-web": "^5.7.7",
+    "file-loader": "^6.2.0",
+    "lottie-web": "^5.9.1",
     "pug": "^3.0.0",
     "pug-plain-loader": "^1.0.0",
     "stylus": "^0.54.8",
     "stylus-loader": "^3.0.0",
-    "vue": "^3.1.4",
+    "vue": "^3.2.31",
     "vue-hot-reload-api": "^2.3.4",
-    "vue-i18n-lite": "^1.0.1",
+    "vue-i18n-lite": "^1.0.2",
     "vue-meta": "^2.4.0",
-    "vue-router": "^4.0.0",
+    "vue-router": "^4.0.14",
     "vuex": "^4.0.2",
-    "webpack": "^5.0.0"
+    "webpack": "^5.70.0"
   },
   "devDependencies": {
     "@vue/compiler-sfc": "^3.1.4",

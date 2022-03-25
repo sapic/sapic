@@ -5,13 +5,7 @@
     target="_blank"
     rel="noreferrer noopener"
   >
-    <video
-      ref="video"
-      autoplay
-      muted
-      playsinline
-      loop
-    />
+    <video ref="video" autoplay muted playsinline loop />
   </a>
 </template>
 
@@ -27,16 +21,19 @@ export default {
 }
 </script>
 
-<style>
-.profile_video {
-  width: 300px;
-  height: 600px;
-  display: block;
-  background: #19191d;
-}
+<style lang="stylus" scoped>
+@import '../../../../assets/css/color'
 
-.profile_video > video {
-  width: 300px;
-  height: 600px;
-}
+.profile_video
+  width 280px
+  height 560px
+  display block
+  background #19191d
+  margin 10px 10px 30px 10px
+  position relative
+  border-radius 10px
+
+  video
+    width 260px
+    height 560px
 </style>
