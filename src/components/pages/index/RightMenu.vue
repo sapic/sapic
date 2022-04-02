@@ -1,86 +1,89 @@
 <template lang="pug">
 .right__menu
-  ads
+  Ads
 
   .right__menu-header
     span.partnerLabel {{ $t('index.ourOtherProjects') }}
 
-  .profile_count_link_preview
-    .profile_group.profile_primary_group(
-      onclick="window.open('https://center.steam.design/?utm_source=steam.design')"
-    )
-      .profile_group_avatar
-        img(src="@/assets/images/text-center.svg", width="64")
-      .profile_group_text
-        a.whiteLink Text Center Tool
-        .profile_group_membercount Website that helps you center text in steam showcases.
-
-    .profile_group.profile_primary_group(
-      onclick="window.open('https://designerlist.guide/')"
-    )
-      .profile_group_avatar
-        img(src="@/assets/images/List.jpg", width="64")
-      .profile_group_text
-        a.whiteLink Safe Designer List
-        .profile_group_membercount A list of safe, verified artwork designers on Steam.
-
-    .profile_group.profile_primary_group(
-      onclick="window.open('https://avatarcropper.com/')"
-    )
-      .profile_group_avatar
-        img(src="@/assets/images/AvatarCropper.jpg", width="64")
-      .profile_group_text
-        a.whiteLink Quick Avatar Cropper
-        .profile_group_membercount Webpage that allows you to crop avatars for many sites.
+  .friends__block
+    a.friend(v-for="friend in projects", :href="friend.url")
+      .friend-avatar
+        img(:src="friend.img", width="64")
+      .friend-text
+        .title {{ friend.title }}
+        .description {{ friend.description }}
 
   .right__menu-header
     span.partnerLabel {{ $t('index.ourPartners') }}
 
-  .profile_count_link_preview
-    .profile_group.profile_primary_group(
-      onclick="window.open('https://www.steamladder.com/')"
-    )
-      .profile_group_avatar
-        img(src="@/assets/images/ladder.jpg")
-      .profile_group_text
-        a.whiteLink Steam Ladder
-        .profile_group_membercount Leaderboard and ranking site for Steam profiles!
-
-    .profile_group.profile_primary_group(
-      onclick="window.open('https://steamcommunity.com/groups/ArtworkProfiles')"
-    )
-      .profile_group_avatar
-        img(src="@/assets/images/ap.jpg")
-      .profile_group_text
-        a.whiteLink Artwork Profiles
-        .profile_group_membercount Celebrating the beauty of Steam profiles.
-
-    .profile_group.profile_primary_group(
-      onclick="window.open('https://www.steamwishlistcalculator.com')"
-    )
-      .profile_group_avatar
-        img(src="@/assets/images/steamwishlist.png")
-      .profile_group_text
-        a.whiteLink Steam Wishlist Calculator
-        .profile_group_membercount Calculate the total cost of your Steam wishlist!
-
-    .profile_group.profile_primary_group(
-      onclick="window.open('https://steamlevels.com')"
-    )
-      .profile_group_avatar
-        img(src="@/assets/images/steamlevels.jpg")
-      .profile_group_text
-        a.whiteLink SteamLevels
-        .profile_group_membercount A fast and extremely easy way to level up your profile!
+  .friends__block
+    a.friend(v-for="friend in friends", :href="friend.url")
+      .friend-avatar
+        img(:src="friend.img", width="64")
+      .friend-text
+        .title {{ friend.title }}
+        .description {{ friend.description }}
 </template>
 
 <script>
 import Ads from './Ads.vue'
 
+import TextCenterImage from '@/assets/images/text-center.svg'
+import DesignerListImage from '@/assets/images/List.jpg'
+import AvatarCropperImage from '@/assets/images/AvatarCropper.jpg'
+
+import SteamLadderImage from '@/assets/images/ladder.jpg'
+import ArtworkProfilesImage from '@/assets/images/ap.jpg'
+import WithlistImage from '@/assets/images/steamwishlist.png'
+import LevelsImage from '@/assets/images/steamlevels.jpg'
+
 export default {
   components: {
     Ads,
   },
+
+  data () {
+    return {
+      projects: [{
+        img: TextCenterImage,
+        title: 'Text Center Tool',
+        description: 'Website that helps you center text in steam showcases.',
+        url: 'https://center.steam.design/?utm_source=steam.design',
+      }, {
+        img: DesignerListImage,
+        title: 'Safe Designer List',
+        description: 'A list of safe, verified artwork designers on Steam.',
+        url: 'https://designerlist.guide/',
+      }, {
+        img: AvatarCropperImage,
+        title: 'Quick Avatar Cropper',
+        description: 'Webpage that allows you to crop avatars for many sites.',
+        url: 'https://avatarcropper.com/',
+      }],
+
+      friends: [{
+        img: SteamLadderImage,
+        title: 'Steam Ladder',
+        description: 'Leaderboard and ranking site for Steam profiles!',
+        url: 'https://www.steamladder.com/',
+      }, {
+        img: ArtworkProfilesImage,
+        title: 'Artwork Profiles',
+        description: 'Celebrating the beauty of Steam profiles.',
+        url: 'https://steamcommunity.com/groups/ArtworkProfiles',
+      }, {
+        img: WithlistImage,
+        title: ' Steam Wishlist Calculator',
+        description: 'Calculate the total cost of your Steam wishlist!',
+        url: 'https://www.steamwishlistcalculator.com',
+      }, {
+        img: LevelsImage,
+        title: 'SteamLevels',
+        description: 'A fast and extremely easy way to level up your profile!',
+        url: 'https://steamlevels.com',
+      }],
+    }
+  }
 }
 </script>
 
@@ -98,46 +101,42 @@ export default {
   flex 0 0 auto
   text-align center
 
-  .profile_count_link_preview
+  .friends__block
     padding 0 10px
     margin-bottom 10px
 
-  .profile_group_avatar
-    img
-      border-radius 4px
-
-  .profile_group
+  .friend
     display flex
     margin 10px 0 10px 0
     background $color-button
     border-radius 7px
     cursor pointer
+    text-decoration none
+    padding 5px
+    align-items center
 
     &:hover
       transition background-color 0.25s ease
       background-color $color-button-hover
 
-    &_avatar
-      width 65px
-      height 65px
-      margin auto 10px auto 0
+    &-avatar
+      width 55px
+      height 55px
+      margin 0 10px 0 0
 
       img
-        position relative
-        top 5px
-        left 5px
         width 55px
         height 55px
         border-radius 7px
 
-    &_text
-      a
+    &-text
+      .title
         color $color-white
         font-size 13px
         text-decoration none
         font-weight 600
 
-      .profile_group_membercount
+      .description
         font-size 13px
         color #8f98a0
 
@@ -154,5 +153,4 @@ export default {
     align-items center
     justify-content center
     text-decoration none
-    // height 27px
 </style>
