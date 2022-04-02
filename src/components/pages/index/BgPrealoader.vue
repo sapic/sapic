@@ -1,34 +1,45 @@
-<template lang="pug">
-.bgPreloader(v-if="shouldRender" :style="{\
-  position: 'absolute',\
-  opacity: 0,\
-  left: '-9999px',\
-  top: '-9999px'\
-}")
-  template(
-    v-for='background in nextBackgrounds'
-  )
-    img(
-      :src='getUrl(background.steamUrl)'
-      v-if="background.steamUrl.indexOf('webm') === -1"
-      :key='background.steamUrl'
-    )
-    video(:src='getUrl(background.steamUrl)' :key='background.steamUrl' v-else)
+<template>
+  <div
+    class="bgPreloader"
+    v-if="shouldRender"
+    :style="{
+      position: 'absolute',
+      opacity: 0,
+      left: '-9999px',
+      top: '-9999px',
+    }"
+  >
+    <template v-for="background in nextBackgrounds">
+      <img
+        :src="getUrl(background.steamUrl)"
+        v-if="background.steamUrl.indexOf('webm') === -1"
+        :key="background.steamUrl"
+      />
+      <video
+        :src="getUrl(background.steamUrl)"
+        :key="background.steamUrl"
+        v-else
+      />
+    </template>
 
-  img(
-    :src='$store.state.background'
-    ref='currentBgImageHolder'
-    @load='imageUpdated'
-    v-if="$store.state.background && $store.state.background.indexOf('webm') === -1"
-    key="currentBgImageHolder"
-  )
-  video(
-    v-else
-    :src='$store.state.background'
-    ref='currentBgVideoHolder'
-    @loadeddata='videoUpdated'
-    key="currentBgVideoHolder"
-  )
+    <img
+      :src="$store.state.background"
+      ref="currentBgImageHolder"
+      @load="imageUpdated"
+      v-if="
+        $store.state.background &&
+        $store.state.background.indexOf('webm') === -1
+      "
+      key="currentBgImageHolder"
+    />
+    <video
+      v-else
+      :src="$store.state.background"
+      ref="currentBgVideoHolder"
+      @loadeddata="videoUpdated"
+      key="currentBgVideoHolder"
+    />
+  </div>
 </template>
 
 <script>

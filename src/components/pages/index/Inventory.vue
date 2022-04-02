@@ -1,23 +1,34 @@
-<template lang="pug">
-.backgrounds_container
-  template(v-if="$store.state.user.id")
-    p.hover-button {{ $t('inventory.inventory') }}
-    .inventory-list
-      template(v-for="item in items", :key="item.id")
-        .inventory-item(@click="setBackground(item)")
-          img.inventory-item-inner(
-            :src="`https://community.cloudflare.steamstatic.com/economy/image/${item.icon_url_large}/62fx62f`"
-          )
-
-  p.hover-button {{ $t('inventory.random') }}
-  .inventory-list(v-if="shouldShowRandomBgs")
-    template(v-for="item in randomBgs", :key="item.id")
-      .inventory-item(@click="setBackgroundItem(item)")
-        img.inventory-item-inner(
-          :src="`https://community.cloudflare.steamstatic.com/economy/image/${item.iconUrl}/62fx62f`"
-        )
-  p.inventory-more.purple-paradise(@click="addRandomBgs") {{ $t('inventory.loadMore') }}
-  .spacer
+<template>
+  <div class="backgrounds_container">
+    <template v-if="$store.state.user.id">
+      <p class="hover-button">{{ $t("inventory.inventory") }}</p>
+      <div class="inventory-list">
+        <template v-for="item in items" :key="item.id">
+          <div class="inventory-item" @click="setBackground(item)">
+            <img
+              class="inventory-item-inner"
+              :src="`https://community.cloudflare.steamstatic.com/economy/image/${item.icon_url_large}/62fx62f`"
+            />
+          </div>
+        </template>
+      </div>
+    </template>
+    <p class="hover-button">{{ $t("inventory.random") }}</p>
+    <div class="inventory-list" v-if="shouldShowRandomBgs">
+      <template v-for="item in randomBgs" :key="item.id">
+        <div class="inventory-item" @click="setBackgroundItem(item)">
+          <img
+            class="inventory-item-inner"
+            :src="`https://community.cloudflare.steamstatic.com/economy/image/${item.iconUrl}/62fx62f`"
+          />
+        </div>
+      </template>
+    </div>
+    <p class="inventory-more purple-paradise" @click="addRandomBgs">
+      {{ $t("inventory.loadMore") }}
+    </p>
+    <div class="spacer"></div>
+  </div>
 </template>
 
 <script>

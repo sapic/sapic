@@ -1,16 +1,12 @@
-<template lang="pug">
-.main__container
-  //- index
-  router-view
+<template>
+  <div class="main__container">
+    <router-view />
+  </div>
 </template>
 
 <script>
-// import Index from './components/Index'
-// import Vue from 'vue'
-
 export default {
   components: {
-    // Index,
   },
 }
 </script>

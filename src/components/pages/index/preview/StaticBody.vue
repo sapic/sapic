@@ -1,18 +1,22 @@
-<template lang="pug">
-  .profile__preview-body
-    .profile__preview-body__artbox(
-      :style="{ \
-        backgroundImage: `url('${$store.state.background}')`,\
-        height: `${$store.state.bgSize.h - 272}px`,\
-        backgroundPosition: `${($store.state.bgSize.w / 2) + 451}px -272px` \
-      }")
-
-    .profile__preview-body__side(
-      :style="{ \
-        backgroundImage: `url('${$store.state.background}')`,\
-        height: `${$store.state.bgSize.h - 272}px`,\
-        backgroundPosition: `${($store.state.bgSize.w / 2) - 63}px -272px` \
-      }")
+<template>
+  <div class="profile__preview-body">
+    <div
+      class="profile__preview-body__artbox"
+      :style="{
+        backgroundImage: `url('${$store.state.background}')`,
+        height: `${$store.state.bgSize.h - 272}px`,
+        backgroundPosition: `${$store.state.bgSize.w / 2 + 451}px -272px`,
+      }"
+    />
+    <div
+      class="profile__preview-body__side"
+      :style="{
+        backgroundImage: `url('${$store.state.background}')`,
+        height: `${$store.state.bgSize.h - 272}px`,
+        backgroundPosition: `${$store.state.bgSize.w / 2 - 63}px -272px`,
+      }"
+    />
+  </div>
 </template>
 
 <style lang="stylus" scoped>

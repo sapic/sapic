@@ -1,35 +1,39 @@
-<template lang="pug">
-.wrapper
-  section.body__wrapper
-    MenuWindow
-    .preview__window
-      .zoom_out(
-        :style="{\
-          transform: `scale(${scalePercent})`,\
-          width: `calc(100% / ${scalePercent}) !important`,\
-          height: `calc(100% * ${scalePercent}) !important`,\
-        }"
-      )
-        Preview
-
-        BgPreloader
-    template(v-if="!isMobile")
-      RightMenu
-      Inventory
-    MobileHeader(v-else)
-    Scripts
-    div(id="nn_lb2")
+<template>
+  <div class="wrapper">
+    <section class="body__wrapper">
+      <MenuWindow />
+      <div class="preview__window">
+        <div
+          class="zoom_out"
+          :style="{
+            transform: `scale(${scalePercent})`,
+            width: `calc(100% / ${scalePercent}) !important`,
+            height: `calc(100% * ${scalePercent}) !important`,
+          }"
+        >
+          <Preview />
+          <BgPreloader />
+        </div>
+      </div>
+      <template v-if="!isMobile">
+        <RightMenu />
+        <Inventory />
+      </template>
+      <MobileHeader v-else />
+      <Scripts />
+    </section>
+  </div>
 </template>
 
 <script>
-import Preview from './Preview'
-import Inventory from './Inventory'
-import TitleBar from './TitleBar'
-import MenuWindow from './MenuWindow'
-import BgPreloader from './BgPrealoader'
-import Scripts from '../../Scripts'
-import RightMenu from './RightMenu'
-import MobileHeader from './MobileHeader'
+import Preview from './Preview.vue'
+import Inventory from './Inventory.vue'
+import TitleBar from './TitleBar.vue'
+import MenuWindow from './MenuWindow.vue'
+import BgPreloader from './BgPrealoader.vue'
+import Scripts from '../../Scripts.vue'
+import RightMenu from './RightMenu.vue'
+import MobileHeader from './MobileHeader.vue'
 
 const easeOutQuad = t => t * (2 - t)
 

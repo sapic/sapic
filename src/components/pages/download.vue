@@ -1,3 +1,3 @@
-<template lang="pug">
-.container Download
+<template>
+  <div class="container">Download</div>
 </template>

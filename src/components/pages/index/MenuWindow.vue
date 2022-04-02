@@ -1,161 +1,202 @@
-<template lang="pug">
-.menu__window
-  .menu__window-buttons
-    .menu__window-button.menu__window-button-download(@click="getZipClick")
-      cloud-download.menu__window-icon
-      .menu__window-button-text {{ $t('index.download') }}
-
-    //- .menu__window-shadow
-
-    a.menu__window-button.purple-paradise(
-      v-if="!isMobile",
-      href="https://backgrounds.gallery/?utm_source=steam.design",
-      target="_blank"
-    )
-      .menu__window-button-text {{ $t('index.backgrounds') }}
-
-    .menu__window-button(@click="randomBGClick")
-      .menu__window-button-text {{ $t('index.random') }}
-
-    .menu__window-button(@click="getCurrentBGClick")
-      .menu__window-button-text {{ $t('index.getThisBg') }}
-
-    input#urltextbox.menu__window-button.textbox.noclick(
-      :placeholder="$t('index.pasteUrlPlaceholder')",
-      v-model="bgURL"
-    )
-
-    //- .menu__window-section-container
-    //-   .menu__window-button.noclick.small
-    //-     .menu__window-button-text Image Height
-
-    //-   input.menu__window-button.length__slider(type="range")
-    //-   input.menu__window-button.textbox.px(placeholder="px")
-
-    .menu__window-section-container
-      .menu__window-title
-        .menu__window-button-text {{ $t('index.zoomScale') }}:
-
-      .menu__window-scale__container
-        template(v-if="!isMobile")
-          input#scale50.menu__window-scale__input(
-            name="scale",
-            type="radio",
-            value="50",
-            v-model="previewScale"
-          )
-          label.menu__window-scale__label(for="scale50")
-            .menu__window-scale__button 50%
-
-          input#scale75.menu__window-scale__input(
-            name="scale",
-            type="radio",
-            value="75",
-            v-model="previewScale"
-          )
-          label.menu__window-scale__label(for="scale75")
-            .menu__window-scale__button 75%
-
-          input#scale100.menu__window-scale__input(
-            name="scale",
-            type="radio",
-            value="100",
-            v-model="previewScale"
-          )
-          label.menu__window-scale__label(for="scale100")
-            .menu__window-scale__button 100%
-
-          input#scale125.menu__window-scale__input(
-            name="scale",
-            type="radio",
-            value="125",
-            v-model="previewScale"
-          )
-          label.menu__window-scale__label(for="scale125")
-            .menu__window-scale__button 125%
-        template(v-else)
-          input#scale50.menu__window-scale__input(
-            name="scale",
-            type="radio",
-            value="15",
-            v-model="previewScale"
-          )
-          label.menu__window-scale__label(for="scale50")
-            .menu__window-scale__button 15%
-
-          input#scale75.menu__window-scale__input(
-            name="scale",
-            type="radio",
-            value="20",
-            v-model="previewScale"
-          )
-          label.menu__window-scale__label(for="scale75")
-            .menu__window-scale__button 20%
-
-          input#scale100.menu__window-scale__input(
-            name="scale",
-            type="radio",
-            value="25",
-            v-model="previewScale"
-          )
-          label.menu__window-scale__label(for="scale100")
-            .menu__window-scale__button 25%
-
-          //- input#scale125.menu__window-scale__input(
-          //-   name="scale",
-          //-   type="radio",
-          //-   value="25",
-          //-   v-model="previewScale"
-          //- )
-          //- label.menu__window-scale__label(for="scale125")
-          //-   .menu__window-scale__button 25%
-
-    a.menu__window-button.steam(:href="loginUrl", v-if="!$store.state.user.id")
-      .menu__window-button-text {{ $t('index.login') }}
-    .menu__window-button(@click="logout", v-else)
-      .menu__window-button-text {{ $t('index.logout') }}
-
-  .menu__window-credits
-    .menu__window-title
-      .menu__window-button-text {{ $t('index.our') }}:
-    .menu__window-multi-container
-      a.menu__window-multi-label(
-        href="https://github.com/sapic/sapic",
+<template>
+  <div class="menu__window">
+    <div class="menu__window-buttons">
+      <div
+        class="menu__window-button menu__window-button-download"
+        @click="getZipClick"
+      >
+        <CloudDownload class="menu__window-icon" />
+        <div class="menu__window-button-text">{{ $t("index.download") }}</div>
+      </div>
+      <a
+        class="menu__window-button purple-paradise"
+        v-if="!isMobile"
+        href="https://backgrounds.gallery/?utm_source=steam.design"
         target="_blank"
-      )
-        .menu__window-multi-button GitHub
-      a.menu__window-multi-label(
-        href="https://steamcommunity.com/groups/sapic",
-        target="_blank"
-      )
-        .menu__window-multi-button {{ $t('index.ourGroup') }}
-      a.menu__window-multi-label(
-        href="https://old.steam.design/?utm_source=steam.design",
-        target="_blank",
+      >
+        <div class="menu__window-button-text">
+          {{ $t("index.backgrounds") }}
+        </div>
+      </a>
+
+      <div class="menu__window-button" @click="randomBGClick">
+        <div class="menu__window-button-text">{{ $t("index.random") }}</div>
+      </div>
+      <div class="menu__window-button" @click="getCurrentBGClick">
+        <div class="menu__window-button-text">{{ $t("index.getThisBg") }}</div>
+      </div>
+
+      <input
+        class="menu__window-button textbox noclick"
+        id="urltextbox"
+        :placeholder="$t('index.pasteUrlPlaceholder')"
+        v-model="bgURL"
+      />
+
+      <div class="menu__window-section-container">
+        <div class="menu__window-title">
+          <div class="menu__window-button-text">
+            {{ $t("index.zoomScale") }}:
+          </div>
+        </div>
+        <div class="menu__window-scale__container">
+          <template v-if="!isMobile">
+            <input
+              class="menu__window-scale__input"
+              id="scale50"
+              name="scale"
+              type="radio"
+              value="50"
+              v-model="previewScale"
+            />
+            <label class="menu__window-scale__label" for="scale50">
+              <div class="menu__window-scale__button">50%</div>
+            </label>
+            <input
+              class="menu__window-scale__input"
+              id="scale75"
+              name="scale"
+              type="radio"
+              value="75"
+              v-model="previewScale"
+            />
+            <label class="menu__window-scale__label" for="scale75">
+              <div class="menu__window-scale__button">75%</div>
+            </label>
+            <input
+              class="menu__window-scale__input"
+              id="scale100"
+              name="scale"
+              type="radio"
+              value="100"
+              v-model="previewScale"
+            />
+            <label class="menu__window-scale__label" for="scale100">
+              <div class="menu__window-scale__button">100%</div>
+            </label>
+            <input
+              class="menu__window-scale__input"
+              id="scale125"
+              name="scale"
+              type="radio"
+              value="125"
+              v-model="previewScale"
+            />
+            <label class="menu__window-scale__label" for="scale125">
+              <div class="menu__window-scale__button">125%</div>
+            </label>
+          </template>
+
+          <template v-else>
+            <input
+              class="menu__window-scale__input"
+              id="scale50"
+              name="scale"
+              type="radio"
+              value="15"
+              v-model="previewScale"
+            />
+            <label class="menu__window-scale__label" for="scale50">
+              <div class="menu__window-scale__button">15%</div>
+            </label>
+            <input
+              class="menu__window-scale__input"
+              id="scale75"
+              name="scale"
+              type="radio"
+              value="20"
+              v-model="previewScale"
+            />
+            <label class="menu__window-scale__label" for="scale75">
+              <div class="menu__window-scale__button">20%</div>
+            </label>
+            <input
+              class="menu__window-scale__input"
+              id="scale100"
+              name="scale"
+              type="radio"
+              value="25"
+              v-model="previewScale"
+            />
+            <label class="menu__window-scale__label" for="scale100">
+              <div class="menu__window-scale__button">25%</div>
+            </label>
+          </template>
+        </div>
+      </div>
+      <a
+        class="menu__window-button steam"
+        :href="loginUrl"
+        v-if="!$store.state.user.id"
+      >
+        <div class="menu__window-button-text">{{ $t("index.login") }}</div></a
+      >
+      <div class="menu__window-button" @click="logout" v-else>
+        <div class="menu__window-button-text">{{ $t("index.logout") }}</div>
+      </div>
+    </div>
+    <div class="menu__window-credits">
+      <div class="menu__window-title">
+        <div class="menu__window-button-text">{{ $t("index.our") }}:</div>
+      </div>
+      <div class="menu__window-multi-container">
+        <a
+          class="menu__window-multi-label"
+          href="https://github.com/sapic/sapic"
+          target="_blank"
+        >
+          <div class="menu__window-multi-button">GitHub</div>
+        </a>
+        <a
+          class="menu__window-multi-label"
+          href="https://steamcommunity.com/groups/sapic"
+          target="_blank"
+        >
+          <div class="menu__window-multi-button">
+            {{ $t("index.ourGroup") }}
+          </div>
+        </a>
+        <a
+          class="menu__window-multi-label"
+          href="https://old.steam.design/?utm_source=steam.design"
+          target="_blank"
+          rel="noopener noreferrer"
+        >
+          <div class="menu__window-multi-button">
+            {{ $t("index.ourOldSite") }}
+          </div>
+        </a>
+        <a
+          class="menu__window-multi-label"
+          :href="extensionLink"
+          target="_blank"
+          v-if="extensionLink"
+        >
+          <div class="menu__window-multi-button">
+            {{ $t("index.ourExtension") }}
+          </div>
+        </a>
+      </div>
+      <a
+        class="menu__window-discord"
+        href="https://discord.com/invite/jnqnHuX"
         rel="noopener noreferrer"
-      )
-        .menu__window-multi-button {{ $t('index.ourOldSite') }}
-
-      a.menu__window-multi-label(
-        :href="extensionLink",
-        target="_blank",
-        v-if="extensionLink"
-      )
-        .menu__window-multi-button {{ $t('index.ourExtension') }}
-
-    a.menu__window-discord(
-      href="https://discord.com/invite/jnqnHuX",
-      rel="noopener noreferrer",
-      target="_blank"
-    )
-      img.menu__window-discord-image(
-        src="https://discordapp.com/api/guilds/304986224467378177/widget.png?style=banner2"
-      )
-    .menu__window-credits-text Made with ❤️ by TrueCarry and The Oddball
+        target="_blank"
+      >
+        <img
+          class="menu__window-discord-image"
+          src="https://discordapp.com/api/guilds/304986224467378177/widget.png?style=banner2"
+        />
+      </a>
+      <div class="menu__window-credits-text">
+        Made with ❤️ by TrueCarry and The Oddball
+      </div>
+    </div>
+  </div>
 </template>
 
 <script>
-import CloudDownload from './CloudDownload'
+import CloudDownload from './CloudDownload.vue'
 
 export default {
   components: {

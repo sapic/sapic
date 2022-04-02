@@ -1,3 +1,5 @@
+import BgsUrl from '@/assets/bg-asset.json?url'
+
 const StoreImageRegex = /steamcdn-a\.akamaihd\.net\/steamcommunity\/public\/images\/items\/.+(jpg|webm|mp4)$/i
 const AnimatedStoreImageRegex = /cdn\.akamai\.steamstatic\.com\/steamcommunity\/public\/images\/items\/(\d+)\/.+.(jpg|webm|mp4)$/i
 
@@ -39,20 +41,16 @@ export default async (store) => {
   }
 
   const state = JSON.parse(JSON.stringify(store.state))
-
-  // console.log('url', parseQuery())
-
-  const jsonUrl = require('@/assets/bg-asset.json').default
   // If state has no bgs, fetch some from api
   if (
-    state.bgJsonUrl !== jsonUrl || // if we have new bgs json
+    state.bgJsonUrl !== BgsUrl || // if we have new bgs json
     (!state.backgrounds || state.backgrounds.length < 10) // if no bgs
     // (state.backgroundsUpdateTime > 0 && new Date() - state.backgroundsUpdateTime > 604800000) // or if last bg update > week ago
   ) {
-    const bgs = await fetch(jsonUrl).then(r => r.json())
+    const bgs = await fetch(BgsUrl).then(r => r.json())
 
     commit('setBackgrounds', bgs)
-    commit('setBgJsonUrl', jsonUrl)
+    commit('setBgJsonUrl', BgsUrl)
     dispatch('randomBackground')
   }
 

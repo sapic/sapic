@@ -8,8 +8,8 @@ import { createI18n } from 'vue-i18n-lite'
 import localeRu from '@/assets/locales/ru'
 import localeEn from '@/assets/locales/en'
 
-const Index = () => import(/* webpackChunkName: "index" */'./components/pages/index/index')
-const Converter = () => import(/* webpackChunkName: "converter" */'./components/pages/converter')
+import Index from './components/pages/index/index.vue'
+import Converter from './components/pages/converter/index.vue'
 
 const router = createRouter({
   history: createWebHistory(),
@@ -17,9 +17,6 @@ const router = createRouter({
     {
       path: '/', component: Index,
     },
-    // {
-    // path: '/download', component: Download,
-    // },
     {
       path: '/converter', component: Converter,
     },
@@ -33,9 +30,6 @@ const router = createRouter({
         {
           path: '', component: Index,
         },
-        // {
-        // path: 'download', component: Download,
-        // },
         {
           path: 'converter', component: Converter,
         },
@@ -62,8 +56,6 @@ function getLocale () {
 }
 
 const i18n = createI18n({
-  // legacy: false, // you must specify 'legacy: false' option
-
   locale: getLocale(),
   fallbackLocale: 'en',
 
