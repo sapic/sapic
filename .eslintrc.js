@@ -1,9 +1,9 @@
-module.exports = {
+export default {
   root: true,
-  parserOptions: {
-    parser: 'babel-eslint',
-    sourceType: 'module',
-  },
+  // parserOptions: {
+  //   parser: 'babel-eslint',
+  //   sourceType: 'module',
+  // },
   env: {
     browser: true,
     node: true,

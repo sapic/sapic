@@ -75,7 +75,7 @@
 </template>
 
 <script>
-import Ads from './Ads'
+import Ads from './Ads.vue'
 
 export default {
   components: {

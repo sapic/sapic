@@ -4,14 +4,11 @@
 )
   .profile__preview-bg
     video(
-      :src="$store.state.background"
-      muted
-      autoplay
-      loop
-      :style="{ \
-        width: `${$store.state.bgSize.w}px`,\
-        height: `${$store.state.bgSize.h}px`\
-      }"
+      :src="$store.state.background",
+      muted,
+      autoplay,
+      loop,
+      :style='{ \ width: `${$store.state.bgSize.w}px`,\ height: `${$store.state.bgSize.h}px`\ }'
     )
 
   .profile__preview-container
@@ -27,7 +24,7 @@
 <script>
 // import WebmBody from './preview/WebmBody'
 // import StaticBody from './preview/StaticBody'
-import Overlay from './preview/Overlay'
+import Overlay from './preview/Overlay.vue'
 
 export default {
   components: {

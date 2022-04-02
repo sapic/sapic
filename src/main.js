@@ -8,8 +8,11 @@ import { createI18n } from 'vue-i18n-lite'
 import localeRu from '@/assets/locales/ru'
 import localeEn from '@/assets/locales/en'
 
-const Index = () => import(/* webpackChunkName: "index" */'./components/pages/index/index')
-const Converter = () => import(/* webpackChunkName: "converter" */'./components/pages/converter')
+import Index from './components/pages/index/index.vue'
+import Converter from './components/pages/converter/index.vue'
+
+// const Index = () => import(/* webpackChunkName: "index" */'./components/pages/index/index.vue')
+// const Converter = () => import(/* webpackChunkName: "converter" */'./components/pages/converter.vue')
 
 const router = createRouter({
   history: createWebHistory(),

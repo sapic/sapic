@@ -5,19 +5,25 @@
     target="_blank"
     rel="noreferrer noopener"
   >
-    <video
-      ref="video"
-      autoplay
-      muted
-      playsinline
-      loop
-      src="../../../../assets/images/steam_levels.mp4"
-    />
+    <video ref="video" autoplay muted playsinline loop />
   </a>
 </template>
 
-<style lang="stylus" scoped>
-@import '../../../../assets/css/color'
+<script>
+import SteamLevels from '@/assets/images/steam_levels.mp4'
+console.log('steamlevels', SteamLevels)
+
+export default {
+  mounted () {
+    setTimeout(() => {
+      this.$nextTick(async () => {
+        this.$refs.video.src = SteamLevels
+        // this.$refs.video.src = require('@/assets/images/steam_levels.mp4').default
+      })
+    }, 128)
+  },
+}
+</script>
 
 .profile_video
   width 280px

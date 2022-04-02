@@ -155,7 +155,7 @@
 </template>
 
 <script>
-import CloudDownload from './CloudDownload'
+import CloudDownload from './CloudDownload.vue'
 
 export default {
   components: {

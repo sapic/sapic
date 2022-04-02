@@ -1,4 +1,4 @@
-module.exports = {
+export default {
   test: 'en',
   index: {
     download: 'Download ZIP',

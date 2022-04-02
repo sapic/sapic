@@ -5,7 +5,7 @@
 </template>
 
 <script>
-import SteamLevels from './ads/SteamLevels'
+import SteamLevels from './ads/SteamLevels.vue'
 
 export default {
   components: {
