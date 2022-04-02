@@ -6,7 +6,12 @@
     span.partnerLabel {{ $t('index.ourOtherProjects') }}
 
   .friends__block
-    a.friend(v-for="friend in projects", :href="friend.url")
+    a.friend(
+      v-for="friend in projects",
+      :href="friend.url",
+      target="_blank",
+      rel="noopener noreferrer"
+    )
       .friend-avatar
         img(:src="friend.img", width="64")
       .friend-text
@@ -17,7 +22,12 @@
     span.partnerLabel {{ $t('index.ourPartners') }}
 
   .friends__block
-    a.friend(v-for="friend in friends", :href="friend.url")
+    a.friend(
+      v-for="friend in friends",
+      :href="friend.url",
+      target="_blank",
+      rel="noopener noreferrer"
+    )
       .friend-avatar
         img(:src="friend.img", width="64")
       .friend-text
