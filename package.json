@@ -9,8 +9,6 @@
   },
   "main": "index.js",
   "dependencies": {
-    "pug": "^3.0.2",
-    "pug-plain-loader": "^1.1.0",
     "stylus": "^0.57.0",
     "stylus-loader": "^6.2.0",
     "vue": "^3.2.31",

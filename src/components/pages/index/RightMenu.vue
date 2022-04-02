@@ -1,38 +1,49 @@
-<template lang="pug">
-.right__menu
-  Ads
+<template>
+  <div class="right__menu">
+    <Ads />
 
-  .right__menu-header
-    span.partnerLabel {{ $t('index.ourOtherProjects') }}
+    <div class="right__menu-header">
+      <span class="partnerLabel">{{ $t("index.ourOtherProjects") }}</span>
+    </div>
 
-  .friends__block
-    a.friend(
-      v-for="friend in projects",
-      :href="friend.url",
-      target="_blank",
-      rel="noopener noreferrer"
-    )
-      .friend-avatar
-        img(:src="friend.img", width="64")
-      .friend-text
-        .title {{ friend.title }}
-        .description {{ friend.description }}
+    <div class="friends__block">
+      <a
+        class="friend"
+        v-for="friend in projects"
+        :href="friend.url"
+        target="_blank"
+        rel="noopener noreferrer"
+        :key="friend.url"
+      >
+        <div class="friend-avatar"><img :src="friend.img" width="64" /></div>
+        <div class="friend-text">
+          <div class="title">{{ friend.title }}</div>
+          <div class="description">{{ friend.description }}</div>
+        </div>
+      </a>
+    </div>
 
-  .right__menu-header
-    span.partnerLabel {{ $t('index.ourPartners') }}
+    <div class="right__menu-header">
+      <span class="partnerLabel">{{ $t("index.ourPartners") }}</span>
+    </div>
 
-  .friends__block
-    a.friend(
-      v-for="friend in friends",
-      :href="friend.url",
-      target="_blank",
-      rel="noopener noreferrer"
-    )
-      .friend-avatar
-        img(:src="friend.img", width="64")
-      .friend-text
-        .title {{ friend.title }}
-        .description {{ friend.description }}
+    <div class="friends__block">
+      <a
+        class="friend"
+        v-for="friend in friends"
+        :href="friend.url"
+        target="_blank"
+        rel="noopener noreferrer"
+        :key="friend.url"
+      >
+        <div class="friend-avatar"><img :src="friend.img" width="64" /></div>
+        <div class="friend-text">
+          <div class="title">{{ friend.title }}</div>
+          <div class="description">{{ friend.description }}</div>
+        </div>
+      </a>
+    </div>
+  </div>
 </template>
 
 <script>
@@ -113,7 +124,6 @@ export default {
 
   .friends__block
     padding 0 10px
-    margin-bottom 10px
 
   .friend
     display flex

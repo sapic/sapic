@@ -1,20 +1,28 @@
-<template lang="pug">
-.wrapper
-  section.body__wrapper
-    MenuWindow
-    .preview__window
-      .zoom_out(
-        :style='{\ transform: `scale(${scalePercent})`,\ width: `calc(100% / ${scalePercent}) !important`,\ height: `calc(100% * ${scalePercent}) !important`,\ }'
-      )
-        Preview
-
-        BgPreloader
-    template(v-if="!isMobile")
-      RightMenu
-      Inventory
-    MobileHeader(v-else)
-    Scripts
-    #nn_lb2
+<template>
+  <div class="wrapper">
+    <section class="body__wrapper">
+      <MenuWindow />
+      <div class="preview__window">
+        <div
+          class="zoom_out"
+          :style="{
+            transform: `scale(${scalePercent})`,
+            width: `calc(100% / ${scalePercent}) !important`,
+            height: `calc(100% * ${scalePercent}) !important`,
+          }"
+        >
+          <Preview />
+          <BgPreloader />
+        </div>
+      </div>
+      <template v-if="!isMobile">
+        <RightMenu />
+        <Inventory />
+      </template>
+      <MobileHeader v-else />
+      <Scripts />
+    </section>
+  </div>
 </template>
 
 <script>

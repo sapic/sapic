@@ -1,8 +1,10 @@
-<template lang="pug">
-.mobile__header
-  .mobile__header-container
-    img.mobile__header-image(src="@/assets/images/logo.svg")
-    h1.mobile__header-name Steam.Design
+<template>
+  <div class="mobile__header">
+    <div class="mobile__header-container">
+      <img class="mobile__header-image" src="@/assets/images/logo.svg" />
+      <h1 class="mobile__header-name">Steam.Design</h1>
+    </div>
+  </div>
 </template>
 
 <script>

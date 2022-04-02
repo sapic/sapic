@@ -1,29 +1,27 @@
-<template lang="pug">
-.profile__preview(
-  :style="{ backgroundImage: `url('${$store.state.background}')` }"
-)
-  .profile__preview-bg
-    video(
-      :src="$store.state.background",
-      muted,
-      autoplay,
-      loop,
-      :style='{ \ width: `${$store.state.bgSize.w}px`,\ height: `${$store.state.bgSize.h}px`\ }'
-    )
-
-  .profile__preview-container
-    Overlay(:imageHeight="$store.state.bgSize.h")
-
-    //- .profile__preview-header
-    //-   .profile__preview-header__avatar
-
-    //- WebmBody.profile__preview-body(v-if="$store.getters.isVideo")
-    //- StaticBody.profile__preview-body(v-else)
+<template>
+  <div
+    class="profile__preview"
+    :style="{ backgroundImage: `url('${$store.state.background}')` }"
+  >
+    <div class="profile__preview-bg">
+      <video
+        :src="$store.state.background"
+        muted="muted"
+        autoplay="autoplay"
+        loop="loop"
+        :style="{
+          width: `${$store.state.bgSize.w}px`,
+          height: `${$store.state.bgSize.h}px`,
+        }"
+      ></video>
+    </div>
+    <div class="profile__preview-container">
+      <Overlay :imageHeight="$store.state.bgSize.h" />
+    </div>
+  </div>
 </template>
 
 <script>
-// import WebmBody from './preview/WebmBody'
-// import StaticBody from './preview/StaticBody'
 import Overlay from './preview/Overlay.vue'
 
 export default {
