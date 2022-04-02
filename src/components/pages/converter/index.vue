@@ -2,11 +2,7 @@
   <div class="converter__container">
     <div class="url__container">
       <label for="urlInput"> Image URL:</label>
-      <input
-        id="urlInput"
-        v-model="url"
-        type="text"
-      >
+      <input id="urlInput" v-model="url" type="text" />
     </div>
 
     <div class="url__container">
@@ -16,7 +12,7 @@
         ref="fileInput"
         type="file"
         @change="onUploadFiles"
-      >
+      />
     </div>
 
     <div class="format__container">
@@ -24,52 +20,36 @@
       <div class="inputs">
         <div class="input__container">
           <label for="formatWebm">MP4</label>
-          <input
-            v-model="outputFormat"
-            type="radio"
-            value="mp4"
-          >
+          <input v-model="outputFormat" type="radio" value="mp4" />
         </div>
 
         <div class="input__container">
           <label for="formatWebm">WEBM</label>
-          <input
-            v-model="outputFormat"
-            type="radio"
-            value="webm"
-          >
+          <input v-model="outputFormat" type="radio" value="webm" />
         </div>
 
         <div class="input__container">
           <label for="formatWebm">GIF</label>
-          <input
-            v-model="outputFormat"
-            type="radio"
-            value="gif"
-          >
+          <input v-model="outputFormat" type="radio" value="gif" />
         </div>
       </div>
 
       <div>Formats description:</div>
-      <div> MP4 - fastest </div>
-      <div> WEBM - very slow, but may be better and smaller </div>
-      <div> GIF - looks like shit, but maybe you need it, I won't judge </div>
+      <div>MP4 - fastest</div>
+      <div>WEBM - very slow, but may be better and smaller</div>
+      <div>GIF - looks like shit, but maybe you need it, I won't judge</div>
 
-      <br>
+      <br />
 
       <div>Images:</div>
       <div class="images__container">
-        <div
-          v-for="image in images"
-          :key="image.name"
-          class="item"
-        >
+        <div v-for="image in images" :key="image.name" class="item">
           <div class="item__title">
             <input
               v-model="image.enabled"
               type="checkbox"
               class="item__checkbox"
-            >
+            />
             <div class="item__name">
               {{ image.name }}
             </div>
@@ -77,50 +57,34 @@
 
           <div class="item__input">
             <label for="wInput">Width:</label>
-            <input
-              v-model="image.w"
-              type="number"
-            >
+            <input v-model="image.w" type="number" />
           </div>
 
           <div class="item__input">
             <label for="hInput">Height:</label>
-            <input
-              v-model="image.h"
-              type="number"
-            >
+            <input v-model="image.h" type="number" />
           </div>
 
           <div class="item__input">
             <label for="hInput">OffsetX:</label>
-            <input
-              v-model="image.x"
-              type="number"
-            >
+            <input v-model="image.x" type="number" />
           </div>
 
           <div class="item__input">
             <label for="hInput">OffsetY:</label>
-            <input
-              v-model="image.y"
-              type="number"
-            >
+            <input v-model="image.y" type="number" />
           </div>
 
-        <!-- <div>Width {{ image.w }}</div> -->
-        <!-- <div>Name {{ image }}</div>
+          <!-- <div>Width {{ image.w }}</div> -->
+          <!-- <div>Name {{ image }}</div>
         <div>Name {{ image }}</div>
         <div>Name {{ image }}</div> -->
         </div>
       </div>
 
-      <br>
+      <br />
 
-      <button
-        v-if="!ffmpeg"
-        class="download__button"
-        disabled
-      >
+      <button v-if="!ffmpeg" class="download__button" disabled>
         Loading...
       </button>
       <button
@@ -132,21 +96,21 @@
       </button>
 
       <div v-else>
-        Progress {{ Math.floor(progress * 100) }}%({{ itemsDone }}/{{ itemsTotal }} images):
+        Progress {{ Math.floor(progress * 100) }}%({{ itemsDone }}/{{
+          itemsTotal
+        }}
+        images):
         <div class="progress_container">
           <div
             class="progress_foreground"
-            :style="{width: `${200 * progress}px`}"
+            :style="{ width: `${200 * progress}px` }"
           />
         </div>
       </div>
 
       <div>
         logs:
-        <p
-          ref="logsContainer"
-          class="logs_container"
-        >
+        <p ref="logsContainer" class="logs_container">
           {{ logs }}
         </p>
       </div>

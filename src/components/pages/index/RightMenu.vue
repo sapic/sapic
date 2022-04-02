@@ -143,8 +143,10 @@ export default {
 
   &-header
     background-color $color-button
+    color $color-white
     // width 100%
     margin 0 10px
+    padding 3px 0
     box-sizing border-box
     border-radius 3px
     text-align center
@@ -152,5 +154,5 @@ export default {
     align-items center
     justify-content center
     text-decoration none
-    height 27px
+    // height 27px
 </style>
