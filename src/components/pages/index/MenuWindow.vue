@@ -8,7 +8,7 @@
         <CloudDownload class="menu__window-icon" />
         <div class="menu__window-button-text">{{ $t("index.download") }}</div>
       </div>
-      <a
+      <!-- <a
         class="menu__window-button purple-paradise"
         v-if="!isMobile"
         href="https://backgrounds.gallery/?utm_source=steam.design"
@@ -17,7 +17,7 @@
         <div class="menu__window-button-text">
           {{ $t("index.backgrounds") }}
         </div>
-      </a>
+      </a> -->
 
       <div class="menu__window-button" @click="randomBGClick">
         <div class="menu__window-button-text">{{ $t("index.random") }}</div>
