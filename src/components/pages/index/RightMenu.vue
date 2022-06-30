@@ -68,7 +68,7 @@ export default {
       projects: [{
         img: TextCenterImage,
         title: 'Text Center Tool',
-        description: 'Website that helps you center text in steam showcases.',
+        description: 'Site that helps you center text in Steam showcases.',
         url: 'https://center.steam.design/?utm_source=steam.design',
       }, {
         img: DesignerListImage,
@@ -78,7 +78,7 @@ export default {
       }, {
         img: AvatarCropperImage,
         title: 'Quick Avatar Cropper',
-        description: 'Webpage that allows you to crop avatars for many sites.',
+        description: 'Site that allows you to crop avatars for many sites.',
         url: 'https://avatarcropper.com/',
       }],
 
@@ -94,13 +94,13 @@ export default {
         url: 'https://steamcommunity.com/groups/ArtworkProfiles',
       }, {
         img: WithlistImage,
-        title: ' Steam Wishlist Calculator',
+        title: 'Steam Wishlist Calculator',
         description: 'Calculate the total cost of your Steam wishlist!',
         url: 'https://www.steamwishlistcalculator.com',
       }, {
         img: LevelsImage,
         title: 'SteamLevels',
-        description: 'A fast and extremely easy way to level up your profile!',
+        description: 'A quick and easy way to level up your profile!',
         url: 'https://steamlevels.com',
       }],
     }
