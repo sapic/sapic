@@ -1,7 +1,7 @@
 <template>
   <div
-    class="bgPreloader"
     v-if="shouldRender"
+    class="bgPreloader"
     :style="{
       position: 'absolute',
       opacity: 0,
@@ -9,84 +9,62 @@
       top: '-9999px',
     }"
   >
-    <template v-for="background in nextBackgrounds">
-      <img
-        :src="getUrl(background.steamUrl)"
-        v-if="background.steamUrl.indexOf('webm') === -1"
-        :key="background.steamUrl"
-      />
-      <video
-        :src="getUrl(background.steamUrl)"
-        :key="background.steamUrl"
-        v-else
-      />
+    <template v-for="background in nextBackgrounds" :key="background.steamUrl">
+      <img v-if="background.steamUrl.indexOf('webm') === -1" :src="getUrl(background.steamUrl)" />
+      <video v-else :src="getUrl(background.steamUrl)" />
     </template>
 
     <img
-      :src="$store.state.background"
+      v-if="$store.state.background && $store.state.background.indexOf('webm') === -1"
       ref="currentBgImageHolder"
-      @load="imageUpdated"
-      v-if="
-        $store.state.background &&
-        $store.state.background.indexOf('webm') === -1
-      "
       key="currentBgImageHolder"
+      :src="$store.state.background"
+      @load="holderUpdated"
     />
     <video
       v-else
-      :src="$store.state.background"
       ref="currentBgVideoHolder"
-      @loadeddata="videoUpdated"
       key="currentBgVideoHolder"
+      :src="$store.state.background"
+      @loadeddata="holderUpdated"
     />
   </div>
 </template>
 
-<script>
-export default {
-  data () {
-    return {
-      shouldRender: false,
-    }
-  },
+<script setup lang="ts">
+import { computed, ref } from 'vue'
+import { useStore } from 'vuex'
 
-  computed: {
-    nextBackgrounds () {
-      return this.$store.state.nextRandomBackgrounds
-    },
-  },
+const store = useStore()
 
-  mounted () {
-    setTimeout(() => {
-      this.shouldRender = true
-    }, 256)
-  },
+const shouldRender = ref(false)
+const bgHolderRef = ref<HTMLImageElement | HTMLVideoElement | null>(null)
 
-  methods: {
-    imageUpdated () {
-      if (this.$refs.currentBgImageHolder.naturalHeight && this.$refs.currentBgImageHolder.naturalWidth) {
-        this.$store.commit('setBgSize', {
-          w: this.$refs.currentBgImageHolder.naturalWidth,
-          h: this.$refs.currentBgImageHolder.naturalHeight,
-        })
-      }
-    },
-    videoUpdated () {
-      if (this.$refs.currentBgVideoHolder.videoHeight && this.$refs.currentBgVideoHolder.videoWidth) {
-        this.$store.commit('setBgSize', {
-          w: this.$refs.currentBgVideoHolder.videoWidth,
-          h: this.$refs.currentBgVideoHolder.videoHeight,
-        })
-      }
-    },
+const nextBackgrounds = computed(() => store.state.nextRandomBackgrounds)
 
-    getUrl (url) {
-      if (url.indexOf('http://cdn.akamai.steamstatic.com') !== -1) {
-        return url.replace('http://cdn.akamai.steamstatic.com', 'https://steamcdn-a.akamaihd.net')
-      } else {
-        return url
-      }
-    },
-  },
+setTimeout(() => {
+  shouldRender.value = true
+}, 256)
+
+function holderUpdated() {
+  if (bgHolderRef.value instanceof HTMLImageElement) {
+    store.commit('setBgSize', {
+      w: bgHolderRef.value.naturalWidth,
+      h: bgHolderRef.value.naturalHeight,
+    })
+  } else if (bgHolderRef.value instanceof HTMLVideoElement) {
+    store.commit('setBgSize', {
+      w: bgHolderRef.value.videoWidth,
+      h: bgHolderRef.value.videoHeight,
+    })
+  }
+}
+
+function getUrl(url) {
+  if (url.indexOf('http://cdn.akamai.steamstatic.com') !== -1) {
+    return url.replace('http://cdn.akamai.steamstatic.com', 'https://steamcdn-a.akamaihd.net')
+  } else {
+    return url
+  }
 }
 </script>

@@ -2,11 +2,7 @@
   <div class="converter__container">
     <div>Images:</div>
     <div class="images__container">
-      <div
-        v-for="image in images"
-        :key="image.name"
-        class="item"
-      >
+      <div v-for="image in images" :key="image.name" class="item">
         <ConvertRow :info="image" />
         <!-- <div class="item__title">
           <input
@@ -53,7 +49,7 @@
       </div>
     </div>
 
-    <br>
+    <br />
   </div>
 </template>
 
@@ -81,19 +77,19 @@ export default {
     },
   },
 
-  data  () {
-    const data: {url?: string, images: ImageInfo[], } = {
+  data() {
+    const data: { url?: string; images: ImageInfo[] } = {
       url: undefined,
       images: [],
     }
     return data
   },
 
-  async mounted () {  
+  async mounted() {
     if (this.save) {
       this.url = this.save.url
 
-      this.images = this.save.images.map(i => ({
+      this.images = this.save.images.map((i) => ({
         ...i,
         name: i.name.replace('.png', '.mp4'),
         enabled: true,
@@ -102,9 +98,10 @@ export default {
   },
 
   methods: {
-
-    async downloadClick () {
-      const files = await Promise.all(this.images.filter(i => i.enabled).map(info => convertFile(this.url, info)))
+    async downloadClick() {
+      const files = await Promise.all(
+        this.images.filter((i) => i.enabled).map((info) => convertFile(this.url, info))
+      )
       console.log('files', files)
 
       const zip = new JSZip()
@@ -117,23 +114,22 @@ export default {
       const inputDigest = await digestMessage(inputString)
 
       const zipName = `steam.design_${inputDigest.slice(0, 6)}.zip`
-      zip.generateAsync({ type: 'blob' })
-        .then(function (content) {
-          saveAs(content, zipName)
-        })
+      zip.generateAsync({ type: 'blob' }).then(function (content) {
+        saveAs(content, zipName)
+      })
     },
   },
 }
 
-async function digestMessage (message) {
+async function digestMessage(message) {
   const msgUint8 = new TextEncoder().encode(message) // encode as (utf-8) Uint8Array
   const hashBuffer = await crypto.subtle.digest('SHA-256', msgUint8) // hash the message
   const hashArray = Array.from(new Uint8Array(hashBuffer)) // convert buffer to byte array
-  const hashHex = hashArray.map(b => b.toString(16).padStart(2, '0')).join('') // convert bytes to hex string
+  const hashHex = hashArray.map((b) => b.toString(16).padStart(2, '0')).join('') // convert bytes to hex string
   return hashHex
 }
 
-function convertFile (url, info) {
+function convertFile(url, info) {
   // let resolve
   // let reject
 

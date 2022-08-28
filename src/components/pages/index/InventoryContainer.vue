@@ -1,7 +1,7 @@
 <template>
   <div class="backgrounds_container">
     <template v-if="$store.state.user.id">
-      <p class="hover-button">{{ $t("inventory.inventory") }}</p>
+      <p class="hover-button">{{ $t('inventory.inventory') }}</p>
       <div class="inventory-list">
         <template v-for="item in items" :key="item.id">
           <div class="inventory-item" @click="setBackground(item)">
@@ -13,7 +13,7 @@
         </template>
       </div>
     </template>
-    <p class="hover-button">{{ $t("inventory.random") }}</p>
+    <p class="hover-button">{{ $t('inventory.random') }}</p>
     <div v-if="shouldShowRandomBgs" class="inventory-list">
       <template v-for="item in randomBgs" :key="item.id">
         <div class="inventory-item" @click="setBackgroundItem(item)">
@@ -25,7 +25,7 @@
       </template>
     </div>
     <p class="inventory-more purple-paradise" @click="addRandomBgs">
-      {{ $t("inventory.loadMore") }}
+      {{ $t('inventory.loadMore') }}
     </p>
     <div class="spacer"></div>
   </div>
@@ -33,7 +33,7 @@
 
 <script>
 export default {
-  data () {
+  data() {
     const width = window.innerWidth - 250 - 300 - 200 - 9
     const itemsIncr = Math.floor(width / 108)
     const startRows = 3
@@ -61,16 +61,16 @@ export default {
       }
     },
     /* eslint-enable */
-    items () {
+    items() {
       return this.$store.state.inventory
     },
 
-    randomBgs () {
+    randomBgs() {
       if (this.$store.state.backgrounds.length === 0) {
         return []
       }
 
-      let end = this.start + (this.itemsIncr * this.startRows * this.pagination)
+      let end = this.start + this.itemsIncr * this.startRows * this.pagination
       if (end > this.$store.state.backgrounds.length - 1) {
         end = this.$store.state.backgrounds.length
       }
@@ -78,11 +78,13 @@ export default {
       return this.$store.state.backgrounds.slice(this.start, end)
     },
 
-    start () {
+    start() {
       if (this.$store.state.backgrounds.length === 0) {
         return 0
       }
-      let start = Math.floor((Math.random() * this.$store.state.backgrounds.length)) - this.itemsIncr * this.startRows
+      let start =
+        Math.floor(Math.random() * this.$store.state.backgrounds.length) -
+        this.itemsIncr * this.startRows
       if (start < 0) {
         start = 0
       }
@@ -91,14 +93,14 @@ export default {
     },
   },
 
-  mounted () {
+  mounted() {
     setTimeout(() => {
       this.shouldShowRandomBgs = true
     }, 256)
   },
 
   methods: {
-    setBackground (item) {
+    setBackground(item) {
       this.$store.commit('setBackground', {
         background: item.actions[0].link,
         info: item,
@@ -106,7 +108,7 @@ export default {
       window.location.hash = '#' + item.actions[0].link
     },
 
-    setBackgroundItem (item) {
+    setBackgroundItem(item) {
       this.$store.commit('setBackground', {
         background: this.getUrl(item.steamUrl),
         info: item,
@@ -115,7 +117,7 @@ export default {
       window.location.hash = '#' + this.getUrl(item.steamUrl)
     },
 
-    getUrl (url) {
+    getUrl(url) {
       if (url.indexOf('http://cdn.akamai.steamstatic.com') !== -1) {
         return url.replace('http://cdn.akamai.steamstatic.com', 'https://steamcdn-a.akamaihd.net')
       } else {
@@ -123,7 +125,7 @@ export default {
       }
     },
 
-    addRandomBgs () {
+    addRandomBgs() {
       this.pagination++
       this.$store.dispatch('trackClick', ['loadMoreRandomBGs'])
       // let i = this.itemsIncr * 3

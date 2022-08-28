@@ -1,6 +1,7 @@
 import init from './init'
 import { createStore } from 'vuex'
 
+// interface RootState {}
 const state = {
   background: null,
   // bgInfo: BackgroundInfo(),
@@ -24,47 +25,52 @@ const state = {
 }
 
 const getters = {
-  isVideo (state) {
+  isVideo(state) {
     return state.format === 'webm' || state.format === 'mp4'
   },
 }
 
 const mutations = {
-  setBackground (state, { background, info }) {
+  setBackground(state, { background, info }) {
     state.background = background
     state.bgInfo = info
     state.format = background.split('.').slice(-1)[0]
   },
-  setBackgroundURL (state, value) {
+  setBackgroundURL(state, value) {
     state.background = value
     state.format = value.split('.').slice(-1)[0]
   },
-  setBackgrounds (state, backgrounds) {
+  setBackgrounds(state, backgrounds) {
     state.backgrounds = backgrounds
-    state.nextRandomBackgrounds.push(state.backgrounds[Math.floor(state.backgrounds.length * Math.random())])
+    state.nextRandomBackgrounds.push(
+      state.backgrounds[Math.floor(state.backgrounds.length * Math.random())]
+    )
     state.backgroundsUpdateTime = Date.now()
   },
-  setCurrentWindow (state, window) {
+  setCurrentWindow(state, window) {
     state.currWindow = window
   },
-  setIsMaximized (state, max) {
+  setIsMaximized(state, max) {
     state.isMaximized = max
   },
-  setWindowWidth (state, value) {
+  setWindowWidth(state, value) {
     state.windowWidth = value
   },
-  setWindowHeight (state, value) {
+  setWindowHeight(state, value) {
     state.windowHeight = value
   },
-  setWindowSize (state, size) {
+  setWindowSize(state, size) {
     state.windowWidth = size.width
     state.windowHeight = size.height
   },
-  randomBackground (state) {
+  randomBackground(state) {
     const newBg = state.nextRandomBackgrounds.shift()
     if (newBg) {
       if (newBg.steamUrl.indexOf('http://cdn.akamai.steamstatic.com') !== -1) {
-        state.background = newBg.steamUrl.replace('http://cdn.akamai.steamstatic.com', 'https://steamcdn-a.akamaihd.net')
+        state.background = newBg.steamUrl.replace(
+          'http://cdn.akamai.steamstatic.com',
+          'https://steamcdn-a.akamaihd.net'
+        )
       } else {
         state.background = newBg.steamUrl
       }
@@ -90,50 +96,50 @@ const mutations = {
       }
     }
   },
-  setPreviewScale (state, value) {
+  setPreviewScale(state, value) {
     state.previewScale = parseInt(value)
   },
-  setGreenworks (state, value) {
+  setGreenworks(state, value) {
     state.greenworks = value
   },
-  setUser (state, value) {
+  setUser(state, value) {
     state.user = value
   },
-  setBgSize (state, value) {
+  setBgSize(state, value) {
     state.bgSize = value
   },
-  setState (state, newState) {
+  setState(state, newState) {
     state = newState
   },
-  setAvatar (state, avatar) {
+  setAvatar(state, avatar) {
     state.user = {
       ...state.user,
       avatar,
     }
   },
-  setInventoryBackgrounds (state, items) {
+  setInventoryBackgrounds(state, items) {
     state.inventory = items
     state.inventoryUpdateTime = Date.now()
   },
 
-  logout () {
+  logout() {
     state.user = {
       id: 0,
     }
     state.inventory = []
   },
 
-  setBgJsonUrl (state, v) {
+  setBgJsonUrl(state, v) {
     state.bgJsonUrl = v
   },
 
-  openVideo (state, v) {
+  openVideo(state, v) {
     state.converterString = v
-  }
+  },
 }
 
 const actions = {
-  downloadZip ({ state, getters, commit }, { ctrl, alt }) {
+  downloadZip({ state, getters, commit }, { ctrl, alt }) {
     // sizes based on 1920x1108
     // https://steamcdn-a.akamaihd.net/steamcommunity/public/images/items/570/982491acceb6c9dde0d5e49dab1e7540c5faa1de.webm
     const halfWidth = Math.floor(state.bgSize.w / 2)
@@ -149,7 +155,9 @@ const actions = {
     }
 
     // const backUrl = ctrl && alt ? 'https://steam.design/converter/' : 'https://steam.design/raw/'
-    const backUrl = getters.isVideo ? 'https://steam.design/converter/' : 'https://steam.design/raw/'
+    const backUrl = getters.isVideo
+      ? 'https://steam.design/converter/'
+      : 'https://steam.design/raw/'
     // const backUrl = 'http://localhost:8899/raw/'
     const url = backUrl + btoa(JSON.stringify(bgSaveInfo))
 
@@ -164,24 +172,27 @@ const actions = {
     }
   },
 
-  randomBackground ({ commit }) {
+  randomBackground({ commit }) {
     commit('randomBackground')
   },
 
-  getCurrentBg ({ state }) {
-    const _goUrl = state.bgInfo && state.bgInfo.url
-      ? 'https://steamcommunity.com/market/listings/' + state.bgInfo.url
-      : 'https://images.google.com/searchbyimage?image_url=' + state.background
+  getCurrentBg({ state }) {
+    const _goUrl =
+      state.bgInfo && state.bgInfo.url
+        ? 'https://steamcommunity.com/market/listings/' + state.bgInfo.url
+        : 'https://images.google.com/searchbyimage?image_url=' + state.background
     // shell.openExternal(_goUrl)
     window.open(_goUrl)
   },
 
-  async loadBackpack ({ commit }) {
-    const data = await fetch(`https://steam.design/backpack/${state.user.id}/items.json`).then(r => r.json())
+  async loadBackpack({ commit }) {
+    const data = await fetch(`https://steam.design/backpack/${state.user.id}/items.json`).then(
+      (r) => r.json()
+    )
     commit('setInventoryBackgrounds', data.backgrounds)
   },
 
-  trackClick (ctx, [where, subject]) {
+  trackClick(ctx, [where, subject]) {
     if (window && window.gtag) {
       window.gtag('event', where, {
         event_category: 'userClick',
@@ -197,8 +208,7 @@ export default createStore({
   actions,
   getters,
 
-  modules: {
-  },
+  modules: {},
 
   plugins: [init],
 })

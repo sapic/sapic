@@ -6,9 +6,9 @@
     >
       <video
         :src="$store.state.background"
-        muted="muted"
-        autoplay="autoplay"
-        loop="loop"
+        muted
+        autoplay
+        loop
         :style="{
           position: 'absolute',
           width: `${$store.state.bgSize.w}px`,
@@ -24,9 +24,9 @@
     >
       <video
         :src="$store.state.background"
-        muted="muted"
-        autoplay="autoplay"
-        loop="loop"
+        muted
+        autoplay
+        loop
         :style="{
           position: 'absolute',
           width: `${$store.state.bgSize.w}px`,

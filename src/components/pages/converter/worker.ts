@@ -1,4 +1,3 @@
-
 // postMessage('I\'m working before postMessage(\'ali\').')
 // export const x = 1
 // eslint-disable-next-line no-undef
@@ -16,7 +15,7 @@ onmessage = async (event) => {
   }
 }
 
-async function convert (data) {
+async function convert(data) {
   console.log('start convert')
 
   const outputFormat = 'mp4'
@@ -43,31 +42,42 @@ async function convert (data) {
   const outputName = `test${i}.` + outputFormat
 
   let convertArgs = [
-    '-i', `inputfile${i}`,
+    '-i',
+    `inputfile${i}`,
     // "-i", palette.Name(),
-    '-vf', convertString,
-    '-b:v', '0',
-    '-crf', '30',
+    '-vf',
+    convertString,
+    '-b:v',
+    '0',
+    '-crf',
+    '30',
     // '-pass', '2',
     // "-lossless", "1",
-    '-row-mt', '1',
-    '-y', outputName,
+    '-row-mt',
+    '1',
+    '-y',
+    outputName,
   ]
 
   if (outputFormat === 'mp4') {
     convertArgs = [
-      '-i', `inputfile${i}`,
-      '-vf', convertString + ',format=yuv420p',
+      '-i',
+      `inputfile${i}`,
+      '-vf',
+      convertString + ',format=yuv420p',
       // '-b:v', '0',
       // '-crf', '30',
       // '-pass', '2',
       // "-lossless", "1",
       // '-row-mt', '1',
       // '-vf', 'format=yuv420p',
-      '-c:v', 'libx264',
+      '-c:v',
+      'libx264',
       // '-preset', 'veryslow',
-      '-crf', '5',
-      '-y', outputName,
+      '-crf',
+      '5',
+      '-y',
+      outputName,
     ]
   }
 
@@ -80,7 +90,7 @@ async function convert (data) {
   console.log('done', info)
 }
 
-async function createFfmpeg () {
+async function createFfmpeg() {
   // if (self.ffmpegInit) {
   //   return
   // }

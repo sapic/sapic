@@ -35,7 +35,7 @@ import Scripts from '../../Scripts.vue'
 import RightMenu from './RightMenu.vue'
 import MobileHeader from './MobileHeader.vue'
 
-const easeOutQuad = t => t * (2 - t)
+const easeOutQuad = (t) => t * (2 - t)
 
 export default {
   components: {
@@ -49,25 +49,25 @@ export default {
     RightMenu,
     MobileHeader,
   },
-  data () {
+  data() {
     return {
       animatedScale: this.$store.state.previewScale,
     }
   },
   computed: {
-    scalePercent () {
+    scalePercent() {
       return this.animatedScale / 100
     },
-    previewScale () {
+    previewScale() {
       return this.$store.state.previewScale
     },
 
-    isMobile () {
+    isMobile() {
       return window.screen.width < 560
     },
   },
   watch: {
-    previewScale (newValue) {
+    previewScale(newValue) {
       const start = Date.now()
       const end = start + 375
       let shouldEnd = false
@@ -144,8 +144,8 @@ body {
 body {
   margin: 0;
   overflow: hidden;
-  font-family: "Source Sans Pro", -apple-system, BlinkMacSystemFont, "Segoe UI",
-    Roboto, "Helvetica Neue", Arial, sans-serif;
+  font-family: 'Source Sans Pro', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto,
+    'Helvetica Neue', Arial, sans-serif;
 }
 
 #app {
