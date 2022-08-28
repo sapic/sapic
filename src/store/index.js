@@ -20,6 +20,7 @@ const state = {
   inventoryUpdateTime: 0,
   v: 1,
   bgJsonUrl: null, // url of file with backgrounds
+  converterString: '',
 }
 
 const getters = {
@@ -107,7 +108,7 @@ const mutations = {
   setAvatar (state, avatar) {
     state.user = {
       ...state.user,
-      avatar: avatar,
+      avatar,
     }
   },
   setInventoryBackgrounds (state, items) {
@@ -125,10 +126,14 @@ const mutations = {
   setBgJsonUrl (state, v) {
     state.bgJsonUrl = v
   },
+
+  openVideo (state, v) {
+    state.converterString = v
+  }
 }
 
 const actions = {
-  downloadZip ({ state, getters }, { ctrl, alt }) {
+  downloadZip ({ state, getters, commit }, { ctrl, alt }) {
     // sizes based on 1920x1108
     // https://steamcdn-a.akamaihd.net/steamcommunity/public/images/items/570/982491acceb6c9dde0d5e49dab1e7540c5faa1de.webm
     const halfWidth = Math.floor(state.bgSize.w / 2)
@@ -152,7 +157,11 @@ const actions = {
     //   console.log('webm', url)
     //   return
     // }
-    window.open(url)
+    if (getters.isVideo) {
+      commit('openVideo', bgSaveInfo)
+    } else {
+      window.open(url)
+    }
   },
 
   randomBackground ({ commit }) {
@@ -160,7 +169,7 @@ const actions = {
   },
 
   getCurrentBg ({ state }) {
-    var _goUrl = state.bgInfo && state.bgInfo.url
+    const _goUrl = state.bgInfo && state.bgInfo.url
       ? 'https://steamcommunity.com/market/listings/' + state.bgInfo.url
       : 'https://images.google.com/searchbyimage?image_url=' + state.background
     // shell.openExternal(_goUrl)

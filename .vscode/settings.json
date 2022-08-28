@@ -5,11 +5,10 @@
   "stylusSupremacy.insertBraces": false,
   "javascript.format.enable": false,
   "javascript.format.insertSpaceAfterOpeningAndBeforeClosingNonemptyBraces": false,
-  "vetur.format.defaultFormatter.js": "none",
   "typescript.format.enable": false,
   "editor.codeActionsOnSave": {
     "source.fixAll": true
   },
-  "editor.formatOnSave": true,
-  "git.ignoreLimitWarning": true
+  "editor.formatOnSave": false,
+  "css.customData": ["./css-data.json"]
 }

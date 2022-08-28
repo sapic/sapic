@@ -14,7 +14,7 @@
       </div>
     </template>
     <p class="hover-button">{{ $t("inventory.random") }}</p>
-    <div class="inventory-list" v-if="shouldShowRandomBgs">
+    <div v-if="shouldShowRandomBgs" class="inventory-list">
       <template v-for="item in randomBgs" :key="item.id">
         <div class="inventory-item" @click="setBackgroundItem(item)">
           <img

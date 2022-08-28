@@ -2,7 +2,11 @@
   <div class="converter__container">
     <div class="url__container">
       <label for="urlInput"> Image URL:</label>
-      <input id="urlInput" v-model="url" type="text" />
+      <input
+        id="urlInput"
+        v-model="url"
+        type="text"
+      >
     </div>
 
     <div class="url__container">
@@ -12,25 +16,37 @@
         ref="fileInput"
         type="file"
         @change="onUploadFiles"
-      />
-    </div>
+      >
+    </div> 
 
     <div class="format__container">
       <div>Format:</div>
       <div class="inputs">
         <div class="input__container">
           <label for="formatWebm">MP4</label>
-          <input v-model="outputFormat" type="radio" value="mp4" />
+          <input
+            v-model="outputFormat"
+            type="radio"
+            value="mp4"
+          >
         </div>
 
         <div class="input__container">
           <label for="formatWebm">WEBM</label>
-          <input v-model="outputFormat" type="radio" value="webm" />
+          <input
+            v-model="outputFormat"
+            type="radio"
+            value="webm"
+          >
         </div>
 
         <div class="input__container">
           <label for="formatWebm">GIF</label>
-          <input v-model="outputFormat" type="radio" value="gif" />
+          <input
+            v-model="outputFormat"
+            type="radio"
+            value="gif"
+          >
         </div>
       </div>
 
@@ -39,17 +55,21 @@
       <div>WEBM - very slow, but may be better and smaller</div>
       <div>GIF - looks like shit, but maybe you need it, I won't judge</div>
 
-      <br />
+      <br>
 
       <div>Images:</div>
       <div class="images__container">
-        <div v-for="image in images" :key="image.name" class="item">
+        <div
+          v-for="image in images"
+          :key="image.name"
+          class="item"
+        >
           <div class="item__title">
             <input
               v-model="image.enabled"
               type="checkbox"
               class="item__checkbox"
-            />
+            >
             <div class="item__name">
               {{ image.name }}
             </div>
@@ -57,22 +77,34 @@
 
           <div class="item__input">
             <label for="wInput">Width:</label>
-            <input v-model="image.w" type="number" />
+            <input
+              v-model="image.w"
+              type="number"
+            >
           </div>
 
           <div class="item__input">
             <label for="hInput">Height:</label>
-            <input v-model="image.h" type="number" />
+            <input
+              v-model="image.h"
+              type="number"
+            >
           </div>
 
           <div class="item__input">
             <label for="hInput">OffsetX:</label>
-            <input v-model="image.x" type="number" />
+            <input
+              v-model="image.x"
+              type="number"
+            >
           </div>
 
           <div class="item__input">
             <label for="hInput">OffsetY:</label>
-            <input v-model="image.y" type="number" />
+            <input
+              v-model="image.y"
+              type="number"
+            >
           </div>
 
           <!-- <div>Width {{ image.w }}</div> -->
@@ -82,9 +114,13 @@
         </div>
       </div>
 
-      <br />
+      <br>
 
-      <button v-if="!ffmpeg" class="download__button" disabled>
+      <button
+        v-if="!ffmpeg"
+        class="download__button"
+        disabled
+      >
         Loading...
       </button>
       <button
@@ -110,13 +146,16 @@
 
       <div>
         logs:
-        <p ref="logsContainer" class="logs_container">
+        <p
+          ref="logsContainer"
+          class="logs_container"
+        >
           {{ logs }}
         </p>
       </div>
     </div>
   </div>
-</template>
+</template> 
 
 <script>
 
@@ -141,8 +180,8 @@ export default {
   },
 
   watch: {
-    logs () {
-      this.$nextTick(() => {
+    logs () { 
+      this.$nextTick(() => {   
         this.$refs.logsContainer.scrollTop = this.$refs.logsContainer.scrollHeight
       })
     },
@@ -194,9 +233,9 @@ export default {
       if (document.getElementById('ffmpegimport')) return // was already loaded
 
       // const isFirefox = navigator.userAgent.toLowerCase().indexOf('firefox') > -1
-      var scriptTag = document.createElement('script')
+      const scriptTag = document.createElement('script')
 
-      scriptTag.src = '/ffmpeg/ffmpeg.min.js'
+      scriptTag.src = '/ffmpeg.st/ffmpeg.min.js'
       // : 'https://unpkg.com/@ffmpeg/ffmpeg@0.9.5/dist/ffmpeg.min.js'
       scriptTag.id = 'ffmpegimport'
       scriptTag.crossOrigin = 'true'
@@ -228,11 +267,10 @@ export default {
             const completedRatio = this.itemsDone / this.itemsTotal
             this.progress = relativeRatio + completedRatio
           },
+          mainName: 'main',
         }
 
-        // if (isFirefox) {
-        //   options.corePath = '../ffmpeg/ffmpeg-core.js'
-        // }
+        options.corePath = '../ffmpeg.st/ffmpeg-core.js'
 
         const ffmpeg = window.FFmpeg.createFFmpeg(options)
         await ffmpeg.load()
@@ -245,7 +283,7 @@ export default {
 
     async addJszipScript () {
       if (document.getElementById('jszipimport')) return // was already loaded
-      var scriptTag = document.createElement('script')
+      const scriptTag = document.createElement('script')
       scriptTag.src = 'https://cdnjs.cloudflare.com/ajax/libs/jszip/3.5.0/jszip.min.js'
       scriptTag.id = 'jszipimport'
 
@@ -258,7 +296,7 @@ export default {
 
     async addFilesaverScript () {
       if (document.getElementById('filesaver')) return // was already loaded
-      var scriptTag = document.createElement('script')
+      const scriptTag = document.createElement('script')
       scriptTag.src = 'https://cdnjs.cloudflare.com/ajax/libs/FileSaver.js/2.0.0/FileSaver.min.js'
       scriptTag.id = 'filesaver'
 

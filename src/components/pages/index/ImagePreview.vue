@@ -1,5 +1,9 @@
 <template>
-  <div
+  <div class="c">
+    <!-- <iframe src="/converter" /> -->
+    <ConverterPopup :save="$store.state.converterString" />
+  </div>
+  <!-- <div
     class="profile__preview"
     :style="{ backgroundImage: `url('${$store.state.background}')` }"
   >
@@ -18,20 +22,30 @@
     <div class="profile__preview-container">
       <Overlay :imageHeight="$store.state.bgSize.h" />
     </div>
-  </div>
+  </div> -->
 </template>
 
 <script>
-import Overlay from './preview/Overlay.vue'
+// import Overlay from './preview/Overlay.vue'
+import ConverterPopup from '../converter/converterPopup.vue'
 
 export default {
   components: {
-    Overlay,
+    // Overlay,
+    ConverterPopup,
   },
 }
 </script>
 
 <style lang="stylus" scoped>
+.c
+  background white
+  height 100vh
+
+  iframe
+    width 100%
+    height 100%
+
 .profile__preview
   width 100%
   display flex

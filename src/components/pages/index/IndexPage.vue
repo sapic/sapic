@@ -11,7 +11,7 @@
             height: `calc(100% * ${scalePercent}) !important`,
           }"
         >
-          <Preview />
+          <ImagePreview />
           <BgPreloader />
         </div>
       </div>
@@ -26,8 +26,8 @@
 </template>
 
 <script>
-import Preview from './Preview.vue'
-import Inventory from './Inventory.vue'
+import ImagePreview from './ImagePreview.vue'
+import Inventory from './InventoryContainer.vue'
 import TitleBar from './TitleBar.vue'
 import MenuWindow from './MenuWindow.vue'
 import BgPreloader from './BgPrealoader.vue'
@@ -41,8 +41,8 @@ export default {
   components: {
     Scripts,
 
-    Preview,
-    TitleBar,
+    ImagePreview,
+    // TitleBar,
     MenuWindow,
     Inventory,
     BgPreloader,
