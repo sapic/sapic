@@ -9,44 +9,51 @@ import localeRu from '@/assets/locales/ru'
 import localeEn from '@/assets/locales/en'
 
 import IndexPage from './components/pages/index/IndexPage.vue'
-// import Converter from './components/pages/converter/index.vue'
+import Converter from './components/pages/converter/index.vue'
 
 const router = createRouter({
   history: createWebHistory(),
   routes: [
     {
-      path: '/', component: IndexPage,
+      path: '/',
+      component: IndexPage,
     },
-    // {
-    //   path: '/converter', component: Converter,
-    // },
-    // {
-    //   path: '/converter/:raw', component: Converter,
-    // },
+    {
+      path: '/converter',
+      component: Converter,
+    },
+    {
+      path: '/converter/:raw',
+      component: Converter,
+    },
     {
       path: '/:lang',
       component: RouterView,
       children: [
         {
-          path: '', component: IndexPage,
+          path: '',
+          component: IndexPage,
         },
-        // {
-        //   path: 'converter', component: Converter,
-        // },
-        // {
-        //   path: 'converter/:raw', component: Converter,
-        // },
         {
-          path: '*', component: IndexPage,
+          path: 'converter',
+          component: Converter,
+        },
+        {
+          path: 'converter/:raw',
+          component: Converter,
+        },
+        {
+          path: '*',
+          component: IndexPage,
         },
       ],
     },
   ],
 })
 
-function getLocale () {
+function getLocale() {
   const allowed = ['en', 'ru']
-  const userLocale = (navigator.language).split('-')[0]
+  const userLocale = navigator.language.split('-')[0]
 
   if (allowed.indexOf(userLocale) > 0) {
     return userLocale

@@ -3,6 +3,7 @@
     <section class="body__wrapper">
       <MenuWindow />
       <div class="preview__window">
+        <ConvertersContainer />
         <div
           class="zoom_out"
           :style="{
@@ -34,6 +35,7 @@ import BgPreloader from './BgPrealoader.vue'
 import Scripts from '../../Scripts.vue'
 import RightMenu from './RightMenu.vue'
 import MobileHeader from './MobileHeader.vue'
+import ConvertersContainer from './ConvertersContainer.vue'
 
 const easeOutQuad = (t) => t * (2 - t)
 
@@ -48,6 +50,7 @@ export default {
     BgPreloader,
     RightMenu,
     MobileHeader,
+    ConvertersContainer,
   },
   data() {
     return {
@@ -109,6 +112,7 @@ export default {
   overflow-x hidden
   border-radius 20px
   background $color-black
+  position relative
 
   &::-webkit-scrollbar
     width 0

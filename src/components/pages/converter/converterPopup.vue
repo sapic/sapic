@@ -1,125 +1,50 @@
 <template>
   <div class="converter__container">
-    <div>Images:</div>
+    <!-- <div>Images:</div> -->
     <div class="images__container">
       <div v-for="image in images" :key="image.name" class="item">
-        <ConvertRow :info="image" />
-        <!-- <div class="item__title">
-          <input
-            v-model="image.enabled"
-            type="checkbox"
-            class="item__checkbox"
-          >
-          <div class="item__name">
-            {{ image.name }}
-          </div>
-        </div>
-
-        <div class="item__input">
-          <label for="wInput">Width:</label>
-          <input
-            v-model="image.w"
-            type="number"
-          >
-        </div>
-
-        <div class="item__input">
-          <label for="hInput">Height:</label>
-          <input
-            v-model="image.h"
-            type="number"
-          >
-        </div>
-
-        <div class="item__input">
-          <label for="hInput">OffsetX:</label>
-          <input
-            v-model="image.x"
-            type="number"
-          >
-        </div>
-
-        <div class="item__input">
-          <label for="hInput">OffsetY:</label>
-          <input
-            v-model="image.y"
-            type="number"
-          >
-        </div> -->
+        <ConvertRow
+          :info="image"
+          :url="url"
+          @converted="handleConverted"
+          @canceled="handleRowCancel"
+        />
       </div>
     </div>
-
-    <br />
   </div>
 </template>
 
-<script lang="ts">
+<script lang="ts" setup>
+import store from '@/store'
+import { ImageInfo } from '@/types/image'
 import { saveAs } from 'file-saver'
 import JSZip from 'jszip'
+import { PropType, ref } from 'vue'
 import ConvertRow from './convertRow.vue'
-// import MyWorker from './worker.js?worker'
 
-interface ImageInfo {
-  enabled: boolean
-  name: string
-  data: Uint8Array
+interface ConverterProp {
+  id: string
+  info: {
+    url: string
+    images: ImageInfo[]
+  }
 }
-// const url = 'https://cdn.cloudflare.steamstatic.com/steamcommunity/public/images/items/1263950/4d466f77edf3265a253fba79d47bc91a37e34920.webm'
-export default {
-  components: {
-    ConvertRow,
+
+const props = defineProps({
+  save: {
+    type: Object as PropType<ConverterProp>,
+    required: true,
   },
+})
 
-  props: {
-    save: {
-      type: Object,
-      required: true,
-    },
-  },
-
-  data() {
-    const data: { url?: string; images: ImageInfo[] } = {
-      url: undefined,
-      images: [],
-    }
-    return data
-  },
-
-  async mounted() {
-    if (this.save) {
-      this.url = this.save.url
-
-      this.images = this.save.images.map((i) => ({
-        ...i,
-        name: i.name.replace('.png', '.mp4'),
-        enabled: true,
-      }))
-    }
-  },
-
-  methods: {
-    async downloadClick() {
-      const files = await Promise.all(
-        this.images.filter((i) => i.enabled).map((info) => convertFile(this.url, info))
-      )
-      console.log('files', files)
-
-      const zip = new JSZip()
-
-      for (const info of files) {
-        zip.file(info.name, info.data)
-      }
-
-      const inputString = JSON.stringify(this.images)
-      const inputDigest = await digestMessage(inputString)
-
-      const zipName = `steam.design_${inputDigest.slice(0, 6)}.zip`
-      zip.generateAsync({ type: 'blob' }).then(function (content) {
-        saveAs(content, zipName)
-      })
-    },
-  },
-}
+const url = ref<string>(props.save.info.url || '')
+const images = ref<ImageInfo[]>(
+  props.save.info.images.map((i) => ({
+    ...i,
+    name: i.name.replace('.png', '.mp4'),
+    enabled: true,
+  }))
+)
 
 async function digestMessage(message) {
   const msgUint8 = new TextEncoder().encode(message) // encode as (utf-8) Uint8Array
@@ -129,44 +54,47 @@ async function digestMessage(message) {
   return hashHex
 }
 
-function convertFile(url, info) {
-  // let resolve
-  // let reject
+const zip = new JSZip()
 
-  const convertPromise = new Promise<ImageInfo>((resolve, reject) => {
-    const myWorker = new Worker(new URL('./worker.ts', import.meta.url))
-    myWorker.onmessage = (x) => {
-      console.log('worker message', x)
-      if (x.data.type === 'done') {
-        console.log('type data', x)
-        const { type, ...rest } = x.data
-        resolve(rest as ImageInfo)
-      }
-    }
-    myWorker.onerror = (x) => {
-      console.log('worker error', x)
-    }
-    // myWorker = myWorker
+const totalConverted = ref(0)
+async function handleConverted(info) {
+  console.log('handleConverted', info)
+  zip.file(info.name, info.data)
+  totalConverted.value++
+  if (totalConverted.value === images.value.length) {
+    finalzeZip()
+  }
+}
 
-    myWorker.postMessage({
-      type: 'convert',
-      // file: this.file,
-      url,
-      // data: fileData,
-      options: JSON.stringify(info),
-    })
+function handleRowCancel(info) {
+  images.value = images.value.filter((img) => img.name !== info.name)
+
+  if (totalConverted.value === images.value.length) {
+    finalzeZip()
+  }
+}
+
+async function finalzeZip() {
+  const inputString = JSON.stringify(images.value)
+  const inputDigest = await digestMessage(inputString)
+
+  const zipName = `steam.design_${inputDigest.slice(0, 6)}.zip`
+  zip.generateAsync({ type: 'blob' }).then(function (content) {
+    saveAs(content, zipName)
+    store.commit('removeConvertItem', props.save.id)
   })
-
-  return convertPromise
 }
 </script>
 
 <style lang="stylus" scoped>
+@import '../../../assets/css/color'
+
 .converter__container
-  width 100%
-  max-width 800px
   margin 0 auto
   padding 1rem
+  background $color-button
+  border-radius 3px
+  margin 1rem
 
 .url__container
   margin 10px 0

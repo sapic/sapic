@@ -130,7 +130,12 @@
       <div class="menu__window-title">
         <div class="menu__window-button-text">{{ $t('index.our') }}:</div>
       </div>
-      <a class="menu__window-button" href="https://patreon.com/steamdesign" rel="noopener noreferrer" target="_blank">
+      <a
+        class="menu__window-button"
+        href="https://patreon.com/steamdesign"
+        rel="noopener noreferrer"
+        target="_blank"
+      >
         <div class="menu__window-button-text">Patreon</div>
       </a>
       <div class="menu__window-multi-container">

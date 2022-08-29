@@ -1,8 +1,9 @@
 import init from './init'
 import { createStore } from 'vuex'
+import { toRaw } from 'vue'
 
 // interface RootState {}
-const state = {
+export const state = {
   background: null,
   // bgInfo: BackgroundInfo(),
   backgrounds: [],
@@ -21,7 +22,7 @@ const state = {
   inventoryUpdateTime: 0,
   v: 1,
   bgJsonUrl: null, // url of file with backgrounds
-  converterString: '',
+  converters: [],
 }
 
 const getters = {
@@ -39,6 +40,7 @@ const mutations = {
   setBackgroundURL(state, value) {
     state.background = value
     state.format = value.split('.').slice(-1)[0]
+    state.bgInfo = {}
   },
   setBackgrounds(state, backgrounds) {
     state.backgrounds = backgrounds
@@ -133,8 +135,11 @@ const mutations = {
     state.bgJsonUrl = v
   },
 
-  openVideo(state, v) {
-    state.converterString = v
+  addConvertItem(state, v) {
+    state.converters = state.converters ? [...state.converters, v] : [1]
+  },
+  removeConvertItem(state, v) {
+    state.converters = (state.converters || []).filter((el) => el.id !== v)
   },
 }
 
@@ -165,8 +170,12 @@ const actions = {
     //   console.log('webm', url)
     //   return
     // }
-    if (getters.isVideo) {
-      commit('openVideo', bgSaveInfo)
+    console.log('ctrl', ctrl, alt, !ctrl && !alt)
+    if (getters.isVideo && !ctrl && !alt) {
+      commit('addConvertItem', {
+        id: Math.random().toString(),
+        info: bgSaveInfo,
+      })
     } else {
       window.open(url)
     }
@@ -203,7 +212,10 @@ const actions = {
 }
 
 export default createStore({
-  state,
+  state() {
+    return { ...state }
+  },
+
   mutations,
   actions,
   getters,

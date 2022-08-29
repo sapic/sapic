@@ -16,14 +16,14 @@
 
     <img
       v-if="$store.state.background && $store.state.background.indexOf('webm') === -1"
-      ref="currentBgImageHolder"
+      ref="bgHolderRef"
       key="currentBgImageHolder"
       :src="$store.state.background"
       @load="holderUpdated"
     />
     <video
       v-else
-      ref="currentBgVideoHolder"
+      ref="bgHolderRef"
       key="currentBgVideoHolder"
       :src="$store.state.background"
       @loadeddata="holderUpdated"

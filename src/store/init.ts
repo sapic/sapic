@@ -1,5 +1,6 @@
 // @ts-ignore
 import BgsUrl from '@/assets/bg-asset.json?url'
+import { state as emptyState } from './index'
 
 const StoreImageRegex =
   /steamcdn-a\.akamaihd\.net\/steamcommunity\/public\/images\/items\/.+(jpg|webm|mp4)$/i
@@ -10,13 +11,17 @@ export default async (store) => {
   if (localStorage) {
     // listen to updates to save store
     store.subscribe((_, state) => {
-      localStorage.setItem('store', JSON.stringify(state))
+      const toSave = { ...state }
+      delete toSave.converters
+      localStorage.setItem('store', JSON.stringify(toSave))
     })
 
     // init with last session data
     if (localStorage.getItem('store')) {
       const savedStore = JSON.parse(localStorage.getItem('store') || '')
+      console.log('saved store', savedStore, { ...store.state })
       const newStore = {
+        ...emptyState,
         ...store.state,
         ...savedStore,
         user: {
@@ -24,8 +29,8 @@ export default async (store) => {
           ...savedStore.user,
         },
       }
-
-      store.replaceState(Object.assign(store.state, newStore))
+      console.log('newStore', { ...newStore })
+      store.replaceState(Object.assign(store.state, { ...newStore }))
     }
   }
 
