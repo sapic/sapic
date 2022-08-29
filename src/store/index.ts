@@ -170,7 +170,7 @@ const actions = {
     //   console.log('webm', url)
     //   return
     // }
-    console.log('ctrl', ctrl, alt, !ctrl && !alt)
+
     if (getters.isVideo && !ctrl && !alt) {
       commit('addConvertItem', {
         id: Math.random().toString(),

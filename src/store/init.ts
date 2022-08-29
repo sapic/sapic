@@ -19,7 +19,6 @@ export default async (store) => {
     // init with last session data
     if (localStorage.getItem('store')) {
       const savedStore = JSON.parse(localStorage.getItem('store') || '')
-      console.log('saved store', savedStore, { ...store.state })
       const newStore = {
         ...emptyState,
         ...store.state,
@@ -29,7 +28,7 @@ export default async (store) => {
           ...savedStore.user,
         },
       }
-      console.log('newStore', { ...newStore })
+
       store.replaceState(Object.assign(store.state, { ...newStore }))
     }
   }
