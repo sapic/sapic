@@ -69,7 +69,7 @@ async function handleConverted(info) {
 function handleRowCancel(info) {
   images.value = images.value.filter((img) => img.name !== info.name)
 
-  if (totalConverted.value === images.value.length) {
+  if (totalConverted.value === images.value.length && totalConverted.value > 0) {
     finalzeZip()
   }
 }

@@ -24,13 +24,11 @@ function convertFile(url: string, info: ImageInfo) {
   const convertPromise = new Promise<ImageInfo>((resolve, reject) => {
     const myWorker = new Worker(new URL('./worker.ts', import.meta.url))
     myWorker.onmessage = (x) => {
-      console.log('worker message', x)
       if (x.data.type === 'done') {
         console.log('type data', x)
         const { type, ...rest } = x.data
         resolve(rest as ImageInfo)
       } else if (x.data.type === 'progress') {
-        console.log('progress rw', x.data)
         progress.value = x.data.data.ratio
       }
     }

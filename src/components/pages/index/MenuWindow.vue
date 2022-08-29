@@ -41,8 +41,8 @@
               class="menu__window-scale__input"
               name="scale"
               type="radio"
-              value="50"
-              @change="previewScale = '50'"
+              :checked="previewScale === 50"
+              @change="previewScale = 50"
             />
             <label class="menu__window-scale__label" for="scale50">
               <div class="menu__window-scale__button">50%</div>
@@ -52,8 +52,8 @@
               class="menu__window-scale__input"
               name="scale"
               type="radio"
-              value="75"
-              @change="previewScale = '75'"
+              :checked="previewScale === 75"
+              @change="previewScale = 75"
             />
             <label class="menu__window-scale__label" for="scale75">
               <div class="menu__window-scale__button">75%</div>
@@ -63,8 +63,8 @@
               class="menu__window-scale__input"
               name="scale"
               type="radio"
-              value="100"
-              @change="previewScale = '100'"
+              :checked="previewScale === 100"
+              @change="previewScale = 100"
             />
             <label class="menu__window-scale__label" for="scale100">
               <div class="menu__window-scale__button">100%</div>
@@ -74,8 +74,8 @@
               class="menu__window-scale__input"
               name="scale"
               type="radio"
-              value="125"
-              @change="previewScale = '125'"
+              :checked="previewScale === 125"
+              @change="previewScale = 125"
             />
             <label class="menu__window-scale__label" for="scale125">
               <div class="menu__window-scale__button">125%</div>
@@ -88,8 +88,8 @@
               class="menu__window-scale__input"
               name="scale"
               type="radio"
-              value="15"
-              @change="previewScale = '15'"
+              :checked="previewScale === 15"
+              @change="previewScale = 15"
             />
             <label class="menu__window-scale__label" for="scale50">
               <div class="menu__window-scale__button">15%</div>
@@ -99,8 +99,8 @@
               class="menu__window-scale__input"
               name="scale"
               type="radio"
-              value="20"
-              @change="previewScale = '20'"
+              :checked="previewScale === 20"
+              @change="previewScale = 20"
             />
             <label class="menu__window-scale__label" for="scale75">
               <div class="menu__window-scale__button">20%</div>
@@ -110,8 +110,8 @@
               class="menu__window-scale__input"
               name="scale"
               type="radio"
-              value="25"
-              @change="previewScale = '25'"
+              :checked="previewScale === 25"
+              @change="previewScale = 25"
             />
             <label class="menu__window-scale__label" for="scale100">
               <div class="menu__window-scale__button">25%</div>
@@ -199,10 +199,10 @@ export default defineComponent({
 
   computed: {
     previewScale: {
-      get(): string {
+      get(): number {
         return this.$store.state.previewScale
       },
-      set(value: string) {
+      set(value: number) {
         this.$store.commit('setPreviewScale', value)
         this.$store.dispatch('trackClick', ['setPreviewScale', value])
       },
