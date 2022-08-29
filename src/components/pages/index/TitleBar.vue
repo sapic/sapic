@@ -48,25 +48,25 @@
 <script>
 export default {
   computed: {
-    curWindow () {
+    curWindow() {
       return this.$store.state.currWindow
     },
-    isMax () {
+    isMax() {
       return this.$store.state.isMaximized // pbbl wont work
     },
   },
   methods: {
-    close () {
+    close() {
       this.curWindow.close()
     },
-    maximize () {
+    maximize() {
       if (!this.isMax) {
         this.curWindow.maximize()
       } else if (this.isMax) {
         this.curWindow.unmaximize()
       }
     },
-    minimize () {
+    minimize() {
       this.curWindow.minimize()
     },
   },

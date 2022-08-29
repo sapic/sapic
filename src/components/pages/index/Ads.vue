@@ -12,10 +12,8 @@ export default {
     SteamLevels,
   },
 
-  computed: {
-  },
+  computed: {},
 }
 </script>
 
-<style>
-</style>
+<style></style>

@@ -3,17 +3,17 @@
     <Ads />
 
     <div class="right__menu-header">
-      <span class="partnerLabel">{{ $t("index.ourOtherProjects") }}</span>
+      <span class="partnerLabel">{{ $t('index.ourOtherProjects') }}</span>
     </div>
 
     <div class="friends__block">
       <a
-        class="friend"
         v-for="friend in projects"
+        :key="friend.url"
+        class="friend"
         :href="friend.url"
         target="_blank"
         rel="noopener noreferrer"
-        :key="friend.url"
       >
         <div class="friend-avatar"><img :src="friend.img" width="64" /></div>
         <div class="friend-text">
@@ -24,17 +24,17 @@
     </div>
 
     <div class="right__menu-header">
-      <span class="partnerLabel">{{ $t("index.ourPartners") }}</span>
+      <span class="partnerLabel">{{ $t('index.ourPartners') }}</span>
     </div>
 
     <div class="friends__block">
       <a
-        class="friend"
         v-for="friend in friends"
+        :key="friend.url"
+        class="friend"
         :href="friend.url"
         target="_blank"
         rel="noopener noreferrer"
-        :key="friend.url"
       >
         <div class="friend-avatar"><img :src="friend.img" width="64" /></div>
         <div class="friend-text">
@@ -63,48 +63,57 @@ export default {
     Ads,
   },
 
-  data () {
+  data() {
     return {
-      projects: [{
-        img: TextCenterImage,
-        title: 'Text Center Tool',
-        description: 'Site that helps you center text in Steam showcases.',
-        url: 'https://center.steam.design/?utm_source=steam.design',
-      }, {
-        img: DesignerListImage,
-        title: 'Safe Designer List',
-        description: 'A list of safe, verified artwork designers on Steam.',
-        url: 'https://designerlist.guide/',
-      }, {
-        img: AvatarCropperImage,
-        title: 'Quick Avatar Cropper',
-        description: 'Site that allows you to crop avatars for many sites.',
-        url: 'https://avatarcropper.com/',
-      }],
+      projects: [
+        {
+          img: TextCenterImage,
+          title: 'Text Center Tool',
+          description: 'Website that helps you center text in steam showcases.',
+          url: 'https://center.steam.design/?utm_source=steam.design',
+        },
+        {
+          img: DesignerListImage,
+          title: 'Safe Designer List',
+          description: 'A list of safe, verified artwork designers on Steam.',
+          url: 'https://designerlist.guide/',
+        },
+        {
+          img: AvatarCropperImage,
+          title: 'Quick Avatar Cropper',
+          description: 'Webpage that allows you to crop avatars for many sites.',
+          url: 'https://avatarcropper.com/',
+        },
+      ],
 
-      friends: [{
-        img: SteamLadderImage,
-        title: 'Steam Ladder',
-        description: 'Leaderboard and ranking site for Steam profiles!',
-        url: 'https://www.steamladder.com/',
-      }, {
-        img: ArtworkProfilesImage,
-        title: 'Artwork Profiles',
-        description: 'Celebrating the beauty of Steam profiles.',
-        url: 'https://steamcommunity.com/groups/ArtworkProfiles',
-      }, {
-        img: WithlistImage,
-        title: 'Steam Wishlist Calculator',
-        description: 'Calculate the total cost of your Steam wishlist!',
-        url: 'https://www.steamwishlistcalculator.com',
-      }, {
-        img: LevelsImage,
-        title: 'SteamLevels',
-        description: 'A quick and easy way to level up your profile!',
-        url: 'https://steamlevels.com',
-      }],
+      friends: [
+        {
+          img: SteamLadderImage,
+          title: 'Steam Ladder',
+          description: 'Leaderboard and ranking site for Steam profiles!',
+          url: 'https://www.steamladder.com/',
+        },
+        {
+          img: ArtworkProfilesImage,
+          title: 'Artwork Profiles',
+          description: 'Celebrating the beauty of Steam profiles.',
+          url: 'https://steamcommunity.com/groups/ArtworkProfiles',
+        },
+        {
+          img: WithlistImage,
+          title: ' Steam Wishlist Calculator',
+          description: 'Calculate the total cost of your Steam wishlist!',
+          url: 'https://www.steamwishlistcalculator.com',
+        },
+        {
+          img: LevelsImage,
+          title: 'SteamLevels',
+          description: 'A fast and extremely easy way to level up your profile!',
+          url: 'https://steamlevels.com',
+        },
+      ],
     }
-  }
+  },
 }
 </script>
 

@@ -1,31 +1,32 @@
-export default {
-  root: true,
-  // parserOptions: {
-  //   parser: 'babel-eslint',
-  //   sourceType: 'module',
-  // },
-  env: {
-    browser: true,
-    node: true,
+module.exports = {
+  parser: 'vue-eslint-parser',
+  parserOptions: {
+    parser: '@typescript-eslint/parser',
+    sourceType: 'module',
   },
-  extends: ['standard', 'plugin:vue/recommended', 'plugin:vue/base'],
-  globals: {
-    __static: true,
-  },
-  plugins: ['vue'],
+  plugins: ['@typescript-eslint'],
+  extends: [
+    'standard',
+    'eslint:recommended',
+    'plugin:@typescript-eslint/recommended',
+    'plugin:vue/vue3-recommended',
+    'plugin:prettier/recommended',
+  ],
   rules: {
-    // allow paren-less arrow functions
-    'arrow-parens': 0,
-    // allow async-await
-    'generator-star-spacing': 0,
-    // allow debugger during development
-    'no-debugger': process.env.NODE_ENV === 'production' ? 2 : 0,
-
-    'no-array-constructor': 0,
-
-    'comma-dangle': ['error', 'always-multiline'],
-    quotes: ['error', 'single'],
-    'space-before-function-paren': ['error', 'always'],
-    'vue/require-v-for-key': 'off',
+    '@typescript-eslint/no-var-requires': 0,
+    'node/no-path-concat': 0,
+    '@typescript-eslint/no-unused-vars': 'off',
+    'no-use-before-define': 'off',
+    '@typescript-eslint/no-use-before-define': [
+      'error',
+      {
+        functions: false,
+      },
+    ],
+    '@typescript-eslint/ban-ts-comment': 'off',
+    'vue/multi-word-component-names': 'off',
+  },
+  env: {
+    // "vue/setup-compiler-macros": true,
   },
 }

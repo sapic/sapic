@@ -8,45 +8,52 @@ import { createI18n } from 'vue-i18n-lite'
 import localeRu from '@/assets/locales/ru'
 import localeEn from '@/assets/locales/en'
 
-import Index from './components/pages/index/index.vue'
+import IndexPage from './components/pages/index/IndexPage.vue'
 import Converter from './components/pages/converter/index.vue'
 
 const router = createRouter({
   history: createWebHistory(),
   routes: [
     {
-      path: '/', component: Index,
+      path: '/',
+      component: IndexPage,
     },
     {
-      path: '/converter', component: Converter,
+      path: '/converter',
+      component: Converter,
     },
     {
-      path: '/converter/:raw', component: Converter,
+      path: '/converter/:raw',
+      component: Converter,
     },
     {
       path: '/:lang',
       component: RouterView,
       children: [
         {
-          path: '', component: Index,
+          path: '',
+          component: IndexPage,
         },
         {
-          path: 'converter', component: Converter,
+          path: 'converter',
+          component: Converter,
         },
         {
-          path: 'converter/:raw', component: Converter,
+          path: 'converter/:raw',
+          component: Converter,
         },
         {
-          path: '*', component: Index,
+          path: '*',
+          component: IndexPage,
         },
       ],
     },
   ],
 })
 
-function getLocale () {
+function getLocale() {
   const allowed = ['en', 'ru']
-  const userLocale = (navigator.language || navigator.userLanguage).split('-')[0]
+  const userLocale = navigator.language.split('-')[0]
 
   if (allowed.indexOf(userLocale) > 0) {
     return userLocale
@@ -66,13 +73,13 @@ const i18n = createI18n({
 })
 
 router.beforeEach((to, from, next) => {
-  const lang = to.params.lang
+  const lang = Array.isArray(to.params.lang) ? to.params.lang[0] : to.params.lang
 
   if (!['en', 'ru'].includes(lang)) {
     return next()
   }
 
-  if (i18n.locale !== lang) {
+  if (i18n.current.value !== lang) {
     i18n.changeLocale(lang)
   }
 

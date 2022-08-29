@@ -1,14 +1,11 @@
 <template>
-  <div
-    class="profile__preview"
-    :style="{ backgroundImage: `url('${$store.state.background}')` }"
-  >
+  <div class="profile__preview" :style="{ backgroundImage: `url('${$store.state.background}')` }">
     <div class="profile__preview-bg">
       <video
         :src="$store.state.background"
-        muted="muted"
-        autoplay="autoplay"
-        loop="loop"
+        muted
+        autoplay
+        loop
         :style="{
           width: `${$store.state.bgSize.w}px`,
           height: `${$store.state.bgSize.h}px`,
@@ -16,7 +13,7 @@
       ></video>
     </div>
     <div class="profile__preview-container">
-      <Overlay :imageHeight="$store.state.bgSize.h" />
+      <Overlay :image-height="$store.state.bgSize.h" />
     </div>
   </div>
 </template>

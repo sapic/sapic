@@ -7,30 +7,43 @@
 
     <div class="url__container">
       <label for="fileInput">Image Input:</label>
-      <input
-        id="fileInput"
-        ref="fileInput"
-        type="file"
-        @change="onUploadFiles"
-      />
+      <input id="fileInput" ref="fileInput" type="file" @change="onUploadFiles" />
     </div>
 
     <div class="format__container">
       <div>Format:</div>
       <div class="inputs">
         <div class="input__container">
-          <label for="formatWebm">MP4</label>
-          <input v-model="outputFormat" type="radio" value="mp4" />
+          <label for="formatMp4">MP4</label>
+          <input
+            id="formatMp4"
+            type="radio"
+            :checked="outputFormat === 'mp4'"
+            name="formatRadio"
+            @change="outputFormat = 'mp4'"
+          />
         </div>
 
         <div class="input__container">
           <label for="formatWebm">WEBM</label>
-          <input v-model="outputFormat" type="radio" value="webm" />
+          <input
+            id="formatWebm"
+            type="radio"
+            :checked="outputFormat === 'webm'"
+            name="formatRadio"
+            @change="outputFormat = 'webm'"
+          />
         </div>
 
         <div class="input__container">
-          <label for="formatWebm">GIF</label>
-          <input v-model="outputFormat" type="radio" value="gif" />
+          <label for="formatGif">GIF</label>
+          <input
+            id="formatGif"
+            type="radio"
+            :checked="outputFormat === 'gif'"
+            name="formatRadio"
+            @change="outputFormat = 'gif'"
+          />
         </div>
       </div>
 
@@ -45,11 +58,7 @@
       <div class="images__container">
         <div v-for="image in images" :key="image.name" class="item">
           <div class="item__title">
-            <input
-              v-model="image.enabled"
-              type="checkbox"
-              class="item__checkbox"
-            />
+            <input v-model="image.enabled" type="checkbox" class="item__checkbox" />
             <div class="item__name">
               {{ image.name }}
             </div>
@@ -84,33 +93,22 @@
 
       <br />
 
-      <button v-if="!ffmpeg" class="download__button" disabled>
-        Loading...
-      </button>
-      <button
-        v-else-if="!downloadStarted"
-        class="download__button"
-        @click="downloadClick"
-      >
+      <button v-if="!ffmpeg" class="download__button" disabled>Loading...</button>
+      <button v-else-if="!downloadStarted" class="download__button" @click="downloadClick">
         Download
       </button>
 
       <div v-else>
-        Progress {{ Math.floor(progress * 100) }}%({{ itemsDone }}/{{
-          itemsTotal
-        }}
+        Progress {{ Math.floor(progress * 100) }}%({{ itemsDone }}/{{ itemsTotal }}
         images):
         <div class="progress_container">
-          <div
-            class="progress_foreground"
-            :style="{ width: `${200 * progress}px` }"
-          />
+          <div class="progress_foreground" :style="{ width: `${200 * progress}px` }" />
         </div>
       </div>
 
       <div>
         logs:
-        <p ref="logsContainer" class="logs_container">
+        <p ref="logsRef" class="logs_container">
           {{ logs }}
         </p>
       </div>
@@ -118,183 +116,154 @@
   </div>
 </template>
 
-<script>
+<script lang="ts" setup>
+import { ImageInfo } from '@/types/image'
+import JSZip from 'jszip'
+import { nextTick, ref, watch } from 'vue'
+import { useRoute } from 'vue-router'
+import { saveAs } from 'file-saver'
 
-// const url = 'https://cdn.cloudflare.steamstatic.com/steamcommunity/public/images/items/1263950/4d466f77edf3265a253fba79d47bc91a37e34920.webm'
-export default {
-  data () {
-    return {
-      url: null,
-      images: [],
+// import ffmpegUrl from '../../../ffmpeg.st/ffmpeg.min.js?url'
+// console.log('ffmpeg url: ' + ffmpegUrl)
 
-      ffmpeg: null,
-      logs: '',
-      progress: 0,
-      itemsDone: 0,
-      itemsTotal: 0,
+const route = useRoute()
 
-      downloadStarted: false,
-      outputFormat: 'mp4',
+const url = ref<string>('')
+const images = ref<ImageInfo[]>([])
+const logsRef = ref<HTMLDivElement | null>(null)
+const logs = ref('')
+const outputFormat = ref('mp4')
+const inputRef = ref<HTMLInputElement | null>(null)
+const file = ref<File | null>(null)
+const downloadStarted = ref(false)
+const itemsTotal = ref(0)
+const itemsDone = ref(0)
+const progress = ref(0)
 
-      file: null,
+// eslint-disable-next-line @typescript-eslint/no-explicit-any
+const ffmpeg = ref<any | null>(null)
+// props.save.info.images.map((i) => ({
+//   ...i,
+//   name: i.name.replace('.png', '.mp4'),
+//   enabled: true,
+// }))
+
+console.log('route raw', route)
+if (route.params.raw && typeof route.params.raw === 'string') {
+  const decoded64 = atob(route.params.raw)
+  const decodedObj = JSON.parse(decoded64)
+
+  if (decodedObj) {
+    url.value = decodedObj.url
+    images.value = decodedObj.images.map((i) => ({
+      ...i,
+      name: i.name.replace('.png', '.mp4'),
+      enabled: true,
+    }))
+  }
+}
+
+watch(logs, () => {
+  nextTick(() => {
+    if (logsRef.value) {
+      logsRef.value.scrollTop = logsRef.value.scrollHeight
     }
-  },
+  })
+})
 
-  watch: {
-    logs () {
-      this.$nextTick(() => {
-        this.$refs.logsContainer.scrollTop = this.$refs.logsContainer.scrollHeight
-      })
-    },
+watch(outputFormat, (to, from) => {
+  images.value = images.value.map((i) => ({
+    ...i,
+    name: i.name.replace(from, to),
+  }))
+})
 
-    outputFormat (to, from) {
-      this.images = this.images.map(i => ({
-        ...i,
-        name: i.name.replace(from, to),
-      }))
-    },
-  },
+async function onUploadFiles() {
+  if (inputRef.value && inputRef.value.files && inputRef.value.files.length > 0) {
+    file.value = inputRef.value.files[0]
+  } else {
+    file.value = null
+  }
+}
 
-  async mounted () {
-    this.addFfmpegScript()
-    this.addJszipScript()
-    this.addFilesaverScript()
+async function addFfmpegScript() {
+  if (document.getElementById('ffmpegimport')) return // was already loaded
 
-    // console.log('raw', this.$route.params.raw)
-    if (this.$route.params.raw) {
-      const decoded64 = atob(this.$route.params.raw)
-      const decodedObj = JSON.parse(decoded64)
+  // const isFirefox = navigator.userAgent.toLowerCase().indexOf('firefox') > -1
+  const scriptTag = document.createElement('script')
 
-      // console.log('decoded', decoded64, decodedObj)
+  scriptTag.src = '/ffmpeg/ffmpeg.min.js'
+  // : 'https://unpkg.com/@ffmpeg/ffmpeg@0.9.5/dist/ffmpeg.min.js'
+  scriptTag.id = 'ffmpegimport'
+  scriptTag.crossOrigin = 'true'
 
-      if (decodedObj) {
-        this.url = decodedObj.url
-
-        // const isWebm = url.indexOf('')
-
-        this.images = decodedObj.images.map(i => ({
-          ...i,
-          name: i.name.replace('.png', '.mp4'),
-          enabled: true,
-        }))
-      }
+  scriptTag.onload = async () => {
+    console.log('onload')
+    if (!window.FFmpeg || !window.FFmpeg.createFFmpeg) {
+      return console.log('no ffmpeg')
     }
-  },
 
-  methods: {
-    async onUploadFiles () {
-      if (this.$refs.fileInput && this.$refs.fileInput.files && this.$refs.fileInput.files.length > 0) {
-        this.file = this.$refs.fileInput.files[0]
-      } else {
-        this.file = null
-      }
-    },
-
-    async addFfmpegScript () {
-      if (document.getElementById('ffmpegimport')) return // was already loaded
-
-      // const isFirefox = navigator.userAgent.toLowerCase().indexOf('firefox') > -1
-      var scriptTag = document.createElement('script')
-
-      scriptTag.src = '/ffmpeg/ffmpeg.min.js'
-      // : 'https://unpkg.com/@ffmpeg/ffmpeg@0.9.5/dist/ffmpeg.min.js'
-      scriptTag.id = 'ffmpegimport'
-      scriptTag.crossOrigin = 'true'
-
-      scriptTag.onload = async () => {
-        if (!window.FFmpeg || !window.FFmpeg.createFFmpeg) {
-          return console.log('no ffmpeg')
+    // eslint-disable-next-line @typescript-eslint/no-explicit-any
+    const options: any = {
+      log: false,
+      logger: (data) => {
+        // console.log('info', data)
+        console.log('got logs')
+        logs.value += data.message + '\n'
+      },
+      progress: (data) => {
+        // console.log('progress', data)
+        let ratio = data.ratio
+        if (ratio < 0 || ratio > 1) {
+          ratio = 0
         }
 
-        const options = {
-          log: false,
-          logger: (data) => {
-            // console.log('info', data)
-            this.logs += data.message + '\n'
-          },
-          progress: (data) => {
-            // console.log('progress', data)
-            let ratio = data.ratio
-            if (ratio < 0 || ratio > 1) {
-              ratio = 0
-            }
-
-            if (this.itemsTotal < 2) {
-              this.progress = ratio
-              return
-            }
-
-            const relativeRatio = ratio / this.itemsTotal
-            const completedRatio = this.itemsDone / this.itemsTotal
-            this.progress = relativeRatio + completedRatio
-          },
+        if (itemsTotal.value < 2) {
+          progress.value = ratio
+          return
         }
 
-        // if (isFirefox) {
-        //   options.corePath = '../ffmpeg/ffmpeg-core.js'
-        // }
+        const relativeRatio = ratio / itemsTotal.value
+        const completedRatio = itemsDone.value / itemsTotal.value
+        progress.value = relativeRatio + completedRatio
+      },
+      mainName: 'main',
+    }
 
-        const ffmpeg = window.FFmpeg.createFFmpeg(options)
-        await ffmpeg.load()
+    // options.corePath = '/ffmpeg/ffmpeg-core.js'
 
-        this.ffmpeg = ffmpeg
-      }
+    // const ffmpeg = window.FFmpeg.createFFmpeg(options)
+    const ffmpegInstance = window.FFmpeg.createFFmpeg(options)
+    await ffmpegInstance.load()
 
-      document.body.appendChild(scriptTag)
-    },
+    ffmpeg.value = ffmpegInstance
+    console.log('got ffmpeg', ffmpeg)
+  }
 
-    async addJszipScript () {
-      if (document.getElementById('jszipimport')) return // was already loaded
-      var scriptTag = document.createElement('script')
-      scriptTag.src = 'https://cdnjs.cloudflare.com/ajax/libs/jszip/3.5.0/jszip.min.js'
-      scriptTag.id = 'jszipimport'
+  document.body.appendChild(scriptTag)
+}
+addFfmpegScript()
 
-      scriptTag.onload = async () => {
+async function downloadClick() {
+  if (!ffmpeg.value) {
+    return console.log('no ffmpeg')
+  }
 
-      }
+  const zip = JSZip()
 
-      document.body.appendChild(scriptTag)
-    },
+  if (!ffmpeg.value.isLoaded()) {
+    await ffmpeg.value.load()
+  }
 
-    async addFilesaverScript () {
-      if (document.getElementById('filesaver')) return // was already loaded
-      var scriptTag = document.createElement('script')
-      scriptTag.src = 'https://cdnjs.cloudflare.com/ajax/libs/FileSaver.js/2.0.0/FileSaver.min.js'
-      scriptTag.id = 'filesaver'
+  downloadStarted.value = true
 
-      scriptTag.onload = async () => {
-
-      }
-
-      document.body.appendChild(scriptTag)
-    },
-
-    async downloadClick () {
-      // console.log('dc')
-
-      if (!this.ffmpeg) {
-        return console.log('no ffmpeg')
-      }
-
-      const zip = new window.JSZip()
-      const ffmpeg = this.ffmpeg
-
-      // const ffmpeg = window.FFmpeg.createFFmpeg({ log: true })
-      // const ffm
-
-      if (!ffmpeg.isLoaded()) {
-        await ffmpeg.load()
-      }
-
-      this.downloadStarted = true
-
-      let fileData
-      try {
-        fileData = this.file
-          ? await window.FFmpeg.fetchFile(this.file)
-          : await window.FFmpeg.fetchFile(this.url)
-      } catch (e) {
-        this.logs += `
+  let fileData
+  try {
+    fileData = file.value
+      ? await window.FFmpeg.fetchFile(file.value)
+      : await window.FFmpeg.fetchFile(url.value)
+  } catch (e) {
+    logs.value += `
 ================================
 ================================
 ================================
@@ -305,83 +274,85 @@ File download error, try uploading it manually
 ================================
 ================================
         `
-      }
+  }
 
-      ffmpeg.FS('writeFile', 'inputfile', fileData)
+  ffmpeg.value.FS('writeFile', 'inputfile', fileData)
 
-      for (const info of this.images) {
-        if (info.enabled) {
-          this.itemsTotal++
-        }
-      }
+  for (const info of images.value) {
+    if (info.enabled) {
+      itemsTotal.value++
+    }
+  }
 
-      for (const info of this.images) {
-        if (!info.enabled) {
-          console.log('Skip because disabled')
-          continue
-        }
-        const convertString = `crop=${info.w}:min(ih-${info.y}\\,${info.h}):${info.x}:${info.y}`
-        const outputName = 'test.' + this.outputFormat
+  for (const info of images.value) {
+    if (!info.enabled) {
+      console.log('Skip because disabled')
+      continue
+    }
+    const convertString = `crop=${info.w}:min(ih-${info.y}\\,${info.h}):${info.x}:${info.y}`
+    const outputName = 'test.' + outputFormat.value
 
-        let convertArgs = [
-          '-i', 'inputfile',
-          // "-i", palette.Name(),
-          '-vf', convertString,
-          '-b:v', '0',
-          '-crf', '30',
-          // '-pass', '2',
-          // "-lossless", "1",
-          '-row-mt', '1',
-          '-y', outputName,
-        ]
+    let convertArgs = [
+      '-i',
+      'inputfile',
+      // "-i", palette.Name(),
+      '-vf',
+      convertString,
+      '-b:v',
+      '0',
+      '-crf',
+      '30',
+      // '-pass', '2',
+      // "-lossless", "1",
+      '-row-mt',
+      '1',
+      '-y',
+      outputName,
+    ]
 
-        if (this.outputFormat === 'mp4') {
-          convertArgs = [
-            '-i', 'inputfile',
-            '-vf', convertString + ',format=yuv420p',
-            // '-b:v', '0',
-            // '-crf', '30',
-            // '-pass', '2',
-            // "-lossless", "1",
-            // '-row-mt', '1',
-            // '-vf', 'format=yuv420p',
-            '-c:v', 'libx264',
-            // '-preset', 'veryslow',
-            '-crf', '5',
-            '-y', outputName,
-          ]
-        }
+    if (outputFormat.value === 'mp4') {
+      convertArgs = [
+        '-i',
+        'inputfile',
+        '-vf',
+        convertString + ',format=yuv420p',
+        // '-b:v', '0',
+        // '-crf', '30',
+        // '-pass', '2',
+        // "-lossless", "1",
+        // '-row-mt', '1',
+        // '-vf', 'format=yuv420p',
+        '-c:v',
+        'libx264',
+        // '-preset', 'veryslow',
+        '-crf',
+        '5',
+        '-y',
+        outputName,
+      ]
+    }
 
-        await ffmpeg.run(...convertArgs)
-        // await ffmpeg.run('-i', 'inputfile', 'test.mp4')
-        const res = ffmpeg.FS('readFile', outputName)
-        // console.log('res', res)
-        zip.file(info.name, res)
+    await ffmpeg.value.run(...convertArgs)
+    const res = ffmpeg.value.FS('readFile', outputName)
+    zip.file(info.name, res)
 
-        this.itemsDone++
-      }
+    itemsDone.value++
+  }
 
-      const inputString = JSON.stringify(this.images)
-      const inputDigest = await digestMessage(inputString)
-      // console.log('hex', inputDigest)
+  const inputString = JSON.stringify(images.value)
+  const inputDigest = await digestMessage(inputString)
 
-      const zipName = `steam.design_${inputDigest.slice(0, 6)}.zip`
-      zip.generateAsync({ type: 'blob' })
-        .then(function (content) {
-          // see FileSaver.js
-          window.saveAs(content, zipName)
-        })
-      // await fs.promises.writeFile('./test.mp4', ffmpeg.FS('readFile', 'test.mp4'))
-      // process.exit(0)
-    },
-  },
+  const zipName = `steam.design_${inputDigest.slice(0, 6)}.zip`
+  zip.generateAsync({ type: 'blob' }).then(function (content) {
+    saveAs(content, zipName)
+  })
 }
 
-async function digestMessage (message) {
+async function digestMessage(message) {
   const msgUint8 = new TextEncoder().encode(message) // encode as (utf-8) Uint8Array
   const hashBuffer = await crypto.subtle.digest('SHA-256', msgUint8) // hash the message
   const hashArray = Array.from(new Uint8Array(hashBuffer)) // convert buffer to byte array
-  const hashHex = hashArray.map(b => b.toString(16).padStart(2, '0')).join('') // convert bytes to hex string
+  const hashHex = hashArray.map((b) => b.toString(16).padStart(2, '0')).join('') // convert bytes to hex string
   return hashHex
 }
 </script>
