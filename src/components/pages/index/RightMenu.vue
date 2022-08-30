@@ -83,6 +83,11 @@ export default {
       }],
 
       friends: [{
+        img: LevelsImage,
+        title: 'SteamLevels',
+        description: 'A quick and easy way to level up your profile!',
+        url: 'https://steamlevels.com',
+      }, {
         img: SteamLadderImage,
         title: 'Steam Ladder',
         description: 'Leaderboard and ranking site for Steam profiles!',
@@ -97,11 +102,6 @@ export default {
         title: 'Steam Wishlist Calculator',
         description: 'Calculate the total cost of your Steam wishlist!',
         url: 'https://www.steamwishlistcalculator.com',
-      }, {
-        img: LevelsImage,
-        title: 'SteamLevels',
-        description: 'A quick and easy way to level up your profile!',
-        url: 'https://steamlevels.com',
       }],
     }
   }
