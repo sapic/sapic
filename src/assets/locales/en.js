@@ -3,9 +3,8 @@ export default {
   index: {
     download: 'Download ZIP',
     backgrounds: 'Backgrounds',
-    random: 'Random BG',
-    getThisBg: 'Get this BG',
-    pasteUrlPlaceholder: 'Paste a background URL here',
+    getThisBg: 'Get this Background',
+    pasteUrlPlaceholder: 'Paste a Background URL Here',
     zoomScale: 'Zoom Scale',
     login: 'Login with Steam',
     logout: 'Logout',

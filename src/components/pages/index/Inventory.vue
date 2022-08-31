@@ -179,12 +179,13 @@ export default {
     justify-content center
 
     .inventory-item
-      margin 5px
+      margin 3px
       // float left
       width 98px
       height 98px
       cursor pointer
-      background url('https://steamcommunity-a.akamaihd.net/public/images/economy/trade_itemholder.png')
+      background-color $color-button
+      border-radius 5px
       background-position top
       background-repeat no-repeat
       display flex
@@ -210,7 +211,7 @@ export default {
     color $color-white
     position relative
     transition all 0.25s ease-in-out
-    margin 0
+    margin 0 0 7px 0
     text-align center
     margin-top 10px
 
@@ -226,9 +227,19 @@ export default {
       background -webkit-linear-gradient(45deg, #61045F, #AA076B)
       background linear-gradient(45deg, #61045F, #AA076B)
       transition background 0.25s ease
+      animation gradient 3s ease infinite
+      background-size 200% 100%
+      animation-direction alternate
 
       &:hover
         background linear-gradient(45deg, #7a0578, #ab076c)
+
+  @keyframes gradient
+    0%
+      background-position 0%
+
+    100%
+      background-position 100%
 
   &:hover
     bottom 0

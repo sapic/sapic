@@ -19,9 +19,6 @@
         </div>
       </a>
 
-      <div class="menu__window-button" @click="randomBGClick">
-        <div class="menu__window-button-text">{{ $t("index.random") }}</div>
-      </div>
       <div class="menu__window-button" @click="getCurrentBGClick">
         <div class="menu__window-button-text">{{ $t("index.getThisBg") }}</div>
       </div>
@@ -139,7 +136,12 @@
       <div class="menu__window-title">
         <div class="menu__window-button-text">{{ $t("index.our") }}:</div>
       </div>
-      <a class="menu__window-button" href="https://patreon.com/steamdesign" rel="noopener noreferrer" target="_blank">
+      <a
+        class="menu__window-button"
+        href="https://patreon.com/steamdesign"
+        rel="noopener noreferrer"
+        target="_blank"
+      >
         <div class="menu__window-button-text">Patreon</div>
       </a>
       <div class="menu__window-multi-container">
@@ -262,11 +264,6 @@ export default {
       this.$store.commit('logout')
     },
 
-    randomBGClick () {
-      this.$store.dispatch('randomBackground')
-      this.$store.dispatch('trackClick', ['randomBGButton'])
-    },
-
     getZipClick (e) {
       this.$store.dispatch('downloadZip', { ctrl: e.ctrlKey, alt: e.altKey })
       this.$store.dispatch('trackClick', ['getZIPButton'])
@@ -350,6 +347,9 @@ export default {
     background -webkit-linear-gradient(45deg, #61045F, #AA076B)
     background linear-gradient(45deg, #61045F, #AA076B)
     transition background 0.25s ease
+    animation gradient 3s ease infinite
+    background-size 200% 100%
+    animation-direction alternate
 
     &:hover
       background linear-gradient(45deg, #7a0578, #ab076c)
@@ -412,6 +412,9 @@ export default {
 
 .menu__window-button-download
   background linear-gradient(45deg, $color-button-gradient-1 0%, $color-button-gradient-2 100%)
+  animation gradient 3s ease infinite
+  background-size 200% 100%
+  animation-direction alternate
   position relative
   z-index 2
   opacity 0.8
@@ -420,6 +423,13 @@ export default {
   &:hover
     opacity 1
     transition opacity 0.25s ease
+
+@keyframes gradient
+  0%
+    background-position 0%
+
+  100%
+    background-position 100%
 
 .menu__window-shadow
   background linear-gradient(45deg, $color-button-gradient-1 0%, $color-button-gradient-2 100%)
