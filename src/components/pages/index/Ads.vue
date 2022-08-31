@@ -14,10 +14,8 @@ export default {
     tradeit,
   },
 
-  computed: {
-  },
+  computed: {},
 }
 </script>
 
-<style>
-</style>
+<style></style>

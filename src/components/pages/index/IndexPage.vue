@@ -3,6 +3,7 @@
     <section class="body__wrapper">
       <MenuWindow />
       <div class="preview__window">
+        <ConvertersContainer />
         <div
           class="zoom_out"
           :style="{
@@ -11,7 +12,7 @@
             height: `calc(100% * ${scalePercent}) !important`,
           }"
         >
-          <Preview />
+          <ImagePreview />
           <BgPreloader />
         </div>
       </div>
@@ -26,48 +27,50 @@
 </template>
 
 <script>
-import Preview from './Preview.vue'
-import Inventory from './Inventory.vue'
+import ImagePreview from './ImagePreview.vue'
+import Inventory from './InventoryContainer.vue'
 import TitleBar from './TitleBar.vue'
 import MenuWindow from './MenuWindow.vue'
 import BgPreloader from './BgPrealoader.vue'
 import Scripts from '../../Scripts.vue'
 import RightMenu from './RightMenu.vue'
 import MobileHeader from './MobileHeader.vue'
+import ConvertersContainer from './ConvertersContainer.vue'
 
-const easeOutQuad = t => t * (2 - t)
+const easeOutQuad = (t) => t * (2 - t)
 
 export default {
   components: {
     Scripts,
 
-    Preview,
-    TitleBar,
+    ImagePreview,
+    // TitleBar,
     MenuWindow,
     Inventory,
     BgPreloader,
     RightMenu,
     MobileHeader,
+    ConvertersContainer,
   },
-  data () {
+  data() {
     return {
       animatedScale: this.$store.state.previewScale,
     }
   },
   computed: {
-    scalePercent () {
+    scalePercent() {
       return this.animatedScale / 100
     },
-    previewScale () {
+    previewScale() {
       return this.$store.state.previewScale
     },
 
-    isMobile () {
+    isMobile() {
       return window.screen.width < 560
     },
   },
   watch: {
-    previewScale (newValue) {
+    previewScale(newValue) {
       const start = Date.now()
       const end = start + 375
       let shouldEnd = false
@@ -109,6 +112,7 @@ export default {
   overflow-x hidden
   border-radius 20px
   background $color-black
+  position relative
 
   &::-webkit-scrollbar
     width 0
@@ -144,8 +148,8 @@ body {
 body {
   margin: 0;
   overflow: hidden;
-  font-family: "Source Sans Pro", -apple-system, BlinkMacSystemFont, "Segoe UI",
-    Roboto, "Helvetica Neue", Arial, sans-serif;
+  font-family: 'Source Sans Pro', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto,
+    'Helvetica Neue', Arial, sans-serif;
 }
 
 #app {

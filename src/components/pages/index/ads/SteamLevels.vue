@@ -1,27 +1,21 @@
 <template>
-  <a
-    class="profile_video"
-    href="https://steamlevels.com"
-    target="_blank"
-    rel="noreferrer noopener"
-  >
-    <video ref="video" autoplay muted playsinline loop />
+  <a class="profile_video" href="https://steamlevels.com" target="_blank" rel="noreferrer noopener">
+    <video ref="videoRef" autoplay muted playsinline loop />
   </a>
 </template>
 
-<script>
+<script lang="ts" setup>
 import SteamLevels from '@/assets/images/steam_levels.mp4'
+import { nextTick, ref } from 'vue'
 
-export default {
-  mounted () {
-    setTimeout(() => {
-      this.$nextTick(async () => {
-        this.$refs.video.src = SteamLevels
-        // this.$refs.video.src = require('@/assets/images/steam_levels.mp4').default
-      })
-    }, 128)
-  },
-}
+const videoRef = ref<HTMLVideoElement | null>(null)
+setTimeout(() => {
+  nextTick(async () => {
+    if (videoRef.value) {
+      videoRef.value.src = SteamLevels
+    }
+  })
+}, 128)
 </script>
 
 <style lang="stylus" scoped>

@@ -1,86 +1,81 @@
 <template>
   <div class="menu__window">
     <div class="menu__window-buttons">
-      <div
-        class="menu__window-button menu__window-button-download"
-        @click="getZipClick"
-      >
+      <div class="menu__window-button menu__window-button-download" @click="getZipClick">
         <CloudDownload class="menu__window-icon" />
-        <div class="menu__window-button-text">{{ $t("index.download") }}</div>
+        <div class="menu__window-button-text">{{ $t('index.download') }}</div>
       </div>
       <a
-        class="menu__window-button purple-paradise"
         v-if="!isMobile"
+        class="menu__window-button purple-paradise"
         href="https://backgrounds.gallery/?utm_source=steam.design"
         target="_blank"
       >
         <div class="menu__window-button-text">
-          {{ $t("index.backgrounds") }}
+          {{ $t('index.backgrounds') }}
         </div>
       </a>
 
       <div class="menu__window-button" @click="randomBGClick">
-        <div class="menu__window-button-text">{{ $t("index.random") }}</div>
+        <div class="menu__window-button-text">{{ $t('index.random') }}</div>
       </div>
       <div class="menu__window-button" @click="getCurrentBGClick">
-        <div class="menu__window-button-text">{{ $t("index.getThisBg") }}</div>
+        <div class="menu__window-button-text">{{ $t('index.getThisBg') }}</div>
       </div>
 
       <input
-        class="menu__window-button textbox noclick"
         id="urltextbox"
-        :placeholder="$t('index.pasteUrlPlaceholder')"
         v-model="bgURL"
+        class="menu__window-button textbox noclick"
+        :placeholder="$t('index.pasteUrlPlaceholder')"
       />
 
       <div class="menu__window-section-container">
         <div class="menu__window-title">
-          <div class="menu__window-button-text">
-            {{ $t("index.zoomScale") }}:
-          </div>
+          <div class="menu__window-button-text">{{ $t('index.zoomScale') }}:</div>
         </div>
         <div class="menu__window-scale__container">
           <template v-if="!isMobile">
             <input
-              class="menu__window-scale__input"
               id="scale50"
+              class="menu__window-scale__input"
               name="scale"
               type="radio"
-              value="50"
-              v-model="previewScale"
+              :checked="previewScale === 50"
+              @change="previewScale = 50"
             />
             <label class="menu__window-scale__label" for="scale50">
               <div class="menu__window-scale__button">50%</div>
             </label>
             <input
-              class="menu__window-scale__input"
               id="scale75"
+              class="menu__window-scale__input"
               name="scale"
               type="radio"
-              value="75"
-              v-model="previewScale"
+              :checked="previewScale === 75"
+              @change="previewScale = 75"
             />
             <label class="menu__window-scale__label" for="scale75">
               <div class="menu__window-scale__button">75%</div>
             </label>
             <input
-              class="menu__window-scale__input"
               id="scale100"
+              class="menu__window-scale__input"
               name="scale"
               type="radio"
-              value="100"
-              v-model="previewScale"
+              :checked="previewScale === 100"
+              @change="previewScale = 100"
             />
             <label class="menu__window-scale__label" for="scale100">
               <div class="menu__window-scale__button">100%</div>
             </label>
             <input
-              class="menu__window-scale__input"
               id="scale125"
+              class="menu__window-scale__input"
               name="scale"
               type="radio"
-              value="125"
-              v-model="previewScale"
+              :checked="previewScale === 125"
+              @change="previewScale = 125"
             />
             <label class="menu__window-scale__label" for="scale125">
               <div class="menu__window-scale__button">125%</div>
@@ -89,34 +84,34 @@
 
           <template v-else>
             <input
-              class="menu__window-scale__input"
               id="scale50"
+              class="menu__window-scale__input"
               name="scale"
               type="radio"
-              value="15"
-              v-model="previewScale"
+              :checked="previewScale === 15"
+              @change="previewScale = 15"
             />
             <label class="menu__window-scale__label" for="scale50">
               <div class="menu__window-scale__button">15%</div>
             </label>
             <input
-              class="menu__window-scale__input"
               id="scale75"
+              class="menu__window-scale__input"
               name="scale"
               type="radio"
-              value="20"
-              v-model="previewScale"
+              :checked="previewScale === 20"
+              @change="previewScale = 20"
             />
             <label class="menu__window-scale__label" for="scale75">
               <div class="menu__window-scale__button">20%</div>
             </label>
             <input
-              class="menu__window-scale__input"
               id="scale100"
+              class="menu__window-scale__input"
               name="scale"
               type="radio"
-              value="25"
-              v-model="previewScale"
+              :checked="previewScale === 25"
+              @change="previewScale = 25"
             />
             <label class="menu__window-scale__label" for="scale100">
               <div class="menu__window-scale__button">25%</div>
@@ -124,20 +119,16 @@
           </template>
         </div>
       </div>
-      <a
-        class="menu__window-button steam"
-        :href="loginUrl"
-        v-if="!$store.state.user.id"
+      <a v-if="!$store.state.user.id" class="menu__window-button steam" :href="loginUrl">
+        <div class="menu__window-button-text">{{ $t('index.login') }}</div></a
       >
-        <div class="menu__window-button-text">{{ $t("index.login") }}</div></a
-      >
-      <div class="menu__window-button" @click="logout" v-else>
-        <div class="menu__window-button-text">{{ $t("index.logout") }}</div>
+      <div v-else class="menu__window-button" @click="logout">
+        <div class="menu__window-button-text">{{ $t('index.logout') }}</div>
       </div>
     </div>
     <div class="menu__window-credits">
       <div class="menu__window-title">
-        <div class="menu__window-button-text">{{ $t("index.our") }}:</div>
+        <div class="menu__window-button-text">{{ $t('index.our') }}:</div>
       </div>
       <a
         class="menu__window-button"
@@ -148,11 +139,7 @@
         <div class="menu__window-button-text">Patreon</div>
       </a>
       <div class="menu__window-multi-container">
-        <a
-          class="menu__window-multi-label"
-          href="https://github.com/sapic/sapic"
-          target="_blank"
-        >
+        <a class="menu__window-multi-label" href="https://github.com/sapic/sapic" target="_blank">
           <div class="menu__window-multi-button">GitHub</div>
         </a>
         <a
@@ -161,7 +148,7 @@
           target="_blank"
         >
           <div class="menu__window-multi-button">
-            {{ $t("index.ourGroup") }}
+            {{ $t('index.ourGroup') }}
           </div>
         </a>
         <a
@@ -171,17 +158,17 @@
           rel="noopener noreferrer"
         >
           <div class="menu__window-multi-button">
-            {{ $t("index.ourOldSite") }}
+            {{ $t('index.ourOldSite') }}
           </div>
         </a>
         <a
+          v-if="extensionLink"
           class="menu__window-multi-label"
           :href="extensionLink"
           target="_blank"
-          v-if="extensionLink"
         >
           <div class="menu__window-multi-button">
-            {{ $t("index.ourExtension") }}
+            {{ $t('index.ourExtension') }}
           </div>
         </a>
       </div>
@@ -196,62 +183,57 @@
           src="https://discordapp.com/api/guilds/304986224467378177/widget.png?style=banner2"
         />
       </a>
-      <div class="menu__window-credits-text">
-        Made with ❤️ by TrueCarry and The Oddball
-      </div>
+      <div class="menu__window-credits-text">Made with ❤️ by TrueCarry and The Oddball</div>
     </div>
   </div>
 </template>
 
-<script>
+<script lang="ts">
+import { defineComponent } from 'vue'
 import CloudDownload from './CloudDownload.vue'
 
-export default {
+export default defineComponent({
   components: {
     CloudDownload,
   },
 
   computed: {
     previewScale: {
-      get () {
+      get(): number {
         return this.$store.state.previewScale
       },
-      set (value) {
+      set(value: number) {
         this.$store.commit('setPreviewScale', value)
         this.$store.dispatch('trackClick', ['setPreviewScale', value])
       },
     },
-    /* eslint-disable */
+
     bgURL: {
-      set (value) {
+      set(value: string) {
         if (value.match(/\.(?:jpeg|jpg|png|webm|mp4)$/i)) {
           this.$store.commit('setBackgroundURL', value)
         }
       },
-      get () {
-      }
+      get(): string {
+        return ''
+      },
     },
-    /* eslint-enable */
 
-    loginUrl () {
+    loginUrl(): string {
       const returnUrl = encodeURIComponent(
-        process.env.NODE_ENV === 'production'
-          ? 'https://steam.design'
-          : 'http://localhost:3000',
+        process.env.NODE_ENV === 'production' ? 'https://steam.design' : 'http://localhost:3000'
       )
       const realm = encodeURIComponent(
-        process.env.NODE_ENV === 'production'
-          ? 'https://steam.design'
-          : 'http://localhost:3000',
+        process.env.NODE_ENV === 'production' ? 'https://steam.design' : 'http://localhost:3000'
       )
       return `https://steamcommunity.com/openid/login?openid.ns=http%3A%2F%2Fspecs.openid.net%2Fauth%2F2.0&openid.mode=checkid_setup&openid.return_to=${returnUrl}&openid.realm=${realm}&openid.ns.sreg=http%3A%2F%2Fopenid.net%2Fextensions%2Fsreg%2F1.1&openid.claimed_id=http%3A%2F%2Fspecs.openid.net%2Fauth%2F2.0%2Fidentifier_select&openid.identity=http%3A%2F%2Fspecs.openid.net%2Fauth%2F2.0%2Fidentifier_select`
     },
 
-    isMobile () {
+    isMobile(): boolean {
       return window.screen.width < 560
     },
 
-    extensionLink () {
+    extensionLink(): string | null {
       if (navigator.userAgent.indexOf('Chrome') !== -1) {
         return 'https://chrome.google.com/webstore/detail/steam-profile-assistant/mjmabgdoainclinjecbkdancpamdiaih'
       } else if (navigator.userAgent.indexOf('Firefox') !== -1) {
@@ -263,26 +245,26 @@ export default {
   },
 
   methods: {
-    logout () {
+    logout() {
       this.$store.commit('logout')
     },
 
-    randomBGClick () {
+    randomBGClick() {
       this.$store.dispatch('randomBackground')
       this.$store.dispatch('trackClick', ['randomBGButton'])
     },
 
-    getZipClick (e) {
+    getZipClick(e) {
       this.$store.dispatch('downloadZip', { ctrl: e.ctrlKey, alt: e.altKey })
       this.$store.dispatch('trackClick', ['getZIPButton'])
     },
 
-    getCurrentBGClick () {
+    getCurrentBGClick() {
       this.$store.dispatch('getCurrentBg')
       this.$store.dispatch('trackClick', ['getBGButton'])
     },
   },
-}
+})
 </script>
 
 <style scoped lang="stylus">

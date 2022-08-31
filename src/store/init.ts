@@ -1,19 +1,26 @@
+// @ts-ignore
 import BgsUrl from '@/assets/bg-asset.json?url'
+import { state as emptyState } from './index'
 
-const StoreImageRegex = /steamcdn-a\.akamaihd\.net\/steamcommunity\/public\/images\/items\/.+(jpg|webm|mp4)$/i
-const AnimatedStoreImageRegex = /cdn\.akamai\.steamstatic\.com\/steamcommunity\/public\/images\/items\/(\d+)\/.+.(jpg|webm|mp4)$/i
+const StoreImageRegex =
+  /steamcdn-a\.akamaihd\.net\/steamcommunity\/public\/images\/items\/.+(jpg|webm|mp4)$/i
+const AnimatedStoreImageRegex =
+  /cdn\.akamai\.steamstatic\.com\/steamcommunity\/public\/images\/items\/(\d+)\/.+.(jpg|webm|mp4)$/i
 
 export default async (store) => {
   if (localStorage) {
-  // listen to updates to save store
+    // listen to updates to save store
     store.subscribe((_, state) => {
-      localStorage.setItem('store', JSON.stringify(state))
+      const toSave = { ...state }
+      delete toSave.converters
+      localStorage.setItem('store', JSON.stringify(toSave))
     })
 
     // init with last session data
     if (localStorage.getItem('store')) {
-      const savedStore = JSON.parse(localStorage.getItem('store'))
+      const savedStore = JSON.parse(localStorage.getItem('store') || '')
       const newStore = {
+        ...emptyState,
         ...store.state,
         ...savedStore,
         user: {
@@ -22,7 +29,7 @@ export default async (store) => {
         },
       }
 
-      store.replaceState(Object.assign(store.state, newStore))
+      store.replaceState(Object.assign(store.state, { ...newStore }))
     }
   }
 
@@ -44,21 +51,22 @@ export default async (store) => {
   // If state has no bgs, fetch some from api
   if (
     state.bgJsonUrl !== BgsUrl || // if we have new bgs json
-    (!state.backgrounds || state.backgrounds.length < 10) // if no bgs
+    !state.backgrounds ||
+    state.backgrounds.length < 10 // if no bgs
     // (state.backgroundsUpdateTime > 0 && new Date() - state.backgroundsUpdateTime > 604800000) // or if last bg update > week ago
   ) {
-    const bgs = await fetch(BgsUrl).then(r => r.json())
+    const bgs = await fetch(BgsUrl).then((r) => r.json())
 
     commit('setBackgrounds', bgs)
     commit('setBgJsonUrl', BgsUrl)
     dispatch('randomBackground')
   }
 
-  if (state.user.id &&
-    (
-      (!state.inventory || state.inventory.length < 1) || // no inventory
-      (state.inventoryUpdateTime > 0 && new Date() - state.inventoryUpdateTime > 604800000) // or if last inventory update > week ago)
-    )
+  if (
+    state.user.id &&
+    (!state.inventory ||
+      state.inventory.length < 1 || // no inventory
+      (state.inventoryUpdateTime > 0 && Date.now() - state.inventoryUpdateTime > 604800000)) // or if last inventory update > week ago)
   ) {
     dispatch('loadBackpack')
   }
@@ -71,11 +79,11 @@ export default async (store) => {
   }
 }
 
-function parseQuery (queryString) {
-  var query = {}
-  var pairs = (queryString[0] === '?' ? queryString.substr(1) : queryString).split('&')
-  for (var i = 0; i < pairs.length; i++) {
-    var pair = pairs[i].split('=')
+function parseQuery(queryString) {
+  const query = {}
+  const pairs = (queryString[0] === '?' ? queryString.substr(1) : queryString).split('&')
+  for (let i = 0; i < pairs.length; i++) {
+    const pair = pairs[i].split('=')
     query[decodeURIComponent(pair[0])] = decodeURIComponent(pair[1] || '')
   }
   return query
