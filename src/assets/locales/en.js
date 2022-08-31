@@ -2,7 +2,8 @@ export default {
   test: 'en',
   index: {
     download: 'Download ZIP',
-    backgrounds: 'Backgrounds',
+    backgrounds: 'Top Backgrounds',
+    random: 'Random Background',
     getThisBg: 'Get this Background',
     pasteUrlPlaceholder: 'Paste a Background URL Here',
     zoomScale: 'Zoom Scale',

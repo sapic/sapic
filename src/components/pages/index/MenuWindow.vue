@@ -19,6 +19,13 @@
         </div>
       </a>
 
+      <div
+        class="menu__window-button"
+        @click="randomBGClick"
+        v-if="$store.state.user.id"
+      >
+        <div class="menu__window-button-text">{{ $t("index.random") }}</div>
+      </div>
       <div class="menu__window-button" @click="getCurrentBGClick">
         <div class="menu__window-button-text">{{ $t("index.getThisBg") }}</div>
       </div>
@@ -262,6 +269,11 @@ export default {
   methods: {
     logout () {
       this.$store.commit('logout')
+    },
+
+    randomBGClick () {
+      this.$store.dispatch('randomBackground')
+      this.$store.dispatch('trackClick', ['randomBGButton'])
     },
 
     getZipClick (e) {
