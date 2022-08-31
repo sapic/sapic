@@ -1,9 +1,9 @@
 <template>
   <div class="backgrounds_container">
-    <template v-if="$store.state.user.id">
+    <template v-if="user.id">
       <p class="hover-button">{{ $t('inventory.inventory') }}</p>
       <div class="inventory-list">
-        <template v-for="item in items" :key="item.id">
+        <template v-for="item in inventory" :key="item.id">
           <div class="inventory-item" @click="setBackground(item)">
             <img
               class="inventory-item-inner"
@@ -31,123 +31,99 @@
   </div>
 </template>
 
-<script>
-export default {
-  data() {
-    const width = window.innerWidth - 250 - 300 - 200 - 9
-    const itemsIncr = Math.floor(width / 108)
-    const startRows = 3
-    const pagination = 1
+<script lang="ts" setup>
+import { useMainStore } from '@/stores'
+import { Background } from '@/types/store'
+import { computed, ref } from 'vue'
+import { mapState } from 'pinia'
 
-    return {
-      width,
-      itemsIncr,
-      startRows,
-      pagination,
+const width = window.innerWidth - 250 - 300 - 200 - 9
+const itemsIncr = Math.floor(width / 108)
+const startRows = 3
+const pagination = ref(1)
 
-      shouldShowRandomBgs: false,
-    }
-  },
+const shouldShowRandomBgs = ref(false)
 
-  computed: {
-    /* eslint-disable */
-    bgURL: {
-      set (value) {
-        if (value.match(/\.(?:jpeg|jpg|png)$/i)) {
-          this.$store.commit('setBackgroundURL', value)
-        }
-      },
-      get () {
-      }
-    },
-    /* eslint-enable */
-    items() {
-      return this.$store.state.inventory
-    },
+const store = useMainStore()
 
-    randomBgs() {
-      if (this.$store.state.backgrounds.length === 0) {
-        return []
-      }
+const user = computed(() => store.user)
+const inventory = computed(() => store.inventory)
 
-      let end = this.start + this.itemsIncr * this.startRows * this.pagination
-      if (end > this.$store.state.backgrounds.length - 1) {
-        end = this.$store.state.backgrounds.length
-      }
+const start = computed(() => {
+  if (store.backgrounds.length === 0) {
+    return 0
+  }
+  let start = Math.floor(Math.random() * store.backgrounds.length) - itemsIncr * startRows
+  if (start < 0) {
+    start = 0
+  }
 
-      return this.$store.state.backgrounds.slice(this.start, end)
-    },
+  return start
+})
 
-    start() {
-      if (this.$store.state.backgrounds.length === 0) {
-        return 0
-      }
-      let start =
-        Math.floor(Math.random() * this.$store.state.backgrounds.length) -
-        this.itemsIncr * this.startRows
-      if (start < 0) {
-        start = 0
-      }
+const randomBgs = computed(() => {
+  if (store.backgrounds.length === 0) {
+    return []
+  }
 
-      return start
-    },
-  },
+  let end = start.value + itemsIncr * startRows * pagination.value
+  if (end > store.backgrounds.length - 1) {
+    end = store.backgrounds.length
+  }
 
-  mounted() {
-    setTimeout(() => {
-      this.shouldShowRandomBgs = true
-    }, 256)
-  },
+  return store.backgrounds.slice(start.value, end)
+})
 
-  methods: {
-    setBackground(item) {
-      this.$store.commit('setBackground', {
-        background: item.actions[0].link,
-        info: item,
-      })
-      window.location.hash = '#' + item.actions[0].link
-    },
-
-    setBackgroundItem(item) {
-      this.$store.commit('setBackground', {
-        background: this.getUrl(item.steamUrl),
-        info: item,
-      })
-
-      window.location.hash = '#' + this.getUrl(item.steamUrl)
-    },
-
-    getUrl(url) {
-      if (url.indexOf('http://cdn.akamai.steamstatic.com') !== -1) {
-        return url.replace('http://cdn.akamai.steamstatic.com', 'https://steamcdn-a.akamaihd.net')
-      } else {
-        return url
-      }
-    },
-
-    addRandomBgs() {
-      this.pagination++
-      this.$store.dispatch('trackClick', ['loadMoreRandomBGs'])
-      // let i = this.itemsIncr * 3
-      // while (i > 0) {
-      //   const randomBg = this.$store.state.backgrounds[
-      //     Math.floor(this.$store.state.backgrounds.length * Math.random())
-      //   ]
-      //   for (const bg of this.randomBgs) {
-      //     if (bg.url === randomBg.url) {
-      //       continue
-      //     }
-      //   }
-      //   this.randomBgs.push(
-      //     this.$store.state.backgrounds[
-      //       Math.floor(this.$store.state.backgrounds.length * Math.random())
-      //     ],
-      //   )
-      //   i--
-      // }
-    },
-  },
+function setBackground(item) {
+  store.setBackground({
+    background: item.actions[0].link,
+    info: item,
+  })
+  window.location.hash = '#' + item.actions[0].link
 }
+
+function setBackgroundItem(item) {
+  store.setBackground({
+    background: getUrl(item.steamUrl),
+    info: item,
+  })
+
+  window.location.hash = '#' + getUrl(item.steamUrl)
+}
+
+function getUrl(url) {
+  if (url.indexOf('http://cdn.akamai.steamstatic.com') !== -1) {
+    return url.replace('http://cdn.akamai.steamstatic.com', 'https://steamcdn-a.akamaihd.net')
+  } else {
+    return url
+  }
+}
+
+function addRandomBgs() {
+  pagination.value++
+  store.trackClick(['loadMoreRandomBGs'])
+  // let i = this.itemsIncr * 3
+  // while (i > 0) {
+  //   const randomBg = this.$store.state.backgrounds[
+  //     Math.floor(this.$store.state.backgrounds.length * Math.random())
+  //   ]
+  //   for (const bg of this.randomBgs) {
+  //     if (bg.url === randomBg.url) {
+  //       continue
+  //     }
+  //   }
+  //   this.randomBgs.push(
+  //     this.$store.state.backgrounds[
+  //       Math.floor(this.$store.state.backgrounds.length * Math.random())
+  //     ],
+  //   )
+  //   i--
+  // }
+}
+
+setTimeout(() => {
+  shouldShowRandomBgs.value = true
+}, 256)
 </script>
 
 <style lang="stylus" scoped>

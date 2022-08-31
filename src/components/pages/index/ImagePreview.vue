@@ -1,29 +1,35 @@
 <template>
-  <div class="profile__preview" :style="{ backgroundImage: `url('${$store.state.background}')` }">
+  <div class="profile__preview" :style="{ backgroundImage: `url('${background}')` }">
     <div class="profile__preview-bg">
       <video
-        :src="$store.state.background"
+        :src="background || ''"
         muted
         autoplay
         loop
         :style="{
-          width: `${$store.state.bgSize.w}px`,
-          height: `${$store.state.bgSize.h}px`,
+          width: `${bgSize.w}px`,
+          height: `${bgSize.h}px`,
         }"
       ></video>
     </div>
     <div class="profile__preview-container">
-      <Overlay :image-height="$store.state.bgSize.h" />
+      <Overlay :image-height="bgSize.h" />
     </div>
   </div>
 </template>
 
 <script>
+import { useMainStore } from '@/stores'
+import { mapState } from 'pinia'
 import Overlay from './preview/Overlay.vue'
 
 export default {
   components: {
     Overlay,
+  },
+
+  computed: {
+    ...mapState(useMainStore, ['bgSize', 'background']),
   },
 }
 </script>

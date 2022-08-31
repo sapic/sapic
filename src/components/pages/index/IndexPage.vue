@@ -29,13 +29,15 @@
 <script>
 import ImagePreview from './ImagePreview.vue'
 import Inventory from './InventoryContainer.vue'
-import TitleBar from './TitleBar.vue'
 import MenuWindow from './MenuWindow.vue'
 import BgPreloader from './BgPrealoader.vue'
 import Scripts from '../../Scripts.vue'
 import RightMenu from './RightMenu.vue'
 import MobileHeader from './MobileHeader.vue'
 import ConvertersContainer from './ConvertersContainer.vue'
+
+import { useMainStore } from '@/stores'
+import { mapState } from 'pinia'
 
 const easeOutQuad = (t) => t * (2 - t)
 
@@ -44,7 +46,6 @@ export default {
     Scripts,
 
     ImagePreview,
-    // TitleBar,
     MenuWindow,
     Inventory,
     BgPreloader,
@@ -53,16 +54,16 @@ export default {
     ConvertersContainer,
   },
   data() {
+    const store = useMainStore()
     return {
-      animatedScale: this.$store.state.previewScale,
+      animatedScale: store.previewScale,
     }
   },
   computed: {
+    ...mapState(useMainStore, ['previewScale']),
+
     scalePercent() {
       return this.animatedScale / 100
-    },
-    previewScale() {
-      return this.$store.state.previewScale
     },
 
     isMobile() {

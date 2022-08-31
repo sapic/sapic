@@ -9,38 +9,39 @@
       top: '-9999px',
     }"
   >
-    <template v-for="background in nextBackgrounds" :key="background.steamUrl">
-      <img v-if="background.steamUrl.indexOf('webm') === -1" :src="getUrl(background.steamUrl)" />
-      <video v-else :src="getUrl(background.steamUrl)" />
+    <template v-for="nextBg in nextBackgrounds" :key="nextBg.steamUrl">
+      <img v-if="nextBg.steamUrl.indexOf('webm') === -1" :src="getUrl(nextBg.steamUrl)" />
+      <video v-else :src="getUrl(nextBg.steamUrl)" />
     </template>
 
     <img
-      v-if="$store.state.background && $store.state.background.indexOf('webm') === -1"
+      v-if="background && background.indexOf('webm') === -1"
       ref="bgHolderRef"
       key="currentBgImageHolder"
-      :src="$store.state.background"
+      :src="background"
       @load="holderUpdated"
     />
     <video
       v-else
       ref="bgHolderRef"
       key="currentBgVideoHolder"
-      :src="$store.state.background"
+      :src="background"
       @loadeddata="holderUpdated"
     />
   </div>
 </template>
 
 <script setup lang="ts">
+import { useMainStore } from '@/stores'
 import { computed, ref } from 'vue'
-import { useStore } from 'vuex'
 
-const store = useStore()
+const store = useMainStore()
 
 const shouldRender = ref(false)
 const bgHolderRef = ref<HTMLImageElement | HTMLVideoElement | null>(null)
+const background = computed(() => store.background)
 
-const nextBackgrounds = computed(() => store.state.nextRandomBackgrounds)
+const nextBackgrounds = computed(() => store.nextRandomBackgrounds)
 
 setTimeout(() => {
   shouldRender.value = true
@@ -48,12 +49,12 @@ setTimeout(() => {
 
 function holderUpdated() {
   if (bgHolderRef.value instanceof HTMLImageElement) {
-    store.commit('setBgSize', {
+    store.setBgSize({
       w: bgHolderRef.value.naturalWidth,
       h: bgHolderRef.value.naturalHeight,
     })
   } else if (bgHolderRef.value instanceof HTMLVideoElement) {
-    store.commit('setBgSize', {
+    store.setBgSize({
       w: bgHolderRef.value.videoWidth,
       h: bgHolderRef.value.videoHeight,
     })

@@ -119,7 +119,7 @@
           </template>
         </div>
       </div>
-      <a v-if="!$store.state.user.id" class="menu__window-button steam" :href="loginUrl">
+      <a v-if="!user.id" class="menu__window-button steam" :href="loginUrl">
         <div class="menu__window-button-text">{{ $t('index.login') }}</div></a
       >
       <div v-else class="menu__window-button" @click="logout">
@@ -189,6 +189,8 @@
 </template>
 
 <script lang="ts">
+import { useMainStore } from '@/stores'
+import { mapState } from 'pinia'
 import { defineComponent } from 'vue'
 import CloudDownload from './CloudDownload.vue'
 
@@ -198,20 +200,25 @@ export default defineComponent({
   },
 
   computed: {
+    ...mapState(useMainStore, ['user']),
+
     previewScale: {
       get(): number {
-        return this.$store.state.previewScale
+        const store = useMainStore()
+        return store.previewScale
       },
       set(value: number) {
-        this.$store.commit('setPreviewScale', value)
-        this.$store.dispatch('trackClick', ['setPreviewScale', value])
+        const store = useMainStore()
+        store.setPreviewScale(value)
+        store.trackClick(['setPreviewScale', value])
       },
     },
 
     bgURL: {
       set(value: string) {
         if (value.match(/\.(?:jpeg|jpg|png|webm|mp4)$/i)) {
-          this.$store.commit('setBackgroundURL', value)
+          const store = useMainStore()
+          store.setBackgroundURL(value)
         }
       },
       get(): string {
@@ -246,22 +253,26 @@ export default defineComponent({
 
   methods: {
     logout() {
-      this.$store.commit('logout')
+      const store = useMainStore()
+      store.logout()
     },
 
     randomBGClick() {
-      this.$store.dispatch('randomBackground')
-      this.$store.dispatch('trackClick', ['randomBGButton'])
+      const store = useMainStore()
+      store.randomBackground()
+      store.trackClick(['randomBGButton'])
     },
 
     getZipClick(e) {
-      this.$store.dispatch('downloadZip', { ctrl: e.ctrlKey, alt: e.altKey })
-      this.$store.dispatch('trackClick', ['getZIPButton'])
+      const store = useMainStore()
+      store.downloadZip({ ctrl: e.ctrlKey, alt: e.altKey })
+      store.trackClick(['getZIPButton'])
     },
 
     getCurrentBGClick() {
-      this.$store.dispatch('getCurrentBg')
-      this.$store.dispatch('trackClick', ['getBGButton'])
+      const store = useMainStore()
+      store.getCurrentBg()
+      store.trackClick(['getBGButton'])
     },
   },
 })
@@ -332,8 +343,7 @@ export default defineComponent({
   text-decoration none
 
   &.purple-paradise
-    // opacity 0.8
-    background #AA076B /* fallback for old browsers */
+    background #AA076B
     background -webkit-linear-gradient(45deg, #61045F, #AA076B)
     background linear-gradient(45deg, #61045F, #AA076B)
     transition background 0.25s ease
