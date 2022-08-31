@@ -90,11 +90,10 @@ async function finalzeZip() {
 @import '../../../assets/css/color'
 
 .converter__container
-  margin 0 auto
   padding 1rem
-  background $color-button
-  border-radius 3px
-  margin 1rem
+  background transparentify($color-main, 0.7);
+  border-radius 7px
+  margin 10px 0 0 0
 
 .url__container
   margin 10px 0

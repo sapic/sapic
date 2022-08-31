@@ -18,7 +18,7 @@ const converters = computed(() => store.state.converters?.filter((x) => x))
 @import '../../../assets/css/color'
 
 .container
-  background transparentify($color-main, 0.5);
+  background none
   color white
   border-radius 3px
   width 320px
