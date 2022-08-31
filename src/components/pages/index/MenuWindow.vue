@@ -19,11 +19,7 @@
         </div>
       </a>
 
-      <div
-        class="menu__window-button"
-        @click="randomBGClick"
-        v-if="$store.state.user.id"
-      >
+      <div class="menu__window-button" @click="randomBGClick">
         <div class="menu__window-button-text">{{ $t("index.random") }}</div>
       </div>
       <div class="menu__window-button" @click="getCurrentBGClick">
