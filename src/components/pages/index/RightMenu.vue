@@ -51,7 +51,7 @@ import Ads from './Ads.vue'
 
 import TextCenterImage from '@/assets/images/text-center.svg'
 import DesignerListImage from '@/assets/images/List.jpg'
-import AvatarCropperImage from '@/assets/images/AvatarCropper.jpg'
+import AvatarCropperImage from '@/assets/images/AvatarCropper.png'
 
 import SteamLadderImage from '@/assets/images/ladder.jpg'
 import ArtworkProfilesImage from '@/assets/images/ap.jpg'
