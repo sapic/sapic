@@ -1,6 +1,6 @@
 import { createApp } from 'vue'
 import { createRouter, createWebHistory, RouterView } from 'vue-router'
-import store from './store'
+import InitPiniaPlugin from './stores/init'
 import App from './App.vue'
 // import Download from './components/pages/download'
 import { createI18n } from 'vue-i18n-lite'
@@ -10,6 +10,7 @@ import localeEn from '@/assets/locales/en'
 
 import IndexPage from './components/pages/index/IndexPage.vue'
 import Converter from './components/pages/converter/index.vue'
+import { createPinia } from 'pinia'
 
 const router = createRouter({
   history: createWebHistory(),
@@ -86,9 +87,12 @@ router.beforeEach((to, from, next) => {
   return next()
 })
 
+const pinia = createPinia()
+pinia.use(InitPiniaPlugin)
+
 const app = createApp(App)
 
-app.use(store)
+app.use(pinia)
 app.use(router)
 app.use(i18n)
 

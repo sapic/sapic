@@ -1,54 +1,47 @@
 // @ts-ignore
 import BgsUrl from '@/assets/bg-asset.json?url'
-import { state as emptyState } from './index'
+import { PiniaPluginContext } from 'pinia'
+import { emptyState } from './index'
 
 const StoreImageRegex =
   /steamcdn-a\.akamaihd\.net\/steamcommunity\/public\/images\/items\/.+(jpg|webm|mp4)$/i
 const AnimatedStoreImageRegex =
   /cdn\.akamai\.steamstatic\.com\/steamcommunity\/public\/images\/items\/(\d+)\/.+.(jpg|webm|mp4)$/i
 
-export default async (store) => {
+export default async ({ store }: PiniaPluginContext) => {
   if (localStorage) {
     // listen to updates to save store
-    store.subscribe((_, state) => {
+    store.$subscribe((mut, state) => {
+      console.log('sub', mut, state)
       const toSave = { ...state }
       delete toSave.converters
       localStorage.setItem('store', JSON.stringify(toSave))
     })
-
     // init with last session data
     if (localStorage.getItem('store')) {
       const savedStore = JSON.parse(localStorage.getItem('store') || '')
       const newStore = {
         ...emptyState,
-        ...store.state,
         ...savedStore,
-        user: {
-          ...store.state.user,
-          ...savedStore.user,
-        },
       }
-
-      store.replaceState(Object.assign(store.state, { ...newStore }))
+      store.$patch({ ...newStore })
     }
   }
-
-  const { commit } = store
-  const { dispatch } = store
 
   if (window.location.search !== '') {
     const params = parseQuery(window.location.search)
     if (params['openid.identity']) {
       const arr = params['openid.identity'].split('/').slice(-1)
       if (arr && arr.length > 0) {
-        commit('setUser', { id: arr[0] })
+        store.setUser({ id: arr[0] })
         history.replaceState('', document.title, window.location.pathname)
       }
     }
   }
 
-  const state = JSON.parse(JSON.stringify(store.state))
-  // If state has no bgs, fetch some from api
+  const state = store.$state
+
+  // // If state has no bgs, fetch some from api
   if (
     state.bgJsonUrl !== BgsUrl || // if we have new bgs json
     !state.backgrounds ||
@@ -56,25 +49,22 @@ export default async (store) => {
     // (state.backgroundsUpdateTime > 0 && new Date() - state.backgroundsUpdateTime > 604800000) // or if last bg update > week ago
   ) {
     const bgs = await fetch(BgsUrl).then((r) => r.json())
-
-    commit('setBackgrounds', bgs)
-    commit('setBgJsonUrl', BgsUrl)
-    dispatch('randomBackground')
+    store.setBackgrounds(bgs)
+    store.setBgJsonUrl(BgsUrl)
+    store.randomBackground()
   }
-
   if (
     state.user.id &&
     (!state.inventory ||
       state.inventory.length < 1 || // no inventory
       (state.inventoryUpdateTime > 0 && Date.now() - state.inventoryUpdateTime > 604800000)) // or if last inventory update > week ago)
   ) {
-    dispatch('loadBackpack')
+    store.loadBackpack()
   }
-
   if (window.location.hash !== '') {
     const url = window.location.hash.slice(1)
     if (StoreImageRegex.test(url) || AnimatedStoreImageRegex.test(url)) {
-      commit('setBackgroundURL', url)
+      store.setBackgroundURL(url)
     }
   }
 }

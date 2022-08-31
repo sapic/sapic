@@ -1,11 +1,12 @@
 <script setup lang="ts">
+import { useMainStore } from '@/stores'
 import { computed } from 'vue'
-import { useStore } from 'vuex'
+
 import ConverterPopup from '../converter/converterPopup.vue'
 
-const store = useStore()
+const store = useMainStore()
 
-const converters = computed(() => store.state.converters?.filter((x) => x))
+const converters = computed(() => store.converters?.filter((x) => x))
 </script>
 
 <template>

@@ -14,7 +14,7 @@ export default {
     ourOldSite: 'Old Site',
     ourExtension: 'Extension',
     ourOtherProjects: 'Our Other Projects:',
-    ourPartners: 'Our Partners:'
+    ourPartners: 'Our Partners:',
   },
   inventory: {
     inventory: 'Inventory',

@@ -86,27 +86,32 @@ export default {
         },
       ],
 
-      friends: [{
-        img: LevelsImage,
-        title: 'SteamLevels',
-        description: 'A quick and easy way to level up your profile!',
-        url: 'https://steamlevels.com',
-      }, {
-        img: SteamLadderImage,
-        title: 'Steam Ladder',
-        description: 'Leaderboard and ranking site for Steam profiles!',
-        url: 'https://www.steamladder.com/',
-      }, {
-        img: ArtworkProfilesImage,
-        title: 'Artwork Profiles',
-        description: 'Celebrating the beauty of Steam profiles.',
-        url: 'https://steamcommunity.com/groups/ArtworkProfiles',
-      }, {
-        img: WithlistImage,
-        title: 'Steam Wishlist Calculator',
-        description: 'Calculate the total cost of your Steam wishlist!',
-        url: 'https://www.steamwishlistcalculator.com',
-      }],
+      friends: [
+        {
+          img: LevelsImage,
+          title: 'SteamLevels',
+          description: 'A quick and easy way to level up your profile!',
+          url: 'https://steamlevels.com',
+        },
+        {
+          img: SteamLadderImage,
+          title: 'Steam Ladder',
+          description: 'Leaderboard and ranking site for Steam profiles!',
+          url: 'https://www.steamladder.com/',
+        },
+        {
+          img: ArtworkProfilesImage,
+          title: 'Artwork Profiles',
+          description: 'Celebrating the beauty of Steam profiles.',
+          url: 'https://steamcommunity.com/groups/ArtworkProfiles',
+        },
+        {
+          img: WithlistImage,
+          title: 'Steam Wishlist Calculator',
+          description: 'Calculate the total cost of your Steam wishlist!',
+          url: 'https://www.steamwishlistcalculator.com',
+        },
+      ],
     }
   },
 }

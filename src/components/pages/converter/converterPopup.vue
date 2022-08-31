@@ -17,18 +17,11 @@
 <script lang="ts" setup>
 import store from '@/store'
 import { ImageInfo } from '@/types/image'
+import { ConverterProp } from '@/types/store'
 import { saveAs } from 'file-saver'
 import JSZip from 'jszip'
 import { PropType, ref } from 'vue'
 import ConvertRow from './convertRow.vue'
-
-interface ConverterProp {
-  id: string
-  info: {
-    url: string
-    images: ImageInfo[]
-  }
-}
 
 const props = defineProps({
   save: {
