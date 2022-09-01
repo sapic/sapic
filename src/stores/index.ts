@@ -1,7 +1,4 @@
-import init from './init'
-import { toRaw } from 'vue'
 import { defineStore } from 'pinia'
-import { state } from '@/store'
 import { Background, ConverterProp } from '@/types/store'
 
 // interface RootState {}
@@ -161,10 +158,10 @@ export const useMainStore = defineStore('main', {
     downloadZip({ ctrl, alt }) {
       // sizes based on 1920x1108
       // https://steamcdn-a.akamaihd.net/steamcommunity/public/images/items/570/982491acceb6c9dde0d5e49dab1e7540c5faa1de.webm
-      const halfWidth = Math.floor(state.bgSize.w / 2)
+      const halfWidth = Math.floor(this.bgSize.w / 2)
 
       const bgSaveInfo = {
-        url: state.background,
+        url: this.background,
         images: [
           { name: 'Artwork_Middle.png', x: halfWidth - 466, y: 256, w: 506, h: 2000 },
           { name: 'Artwork_Right_Top.png', x: halfWidth + 49, y: 256, w: 100, h: 2000 },
@@ -203,7 +200,7 @@ export const useMainStore = defineStore('main', {
     },
 
     async loadBackpack() {
-      const data = await fetch(`https://steam.design/backpack/${state.user.id}/items.json`).then(
+      const data = await fetch(`https://steam.design/backpack/${this.user.id}/items.json`).then(
         (r) => r.json()
       )
       this.setInventoryBackgrounds(data.backgrounds)
