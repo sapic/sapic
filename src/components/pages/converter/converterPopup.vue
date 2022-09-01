@@ -15,7 +15,7 @@
 </template>
 
 <script lang="ts" setup>
-import store from '@/store'
+import { useMainStore } from '@/stores'
 import { ImageInfo } from '@/types/image'
 import { ConverterProp } from '@/types/store'
 import { saveAs } from 'file-saver'
@@ -74,7 +74,8 @@ async function finalzeZip() {
   const zipName = `steam.design_${inputDigest.slice(0, 6)}.zip`
   zip.generateAsync({ type: 'blob' }).then(function (content) {
     saveAs(content, zipName)
-    store.commit('removeConvertItem', props.save.id)
+    const store = useMainStore()
+    store.removeConvertItem(props.save.id)
   })
 }
 </script>
