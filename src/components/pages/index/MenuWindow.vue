@@ -125,6 +125,7 @@
       <div v-else class="menu__window-button" @click="logout">
         <div class="menu__window-button-text">{{ $t('index.logout') }}</div>
       </div>
+      <div class="menu__window-button-download-shadow"></div>
     </div>
     <div class="menu__window-credits">
       <div class="menu__window-title">
@@ -409,6 +410,18 @@ export default defineComponent({
   color $color-white
   margin 15px 0
   text-decoration none
+
+.menu__window-button-download-shadow
+  width calc(100% - 10px)
+  margin 0 auto
+  height 60px
+  top -481px
+  position relative
+  background linear-gradient(45deg, #36bbf7 0%, #702df9 100%)
+  filter blur(12px)
+  animation gradient 3s ease infinite
+  background-size 200% 100%
+  animation-direction alternate
 
 .menu__window-button-download
   background linear-gradient(45deg, $color-button-gradient-1 0%, $color-button-gradient-2 100%)
