@@ -5,4 +5,5 @@ module.exports = {
   curly: false,
   trailingComma: 'es5',
   semi: false,
+  endOfLine: "auto"
 }
