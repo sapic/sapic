@@ -1,6 +1,6 @@
 <template>
   <div class="right__menu">
-    <Ads />
+    <!-- <Ads /> -->
 
     <div class="right__menu-header">
       <span class="partnerLabel">{{ $t('index.ourOtherProjects') }}</span>
@@ -182,4 +182,7 @@ export default {
     align-items center
     justify-content center
     text-decoration none
+
+    &:first-of-type
+      margin-top 20px
 </style>
