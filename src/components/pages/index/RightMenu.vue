@@ -47,7 +47,7 @@
 </template>
 
 <script>
-import Ads from './Ads.vue'
+// import Ads from './Ads.vue'
 
 import TextCenterImage from '@/assets/images/text-center.svg'
 import DesignerListImage from '@/assets/images/List.jpg'
@@ -60,7 +60,7 @@ import LevelsImage from '@/assets/images/steamlevels.jpg'
 
 export default {
   components: {
-    Ads,
+    // Ads,
   },
 
   data() {
@@ -122,14 +122,19 @@ export default {
 
 .right__menu
   width 309px
-  background $color-main
+  background transparentify($color-main, 0.5)
   height 100%
   display flex
   flex-direction column
-  overflow-y scroll
-  scrollbar-width thin
+  // overflow-y scroll
+  // scrollbar-width thin
   flex 0 0 auto
   text-align center
+  position absolute
+  top 8px
+  bottom 8px
+  right 16px
+  border-radius 20px
 
   .friends__block
     padding 0 10px

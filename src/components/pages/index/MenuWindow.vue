@@ -282,14 +282,20 @@ export default defineComponent({
 @import '../../../assets/css/color'
 
 .menu__window
-  height 100%
+  // height c100vh
   width 250px
-  background $color-main
+  background transparentify($color-main, 0.5)
   flex-shrink 0
   user-select none
   display flex
   flex-direction column
   align-items center
+  position absolute
+  top 8px
+  bottom 8px
+  left 8px
+  z-index 1
+  border-radius 20px
 
   &-hint
     padding 0px 20px

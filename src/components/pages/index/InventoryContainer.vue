@@ -134,19 +134,22 @@ setTimeout(() => {
 
 .backgrounds_container
   position absolute
-  bottom -212px
+  bottom 8px
   right 409px
   width calc(100% - 250px - 300px - 200px - 9px)
-  height 350px
-  background $color-main
+  height 140px
+  background transparentify($color-main, 0.5)
   transition all 0.25s ease-in-out
   // overflow-y hidden
   // overflow-x hidden
-  border-radius 10px 10px 0 0
   overflow-y scroll
   display flex
   flex-direction column
   align-items center
+  border-radius 20px
+
+  &:hover
+    height 350px
 
   .inventory-list
     position relative
@@ -182,7 +185,7 @@ setTimeout(() => {
     cursor pointer
     height 25px
     // border-radius 10px 0 0 0
-    background $color-main
+    // background $color-main
     border-style none
     display block
     // bottom 9px
@@ -218,9 +221,6 @@ setTimeout(() => {
 
     100%
       background-position 100%
-
-  &:hover
-    bottom 0
 
     // overflow-y scroll
     .inventory-list

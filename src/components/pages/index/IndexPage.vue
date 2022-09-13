@@ -111,7 +111,6 @@ export default {
   height 100%
   flex 1 1 auto
   overflow-x hidden
-  border-radius 20px
   background $color-black
   position relative
 
@@ -184,7 +183,8 @@ body {
 }
 ::-webkit-scrollbar-track {
   background: #12151a;
-  border-radius: 0 20px 0 0;
+  border-radius: 20px;
+  /* border-radius: 0 20px 0 0; */
 }
 ::-webkit-scrollbar-track:hover {
   background: #1c2129;
