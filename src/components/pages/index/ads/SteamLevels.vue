@@ -23,7 +23,7 @@ setTimeout(() => {
   width 280px
   height 560px
   display block
-  margin 10px 10px 10px 15px
+  margin 10px auto
   position relative
   overflow hidden
   border-radius 10px

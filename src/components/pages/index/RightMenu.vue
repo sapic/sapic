@@ -1,6 +1,6 @@
 <template>
   <div class="right__menu">
-    <!-- <Ads /> -->
+    <Ads />
 
     <div class="right__menu-header">
       <span class="partnerLabel">{{ $t('index.ourOtherProjects') }}</span>
