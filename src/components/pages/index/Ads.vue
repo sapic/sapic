@@ -1,17 +1,17 @@
 <template>
   <div class="infofriends__container">
-    <tradeit />
+    <SteamLevels />
   </div>
 </template>
 
 <script>
-// import SteamLevels from './ads/SteamLevels.vue'
-import tradeit from './ads/tradeit.vue'
+import SteamLevels from './ads/SteamLevels.vue'
+// import tradeit from './ads/tradeit.vue'
 
 export default {
   components: {
-    // SteamLevels,
-    tradeit,
+    SteamLevels,
+    // tradeit,
   },
 
   computed: {},
