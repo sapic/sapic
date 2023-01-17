@@ -56,7 +56,8 @@ import AvatarCropperImage from '@/assets/images/AvatarCropper.png'
 import SteamLadderImage from '@/assets/images/ladder.jpg'
 import ArtworkProfilesImage from '@/assets/images/ap.jpg'
 import WithlistImage from '@/assets/images/steamwishlist.png'
-import LevelsImage from '@/assets/images/steamlevels.jpg'
+// import LevelsImage from '@/assets/images/steamlevels.jpg'
+import LevelUImage from '@/assets/images/steam_level_u.svg'
 
 export default {
   components: {
@@ -87,18 +88,24 @@ export default {
       ],
 
       friends: [
+        // {
+        //   img: LevelsImage,
+        //   title: 'SteamLevels',
+        //   description: 'A quick and easy way to level up your profile!',
+        //   url: 'https://steamlevels.com',
+        // },
         {
-          img: LevelsImage,
-          title: 'SteamLevels',
-          description: 'A quick and easy way to level up your profile!',
-          url: 'https://steamlevels.com',
+          img: LevelUImage,
+          title: 'SteamLevelU',
+          description: 'A fast and easy way to take your Steam profile level to the max!',
+          url: 'https://steamlevelu.com',
         },
-        {
-          img: SteamLadderImage,
-          title: 'Steam Ladder',
-          description: 'Leaderboard and ranking site for Steam profiles!',
-          url: 'https://www.steamladder.com/',
-        },
+        //{
+         // img: SteamLadderImage,
+         // title: 'Steam Ladder',
+         // description: 'Leaderboard and ranking for Steam accounts!',
+         // url: 'https://www.steamladder.com/',
+        //},
         {
           img: ArtworkProfilesImage,
           title: 'Artwork Profiles',
