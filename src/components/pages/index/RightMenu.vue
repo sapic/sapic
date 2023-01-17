@@ -97,15 +97,15 @@ export default {
         {
           img: LevelUImage,
           title: 'SteamLevelU',
-          description: 'An easy way to upgrade and level up your Steam account!',
+          description: 'A fast and easy way to take your Steam profile level to the max!',
           url: 'https://steamlevelu.com',
         },
-        {
-          img: SteamLadderImage,
-          title: 'Steam Ladder',
-          description: 'Leaderboard and ranking site for Steam profiles!',
-          url: 'https://www.steamladder.com/',
-        },
+        //{
+         // img: SteamLadderImage,
+         // title: 'Steam Ladder',
+         // description: 'Leaderboard and ranking for Steam accounts!',
+         // url: 'https://www.steamladder.com/',
+        //},
         {
           img: ArtworkProfilesImage,
           title: 'Artwork Profiles',
