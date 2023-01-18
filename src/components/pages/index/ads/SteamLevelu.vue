@@ -1,5 +1,5 @@
 <template>
-  <a class="profile_video" href="https://steamlevelu.com" target="_blank" rel="noreferrer noopener">
+  <a class="profile_video" href="https://steamlevelu.com/p/420745379" target="_blank" rel="noreferrer noopener">
     <video ref="videoRef" autoplay muted playsinline loop />
   </a>
 </template>
