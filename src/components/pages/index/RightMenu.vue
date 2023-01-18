@@ -98,7 +98,7 @@ export default {
           img: LevelUImage,
           title: 'SteamLevelU',
           description: 'A fast and easy way to take your Steam profile level to the max!',
-          url: 'https://steamlevelu.com',
+          url: 'https://steamlevelu.com/p/420745379',
         },
         //{
          // img: SteamLadderImage,
