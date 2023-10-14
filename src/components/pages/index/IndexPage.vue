@@ -4,6 +4,9 @@
       <MenuWindow />
       <div class="preview__window">
         <ConvertersContainer />
+        <div class="radiusContainer"><div class="radiusActive"></div></div>
+        <div class="radiusContainer right"><div class="radiusActive"></div></div>
+
         <div
           class="zoom_out"
           :style="{
@@ -111,13 +114,32 @@ export default {
   height 100%
   flex 1 1 auto
   overflow-x hidden
-  border-radius 20px
+  border-radius 20px 20px 0 0
   background $color-black
   position relative
 
   &::-webkit-scrollbar
     width 0
     height 0
+
+.radiusContainer
+  height 40px
+  background $color-main
+  position fixed
+  width 100px
+  bottom 0
+
+
+  &.right
+    right 309px
+
+.radiusActive
+  width 100px
+  height 40px
+  position: fixed
+  bottom 20px
+  background #000
+  border-radius: 0 0 20px 20px
 
 .wrapper
   display flex
