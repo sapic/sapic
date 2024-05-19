@@ -56,8 +56,9 @@ import AvatarCropperImage from '@/assets/images/AvatarCropper.png'
 import SteamLadderImage from '@/assets/images/ladder.jpg'
 import ArtworkProfilesImage from '@/assets/images/ap.jpg'
 import WithlistImage from '@/assets/images/steamwishlist.png'
+import DuoBotImage from '@/assets/images/logo-duobot.svg'
 // import LevelsImage from '@/assets/images/steamlevels.jpg'
-import LevelUImage from '@/assets/images/steam_level_u.svg'
+// import LevelUImage from '@/assets/images/steam_level_u.svg'
 
 export default {
   components: {
@@ -94,18 +95,25 @@ export default {
         //   description: 'A quick and easy way to level up your profile!',
         //   url: 'https://steamlevels.com',
         // },
+        // {
+        //   img: LevelUImage,
+        //   title: 'SteamLevelU',
+        //   description: 'A fast and easy way to take your Steam profile level to the max!',
+        //   url: 'https://steamlevelu.com/p/420745379',
+        // },
+        // {
+        // img: SteamLadderImage,
+        // title: 'Steam Ladder',
+        // description: 'Leaderboard and ranking for Steam accounts!',
+        // url: 'https://www.steamladder.com/',
+        // },
         {
-          img: LevelUImage,
-          title: 'SteamLevelU',
-          description: 'A fast and easy way to take your Steam profile level to the max!',
-          url: 'https://steamlevelu.com/p/420745379',
+          img: DuoBotImage,
+          title: 'Duobot',
+          description:
+            'Duobot is the fastest and most affordable way to level up your Steam profile.',
+          url: 'https://duobot.com/p/steamdesign',
         },
-        //{
-         // img: SteamLadderImage,
-         // title: 'Steam Ladder',
-         // description: 'Leaderboard and ranking for Steam accounts!',
-         // url: 'https://www.steamladder.com/',
-        //},
         {
           img: ArtworkProfilesImage,
           title: 'Artwork Profiles',
