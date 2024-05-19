@@ -109,7 +109,7 @@ export default {
         // },
         {
           img: DuoBotImage,
-          title: 'DuoBot',
+          title: 'Duobot',
           description:
             'Duobot is the fastest and most affordable way to level up your Steam profile.',
           url: 'https://duobot.com/p/steamdesign',
