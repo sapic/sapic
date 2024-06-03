@@ -1,7 +1,7 @@
 <template>
   <a
     class="profile_video"
-    href="https://duobot.com/p/steamdesign"
+    href="https://duobot.com/c/steamdesign"
     target="_blank"
     rel="noreferrer noopener"
   >
