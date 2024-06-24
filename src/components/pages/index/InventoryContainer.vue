@@ -142,7 +142,7 @@ setTimeout(() => {
   transition all 0.25s ease-in-out
   // overflow-y hidden
   // overflow-x hidden
-  border-radius 10px 10px 0 0
+  border-radius 20px 20px 0 0
   overflow-y scroll
   display flex
   flex-direction column

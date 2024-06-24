@@ -25,6 +25,12 @@ module.exports = {
     ],
     '@typescript-eslint/ban-ts-comment': 'off',
     'vue/multi-word-component-names': 'off',
+    'prettier/prettier': [
+      'error',
+      {
+        endOfLine: 'auto',
+      },
+    ],
   },
   env: {
     // "vue/setup-compiler-macros": true,
