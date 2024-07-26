@@ -194,7 +194,7 @@ export const useMainStore = defineStore('main', {
       const _goUrl =
         this.bgInfo && this.bgInfo.url
           ? 'https://steamcommunity.com/market/listings/' + this.bgInfo.url
-          : 'https://images.google.com/searchbyimage?image_url=' + this.background
+          : 'https://lens.google.com/uploadbyurl?url=' + this.background
       // shell.openExternal(_goUrl)
       window.open(_goUrl)
     },
