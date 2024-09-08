@@ -7,6 +7,9 @@ import { createI18n } from 'vue-i18n-lite'
 
 import localeRu from '@/assets/locales/ru'
 import localeEn from '@/assets/locales/en'
+import localeZhCN from '@/assets/locales/zh-CN'
+import localeZhHK from '@/assets/locales/zh-HK'
+import localeZhTW from '@/assets/locales/zh-TW'
 
 import IndexPage from './components/pages/index/IndexPage.vue'
 import Converter from './components/pages/converter/index.vue'
@@ -53,11 +56,17 @@ const router = createRouter({
 })
 
 function getLocale() {
-  const allowed = ['en', 'ru']
-  const userLocale = navigator.language.split('-')[0]
+  const allowed = ['en', 'ru', 'zh-CN', 'zh-HK', 'zh-TW']
+  const userLocale = navigator.language
 
-  if (allowed.indexOf(userLocale) > 0) {
+  if (allowed.includes(userLocale)) {
     return userLocale
+  }
+
+  const userLanguage = userLocale.split('-')[0]
+
+  if (allowed.includes(userLanguage)) {
+    return userLanguage
   }
 
   return 'en'
@@ -70,13 +79,16 @@ const i18n = createI18n({
   messages: {
     ru: localeRu,
     en: localeEn,
+    'zh-CN': localeZhCN,
+    'zh-HK': localeZhHK,
+    'zh-TW': localeZhTW,
   },
 })
 
 router.beforeEach((to, from, next) => {
   const lang = Array.isArray(to.params.lang) ? to.params.lang[0] : to.params.lang
 
-  if (!['en', 'ru'].includes(lang)) {
+  if (!['en', 'ru', 'zh-CN', 'zh-HK', 'zh-TW'].includes(lang)) {
     return next()
   }
 
