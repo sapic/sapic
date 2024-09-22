@@ -1,6 +1,6 @@
 <template>
   <a
-    class="profile_video"
+    class="video"
     href="https://duobot.com/c/steamdesign"
     target="_blank"
     rel="noreferrer noopener"
@@ -24,7 +24,7 @@ setTimeout(() => {
 </script>
 
 <style lang="stylus" scoped>
-.profile_video
+.video
   width 280px
   height 560px
   display block
