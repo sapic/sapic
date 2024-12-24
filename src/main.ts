@@ -10,6 +10,7 @@ import localeEn from '@/assets/locales/en'
 import localeZhCN from '@/assets/locales/zh-CN'
 import localeZhHK from '@/assets/locales/zh-HK'
 import localeZhTW from '@/assets/locales/zh-TW'
+import localeTr from '@/assets/locales/tr'
 
 import IndexPage from './components/pages/index/IndexPage.vue'
 import Converter from './components/pages/converter/index.vue'
@@ -56,7 +57,7 @@ const router = createRouter({
 })
 
 function getLocale() {
-  const allowed = ['en', 'ru', 'zh-CN', 'zh-HK', 'zh-TW']
+  const allowed = ['en', 'ru', 'zh-CN', 'zh-HK', 'zh-TW', 'tr']
   const userLocale = navigator.language
 
   if (allowed.includes(userLocale)) {
@@ -82,13 +83,14 @@ const i18n = createI18n({
     'zh-CN': localeZhCN,
     'zh-HK': localeZhHK,
     'zh-TW': localeZhTW,
+    tr: localeTr,
   },
 })
 
 router.beforeEach((to, from, next) => {
   const lang = Array.isArray(to.params.lang) ? to.params.lang[0] : to.params.lang
 
-  if (!['en', 'ru', 'zh-CN', 'zh-HK', 'zh-TW'].includes(lang)) {
+  if (!['en', 'ru', 'zh-CN', 'zh-HK', 'zh-TW', 'tr'].includes(lang)) {
     return next()
   }
 
