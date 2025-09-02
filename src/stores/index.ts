@@ -171,8 +171,8 @@ export const useMainStore = defineStore('main', {
       }
 
       // const backUrl = ctrl && alt ? 'https://steam.design/converter/' : 'https://steam.design/raw/'
-      const backUrl = this.isVideo ? 'https://steam.design/converter/' : 'https://steam.design/raw/'
-      // const backUrl = 'http://localhost:8899/raw/'
+      // const backUrl = this.isVideo ? 'https://steam.design/converter/' : 'https://steam.design/raw/'
+      const backUrl = 'http://localhost:8899/raw/'
       const url = backUrl + btoa(JSON.stringify(bgSaveInfo))
 
       // if (state.background.indexOf('.webm') !== -1) {
