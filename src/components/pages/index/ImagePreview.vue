@@ -1,5 +1,12 @@
 <template>
-  <div class="profile__preview" :style="{ backgroundImage: `url('${background}')` }">
+  <div 
+    class="profile__preview" 
+    :style="{ 
+      backgroundImage: `url('${background}')`,
+      backgroundRepeat: shouldRepeatBackground ? 'repeat' : 'no-repeat',
+      backgroundPosition: '49.999% 0'
+    }"
+  >
     <div class="profile__preview-bg">
       <video
         :src="background || ''"
@@ -13,7 +20,7 @@
       ></video>
     </div>
     <div class="profile__preview-container">
-      <Overlay :image-height="bgSize.h" />
+      <Overlay :image-height="shouldRepeatBackground ? 824 : bgSize.h" />
     </div>
   </div>
 </template>
@@ -30,6 +37,15 @@ export default {
 
   computed: {
     ...mapState(useMainStore, ['bgSize', 'background']),
+    
+    shouldRepeatBackground() {
+      // Check if the background is a square image smaller than 700x700 pixels
+      return this.bgSize.w > 0 && 
+             this.bgSize.h > 0 && 
+             this.bgSize.w === this.bgSize.h && 
+             this.bgSize.w < 700 && 
+             this.bgSize.h < 700
+    },
   },
 }
 </script>
@@ -39,8 +55,6 @@ export default {
   width 100%
   display flex
   flex-direction column
-  background-position 49.999% 0
-  background-repeat no-repeat
 
   &-container
     // background-color rgba(18, 21, 26, 0.5)
