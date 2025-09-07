@@ -1,5 +1,6 @@
 import { defineStore } from 'pinia'
 import { Background, ConverterProp } from '@/types/store'
+import { getBackendUrl } from '@/utils/getBackendUrl'
 
 // interface RootState {}
 export const emptyState: RootState = {
@@ -162,18 +163,35 @@ export const useMainStore = defineStore('main', {
       const repeating = this.bgSize.h === this.bgSize.w && this.bgSize.h === 512
       const bgSaveInfo = {
         url: this.background,
-        repeating: repeating,
+        repeating,
         images: [
-          { name: 'Artwork_Middle.png', x: halfWidth - 466, y: 256, w: 506, h: repeating ? 950 : 2000 },
-          { name: 'Artwork_Right_Top.png', x: halfWidth + 49, y: 256, w: 100, h: repeating ? 950 : 2000 },
-          { name: 'Artwork_Featured.png', x: halfWidth - 466, y: 256, w: 630, h: repeating ? 950 : 2000 },
+          {
+            name: 'Artwork_Middle.png',
+            x: halfWidth - 466,
+            y: 256,
+            w: 506,
+            h: repeating ? 950 : 2000,
+          },
+          {
+            name: 'Artwork_Right_Top.png',
+            x: halfWidth + 49,
+            y: 256,
+            w: 100,
+            h: repeating ? 950 : 2000,
+          },
+          {
+            name: 'Artwork_Featured.png',
+            x: halfWidth - 466,
+            y: 256,
+            w: 630,
+            h: repeating ? 950 : 2000,
+          },
           { name: 'Avatar.png', x: halfWidth - 463, y: 34, w: 164, h: 164 },
         ],
       }
 
       // const backUrl = ctrl && alt ? 'https://steam.design/converter/' : 'https://steam.design/raw/'
-      const backUrl = this.isVideo ? 'https://steam.design/converter/' : 'https://steam.design/raw/'
-      // const backUrl = 'http://localhost:8899/raw/'
+      const backUrl = this.isVideo ? 'https://steam.design/converter/' : `${getBackendUrl()}raw/`
       const url = backUrl + btoa(JSON.stringify(bgSaveInfo))
 
       // if (state.background.indexOf('.webm') !== -1) {
