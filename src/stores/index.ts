@@ -167,26 +167,26 @@ export const useMainStore = defineStore('main', {
         images: [
           {
             name: 'Artwork_Middle.png',
-            x: halfWidth - 466,
+            x: halfWidth - 467,
             y: 256,
             w: 506,
             h: repeating ? 950 : 2000,
           },
           {
             name: 'Artwork_Right_Top.png',
-            x: halfWidth + 49,
+            x: halfWidth + 48,
             y: 256,
             w: 100,
             h: repeating ? 950 : 2000,
           },
           {
             name: 'Artwork_Featured.png',
-            x: halfWidth - 466,
+            x: halfWidth - 467,
             y: 256,
             w: 630,
             h: repeating ? 950 : 2000,
           },
-          { name: 'Avatar.png', x: halfWidth - 463, y: 34, w: 164, h: 164 },
+          { name: 'Avatar.png', x: halfWidth - 461, y: 36, w: 164, h: 164 },
         ],
       }
 
