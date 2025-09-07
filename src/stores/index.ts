@@ -159,20 +159,20 @@ export const useMainStore = defineStore('main', {
       // sizes based on 1920x1108
       // https://steamcdn-a.akamaihd.net/steamcommunity/public/images/items/570/982491acceb6c9dde0d5e49dab1e7540c5faa1de.webm
       const halfWidth = Math.floor(this.bgSize.w / 2)
-
+      const repeating = this.bgSize.h === this.bgSize.w && this.bgSize.h === 512
       const bgSaveInfo = {
         url: this.background,
         images: [
-          { name: 'Artwork_Middle.png', x: halfWidth - 466, y: 256, w: 506, h: 2000 },
-          { name: 'Artwork_Right_Top.png', x: halfWidth + 49, y: 256, w: 100, h: 2000 },
-          { name: 'Artwork_Featured.png', x: halfWidth - 466, y: 256, w: 630, h: 2000 },
-          { name: 'Avatar.png', x: halfWidth - 463, y: 34, w: 164, h: 164 },
+          { repeating: repeating, name: 'Artwork_Middle.png', x: halfWidth - 466, y: 256, w: 506, h: repeating ? 950 : 2000 },
+          { repeating: repeating, name: 'Artwork_Right_Top.png', x: halfWidth + 49, y: 256, w: 100, h: repeating ? 950 : 2000 },
+          { repeating: repeating, name: 'Artwork_Featured.png', x: halfWidth - 466, y: 256, w: 630, h: repeating ? 950 : 2000 },
+          { repeating: repeating, name: 'Avatar.png', x: halfWidth - 463, y: 34, w: 164, h: 164 },
         ],
       }
 
       // const backUrl = ctrl && alt ? 'https://steam.design/converter/' : 'https://steam.design/raw/'
-      // const backUrl = this.isVideo ? 'https://steam.design/converter/' : 'https://steam.design/raw/'
-      const backUrl = 'http://localhost:8899/raw/'
+      const backUrl = this.isVideo ? 'https://steam.design/converter/' : 'https://steam.design/raw/'
+      // const backUrl = 'http://localhost:8899/raw/'
       const url = backUrl + btoa(JSON.stringify(bgSaveInfo))
 
       // if (state.background.indexOf('.webm') !== -1) {
