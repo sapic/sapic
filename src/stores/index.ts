@@ -162,11 +162,12 @@ export const useMainStore = defineStore('main', {
       const repeating = this.bgSize.h === this.bgSize.w && this.bgSize.h === 512
       const bgSaveInfo = {
         url: this.background,
+        repeating: repeating,
         images: [
-          { repeating: repeating, name: 'Artwork_Middle.png', x: halfWidth - 466, y: 256, w: 506, h: repeating ? 950 : 2000 },
-          { repeating: repeating, name: 'Artwork_Right_Top.png', x: halfWidth + 49, y: 256, w: 100, h: repeating ? 950 : 2000 },
-          { repeating: repeating, name: 'Artwork_Featured.png', x: halfWidth - 466, y: 256, w: 630, h: repeating ? 950 : 2000 },
-          { repeating: repeating, name: 'Avatar.png', x: halfWidth - 463, y: 34, w: 164, h: 164 },
+          { name: 'Artwork_Middle.png', x: halfWidth - 466, y: 256, w: 506, h: repeating ? 950 : 2000 },
+          { name: 'Artwork_Right_Top.png', x: halfWidth + 49, y: 256, w: 100, h: repeating ? 950 : 2000 },
+          { name: 'Artwork_Featured.png', x: halfWidth - 466, y: 256, w: 630, h: repeating ? 950 : 2000 },
+          { name: 'Avatar.png', x: halfWidth - 463, y: 34, w: 164, h: 164 },
         ],
       }
 
