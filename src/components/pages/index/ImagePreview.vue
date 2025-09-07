@@ -20,7 +20,7 @@
       ></video>
     </div>
     <div class="profile__preview-container">
-      <Overlay :image-height="shouldRepeatBackground ? 824 : bgSize.h" />
+      <Overlay :image-height="shouldRepeatBackground ? 950 : bgSize.h" />
     </div>
   </div>
 </template>
