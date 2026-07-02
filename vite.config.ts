@@ -7,6 +7,10 @@ import path from 'path'
 // https://vitejs.dev/config/
 export default defineConfig({
   plugins: [vue()],
+  // The converter worker uses ES imports (mp4-muxer, demuxer) -> build it as an ES module worker.
+  worker: {
+    format: 'es',
+  },
   resolve: {
     alias: {
       '@': path.resolve(__dirname, './src'),

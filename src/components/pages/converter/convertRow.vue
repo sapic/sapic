@@ -4,7 +4,7 @@ import { PropType, ref } from 'vue'
 
 const progress = ref(0)
 
-const emit = defineEmits(['converted', 'canceled'])
+const emit = defineEmits(['converted', 'canceled', 'failed'])
 
 const props = defineProps({
   info: {
@@ -22,18 +22,24 @@ function convertFile(url: string, info: ImageInfo) {
   // let reject
 
   const convertPromise = new Promise<ImageInfo>((resolve, reject) => {
-    const myWorker = new Worker(new URL('./worker.ts', import.meta.url))
+    const myWorker = new Worker(new URL('./worker.ts', import.meta.url), { type: 'module' })
     myWorker.onmessage = (x) => {
       if (x.data.type === 'done') {
         console.log('type data', x)
         const { type, ...rest } = x.data
+        myWorker.terminate()
         resolve(rest as ImageInfo)
+      } else if (x.data.type === 'error') {
+        myWorker.terminate()
+        reject(x.data)
       } else if (x.data.type === 'progress') {
         progress.value = x.data.data.ratio
       }
     }
     myWorker.onerror = (x) => {
       console.log('worker error', x)
+      myWorker.terminate()
+      reject(x)
     }
     // myWorker = myWorker
 
@@ -49,9 +55,14 @@ function convertFile(url: string, info: ImageInfo) {
   return convertPromise
 }
 
-convertFile(props.url, props.info).then((result) => {
-  emit('converted', result)
-})
+convertFile(props.url, props.info)
+  .then((result) => {
+    emit('converted', result)
+  })
+  .catch((err) => {
+    console.log('convert failed', err)
+    emit('failed', props.info)
+  })
 
 function cancel() {
   emit('canceled', props.info)

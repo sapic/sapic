@@ -8,6 +8,7 @@
           :url="url"
           @converted="handleConverted"
           @canceled="handleRowCancel"
+          @failed="handleFailed"
         />
       </div>
     </div>
@@ -49,14 +50,27 @@ async function digestMessage(message) {
 
 const zip = new JSZip()
 
+const failed = ref(false)
 const totalConverted = ref(0)
 async function handleConverted(info) {
+  if (failed.value) return
   console.log('handleConverted', info)
   zip.file(info.name, info.data)
   totalConverted.value++
   if (totalConverted.value === images.value.length) {
     finalzeZip()
   }
+}
+
+// A row failing means the core could not decode the source. Abort the whole
+// background (they share one source) instead of hanging or zipping empty files.
+function handleFailed() {
+  if (failed.value) return
+  failed.value = true
+
+  console.error('conversion failed: the source video could not be decoded')
+  const store = useMainStore()
+  store.removeConvertItem(props.save.id)
 }
 
 function handleRowCancel(info) {
@@ -68,6 +82,7 @@ function handleRowCancel(info) {
 }
 
 async function finalzeZip() {
+  if (failed.value) return
   const inputString = JSON.stringify(images.value)
   const inputDigest = await digestMessage(inputString)
 

@@ -12,6 +12,8 @@
     "@vitejs/plugin-vue": "^3.0.3",
     "file-saver": "^2.0.5",
     "jszip": "^3.10.1",
+    "mp4-muxer": "^5.2.2",
+    "mp4box": "^2.4.1",
     "pinia": "^2.0.21",
     "stylus": "^0.57.0",
     "stylus-loader": "^6.2.0",
