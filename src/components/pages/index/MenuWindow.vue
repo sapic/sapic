@@ -216,10 +216,10 @@ export default defineComponent({
 
     bgURL: {
       set(value: string) {
-        if (value.match(/\.(?:jpeg|jpg|png|webm|mp4)$/i)) {
-          const store = useMainStore()
-          store.setBackgroundURL(value)
-        }
+        // if (value.match(/\.(?:jpeg|jpg|png|webm|mp4)$/i)) {
+        const store = useMainStore()
+        store.setBackgroundURL(value)
+        // }
       },
       get(): string {
         return ''
