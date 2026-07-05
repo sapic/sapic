@@ -19,7 +19,10 @@ async function convert(data) {
   i++
   const ffmpeg = await createFfmpeg()
   ffmpeg.FS('writeFile', `inputfile${i}`, fileData)
-  const convertString = `crop=${info.w}:min(ih-${info.y}\\,${info.h}):${info.x}:${info.y}`
+  // Crop values assume a 1920x1080 source. If the video is larger (e.g. 4K 3840x2160),
+  // downscale it to 1920 width first, then crop.
+  const downscaleString = `scale='min(iw\\,1920)':-2`
+  const convertString = `${downscaleString},crop=${info.w}:min(ih-${info.y}\\,${info.h}):${info.x}:${info.y}`
   const outputName = `test${i}.` + outputFormat
 
   let convertArgs = [
