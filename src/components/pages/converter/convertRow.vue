@@ -1,6 +1,7 @@
 <script setup lang="ts">
 import { ImageInfo } from '@/types/image'
 import { PropType, ref } from 'vue'
+import { convertVideo } from './convert'
 
 const progress = ref(0)
 
@@ -17,41 +18,23 @@ const props = defineProps({
   },
 })
 
-function convertFile(url: string, info: ImageInfo) {
-  // let resolve
-  // let reject
-
-  const convertPromise = new Promise<ImageInfo>((resolve, reject) => {
-    const myWorker = new Worker(new URL('./worker.ts', import.meta.url))
-    myWorker.onmessage = (x) => {
-      if (x.data.type === 'done') {
-        console.log('type data', x)
-        const { type, ...rest } = x.data
-        resolve(rest as ImageInfo)
-      } else if (x.data.type === 'progress') {
-        progress.value = x.data.data.ratio
-      }
-    }
-    myWorker.onerror = (x) => {
-      console.log('worker error', x)
-    }
-    // myWorker = myWorker
-
-    myWorker.postMessage({
-      type: 'convert',
-      // file: this.file,
-      url,
-      // data: fileData,
-      options: JSON.stringify(info),
-    })
+async function convertFile(url: string, info: ImageInfo): Promise<ImageInfo> {
+  const data = await convertVideo(url, info, 'mp4', {
+    onProgress: (ratio) => {
+      progress.value = ratio
+    },
   })
 
-  return convertPromise
+  return { ...info, data }
 }
 
-convertFile(props.url, props.info).then((result) => {
-  emit('converted', result)
-})
+convertFile(props.url, props.info)
+  .then((result) => {
+    emit('converted', result)
+  })
+  .catch((e) => {
+    console.log('convert error', e)
+  })
 
 function cancel() {
   emit('canceled', props.info)
