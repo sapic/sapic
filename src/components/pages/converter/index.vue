@@ -122,9 +122,9 @@ import JSZip from 'jszip'
 import { nextTick, ref, watch } from 'vue'
 import { useRoute } from 'vue-router'
 import { saveAs } from 'file-saver'
-
-// import ffmpegUrl from '../../../ffmpeg.st/ffmpeg.min.js?url'
-// console.log('ffmpeg url: ' + ffmpegUrl)
+import { fetchFile } from '@ffmpeg/util'
+import type { FFmpeg } from '@ffmpeg/ffmpeg'
+import { buildConvertArgs, createFfmpeg } from './convert'
 
 const route = useRoute()
 
@@ -140,13 +140,7 @@ const itemsTotal = ref(0)
 const itemsDone = ref(0)
 const progress = ref(0)
 
-// eslint-disable-next-line @typescript-eslint/no-explicit-any
-const ffmpeg = ref<any | null>(null)
-// props.save.info.images.map((i) => ({
-//   ...i,
-//   name: i.name.replace('.png', '.mp4'),
-//   enabled: true,
-// }))
+const ffmpeg = ref<FFmpeg | null>(null)
 
 console.log('route raw', route)
 if (route.params.raw && typeof route.params.raw === 'string') {
@@ -186,63 +180,25 @@ async function onUploadFiles() {
   }
 }
 
-async function addFfmpegScript() {
-  if (document.getElementById('ffmpegimport')) return // was already loaded
+async function loadFfmpeg() {
+  ffmpeg.value = await createFfmpeg({
+    onLog: (message) => {
+      logs.value += message + '\n'
+    },
+    onProgress: (ratio) => {
+      if (itemsTotal.value < 2) {
+        progress.value = ratio
+        return
+      }
 
-  // const isFirefox = navigator.userAgent.toLowerCase().indexOf('firefox') > -1
-  const scriptTag = document.createElement('script')
-
-  scriptTag.src = '/ffmpeg/ffmpeg.min.js'
-  // : 'https://unpkg.com/@ffmpeg/ffmpeg@0.9.5/dist/ffmpeg.min.js'
-  scriptTag.id = 'ffmpegimport'
-  scriptTag.crossOrigin = 'true'
-
-  scriptTag.onload = async () => {
-    console.log('onload')
-    if (!window.FFmpeg || !window.FFmpeg.createFFmpeg) {
-      return console.log('no ffmpeg')
-    }
-
-    // eslint-disable-next-line @typescript-eslint/no-explicit-any
-    const options: any = {
-      log: false,
-      logger: (data) => {
-        // console.log('info', data)
-        console.log('got logs')
-        logs.value += data.message + '\n'
-      },
-      progress: (data) => {
-        // console.log('progress', data)
-        let ratio = data.ratio
-        if (ratio < 0 || ratio > 1) {
-          ratio = 0
-        }
-
-        if (itemsTotal.value < 2) {
-          progress.value = ratio
-          return
-        }
-
-        const relativeRatio = ratio / itemsTotal.value
-        const completedRatio = itemsDone.value / itemsTotal.value
-        progress.value = relativeRatio + completedRatio
-      },
-      mainName: 'main',
-    }
-
-    // options.corePath = '/ffmpeg/ffmpeg-core.js'
-
-    // const ffmpeg = window.FFmpeg.createFFmpeg(options)
-    const ffmpegInstance = window.FFmpeg.createFFmpeg(options)
-    await ffmpegInstance.load()
-
-    ffmpeg.value = ffmpegInstance
-    console.log('got ffmpeg', ffmpeg)
-  }
-
-  document.body.appendChild(scriptTag)
+      const relativeRatio = ratio / itemsTotal.value
+      const completedRatio = itemsDone.value / itemsTotal.value
+      progress.value = relativeRatio + completedRatio
+    },
+  })
+  console.log('got ffmpeg', ffmpeg)
 }
-addFfmpegScript()
+loadFfmpeg()
 
 async function downloadClick() {
   if (!ffmpeg.value) {
@@ -251,17 +207,11 @@ async function downloadClick() {
 
   const zip = JSZip()
 
-  if (!ffmpeg.value.isLoaded()) {
-    await ffmpeg.value.load()
-  }
-
   downloadStarted.value = true
 
   let fileData
   try {
-    fileData = file.value
-      ? await window.FFmpeg.fetchFile(file.value)
-      : await window.FFmpeg.fetchFile(url.value)
+    fileData = file.value ? await fetchFile(file.value) : await fetchFile(url.value)
   } catch (e) {
     logs.value += `
 ================================
@@ -274,9 +224,10 @@ File download error, try uploading it manually
 ================================
 ================================
         `
+    return
   }
 
-  ffmpeg.value.FS('writeFile', 'inputfile', fileData)
+  await ffmpeg.value.writeFile('inputfile', fileData)
 
   for (const info of images.value) {
     if (info.enabled) {
@@ -289,51 +240,11 @@ File download error, try uploading it manually
       console.log('Skip because disabled')
       continue
     }
-    const convertString = `crop=${info.w}:min(ih-${info.y}\\,${info.h}):${info.x}:${info.y}`
     const outputName = 'test.' + outputFormat.value
+    const convertArgs = buildConvertArgs(info, 'inputfile', outputName, outputFormat.value)
 
-    let convertArgs = [
-      '-i',
-      'inputfile',
-      // "-i", palette.Name(),
-      '-vf',
-      convertString,
-      '-b:v',
-      '0',
-      '-crf',
-      '30',
-      // '-pass', '2',
-      // "-lossless", "1",
-      '-row-mt',
-      '1',
-      '-y',
-      outputName,
-    ]
-
-    if (outputFormat.value === 'mp4') {
-      convertArgs = [
-        '-i',
-        'inputfile',
-        '-vf',
-        convertString + ',format=yuv420p',
-        // '-b:v', '0',
-        // '-crf', '30',
-        // '-pass', '2',
-        // "-lossless", "1",
-        // '-row-mt', '1',
-        // '-vf', 'format=yuv420p',
-        '-c:v',
-        'libx264',
-        // '-preset', 'veryslow',
-        '-crf',
-        '5',
-        '-y',
-        outputName,
-      ]
-    }
-
-    await ffmpeg.value.run(...convertArgs)
-    const res = ffmpeg.value.FS('readFile', outputName)
+    await ffmpeg.value.exec(convertArgs)
+    const res = await ffmpeg.value.readFile(outputName)
     zip.file(info.name, res)
 
     itemsDone.value++

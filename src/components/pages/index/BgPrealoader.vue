@@ -54,10 +54,16 @@ function holderUpdated() {
       h: bgHolderRef.value.naturalHeight,
     })
   } else if (bgHolderRef.value instanceof HTMLVideoElement) {
-    store.setBgSize({
-      w: bgHolderRef.value.videoWidth,
-      h: bgHolderRef.value.videoHeight,
-    })
+    // The converter downscales videos wider than 1920 (e.g. 4K) before cropping,
+    // so treat them as 1920-wide here to keep the preview and crop offsets in sync.
+    const maxWidth = 1920
+    let w = bgHolderRef.value.videoWidth
+    let h = bgHolderRef.value.videoHeight
+    if (w > maxWidth) {
+      h = Math.round((h * maxWidth) / w)
+      w = maxWidth
+    }
+    store.setBgSize({ w, h })
   }
 }
 
