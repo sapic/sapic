@@ -2,8 +2,10 @@ import { FFmpeg } from '@ffmpeg/ffmpeg'
 import { fetchFile, toBlobURL } from '@ffmpeg/util'
 import { ImageInfo } from '@/types/image'
 
-// Served from public/ffmpeg (copied from @ffmpeg/core@0.12, single-thread build).
-// The core includes libaom, so AV1 source videos can be decoded.
+// Served from public/ffmpeg (custom @ffmpeg/core-mt@0.12 multithreaded build).
+// The core includes libdav1d, so AV1 source videos can be decoded.
+// Multithreading requires SharedArrayBuffer, i.e. COOP/COEP headers on all
+// responses (configured in nginx, vite.config.ts and serve.json).
 const CORE_BASE = '/ffmpeg'
 
 export interface ConvertCallbacks {
@@ -28,6 +30,7 @@ export async function createFfmpeg(callbacks: ConvertCallbacks = {}): Promise<FF
   await ffmpeg.load({
     coreURL: await toBlobURL(`${CORE_BASE}/ffmpeg-core.js`, 'text/javascript'),
     wasmURL: await toBlobURL(`${CORE_BASE}/ffmpeg-core.wasm`, 'application/wasm'),
+    workerURL: await toBlobURL(`${CORE_BASE}/ffmpeg-core.worker.js`, 'text/javascript'),
   })
 
   return ffmpeg
