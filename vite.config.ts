@@ -18,6 +18,12 @@ export default defineConfig({
       '@': path.resolve(__dirname, './src'),
     },
   },
+  build: {
+    // Keep the ffmpeg core files as separate hashed assets. ffmpeg-core.worker.js
+    // is small enough that Vite would otherwise inline it as a data URI, which
+    // bloats the main bundle and defeats long-term caching of the worker.
+    assetsInlineLimit: (filePath) => (filePath.includes('ffmpeg-core') ? false : undefined),
+  },
   server: {
     headers: crossOriginIsolationHeaders,
   },
