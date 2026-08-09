@@ -5,7 +5,8 @@
   "scripts": {
     "build": "vite build",
     "dev": "vite",
-    "serve": "vite preview"
+    "serve": "vite preview",
+    "check:coi": "node scripts/check-coi.mjs"
   },
   "main": "index.js",
   "dependencies": {
@@ -36,6 +37,7 @@
     "eslint-plugin-promise": "^6.0.1",
     "eslint-plugin-vue": "^9.4.0",
     "prettier": "^2.7.1",
+    "puppeteer": "^25.5.0",
     "typescript": "4.7.4"
   },
   "license": "MIT",
