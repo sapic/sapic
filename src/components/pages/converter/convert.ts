@@ -9,8 +9,9 @@ import { ImageInfo } from '@/types/image'
 // files get a content hash in their name. That lets them be cached
 // indefinitely, which matters a lot for the ~33MB wasm binary.
 //
-// Multithreading requires SharedArrayBuffer, i.e. COOP/COEP headers on all
-// responses (configured in nginx, vite.config.ts and serve.json).
+// Multithreading requires SharedArrayBuffer, so pages using this must be
+// cross-origin isolated. COOP/COEP are sent site-wide (nginx.conf,
+// vite.config.ts, serve.json) because the index page converts inline too.
 // The two JS files carry a .asset suffix so Vite treats them as opaque assets.
 // Named .js they would be transformed as source modules in dev, which injects
 // an ESM import into the worker - illegal in a classic worker, and the core

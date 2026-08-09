@@ -2,17 +2,12 @@
   "public": "dist",
   "headers": [
     {
-      "source": "*",
+      "source": "**",
       "headers": [
         {
           "key": "Cross-Origin-Embedder-Policy",
-          "value": "require-corp"
-        }
-      ]
-    },
-    {
-      "source": "*",
-      "headers": [
+          "value": "credentialless"
+        },
         {
           "key": "Cross-Origin-Opener-Policy",
           "value": "same-origin"
@@ -22,6 +17,10 @@
     {
       "source": "/assets/**",
       "headers": [
+        {
+          "key": "Cross-Origin-Embedder-Policy",
+          "value": "credentialless"
+        },
         {
           "key": "Cache-Control",
           "value": "public, max-age=31536000, immutable"
