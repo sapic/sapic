@@ -1,1 +1,5 @@
-
+allowBuilds:
+  # puppeteer is only used by scripts/check-coi.mjs. Its postinstall downloads a
+  # ~150MB Chromium, which is unwanted on a normal install; run
+  # `npx puppeteer browsers install chrome` when you actually need it.
+  puppeteer: false

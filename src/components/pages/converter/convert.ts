@@ -2,9 +2,24 @@ import { FFmpeg } from '@ffmpeg/ffmpeg'
 import { fetchFile, toBlobURL } from '@ffmpeg/util'
 import { ImageInfo } from '@/types/image'
 
-// Served from public/ffmpeg (copied from @ffmpeg/core@0.12, single-thread build).
-// The core includes libaom, so AV1 source videos can be decoded.
-const CORE_BASE = '/ffmpeg'
+// Custom @ffmpeg/core-mt@0.12 multithreaded build, including libdav1d so AV1
+// source videos can be decoded.
+//
+// Imported as Vite assets (rather than served from public/) so the emitted
+// files get a content hash in their name. That lets them be cached
+// indefinitely, which matters a lot for the ~33MB wasm binary.
+//
+// Multithreading requires SharedArrayBuffer, so pages using this must be
+// cross-origin isolated. COOP/COEP are sent site-wide (nginx.conf,
+// vite.config.ts, serve.json) because the index page converts inline too.
+// The two JS files carry a .asset suffix so Vite treats them as opaque assets.
+// Named .js they would be transformed as source modules in dev, which injects
+// an ESM import into the worker - illegal in a classic worker, and the core
+// then hangs on load. The real MIME type is set by toBlobURL below, so the
+// extension on disk does not matter to the browser.
+import coreURL from '@/assets/ffmpeg/ffmpeg-core.js.asset?url'
+import wasmURL from '@/assets/ffmpeg/ffmpeg-core.wasm?url'
+import workerURL from '@/assets/ffmpeg/ffmpeg-core.worker.js.asset?url'
 
 export interface ConvertCallbacks {
   onProgress?: (ratio: number) => void
@@ -26,8 +41,9 @@ export async function createFfmpeg(callbacks: ConvertCallbacks = {}): Promise<FF
   })
 
   await ffmpeg.load({
-    coreURL: await toBlobURL(`${CORE_BASE}/ffmpeg-core.js`, 'text/javascript'),
-    wasmURL: await toBlobURL(`${CORE_BASE}/ffmpeg-core.wasm`, 'application/wasm'),
+    coreURL: await toBlobURL(coreURL, 'text/javascript'),
+    wasmURL: await toBlobURL(wasmURL, 'application/wasm'),
+    workerURL: await toBlobURL(workerURL, 'text/javascript'),
   })
 
   return ffmpeg
