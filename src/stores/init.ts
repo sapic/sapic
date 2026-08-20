@@ -1,14 +1,14 @@
 // @ts-ignore
 import BgsUrl from '@/assets/bg-asset.json?url'
+import { isSupportedSteamMediaUrl } from '@/utils/steamMediaUrl'
 import { PiniaPluginContext } from 'pinia'
 import { emptyState } from './index'
 
-const StoreImageRegex =
-  /steamcdn-a\.akamaihd\.net\/steamcommunity\/public\/images\/items\/.+(jpg|webm|mp4)$/i
-const AnimatedStoreImageRegex =
-  /cdn\.akamai\.steamstatic\.com\/steamcommunity\/public\/images\/items\/(\d+)\/.+.(jpg|webm|mp4)$/i
-
 export default async ({ store }: PiniaPluginContext) => {
+  // Preserve the requested background before initialization can select a random
+  // one and replace window.location.hash.
+  const requestedBackgroundUrl = window.location.hash.slice(1)
+
   if (localStorage) {
     // listen to updates to save store
     store.$subscribe((mut, state) => {
@@ -61,11 +61,8 @@ export default async ({ store }: PiniaPluginContext) => {
   ) {
     store.loadBackpack()
   }
-  if (window.location.hash !== '') {
-    const url = window.location.hash.slice(1)
-    if (StoreImageRegex.test(url) || AnimatedStoreImageRegex.test(url)) {
-      store.setBackgroundURL(url)
-    }
+  if (isSupportedSteamMediaUrl(requestedBackgroundUrl)) {
+    store.setBackgroundURL(requestedBackgroundUrl)
   }
 }
 
