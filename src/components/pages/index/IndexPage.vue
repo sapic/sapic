@@ -2,12 +2,15 @@
   <div class="wrapper">
     <section class="body__wrapper">
       <MenuWindow />
-      <div
-        ref="previewWindow"
-        class="preview__window"
-        :style="{ overflowX: scalePercent > 1 ? 'auto' : 'hidden' }"
-      >
+      <!-- The converter popups sit on this wrapper, not on the scrolled window,
+           so they stay in the visible corner when the zoomed preview scrolls -->
+      <div class="preview__frame">
         <ConvertersContainer />
+        <div
+          ref="previewWindow"
+          class="preview__window"
+          :style="{ overflowX: scalePercent > 1 ? 'auto' : 'hidden' }"
+        >
         <div
           class="zoom_out"
           :style="{
@@ -18,6 +21,7 @@
         >
           <ImagePreview />
           <BgPreloader />
+        </div>
         </div>
       </div>
       <template v-if="!isMobile">
@@ -134,9 +138,14 @@ export default {
   flex-direction row
   background-color $color-main
 
-.preview__window
+.preview__frame
   height 100%
   flex 1 1 auto
+  min-width 0
+  position relative
+
+.preview__window
+  height 100%
   // overflow-x is set inline: it scrolls sideways only above 100% zoom, where
   // the profile can be wider than the window (below 100% the zoom box's
   // unscaled width would add a scrollbar into empty space)
