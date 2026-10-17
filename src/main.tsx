@@ -4,6 +4,7 @@ import { createEffect, lazy } from 'solid-js'
 import initStore from './stores/init'
 import { setLocale } from './i18n'
 import App from './App'
+import { exposeTestHook } from './testHook'
 
 // Same routes as the Vue router on master:
 //   /  /converter  /converter/:raw  and the same three under /:lang
@@ -20,6 +21,10 @@ function LangLayout(props: RouteSectionProps) {
 // Start-up runs alongside the first render; errors only mean no catalogue update
 initStore().catch((e) => console.log('init error', e))
 
+const root = document.getElementById('app')!
+// Same handle the Vue build had (#app.__vue_app__), used by the e2e tests
+exposeTestHook(root)
+
 render(
   () => (
     <Router root={App}>
@@ -34,5 +39,5 @@ render(
       </Route>
     </Router>
   ),
-  document.getElementById('app')!
+  root
 )
