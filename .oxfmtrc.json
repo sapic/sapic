@@ -1,0 +1,18 @@
+{
+  "$schema": "./node_modules/oxfmt/configuration_schema.json",
+  "tabWidth": 2,
+  "printWidth": 100,
+  "singleQuote": true,
+  "trailingComma": "es5",
+  "semi": false,
+  "sortPackageJson": false,
+  "ignorePatterns": [
+    "test/unit/coverage/**",
+    "test/unit/*.js",
+    "test/e2e/*.js",
+    "build/",
+    "dist/",
+    "ffmpeg.st/*",
+    "src/assets/bg-asset.json"
+  ]
+}

@@ -28,13 +28,14 @@ async function convertFile(url: string, info: ImageInfo): Promise<ImageInfo> {
   return { ...info, data }
 }
 
-convertFile(props.url, props.info)
-  .then((result) => {
-    emit('converted', result)
-  })
-  .catch((e) => {
+async function run() {
+  try {
+    emit('converted', await convertFile(props.url, props.info))
+  } catch (e) {
     console.log('convert error', e)
-  })
+  }
+}
+run()
 
 function cancel() {
   emit('canceled', props.info)

@@ -1,8 +1,5 @@
 <template>
-  <div 
-    class="profile__preview" 
-    :style="previewStyle"
-  >
+  <div class="profile__preview" :style="previewStyle">
     <div class="profile__preview-bg">
       <video
         :src="background || ''"
@@ -47,14 +44,16 @@ export default {
         backgroundPosition: '49.999% 0',
       }
     },
-    
+
     shouldRepeatBackground() {
       // Check if the background is a square image smaller than 700x700 pixels
-      return this.bgSize.w > 0 && 
-             this.bgSize.h > 0 && 
-             this.bgSize.w === this.bgSize.h && 
-             this.bgSize.w < 700 && 
-             this.bgSize.h < 700
+      return (
+        this.bgSize.w > 0 &&
+        this.bgSize.h > 0 &&
+        this.bgSize.w === this.bgSize.h &&
+        this.bgSize.w < 700 &&
+        this.bgSize.h < 700
+      )
     },
   },
 }

@@ -5,3 +5,6 @@ dist
 .env
 .idea/
 
+
+# TypeScript build info
+*.tsbuildinfo

@@ -1,0 +1,56 @@
+{
+  "$schema": "./node_modules/oxlint/configuration_schema.json",
+  "plugins": [
+    "eslint",
+    "typescript",
+    "unicorn",
+    "oxc",
+    "import",
+    "promise",
+    "node",
+    "vue"
+  ],
+  "categories": {
+    "correctness": "error",
+    "suspicious": "warn"
+  },
+  "env": {
+    "browser": true,
+    "node": true,
+    "es2024": true
+  },
+  "options": {
+    "typeAware": true
+  },
+  "ignorePatterns": [
+    "dist/**",
+    "build/**",
+    "public/**",
+    "ffmpeg.st/**",
+    "test/unit/coverage/**"
+  ],
+  "rules": {
+    "no-debugger": "error",
+    "no-var": "error",
+    "prefer-const": "error",
+    "eqeqeq": [
+      "error",
+      "smart"
+    ],
+    "no-use-before-define": [
+      "error",
+      {
+        "functions": false
+      }
+    ],
+    "typescript/no-explicit-any": "warn",
+    "typescript/ban-ts-comment": "off",
+    "typescript/no-require-imports": "off",
+    "import/no-duplicates": "error",
+    "import/no-self-import": "error",
+    "promise/param-names": "error",
+    "vue/no-multiple-slot-args": "error",
+    "unicorn/require-module-specifiers": "off",
+    "unicorn/consistent-function-scoping": "off"
+  }
+}
