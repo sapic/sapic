@@ -18,8 +18,7 @@
 import { useMainStore } from '@/stores'
 import { ImageInfo } from '@/types/image'
 import { ConverterProp } from '@/types/store'
-import { saveAs } from 'file-saver'
-import JSZip from 'jszip'
+import { preloadZip, saveZip } from '@/utils/saveZip'
 import { PropType, ref } from 'vue'
 import ConvertRow from './convertRow.vue'
 
@@ -47,12 +46,14 @@ async function digestMessage(message) {
   return hashHex
 }
 
-const zip = new JSZip()
+// Converted files, zipped when the last one is done
+const files: Array<{ name: string; data: Uint8Array }> = []
+preloadZip()
 
 const totalConverted = ref(0)
 async function handleConverted(info) {
   console.log('handleConverted', info)
-  zip.file(info.name, info.data)
+  files.push({ name: info.name, data: info.data })
   totalConverted.value++
   if (totalConverted.value === images.value.length) {
     finalzeZip()
@@ -72,11 +73,9 @@ async function finalzeZip() {
   const inputDigest = await digestMessage(inputString)
 
   const zipName = `steam.design_${inputDigest.slice(0, 6)}.zip`
-  zip.generateAsync({ type: 'blob' }).then(function (content) {
-    saveAs(content, zipName)
-    const store = useMainStore()
-    store.removeConvertItem(props.save.id)
-  })
+  await saveZip(files, zipName)
+  const store = useMainStore()
+  store.removeConvertItem(props.save.id)
 }
 </script>
 
