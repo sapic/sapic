@@ -2,6 +2,7 @@
 // (standard, eslint:recommended, typescript-eslint recommended, vue3 recommended, prettier).
 import js from '@eslint/js'
 import { FlatCompat } from '@eslint/eslintrc'
+import { fixupConfigRules } from '@eslint/compat'
 import tseslint from '@typescript-eslint/eslint-plugin'
 import tsParser from '@typescript-eslint/parser'
 import pluginVue from 'eslint-plugin-vue'
@@ -10,7 +11,8 @@ import prettierPlugin from 'eslint-plugin-prettier'
 import prettierConfig from 'eslint-config-prettier'
 import globals from 'globals'
 
-// eslint-config-standard has no flat config yet; FlatCompat loads the legacy one as written
+// eslint-config-standard has no flat config yet; FlatCompat loads the legacy one as written, and
+// fixupConfigRules adapts its plugins (import, n, promise) to the ESLint 10 rule-context API
 const compat = new FlatCompat({ baseDirectory: import.meta.dirname })
 
 export default [
@@ -18,8 +20,11 @@ export default [
     ignores: ['test/unit/coverage/**', 'test/unit/*.js', 'test/e2e/*.js', 'build/**', 'dist/**', 'ffmpeg.st/*'],
   },
   js.configs.recommended,
-  ...compat.extends('standard'),
+  ...fixupConfigRules(compat.extends('standard')),
   ...pluginVue.configs['flat/recommended'],
+  // The full typescript-eslint recommended config, including its eslint-recommended overrides
+  // (core rules such as no-undef / no-unused-vars that TypeScript already checks)
+  ...tseslint.configs['flat/recommended'].map((c) => ({ ...c, files: ['**/*.{ts,vue}'] })),
   {
     files: ['**/*.{ts,vue,js}'],
     languageOptions: {
@@ -27,9 +32,8 @@ export default [
       parserOptions: { parser: tsParser, sourceType: 'module', ecmaVersion: 'latest' },
       globals: { ...globals.browser, ...globals.node },
     },
-    plugins: { '@typescript-eslint': tseslint, prettier: prettierPlugin },
+    plugins: { prettier: prettierPlugin },
     rules: {
-      ...tseslint.configs.recommended.rules,
       ...prettierPlugin.configs.recommended.rules,
       ...prettierConfig.rules,
       '@typescript-eslint/no-var-requires': 0,

@@ -29,6 +29,9 @@ importers:
       '@vitejs/plugin-vue':
         specifier: ^6.0.10
         version: 6.0.10(vite@8.3.4(@types/node@26.6.5)(stylus@0.64.0))(vue@3.5.44(typescript@5.9.3))
+      '@vue/devtools-api':
+        specifier: ^8.2.1
+        version: 8.2.1
       file-saver:
         specifier: ^2.0.5
         version: 2.0.5
@@ -37,7 +40,7 @@ importers:
         version: 3.10.2
       pinia:
         specifier: ^4.1.0
-        version: 4.1.0(@vue/devtools-api@8.1.5)(typescript@5.9.3)(vue@3.5.44(typescript@5.9.3))
+        version: 4.1.0(@vue/devtools-api@8.2.1)(typescript@5.9.3)(vue@3.5.44(typescript@5.9.3))
       stylus:
         specifier: ^0.64.0
         version: 0.64.0
@@ -55,8 +58,11 @@ importers:
         version: 1.0.2(vue@3.5.44(typescript@5.9.3))
       vue-router:
         specifier: ^5.4.0
-        version: 5.4.0(@vue/compiler-sfc@3.5.44)(pinia@4.1.0(@vue/devtools-api@8.1.5)(typescript@5.9.3)(vue@3.5.44(typescript@5.9.3)))(rolldown@1.2.14)(vite@8.3.4(@types/node@26.6.5)(stylus@0.64.0))(vue@3.5.44(typescript@5.9.3))
+        version: 5.4.0(@vue/compiler-sfc@3.5.44)(pinia@4.1.0(@vue/devtools-api@8.2.1)(typescript@5.9.3)(vue@3.5.44(typescript@5.9.3)))(rolldown@1.2.14)(vite@8.3.4(@types/node@26.6.5)(stylus@0.64.0))(vue@3.5.44(typescript@5.9.3))
     devDependencies:
+      '@eslint/compat':
+        specifier: ^2.1.1
+        version: 2.1.1(eslint@10.13.0)
       '@eslint/eslintrc':
         specifier: ^3.3.7
         version: 3.3.7
@@ -175,6 +181,15 @@ packages:
   '@eslint-community/regexpp@4.12.2':
     resolution: {integrity: sha512-EriSTlt5OC9/7SXkRSCAhfSxxoSUgBm33OH+IkwbdpgoqsSsUg7y3uh+IICI/Qg4BBWr3U2i39RpmycbxMq4ew==}
     engines: {node: ^12.0.0 || ^14.0.0 || >=16.0.0}
+
+  '@eslint/compat@2.1.1':
+    resolution: {integrity: sha512-rMcy8GSrwNzcISX/BlTDY/GLB4eCopEuy9woIls3To+15OLxykZrxxq+WUcylCPCQ6F4MujjBM1DX5V1aqI3Vw==}
+    engines: {node: ^20.19.0 || ^22.13.0 || >=24}
+    peerDependencies:
+      eslint: ^8.40 || 9 || 10
+    peerDependenciesMeta:
+      eslint:
+        optional: true
 
   '@eslint/config-array@0.23.5':
     resolution: {integrity: sha512-Y3kKLvC1dvTOT+oGlqNQ1XLqK6D1HU2YXPc52NmAlJZbMMWDzGYXMiPRJ8TYD39muD/OTjlZmNJ4ib7dvSrMBA==}
@@ -513,11 +528,20 @@ packages:
   '@vue/devtools-api@8.1.5':
     resolution: {integrity: sha512-YJipMVAKe5wT5CWf5kTYCaNV7NMNjFVxJkIkJaJ4W/nCxEBzlZzrOsYKeCymdCrFZmBS/+wTWFoUs3Jf/Q6XSQ==}
 
+  '@vue/devtools-api@8.2.1':
+    resolution: {integrity: sha512-6u4vXBlIBAC1wMplIZgpyPn7uh/s4Bf6F5bMzvLv+EdJ0aHs/+4B7Ygv864EStQSjRbsRzTko/kUG1A1IejQ3A==}
+
   '@vue/devtools-kit@8.1.5':
     resolution: {integrity: sha512-FcSAxsi4eWuXLCB7Rv9lj0aIVHHPNVQ2BazGf4RJTc2JCqb4BQg0hk87ZFhminCfl+mD5OUI0rX2cgyu4kJOGA==}
 
+  '@vue/devtools-kit@8.2.1':
+    resolution: {integrity: sha512-FIGIuq3AWReEpbAHY/cRGeHDfI0qOb8OCQ3YjbEAX04uaxIDbGc9rhkbVcG7rnfHPXE3RsU5KrWOu9V/okd8AQ==}
+
   '@vue/devtools-shared@8.1.5':
     resolution: {integrity: sha512-mhT4zcPFhF+Xk1O4BfhhrbXzpmfqY03fS6xGpcllbQG7lDjhQf8pQHcTIhqQIYx1hfwtHmk/6jM96ele0UxPqQ==}
+
+  '@vue/devtools-shared@8.2.1':
+    resolution: {integrity: sha512-Fkac7lUdGReh6pVOi3AYPRGe82LQqRmAfThW7RRligOAP0ZA/Z1z9XLHDM9dv34pV2HRc79DK8uKPeG2fLnA/g==}
 
   '@vue/reactivity@3.5.44':
     resolution: {integrity: sha512-u+QJdKeBBEADkPdevsL+6E12QlYVfBD8Zcw5qjDQKtamI6l14KyqazJMobhCKelhWN5zpyKUiEDoTyHE93cqWw==}
@@ -2041,6 +2065,12 @@ snapshots:
 
   '@eslint-community/regexpp@4.12.2': {}
 
+  '@eslint/compat@2.1.1(eslint@10.13.0)':
+    dependencies:
+      '@eslint/core': 1.2.1
+    optionalDependencies:
+      eslint: 10.13.0
+
   '@eslint/config-array@0.23.5':
     dependencies:
       '@eslint/object-schema': 3.0.5
@@ -2393,6 +2423,10 @@ snapshots:
     dependencies:
       '@vue/devtools-kit': 8.1.5
 
+  '@vue/devtools-api@8.2.1':
+    dependencies:
+      '@vue/devtools-kit': 8.2.1
+
   '@vue/devtools-kit@8.1.5':
     dependencies:
       '@vue/devtools-shared': 8.1.5
@@ -2400,7 +2434,16 @@ snapshots:
       hookable: 5.5.3
       perfect-debounce: 2.1.0
 
+  '@vue/devtools-kit@8.2.1':
+    dependencies:
+      '@vue/devtools-shared': 8.2.1
+      birpc: 2.9.0
+      hookable: 5.5.3
+      perfect-debounce: 2.1.0
+
   '@vue/devtools-shared@8.1.5': {}
+
+  '@vue/devtools-shared@8.2.1': {}
 
   '@vue/reactivity@3.5.44':
     dependencies:
@@ -3494,9 +3537,9 @@ snapshots:
 
   picomatch@4.0.7: {}
 
-  pinia@4.1.0(@vue/devtools-api@8.1.5)(typescript@5.9.3)(vue@3.5.44(typescript@5.9.3)):
+  pinia@4.1.0(@vue/devtools-api@8.2.1)(typescript@5.9.3)(vue@3.5.44(typescript@5.9.3)):
     dependencies:
-      '@vue/devtools-api': 8.1.5
+      '@vue/devtools-api': 8.2.1
       nostics: 1.3.0
       vue: 3.5.44(typescript@5.9.3)
     optionalDependencies:
@@ -3903,7 +3946,7 @@ snapshots:
     dependencies:
       vue: 3.5.44(typescript@5.9.3)
 
-  vue-router@5.4.0(@vue/compiler-sfc@3.5.44)(pinia@4.1.0(@vue/devtools-api@8.1.5)(typescript@5.9.3)(vue@3.5.44(typescript@5.9.3)))(rolldown@1.2.14)(vite@8.3.4(@types/node@26.6.5)(stylus@0.64.0))(vue@3.5.44(typescript@5.9.3)):
+  vue-router@5.4.0(@vue/compiler-sfc@3.5.44)(pinia@4.1.0(@vue/devtools-api@8.2.1)(typescript@5.9.3)(vue@3.5.44(typescript@5.9.3)))(rolldown@1.2.14)(vite@8.3.4(@types/node@26.6.5)(stylus@0.64.0))(vue@3.5.44(typescript@5.9.3)):
     dependencies:
       '@vue-macros/common': 3.1.4(vue@3.5.44(typescript@5.9.3))
       '@vue/devtools-api': 8.1.5
@@ -3924,7 +3967,7 @@ snapshots:
       vue: 3.5.44(typescript@5.9.3)
     optionalDependencies:
       '@vue/compiler-sfc': 3.5.44
-      pinia: 4.1.0(@vue/devtools-api@8.1.5)(typescript@5.9.3)(vue@3.5.44(typescript@5.9.3))
+      pinia: 4.1.0(@vue/devtools-api@8.2.1)(typescript@5.9.3)(vue@3.5.44(typescript@5.9.3))
       vite: 8.3.4(@types/node@26.6.5)(stylus@0.64.0)
     transitivePeerDependencies:
       - '@farmfe/core'
