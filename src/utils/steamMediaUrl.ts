@@ -44,3 +44,19 @@ export function mediaFormat(value: string): 'jpg' | 'mp4' | 'webm' {
   const ext = (path.split('/').pop() || '').split('.').slice(1).pop()?.toLowerCase()
   return ext === 'webm' || ext === 'mp4' ? ext : 'jpg'
 }
+
+/**
+ * "<appid>/<file>" of a media URL: the same picture has the same key on
+ * every Steam CDN host and path (steamcdn-a, community.akamai, ...)
+ */
+export function mediaFile(value: string): string | null {
+  let path = value
+  try {
+    path = new URL(value).pathname
+  } catch {
+    // not a URL: use as is
+  }
+  const parts = path.split('/').filter(Boolean)
+  if (parts.length < 2) return null
+  return `${parts[parts.length - 2]}/${parts[parts.length - 1]}`.toLowerCase()
+}

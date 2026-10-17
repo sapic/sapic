@@ -1,7 +1,7 @@
 import { defineStore } from 'pinia'
 import { Background, ConverterProp } from '@/types/store'
 import { getBackendUrl } from '@/utils/getBackendUrl'
-import { mediaFormat } from '@/utils/steamMediaUrl'
+import { mediaFile, mediaFormat } from '@/utils/steamMediaUrl'
 
 // interface RootState {}
 export const emptyState: RootState = {
@@ -73,7 +73,18 @@ export const useMainStore = defineStore('main', {
     setBackgroundURL(value) {
       this.background = value
       this.format = mediaFormat(value)
-      this.bgInfo = null
+      // A known background keeps its market page for "Get this Background"
+      this.bgInfo = this.findBackground(value)
+    },
+    /** Catalogue entry for a background url (any CDN host), or null */
+    findBackground(value: string): Background | null {
+      const file = mediaFile(value)
+      if (!file) return null
+      return (
+        this.backgrounds.find((bg) => bg && mediaFile(bg.steamUrl) === file) ||
+        this.nextRandomBackgrounds.find((bg) => bg && mediaFile(bg.steamUrl) === file) ||
+        null
+      )
     },
     setBackgrounds(backgrounds) {
       this.backgrounds = backgrounds

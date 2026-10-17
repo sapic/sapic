@@ -8,6 +8,7 @@ export default async ({ store }: PiniaPluginContext) => {
   // Preserve the requested background before initialization can select a random
   // one and replace window.location.hash.
   const requestedBackgroundUrl = window.location.hash.slice(1)
+  const hasRequested = isSupportedSteamMediaUrl(requestedBackgroundUrl)
 
   if (localStorage) {
     // listen to updates to save store
@@ -51,7 +52,8 @@ export default async ({ store }: PiniaPluginContext) => {
     const bgs = await fetch(BgsUrl).then((r) => r.json())
     store.setBackgrounds(bgs)
     store.setBgJsonUrl(BgsUrl)
-    store.randomBackground()
+    // A link that names a background shows it; a random one would replace the hash
+    if (!hasRequested) store.randomBackground()
   }
   if (
     state.user.id &&
@@ -61,9 +63,18 @@ export default async ({ store }: PiniaPluginContext) => {
   ) {
     store.loadBackpack()
   }
-  if (isSupportedSteamMediaUrl(requestedBackgroundUrl)) {
+  if (hasRequested) {
     store.setBackgroundURL(requestedBackgroundUrl)
   }
+
+  // Back / Forward (and a pasted #link) change only the hash: show that
+  // background, so the page and "Get this Background" match the address bar
+  window.addEventListener('hashchange', () => {
+    const url = window.location.hash.slice(1)
+    if (url !== store.background && isSupportedSteamMediaUrl(url)) {
+      store.setBackgroundURL(url)
+    }
+  })
 }
 
 function parseQuery(queryString) {
