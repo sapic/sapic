@@ -5,14 +5,23 @@
  * backgrounds, economy/profilebackground for static ones, and economy/image
  * (market images, full size, no file extension).
  */
+const LegacyItems = ['/steamcommunity/public/images/items/']
+const SharedItems = ['/community_assets/images/items/']
+const CommunityItems = ['/economy/profilebackground/items/', '/economy/image/']
 const SteamMediaPathPrefixes: Record<string, string[]> = {
-  'steamcdn-a.akamaihd.net': ['/steamcommunity/public/images/items/'],
-  'cdn.akamai.steamstatic.com': ['/steamcommunity/public/images/items/'],
-  'shared.akamai.steamstatic.com': ['/community_assets/images/items/'],
-  'community.akamai.steamstatic.com': ['/economy/profilebackground/items/', '/economy/image/'],
-  'community.fastly.steamstatic.com': ['/economy/profilebackground/items/', '/economy/image/'],
-  'community.cloudflare.steamstatic.com': ['/economy/profilebackground/items/', '/economy/image/'],
-  'community.steamstatic.com': ['/economy/profilebackground/items/', '/economy/image/'],
+  'steamcdn-a.akamaihd.net': LegacyItems,
+  'cdn.akamai.steamstatic.com': LegacyItems,
+  'cdn.fastly.steamstatic.com': LegacyItems,
+  'cdn.cloudflare.steamstatic.com': LegacyItems,
+  'cdn.steamstatic.com': LegacyItems,
+  'shared.akamai.steamstatic.com': SharedItems,
+  'shared.fastly.steamstatic.com': SharedItems,
+  'shared.cloudflare.steamstatic.com': SharedItems,
+  'shared.steamstatic.com': SharedItems,
+  'community.akamai.steamstatic.com': CommunityItems,
+  'community.fastly.steamstatic.com': CommunityItems,
+  'community.cloudflare.steamstatic.com': CommunityItems,
+  'community.steamstatic.com': CommunityItems,
 }
 /** A known media extension, or none at all (Steam serves some images without one) */
 const SteamMediaFileRegex = /\/[^/.]+(?:\.(?:jpe?g|png|webm|mp4))?$/i
@@ -58,5 +67,7 @@ export function mediaFile(value: string): string | null {
   }
   const parts = path.split('/').filter(Boolean)
   if (parts.length < 2) return null
-  return `${parts[parts.length - 2]}/${parts[parts.length - 1]}`.toLowerCase()
+  // The extension is left out: Steam serves the same file with and without it
+  const file = parts[parts.length - 1].replace(/\.[a-z0-9]+$/i, '')
+  return `${parts[parts.length - 2]}/${file}`.toLowerCase()
 }
