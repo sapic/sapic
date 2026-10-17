@@ -13,11 +13,12 @@ const Converter = lazy(() => import('./components/pages/converter/Converter'))
 /** /:lang/... sets the UI language when it is one we have (en, ru, zh-CN, zh-HK, zh-TW, tr) */
 function LangLayout(props: RouteSectionProps) {
   const params = useParams()
-  createEffect(() => setLocale(params.lang as string))
+  createEffect(() => setLocale(params.lang ?? ''))
   return <>{props.children}</>
 }
 
-initStore()
+// Start-up runs alongside the first render; errors only mean no catalogue update
+initStore().catch((e) => console.log('init error', e))
 
 render(
   () => (

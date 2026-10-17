@@ -11,7 +11,9 @@ import localeTr from '@/assets/locales/tr'
 export const LOCALES = ['en', 'ru', 'zh-CN', 'zh-HK', 'zh-TW', 'tr'] as const
 export type Locale = (typeof LOCALES)[number]
 
-const messages: Record<Locale, any> = {
+type Messages = { [key: string]: string | Messages }
+
+const messages: Record<Locale, Messages> = {
   en: localeEn,
   ru: localeRu,
   'zh-CN': localeZhCN,
@@ -39,8 +41,12 @@ export function setLocale(value: string) {
   if (isLocale(value) && value !== locale()) setLocaleSignal(value)
 }
 
-function lookup(dict: any, key: string): string | undefined {
-  const v = key.split('.').reduce((o, k) => (o == null ? undefined : o[k]), dict)
+function lookup(dict: Messages, key: string): string | undefined {
+  let v: string | Messages | undefined = dict
+  for (const k of key.split('.')) {
+    if (v === undefined || typeof v === 'string') return undefined
+    v = v[k]
+  }
   return typeof v === 'string' ? v : undefined
 }
 

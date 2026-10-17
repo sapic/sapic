@@ -50,6 +50,14 @@
     "promise/param-names": "error",
     "vue/no-multiple-slot-args": "error",
     "unicorn/require-module-specifiers": "off",
-    "unicorn/consistent-function-scoping": "off"
+    "unicorn/consistent-function-scoping": "off",
+    "import/no-unassigned-import": [
+      "error",
+      {
+        "allow": [
+          "**/*.css"
+        ]
+      }
+    ]
   }
 }

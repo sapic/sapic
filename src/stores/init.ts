@@ -110,7 +110,7 @@ export default async function initStore() {
       store.inventory.length < 1 ||
       (store.inventoryUpdateTime > 0 && Date.now() - store.inventoryUpdateTime > 604800000))
   ) {
-    actions.loadBackpack()
+    actions.loadBackpack().catch((e) => console.log('backpack error', e))
   }
   // Also when it is already shown: a hash change during the catalogue load
   // set the background before its catalogue entry (market page) was known

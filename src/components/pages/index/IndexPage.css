@@ -1,0 +1,50 @@
+.body__wrapper {
+  height: 100%;
+  display: flex;
+  flex-direction: row;
+  background-color: var(--color-main);
+}
+
+.preview__frame {
+  height: 100%;
+  flex: 1 1 auto;
+  min-width: 0;
+  position: relative;
+}
+
+.preview__window {
+  height: 100%;
+  /* overflow-x is set inline: it scrolls sideways only above 100% zoom, where
+     the profile can be wider than the window (below 100% the zoom box's
+     unscaled width would add a scrollbar into empty space) */
+  overflow-x: hidden;
+  min-width: 0;
+  border-radius: 20px;
+  background: var(--color-black);
+  position: relative;
+}
+
+.preview__window::-webkit-scrollbar {
+  width: 0;
+  height: 0;
+}
+
+.wrapper {
+  display: flex;
+  flex-direction: column;
+}
+
+.hidden {
+  display: none;
+}
+
+.zoom_out {
+  margin: 0;
+  transform-origin: 0 0;
+}
+
+@media screen and (max-width: 560px) {
+  .body__wrapper {
+    flex-direction: column-reverse;
+  }
+}

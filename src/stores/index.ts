@@ -15,14 +15,14 @@ export interface InventoryItem {
 
 export interface RootState {
   background: string
-  bgInfo: Background | null
+  bgInfo: Background | InventoryItem | null
   backgrounds: Background[]
   backgroundsUpdateTime: number
   nextRandomBackgrounds: Background[]
   previewScale: number
   user: { id: number | string }
   bgSize: { w: number; h: number }
-  format: 'jpg' | 'mp4' | 'webm' | string
+  format: 'jpg' | 'mp4' | 'webm'
   inventory: InventoryItem[]
   inventoryUpdateTime: number
   v: number
@@ -70,7 +70,13 @@ export function findBackground(value: string): Background | null {
 }
 
 export const actions = {
-  setBackground({ background, info }: { background: string; info: Background | null }) {
+  setBackground({
+    background,
+    info,
+  }: {
+    background: string
+    info: Background | InventoryItem | null
+  }) {
     setStore({ background, bgInfo: info, format: mediaFormat(background) })
   },
 
@@ -110,7 +116,10 @@ export const actions = {
         if (s.nextRandomBackgrounds.length < 3) {
           for (let i = 0; i < 5; i++) {
             const randomBg = s.backgrounds[Math.floor(s.backgrounds.length * Math.random())]
-            if (randomBg && !s.nextRandomBackgrounds.some((bg) => bg.steamUrl === randomBg.steamUrl)) {
+            if (
+              randomBg &&
+              !s.nextRandomBackgrounds.some((bg) => bg.steamUrl === randomBg.steamUrl)
+            ) {
               s.nextRandomBackgrounds.push(randomBg)
             }
           }
@@ -165,9 +174,27 @@ export const actions = {
       url: store.background,
       repeating,
       images: [
-        { name: 'Artwork_Middle.png', x: halfWidth - 465, y: 256, w: 506, h: repeating ? 950 : 2000 },
-        { name: 'Artwork_Right_Top.png', x: halfWidth + 50, y: 256, w: 100, h: repeating ? 950 : 2000 },
-        { name: 'Artwork_Featured.png', x: halfWidth - 465, y: 256, w: 630, h: repeating ? 950 : 2000 },
+        {
+          name: 'Artwork_Middle.png',
+          x: halfWidth - 465,
+          y: 256,
+          w: 506,
+          h: repeating ? 950 : 2000,
+        },
+        {
+          name: 'Artwork_Right_Top.png',
+          x: halfWidth + 50,
+          y: 256,
+          w: 100,
+          h: repeating ? 950 : 2000,
+        },
+        {
+          name: 'Artwork_Featured.png',
+          x: halfWidth - 465,
+          y: 256,
+          w: 630,
+          h: repeating ? 950 : 2000,
+        },
         { name: 'Avatar.png', x: halfWidth - 462, y: 36, w: 164, h: 164 },
       ],
     }
@@ -177,10 +204,12 @@ export const actions = {
     const url = backUrl + btoa(JSON.stringify(bgSaveInfo))
 
     if (video && !ctrl && !alt) {
-      actions.addConvertItem({
-        id: Math.random().toString(),
-        info: bgSaveInfo as unknown as ConverterProp['info'],
-      })
+      // The popup fills in name/enabled/data per image as it converts
+      const info: ConverterProp['info'] = {
+        url: bgSaveInfo.url,
+        images: bgSaveInfo.images.map((i) => ({ ...i, enabled: true, data: new Uint8Array() })),
+      }
+      actions.addConvertItem({ id: Math.random().toString(), info })
     } else {
       window.open(url)
     }
@@ -188,24 +217,23 @@ export const actions = {
 
   getCurrentBg() {
     const goUrl =
-      store.bgInfo && store.bgInfo.url
+      store.bgInfo && 'url' in store.bgInfo && store.bgInfo.url
         ? 'https://steamcommunity.com/market/listings/' + store.bgInfo.url
         : 'https://lens.google.com/uploadbyurl?url=' + store.background
     window.open(goUrl)
   },
 
   async loadBackpack() {
-    const data = await fetch(`https://steam.design/backpack/${store.user.id}/items.json`).then((r) =>
-      r.json()
+    const data = await fetch(`https://steam.design/backpack/${store.user.id}/items.json`).then(
+      (r) => r.json()
     )
     actions.setInventoryBackgrounds(data.backgrounds)
   },
 
   trackClick(args: [string, unknown?]) {
-    const w = window as any
-    if (w && w.gtag) {
+    if (window.gtag) {
       const [where, subject] = args
-      w.gtag('event', where, {
+      window.gtag('event', where, {
         event_category: 'userClick',
         event_label: subject || 'click',
       })

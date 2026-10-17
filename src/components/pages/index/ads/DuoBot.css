@@ -1,0 +1,13 @@
+.video {
+  width: 280px;
+  height: 560px;
+  display: block;
+  margin: 10px auto;
+  position: relative;
+  overflow: hidden;
+  border-radius: 10px;
+}
+
+.video video {
+  width: 280px;
+}
