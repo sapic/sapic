@@ -247,23 +247,3 @@ export const useMainStore = defineStore('main', {
     },
   },
 })
-
-const getters = {}
-
-const mutations = {}
-
-const actions = {}
-
-// export default createStore({
-//   state() {
-//     return { ...state }
-//   },
-
-//   mutations,
-//   actions,
-//   getters,
-
-//   modules: {},
-
-//   plugins: [init],
-// })
