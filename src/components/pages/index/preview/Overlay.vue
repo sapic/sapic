@@ -34,8 +34,8 @@ export default {
         `29zm510 5a5 5 0 015-5h90a5 5 0 015 5v${
           this.svgHeight - 366
         }a5 5 0 01-5 5h-90a5 5 0 01-5-5V`, // small cutout
-        '272zM29 30a5 5 0 00-5 5v154a5 5 0 005 5h154a5 5 0 005-5V35a5 5 0 00-5-5H', // avatar
-        '29z',
+        '272zM31 36a5 5 0 00-5 5v154a5 5 0 005 5h154a5 5 0 005-5V41a5 5 0 00-5-5H', // avatar (x 26, y 36, like Steam)
+        '31z',
       ].join(' ')
     },
   },

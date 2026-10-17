@@ -153,6 +153,9 @@ export const useMainStore = defineStore('main', {
     // actions
 
     downloadZip({ ctrl, alt }) {
+      // Positions measured on steamcommunity.com (Oct 2026, 1280-2560 wide windows, several
+      // themes): for a 1920px background the showcase artwork starts at x=495 and x=1010,
+      // the avatar at x=498, y=36. Must match the overlay in preview/Overlay.vue.
       // sizes based on 1920x1108
       // https://steamcdn-a.akamaihd.net/steamcommunity/public/images/items/570/982491acceb6c9dde0d5e49dab1e7540c5faa1de.webm
       const halfWidth = Math.floor(this.bgSize.w / 2)
@@ -163,26 +166,26 @@ export const useMainStore = defineStore('main', {
         images: [
           {
             name: 'Artwork_Middle.png',
-            x: halfWidth - 467,
+            x: halfWidth - 465,
             y: 256,
             w: 506,
             h: repeating ? 950 : 2000,
           },
           {
             name: 'Artwork_Right_Top.png',
-            x: halfWidth + 48,
+            x: halfWidth + 50,
             y: 256,
             w: 100,
             h: repeating ? 950 : 2000,
           },
           {
             name: 'Artwork_Featured.png',
-            x: halfWidth - 467,
+            x: halfWidth - 465,
             y: 256,
             w: 630,
             h: repeating ? 950 : 2000,
           },
-          { name: 'Avatar.png', x: halfWidth - 461, y: 36, w: 164, h: 164 },
+          { name: 'Avatar.png', x: halfWidth - 462, y: 36, w: 164, h: 164 },
         ],
       }
 
