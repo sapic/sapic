@@ -1,4 +1,4 @@
-FROM node:24-alpine as build
+FROM node:24-alpine AS build
 
 # Create app directory
 WORKDIR /app
@@ -18,7 +18,7 @@ COPY . .
 
 RUN pnpm build
 
-FROM nginx:stable
+FROM nginx:stable-alpine
 
 COPY nginx.conf /etc/nginx/conf.d/default.conf
 
