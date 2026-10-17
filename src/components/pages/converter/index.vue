@@ -118,10 +118,9 @@
 
 <script lang="ts" setup>
 import { ImageInfo } from '@/types/image'
-import JSZip from 'jszip'
 import { nextTick, ref, watch } from 'vue'
 import { useRoute } from 'vue-router'
-import { saveAs } from 'file-saver'
+import { preloadZip, saveZip } from '@/utils/saveZip'
 import { fetchFile } from '@ffmpeg/util'
 import type { FFmpeg } from '@ffmpeg/ffmpeg'
 import { buildConvertArgs, createFfmpeg } from './convert'
@@ -205,7 +204,8 @@ async function downloadClick() {
     return console.log('no ffmpeg')
   }
 
-  const zip = JSZip()
+  const files: Array<{ name: string; data: Uint8Array | string }> = []
+  preloadZip()
 
   downloadStarted.value = true
 
@@ -245,7 +245,7 @@ File download error, try uploading it manually
 
     await ffmpeg.value.exec(convertArgs)
     const res = await ffmpeg.value.readFile(outputName)
-    zip.file(info.name, res)
+    files.push({ name: info.name, data: res })
 
     itemsDone.value++
   }
@@ -254,9 +254,7 @@ File download error, try uploading it manually
   const inputDigest = await digestMessage(inputString)
 
   const zipName = `steam.design_${inputDigest.slice(0, 6)}.zip`
-  zip.generateAsync({ type: 'blob' }).then(function (content) {
-    saveAs(content, zipName)
-  })
+  await saveZip(files, zipName)
 }
 
 async function digestMessage(message) {
