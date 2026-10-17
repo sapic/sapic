@@ -71,3 +71,13 @@ export function mediaFile(value: string): string | null {
   const file = parts[parts.length - 1].replace(/\.[a-z0-9]+$/i, '')
   return `${parts[parts.length - 2]}/${file}`.toLowerCase()
 }
+
+/** Icon id of a Steam market image URL (/economy/image/<iconUrl>[/<size>]), or null */
+export function marketIcon(value: string): string | null {
+  try {
+    const m = /^\/economy\/image\/([^/]+)/.exec(new URL(value).pathname)
+    return m ? decodeURIComponent(m[1]) : null
+  } catch {
+    return null
+  }
+}
