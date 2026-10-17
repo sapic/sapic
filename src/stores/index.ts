@@ -109,7 +109,10 @@ export const useMainStore = defineStore('main', {
         this.bgInfo = newBg
 
         this.format = mediaFormat(newBg.steamUrl)
-        window.location.hash = '#' + this.background
+        // never write "#undefined": it comes back as a background and requests /undefined
+        if (this.background) {
+          window.location.hash = '#' + this.background
+        }
       }
 
       if (this.nextRandomBackgrounds.length < 3) {

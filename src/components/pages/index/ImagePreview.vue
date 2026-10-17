@@ -1,12 +1,5 @@
 <template>
-  <div
-    class="profile__preview"
-    :style="{
-      backgroundImage: `url('${background}')`,
-      backgroundRepeat: shouldRepeatBackground ? 'repeat' : 'no-repeat',
-      backgroundPosition: '49.999% 0',
-    }"
-  >
+  <div class="profile__preview" :style="previewStyle">
     <div class="profile__preview-bg">
       <video
         :src="background || ''"
@@ -30,6 +23,12 @@ import { useMainStore } from '@/stores'
 import { mapState } from 'pinia'
 import Overlay from './preview/Overlay.vue'
 
+// Only an absolute URL is worth asking the browser for: a missing or "undefined"
+// value used to become url('undefined'), i.e. a request to /undefined (404).
+// Only an absolute URL is worth asking the browser for: a missing or "undefined"
+// value used to become url('undefined'), i.e. a request to /undefined (404).
+const isLoadableUrl = (value) => typeof value === 'string' && /^(https?:|blob:|data:)/i.test(value)
+
 export default {
   components: {
     Overlay,
@@ -37,6 +36,14 @@ export default {
 
   computed: {
     ...mapState(useMainStore, ['bgSize', 'background']),
+
+    previewStyle() {
+      return {
+        backgroundImage: isLoadableUrl(this.background) ? `url('${this.background}')` : 'none',
+        backgroundRepeat: this.shouldRepeatBackground ? 'repeat' : 'no-repeat',
+        backgroundPosition: '49.999% 0',
+      }
+    },
 
     shouldRepeatBackground() {
       // Check if the background is a square image smaller than 700x700 pixels
