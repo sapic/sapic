@@ -7,8 +7,7 @@
     "oxc",
     "import",
     "promise",
-    "node",
-    "vue"
+    "node"
   ],
   "categories": {
     "correctness": "error",

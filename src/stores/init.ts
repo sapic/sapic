@@ -1,54 +1,88 @@
 // @ts-ignore
 import BgsUrl from '@/assets/bg-asset.json?url'
+import { createRoot, createEffect, on } from 'solid-js'
 import { isSupportedSteamMediaUrl } from '@/utils/steamMediaUrl'
-import { PiniaPluginContext } from 'pinia'
-import { emptyState } from './index'
+import { actions, emptyState, setStore, snapshot, store } from './index'
 
-export default async ({ store }: PiniaPluginContext) => {
-  // The background the address bar asks for (current value, so Back/Forward
-  // during start-up is respected)
-  const requestedUrl = () => {
-    const url = window.location.hash.slice(1)
-    return isSupportedSteamMediaUrl(url) ? url : null
+// Start-up and persistence (was the Pinia plugin in stores/init.ts on master).
+// Called once from main.tsx before the app renders.
+
+/** The background the address bar asks for (read live, so Back/Forward during start-up count) */
+const requestedUrl = () => {
+  const url = window.location.hash.slice(1)
+  return isSupportedSteamMediaUrl(url) ? url : null
+}
+
+function parseQuery(queryString: string) {
+  const query: Record<string, string> = {}
+  const pairs = (queryString[0] === '?' ? queryString.substr(1) : queryString).split('&')
+  for (const p of pairs) {
+    const pair = p.split('=')
+    query[decodeURIComponent(pair[0])] = decodeURIComponent(pair[1] || '')
   }
+  return query
+}
 
+export default async function initStore() {
   // Back / Forward (and a pasted #link) change only the hash: show that
   // background, so the page and "Get this Background" match the address bar.
-  // Registered first: Pinia does not wait for this async plugin, so the hash
-  // can change while the catalogue below is still loading.
+  // Registered first: the catalogue below loads asynchronously.
   window.addEventListener('hashchange', () => {
     const url = requestedUrl()
     if (url && url !== store.background) {
-      store.setBackgroundURL(url)
+      actions.setBackgroundURL(url)
     }
   })
 
   if (localStorage) {
-    // listen to updates to save store
-    store.$subscribe((mut, state) => {
-      console.log('sub', mut, state)
-      const toSave = { ...state }
-      delete toSave.converters
-      localStorage.setItem('store', JSON.stringify(toSave))
-    })
     // init with last session data
-    if (localStorage.getItem('store')) {
-      const savedStore = JSON.parse(localStorage.getItem('store') || '')
-      const newStore = {
-        ...emptyState,
-        ...savedStore,
+    const saved = localStorage.getItem('store')
+    if (saved) {
+      try {
+        const newStore = { ...emptyState, ...JSON.parse(saved), converters: [] }
+        // Older versions could save background: "undefined" (from an #undefined hash);
+        // it only ever produced a request to /undefined
+        if (
+          typeof newStore.background === 'string' &&
+          !/^(https?:|blob:|data:)/i.test(newStore.background)
+        ) {
+          newStore.background = emptyState.background
+          newStore.bgInfo = null
+        }
+        setStore(newStore)
+      } catch {
+        localStorage.removeItem('store')
       }
-      // Older versions could save background: "undefined" (from an #undefined hash);
-      // it only ever produced a request to /undefined
-      if (
-        typeof newStore.background === 'string' &&
-        !/^(https?:|blob:|data:)/i.test(newStore.background)
-      ) {
-        newStore.background = emptyState.background
-        newStore.bgInfo = null
-      }
-      store.$patch({ ...newStore })
     }
+
+    // Save on change. Only the small, user-facing fields drive the effect; the
+    // catalogue (`backgrounds`) is written when its update time changes.
+    createRoot(() => {
+      createEffect(
+        on(
+          () => [
+            store.background,
+            store.bgInfo,
+            store.previewScale,
+            store.user,
+            store.user.id,
+            store.bgSize.w,
+            store.bgSize.h,
+            store.format,
+            store.inventoryUpdateTime,
+            store.backgroundsUpdateTime,
+            store.nextRandomBackgrounds.length,
+            store.bgJsonUrl,
+          ],
+          () => {
+            const toSave: Partial<typeof store> = snapshot()
+            delete toSave.converters
+            localStorage.setItem('store', JSON.stringify(toSave))
+          },
+          { defer: true }
+        )
+      )
+    })
   }
 
   if (window.location.search !== '') {
@@ -56,65 +90,32 @@ export default async ({ store }: PiniaPluginContext) => {
     if (params['openid.identity']) {
       const arr = params['openid.identity'].split('/').slice(-1)
       if (arr && arr.length > 0) {
-        store.setUser({ id: arr[0] })
+        actions.setUser({ id: arr[0] })
         history.replaceState('', document.title, window.location.pathname)
       }
     }
   }
 
-  const state = store.$state
-
-  // // If state has no bgs, fetch some from api
-  if (
-    state.bgJsonUrl !== BgsUrl || // if we have new bgs json
-    !state.backgrounds ||
-    state.backgrounds.length < 10 // if no bgs
-    // (state.backgroundsUpdateTime > 0 && new Date() - state.backgroundsUpdateTime > 604800000) // or if last bg update > week ago
-  ) {
+  // If the stored catalogue is missing or from an older build, fetch it
+  if (store.bgJsonUrl !== BgsUrl || !store.backgrounds || store.backgrounds.length < 10) {
     const bgs = await fetch(BgsUrl).then((r) => r.json())
-    store.setBackgrounds(bgs)
-    store.setBgJsonUrl(BgsUrl)
+    actions.setBackgrounds(bgs)
+    actions.setBgJsonUrl(BgsUrl)
     // A link that names a background shows it; a random one would replace the hash
-    if (!requestedUrl()) store.randomBackground()
+    if (!requestedUrl()) actions.randomBackground()
   }
   if (
-    state.user.id &&
-    (!state.inventory ||
-      state.inventory.length < 1 || // no inventory
-      (state.inventoryUpdateTime > 0 && Date.now() - state.inventoryUpdateTime > 604800000)) // or if last inventory update > week ago)
+    store.user.id &&
+    (!store.inventory ||
+      store.inventory.length < 1 ||
+      (store.inventoryUpdateTime > 0 && Date.now() - store.inventoryUpdateTime > 604800000))
   ) {
-    store.loadBackpack()
+    actions.loadBackpack()
   }
   // Also when it is already shown: a hash change during the catalogue load
   // set the background before its catalogue entry (market page) was known
   const url = requestedUrl()
   if (url && (url !== store.background || !store.bgInfo)) {
-    store.setBackgroundURL(url)
+    actions.setBackgroundURL(url)
   }
 }
-
-function parseQuery(queryString) {
-  const query = {}
-  const pairs = (queryString[0] === '?' ? queryString.substr(1) : queryString).split('&')
-  for (let i = 0; i < pairs.length; i++) {
-    const pair = pairs[i].split('=')
-    query[decodeURIComponent(pair[0])] = decodeURIComponent(pair[1] || '')
-  }
-  return query
-}
-
-// function debounce (func: any, wait: number, immediate: boolean) {
-//   var timeout: number
-//   return function () {
-//     var context: any = this
-//     var args = arguments
-//     var later = function () {
-//       timeout = null
-//       if (!immediate) func.apply(context, args)
-//     }
-//     var callNow = immediate && !timeout
-//     window.clearTimeout(timeout)
-//     timeout = window.setTimeout(later, wait)
-//     if (callNow) func.apply(context, args)
-//   }
-// }
