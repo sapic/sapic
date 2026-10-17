@@ -34,7 +34,7 @@
   </div>
 </template>
 
-<script>
+<script lang="ts">
 import ImagePreview from './ImagePreview.vue'
 import Inventory from './InventoryContainer.vue'
 import MenuWindow from './MenuWindow.vue'
@@ -47,7 +47,7 @@ import ConvertersContainer from './ConvertersContainer.vue'
 import { useMainStore } from '@/stores'
 import { mapState } from 'pinia'
 
-const easeOutQuad = (t) => t * (2 - t)
+const easeOutQuad = (t: number) => t * (2 - t)
 
 export default {
   components: {
@@ -65,8 +65,7 @@ export default {
     const store = useMainStore()
     return {
       animatedScale: store.previewScale,
-      /** @type {ResizeObserver | null} */
-      resizeObserver: null,
+      resizeObserver: null as ResizeObserver | null,
     }
   },
   computed: {
@@ -84,7 +83,7 @@ export default {
     this.centerPreview()
     // The midpoint depends on the window width: re-centre when it changes
     this.resizeObserver = new ResizeObserver(() => this.centerPreview())
-    this.resizeObserver.observe(/** @type {HTMLElement} */ (this.$refs.previewWindow))
+    this.resizeObserver.observe(this.$refs.previewWindow as HTMLElement)
   },
   beforeUnmount() {
     this.resizeObserver?.disconnect()
@@ -94,7 +93,7 @@ export default {
     // in the middle of the view (the window scrolls sideways from there)
     centerPreview() {
       this.$nextTick(() => {
-        const el = /** @type {HTMLElement | undefined} */ (this.$refs.previewWindow)
+        const el = this.$refs.previewWindow as HTMLElement | undefined
         if (!el) return
         // At 100% or less nothing scrolls (overflow-x hidden): a leftover offset
         // would shift the whole preview sideways
@@ -103,7 +102,7 @@ export default {
     },
   },
   watch: {
-    previewScale(newValue) {
+    previewScale(newValue: number) {
       const start = Date.now()
       const end = start + 375
       let shouldEnd = false

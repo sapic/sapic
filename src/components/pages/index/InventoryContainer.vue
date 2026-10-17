@@ -53,12 +53,8 @@ const start = computed(() => {
   if (store.backgrounds.length === 0) {
     return 0
   }
-  let start = Math.floor(Math.random() * store.backgrounds.length) - itemsIncr * startRows
-  if (start < 0) {
-    start = 0
-  }
-
-  return start
+  const first = Math.floor(Math.random() * store.backgrounds.length) - itemsIncr * startRows
+  return Math.max(first, 0)
 })
 
 const randomBgs = computed(() => {

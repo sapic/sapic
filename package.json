@@ -7,7 +7,7 @@
     "dev": "vite",
     "serve": "vite preview",
     "lint": "oxlint src",
-    "typecheck": "vue-tsc --noEmit -p .",
+    "typecheck": "vue-tsgo -p tsconfig.json",
     "format": "prettier --write src",
     "format:check": "prettier --check src"
   },
@@ -33,8 +33,8 @@
     "oxlint": "^1.88.0",
     "oxlint-tsgolint": "^7.0.2004",
     "prettier": "^3.9.10",
-    "typescript": "6.0.3",
-    "vue-tsc": "^3.3.13"
+    "typescript": "^7.0.2",
+    "vue-tsgo": "^0.3.0"
   },
   "license": "MIT",
   "repository": "git@github.com:sapic/sapic.git",

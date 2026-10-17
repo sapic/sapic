@@ -221,12 +221,11 @@ export const useMainStore = defineStore('main', {
     },
 
     getCurrentBg() {
-      const _goUrl =
+      const goUrl =
         this.bgInfo && this.bgInfo.url
           ? 'https://steamcommunity.com/market/listings/' + this.bgInfo.url
           : 'https://lens.google.com/uploadbyurl?url=' + this.background
-      // shell.openExternal(_goUrl)
-      window.open(_goUrl)
+      window.open(goUrl)
     },
 
     async loadBackpack() {

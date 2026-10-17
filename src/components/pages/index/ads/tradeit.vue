@@ -9,14 +9,14 @@
   </a>
 </template>
 
-<script>
+<script lang="ts">
 import tradeit from '@/assets/images/tradeit.mp4'
 
 export default {
   mounted () {
     setTimeout(() => {
       this.$nextTick(async () => {
-        /** @type {HTMLVideoElement} */ (this.$refs.video).src = tradeit
+        (this.$refs.video as HTMLVideoElement).src = tradeit
       })
     }, 128)
   },
