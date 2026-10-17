@@ -1,6 +1,7 @@
 import { defineStore } from 'pinia'
 import { Background, ConverterProp } from '@/types/store'
 import { getBackendUrl } from '@/utils/getBackendUrl'
+import { mediaFormat } from '@/utils/steamMediaUrl'
 
 // interface RootState {}
 export const emptyState: RootState = {
@@ -67,11 +68,11 @@ export const useMainStore = defineStore('main', {
     setBackground({ background, info }) {
       this.background = background
       this.bgInfo = info
-      this.format = background.split('.').slice(-1)[0]
+      this.format = mediaFormat(background)
     },
     setBackgroundURL(value) {
       this.background = value
-      this.format = value.split('.').slice(-1)[0]
+      this.format = mediaFormat(value)
       this.bgInfo = null
     },
     setBackgrounds(backgrounds) {
@@ -95,12 +96,7 @@ export const useMainStore = defineStore('main', {
         }
         this.bgInfo = newBg
 
-        const format = newBg.steamUrl.split('.').slice(-1)[0]
-        if (format === 'jpg' || format === 'mp4' || format === 'webm') {
-          this.format = format
-        } else {
-          console.log('Unknown format', format)
-        }
+        this.format = mediaFormat(newBg.steamUrl)
         window.location.hash = '#' + this.background
       }
 
