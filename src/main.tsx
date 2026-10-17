@@ -8,7 +8,9 @@ import { exposeTestHook } from './testHook'
 
 // Same routes as the Vue router on master:
 //   /  /converter  /converter/:raw  and the same three under /:lang
-const IndexPage = lazy(() => import('./components/pages/index/IndexPage'))
+// The main page is in the entry bundle so it paints without a second request;
+// the converter page (and its ffmpeg code) is loaded only when visited.
+import IndexPage from './components/pages/index/IndexPage'
 const Converter = lazy(() => import('./components/pages/converter/Converter'))
 
 /** /:lang/... sets the UI language when it is one we have (en, ru, zh-CN, zh-HK, zh-TW, tr) */
