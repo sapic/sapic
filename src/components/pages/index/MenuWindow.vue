@@ -23,10 +23,14 @@
         <div class="menu__window-button-text">{{ $t('index.getThisBg') }}</div>
       </div>
 
+      <!-- Applied on change (paste lands as a single input, Enter, or leaving the box),
+           not on every keystroke: each partial URL used to be fetched -->
       <input
         id="urltextbox"
-        v-model="bgURL"
+        value=""
         class="menu__window-button textbox noclick"
+        @change="applyUrl"
+        @paste="onUrlPaste"
         :placeholder="$t('index.pasteUrlPlaceholder')"
       />
 
@@ -214,18 +218,6 @@ export default defineComponent({
       },
     },
 
-    bgURL: {
-      set(value: string) {
-        // if (value.match(/\.(?:jpeg|jpg|png|webm|mp4)$/i)) {
-        const store = useMainStore()
-        store.setBackgroundURL(value)
-        // }
-      },
-      get(): string {
-        return ''
-      },
-    },
-
     loginUrl(): string {
       const returnUrl = encodeURIComponent(
         process.env.NODE_ENV === 'production' ? 'https://steam.design' : 'http://localhost:3000'
@@ -252,6 +244,21 @@ export default defineComponent({
   },
 
   methods: {
+    // Load the background from the URL box once the URL is complete
+    applyUrl(e: Event) {
+      const value = (e.target as HTMLInputElement).value.trim()
+      if (/^https?:\/\/\S+$/i.test(value)) {
+        const store = useMainStore()
+        store.setBackgroundURL(value)
+      }
+    },
+
+    // A paste is a whole URL: apply it right away (after the input has the new value)
+    onUrlPaste(e: ClipboardEvent) {
+      const input = e.target as HTMLInputElement
+      setTimeout(() => this.applyUrl({ target: input } as unknown as Event), 0)
+    },
+
     logout() {
       const store = useMainStore()
       store.logout()
