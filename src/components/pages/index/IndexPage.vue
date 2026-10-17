@@ -2,8 +2,15 @@
   <div class="wrapper">
     <section class="body__wrapper">
       <MenuWindow />
-      <div class="preview__window">
+      <!-- The converter popups sit on this wrapper, not on the scrolled window,
+           so they stay in the visible corner when the zoomed preview scrolls -->
+      <div class="preview__frame">
         <ConvertersContainer />
+        <div
+          ref="previewWindow"
+          class="preview__window"
+          :style="{ overflowX: scalePercent > 1 ? 'auto' : 'hidden' }"
+        >
         <div
           class="zoom_out"
           :style="{
@@ -14,6 +21,7 @@
         >
           <ImagePreview />
           <BgPreloader />
+        </div>
         </div>
       </div>
       <template v-if="!isMobile">
@@ -70,6 +78,28 @@ export default {
       return window.screen.width < 560
     },
   },
+  mounted() {
+    this.centerPreview()
+    // The midpoint depends on the window width: re-centre when it changes
+    this.resizeObserver = new ResizeObserver(() => this.centerPreview())
+    this.resizeObserver.observe(this.$refs.previewWindow)
+  },
+  beforeUnmount() {
+    this.resizeObserver?.disconnect()
+  },
+  methods: {
+    // When the zoomed profile is wider than the window, keep the profile column
+    // in the middle of the view (the window scrolls sideways from there)
+    centerPreview() {
+      this.$nextTick(() => {
+        const el = this.$refs.previewWindow
+        if (!el) return
+        // At 100% or less nothing scrolls (overflow-x hidden): a leftover offset
+        // would shift the whole preview sideways
+        el.scrollLeft = this.scalePercent > 1 ? (el.scrollWidth - el.clientWidth) / 2 : 0
+      })
+    },
+  },
   watch: {
     previewScale(newValue) {
       const start = Date.now()
@@ -82,6 +112,7 @@ export default {
         const progress = easeOutQuad(Math.min((Date.now() - start) / 375, 1))
         const change = valueDiff * progress
         this.animatedScale = fromValue + change
+        this.centerPreview()
 
         if (!shouldEnd) {
           requestAnimationFrame(animate)
@@ -107,10 +138,19 @@ export default {
   flex-direction row
   background-color $color-main
 
-.preview__window
+.preview__frame
   height 100%
   flex 1 1 auto
+  min-width 0
+  position relative
+
+.preview__window
+  height 100%
+  // overflow-x is set inline: it scrolls sideways only above 100% zoom, where
+  // the profile can be wider than the window (below 100% the zoom box's
+  // unscaled width would add a scrollbar into empty space)
   overflow-x hidden
+  min-width 0
   border-radius 20px
   background $color-black
   position relative
