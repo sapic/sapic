@@ -57,6 +57,10 @@ export default {
   // 976 px at this zoom, the background must stay centred on the column (and the
   // window scrolls), not on the visible part
   min-width 976px
+  // The video layer (.profile__preview-bg, absolute) is sized and centred
+  // against this box, so animated backgrounds line up with the frame too
+  position relative
+  z-index 0
   display flex
   flex-direction column
 
