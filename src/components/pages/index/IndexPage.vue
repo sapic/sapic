@@ -65,6 +65,8 @@ export default {
     const store = useMainStore()
     return {
       animatedScale: store.previewScale,
+      /** @type {ResizeObserver | null} */
+      resizeObserver: null,
     }
   },
   computed: {
@@ -82,7 +84,7 @@ export default {
     this.centerPreview()
     // The midpoint depends on the window width: re-centre when it changes
     this.resizeObserver = new ResizeObserver(() => this.centerPreview())
-    this.resizeObserver.observe(this.$refs.previewWindow)
+    this.resizeObserver.observe(/** @type {HTMLElement} */ (this.$refs.previewWindow))
   },
   beforeUnmount() {
     this.resizeObserver?.disconnect()
@@ -92,7 +94,7 @@ export default {
     // in the middle of the view (the window scrolls sideways from there)
     centerPreview() {
       this.$nextTick(() => {
-        const el = this.$refs.previewWindow
+        const el = /** @type {HTMLElement | undefined} */ (this.$refs.previewWindow)
         if (!el) return
         // At 100% or less nothing scrolls (overflow-x hidden): a leftover offset
         // would shift the whole preview sideways

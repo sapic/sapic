@@ -3,7 +3,7 @@
     <template v-if="user.id">
       <p class="hover-button">{{ $t('inventory.inventory') }}</p>
       <div class="inventory-list">
-        <template v-for="item in inventory" :key="item.id">
+        <template v-for="item in inventory" :key="item.icon_url_large">
           <div class="inventory-item" @click="setBackground(item)">
             <img
               class="inventory-item-inner"
@@ -15,7 +15,7 @@
     </template>
     <p class="hover-button">{{ $t('inventory.random') }}</p>
     <div v-if="shouldShowRandomBgs" class="inventory-list">
-      <template v-for="item in randomBgs" :key="item.id">
+      <template v-for="item in randomBgs" :key="item.steamUrl">
         <div class="inventory-item" @click="setBackgroundItem(item)">
           <img
             class="inventory-item-inner"

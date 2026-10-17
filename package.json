@@ -7,7 +7,7 @@
     "dev": "vite",
     "serve": "vite preview",
     "lint": "eslint src",
-    "typecheck": "tsc --noEmit -p ."
+    "typecheck": "vue-tsc --noEmit -p ."
   },
   "main": "index.js",
   "dependencies": {
@@ -39,7 +39,8 @@
     "neostandard": "^0.14.1",
     "prettier": "^3.9.10",
     "typescript": "6.0.3",
-    "vue-eslint-parser": "^10.4.1"
+    "vue-eslint-parser": "^10.4.1",
+    "vue-tsc": "^3.3.13"
   },
   "license": "MIT",
   "repository": "git@github.com:sapic/sapic.git",

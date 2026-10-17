@@ -16,7 +16,7 @@ export default {
   mounted () {
     setTimeout(() => {
       this.$nextTick(async () => {
-        this.$refs.video.src = tradeit
+        /** @type {HTMLVideoElement} */ (this.$refs.video).src = tradeit
       })
     }, 128)
   },
