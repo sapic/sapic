@@ -5,9 +5,23 @@ import { PiniaPluginContext } from 'pinia'
 import { emptyState } from './index'
 
 export default async ({ store }: PiniaPluginContext) => {
-  // Preserve the requested background before initialization can select a random
-  // one and replace window.location.hash.
-  const requestedBackgroundUrl = window.location.hash.slice(1)
+  // The background the address bar asks for (current value, so Back/Forward
+  // during start-up is respected)
+  const requestedUrl = () => {
+    const url = window.location.hash.slice(1)
+    return isSupportedSteamMediaUrl(url) ? url : null
+  }
+
+  // Back / Forward (and a pasted #link) change only the hash: show that
+  // background, so the page and "Get this Background" match the address bar.
+  // Registered first: Pinia does not wait for this async plugin, so the hash
+  // can change while the catalogue below is still loading.
+  window.addEventListener('hashchange', () => {
+    const url = requestedUrl()
+    if (url && url !== store.background) {
+      store.setBackgroundURL(url)
+    }
+  })
 
   if (localStorage) {
     // listen to updates to save store
@@ -51,7 +65,8 @@ export default async ({ store }: PiniaPluginContext) => {
     const bgs = await fetch(BgsUrl).then((r) => r.json())
     store.setBackgrounds(bgs)
     store.setBgJsonUrl(BgsUrl)
-    store.randomBackground()
+    // A link that names a background shows it; a random one would replace the hash
+    if (!requestedUrl()) store.randomBackground()
   }
   if (
     state.user.id &&
@@ -61,8 +76,11 @@ export default async ({ store }: PiniaPluginContext) => {
   ) {
     store.loadBackpack()
   }
-  if (isSupportedSteamMediaUrl(requestedBackgroundUrl)) {
-    store.setBackgroundURL(requestedBackgroundUrl)
+  // Also when it is already shown: a hash change during the catalogue load
+  // set the background before its catalogue entry (market page) was known
+  const url = requestedUrl()
+  if (url && (url !== store.background || !store.bgInfo)) {
+    store.setBackgroundURL(url)
   }
 }
 
