@@ -216,10 +216,12 @@ export default defineComponent({
 
     bgURL: {
       set(value: string) {
-        // if (value.match(/\.(?:jpeg|jpg|png|webm|mp4)$/i)) {
-        const store = useMainStore()
-        store.setBackgroundURL(value)
-        // }
+        // Only a complete URL is applied: this setter runs on every keystroke, and
+        // applying "h", "ht", "htt"... made the browser request /h, /ht, /htt (404s).
+        if (/^https?:\/\/\S+$/i.test(value.trim())) {
+          const store = useMainStore()
+          store.setBackgroundURL(value.trim())
+        }
       },
       get(): string {
         return ''

@@ -38,6 +38,12 @@ export default async ({ store }: PiniaPluginContext) => {
         ...emptyState,
         ...savedStore,
       }
+      // Older versions could save background: "undefined" (from an #undefined hash);
+      // it only ever produced a request to /undefined
+      if (typeof newStore.background === 'string' && !/^(https?:|blob:|data:)/i.test(newStore.background)) {
+        newStore.background = emptyState.background
+        newStore.bgInfo = null
+      }
       store.$patch({ ...newStore })
     }
   }
