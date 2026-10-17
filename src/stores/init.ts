@@ -76,8 +76,10 @@ export default async ({ store }: PiniaPluginContext) => {
   ) {
     store.loadBackpack()
   }
+  // Also when it is already shown: a hash change during the catalogue load
+  // set the background before its catalogue entry (market page) was known
   const url = requestedUrl()
-  if (url && url !== store.background) {
+  if (url && (url !== store.background || !store.bgInfo)) {
     store.setBackgroundURL(url)
   }
 }
