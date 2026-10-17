@@ -2,7 +2,11 @@
   <div class="wrapper">
     <section class="body__wrapper">
       <MenuWindow />
-      <div class="preview__window">
+      <div
+        ref="previewWindow"
+        class="preview__window"
+        :style="{ overflowX: scalePercent > 1 ? 'auto' : 'hidden' }"
+      >
         <ConvertersContainer />
         <div
           class="zoom_out"
@@ -70,6 +74,22 @@ export default {
       return window.screen.width < 560
     },
   },
+  mounted() {
+    this.centerPreview()
+  },
+  methods: {
+    // When the zoomed profile is wider than the window, keep the profile column
+    // in the middle of the view (the window scrolls sideways from there)
+    centerPreview() {
+      this.$nextTick(() => {
+        const el = this.$refs.previewWindow
+        if (!el) return
+        // At 100% or less nothing scrolls (overflow-x hidden): a leftover offset
+        // would shift the whole preview sideways
+        el.scrollLeft = this.scalePercent > 1 ? (el.scrollWidth - el.clientWidth) / 2 : 0
+      })
+    },
+  },
   watch: {
     previewScale(newValue) {
       const start = Date.now()
@@ -82,6 +102,7 @@ export default {
         const progress = easeOutQuad(Math.min((Date.now() - start) / 375, 1))
         const change = valueDiff * progress
         this.animatedScale = fromValue + change
+        this.centerPreview()
 
         if (!shouldEnd) {
           requestAnimationFrame(animate)
@@ -110,7 +131,11 @@ export default {
 .preview__window
   height 100%
   flex 1 1 auto
+  // overflow-x is set inline: it scrolls sideways only above 100% zoom, where
+  // the profile can be wider than the window (below 100% the zoom box's
+  // unscaled width would add a scrollbar into empty space)
   overflow-x hidden
+  min-width 0
   border-radius 20px
   background $color-black
   position relative

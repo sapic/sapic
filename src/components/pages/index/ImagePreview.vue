@@ -53,6 +53,10 @@ export default {
 <style lang="stylus" scoped>
 .profile__preview
   width 100%
+  // Never narrower than Steam's content column: when the window is narrower than
+  // 976 px at this zoom, the background must stay centred on the column (and the
+  // window scrolls), not on the visible part
+  min-width 976px
   display flex
   flex-direction column
 
