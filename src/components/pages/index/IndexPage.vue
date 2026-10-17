@@ -76,6 +76,12 @@ export default {
   },
   mounted() {
     this.centerPreview()
+    // The midpoint depends on the window width: re-centre when it changes
+    this.resizeObserver = new ResizeObserver(() => this.centerPreview())
+    this.resizeObserver.observe(this.$refs.previewWindow)
+  },
+  beforeUnmount() {
+    this.resizeObserver?.disconnect()
   },
   methods: {
     // When the zoomed profile is wider than the window, keep the profile column
