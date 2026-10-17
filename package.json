@@ -8,8 +8,8 @@
     "serve": "vite preview",
     "lint": "oxlint src",
     "typecheck": "tsc --noEmit -p .",
-    "format": "prettier --write src",
-    "format:check": "prettier --check src"
+    "format": "oxfmt src",
+    "format:check": "oxfmt --check src"
   },
   "main": "index.js",
   "dependencies": {
@@ -30,9 +30,9 @@
   },
   "devDependencies": {
     "@types/node": "^26.6.5",
+    "oxfmt": "^0.73.0",
     "oxlint": "^1.88.0",
     "oxlint-tsgolint": "^7.0.2004",
-    "prettier": "^3.9.10",
     "typescript": "^7.0.2"
   },
   "license": "MIT",

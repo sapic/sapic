@@ -11,17 +11,17 @@
           class="preview__window"
           :style="{ overflowX: scalePercent > 1 ? 'auto' : 'hidden' }"
         >
-        <div
-          class="zoom_out"
-          :style="{
-            transform: `scale(${scalePercent})`,
-            width: `calc(100% / ${scalePercent}) !important`,
-            height: `calc(100% * ${scalePercent}) !important`,
-          }"
-        >
-          <ImagePreview />
-          <BgPreloader />
-        </div>
+          <div
+            class="zoom_out"
+            :style="{
+              transform: `scale(${scalePercent})`,
+              width: `calc(100% / ${scalePercent}) !important`,
+              height: `calc(100% * ${scalePercent}) !important`,
+            }"
+          >
+            <ImagePreview />
+            <BgPreloader />
+          </div>
         </div>
       </div>
       <template v-if="!isMobile">
@@ -190,8 +190,15 @@ body {
 body {
   margin: 0;
   overflow: hidden;
-  font-family: 'Source Sans Pro', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto,
-    'Helvetica Neue', Arial, sans-serif;
+  font-family:
+    'Source Sans Pro',
+    -apple-system,
+    BlinkMacSystemFont,
+    'Segoe UI',
+    Roboto,
+    'Helvetica Neue',
+    Arial,
+    sans-serif;
 }
 
 #app {

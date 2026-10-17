@@ -1,10 +1,10 @@
 <template>
-  <div 
-    class="profile__preview" 
-    :style="{ 
+  <div
+    class="profile__preview"
+    :style="{
       backgroundImage: `url('${background}')`,
       backgroundRepeat: shouldRepeatBackground ? 'repeat' : 'no-repeat',
-      backgroundPosition: '49.999% 0'
+      backgroundPosition: '49.999% 0',
     }"
   >
     <div class="profile__preview-bg">
@@ -37,14 +37,16 @@ export default {
 
   computed: {
     ...mapState(useMainStore, ['bgSize', 'background']),
-    
+
     shouldRepeatBackground() {
       // Check if the background is a square image smaller than 700x700 pixels
-      return this.bgSize.w > 0 && 
-             this.bgSize.h > 0 && 
-             this.bgSize.w === this.bgSize.h && 
-             this.bgSize.w < 700 && 
-             this.bgSize.h < 700
+      return (
+        this.bgSize.w > 0 &&
+        this.bgSize.h > 0 &&
+        this.bgSize.w === this.bgSize.h &&
+        this.bgSize.w < 700 &&
+        this.bgSize.h < 700
+      )
     },
   },
 }

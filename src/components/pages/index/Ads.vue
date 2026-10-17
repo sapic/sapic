@@ -12,7 +12,7 @@ import duobot from './ads/DuoBot.vue'
 
 export default {
   components: {
-    duobot
+    duobot,
   },
 
   computed: {},
