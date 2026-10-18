@@ -23,12 +23,20 @@ export default function ConvertRow(props: ConvertRowProps) {
     return { ...info, data }
   }
 
+  // A failed conversion (e.g. a download error) is retried once; if it fails again the row
+  // leaves the popup the way Cancel does, so the ZIP is still saved with the other files
+  // instead of the popup waiting forever on a row stuck at 0%.
   async function run() {
-    try {
-      props.onConverted(await convertFile(props.url, props.info))
-    } catch (e) {
-      console.log('convert error', e)
+    for (let attempt = 1; attempt <= 2; attempt++) {
+      try {
+        props.onConverted(await convertFile(props.url, props.info))
+        return
+      } catch (e) {
+        console.log('convert error', e)
+        setProgress(0)
+      }
     }
+    props.onCanceled(props.info)
   }
   void run()
 

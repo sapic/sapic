@@ -48,6 +48,9 @@ export default function ConverterPopup(props: ConverterPopupProps) {
 
     if (totalConverted === images().length && totalConverted > 0) {
       void finalzeZip()
+    } else if (images().length === 0) {
+      // every row was cancelled or failed: nothing to save, close the popup
+      actions.removeConvertItem(props.save.id)
     }
   }
 
