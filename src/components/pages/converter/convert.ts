@@ -11,6 +11,42 @@ export interface ConvertCallbacks {
   onLog?: (message: string) => void
 }
 
+// The core is 42 MB. Every conversion runs in its own ffmpeg worker, but they all share one
+// download: four rows fetching the same file at the same moment made Chromium fail three of
+// them with net::ERR_CACHE_WRITE_FAILURE (seen on steam.design), leaving those rows at 0%.
+// A failed load is not cached, so the next attempt fetches again.
+let coreUrls: Promise<{ coreURL: string; wasmURL: string }> | null = null
+
+function loadCore() {
+  if (!coreUrls) {
+    coreUrls = Promise.all([
+      toBlobURL(`${CORE_BASE}/ffmpeg-core.js`, 'text/javascript'),
+      toBlobURL(`${CORE_BASE}/ffmpeg-core.wasm`, 'application/wasm'),
+    ]).then(([coreURL, wasmURL]) => ({ coreURL, wasmURL }))
+    coreUrls.catch(() => {
+      coreUrls = null
+    })
+  }
+  return coreUrls
+}
+
+// The source video is the same for every crop: fetch it once and give each worker a copy
+// (writeFile transfers the buffer to the worker, so a shared one would be emptied by the first).
+// Only the latest url is kept, so at most one video stays in memory.
+let lastSource: { url: string; data: Promise<Uint8Array> } | null = null
+
+function loadSource(source: string | File): Promise<Uint8Array> {
+  if (typeof source !== 'string') return fetchFile(source)
+  if (!lastSource || lastSource.url !== source) {
+    const entry = { url: source, data: fetchFile(source) }
+    entry.data.catch(() => {
+      if (lastSource === entry) lastSource = null // a failed fetch is retried next time
+    })
+    lastSource = entry
+  }
+  return lastSource.data.then((data) => data.slice())
+}
+
 export async function createFfmpeg(callbacks: ConvertCallbacks = {}): Promise<FFmpeg> {
   const ffmpeg = new FFmpeg()
 
@@ -25,10 +61,7 @@ export async function createFfmpeg(callbacks: ConvertCallbacks = {}): Promise<FF
     }
   })
 
-  await ffmpeg.load({
-    coreURL: await toBlobURL(`${CORE_BASE}/ffmpeg-core.js`, 'text/javascript'),
-    wasmURL: await toBlobURL(`${CORE_BASE}/ffmpeg-core.wasm`, 'application/wasm'),
-  })
+  await ffmpeg.load(await loadCore())
 
   return ffmpeg
 }
@@ -89,7 +122,7 @@ export async function convertVideo(
     const inputName = 'inputfile'
     const outputName = 'output.' + outputFormat
 
-    await ffmpeg.writeFile(inputName, await fetchFile(source))
+    await ffmpeg.writeFile(inputName, await loadSource(source))
     await ffmpeg.exec(buildConvertArgs(info, inputName, outputName, outputFormat))
 
     const data = await ffmpeg.readFile(outputName)
