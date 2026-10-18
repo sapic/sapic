@@ -3,7 +3,7 @@
   --secondary: #8ceaf6;
 }
 
-/* Same values as color.styl (used by the Vue components); the Solid components use these */
+/* Colours used by the component styles */
 :root {
   --color-black: #000;
   --color-white: #fff;
