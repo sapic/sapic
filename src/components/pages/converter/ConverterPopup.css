@@ -8,7 +8,8 @@
   width: auto;
   max-width: none;
   padding: 1rem;
-  background: rgba(18, 21, 26, 0.7); /* transparentify($color-main, 0.7) */
+  /* Vue had transparentify($color-main, 0.7), which stylus compiled to rgba(0, 0, 0, 0.7) */
+  background: rgba(0, 0, 0, 0.7);
   border-radius: 7px;
   margin: 10px 0 0 0;
 }
