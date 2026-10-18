@@ -1,0 +1,93 @@
+/* Global (non-scoped) styles of the Vue version */
+
+/* From IndexPage.vue (its plain <style> block) */
+button,
+a {
+  -webkit-app-region: no-drag;
+}
+
+html,
+body {
+  height: 100%;
+}
+
+body {
+  margin: 0;
+  overflow: hidden;
+  font-family:
+    'Source Sans Pro', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, 'Helvetica Neue',
+    Arial, sans-serif;
+}
+
+#app {
+  height: 100%;
+}
+
+.layout_wrapper,
+.wrapper {
+  height: 100%;
+}
+
+::-webkit-scrollbar {
+  width: 9px;
+  height: 9px;
+}
+::-webkit-scrollbar-button {
+  width: 0px;
+  height: 0px;
+}
+::-webkit-scrollbar-thumb {
+  background: #666666;
+  transition: background-color 0.25s ease;
+  border-radius: 20px;
+}
+::-webkit-scrollbar-thumb:hover {
+  transition: background-color 0.25s ease;
+  background-color: #8c8c8c;
+}
+::-webkit-scrollbar-thumb:active {
+  background: #333333;
+}
+::-webkit-scrollbar-track {
+  background: #12151a;
+  border-radius: 0 20px 0 0;
+}
+::-webkit-scrollbar-track:hover {
+  background: #1c2129;
+}
+::-webkit-scrollbar-track:active {
+  background: #272d38;
+}
+::-webkit-scrollbar-corner {
+  background: transparent;
+}
+
+/* From MobileHeader.vue (its <style lang="stylus"> block was not scoped) */
+.mobile__header {
+  height: 63px;
+  background-color: rgb(17, 24, 39);
+  border-bottom: 1px solid rgb(31, 41, 55);
+  box-sizing: border-box;
+  display: flex;
+}
+
+.mobile__header-container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 100%;
+}
+
+.mobile__header-image {
+  width: 48px;
+  height: 48px;
+}
+
+.mobile__header-name {
+  color: var(--color-white);
+  margin: 0;
+  margin-left: 12px;
+  font-size: 1.25em;
+}
+
+/* Ads.vue had an empty non-scoped <style> block: nothing to carry over */

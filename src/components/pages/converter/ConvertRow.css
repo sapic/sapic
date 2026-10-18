@@ -1,0 +1,34 @@
+.row-container {
+  margin: 6px auto;
+}
+
+.row-container .row-header {
+  display: flex;
+  justify-content: space-between;
+  cursor: default;
+}
+
+.row-cancel {
+  cursor: pointer;
+}
+
+.progress-container {
+  width: 256px;
+  height: 6px;
+  border-radius: 3px;
+  padding: 1px;
+  background: var(--color-main);
+  margin: 5px 0 0 0;
+}
+
+.progress-indicator {
+  height: 100%;
+  background-size: 100px 100%;
+  border-radius: 3px;
+  background: linear-gradient(
+    45deg,
+    var(--color-button-gradient-1),
+    var(--color-button-gradient-2)
+  );
+  transition: width 0.25s ease;
+}

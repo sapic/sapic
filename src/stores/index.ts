@@ -1,50 +1,27 @@
-import { defineStore } from 'pinia'
+import { createStore, produce, unwrap } from 'solid-js/store'
+import { createMemo } from 'solid-js'
 import { Background, ConverterProp } from '@/types/store'
 import { getBackendUrl } from '@/utils/getBackendUrl'
 import { marketIcon, mediaFile, mediaFormat } from '@/utils/steamMediaUrl'
 
-// interface RootState {}
-export const emptyState: RootState = {
-  background: '',
-  // bgInfo: BackgroundInfo(),
-  bgInfo: null,
-  backgrounds: [],
-  backgroundsUpdateTime: 0,
-  nextRandomBackgrounds: [],
-  previewScale: window.screen.width < 560 ? 25 : 75,
-  user: {
-    id: 0,
-  },
-  bgSize: {
-    w: 0,
-    h: 0,
-  },
-  format: 'jpg',
-  inventory: [],
-  inventoryUpdateTime: 0,
-  v: 1,
-  bgJsonUrl: null, // url of file with backgrounds
-  converters: [],
-}
+// Solid port of the former Pinia store (src/stores/index.ts on master).
+// Same state shape and the same action names, so components read `store.x`
+// and call `actions.y(...)`. Persistence and start-up live in ./init.ts.
 
-interface InventoryItem {
+export interface InventoryItem {
   icon_url_large: string
+  actions?: { link: string }[]
 }
 
-interface RootState {
+export interface RootState {
   background: string
-  bgInfo: Background | null
+  bgInfo: Background | InventoryItem | null
   backgrounds: Background[]
   backgroundsUpdateTime: number
   nextRandomBackgrounds: Background[]
   previewScale: number
-  user: {
-    id: number
-  }
-  bgSize: {
-    w: number
-    h: number
-  }
+  user: { id: number | string }
+  bgSize: { w: number; h: number }
   format: 'jpg' | 'mp4' | 'webm'
   inventory: InventoryItem[]
   inventoryUpdateTime: number
@@ -53,199 +30,216 @@ interface RootState {
   converters: ConverterProp[]
 }
 
-export const useMainStore = defineStore('main', {
-  state: (): RootState => {
-    return { ...emptyState }
+export const emptyState: RootState = {
+  background: '',
+  bgInfo: null,
+  backgrounds: [],
+  backgroundsUpdateTime: 0,
+  nextRandomBackgrounds: [],
+  previewScale: window.screen.width < 560 ? 25 : 75,
+  user: { id: 0 },
+  bgSize: { w: 0, h: 0 },
+  format: 'jpg',
+  inventory: [],
+  inventoryUpdateTime: 0,
+  v: 1,
+  bgJsonUrl: null,
+  converters: [],
+}
+
+const [store, setStore] = createStore<RootState>(structuredClone(emptyState))
+
+export { store, setStore }
+
+/** Plain (non-proxy) copy of the state, e.g. for localStorage */
+export const snapshot = (): RootState => structuredClone(unwrap(store))
+
+const isVideoMemo = createMemo(() => store.format === 'webm' || store.format === 'mp4')
+export const isVideo = () => isVideoMemo()
+
+/** Catalogue entry for a background url (any CDN host), or null */
+export function findBackground(value: string): Background | null {
+  // Market images (/economy/image/<iconUrl>) are known by their icon id,
+  // everything else by its <appid>/<file>
+  const icon = marketIcon(value)
+  const file = icon ? null : mediaFile(value)
+  if (!icon && !file) return null
+  const same = (bg: Background) =>
+    !!bg && (icon ? bg.iconUrl === icon : mediaFile(bg.steamUrl) === file)
+  return store.backgrounds.find(same) || store.nextRandomBackgrounds.find(same) || null
+}
+
+export const actions = {
+  setBackground({
+    background,
+    info,
+  }: {
+    background: string
+    info: Background | InventoryItem | null
+  }) {
+    setStore({ background, bgInfo: info, format: mediaFormat(background) })
   },
 
-  getters: {
-    isVideo(): boolean {
-      return this.format === 'webm' || this.format === 'mp4'
-    },
+  setBackgroundURL(value: string) {
+    // A known background keeps its market page for "Get this Background"
+    setStore({ background: value, format: mediaFormat(value), bgInfo: findBackground(value) })
   },
 
-  actions: {
-    setBackground({ background, info }) {
-      this.background = background
-      this.bgInfo = info
-      this.format = mediaFormat(background)
-    },
-    setBackgroundURL(value) {
-      this.background = value
-      this.format = mediaFormat(value)
-      // A known background keeps its market page for "Get this Background"
-      this.bgInfo = this.findBackground(value)
-    },
-    /** Catalogue entry for a background url (any CDN host), or null */
-    findBackground(value: string): Background | null {
-      // Market images (/economy/image/<iconUrl>) are known by their icon id,
-      // everything else by its <appid>/<file>
-      const icon = marketIcon(value)
-      const file = icon ? null : mediaFile(value)
-      if (!icon && !file) return null
-      const same = (bg: Background) =>
-        !!bg && (icon ? bg.iconUrl === icon : mediaFile(bg.steamUrl) === file)
-      return this.backgrounds.find(same) || this.nextRandomBackgrounds.find(same) || null
-    },
-    setBackgrounds(backgrounds) {
-      this.backgrounds = backgrounds
-      this.nextRandomBackgrounds.push(
-        this.backgrounds[Math.floor(this.backgrounds.length * Math.random())]
-      )
-      this.backgroundsUpdateTime = Date.now()
-    },
+  findBackground,
 
-    randomBackground() {
-      const newBg = this.nextRandomBackgrounds.shift()
-      if (newBg) {
-        if (newBg.steamUrl.indexOf('http://cdn.akamai.steamstatic.com') !== -1) {
-          this.background = newBg.steamUrl.replace(
-            'http://cdn.akamai.steamstatic.com',
-            'https://steamcdn-a.akamaihd.net'
-          )
-        } else {
-          this.background = newBg.steamUrl
+  setBackgrounds(backgrounds: Background[]) {
+    setStore(
+      produce((s) => {
+        s.backgrounds = backgrounds
+        s.nextRandomBackgrounds.push(backgrounds[Math.floor(backgrounds.length * Math.random())])
+        s.backgroundsUpdateTime = Date.now()
+      })
+    )
+  },
+
+  randomBackground() {
+    setStore(
+      produce((s) => {
+        const newBg = s.nextRandomBackgrounds.shift()
+        if (newBg) {
+          s.background =
+            newBg.steamUrl.indexOf('http://cdn.akamai.steamstatic.com') !== -1
+              ? newBg.steamUrl.replace(
+                  'http://cdn.akamai.steamstatic.com',
+                  'https://steamcdn-a.akamaihd.net'
+                )
+              : newBg.steamUrl
+          s.bgInfo = newBg
+          s.format = mediaFormat(newBg.steamUrl)
         }
-        this.bgInfo = newBg
 
-        this.format = mediaFormat(newBg.steamUrl)
-        // never write "#undefined": it comes back as a background and requests /undefined
-        if (this.background) {
-          window.location.hash = '#' + this.background
-        }
-      }
-
-      if (this.nextRandomBackgrounds.length < 3) {
-        for (let i = 0; i < 5; i++) {
-          const randomBg = this.backgrounds[Math.floor(this.backgrounds.length * Math.random())]
-          let found = false
-          for (const bg of this.nextRandomBackgrounds) {
-            if (bg.steamUrl === randomBg.steamUrl) {
-              found = true
-              break
+        if (s.nextRandomBackgrounds.length < 3) {
+          for (let i = 0; i < 5; i++) {
+            const randomBg = s.backgrounds[Math.floor(s.backgrounds.length * Math.random())]
+            if (
+              randomBg &&
+              !s.nextRandomBackgrounds.some((bg) => bg.steamUrl === randomBg.steamUrl)
+            ) {
+              s.nextRandomBackgrounds.push(randomBg)
             }
           }
-
-          if (!found) {
-            this.nextRandomBackgrounds.push(randomBg)
-          }
         }
-      }
-    },
-    setPreviewScale(value) {
-      this.previewScale = parseInt(value)
-    },
-    setUser(value) {
-      this.user = value
-    },
-    setBgSize(value) {
-      this.bgSize = value
-    },
-
-    setInventoryBackgrounds(items) {
-      this.inventory = items
-      this.inventoryUpdateTime = Date.now()
-    },
-
-    logout() {
-      this.user = {
-        id: 0,
-      }
-      this.inventory = []
-    },
-
-    setBgJsonUrl(v) {
-      this.bgJsonUrl = v
-    },
-
-    addConvertItem(v) {
-      this.converters = this.converters ? [...this.converters, v] : [1]
-    },
-    removeConvertItem(v) {
-      this.converters = (this.converters || []).filter((el) => el.id !== v)
-    },
-
-    // actions
-
-    downloadZip({ ctrl, alt }) {
-      // Positions measured on steamcommunity.com (Oct 2026, 1280-2560 wide windows, several
-      // themes): for a 1920px background the showcase artwork starts at x=495 and x=1010,
-      // the avatar at x=498, y=36. Must match the overlay in preview/Overlay.vue.
-      // sizes based on 1920x1108
-      // https://steamcdn-a.akamaihd.net/steamcommunity/public/images/items/570/982491acceb6c9dde0d5e49dab1e7540c5faa1de.webm
-      const halfWidth = Math.floor(this.bgSize.w / 2)
-      const repeating = this.bgSize.h === this.bgSize.w && this.bgSize.h === 512
-      const bgSaveInfo = {
-        url: this.background,
-        repeating,
-        images: [
-          {
-            name: 'Artwork_Middle.png',
-            x: halfWidth - 465,
-            y: 256,
-            w: 506,
-            h: repeating ? 950 : 2000,
-          },
-          {
-            name: 'Artwork_Right_Top.png',
-            x: halfWidth + 50,
-            y: 256,
-            w: 100,
-            h: repeating ? 950 : 2000,
-          },
-          {
-            name: 'Artwork_Featured.png',
-            x: halfWidth - 465,
-            y: 256,
-            w: 630,
-            h: repeating ? 950 : 2000,
-          },
-          { name: 'Avatar.png', x: halfWidth - 462, y: 36, w: 164, h: 164 },
-        ],
-      }
-
-      // const backUrl = ctrl && alt ? 'https://steam.design/converter/' : 'https://steam.design/raw/'
-      const backUrl = this.isVideo ? 'https://steam.design/converter/' : `${getBackendUrl()}raw/`
-      const url = backUrl + btoa(JSON.stringify(bgSaveInfo))
-
-      // if (state.background.indexOf('.webm') !== -1) {
-      //   console.log('webm', url)
-      //   return
-      // }
-
-      if (this.isVideo && !ctrl && !alt) {
-        this.addConvertItem({
-          id: Math.random().toString(),
-          info: bgSaveInfo,
-        })
-      } else {
-        window.open(url)
-      }
-    },
-
-    getCurrentBg() {
-      const goUrl =
-        this.bgInfo && this.bgInfo.url
-          ? 'https://steamcommunity.com/market/listings/' + this.bgInfo.url
-          : 'https://lens.google.com/uploadbyurl?url=' + this.background
-      window.open(goUrl)
-    },
-
-    async loadBackpack() {
-      const data = await fetch(`https://steam.design/backpack/${this.user.id}/items.json`).then(
-        (r) => r.json()
-      )
-      this.setInventoryBackgrounds(data.backgrounds)
-    },
-
-    trackClick(args) {
-      if (window && window.gtag) {
-        const [where, subject] = args
-        window.gtag('event', where, {
-          event_category: 'userClick',
-          event_label: subject || 'click',
-        })
-      }
-    },
+      })
+    )
+    // never write "#undefined": it comes back as a background and requests /undefined
+    if (store.background) {
+      window.location.hash = '#' + store.background
+    }
   },
-})
+
+  setPreviewScale(value: number | string) {
+    setStore('previewScale', parseInt(String(value)))
+  },
+
+  setUser(value: RootState['user']) {
+    setStore('user', value)
+  },
+
+  setBgSize(value: RootState['bgSize']) {
+    setStore('bgSize', value)
+  },
+
+  setInventoryBackgrounds(items: InventoryItem[]) {
+    setStore({ inventory: items, inventoryUpdateTime: Date.now() })
+  },
+
+  logout() {
+    setStore({ user: { id: 0 }, inventory: [] })
+  },
+
+  setBgJsonUrl(v: string | null) {
+    setStore('bgJsonUrl', v)
+  },
+
+  addConvertItem(v: ConverterProp) {
+    setStore('converters', (list) => [...(list || []), v])
+  },
+
+  removeConvertItem(id: string) {
+    setStore('converters', (list) => (list || []).filter((el) => el.id !== id))
+  },
+
+  downloadZip({ ctrl, alt }: { ctrl: boolean; alt: boolean }) {
+    // Positions measured on steamcommunity.com (Oct 2026, 1280-2560 wide windows, several
+    // themes): for a 1920px background the showcase artwork starts at x=495 and x=1010,
+    // the avatar at x=498, y=36. Must match the overlay in preview/Overlay.tsx.
+    const halfWidth = Math.floor(store.bgSize.w / 2)
+    const repeating = store.bgSize.h === store.bgSize.w && store.bgSize.h === 512
+    const bgSaveInfo = {
+      url: store.background,
+      repeating,
+      images: [
+        {
+          name: 'Artwork_Middle.png',
+          x: halfWidth - 465,
+          y: 256,
+          w: 506,
+          h: repeating ? 950 : 2000,
+        },
+        {
+          name: 'Artwork_Right_Top.png',
+          x: halfWidth + 50,
+          y: 256,
+          w: 100,
+          h: repeating ? 950 : 2000,
+        },
+        {
+          name: 'Artwork_Featured.png',
+          x: halfWidth - 465,
+          y: 256,
+          w: 630,
+          h: repeating ? 950 : 2000,
+        },
+        { name: 'Avatar.png', x: halfWidth - 462, y: 36, w: 164, h: 164 },
+      ],
+    }
+
+    const video = isVideo()
+    const backUrl = video ? 'https://steam.design/converter/' : `${getBackendUrl()}raw/`
+    const url = backUrl + btoa(JSON.stringify(bgSaveInfo))
+
+    if (video && !ctrl && !alt) {
+      // The popup fills in name/enabled/data per image as it converts
+      const info: ConverterProp['info'] = {
+        url: bgSaveInfo.url,
+        images: bgSaveInfo.images.map((i) => ({ ...i, enabled: true, data: new Uint8Array() })),
+      }
+      actions.addConvertItem({ id: Math.random().toString(), info })
+    } else {
+      window.open(url)
+    }
+  },
+
+  getCurrentBg() {
+    const goUrl =
+      store.bgInfo && 'url' in store.bgInfo && store.bgInfo.url
+        ? 'https://steamcommunity.com/market/listings/' + store.bgInfo.url
+        : 'https://lens.google.com/uploadbyurl?url=' + store.background
+    window.open(goUrl)
+  },
+
+  async loadBackpack() {
+    const data = await fetch(`https://steam.design/backpack/${store.user.id}/items.json`).then(
+      (r) => r.json()
+    )
+    actions.setInventoryBackgrounds(data.backgrounds)
+  },
+
+  trackClick(args: [string, unknown?]) {
+    if (window.gtag) {
+      const [where, subject] = args
+      window.gtag('event', where, {
+        event_category: 'userClick',
+        event_label: subject || 'click',
+      })
+    }
+  },
+}
+
+/** Same name the components used with Pinia: `const { store, actions } = useMainStore()` */
+export const useMainStore = () => ({ store, actions, isVideo })

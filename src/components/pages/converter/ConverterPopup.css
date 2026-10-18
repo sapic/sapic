@@ -1,0 +1,21 @@
+/*
+ * Vue scoped these rules to the popup. Class names are global now and the converter page
+ * (Converter.css) has its own .converter__container, so the popup rules are anchored
+ * to the ConvertersContainer parent and reset what the page rule would otherwise add
+ * (width / max-width) when both stylesheets are loaded.
+ */
+.container > .converter__container {
+  width: auto;
+  max-width: none;
+  padding: 1rem;
+  /* Vue had transparentify($color-main, 0.7), which stylus compiled to rgba(0, 0, 0, 0.7) */
+  background: rgba(0, 0, 0, 0.7);
+  border-radius: 7px;
+  margin: 10px 0 0 0;
+}
+
+.container > .converter__container .images__container .item {
+  display: flex;
+  margin: 0;
+  justify-content: space-between;
+}

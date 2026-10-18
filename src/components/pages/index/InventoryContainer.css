@@ -1,0 +1,101 @@
+.spacer {
+  margin-bottom: 8px;
+}
+
+.backgrounds_container {
+  position: absolute;
+  bottom: -212px;
+  right: 409px;
+  width: calc(100% - 250px - 300px - 200px - 9px);
+  height: 350px;
+  background: var(--color-main);
+  transition: all 0.25s ease-in-out;
+  border-radius: 10px 10px 0 0;
+  overflow-y: scroll;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.backgrounds_container .inventory-list {
+  position: relative;
+  transition: all 0.25s ease-in-out;
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+}
+
+.backgrounds_container .inventory-list .inventory-item {
+  margin: 3px;
+  width: 98px;
+  height: 98px;
+  cursor: pointer;
+  background-color: var(--color-button);
+  border-radius: 5px;
+  background-position: top;
+  background-repeat: no-repeat;
+  display: flex;
+  justify-content: center;
+  flex-direction: column;
+}
+
+.backgrounds_container .inventory-list .inventory-item .inventory-item-inner {
+  width: 92px;
+  margin-top: 4px;
+  margin-left: 4px;
+}
+
+.backgrounds_container .hover-button {
+  width: 100%;
+  outline: none;
+  cursor: pointer;
+  height: 25px;
+  background: var(--color-main);
+  border-style: none;
+  display: block;
+  color: var(--color-white);
+  position: relative;
+  transition: all 0.25s ease-in-out;
+  margin: 0 0 7px 0;
+  text-align: center;
+  margin-top: 10px;
+}
+
+.backgrounds_container .inventory-more {
+  color: var(--color-white);
+  padding: 10px 20px;
+  border-radius: 3px;
+  cursor: pointer;
+}
+
+.backgrounds_container .inventory-more.purple-paradise {
+  background: #aa076b; /* fallback for old browsers */
+  background: -webkit-linear-gradient(45deg, #61045f, #aa076b);
+  background: linear-gradient(45deg, #61045f, #aa076b);
+  transition: background 0.25s ease;
+  animation: gradient 3s ease infinite;
+  background-size: 200% 100%;
+  animation-direction: alternate;
+}
+
+.backgrounds_container .inventory-more.purple-paradise:hover {
+  background: linear-gradient(45deg, #7a0578, #ab076c);
+}
+
+@keyframes gradient {
+  0% {
+    background-position: 0%;
+  }
+
+  100% {
+    background-position: 100%;
+  }
+}
+
+.backgrounds_container:hover {
+  bottom: 0;
+}
+
+.backgrounds_container:hover .inventory-list {
+  opacity: 1;
+}

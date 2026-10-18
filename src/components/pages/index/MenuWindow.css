@@ -1,0 +1,409 @@
+.menu__window {
+  height: 100%;
+  width: 250px;
+  background: var(--color-main);
+  flex-shrink: 0;
+  user-select: none;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.menu__window-hint {
+  padding: 0px 20px;
+  margin: 5px 0 20px 0;
+  text-align: center;
+}
+
+.menu__window-hint__text {
+  text-align: center;
+  font-size: 12px;
+  color: white;
+}
+
+.menu__window-title {
+  background-color: var(--color-button);
+  /* width: 100%; */
+  margin: 0 10px;
+  box-sizing: border-box;
+  border-radius: 3px;
+  text-align: center;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  text-decoration: none;
+  height: 27px;
+}
+
+.menu__window-section-container {
+  margin-top: 10px;
+}
+
+.menu__window-discord-image {
+  margin: 10px 10px 0 10px;
+  transition: filter 0.25s ease;
+  text-align: center;
+  display: flex;
+  cursor: pointer;
+  height: 55px;
+  border-radius: 3px;
+}
+
+.menu__window-discord-image:hover {
+  filter: drop-shadow(0px 3px 10px var(--color-black));
+  transition: filter 0.25s ease;
+}
+
+.menu__window-button {
+  background-color: var(--color-button);
+  transition: background-color 0.25s ease;
+  border-radius: 3px;
+  cursor: pointer;
+  margin: 10px 10px 0 10px;
+  text-align: center;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  text-decoration: none;
+}
+
+.menu__window-button.purple-paradise {
+  background: #aa076b;
+  background: -webkit-linear-gradient(45deg, #61045f, #aa076b);
+  background: linear-gradient(45deg, #61045f, #aa076b);
+  transition: background 0.25s ease;
+  animation: gradient 3s ease infinite;
+  background-size: 200% 100%;
+  animation-direction: alternate;
+}
+
+.menu__window-button.purple-paradise:hover {
+  background: linear-gradient(45deg, #7a0578, #ab076c);
+}
+
+.menu__window-button:hover {
+  transition: background-color 0.25s ease;
+  background-color: var(--color-button-hover);
+}
+
+.menu__window-button.noclick {
+  cursor: default;
+  filter: initial;
+  background-color: var(--color-button);
+}
+
+.menu__window-button.textbox {
+  cursor: text;
+  width: 232px;
+  height: 30px;
+  border: none;
+  outline: none;
+  transition: box-shadow 0.25s ease-in-out;
+}
+
+.menu__window-button.textbox:focus {
+  box-shadow: 0 0 40px rgba(0, 0, 0, 0.4);
+}
+
+.menu__window-button.textbox.px {
+  width: 55px;
+}
+
+.menu__window-button.length__slider {
+  margin: 22px 10px 10px 0;
+  -webkit-appearance: none;
+  width: 164px;
+  height: 6px;
+  background: var(--color-button-hover);
+  outline: none;
+  margin-left: 5%;
+  float: left;
+}
+
+.menu__window-button.length__slider::-webkit-slider-thumb {
+  -webkit-appearance: none;
+  appearance: none;
+  width: 15px;
+  height: 15px;
+  background: linear-gradient(
+    45deg,
+    var(--color-button-gradient-1) 0%,
+    var(--color-button-gradient-2) 100%
+  );
+  box-shadow: 0 0 20px rgba(78, 115, 238, 0.5);
+  cursor: pointer;
+  border-radius: 50%;
+}
+
+.menu__window-button.small .menu__window-button-text {
+  margin: 4px;
+  font-size: 14px;
+}
+
+.menu__window-button-text {
+  bottom: 11px;
+  font-size: 17px;
+  font-weight: 300;
+  color: var(--color-white);
+  margin: 15px 0;
+  text-decoration: none;
+}
+
+.menu__window-button-download {
+  background: linear-gradient(
+    45deg,
+    var(--color-button-gradient-1) 0%,
+    var(--color-button-gradient-2) 100%
+  );
+  animation: gradient 3s ease infinite;
+  background-size: 200% 100%;
+  animation-direction: alternate;
+  position: relative;
+  z-index: 2;
+  opacity: 0.8;
+  transition: opacity 0.25s ease;
+}
+
+.menu__window-button-download:hover {
+  opacity: 1;
+  transition: opacity 0.25s ease;
+}
+
+@keyframes gradient {
+  0% {
+    background-position: 0%;
+  }
+
+  100% {
+    background-position: 100%;
+  }
+}
+
+.menu__window-shadow {
+  background: linear-gradient(
+    45deg,
+    var(--color-button-gradient-1) 0%,
+    var(--color-button-gradient-2) 100%
+  );
+  filter: blur(12px);
+  position: relative;
+  height: 53px;
+  top: -63px;
+  margin: 10px 10px -63px 10px;
+  width: 232px;
+  opacity: 0.5;
+}
+
+.menu__window-item {
+  transition: background-color 0.25s ease;
+  cursor: pointer;
+  margin: 10px 10px 0 10px;
+  text-align: center;
+  transition: filter 0.25s ease;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.menu__window-item:hover {
+  transition: filter 0.25s ease;
+  filter: drop-shadow(0px 3px 10px var(--color-black));
+  transition: background-color 0.25s ease;
+  background-color: var(--color-button-hover);
+}
+
+.menu__window-item-text {
+  bottom: 11px;
+  color: var(--color-white);
+  margin: 0;
+}
+
+#urltextbox {
+  color: var(--color-white);
+}
+
+.menu__window-scale__container {
+  display: flex;
+  flex-direction: row;
+  flex-wrap: wrap;
+  justify-content: space-between;
+  padding: 0 10px;
+}
+
+.menu__window-scale__input {
+  display: none;
+}
+
+.menu__window-scale__input:checked + label {
+  background: #272d38;
+  cursor: default;
+}
+
+.menu__window-scale__label {
+  transition: all 0.25s ease;
+  background-color: var(--color-button);
+  border-radius: 3px;
+  cursor: pointer;
+  margin-top: 5px;
+  text-align: center;
+  width: 49%;
+  flex: 0 0 auto;
+  padding: 12px;
+}
+
+.menu__window-scale__label:hover {
+  background: var(--color-button-hover);
+}
+
+.menu__window-scale__button {
+  bottom: 11px;
+  text-shadow: 0px 4px 10px var(--color-black);
+  color: var(--color-white);
+}
+
+.menu__window-credits {
+  position: absolute;
+  bottom: 0;
+}
+
+.menu__window-credits-text {
+  color: var(--color-white);
+  font-size: 11px;
+  margin-bottom: 5px;
+  margin-top: 5px;
+  text-align: center;
+}
+
+.menu__window-icon {
+  color: var(--color-white);
+  margin-right: 6px;
+  width: 20px;
+  height: 20px;
+  color: white;
+  fill: currentColor;
+}
+
+.menu__window-multi-container {
+  display: flex;
+  flex-direction: row;
+  flex-wrap: wrap;
+  justify-content: space-between;
+  padding: 0 10px;
+  max-width: 250px;
+}
+
+.menu__window-multi-label {
+  transition: all 0.25s ease;
+  background-color: var(--color-button);
+  border-radius: 3px;
+  cursor: pointer;
+  margin-top: 5px;
+  text-align: center;
+  width: 49%;
+  flex: 0 0 auto;
+  padding: 12px;
+  text-decoration: none;
+}
+
+.menu__window-multi-label:hover {
+  background: var(--color-button-hover);
+}
+
+.menu__window-multi-button {
+  bottom: 11px;
+  text-shadow: 0px 4px 10px var(--color-black);
+  color: var(--color-white);
+}
+
+/* Was a scoped `*` in the Vue component: every element of this component only */
+.menu__window,
+.menu__window * {
+  box-sizing: border-box;
+}
+
+@media screen and (max-width: 560px) {
+  .menu__window {
+    height: auto;
+    flex-direction: column;
+    width: 100%;
+  }
+
+  .menu__window-buttons {
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+    align-items: flex-start;
+  }
+
+  .menu__window-button {
+    width: 48%;
+    /* height: 20px; */
+    margin: 5px 1%;
+  }
+
+  .menu__window-button.textbox {
+    width: 48%;
+    height: 53px;
+  }
+
+  .menu__window-button.steam {
+    height: 59px;
+  }
+
+  .menu__window-title {
+    background-color: var(--color-button);
+    width: 100%;
+    margin: 0;
+    box-sizing: border-box;
+    border-radius: 3px;
+    text-align: center;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    text-decoration: none;
+    height: 27px;
+  }
+
+  .menu__window-section-container {
+    width: 48%;
+    margin: 5px 1%;
+  }
+
+  .menu__window-scale__container {
+    padding: 0;
+  }
+
+  .menu__window-scale__label {
+    width: 32%;
+    height: 27px;
+    padding: 0;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+
+  .menu__window-multi-container {
+    max-width: none;
+    padding: 0;
+  }
+
+  .menu__window-multi-label {
+    width: 32%;
+  }
+
+  .menu__window-credits {
+    position: relative;
+    width: 100%;
+    margin-top: 10px;
+    padding: 0 1%;
+  }
+
+  .menu__window-discord {
+    display: flex;
+    margin: 10px 0 0 0;
+  }
+
+  .menu__window-discord img {
+    margin: 0 auto;
+  }
+}

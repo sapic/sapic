@@ -1,0 +1,26 @@
+.mobile__header {
+  height: 63px;
+  background-color: rgb(17, 24, 39);
+  border-bottom: 1px solid rgb(31, 41, 55);
+  box-sizing: border-box;
+  display: flex;
+}
+
+.mobile__header-container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 100%;
+}
+
+.mobile__header-image {
+  width: 48px;
+  height: 48px;
+}
+
+.mobile__header-name {
+  color: var(--color-white);
+  margin: 0;
+  margin-left: 12px;
+  font-size: 1.25em;
+}

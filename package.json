@@ -16,17 +16,12 @@
     "@ffmpeg/core": "0.12.10",
     "@ffmpeg/ffmpeg": "0.12.15",
     "@ffmpeg/util": "^0.12.2",
-    "@vitejs/plugin-vue": "^6.0.10",
-    "@vue/devtools-api": "^8.2.1",
+    "@solidjs/router": "^1.0.0",
     "file-saver": "^2.0.5",
     "jszip": "^3.10.2",
-    "pinia": "^4.1.0",
-    "stylus": "^0.64.0",
-    "stylus-loader": "^9.0.0",
+    "solid-js": "^1.9.17",
     "vite": "^8.3.4",
-    "vue": "^3.5.44",
-    "vue-i18n-lite": "^1.0.2",
-    "vue-router": "^5.4.0"
+    "vite-plugin-solid": "^2.11.14"
   },
   "devDependencies": {
     "@types/node": "^26.6.5",

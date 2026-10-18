@@ -1,0 +1,16 @@
+.container {
+  background: none;
+  color: white;
+  border-radius: 3px;
+  width: 320px;
+  position: absolute;
+  top: 32px;
+  left: 32px;
+  z-index: 1;
+  /* padding: 1rem; */
+}
+
+.container iframe {
+  width: 100%;
+  height: 100%;
+}

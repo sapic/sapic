@@ -1,0 +1,45 @@
+import { render } from 'solid-js/web'
+import { Router, Route, useParams, type RouteSectionProps } from '@solidjs/router'
+import { createEffect, lazy } from 'solid-js'
+import initStore from './stores/init'
+import { setLocale } from './i18n'
+import App from './App'
+import { exposeTestHook } from './testHook'
+
+// Same routes as the Vue router on master:
+//   /  /converter  /converter/:raw  and the same three under /:lang
+// The main page is in the entry bundle so it paints without a second request;
+// the converter page (and its ffmpeg code) is loaded only when visited.
+import IndexPage from './components/pages/index/IndexPage'
+const Converter = lazy(() => import('./components/pages/converter/Converter'))
+
+/** /:lang/... sets the UI language when it is one we have (en, ru, zh-CN, zh-HK, zh-TW, tr) */
+function LangLayout(props: RouteSectionProps) {
+  const params = useParams()
+  createEffect(() => setLocale(params.lang ?? ''))
+  return <>{props.children}</>
+}
+
+// Start-up runs alongside the first render; errors only mean no catalogue update
+initStore().catch((e) => console.log('init error', e))
+
+const root = document.getElementById('app')!
+// Same handle the Vue build had (#app.__vue_app__), used by the e2e tests
+exposeTestHook(root)
+
+render(
+  () => (
+    <Router root={App}>
+      <Route path="/" component={IndexPage} />
+      <Route path="/converter" component={Converter} />
+      <Route path="/converter/:raw" component={Converter} />
+      <Route path="/:lang" component={LangLayout}>
+        <Route path="/" component={IndexPage} />
+        <Route path="/converter" component={Converter} />
+        <Route path="/converter/:raw" component={Converter} />
+        <Route path="*" component={IndexPage} />
+      </Route>
+    </Router>
+  ),
+  root
+)
