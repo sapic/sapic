@@ -3,6 +3,22 @@ import { createMemo } from 'solid-js'
 import { Background, ConverterProp } from '@/types/store'
 import { getBackendUrl } from '@/utils/getBackendUrl'
 import { marketIcon, mediaFile, mediaFormat } from '@/utils/steamMediaUrl'
+import type { CropRequest } from '@/utils/cropImage'
+
+/** Crop the background in the browser and save the zip (steam.design_xxxxxx.zip) */
+async function saveImageZip(req: CropRequest) {
+  try {
+    const [{ cropFiles, requestId }, { saveZip }] = await Promise.all([
+      import('@/utils/cropImage'),
+      import('@/utils/saveZip'),
+    ])
+    const files = await cropFiles(req)
+    await saveZip(files, `steam.design_${await requestId(req)}.zip`)
+  } catch (e) {
+    console.error('zip error', e)
+    alert('Could not make the zip: ' + (e instanceof Error ? e.message : String(e)))
+  }
+}
 
 // Solid port of the former Pinia store (src/stores/index.ts on master).
 // Same state shape and the same action names, so components read `store.x`
@@ -199,11 +215,14 @@ export const actions = {
       ],
     }
 
-    const video = isVideo()
-    const backUrl = video ? 'https://steam.design/converter/' : `${getBackendUrl()}raw/`
-    const url = backUrl + btoa(JSON.stringify(bgSaveInfo))
+    if (!isVideo()) {
+      // Images are cropped and zipped in the browser; the backend only serves the
+      // image with CORS headers (see utils/cropImage.ts)
+      void saveImageZip(bgSaveInfo)
+      return
+    }
 
-    if (video && !ctrl && !alt) {
+    if (!ctrl && !alt) {
       // The popup fills in name/enabled/data per image as it converts
       const info: ConverterProp['info'] = {
         url: bgSaveInfo.url,
@@ -211,7 +230,7 @@ export const actions = {
       }
       actions.addConvertItem({ id: Math.random().toString(), info })
     } else {
-      window.open(url)
+      window.open('https://steam.design/converter/' + btoa(JSON.stringify(bgSaveInfo)))
     }
   },
 
@@ -224,10 +243,11 @@ export const actions = {
   },
 
   async loadBackpack() {
-    const data = await fetch(`https://steam.design/backpack/${store.user.id}/items.json`).then(
-      (r) => r.json()
-    )
-    actions.setInventoryBackgrounds(data.backgrounds)
+    const res = await fetch(`${getBackendUrl()}backpack/${store.user.id}/items.json`)
+    // A private inventory or a Steam rate limit is an error, not an empty inventory
+    if (!res.ok) throw new Error(`backpack ${res.status}`)
+    const data = await res.json()
+    actions.setInventoryBackgrounds(data.backgrounds || [])
   },
 
   trackClick(args: [string, unknown?]) {
