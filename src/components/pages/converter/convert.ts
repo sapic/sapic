@@ -1,6 +1,7 @@
 import { FFmpeg } from '@ffmpeg/ffmpeg'
 import { fetchFile, toBlobURL } from '@ffmpeg/util'
 import { ImageInfo } from '@/types/image'
+import { readableUrl } from '@/utils/cropImage'
 
 // Served from public/ffmpeg (copied from @ffmpeg/core@0.12, single-thread build).
 // The core includes libaom, so AV1 source videos can be decoded.
@@ -38,7 +39,12 @@ let lastSource: { url: string; data: Promise<Uint8Array> } | null = null
 function loadSource(source: string | File): Promise<Uint8Array> {
   if (typeof source !== 'string') return fetchFile(source)
   if (!lastSource || lastSource.url !== source) {
-    const entry = { url: source, data: fetchFile(source) }
+    // Straight from Steam first (its video CDNs send CORS headers); through our
+    // /img/ proxy when that fails, e.g. a CDN host without CORS
+    const entry = {
+      url: source,
+      data: fetchFile(source).catch(() => fetchFile(readableUrl(source))),
+    }
     entry.data.catch(() => {
       if (lastSource === entry) lastSource = null // a failed fetch is retried next time
     })
