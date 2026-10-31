@@ -28,7 +28,7 @@ jobs:
           chmod 700 "$ssh_path"
           chmod 600 "$ssh_path/known_hosts"
           chmod 600 "$ssh_path/deploy_key"
-          ssh-keyscan -H 159.65.199.184 >> "$ssh_path/known_hosts"
+          ssh-keyscan -H 188.166.105.251 >> "$ssh_path/known_hosts"
 
           ssh -i $HOME/.ssh/deploy_key root@188.166.105.251 << EOF
             ./restart_sapic.sh
