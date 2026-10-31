@@ -30,8 +30,6 @@ jobs:
           chmod 600 "$ssh_path/deploy_key"
           ssh-keyscan -H 159.65.199.184 >> "$ssh_path/known_hosts"
 
-          ssh -i $HOME/.ssh/deploy_key root@159.65.199.184 << EOF
-            docker pull sapic/sapic
-            docker stop sapic && docker rm sapic
-            docker run -d -it --restart="always" --name sapic --network sapic sapic/sapic:latest
+          ssh -i $HOME/.ssh/deploy_key root@188.166.105.251 << EOF
+            ./restart_sapic.sh
           EOF
